@@ -1,0 +1,40 @@
+package ch.epfl.printwizard.extractor.java;
+
+import ch.epfl.printwizard.extractor.IExtractor;
+import ch.epfl.printwizard.model.Source;
+import ch.epfl.printwizard.utils.Preconditions;
+import com.github.javaparser.JavaParser;
+import com.github.javaparser.ast.CompilationUnit;
+
+import java.io.IOException;
+import java.nio.file.Path;
+import java.util.List;
+
+public final class JavaSourceExtractor implements IExtractor<Path, Source> {
+
+    private static final String SOURCE_ID_PREFIX = "src";
+    private final JavaParser parser;
+    private final Path baseDir;
+
+    public JavaSourceExtractor(Path baseDir, JavaParser parser) {
+        Preconditions.RequireNonNull(baseDir, "Base directory cannot be null");
+        Preconditions.RequireNonNull(parser, "JavaParser cannot be null");
+
+        this.baseDir = baseDir;
+        this.parser = parser;
+    }
+
+    public List<Source> extract(Path filePath) throws IOException {
+        Path rel = (baseDir != null && filePath.startsWith(baseDir))
+                ? baseDir.relativize(filePath)
+                : filePath;
+
+        CompilationUnit cu = parser.parse(filePath).getResult()
+                .orElseThrow(() -> new IOException("Could not parse: " + filePath));
+
+        int lines = cu.getRange().map(r -> r.end.line).orElseThrow();
+
+        String sourceId = SOURCE_ID_PREFIX + ":" + rel.toString().replace('\\', '/');
+        return List.of(new Source(sourceId, rel.toString().replace('\\', '/'), "java", lines));
+    }
+}
