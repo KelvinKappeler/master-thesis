@@ -24,7 +24,7 @@ public record JavaMethodExtractor(Source source, BaseTypeInfo typeInfo) implemen
 
     /**
      * Constructs a JavaMethodExtractor with the given source ID.
-     * @param source    the source of the class
+     * @param source the source of the class
      * @param typeInfo the class/interface/record information
      */
     public JavaMethodExtractor {
@@ -47,22 +47,16 @@ public record JavaMethodExtractor(Source source, BaseTypeInfo typeInfo) implemen
 
     private static List<CallableDeclaration<?>> collectCallables(TypeDeclaration<?> typeDecl) {
         List<CallableDeclaration<?>> res = new ArrayList<>();
-        if (typeDecl instanceof ClassOrInterfaceDeclaration classOrIntDecl) {
-            res.addAll(classOrIntDecl.getMethods());
-            res.addAll(classOrIntDecl.getConstructors());
-        } else if (typeDecl instanceof RecordDeclaration rd) {
-            res.addAll(rd.getMethods());
-            res.addAll(rd.getConstructors());
-        } else {
-            res.addAll(typeDecl.findAll(MethodDeclaration.class));
-            res.addAll(typeDecl.findAll(ConstructorDeclaration.class));
-        }
+        res.addAll(typeDecl.findAll(MethodDeclaration.class));
+        res.addAll(typeDecl.findAll(ConstructorDeclaration.class));
+
         return res;
     }
 
     private MethodInfo extractOne(CallableDeclaration<?> c) {
         final String name = c.getNameAsString();
         final boolean isConstructor = c.isConstructorDeclaration();
+        
         final String returnType = isConstructor ? CONSTRUCTOR_NAME : ((MethodDeclaration) c).getType().asString();
 
         // Parameters

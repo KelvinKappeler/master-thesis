@@ -24,15 +24,17 @@ public final class ProgramModelAssembler {
         ArrayList<ClassInfo> classes = dedupeById(result.getClasses(), ClassInfo::getId);
         ArrayList<InterfaceInfo> interfaces = dedupeById(result.getInterfaces(), InterfaceInfo::getId);
         ArrayList<RecordInfo> records = dedupeById(result.getRecords(), RecordInfo::getId);
+        ArrayList<EnumInfo> enums = dedupeById(result.getEnums(), EnumInfo::getId);
         ArrayList<MethodInfo> methods = dedupeById(result.getMethods(), MethodInfo::methodId);
 
         sources.sort(Comparator.comparing(Source::sourceId));
         classes.sort(Comparator.comparing(ClassInfo::getId));
         interfaces.sort(Comparator.comparing(InterfaceInfo::getId));
         records.sort(Comparator.comparing(RecordInfo::getId));
+        enums.sort(Comparator.comparing(EnumInfo::getId));
         methods.sort(Comparator.comparing(MethodInfo::methodId));
 
-        return new ProgramFile(sources, classes, interfaces, records, methods);
+        return new ProgramFile(sources, classes, interfaces, records, enums, methods);
     }
 
     private static <T> ArrayList<T> dedupeById(List<T> list, Function<T, String>idExtractor) {

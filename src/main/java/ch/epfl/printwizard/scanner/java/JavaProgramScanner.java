@@ -72,7 +72,7 @@ public record JavaProgramScanner(Path baseDir, JavaParser parser, Predicate<Path
                         // (2) Parse
                         CompilationUnit cu = parser.parse(file).getResult().orElseThrow(() -> new IOException("Parse failed: " + file));
 
-                        // (3) Classes / Interface / Records for this file
+                        // (3) Classes / Interface / Records / Enums for this file
                         JavaClassExtractor classExtractor = new JavaClassExtractor(source.sourceId());
                         List<ClassInfo> classes = classExtractor.extract(cu);
                         result.addClasses(classes);
@@ -84,6 +84,10 @@ public record JavaProgramScanner(Path baseDir, JavaParser parser, Predicate<Path
                         JavaRecordExtractor recordExtractor = new JavaRecordExtractor(source.sourceId());
                         List<RecordInfo> records = recordExtractor.extract(cu);
                         result.addRecords(records);
+                        
+                        JavaEnumExtractor enumExtractor = new JavaEnumExtractor(source.sourceId());
+                        List<EnumInfo> enums = enumExtractor.extract(cu);
+                        result.addEnums(enums);
 
                         // (4) Methods
                         Map<String, TypeDeclaration<?>> typesById = new HashMap<>();

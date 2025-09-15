@@ -1,6 +1,7 @@
 package ch.epfl.printwizard.writer;
 
 import ch.epfl.printwizard.model.ProgramFile;
+import ch.epfl.printwizard.model.structures.BlockNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 
@@ -24,7 +25,7 @@ public final class ProgramFileWriter {
      */
     public static void write(ProgramFile program, Path outPath) throws IOException {
         if (outPath.getParent() != null) Files.createDirectories(outPath.getParent());
-
+        
         ObjectMapper mapper = new ObjectMapper().enable(SerializationFeature.INDENT_OUTPUT);
 
         mapper.writeValue(outPath.toFile(), program);

@@ -1,13 +1,9 @@
 package ch.epfl.printwizard.extractor.java.mapper;
 
 import ch.epfl.printwizard.model.LocalVar;
-import ch.epfl.printwizard.model.structures.BlockNode;
-import ch.epfl.printwizard.model.structures.ExprStmtNode;
-import ch.epfl.printwizard.model.structures.StructureKind;
-import ch.epfl.printwizard.model.structures.StructureNode;
+import ch.epfl.printwizard.model.structures.*;
 import ch.epfl.printwizard.model.structures.expr.ExprCode;
-import com.github.javaparser.ast.stmt.BlockStmt;
-import com.github.javaparser.ast.stmt.Statement;
+import com.github.javaparser.ast.stmt.*;
 
 import java.util.*;
 
@@ -67,30 +63,34 @@ public final class JavaStructureMapper {
             });
             return new VarDeclNode(nextId("vardecl"), StructureKind.VAR_DECL, ls(n), le(n), declared);
         }
-
-        if (s.isExpressionStmt()) {
-            ExpressionStmt n = s.asExpressionStmt();
-            Expression e = n.getExpression();
-            return new ExprStmtNode(nextId("expr"), StructureKind.EXPR_STMT, ls(n), le(n), exprRef(e));
-        }
         */
-
-        if (s.isBlockStmt()) {
-            return mapBlock(s.asBlockStmt());
-        }
-
-        // Fallback: store exact code as an "expr stmt" node for unhandled kinds.
-        ExprCode exprCode = new ExprCode(
-            s.toString(),
-            startLine,
-            endLine
-        );
         
-        return new ExprStmtNode(
-            nextId(StructureKind.EXPR_STMT.getPrefixId()),
-            startLine, endLine,
-            exprCode
-        );
+        return switch (s) {
+            case BlockStmt n -> {
+                var kids = n.getStatements().stream().map(this::mapStmt).toList();
+                yield new BlockNode(nextId(StructureKind.BLOCK.getPrefixId()), StructureKind.BLOCK, startLine, endLine, kids);
+            }
+            
+            case IfStmt n -> {
+                var cond = new ExprCode(n.getCondition().toString(), startLine, endLine);
+                var thenNode = mapStmt(n.getThenStmt());
+                var elseNode = n.getElseStmt().map(this::mapStmt).orElse(null);
+                yield new IfNode(nextId(StructureKind.IF.getPrefixId()), startLine, endLine, cond, thenNode, elseNode);
+            }
+            
+            case ForStmt n -> {
+                //
+            }
+            
+            case ExpressionStmt n -> {
+                var e = n.getExpression();
+                yield new ExprStmtNode(nextId(StructureKind.EXPR_STMT.getPrefixId()), startLine, endLine,
+                        new ExprCode(e.toString(), startLine, endLine));
+            }
+
+            default -> new ExprStmtNode(nextId(StructureKind.EXPR_STMT.getPrefixId()), startLine, endLine,
+                    new ExprCode(s.toString(), startLine, endLine));
+        };
     }
 
     private String nextId(String prefix) {

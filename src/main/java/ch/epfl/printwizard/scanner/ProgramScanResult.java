@@ -16,6 +16,7 @@ public final class ProgramScanResult {
     private final List<ClassInfo> classes = new ArrayList<>();
     private final List<InterfaceInfo> interfaces = new ArrayList<>();
     private final List<RecordInfo> records = new ArrayList<>();
+    private final List<EnumInfo> enums = new ArrayList<>();
     private final List<MethodInfo> methods = new ArrayList<>();
     private final List<Diagnostic> diagnostics = new ArrayList<>();
 
@@ -49,6 +50,14 @@ public final class ProgramScanResult {
      */
     public List<RecordInfo> getRecords() {
         return Collections.unmodifiableList(records);
+    }
+    
+    /**
+     * Returns an unmodifiable list of enums in the scanned program.
+     * @return List of enums
+     */
+    public List<EnumInfo> getEnums() {
+        return Collections.unmodifiableList(enums);
     }
 
     /**
@@ -97,6 +106,14 @@ public final class ProgramScanResult {
      */
     public void addRecords(List<RecordInfo> recordInfos) {
         records.addAll(recordInfos);
+    }
+    
+    /**
+     * Adds a list of enums to the scanned program.
+     * @param enumInfos List of enums to add
+     */
+    public void addEnums(List<EnumInfo> enumInfos) {
+        enums.addAll(enumInfos);
     }
 
     /**

@@ -9,12 +9,14 @@ import java.util.List;
  */
 public final class BlockNode extends StructureNode {
     
-    private List<StructureNode> structures;
+    private final List<StructureNode> structures;
     
     public BlockNode(String structureId, StructureKind kind, int start, int end, List<StructureNode> structures) {
         super(structureId, kind, start, end);
 
         Preconditions.requireNonNull(structures, "structures cannot be null");
+        
+        this.structures = structures;
     }
     
     /**
