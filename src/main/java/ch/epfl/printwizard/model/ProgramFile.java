@@ -11,5 +11,7 @@ import java.util.List;
 public record ProgramFile(
     List<Source> sources,
     List<ClassInfo> classes,
+    List<InterfaceInfo> interfaces,
+    List<RecordInfo> records,
     List<MethodInfo> methods
 ) { }

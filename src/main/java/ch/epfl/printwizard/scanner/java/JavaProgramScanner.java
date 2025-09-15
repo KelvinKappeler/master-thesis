@@ -1,7 +1,11 @@
 package ch.epfl.printwizard.scanner.java;
 
 import ch.epfl.printwizard.extractor.java.JavaClassExtractor;
+import ch.epfl.printwizard.extractor.java.JavaInterfaceExtractor;
+import ch.epfl.printwizard.extractor.java.JavaRecordExtractor;
 import ch.epfl.printwizard.model.ClassInfo;
+import ch.epfl.printwizard.model.InterfaceInfo;
+import ch.epfl.printwizard.model.RecordInfo;
 import ch.epfl.printwizard.model.Source;
 import ch.epfl.printwizard.extractor.java.JavaSourceExtractor;
 import ch.epfl.printwizard.scanner.IProgramScanner;
@@ -27,14 +31,11 @@ import static java.nio.file.FileVisitOption.FOLLOW_LINKS;
 /**
  * Represents a scanner for Java programs (intended mostly to create program.json)
  */
-public final class JavaProgramScanner implements IProgramScanner {
-
-    private final Path baseDir;
-    private final JavaParser parser;
-    private final Predicate<Path> pathFilter;
+public record JavaProgramScanner(Path baseDir, JavaParser parser, Predicate<Path> pathFilter) implements IProgramScanner {
 
     /**
      * Creates a builder for JavaProgramScanner with the specified base directory.
+     *
      * @param baseDir the base directory for the scanner
      * @return a Builder instance to configure and build the JavaProgramScanner
      */
@@ -44,7 +45,7 @@ public final class JavaProgramScanner implements IProgramScanner {
         return new Builder(baseDir);
     }
 
-    private JavaProgramScanner(Path baseDir, JavaParser parser, Predicate<Path> pathFilter) {
+    public JavaProgramScanner(Path baseDir, JavaParser parser, Predicate<Path> pathFilter) {
         Preconditions.RequireNonNull(baseDir, "Base directory cannot be null");
         Preconditions.RequireNonNull(parser, "JavaParser cannot be null");
 
@@ -62,34 +63,42 @@ public final class JavaProgramScanner implements IProgramScanner {
 
         try (var stream = Files.walk(root, Integer.MAX_VALUE, FOLLOW_LINKS)) {
             stream.filter(p -> p.toString().endsWith(".java"))
-            .filter(pathFilter).forEach(file -> {
-                try {
-                    // (1) Source
-                    List<Source> sources = sourceExtractor.extract(file);
-                    if (sources.isEmpty()) return;
-                    Source source = sources.getFirst();
-                    result.addSources(sources);
+                    .filter(pathFilter).forEach(file -> {
+                        try {
+                            // (1) Source
+                            List<Source> sources = sourceExtractor.extract(file);
+                            if (sources.isEmpty()) return;
+                            Source source = sources.getFirst();
+                            result.addSources(sources);
 
-                    // (2) Parse
-                    CompilationUnit cu = parser.parse(file).getResult().orElseThrow(() -> new IOException("Parse failed: " + file));
+                            // (2) Parse
+                            CompilationUnit cu = parser.parse(file).getResult().orElseThrow(() -> new IOException("Parse failed: " + file));
 
-                    // (3) Classes for this file
-                    JavaClassExtractor classExtractor = new JavaClassExtractor(source.sourceId());
-                    List<ClassInfo> classes = classExtractor.extract(cu);
-                    result.addClasses(classes);
+                            // (3) Classes / Interface / Records for this file
+                            JavaClassExtractor classExtractor = new JavaClassExtractor(source.sourceId());
+                            List<ClassInfo> classes = classExtractor.extract(cu);
+                            result.addClasses(classes);
 
-                    // (4) Methods:
-                    // new JavaMethodExtractor(source.sourceId(), classIdStrategy).extract(cu)
-                    // result.addMethods(methods);
+                            JavaInterfaceExtractor interfaceExtractor = new JavaInterfaceExtractor(source.sourceId());
+                            List<InterfaceInfo> interfaces = interfaceExtractor.extract(cu);
+                            result.addInterfaces(interfaces);
 
-                } catch (Exception e) {
-                    result.addDiagnostic(new Diagnostic(
-                            Diagnostic.Severity.ERROR,
-                            e.getMessage(),
-                            relativizeSafe(file)
-                    ));
-                }
-            });
+                            JavaRecordExtractor recordExtractor = new JavaRecordExtractor(source.sourceId());
+                            List<RecordInfo> records = recordExtractor.extract(cu);
+                            result.addRecords(records);
+
+                            // (4) Methods:
+                            // new JavaMethodExtractor(source.sourceId(), classIdStrategy).extract(cu)
+                            // result.addMethods(methods);
+
+                        } catch (Exception e) {
+                            result.addDiagnostic(new Diagnostic(
+                                    Diagnostic.Severity.ERROR,
+                                    e.getMessage(),
+                                    relativizeSafe(file)
+                            ));
+                        }
+                    });
         }
 
         return result;
@@ -120,36 +129,42 @@ public final class JavaProgramScanner implements IProgramScanner {
 
         /**
          * Adds a path to the include list, e.g. "src/main/java/**{@literal /}*.java"
+         *
          * @param path the path pattern to include
          * @return the Builder instance for chaining
          */
         public Builder include(String path) {
-            includeList.add(path); return this;
+            includeList.add(path);
+            return this;
         }
 
         /**
          * Adds a path to the exclude list, e.g. "src/test/java/**{@literal /}*.java"
+         *
          * @param path the path pattern to exclude
          * @return the Builder instance for chaining
          */
         public Builder exclude(String path) {
-            excludeList.add(path); return this;
+            excludeList.add(path);
+            return this;
         }
 
         /**
          * Sets the language level for the Java parser.
+         *
          * @param level the language level to set
          * @return the Builder instance for chaining
          */
         public Builder languageLevel(ParserConfiguration.LanguageLevel level) {
-            this.languageLevel = level; return this;
+            this.languageLevel = level;
+            return this;
         }
 
         public JavaProgramScanner build() {
             ParserConfiguration config = new ParserConfiguration()
-                .setCharacterEncoding(StandardCharsets.UTF_8)
-                .setLanguageLevel(languageLevel)
-                .setAttributeComments(true);
+                    .setCharacterEncoding(StandardCharsets.UTF_8)
+                    .setLanguageLevel(languageLevel)
+                    .setAttributeComments(true);
             JavaParser parser = new JavaParser(config);
 
             Predicate<Path> filter = buildPathFilter();
@@ -185,8 +200,7 @@ public final class JavaProgramScanner implements IProgramScanner {
         private Path relativize(Path p) {
             try {
                 return baseDir.relativize(p);
-            }
-            catch (Exception e) {
+            } catch (Exception e) {
                 return p;
             }
         }

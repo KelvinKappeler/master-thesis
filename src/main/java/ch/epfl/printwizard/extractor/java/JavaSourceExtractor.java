@@ -10,18 +10,13 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.List;
 
-public final class JavaSourceExtractor implements IExtractor<Path, Source> {
+public record JavaSourceExtractor(Path baseDir, JavaParser parser) implements IExtractor<Path, Source> {
 
     private static final String SOURCE_ID_PREFIX = "src";
-    private final JavaParser parser;
-    private final Path baseDir;
 
-    public JavaSourceExtractor(Path baseDir, JavaParser parser) {
+    public JavaSourceExtractor {
         Preconditions.RequireNonNull(baseDir, "Base directory cannot be null");
         Preconditions.RequireNonNull(parser, "JavaParser cannot be null");
-
-        this.baseDir = baseDir;
-        this.parser = parser;
     }
 
     public List<Source> extract(Path filePath) throws IOException {

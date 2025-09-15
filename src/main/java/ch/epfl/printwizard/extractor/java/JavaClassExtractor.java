@@ -1,44 +1,37 @@
 package ch.epfl.printwizard.extractor.java;
 
-import ch.epfl.printwizard.extractor.IExtractor;
 import ch.epfl.printwizard.model.ClassInfo;
-import ch.epfl.printwizard.utils.Preconditions;
 import com.github.javaparser.ast.CompilationUnit;
 import com.github.javaparser.ast.body.ClassOrInterfaceDeclaration;
+import com.github.javaparser.ast.body.TypeDeclaration;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.stream.Stream;
 
 /**
  * Represents an extractor that extracts class information from a Java CompilationUnit.
  */
-public final class JavaClassExtractor implements IExtractor<CompilationUnit, ClassInfo> {
+public final class JavaClassExtractor extends AbstractJavaTypeExtractor<ClassInfo> {
 
     private static final String CLASS_ID_PREFIX = "cls";
-    private final String sourceId;
-
+    
     public JavaClassExtractor(String sourceId) {
-        Preconditions.RequireNonNull(sourceId, "Source ID cannot be null");
-        Preconditions.Require(!sourceId.isEmpty(), "Source ID cannot be empty");
-
-        this.sourceId = sourceId;
+        super(sourceId);
     }
 
     @Override
-    public List<ClassInfo> extract(CompilationUnit compilationUnit) {
-        Preconditions.RequireNonNull(compilationUnit, "CompilationUnit cannot be null");
+    protected Stream<? extends TypeDeclaration<?>> findTargetDeclarations(CompilationUnit cu) {
+        return cu.findAll(ClassOrInterfaceDeclaration.class)
+                .stream()
+                .filter(d -> !d.isInterface());
+    }
 
-        List<ClassInfo> classInfos = new ArrayList<>();
+    @Override
+    protected String getIdPrefix() {
+        return CLASS_ID_PREFIX;
+    }
 
-        String packageName = compilationUnit.getPackageDeclaration().map(pd -> pd.getName().toString()).orElse("");
-
-        for (ClassOrInterfaceDeclaration decl : compilationUnit.findAll(ClassOrInterfaceDeclaration.class)) {
-            String className = decl.getNameAsString();
-            String classId = CLASS_ID_PREFIX + ":" + (packageName.isEmpty() ? className : packageName + "." + className);
-
-            classInfos.add(new ClassInfo(classId, className, packageName, sourceId));
-        }
-
-        return classInfos;
+    @Override
+    protected ClassInfo makeInfo(String id, String name, String packageName, String sourceId) {
+        return new ClassInfo(id, name, packageName, sourceId);
     }
 }

@@ -1,9 +1,6 @@
 package ch.epfl.printwizard.assembler;
 
-import ch.epfl.printwizard.model.ClassInfo;
-import ch.epfl.printwizard.model.MethodInfo;
-import ch.epfl.printwizard.model.ProgramFile;
-import ch.epfl.printwizard.model.Source;
+import ch.epfl.printwizard.model.*;
 import ch.epfl.printwizard.scanner.ProgramScanResult;
 
 import java.util.ArrayList;
@@ -23,22 +20,26 @@ public final class ProgramModelAssembler {
      * @return the assembled ProgramFile
      */
     public static ProgramFile assemble(ProgramScanResult result) {
-        var sources = dedupeById(result.getSources(), Source::sourceId);
-        var classes = dedupeById(result.getClasses(), ClassInfo::classId);
-        var methods = dedupeById(result.getMethods(), MethodInfo::methodId);
+        ArrayList<Source> sources = dedupeById(result.getSources(), Source::sourceId);
+        ArrayList<ClassInfo> classes = dedupeById(result.getClasses(), ClassInfo::getId);
+        ArrayList<InterfaceInfo> interfaces = dedupeById(result.getInterfaces(), InterfaceInfo::getId);
+        ArrayList<RecordInfo> records = dedupeById(result.getRecords(), RecordInfo::getId);
+        ArrayList<MethodInfo> methods = dedupeById(result.getMethods(), MethodInfo::methodId);
 
         sources.sort(Comparator.comparing(Source::sourceId));
-        classes.sort(Comparator.comparing(ClassInfo::classId));
+        classes.sort(Comparator.comparing(ClassInfo::getId));
+        interfaces.sort(Comparator.comparing(InterfaceInfo::getId));
+        records.sort(Comparator.comparing(RecordInfo::getId));
         methods.sort(Comparator.comparing(MethodInfo::methodId));
 
-        return new ProgramFile(sources, classes, methods);
+        return new ProgramFile(sources, classes, interfaces, records, methods);
     }
 
     private static <T> ArrayList<T> dedupeById(List<T> list, Function<T, String>idExtractor) {
-        var seen = new HashSet<String>();
-        var out = new ArrayList<T>(list.size());
+        HashSet<String> seen = new HashSet<>();
+        ArrayList<T> out = new ArrayList<>(list.size());
         for (T t : list) {
-            var id = idExtractor.apply(t);
+            String id = idExtractor.apply(t);
             if (seen.add(id)) out.add(t);
         }
 

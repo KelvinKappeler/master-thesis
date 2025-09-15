@@ -1,9 +1,8 @@
 package ch.epfl.printwizard.scanner;
 
-import ch.epfl.printwizard.model.ClassInfo;
-import ch.epfl.printwizard.model.MethodInfo;
-import ch.epfl.printwizard.model.Source;
+import ch.epfl.printwizard.model.*;
 import ch.epfl.printwizard.utils.Diagnostic;
+import org.w3c.dom.stylesheets.LinkStyle;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -15,6 +14,8 @@ import java.util.List;
 public final class ProgramScanResult {
     private final List<Source> sources = new ArrayList<>();
     private final List<ClassInfo> classes = new ArrayList<>();
+    private final List<InterfaceInfo> interfaces = new ArrayList<>();
+    private final List<RecordInfo> records = new ArrayList<>();
     private final List<MethodInfo> methods = new ArrayList<>();
     private final List<Diagnostic> diagnostics = new ArrayList<>();
 
@@ -32,6 +33,22 @@ public final class ProgramScanResult {
      */
     public List<ClassInfo> getClasses() {
         return Collections.unmodifiableList(classes);
+    }
+
+    /**
+     * Returns an unmodifiable list of interfaces in the scanned program.
+     * @return List of interfaces
+     */
+    public List<InterfaceInfo> getInterfaces() {
+        return Collections.unmodifiableList(interfaces);
+    }
+
+    /**
+     * Returns an unmodifiable list of records in the scanned program.
+     * @return List of records
+     */
+    public List<RecordInfo> getRecords() {
+        return Collections.unmodifiableList(records);
     }
 
     /**
@@ -64,6 +81,22 @@ public final class ProgramScanResult {
      */
     public void addClasses(List<ClassInfo> classInfos) {
         classes.addAll(classInfos);
+    }
+
+    /**
+     * Adds a list of interfaces to the scanned program.
+     * @param interfaceInfos List of interfaces to add
+     */
+    public void addInterfaces(List<InterfaceInfo> interfaceInfos) {
+        interfaces.addAll(interfaceInfos);
+    }
+
+    /**
+     * Adds a list of records to the scanned program.
+     * @param recordInfos List of records to add
+     */
+    public void addRecords(List<RecordInfo> recordInfos) {
+        records.addAll(recordInfos);
     }
 
     /**
