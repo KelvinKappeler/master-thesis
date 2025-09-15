@@ -15,8 +15,8 @@ public final class LocalVarDeclNode extends StructureNode {
     public LocalVarDeclNode(String structureId, int startLine, int endLine, List<LocalVar> localVars) {
         super(structureId, StructureKind.LOCAL_VAR_DECL, startLine, endLine);
 
-        Preconditions.RequireNonNull(localVars, "localVars cannot be null");
-        Preconditions.Require(!localVars.isEmpty(), "localVars cannot be empty");
+        Preconditions.requireNonNull(localVars, "localVars cannot be null");
+        Preconditions.require(!localVars.isEmpty(), "localVars cannot be empty");
         
         this.localVars = localVars;
     }

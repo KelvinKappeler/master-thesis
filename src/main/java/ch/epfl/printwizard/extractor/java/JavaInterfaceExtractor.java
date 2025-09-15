@@ -11,8 +11,6 @@ import java.util.stream.Stream;
  * Represents an extractor that extracts interface information from a Java CompilationUnit.
  */
 public final class JavaInterfaceExtractor extends AbstractJavaTypeExtractor<InterfaceInfo> {
-
-    private static final String INTERFACE_ID_PREFIX = "intf";
     
     public JavaInterfaceExtractor(String sourceId) {
         super(sourceId);
@@ -23,11 +21,6 @@ public final class JavaInterfaceExtractor extends AbstractJavaTypeExtractor<Inte
         return cu.findAll(ClassOrInterfaceDeclaration.class)
                 .stream()
                 .filter(ClassOrInterfaceDeclaration::isInterface);
-    }
-
-    @Override
-    protected String getIdPrefix() {
-        return INTERFACE_ID_PREFIX;
     }
 
     @Override

@@ -1,5 +1,7 @@
 package ch.epfl.printwizard.model;
 
+import ch.epfl.printwizard.utils.Preconditions;
+
 import java.util.List;
 
 /**
@@ -14,4 +16,12 @@ public record ProgramFile(
     List<InterfaceInfo> interfaces,
     List<RecordInfo> records,
     List<MethodInfo> methods
-) { }
+) {
+    public ProgramFile {
+        Preconditions.requireNonNull(sources, "sources cannot be null");
+        Preconditions.requireNonNull(classes, "classes cannot be null");
+        Preconditions.requireNonNull(interfaces, "interfaces cannot be null");
+        Preconditions.requireNonNull(records, "records cannot be null");
+        Preconditions.requireNonNull(methods, "methods cannot be null");
+    }
+}

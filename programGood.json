@@ -1,0 +1,2251 @@
+{
+  "sources" : [ {
+    "sourceId" : "src:src/main/java/ch/epfl/printwizard/Main.java",
+    "path" : "src/main/java/ch/epfl/printwizard/Main.java",
+    "language" : "java",
+    "lines" : 37
+  }, {
+    "sourceId" : "src:src/main/java/ch/epfl/printwizard/assembler/ProgramModelAssembler.java",
+    "path" : "src/main/java/ch/epfl/printwizard/assembler/ProgramModelAssembler.java",
+    "language" : "java",
+    "lines" : 48
+  }, {
+    "sourceId" : "src:src/main/java/ch/epfl/printwizard/extractor/IExtractor.java",
+    "path" : "src/main/java/ch/epfl/printwizard/extractor/IExtractor.java",
+    "language" : "java",
+    "lines" : 19
+  }, {
+    "sourceId" : "src:src/main/java/ch/epfl/printwizard/extractor/java/AbstractJavaTypeExtractor.java",
+    "path" : "src/main/java/ch/epfl/printwizard/extractor/java/AbstractJavaTypeExtractor.java",
+    "language" : "java",
+    "lines" : 58
+  }, {
+    "sourceId" : "src:src/main/java/ch/epfl/printwizard/extractor/java/JavaClassExtractor.java",
+    "path" : "src/main/java/ch/epfl/printwizard/extractor/java/JavaClassExtractor.java",
+    "language" : "java",
+    "lines" : 30
+  }, {
+    "sourceId" : "src:src/main/java/ch/epfl/printwizard/extractor/java/JavaInterfaceExtractor.java",
+    "path" : "src/main/java/ch/epfl/printwizard/extractor/java/JavaInterfaceExtractor.java",
+    "language" : "java",
+    "lines" : 30
+  }, {
+    "sourceId" : "src:src/main/java/ch/epfl/printwizard/extractor/java/JavaMethodExtractor.java",
+    "path" : "src/main/java/ch/epfl/printwizard/extractor/java/JavaMethodExtractor.java",
+    "language" : "java",
+    "lines" : 111
+  }, {
+    "sourceId" : "src:src/main/java/ch/epfl/printwizard/extractor/java/JavaRecordExtractor.java",
+    "path" : "src/main/java/ch/epfl/printwizard/extractor/java/JavaRecordExtractor.java",
+    "language" : "java",
+    "lines" : 28
+  }, {
+    "sourceId" : "src:src/main/java/ch/epfl/printwizard/extractor/java/JavaSourceExtractor.java",
+    "path" : "src/main/java/ch/epfl/printwizard/extractor/java/JavaSourceExtractor.java",
+    "language" : "java",
+    "lines" : 35
+  }, {
+    "sourceId" : "src:src/main/java/ch/epfl/printwizard/extractor/java/mapper/JavaStructureMapper.java",
+    "path" : "src/main/java/ch/epfl/printwizard/extractor/java/mapper/JavaStructureMapper.java",
+    "language" : "java",
+    "lines" : 101
+  }, {
+    "sourceId" : "src:src/main/java/ch/epfl/printwizard/model/BaseTypeInfo.java",
+    "path" : "src/main/java/ch/epfl/printwizard/model/BaseTypeInfo.java",
+    "language" : "java",
+    "lines" : 59
+  }, {
+    "sourceId" : "src:src/main/java/ch/epfl/printwizard/model/ClassInfo.java",
+    "path" : "src/main/java/ch/epfl/printwizard/model/ClassInfo.java",
+    "language" : "java",
+    "lines" : 11
+  }, {
+    "sourceId" : "src:src/main/java/ch/epfl/printwizard/model/InterfaceInfo.java",
+    "path" : "src/main/java/ch/epfl/printwizard/model/InterfaceInfo.java",
+    "language" : "java",
+    "lines" : 11
+  }, {
+    "sourceId" : "src:src/main/java/ch/epfl/printwizard/model/LocalVar.java",
+    "path" : "src/main/java/ch/epfl/printwizard/model/LocalVar.java",
+    "language" : "java",
+    "lines" : 19
+  }, {
+    "sourceId" : "src:src/main/java/ch/epfl/printwizard/model/MethodInfo.java",
+    "path" : "src/main/java/ch/epfl/printwizard/model/MethodInfo.java",
+    "language" : "java",
+    "lines" : 43
+  }, {
+    "sourceId" : "src:src/main/java/ch/epfl/printwizard/model/ParameterInfo.java",
+    "path" : "src/main/java/ch/epfl/printwizard/model/ParameterInfo.java",
+    "language" : "java",
+    "lines" : 19
+  }, {
+    "sourceId" : "src:src/main/java/ch/epfl/printwizard/model/ProgramFile.java",
+    "path" : "src/main/java/ch/epfl/printwizard/model/ProgramFile.java",
+    "language" : "java",
+    "lines" : 27
+  }, {
+    "sourceId" : "src:src/main/java/ch/epfl/printwizard/model/RecordInfo.java",
+    "path" : "src/main/java/ch/epfl/printwizard/model/RecordInfo.java",
+    "language" : "java",
+    "lines" : 11
+  }, {
+    "sourceId" : "src:src/main/java/ch/epfl/printwizard/model/Source.java",
+    "path" : "src/main/java/ch/epfl/printwizard/model/Source.java",
+    "language" : "java",
+    "lines" : 15
+  }, {
+    "sourceId" : "src:src/main/java/ch/epfl/printwizard/model/structures/BlockNode.java",
+    "path" : "src/main/java/ch/epfl/printwizard/model/structures/BlockNode.java",
+    "language" : "java",
+    "lines" : 27
+  }, {
+    "sourceId" : "src:src/main/java/ch/epfl/printwizard/model/structures/ExprStmtNode.java",
+    "path" : "src/main/java/ch/epfl/printwizard/model/structures/ExprStmtNode.java",
+    "language" : "java",
+    "lines" : 28
+  }, {
+    "sourceId" : "src:src/main/java/ch/epfl/printwizard/model/structures/IfNode.java",
+    "path" : "src/main/java/ch/epfl/printwizard/model/structures/IfNode.java",
+    "language" : "java",
+    "lines" : 49
+  }, {
+    "sourceId" : "src:src/main/java/ch/epfl/printwizard/model/structures/LocalVarDeclNode.java",
+    "path" : "src/main/java/ch/epfl/printwizard/model/structures/LocalVarDeclNode.java",
+    "language" : "java",
+    "lines" : 31
+  }, {
+    "sourceId" : "src:src/main/java/ch/epfl/printwizard/model/structures/StructureKind.java",
+    "path" : "src/main/java/ch/epfl/printwizard/model/structures/StructureKind.java",
+    "language" : "java",
+    "lines" : 39
+  }, {
+    "sourceId" : "src:src/main/java/ch/epfl/printwizard/model/structures/StructureNode.java",
+    "path" : "src/main/java/ch/epfl/printwizard/model/structures/StructureNode.java",
+    "language" : "java",
+    "lines" : 59
+  }, {
+    "sourceId" : "src:src/main/java/ch/epfl/printwizard/model/structures/expr/ExprCode.java",
+    "path" : "src/main/java/ch/epfl/printwizard/model/structures/expr/ExprCode.java",
+    "language" : "java",
+    "lines" : 12
+  }, {
+    "sourceId" : "src:src/main/java/ch/epfl/printwizard/model/structures/expr/ExprNode.java",
+    "path" : "src/main/java/ch/epfl/printwizard/model/structures/expr/ExprNode.java",
+    "language" : "java",
+    "lines" : 48
+  }, {
+    "sourceId" : "src:src/main/java/ch/epfl/printwizard/scanner/IProgramScanner.java",
+    "path" : "src/main/java/ch/epfl/printwizard/scanner/IProgramScanner.java",
+    "language" : "java",
+    "lines" : 17
+  }, {
+    "sourceId" : "src:src/main/java/ch/epfl/printwizard/scanner/ProgramScanResult.java",
+    "path" : "src/main/java/ch/epfl/printwizard/scanner/ProgramScanResult.java",
+    "language" : "java",
+    "lines" : 117
+  }, {
+    "sourceId" : "src:src/main/java/ch/epfl/printwizard/scanner/java/JavaProgramScanner.java",
+    "path" : "src/main/java/ch/epfl/printwizard/scanner/java/JavaProgramScanner.java",
+    "language" : "java",
+    "lines" : 226
+  }, {
+    "sourceId" : "src:src/main/java/ch/epfl/printwizard/utils/Diagnostic.java",
+    "path" : "src/main/java/ch/epfl/printwizard/utils/Diagnostic.java",
+    "language" : "java",
+    "lines" : 19
+  }, {
+    "sourceId" : "src:src/main/java/ch/epfl/printwizard/utils/Preconditions.java",
+    "path" : "src/main/java/ch/epfl/printwizard/utils/Preconditions.java",
+    "language" : "java",
+    "lines" : 30
+  }, {
+    "sourceId" : "src:src/main/java/ch/epfl/printwizard/utils/java/TypeIdUtils.java",
+    "path" : "src/main/java/ch/epfl/printwizard/utils/java/TypeIdUtils.java",
+    "language" : "java",
+    "lines" : 61
+  }, {
+    "sourceId" : "src:src/main/java/ch/epfl/printwizard/writer/ProgramFileWriter.java",
+    "path" : "src/main/java/ch/epfl/printwizard/writer/ProgramFileWriter.java",
+    "language" : "java",
+    "lines" : 43
+  } ],
+  "classes" : [ {
+    "id" : "cls:ch.epfl.printwizard.Main",
+    "name" : "Main",
+    "packageName" : "ch.epfl.printwizard",
+    "sourceId" : "src:src/main/java/ch/epfl/printwizard/Main.java"
+  }, {
+    "id" : "cls:ch.epfl.printwizard.assembler.ProgramModelAssembler",
+    "name" : "ProgramModelAssembler",
+    "packageName" : "ch.epfl.printwizard.assembler",
+    "sourceId" : "src:src/main/java/ch/epfl/printwizard/assembler/ProgramModelAssembler.java"
+  }, {
+    "id" : "cls:ch.epfl.printwizard.extractor.java.AbstractJavaTypeExtractor",
+    "name" : "AbstractJavaTypeExtractor",
+    "packageName" : "ch.epfl.printwizard.extractor.java",
+    "sourceId" : "src:src/main/java/ch/epfl/printwizard/extractor/java/AbstractJavaTypeExtractor.java"
+  }, {
+    "id" : "cls:ch.epfl.printwizard.extractor.java.JavaClassExtractor",
+    "name" : "JavaClassExtractor",
+    "packageName" : "ch.epfl.printwizard.extractor.java",
+    "sourceId" : "src:src/main/java/ch/epfl/printwizard/extractor/java/JavaClassExtractor.java"
+  }, {
+    "id" : "cls:ch.epfl.printwizard.extractor.java.JavaInterfaceExtractor",
+    "name" : "JavaInterfaceExtractor",
+    "packageName" : "ch.epfl.printwizard.extractor.java",
+    "sourceId" : "src:src/main/java/ch/epfl/printwizard/extractor/java/JavaInterfaceExtractor.java"
+  }, {
+    "id" : "cls:ch.epfl.printwizard.extractor.java.JavaRecordExtractor",
+    "name" : "JavaRecordExtractor",
+    "packageName" : "ch.epfl.printwizard.extractor.java",
+    "sourceId" : "src:src/main/java/ch/epfl/printwizard/extractor/java/JavaRecordExtractor.java"
+  }, {
+    "id" : "cls:ch.epfl.printwizard.extractor.java.mapper.JavaStructureMapper",
+    "name" : "JavaStructureMapper",
+    "packageName" : "ch.epfl.printwizard.extractor.java.mapper",
+    "sourceId" : "src:src/main/java/ch/epfl/printwizard/extractor/java/mapper/JavaStructureMapper.java"
+  }, {
+    "id" : "cls:ch.epfl.printwizard.model.BaseTypeInfo",
+    "name" : "BaseTypeInfo",
+    "packageName" : "ch.epfl.printwizard.model",
+    "sourceId" : "src:src/main/java/ch/epfl/printwizard/model/BaseTypeInfo.java"
+  }, {
+    "id" : "cls:ch.epfl.printwizard.model.ClassInfo",
+    "name" : "ClassInfo",
+    "packageName" : "ch.epfl.printwizard.model",
+    "sourceId" : "src:src/main/java/ch/epfl/printwizard/model/ClassInfo.java"
+  }, {
+    "id" : "cls:ch.epfl.printwizard.model.InterfaceInfo",
+    "name" : "InterfaceInfo",
+    "packageName" : "ch.epfl.printwizard.model",
+    "sourceId" : "src:src/main/java/ch/epfl/printwizard/model/InterfaceInfo.java"
+  }, {
+    "id" : "cls:ch.epfl.printwizard.model.RecordInfo",
+    "name" : "RecordInfo",
+    "packageName" : "ch.epfl.printwizard.model",
+    "sourceId" : "src:src/main/java/ch/epfl/printwizard/model/RecordInfo.java"
+  }, {
+    "id" : "cls:ch.epfl.printwizard.model.structures.BlockNode",
+    "name" : "BlockNode",
+    "packageName" : "ch.epfl.printwizard.model.structures",
+    "sourceId" : "src:src/main/java/ch/epfl/printwizard/model/structures/BlockNode.java"
+  }, {
+    "id" : "cls:ch.epfl.printwizard.model.structures.ExprStmtNode",
+    "name" : "ExprStmtNode",
+    "packageName" : "ch.epfl.printwizard.model.structures",
+    "sourceId" : "src:src/main/java/ch/epfl/printwizard/model/structures/ExprStmtNode.java"
+  }, {
+    "id" : "cls:ch.epfl.printwizard.model.structures.IfNode",
+    "name" : "IfNode",
+    "packageName" : "ch.epfl.printwizard.model.structures",
+    "sourceId" : "src:src/main/java/ch/epfl/printwizard/model/structures/IfNode.java"
+  }, {
+    "id" : "cls:ch.epfl.printwizard.model.structures.LocalVarDeclNode",
+    "name" : "LocalVarDeclNode",
+    "packageName" : "ch.epfl.printwizard.model.structures",
+    "sourceId" : "src:src/main/java/ch/epfl/printwizard/model/structures/LocalVarDeclNode.java"
+  }, {
+    "id" : "cls:ch.epfl.printwizard.model.structures.StructureNode",
+    "name" : "StructureNode",
+    "packageName" : "ch.epfl.printwizard.model.structures",
+    "sourceId" : "src:src/main/java/ch/epfl/printwizard/model/structures/StructureNode.java"
+  }, {
+    "id" : "cls:ch.epfl.printwizard.model.structures.expr.ExprCode",
+    "name" : "ExprCode",
+    "packageName" : "ch.epfl.printwizard.model.structures.expr",
+    "sourceId" : "src:src/main/java/ch/epfl/printwizard/model/structures/expr/ExprCode.java"
+  }, {
+    "id" : "cls:ch.epfl.printwizard.model.structures.expr.ExprNode",
+    "name" : "ExprNode",
+    "packageName" : "ch.epfl.printwizard.model.structures.expr",
+    "sourceId" : "src:src/main/java/ch/epfl/printwizard/model/structures/expr/ExprNode.java"
+  }, {
+    "id" : "cls:ch.epfl.printwizard.scanner.ProgramScanResult",
+    "name" : "ProgramScanResult",
+    "packageName" : "ch.epfl.printwizard.scanner",
+    "sourceId" : "src:src/main/java/ch/epfl/printwizard/scanner/ProgramScanResult.java"
+  }, {
+    "id" : "cls:ch.epfl.printwizard.scanner.java.JavaProgramScanner.Builder",
+    "name" : "Builder",
+    "packageName" : "ch.epfl.printwizard.scanner.java",
+    "sourceId" : "src:src/main/java/ch/epfl/printwizard/scanner/java/JavaProgramScanner.java"
+  }, {
+    "id" : "cls:ch.epfl.printwizard.utils.Preconditions",
+    "name" : "Preconditions",
+    "packageName" : "ch.epfl.printwizard.utils",
+    "sourceId" : "src:src/main/java/ch/epfl/printwizard/utils/Preconditions.java"
+  }, {
+    "id" : "cls:ch.epfl.printwizard.utils.java.TypeIdUtils",
+    "name" : "TypeIdUtils",
+    "packageName" : "ch.epfl.printwizard.utils.java",
+    "sourceId" : "src:src/main/java/ch/epfl/printwizard/utils/java/TypeIdUtils.java"
+  }, {
+    "id" : "cls:ch.epfl.printwizard.writer.ProgramFileWriter",
+    "name" : "ProgramFileWriter",
+    "packageName" : "ch.epfl.printwizard.writer",
+    "sourceId" : "src:src/main/java/ch/epfl/printwizard/writer/ProgramFileWriter.java"
+  } ],
+  "interfaces" : [ {
+    "id" : "intf:ch.epfl.printwizard.extractor.IExtractor",
+    "name" : "IExtractor",
+    "packageName" : "ch.epfl.printwizard.extractor",
+    "sourceId" : "src:src/main/java/ch/epfl/printwizard/extractor/IExtractor.java"
+  }, {
+    "id" : "intf:ch.epfl.printwizard.scanner.IProgramScanner",
+    "name" : "IProgramScanner",
+    "packageName" : "ch.epfl.printwizard.scanner",
+    "sourceId" : "src:src/main/java/ch/epfl/printwizard/scanner/IProgramScanner.java"
+  } ],
+  "records" : [ {
+    "id" : "rec:ch.epfl.printwizard.extractor.java.JavaMethodExtractor",
+    "name" : "JavaMethodExtractor",
+    "packageName" : "ch.epfl.printwizard.extractor.java",
+    "sourceId" : "src:src/main/java/ch/epfl/printwizard/extractor/java/JavaMethodExtractor.java"
+  }, {
+    "id" : "rec:ch.epfl.printwizard.extractor.java.JavaSourceExtractor",
+    "name" : "JavaSourceExtractor",
+    "packageName" : "ch.epfl.printwizard.extractor.java",
+    "sourceId" : "src:src/main/java/ch/epfl/printwizard/extractor/java/JavaSourceExtractor.java"
+  }, {
+    "id" : "rec:ch.epfl.printwizard.model.LocalVar",
+    "name" : "LocalVar",
+    "packageName" : "ch.epfl.printwizard.model",
+    "sourceId" : "src:src/main/java/ch/epfl/printwizard/model/LocalVar.java"
+  }, {
+    "id" : "rec:ch.epfl.printwizard.model.MethodInfo",
+    "name" : "MethodInfo",
+    "packageName" : "ch.epfl.printwizard.model",
+    "sourceId" : "src:src/main/java/ch/epfl/printwizard/model/MethodInfo.java"
+  }, {
+    "id" : "rec:ch.epfl.printwizard.model.ParameterInfo",
+    "name" : "ParameterInfo",
+    "packageName" : "ch.epfl.printwizard.model",
+    "sourceId" : "src:src/main/java/ch/epfl/printwizard/model/ParameterInfo.java"
+  }, {
+    "id" : "rec:ch.epfl.printwizard.model.ProgramFile",
+    "name" : "ProgramFile",
+    "packageName" : "ch.epfl.printwizard.model",
+    "sourceId" : "src:src/main/java/ch/epfl/printwizard/model/ProgramFile.java"
+  }, {
+    "id" : "rec:ch.epfl.printwizard.model.Source",
+    "name" : "Source",
+    "packageName" : "ch.epfl.printwizard.model",
+    "sourceId" : "src:src/main/java/ch/epfl/printwizard/model/Source.java"
+  }, {
+    "id" : "rec:ch.epfl.printwizard.scanner.java.JavaProgramScanner",
+    "name" : "JavaProgramScanner",
+    "packageName" : "ch.epfl.printwizard.scanner.java",
+    "sourceId" : "src:src/main/java/ch/epfl/printwizard/scanner/java/JavaProgramScanner.java"
+  }, {
+    "id" : "rec:ch.epfl.printwizard.utils.Diagnostic",
+    "name" : "Diagnostic",
+    "packageName" : "ch.epfl.printwizard.utils",
+    "sourceId" : "src:src/main/java/ch/epfl/printwizard/utils/Diagnostic.java"
+  } ],
+  "methods" : [ {
+    "methodId" : "m:AbstractJavaTypeExtractor.AbstractJavaTypeExtractor(String)",
+    "classId" : "cls:ch.epfl.printwizard.extractor.java.AbstractJavaTypeExtractor",
+    "name" : "AbstractJavaTypeExtractor",
+    "returnType" : "<init>",
+    "startLine" : 21,
+    "endLine" : 26,
+    "parameters" : [ {
+      "index" : 0,
+      "name" : "sourceId",
+      "typeId" : "t:String"
+    } ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "startLine" : 21,
+      "endLine" : 26,
+      "structures" : null
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:AbstractJavaTypeExtractor.extract(CompilationUnit)",
+    "classId" : "cls:ch.epfl.printwizard.extractor.java.AbstractJavaTypeExtractor",
+    "name" : "extract",
+    "returnType" : "List<T>",
+    "startLine" : 28,
+    "endLine" : 40,
+    "parameters" : [ {
+      "index" : 0,
+      "name" : "cu",
+      "typeId" : "t:CompilationUnit"
+    } ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "startLine" : 29,
+      "endLine" : 40,
+      "structures" : null
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:AbstractJavaTypeExtractor.findTargetDeclarations(CompilationUnit)",
+    "classId" : "cls:ch.epfl.printwizard.extractor.java.AbstractJavaTypeExtractor",
+    "name" : "findTargetDeclarations",
+    "returnType" : "Stream<? extends TypeDeclaration<?>>",
+    "startLine" : 47,
+    "endLine" : 47,
+    "parameters" : [ {
+      "index" : 0,
+      "name" : "cu",
+      "typeId" : "t:CompilationUnit"
+    } ],
+    "structure" : null,
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:AbstractJavaTypeExtractor.makeInfo(String,String,String,String)",
+    "classId" : "cls:ch.epfl.printwizard.extractor.java.AbstractJavaTypeExtractor",
+    "name" : "makeInfo",
+    "returnType" : "T",
+    "startLine" : 57,
+    "endLine" : 57,
+    "parameters" : [ {
+      "index" : 0,
+      "name" : "id",
+      "typeId" : "t:String"
+    }, {
+      "index" : 1,
+      "name" : "name",
+      "typeId" : "t:String"
+    }, {
+      "index" : 2,
+      "name" : "packageName",
+      "typeId" : "t:String"
+    }, {
+      "index" : 3,
+      "name" : "sourceId",
+      "typeId" : "t:String"
+    } ],
+    "structure" : null,
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:BaseTypeInfo.BaseTypeInfo(String,String,String,String)",
+    "classId" : "cls:ch.epfl.printwizard.model.BaseTypeInfo",
+    "name" : "BaseTypeInfo",
+    "returnType" : "<init>",
+    "startLine" : 15,
+    "endLine" : 26,
+    "parameters" : [ {
+      "index" : 0,
+      "name" : "id",
+      "typeId" : "t:String"
+    }, {
+      "index" : 1,
+      "name" : "name",
+      "typeId" : "t:String"
+    }, {
+      "index" : 2,
+      "name" : "packageName",
+      "typeId" : "t:String"
+    }, {
+      "index" : 3,
+      "name" : "sourceId",
+      "typeId" : "t:String"
+    } ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "startLine" : 15,
+      "endLine" : 26,
+      "structures" : null
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:BaseTypeInfo.getId()",
+    "classId" : "cls:ch.epfl.printwizard.model.BaseTypeInfo",
+    "name" : "getId",
+    "returnType" : "String",
+    "startLine" : 32,
+    "endLine" : 34,
+    "parameters" : [ ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "startLine" : 32,
+      "endLine" : 34,
+      "structures" : null
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:BaseTypeInfo.getName()",
+    "classId" : "cls:ch.epfl.printwizard.model.BaseTypeInfo",
+    "name" : "getName",
+    "returnType" : "String",
+    "startLine" : 40,
+    "endLine" : 42,
+    "parameters" : [ ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "startLine" : 40,
+      "endLine" : 42,
+      "structures" : null
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:BaseTypeInfo.getPackageName()",
+    "classId" : "cls:ch.epfl.printwizard.model.BaseTypeInfo",
+    "name" : "getPackageName",
+    "returnType" : "String",
+    "startLine" : 48,
+    "endLine" : 50,
+    "parameters" : [ ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "startLine" : 48,
+      "endLine" : 50,
+      "structures" : null
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:BaseTypeInfo.getSourceId()",
+    "classId" : "cls:ch.epfl.printwizard.model.BaseTypeInfo",
+    "name" : "getSourceId",
+    "returnType" : "String",
+    "startLine" : 56,
+    "endLine" : 58,
+    "parameters" : [ ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "startLine" : 56,
+      "endLine" : 58,
+      "structures" : null
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:BlockNode.BlockNode(String,StructureKind,int,int,List<StructureNode>)",
+    "classId" : "cls:ch.epfl.printwizard.model.structures.BlockNode",
+    "name" : "BlockNode",
+    "returnType" : "<init>",
+    "startLine" : 14,
+    "endLine" : 18,
+    "parameters" : [ {
+      "index" : 0,
+      "name" : "structureId",
+      "typeId" : "t:String"
+    }, {
+      "index" : 1,
+      "name" : "kind",
+      "typeId" : "t:StructureKind"
+    }, {
+      "index" : 2,
+      "name" : "start",
+      "typeId" : "t:int"
+    }, {
+      "index" : 3,
+      "name" : "end",
+      "typeId" : "t:int"
+    }, {
+      "index" : 4,
+      "name" : "structures",
+      "typeId" : "t:List<StructureNode>"
+    } ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "startLine" : 14,
+      "endLine" : 18,
+      "structures" : null
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:BlockNode.getStructures()",
+    "classId" : "cls:ch.epfl.printwizard.model.structures.BlockNode",
+    "name" : "getStructures",
+    "returnType" : "List<StructureNode>",
+    "startLine" : 24,
+    "endLine" : 26,
+    "parameters" : [ ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "startLine" : 24,
+      "endLine" : 26,
+      "structures" : null
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:Builder.Builder(Path)",
+    "classId" : "cls:ch.epfl.printwizard.scanner.java.JavaProgramScanner.Builder",
+    "name" : "Builder",
+    "returnType" : "<init>",
+    "startLine" : 142,
+    "endLine" : 146,
+    "parameters" : [ {
+      "index" : 0,
+      "name" : "baseDir",
+      "typeId" : "t:Path"
+    } ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "startLine" : 142,
+      "endLine" : 146,
+      "structures" : null
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:Builder.build()",
+    "classId" : "cls:ch.epfl.printwizard.scanner.java.JavaProgramScanner.Builder",
+    "name" : "build",
+    "returnType" : "JavaProgramScanner",
+    "startLine" : 181,
+    "endLine" : 190,
+    "parameters" : [ ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "startLine" : 181,
+      "endLine" : 190,
+      "structures" : null
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:Builder.buildPathFilter()",
+    "classId" : "cls:ch.epfl.printwizard.scanner.java.JavaProgramScanner.Builder",
+    "name" : "buildPathFilter",
+    "returnType" : "Predicate<Path>",
+    "startLine" : 192,
+    "endLine" : 202,
+    "parameters" : [ ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "startLine" : 192,
+      "endLine" : 202,
+      "structures" : null
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:Builder.compileMatchers(List<String>)",
+    "classId" : "cls:ch.epfl.printwizard.scanner.java.JavaProgramScanner.Builder",
+    "name" : "compileMatchers",
+    "returnType" : "List<PathMatcher>",
+    "startLine" : 204,
+    "endLine" : 211,
+    "parameters" : [ {
+      "index" : 0,
+      "name" : "globs",
+      "typeId" : "t:List<String>"
+    } ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "startLine" : 204,
+      "endLine" : 211,
+      "structures" : null
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:Builder.exclude(String)",
+    "classId" : "cls:ch.epfl.printwizard.scanner.java.JavaProgramScanner.Builder",
+    "name" : "exclude",
+    "returnType" : "Builder",
+    "startLine" : 165,
+    "endLine" : 168,
+    "parameters" : [ {
+      "index" : 0,
+      "name" : "path",
+      "typeId" : "t:String"
+    } ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "startLine" : 165,
+      "endLine" : 168,
+      "structures" : null
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:Builder.include(String)",
+    "classId" : "cls:ch.epfl.printwizard.scanner.java.JavaProgramScanner.Builder",
+    "name" : "include",
+    "returnType" : "Builder",
+    "startLine" : 154,
+    "endLine" : 157,
+    "parameters" : [ {
+      "index" : 0,
+      "name" : "path",
+      "typeId" : "t:String"
+    } ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "startLine" : 154,
+      "endLine" : 157,
+      "structures" : null
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:Builder.languageLevel(ParserConfiguration.LanguageLevel)",
+    "classId" : "cls:ch.epfl.printwizard.scanner.java.JavaProgramScanner.Builder",
+    "name" : "languageLevel",
+    "returnType" : "Builder",
+    "startLine" : 176,
+    "endLine" : 179,
+    "parameters" : [ {
+      "index" : 0,
+      "name" : "level",
+      "typeId" : "t:ParserConfiguration.LanguageLevel"
+    } ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "startLine" : 176,
+      "endLine" : 179,
+      "structures" : null
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:Builder.matchesAny(Path,List<PathMatcher>)",
+    "classId" : "cls:ch.epfl.printwizard.scanner.java.JavaProgramScanner.Builder",
+    "name" : "matchesAny",
+    "returnType" : "boolean",
+    "startLine" : 213,
+    "endLine" : 216,
+    "parameters" : [ {
+      "index" : 0,
+      "name" : "rel",
+      "typeId" : "t:Path"
+    }, {
+      "index" : 1,
+      "name" : "matchers",
+      "typeId" : "t:List<PathMatcher>"
+    } ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "startLine" : 213,
+      "endLine" : 216,
+      "structures" : null
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:Builder.relativize(Path)",
+    "classId" : "cls:ch.epfl.printwizard.scanner.java.JavaProgramScanner.Builder",
+    "name" : "relativize",
+    "returnType" : "Path",
+    "startLine" : 218,
+    "endLine" : 224,
+    "parameters" : [ {
+      "index" : 0,
+      "name" : "p",
+      "typeId" : "t:Path"
+    } ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "startLine" : 218,
+      "endLine" : 224,
+      "structures" : null
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:ClassInfo.ClassInfo(String,String,String,String)",
+    "classId" : "cls:ch.epfl.printwizard.model.ClassInfo",
+    "name" : "ClassInfo",
+    "returnType" : "<init>",
+    "startLine" : 8,
+    "endLine" : 10,
+    "parameters" : [ {
+      "index" : 0,
+      "name" : "id",
+      "typeId" : "t:String"
+    }, {
+      "index" : 1,
+      "name" : "name",
+      "typeId" : "t:String"
+    }, {
+      "index" : 2,
+      "name" : "packageName",
+      "typeId" : "t:String"
+    }, {
+      "index" : 3,
+      "name" : "sourceId",
+      "typeId" : "t:String"
+    } ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "startLine" : 8,
+      "endLine" : 10,
+      "structures" : null
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:ExprCode.ExprCode(String,int,int)",
+    "classId" : "cls:ch.epfl.printwizard.model.structures.expr.ExprCode",
+    "name" : "ExprCode",
+    "returnType" : "<init>",
+    "startLine" : 9,
+    "endLine" : 11,
+    "parameters" : [ {
+      "index" : 0,
+      "name" : "code",
+      "typeId" : "t:String"
+    }, {
+      "index" : 1,
+      "name" : "startLine",
+      "typeId" : "t:int"
+    }, {
+      "index" : 2,
+      "name" : "endLine",
+      "typeId" : "t:int"
+    } ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "startLine" : 9,
+      "endLine" : 11,
+      "structures" : null
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:ExprNode.ExprNode(String,int,int)",
+    "classId" : "cls:ch.epfl.printwizard.model.structures.expr.ExprNode",
+    "name" : "ExprNode",
+    "returnType" : "<init>",
+    "startLine" : 14,
+    "endLine" : 23,
+    "parameters" : [ {
+      "index" : 0,
+      "name" : "code",
+      "typeId" : "t:String"
+    }, {
+      "index" : 1,
+      "name" : "startLine",
+      "typeId" : "t:int"
+    }, {
+      "index" : 2,
+      "name" : "endLine",
+      "typeId" : "t:int"
+    } ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "startLine" : 14,
+      "endLine" : 23,
+      "structures" : null
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:ExprNode.getCode()",
+    "classId" : "cls:ch.epfl.printwizard.model.structures.expr.ExprNode",
+    "name" : "getCode",
+    "returnType" : "String",
+    "startLine" : 29,
+    "endLine" : 31,
+    "parameters" : [ ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "startLine" : 29,
+      "endLine" : 31,
+      "structures" : null
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:ExprNode.getEndLine()",
+    "classId" : "cls:ch.epfl.printwizard.model.structures.expr.ExprNode",
+    "name" : "getEndLine",
+    "returnType" : "int",
+    "startLine" : 45,
+    "endLine" : 47,
+    "parameters" : [ ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "startLine" : 45,
+      "endLine" : 47,
+      "structures" : null
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:ExprNode.getStartLine()",
+    "classId" : "cls:ch.epfl.printwizard.model.structures.expr.ExprNode",
+    "name" : "getStartLine",
+    "returnType" : "int",
+    "startLine" : 37,
+    "endLine" : 39,
+    "parameters" : [ ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "startLine" : 37,
+      "endLine" : 39,
+      "structures" : null
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:ExprStmtNode.ExprStmtNode(String,int,int,ExprNode)",
+    "classId" : "cls:ch.epfl.printwizard.model.structures.ExprStmtNode",
+    "name" : "ExprStmtNode",
+    "returnType" : "<init>",
+    "startLine" : 13,
+    "endLine" : 19,
+    "parameters" : [ {
+      "index" : 0,
+      "name" : "structureId",
+      "typeId" : "t:String"
+    }, {
+      "index" : 1,
+      "name" : "startLine",
+      "typeId" : "t:int"
+    }, {
+      "index" : 2,
+      "name" : "endLine",
+      "typeId" : "t:int"
+    }, {
+      "index" : 3,
+      "name" : "expr",
+      "typeId" : "t:ExprNode"
+    } ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "startLine" : 13,
+      "endLine" : 19,
+      "structures" : null
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:ExprStmtNode.getExpr()",
+    "classId" : "cls:ch.epfl.printwizard.model.structures.ExprStmtNode",
+    "name" : "getExpr",
+    "returnType" : "ExprNode",
+    "startLine" : 25,
+    "endLine" : 27,
+    "parameters" : [ ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "startLine" : 25,
+      "endLine" : 27,
+      "structures" : null
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:IExtractor.extract(I)",
+    "classId" : "intf:ch.epfl.printwizard.extractor.IExtractor",
+    "name" : "extract",
+    "returnType" : "List<O>",
+    "startLine" : 18,
+    "endLine" : 18,
+    "parameters" : [ {
+      "index" : 0,
+      "name" : "input",
+      "typeId" : "t:I"
+    } ],
+    "structure" : null,
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:IProgramScanner.scan(Path)",
+    "classId" : "intf:ch.epfl.printwizard.scanner.IProgramScanner",
+    "name" : "scan",
+    "returnType" : "ProgramScanResult",
+    "startLine" : 16,
+    "endLine" : 16,
+    "parameters" : [ {
+      "index" : 0,
+      "name" : "root",
+      "typeId" : "t:Path"
+    } ],
+    "structure" : null,
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:IfNode.IfNode(String,int,int,ExprNode,StructureNode,StructureNode)",
+    "classId" : "cls:ch.epfl.printwizard.model.structures.IfNode",
+    "name" : "IfNode",
+    "returnType" : "<init>",
+    "startLine" : 15,
+    "endLine" : 24,
+    "parameters" : [ {
+      "index" : 0,
+      "name" : "structureId",
+      "typeId" : "t:String"
+    }, {
+      "index" : 1,
+      "name" : "startLine",
+      "typeId" : "t:int"
+    }, {
+      "index" : 2,
+      "name" : "endLine",
+      "typeId" : "t:int"
+    }, {
+      "index" : 3,
+      "name" : "condition",
+      "typeId" : "t:ExprNode"
+    }, {
+      "index" : 4,
+      "name" : "thenBranch",
+      "typeId" : "t:StructureNode"
+    }, {
+      "index" : 5,
+      "name" : "elseBranch",
+      "typeId" : "t:StructureNode"
+    } ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "startLine" : 15,
+      "endLine" : 24,
+      "structures" : null
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:IfNode.getCondition()",
+    "classId" : "cls:ch.epfl.printwizard.model.structures.IfNode",
+    "name" : "getCondition",
+    "returnType" : "ExprNode",
+    "startLine" : 30,
+    "endLine" : 32,
+    "parameters" : [ ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "startLine" : 30,
+      "endLine" : 32,
+      "structures" : null
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:IfNode.getElseBranch()",
+    "classId" : "cls:ch.epfl.printwizard.model.structures.IfNode",
+    "name" : "getElseBranch",
+    "returnType" : "StructureNode",
+    "startLine" : 46,
+    "endLine" : 48,
+    "parameters" : [ ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "startLine" : 46,
+      "endLine" : 48,
+      "structures" : null
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:IfNode.getThenBranch()",
+    "classId" : "cls:ch.epfl.printwizard.model.structures.IfNode",
+    "name" : "getThenBranch",
+    "returnType" : "StructureNode",
+    "startLine" : 38,
+    "endLine" : 40,
+    "parameters" : [ ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "startLine" : 38,
+      "endLine" : 40,
+      "structures" : null
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:InterfaceInfo.InterfaceInfo(String,String,String,String)",
+    "classId" : "cls:ch.epfl.printwizard.model.InterfaceInfo",
+    "name" : "InterfaceInfo",
+    "returnType" : "<init>",
+    "startLine" : 8,
+    "endLine" : 10,
+    "parameters" : [ {
+      "index" : 0,
+      "name" : "id",
+      "typeId" : "t:String"
+    }, {
+      "index" : 1,
+      "name" : "name",
+      "typeId" : "t:String"
+    }, {
+      "index" : 2,
+      "name" : "packageName",
+      "typeId" : "t:String"
+    }, {
+      "index" : 3,
+      "name" : "sourceId",
+      "typeId" : "t:String"
+    } ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "startLine" : 8,
+      "endLine" : 10,
+      "structures" : null
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:JavaClassExtractor.JavaClassExtractor(String)",
+    "classId" : "cls:ch.epfl.printwizard.extractor.java.JavaClassExtractor",
+    "name" : "JavaClassExtractor",
+    "returnType" : "<init>",
+    "startLine" : 15,
+    "endLine" : 17,
+    "parameters" : [ {
+      "index" : 0,
+      "name" : "sourceId",
+      "typeId" : "t:String"
+    } ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "startLine" : 15,
+      "endLine" : 17,
+      "structures" : null
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:JavaClassExtractor.findTargetDeclarations(CompilationUnit)",
+    "classId" : "cls:ch.epfl.printwizard.extractor.java.JavaClassExtractor",
+    "name" : "findTargetDeclarations",
+    "returnType" : "Stream<? extends TypeDeclaration<?>>",
+    "startLine" : 19,
+    "endLine" : 24,
+    "parameters" : [ {
+      "index" : 0,
+      "name" : "cu",
+      "typeId" : "t:CompilationUnit"
+    } ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "startLine" : 20,
+      "endLine" : 24,
+      "structures" : null
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:JavaClassExtractor.makeInfo(String,String,String,String)",
+    "classId" : "cls:ch.epfl.printwizard.extractor.java.JavaClassExtractor",
+    "name" : "makeInfo",
+    "returnType" : "ClassInfo",
+    "startLine" : 26,
+    "endLine" : 29,
+    "parameters" : [ {
+      "index" : 0,
+      "name" : "id",
+      "typeId" : "t:String"
+    }, {
+      "index" : 1,
+      "name" : "name",
+      "typeId" : "t:String"
+    }, {
+      "index" : 2,
+      "name" : "packageName",
+      "typeId" : "t:String"
+    }, {
+      "index" : 3,
+      "name" : "sourceId",
+      "typeId" : "t:String"
+    } ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "startLine" : 27,
+      "endLine" : 29,
+      "structures" : null
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:JavaInterfaceExtractor.JavaInterfaceExtractor(String)",
+    "classId" : "cls:ch.epfl.printwizard.extractor.java.JavaInterfaceExtractor",
+    "name" : "JavaInterfaceExtractor",
+    "returnType" : "<init>",
+    "startLine" : 15,
+    "endLine" : 17,
+    "parameters" : [ {
+      "index" : 0,
+      "name" : "sourceId",
+      "typeId" : "t:String"
+    } ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "startLine" : 15,
+      "endLine" : 17,
+      "structures" : null
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:JavaInterfaceExtractor.findTargetDeclarations(CompilationUnit)",
+    "classId" : "cls:ch.epfl.printwizard.extractor.java.JavaInterfaceExtractor",
+    "name" : "findTargetDeclarations",
+    "returnType" : "Stream<? extends TypeDeclaration<?>>",
+    "startLine" : 19,
+    "endLine" : 24,
+    "parameters" : [ {
+      "index" : 0,
+      "name" : "cu",
+      "typeId" : "t:CompilationUnit"
+    } ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "startLine" : 20,
+      "endLine" : 24,
+      "structures" : null
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:JavaInterfaceExtractor.makeInfo(String,String,String,String)",
+    "classId" : "cls:ch.epfl.printwizard.extractor.java.JavaInterfaceExtractor",
+    "name" : "makeInfo",
+    "returnType" : "InterfaceInfo",
+    "startLine" : 26,
+    "endLine" : 29,
+    "parameters" : [ {
+      "index" : 0,
+      "name" : "id",
+      "typeId" : "t:String"
+    }, {
+      "index" : 1,
+      "name" : "name",
+      "typeId" : "t:String"
+    }, {
+      "index" : 2,
+      "name" : "packageName",
+      "typeId" : "t:String"
+    }, {
+      "index" : 3,
+      "name" : "sourceId",
+      "typeId" : "t:String"
+    } ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "startLine" : 27,
+      "endLine" : 29,
+      "structures" : null
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:JavaMethodExtractor.collectCallables(TypeDeclaration<?>)",
+    "classId" : "rec:ch.epfl.printwizard.extractor.java.JavaMethodExtractor",
+    "name" : "collectCallables",
+    "returnType" : "List<CallableDeclaration<?>>",
+    "startLine" : 48,
+    "endLine" : 61,
+    "parameters" : [ {
+      "index" : 0,
+      "name" : "typeDecl",
+      "typeId" : "t:TypeDeclaration<?>"
+    } ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "startLine" : 48,
+      "endLine" : 61,
+      "structures" : null
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:JavaMethodExtractor.extract(TypeDeclaration<?>)",
+    "classId" : "rec:ch.epfl.printwizard.extractor.java.JavaMethodExtractor",
+    "name" : "extract",
+    "returnType" : "List<MethodInfo>",
+    "startLine" : 35,
+    "endLine" : 46,
+    "parameters" : [ {
+      "index" : 0,
+      "name" : "declaration",
+      "typeId" : "t:TypeDeclaration<?>"
+    } ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "startLine" : 36,
+      "endLine" : 46,
+      "structures" : null
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:JavaMethodExtractor.extractOne(CallableDeclaration<?>)",
+    "classId" : "rec:ch.epfl.printwizard.extractor.java.JavaMethodExtractor",
+    "name" : "extractOne",
+    "returnType" : "MethodInfo",
+    "startLine" : 63,
+    "endLine" : 100,
+    "parameters" : [ {
+      "index" : 0,
+      "name" : "c",
+      "typeId" : "t:CallableDeclaration<?>"
+    } ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "startLine" : 63,
+      "endLine" : 100,
+      "structures" : null
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:JavaMethodExtractor.methodBodyOf(CallableDeclaration<?>)",
+    "classId" : "rec:ch.epfl.printwizard.extractor.java.JavaMethodExtractor",
+    "name" : "methodBodyOf",
+    "returnType" : "Optional<BlockStmt>",
+    "startLine" : 102,
+    "endLine" : 110,
+    "parameters" : [ {
+      "index" : 0,
+      "name" : "c",
+      "typeId" : "t:CallableDeclaration<?>"
+    } ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "startLine" : 102,
+      "endLine" : 110,
+      "structures" : null
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:JavaProgramScanner.JavaProgramScanner(Path,JavaParser,Predicate<Path>)",
+    "classId" : "rec:ch.epfl.printwizard.scanner.java.JavaProgramScanner",
+    "name" : "JavaProgramScanner",
+    "returnType" : "<init>",
+    "startLine" : 46,
+    "endLine" : 53,
+    "parameters" : [ {
+      "index" : 0,
+      "name" : "baseDir",
+      "typeId" : "t:Path"
+    }, {
+      "index" : 1,
+      "name" : "parser",
+      "typeId" : "t:JavaParser"
+    }, {
+      "index" : 2,
+      "name" : "pathFilter",
+      "typeId" : "t:Predicate<Path>"
+    } ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "startLine" : 46,
+      "endLine" : 53,
+      "structures" : null
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:JavaProgramScanner.builder(Path)",
+    "classId" : "rec:ch.epfl.printwizard.scanner.java.JavaProgramScanner",
+    "name" : "builder",
+    "returnType" : "Builder",
+    "startLine" : 40,
+    "endLine" : 44,
+    "parameters" : [ {
+      "index" : 0,
+      "name" : "baseDir",
+      "typeId" : "t:Path"
+    } ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "startLine" : 40,
+      "endLine" : 44,
+      "structures" : null
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:JavaProgramScanner.relativizeSafe(Path)",
+    "classId" : "rec:ch.epfl.printwizard.scanner.java.JavaProgramScanner",
+    "name" : "relativizeSafe",
+    "returnType" : "String",
+    "startLine" : 125,
+    "endLine" : 133,
+    "parameters" : [ {
+      "index" : 0,
+      "name" : "file",
+      "typeId" : "t:Path"
+    } ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "startLine" : 125,
+      "endLine" : 133,
+      "structures" : null
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:JavaProgramScanner.scan(Path)",
+    "classId" : "rec:ch.epfl.printwizard.scanner.java.JavaProgramScanner",
+    "name" : "scan",
+    "returnType" : "ProgramScanResult",
+    "startLine" : 55,
+    "endLine" : 123,
+    "parameters" : [ {
+      "index" : 0,
+      "name" : "root",
+      "typeId" : "t:Path"
+    } ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "startLine" : 56,
+      "endLine" : 123,
+      "structures" : null
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:JavaRecordExtractor.JavaRecordExtractor(String)",
+    "classId" : "cls:ch.epfl.printwizard.extractor.java.JavaRecordExtractor",
+    "name" : "JavaRecordExtractor",
+    "returnType" : "<init>",
+    "startLine" : 17,
+    "endLine" : 17,
+    "parameters" : [ {
+      "index" : 0,
+      "name" : "sourceId",
+      "typeId" : "t:String"
+    } ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "startLine" : 17,
+      "endLine" : 17,
+      "structures" : null
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:JavaRecordExtractor.findTargetDeclarations(CompilationUnit)",
+    "classId" : "cls:ch.epfl.printwizard.extractor.java.JavaRecordExtractor",
+    "name" : "findTargetDeclarations",
+    "returnType" : "Stream<? extends TypeDeclaration<?>>",
+    "startLine" : 19,
+    "endLine" : 22,
+    "parameters" : [ {
+      "index" : 0,
+      "name" : "cu",
+      "typeId" : "t:CompilationUnit"
+    } ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "startLine" : 20,
+      "endLine" : 22,
+      "structures" : null
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:JavaRecordExtractor.makeInfo(String,String,String,String)",
+    "classId" : "cls:ch.epfl.printwizard.extractor.java.JavaRecordExtractor",
+    "name" : "makeInfo",
+    "returnType" : "RecordInfo",
+    "startLine" : 24,
+    "endLine" : 27,
+    "parameters" : [ {
+      "index" : 0,
+      "name" : "id",
+      "typeId" : "t:String"
+    }, {
+      "index" : 1,
+      "name" : "name",
+      "typeId" : "t:String"
+    }, {
+      "index" : 2,
+      "name" : "packageName",
+      "typeId" : "t:String"
+    }, {
+      "index" : 3,
+      "name" : "sourceId",
+      "typeId" : "t:String"
+    } ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "startLine" : 25,
+      "endLine" : 27,
+      "structures" : null
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:JavaSourceExtractor.extract(Path)",
+    "classId" : "rec:ch.epfl.printwizard.extractor.java.JavaSourceExtractor",
+    "name" : "extract",
+    "returnType" : "List<Source>",
+    "startLine" : 22,
+    "endLine" : 34,
+    "parameters" : [ {
+      "index" : 0,
+      "name" : "filePath",
+      "typeId" : "t:Path"
+    } ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "startLine" : 22,
+      "endLine" : 34,
+      "structures" : null
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:JavaStructureMapper.JavaStructureMapper(int)",
+    "classId" : "cls:ch.epfl.printwizard.extractor.java.mapper.JavaStructureMapper",
+    "name" : "JavaStructureMapper",
+    "returnType" : "<init>",
+    "startLine" : 23,
+    "endLine" : 25,
+    "parameters" : [ {
+      "index" : 0,
+      "name" : "paramCountStartSlot",
+      "typeId" : "t:int"
+    } ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "startLine" : 23,
+      "endLine" : 25,
+      "structures" : null
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:JavaStructureMapper.getLocals()",
+    "classId" : "cls:ch.epfl.printwizard.extractor.java.mapper.JavaStructureMapper",
+    "name" : "getLocals",
+    "returnType" : "List<LocalVar>",
+    "startLine" : 31,
+    "endLine" : 33,
+    "parameters" : [ ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "startLine" : 31,
+      "endLine" : 33,
+      "structures" : null
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:JavaStructureMapper.mapBlock(BlockStmt)",
+    "classId" : "cls:ch.epfl.printwizard.extractor.java.mapper.JavaStructureMapper",
+    "name" : "mapBlock",
+    "returnType" : "BlockNode",
+    "startLine" : 40,
+    "endLine" : 47,
+    "parameters" : [ {
+      "index" : 0,
+      "name" : "b",
+      "typeId" : "t:BlockStmt"
+    } ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "startLine" : 40,
+      "endLine" : 47,
+      "structures" : null
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:JavaStructureMapper.mapStmt(Statement)",
+    "classId" : "cls:ch.epfl.printwizard.extractor.java.mapper.JavaStructureMapper",
+    "name" : "mapStmt",
+    "returnType" : "StructureNode",
+    "startLine" : 54,
+    "endLine" : 94,
+    "parameters" : [ {
+      "index" : 0,
+      "name" : "s",
+      "typeId" : "t:Statement"
+    } ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "startLine" : 54,
+      "endLine" : 94,
+      "structures" : null
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:JavaStructureMapper.nextId(String)",
+    "classId" : "cls:ch.epfl.printwizard.extractor.java.mapper.JavaStructureMapper",
+    "name" : "nextId",
+    "returnType" : "String",
+    "startLine" : 96,
+    "endLine" : 100,
+    "parameters" : [ {
+      "index" : 0,
+      "name" : "prefix",
+      "typeId" : "t:String"
+    } ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "startLine" : 96,
+      "endLine" : 100,
+      "structures" : null
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:LocalVarDeclNode.LocalVarDeclNode(String,int,int,List<LocalVar>)",
+    "classId" : "cls:ch.epfl.printwizard.model.structures.LocalVarDeclNode",
+    "name" : "LocalVarDeclNode",
+    "returnType" : "<init>",
+    "startLine" : 15,
+    "endLine" : 22,
+    "parameters" : [ {
+      "index" : 0,
+      "name" : "structureId",
+      "typeId" : "t:String"
+    }, {
+      "index" : 1,
+      "name" : "startLine",
+      "typeId" : "t:int"
+    }, {
+      "index" : 2,
+      "name" : "endLine",
+      "typeId" : "t:int"
+    }, {
+      "index" : 3,
+      "name" : "localVars",
+      "typeId" : "t:List<LocalVar>"
+    } ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "startLine" : 15,
+      "endLine" : 22,
+      "structures" : null
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:LocalVarDeclNode.getLocalVars()",
+    "classId" : "cls:ch.epfl.printwizard.model.structures.LocalVarDeclNode",
+    "name" : "getLocalVars",
+    "returnType" : "List<LocalVar>",
+    "startLine" : 28,
+    "endLine" : 30,
+    "parameters" : [ ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "startLine" : 28,
+      "endLine" : 30,
+      "structures" : null
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:Main.main(String[])",
+    "classId" : "cls:ch.epfl.printwizard.Main",
+    "name" : "main",
+    "returnType" : "void",
+    "startLine" : 13,
+    "endLine" : 36,
+    "parameters" : [ {
+      "index" : 0,
+      "name" : "args",
+      "typeId" : "t:String[]"
+    } ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "startLine" : 13,
+      "endLine" : 36,
+      "structures" : null
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:Preconditions.require(boolean,String)",
+    "classId" : "cls:ch.epfl.printwizard.utils.Preconditions",
+    "name" : "require",
+    "returnType" : "void",
+    "startLine" : 13,
+    "endLine" : 17,
+    "parameters" : [ {
+      "index" : 0,
+      "name" : "condition",
+      "typeId" : "t:boolean"
+    }, {
+      "index" : 1,
+      "name" : "message",
+      "typeId" : "t:String"
+    } ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "startLine" : 13,
+      "endLine" : 17,
+      "structures" : null
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:Preconditions.requireNonNull(Object,String)",
+    "classId" : "cls:ch.epfl.printwizard.utils.Preconditions",
+    "name" : "requireNonNull",
+    "returnType" : "void",
+    "startLine" : 25,
+    "endLine" : 29,
+    "parameters" : [ {
+      "index" : 0,
+      "name" : "obj",
+      "typeId" : "t:Object"
+    }, {
+      "index" : 1,
+      "name" : "message",
+      "typeId" : "t:String"
+    } ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "startLine" : 25,
+      "endLine" : 29,
+      "structures" : null
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:ProgramFileWriter.ProgramFileWriter()",
+    "classId" : "cls:ch.epfl.printwizard.writer.ProgramFileWriter",
+    "name" : "ProgramFileWriter",
+    "returnType" : "<init>",
+    "startLine" : 17,
+    "endLine" : 17,
+    "parameters" : [ ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "startLine" : 17,
+      "endLine" : 17,
+      "structures" : null
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:ProgramFileWriter.toJsonString(ProgramFile)",
+    "classId" : "cls:ch.epfl.printwizard.writer.ProgramFileWriter",
+    "name" : "toJsonString",
+    "returnType" : "String",
+    "startLine" : 39,
+    "endLine" : 42,
+    "parameters" : [ {
+      "index" : 0,
+      "name" : "program",
+      "typeId" : "t:ProgramFile"
+    } ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "startLine" : 39,
+      "endLine" : 42,
+      "structures" : null
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:ProgramFileWriter.write(ProgramFile,Path)",
+    "classId" : "cls:ch.epfl.printwizard.writer.ProgramFileWriter",
+    "name" : "write",
+    "returnType" : "void",
+    "startLine" : 25,
+    "endLine" : 31,
+    "parameters" : [ {
+      "index" : 0,
+      "name" : "program",
+      "typeId" : "t:ProgramFile"
+    }, {
+      "index" : 1,
+      "name" : "outPath",
+      "typeId" : "t:Path"
+    } ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "startLine" : 25,
+      "endLine" : 31,
+      "structures" : null
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:ProgramModelAssembler.assemble(ProgramScanResult)",
+    "classId" : "cls:ch.epfl.printwizard.assembler.ProgramModelAssembler",
+    "name" : "assemble",
+    "returnType" : "ProgramFile",
+    "startLine" : 22,
+    "endLine" : 36,
+    "parameters" : [ {
+      "index" : 0,
+      "name" : "result",
+      "typeId" : "t:ProgramScanResult"
+    } ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "startLine" : 22,
+      "endLine" : 36,
+      "structures" : null
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:ProgramModelAssembler.dedupeById(List<T>,Function<T, String>)",
+    "classId" : "cls:ch.epfl.printwizard.assembler.ProgramModelAssembler",
+    "name" : "dedupeById",
+    "returnType" : "ArrayList<T>",
+    "startLine" : 38,
+    "endLine" : 47,
+    "parameters" : [ {
+      "index" : 0,
+      "name" : "list",
+      "typeId" : "t:List<T>"
+    }, {
+      "index" : 1,
+      "name" : "idExtractor",
+      "typeId" : "t:Function<T, String>"
+    } ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "startLine" : 38,
+      "endLine" : 47,
+      "structures" : null
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:ProgramScanResult.addClasses(List<ClassInfo>)",
+    "classId" : "cls:ch.epfl.printwizard.scanner.ProgramScanResult",
+    "name" : "addClasses",
+    "returnType" : "void",
+    "startLine" : 82,
+    "endLine" : 84,
+    "parameters" : [ {
+      "index" : 0,
+      "name" : "classInfos",
+      "typeId" : "t:List<ClassInfo>"
+    } ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "startLine" : 82,
+      "endLine" : 84,
+      "structures" : null
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:ProgramScanResult.addDiagnostic(Diagnostic)",
+    "classId" : "cls:ch.epfl.printwizard.scanner.ProgramScanResult",
+    "name" : "addDiagnostic",
+    "returnType" : "void",
+    "startLine" : 114,
+    "endLine" : 116,
+    "parameters" : [ {
+      "index" : 0,
+      "name" : "diagnostic",
+      "typeId" : "t:Diagnostic"
+    } ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "startLine" : 114,
+      "endLine" : 116,
+      "structures" : null
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:ProgramScanResult.addInterfaces(List<InterfaceInfo>)",
+    "classId" : "cls:ch.epfl.printwizard.scanner.ProgramScanResult",
+    "name" : "addInterfaces",
+    "returnType" : "void",
+    "startLine" : 90,
+    "endLine" : 92,
+    "parameters" : [ {
+      "index" : 0,
+      "name" : "interfaceInfos",
+      "typeId" : "t:List<InterfaceInfo>"
+    } ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "startLine" : 90,
+      "endLine" : 92,
+      "structures" : null
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:ProgramScanResult.addMethods(List<MethodInfo>)",
+    "classId" : "cls:ch.epfl.printwizard.scanner.ProgramScanResult",
+    "name" : "addMethods",
+    "returnType" : "void",
+    "startLine" : 106,
+    "endLine" : 108,
+    "parameters" : [ {
+      "index" : 0,
+      "name" : "methodInfos",
+      "typeId" : "t:List<MethodInfo>"
+    } ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "startLine" : 106,
+      "endLine" : 108,
+      "structures" : null
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:ProgramScanResult.addRecords(List<RecordInfo>)",
+    "classId" : "cls:ch.epfl.printwizard.scanner.ProgramScanResult",
+    "name" : "addRecords",
+    "returnType" : "void",
+    "startLine" : 98,
+    "endLine" : 100,
+    "parameters" : [ {
+      "index" : 0,
+      "name" : "recordInfos",
+      "typeId" : "t:List<RecordInfo>"
+    } ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "startLine" : 98,
+      "endLine" : 100,
+      "structures" : null
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:ProgramScanResult.addSources(List<Source>)",
+    "classId" : "cls:ch.epfl.printwizard.scanner.ProgramScanResult",
+    "name" : "addSources",
+    "returnType" : "void",
+    "startLine" : 74,
+    "endLine" : 76,
+    "parameters" : [ {
+      "index" : 0,
+      "name" : "s",
+      "typeId" : "t:List<Source>"
+    } ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "startLine" : 74,
+      "endLine" : 76,
+      "structures" : null
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:ProgramScanResult.getClasses()",
+    "classId" : "cls:ch.epfl.printwizard.scanner.ProgramScanResult",
+    "name" : "getClasses",
+    "returnType" : "List<ClassInfo>",
+    "startLine" : 34,
+    "endLine" : 36,
+    "parameters" : [ ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "startLine" : 34,
+      "endLine" : 36,
+      "structures" : null
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:ProgramScanResult.getDiagnostics()",
+    "classId" : "cls:ch.epfl.printwizard.scanner.ProgramScanResult",
+    "name" : "getDiagnostics",
+    "returnType" : "List<Diagnostic>",
+    "startLine" : 66,
+    "endLine" : 68,
+    "parameters" : [ ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "startLine" : 66,
+      "endLine" : 68,
+      "structures" : null
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:ProgramScanResult.getInterfaces()",
+    "classId" : "cls:ch.epfl.printwizard.scanner.ProgramScanResult",
+    "name" : "getInterfaces",
+    "returnType" : "List<InterfaceInfo>",
+    "startLine" : 42,
+    "endLine" : 44,
+    "parameters" : [ ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "startLine" : 42,
+      "endLine" : 44,
+      "structures" : null
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:ProgramScanResult.getMethods()",
+    "classId" : "cls:ch.epfl.printwizard.scanner.ProgramScanResult",
+    "name" : "getMethods",
+    "returnType" : "List<MethodInfo>",
+    "startLine" : 58,
+    "endLine" : 60,
+    "parameters" : [ ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "startLine" : 58,
+      "endLine" : 60,
+      "structures" : null
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:ProgramScanResult.getRecords()",
+    "classId" : "cls:ch.epfl.printwizard.scanner.ProgramScanResult",
+    "name" : "getRecords",
+    "returnType" : "List<RecordInfo>",
+    "startLine" : 50,
+    "endLine" : 52,
+    "parameters" : [ ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "startLine" : 50,
+      "endLine" : 52,
+      "structures" : null
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:ProgramScanResult.getSources()",
+    "classId" : "cls:ch.epfl.printwizard.scanner.ProgramScanResult",
+    "name" : "getSources",
+    "returnType" : "List<Source>",
+    "startLine" : 26,
+    "endLine" : 28,
+    "parameters" : [ ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "startLine" : 26,
+      "endLine" : 28,
+      "structures" : null
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:RecordInfo.RecordInfo(String,String,String,String)",
+    "classId" : "cls:ch.epfl.printwizard.model.RecordInfo",
+    "name" : "RecordInfo",
+    "returnType" : "<init>",
+    "startLine" : 8,
+    "endLine" : 10,
+    "parameters" : [ {
+      "index" : 0,
+      "name" : "id",
+      "typeId" : "t:String"
+    }, {
+      "index" : 1,
+      "name" : "name",
+      "typeId" : "t:String"
+    }, {
+      "index" : 2,
+      "name" : "packageName",
+      "typeId" : "t:String"
+    }, {
+      "index" : 3,
+      "name" : "sourceId",
+      "typeId" : "t:String"
+    } ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "startLine" : 8,
+      "endLine" : 10,
+      "structures" : null
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:StructureNode.StructureNode(String,StructureKind,int,int)",
+    "classId" : "cls:ch.epfl.printwizard.model.structures.StructureNode",
+    "name" : "StructureNode",
+    "returnType" : "<init>",
+    "startLine" : 15,
+    "endLine" : 26,
+    "parameters" : [ {
+      "index" : 0,
+      "name" : "structureId",
+      "typeId" : "t:String"
+    }, {
+      "index" : 1,
+      "name" : "kind",
+      "typeId" : "t:StructureKind"
+    }, {
+      "index" : 2,
+      "name" : "start",
+      "typeId" : "t:int"
+    }, {
+      "index" : 3,
+      "name" : "end",
+      "typeId" : "t:int"
+    } ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "startLine" : 15,
+      "endLine" : 26,
+      "structures" : null
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:StructureNode.getEndLine()",
+    "classId" : "cls:ch.epfl.printwizard.model.structures.StructureNode",
+    "name" : "getEndLine",
+    "returnType" : "int",
+    "startLine" : 56,
+    "endLine" : 58,
+    "parameters" : [ ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "startLine" : 56,
+      "endLine" : 58,
+      "structures" : null
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:StructureNode.getKind()",
+    "classId" : "cls:ch.epfl.printwizard.model.structures.StructureNode",
+    "name" : "getKind",
+    "returnType" : "StructureKind",
+    "startLine" : 40,
+    "endLine" : 42,
+    "parameters" : [ ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "startLine" : 40,
+      "endLine" : 42,
+      "structures" : null
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:StructureNode.getStartLine()",
+    "classId" : "cls:ch.epfl.printwizard.model.structures.StructureNode",
+    "name" : "getStartLine",
+    "returnType" : "int",
+    "startLine" : 48,
+    "endLine" : 50,
+    "parameters" : [ ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "startLine" : 48,
+      "endLine" : 50,
+      "structures" : null
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:StructureNode.getStructureId()",
+    "classId" : "cls:ch.epfl.printwizard.model.structures.StructureNode",
+    "name" : "getStructureId",
+    "returnType" : "String",
+    "startLine" : 32,
+    "endLine" : 34,
+    "parameters" : [ ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "startLine" : 32,
+      "endLine" : 34,
+      "structures" : null
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:TypeIdUtils.TypeIdUtils()",
+    "classId" : "cls:ch.epfl.printwizard.utils.java.TypeIdUtils",
+    "name" : "TypeIdUtils",
+    "returnType" : "<init>",
+    "startLine" : 15,
+    "endLine" : 15,
+    "parameters" : [ ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "startLine" : 15,
+      "endLine" : 15,
+      "structures" : null
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:TypeIdUtils.fqName(CompilationUnit,TypeDeclaration<?>)",
+    "classId" : "cls:ch.epfl.printwizard.utils.java.TypeIdUtils",
+    "name" : "fqName",
+    "returnType" : "String",
+    "startLine" : 46,
+    "endLine" : 50,
+    "parameters" : [ {
+      "index" : 0,
+      "name" : "cu",
+      "typeId" : "t:CompilationUnit"
+    }, {
+      "index" : 1,
+      "name" : "td",
+      "typeId" : "t:TypeDeclaration<?>"
+    } ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "startLine" : 46,
+      "endLine" : 50,
+      "structures" : null
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:TypeIdUtils.idFor(CompilationUnit,TypeDeclaration<?>)",
+    "classId" : "cls:ch.epfl.printwizard.utils.java.TypeIdUtils",
+    "name" : "idFor",
+    "returnType" : "String",
+    "startLine" : 23,
+    "endLine" : 25,
+    "parameters" : [ {
+      "index" : 0,
+      "name" : "cu",
+      "typeId" : "t:CompilationUnit"
+    }, {
+      "index" : 1,
+      "name" : "td",
+      "typeId" : "t:TypeDeclaration<?>"
+    } ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "startLine" : 23,
+      "endLine" : 25,
+      "structures" : null
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:TypeIdUtils.nestedName(TypeDeclaration<?>)",
+    "classId" : "cls:ch.epfl.printwizard.utils.java.TypeIdUtils",
+    "name" : "nestedName",
+    "returnType" : "String",
+    "startLine" : 52,
+    "endLine" : 60,
+    "parameters" : [ {
+      "index" : 0,
+      "name" : "td",
+      "typeId" : "t:TypeDeclaration<?>"
+    } ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "startLine" : 52,
+      "endLine" : 60,
+      "structures" : null
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:TypeIdUtils.prefix(TypeDeclaration<?>)",
+    "classId" : "cls:ch.epfl.printwizard.utils.java.TypeIdUtils",
+    "name" : "prefix",
+    "returnType" : "String",
+    "startLine" : 32,
+    "endLine" : 38,
+    "parameters" : [ {
+      "index" : 0,
+      "name" : "td",
+      "typeId" : "t:TypeDeclaration<?>"
+    } ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "startLine" : 32,
+      "endLine" : 38,
+      "structures" : null
+    },
+    "localVars" : [ ]
+  } ]
+}

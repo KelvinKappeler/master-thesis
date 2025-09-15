@@ -1,46 +1,45 @@
 package ch.epfl.printwizard.extractor.java;
 
 import ch.epfl.printwizard.extractor.IExtractor;
-import ch.epfl.printwizard.model.MethodInfo;
+import ch.epfl.printwizard.extractor.java.mapper.JavaStructureMapper;
+import ch.epfl.printwizard.model.*;
+import ch.epfl.printwizard.model.structures.StructureNode;
 import ch.epfl.printwizard.utils.Preconditions;
 import com.github.javaparser.ast.body.*;
+import com.github.javaparser.ast.stmt.BlockStmt;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Represents an extractor for Java methods.
+ * @param source the source of the class
+ * @param typeInfo the class/interface/record information
  */
-public final class JavaMethodExtractor implements IExtractor<TypeDeclaration<?>, MethodInfo> {
+public record JavaMethodExtractor(Source source, BaseTypeInfo typeInfo) implements IExtractor<TypeDeclaration<?>, MethodInfo> {
 
+    private static final String CONSTRUCTOR_NAME = "<init>";
     private static final String METHOD_ID_PREFIX = "m";
-    
-    private final String sourceId;
-    private final String classId;
 
     /**
      * Constructs a JavaMethodExtractor with the given source ID.
-     *
-     * @param sourceId the source ID
+     * @param source    the source of the class
+     * @param typeInfo the class/interface/record information
      */
-    public JavaMethodExtractor(String sourceId, String classId) {
-        Preconditions.RequireNonNull(sourceId, "Source ID cannot be null");
-        Preconditions.RequireNonNull(classId, "Class ID cannot be null");
-        Preconditions.Require(!sourceId.isEmpty(), "Source ID cannot be empty");
-        Preconditions.Require(!classId.isEmpty(), "Class ID cannot be empty");
-        
-        this.sourceId = sourceId;
-        this.classId = classId;
+    public JavaMethodExtractor {
+        Preconditions.requireNonNull(source, "Source cannot be null");
+        Preconditions.requireNonNull(typeInfo, "TypeInfo cannot be null");
     }
 
     @Override
     public List<MethodInfo> extract(TypeDeclaration<?> declaration) {
-        Preconditions.RequireNonNull(declaration, "Declaration cannot be null");
-        
+        Preconditions.requireNonNull(declaration, "Declaration cannot be null");
+
         List<MethodInfo> methods = new ArrayList<>();
         List<CallableDeclaration<?>> callables = collectCallables(declaration);
 
-        for (var c : callables) {
+        for (CallableDeclaration<?> c : callables) {
             methods.add(extractOne(c));
         }
         return methods;
@@ -60,8 +59,53 @@ public final class JavaMethodExtractor implements IExtractor<TypeDeclaration<?>,
         }
         return res;
     }
-    
+
     private MethodInfo extractOne(CallableDeclaration<?> c) {
-        
+        final String name = c.getNameAsString();
+        final boolean isConstructor = c.isConstructorDeclaration();
+        final String returnType = isConstructor ? CONSTRUCTOR_NAME : ((MethodDeclaration) c).getType().asString();
+
+        // Parameters
+        List<ParameterInfo> params = new ArrayList<>();
+        List<String> paramTypes = new ArrayList<>();
+        int pIndex = 0;
+        for (Parameter p : c.getParameters()) {
+            paramTypes.add(p.getType().toString());
+            params.add(new ParameterInfo(pIndex++, p.getNameAsString(), "t:" + p.getType().toString()));
+        }
+
+        // Method ID "m:Class.method(Type,Type)"
+        String sig = String.join(",", paramTypes);
+        String methodId = METHOD_ID_PREFIX + ":" + typeInfo.getName() + "." + name + "(" + sig + ")";
+
+        // Lines
+        int startLine = c.getRange().map(r -> r.begin.line).orElse(0);
+        int endLine = c.getRange().map(r -> r.end.line).orElse(0);
+
+        // Structures and Local Variables
+        JavaStructureMapper mapper = new JavaStructureMapper(params.size());
+        BlockStmt stmt = methodBodyOf(c).orElse(null);
+        StructureNode root = stmt == null ? null : mapper.mapBlock(stmt);
+        List<LocalVar> locals = new ArrayList<>(mapper.getLocals());
+
+        return new MethodInfo(
+            methodId, typeInfo.getId(),
+            name,
+            returnType,
+            startLine, endLine,
+            params,
+            root,
+            locals
+        );
+    }
+
+    private static Optional<BlockStmt> methodBodyOf(CallableDeclaration<?> c) {
+        if (c instanceof MethodDeclaration md) {
+            return md.getBody();
+        }
+        if (c instanceof ConstructorDeclaration cd) {
+            return Optional.of(cd.getBody());
+        }
+        return Optional.empty();
     }
 }

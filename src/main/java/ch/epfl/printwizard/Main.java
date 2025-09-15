@@ -3,6 +3,7 @@ package ch.epfl.printwizard;
 import ch.epfl.printwizard.assembler.ProgramModelAssembler;
 import ch.epfl.printwizard.scanner.ProgramScanResult;
 import ch.epfl.printwizard.scanner.java.JavaProgramScanner;
+import ch.epfl.printwizard.writer.ProgramFileWriter;
 import com.github.javaparser.ParserConfiguration;
 
 import java.io.IOException;
@@ -30,5 +31,7 @@ public final class Main {
                 model.interfaces().size(),
                 model.records().size(),
                 model.methods().size());
+
+        ProgramFileWriter.write(model, Path.of("program.json"));
     }
 }

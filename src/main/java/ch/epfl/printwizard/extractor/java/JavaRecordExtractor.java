@@ -22,11 +22,6 @@ public final class JavaRecordExtractor extends AbstractJavaTypeExtractor<RecordI
     }
 
     @Override
-    protected String getIdPrefix() {
-        return RECORD_ID_PREFIX;
-    }
-
-    @Override
     protected RecordInfo makeInfo(String id, String name, String packageName, String sourceId) {
         return new RecordInfo(id, name, packageName, sourceId);
     }

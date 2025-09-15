@@ -15,8 +15,8 @@ public record JavaSourceExtractor(Path baseDir, JavaParser parser) implements IE
     private static final String SOURCE_ID_PREFIX = "src";
 
     public JavaSourceExtractor {
-        Preconditions.RequireNonNull(baseDir, "Base directory cannot be null");
-        Preconditions.RequireNonNull(parser, "JavaParser cannot be null");
+        Preconditions.requireNonNull(baseDir, "Base directory cannot be null");
+        Preconditions.requireNonNull(parser, "JavaParser cannot be null");
     }
 
     public List<Source> extract(Path filePath) throws IOException {

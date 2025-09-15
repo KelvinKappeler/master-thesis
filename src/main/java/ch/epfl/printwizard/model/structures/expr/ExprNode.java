@@ -12,10 +12,10 @@ public abstract class ExprNode {
     private final int endLine;
     
     protected ExprNode(String code, int startLine, int endLine) {
-        Preconditions.RequireNonNull(code, "Code cannot be null");
-        Preconditions.Require(!code.isEmpty(), "Code cannot be empty");
-        Preconditions.Require(startLine >= 0, "Start line cannot be negative");
-        Preconditions.Require(endLine >= startLine, "End line cannot be less than start line");
+        Preconditions.requireNonNull(code, "Code cannot be null");
+        Preconditions.require(!code.isEmpty(), "Code cannot be empty");
+        Preconditions.require(startLine >= 0, "Start line cannot be negative");
+        Preconditions.require(endLine >= startLine, "End line cannot be less than start line");
         
         this.code = code;
         this.startLine = startLine;

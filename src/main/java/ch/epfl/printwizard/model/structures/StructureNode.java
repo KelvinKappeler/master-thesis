@@ -13,11 +13,11 @@ public abstract class StructureNode
     private final int endLine;
 
     protected StructureNode(String structureId, StructureKind kind, int start, int end) {
-        Preconditions.RequireNonNull(structureId, "Structure ID cannot be null");
-        Preconditions.RequireNonNull(kind, "Structure kind cannot be null");
-        Preconditions.Require(!structureId.isEmpty(), "Structure ID cannot be empty");
-        Preconditions.Require(start >= 0, "Start line cannot be negative");
-        Preconditions.Require(end >= start, "End line cannot be less than start line");
+        Preconditions.requireNonNull(structureId, "Structure ID cannot be null");
+        Preconditions.requireNonNull(kind, "Structure kind cannot be null");
+        Preconditions.require(!structureId.isEmpty(), "Structure ID cannot be empty");
+        Preconditions.require(start >= 0, "Start line cannot be negative");
+        Preconditions.require(end >= start, "End line cannot be less than start line");
 
         this.structureId = structureId;
         this.kind = kind;

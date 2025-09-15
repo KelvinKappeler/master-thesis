@@ -3,6 +3,7 @@ package ch.epfl.printwizard.extractor.java;
 import ch.epfl.printwizard.extractor.IExtractor;
 import ch.epfl.printwizard.model.BaseTypeInfo;
 import ch.epfl.printwizard.utils.Preconditions;
+import ch.epfl.printwizard.utils.java.TypeIdUtils;
 import com.github.javaparser.ast.CompilationUnit;
 import com.github.javaparser.ast.body.TypeDeclaration;
 
@@ -18,27 +19,22 @@ abstract class AbstractJavaTypeExtractor<T extends BaseTypeInfo> implements IExt
     protected final String sourceId;
 
     protected AbstractJavaTypeExtractor(String sourceId) {
-        Preconditions.RequireNonNull(sourceId, "Source ID cannot be null");
-        Preconditions.Require(!sourceId.isEmpty(), "Source ID cannot be empty");
+        Preconditions.requireNonNull(sourceId, "Source ID cannot be null");
+        Preconditions.require(!sourceId.isEmpty(), "Source ID cannot be empty");
         
         this.sourceId = sourceId;
     }
 
     @Override
     public List<T> extract(CompilationUnit cu) {
-        Preconditions.RequireNonNull(cu, "CompilationUnit cannot be null");
-
-        String packageName = cu.getPackageDeclaration()
-                .map(pd -> pd.getName().toString())
-                .orElse("");
+        Preconditions.requireNonNull(cu, "CompilationUnit cannot be null");
 
         List<T> out = new ArrayList<>();
         findTargetDeclarations(cu).forEach(decl -> {
-            String simpleName = decl.getNameAsString();
-            String fqName = packageName.isEmpty() ? simpleName : packageName + "." + simpleName;
-            String classId = getIdPrefix() + ":" + fqName;
-
-            out.add(makeInfo(classId, simpleName, packageName, sourceId));
+            String id = TypeIdUtils.idFor(cu, decl);
+            String name = decl.getNameAsString();
+            String packageName = cu.getPackageDeclaration().map(pd -> pd.getName().toString()).orElse("");
+            out.add(makeInfo(id, name, packageName, sourceId));
         });
         return out;
     }
@@ -49,13 +45,7 @@ abstract class AbstractJavaTypeExtractor<T extends BaseTypeInfo> implements IExt
      * @return a stream of the target type declarations
      */
     protected abstract Stream<? extends TypeDeclaration<?>> findTargetDeclarations(CompilationUnit cu);
-
-    /**
-     * Subclasses provide their own ID prefix (e.g., "cls" for classes, "intf" for interfaces).
-     * @return the ID prefix
-     */
-    protected abstract String getIdPrefix();
-
+    
     /**
      * Creates a BaseTypeInfo object. Subclasses can override this method to create specific type info objects.
      * @param id Fully qualified ID

@@ -1,20 +1,16 @@
 package ch.epfl.printwizard.scanner.java;
 
-import ch.epfl.printwizard.extractor.java.JavaClassExtractor;
-import ch.epfl.printwizard.extractor.java.JavaInterfaceExtractor;
-import ch.epfl.printwizard.extractor.java.JavaRecordExtractor;
-import ch.epfl.printwizard.model.ClassInfo;
-import ch.epfl.printwizard.model.InterfaceInfo;
-import ch.epfl.printwizard.model.RecordInfo;
-import ch.epfl.printwizard.model.Source;
-import ch.epfl.printwizard.extractor.java.JavaSourceExtractor;
+import ch.epfl.printwizard.extractor.java.*;
+import ch.epfl.printwizard.model.*;
 import ch.epfl.printwizard.scanner.IProgramScanner;
 import ch.epfl.printwizard.scanner.ProgramScanResult;
 import ch.epfl.printwizard.utils.Diagnostic;
 import ch.epfl.printwizard.utils.Preconditions;
+import ch.epfl.printwizard.utils.java.TypeIdUtils;
 import com.github.javaparser.JavaParser;
 import com.github.javaparser.ParserConfiguration;
 import com.github.javaparser.ast.CompilationUnit;
+import com.github.javaparser.ast.body.TypeDeclaration;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -23,7 +19,9 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.PathMatcher;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.function.Predicate;
 
 import static java.nio.file.FileVisitOption.FOLLOW_LINKS;
@@ -40,14 +38,14 @@ public record JavaProgramScanner(Path baseDir, JavaParser parser, Predicate<Path
      * @return a Builder instance to configure and build the JavaProgramScanner
      */
     public static Builder builder(Path baseDir) {
-        Preconditions.RequireNonNull(baseDir, "Base directory cannot be null");
+        Preconditions.requireNonNull(baseDir, "Base directory cannot be null");
 
         return new Builder(baseDir);
     }
 
     public JavaProgramScanner(Path baseDir, JavaParser parser, Predicate<Path> pathFilter) {
-        Preconditions.RequireNonNull(baseDir, "Base directory cannot be null");
-        Preconditions.RequireNonNull(parser, "JavaParser cannot be null");
+        Preconditions.requireNonNull(baseDir, "Base directory cannot be null");
+        Preconditions.requireNonNull(parser, "JavaParser cannot be null");
 
         this.baseDir = baseDir;
         this.parser = parser;
@@ -56,56 +54,76 @@ public record JavaProgramScanner(Path baseDir, JavaParser parser, Predicate<Path
 
     @Override
     public ProgramScanResult scan(Path root) throws IOException {
-        Preconditions.RequireNonNull(root, "Root path cannot be null");
+        Preconditions.requireNonNull(root, "Root path cannot be null");
 
         ProgramScanResult result = new ProgramScanResult();
         JavaSourceExtractor sourceExtractor = new JavaSourceExtractor(baseDir, parser);
 
         try (var stream = Files.walk(root, Integer.MAX_VALUE, FOLLOW_LINKS)) {
             stream.filter(p -> p.toString().endsWith(".java"))
-                    .filter(pathFilter).forEach(file -> {
-                        try {
-                            // (1) Source
-                            List<Source> sources = sourceExtractor.extract(file);
-                            if (sources.isEmpty()) return;
-                            Source source = sources.getFirst();
-                            result.addSources(sources);
+                .filter(pathFilter).forEach(file -> {
+                    try {
+                        // (1) Source
+                        List<Source> sources = sourceExtractor.extract(file);
+                        if (sources.isEmpty()) return;
+                        Source source = sources.getFirst();
+                        result.addSources(sources);
 
-                            // (2) Parse
-                            CompilationUnit cu = parser.parse(file).getResult().orElseThrow(() -> new IOException("Parse failed: " + file));
+                        // (2) Parse
+                        CompilationUnit cu = parser.parse(file).getResult().orElseThrow(() -> new IOException("Parse failed: " + file));
 
-                            // (3) Classes / Interface / Records for this file
-                            JavaClassExtractor classExtractor = new JavaClassExtractor(source.sourceId());
-                            List<ClassInfo> classes = classExtractor.extract(cu);
-                            result.addClasses(classes);
+                        // (3) Classes / Interface / Records for this file
+                        JavaClassExtractor classExtractor = new JavaClassExtractor(source.sourceId());
+                        List<ClassInfo> classes = classExtractor.extract(cu);
+                        result.addClasses(classes);
 
-                            JavaInterfaceExtractor interfaceExtractor = new JavaInterfaceExtractor(source.sourceId());
-                            List<InterfaceInfo> interfaces = interfaceExtractor.extract(cu);
-                            result.addInterfaces(interfaces);
+                        JavaInterfaceExtractor interfaceExtractor = new JavaInterfaceExtractor(source.sourceId());
+                        List<InterfaceInfo> interfaces = interfaceExtractor.extract(cu);
+                        result.addInterfaces(interfaces);
 
-                            JavaRecordExtractor recordExtractor = new JavaRecordExtractor(source.sourceId());
-                            List<RecordInfo> records = recordExtractor.extract(cu);
-                            result.addRecords(records);
+                        JavaRecordExtractor recordExtractor = new JavaRecordExtractor(source.sourceId());
+                        List<RecordInfo> records = recordExtractor.extract(cu);
+                        result.addRecords(records);
 
-                            // (4) Methods:
-                            // new JavaMethodExtractor(source.sourceId(), classIdStrategy).extract(cu)
-                            // result.addMethods(methods);
-
-                        } catch (Exception e) {
-                            result.addDiagnostic(new Diagnostic(
-                                    Diagnostic.Severity.ERROR,
-                                    e.getMessage(),
-                                    relativizeSafe(file)
-                            ));
+                        // (4) Methods
+                        Map<String, TypeDeclaration<?>> typesById = new HashMap<>();
+                        for (TypeDeclaration<?> td : cu.findAll(TypeDeclaration.class)) {
+                            String id = TypeIdUtils.idFor(cu, td);
+                            typesById.put(id, td);
                         }
-                    });
+                        
+                        List<BaseTypeInfo> allTypes = new ArrayList<>();
+                        allTypes.addAll(classes);
+                        allTypes.addAll(interfaces);
+                        allTypes.addAll(records);
+
+                        for (BaseTypeInfo bti : allTypes) {
+                            TypeDeclaration<?> td = typesById.get(bti.getId());
+                            if (td == null) {
+                                continue;
+                            }
+                            
+                            JavaMethodExtractor methodExtractor = new JavaMethodExtractor(source, bti);
+
+                            List<MethodInfo> methods = methodExtractor.extract(td);
+                            result.addMethods(methods);
+                        }
+
+                    } catch (Exception e) {
+                        result.addDiagnostic(new Diagnostic(
+                                Diagnostic.Severity.ERROR,
+                                e.getMessage(),
+                                relativizeSafe(file)
+                        ));
+                    }
+                });
         }
 
         return result;
     }
 
     private String relativizeSafe(Path file) {
-        Preconditions.RequireNonNull(file, "File cannot be null");
+        Preconditions.requireNonNull(file, "File cannot be null");
 
         try {
             return baseDir.relativize(file).toString().replace('\\', '/');
@@ -122,7 +140,7 @@ public record JavaProgramScanner(Path baseDir, JavaParser parser, Predicate<Path
         private ParserConfiguration.LanguageLevel languageLevel = ParserConfiguration.LanguageLevel.JAVA_21;
 
         private Builder(Path baseDir) {
-            Preconditions.RequireNonNull(baseDir, "Base directory cannot be null");
+            Preconditions.requireNonNull(baseDir, "Base directory cannot be null");
 
             this.baseDir = baseDir;
         }

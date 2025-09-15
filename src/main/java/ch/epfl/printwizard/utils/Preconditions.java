@@ -10,7 +10,7 @@ public final class Preconditions {
      * @param message the message to include in the exception if the condition is false
      * @throws IllegalArgumentException if the condition is false
      */
-    public static void Require(boolean condition, String message) {
+    public static void require(boolean condition, String message) {
         if (!condition) {
             throw new IllegalArgumentException(message);
         }
@@ -22,7 +22,7 @@ public final class Preconditions {
      * @param message the message to include in the exception if the object is null
      * @throws IllegalArgumentException if the object is null
      */
-    public static void RequireNonNull(Object obj, String message) {
+    public static void requireNonNull(Object obj, String message) {
         if (obj == null) {
             throw new IllegalArgumentException(message);
         }

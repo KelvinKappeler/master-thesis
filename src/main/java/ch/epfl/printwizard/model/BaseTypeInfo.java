@@ -13,11 +13,11 @@ public abstract class BaseTypeInfo {
     private final String sourceId;
     
     protected BaseTypeInfo(String id, String name, String packageName, String sourceId) {
-        Preconditions.RequireNonNull(id, "id cannot be null");
-        Preconditions.RequireNonNull(name, "name cannot be null");
-        Preconditions.RequireNonNull(packageName, "package name cannot be null");
-        Preconditions.RequireNonNull(sourceId, "source id cannot be null");
-        Preconditions.Require(!id.isEmpty(), "type id cannot be empty");
+        Preconditions.requireNonNull(id, "id cannot be null");
+        Preconditions.requireNonNull(name, "name cannot be null");
+        Preconditions.requireNonNull(packageName, "package name cannot be null");
+        Preconditions.requireNonNull(sourceId, "source id cannot be null");
+        Preconditions.require(!id.isEmpty(), "type id cannot be empty");
         
         this.id = id;
         this.name = name;

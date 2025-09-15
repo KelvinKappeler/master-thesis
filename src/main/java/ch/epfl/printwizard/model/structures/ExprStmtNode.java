@@ -13,7 +13,7 @@ public final class ExprStmtNode extends StructureNode {
     public ExprStmtNode(String structureId, int startLine, int endLine, ExprNode expr) {
         super(structureId, StructureKind.EXPR_STMT, startLine, endLine);
 
-        Preconditions.RequireNonNull(expr, "expr cannot be null");
+        Preconditions.requireNonNull(expr, "expr cannot be null");
 
         this.expr = expr;
     }

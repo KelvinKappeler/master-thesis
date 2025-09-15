@@ -11,8 +11,6 @@ import java.util.stream.Stream;
  * Represents an extractor that extracts class information from a Java CompilationUnit.
  */
 public final class JavaClassExtractor extends AbstractJavaTypeExtractor<ClassInfo> {
-
-    private static final String CLASS_ID_PREFIX = "cls";
     
     public JavaClassExtractor(String sourceId) {
         super(sourceId);
@@ -23,11 +21,6 @@ public final class JavaClassExtractor extends AbstractJavaTypeExtractor<ClassInf
         return cu.findAll(ClassOrInterfaceDeclaration.class)
                 .stream()
                 .filter(d -> !d.isInterface());
-    }
-
-    @Override
-    protected String getIdPrefix() {
-        return CLASS_ID_PREFIX;
     }
 
     @Override

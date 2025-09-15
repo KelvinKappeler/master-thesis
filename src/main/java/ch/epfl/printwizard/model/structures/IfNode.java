@@ -15,8 +15,8 @@ public final class IfNode extends StructureNode {
     public IfNode(String structureId, int startLine, int endLine, ExprNode condition, StructureNode thenBranch, StructureNode elseBranch) {
         super(structureId, StructureKind.IF, startLine, endLine);
         
-        Preconditions.RequireNonNull(condition, "condition cannot be null");
-        Preconditions.RequireNonNull(thenBranch, "thenBranch cannot be null");
+        Preconditions.requireNonNull(condition, "condition cannot be null");
+        Preconditions.requireNonNull(thenBranch, "thenBranch cannot be null");
         
         this.condition = condition;
         this.thenBranch = thenBranch;
