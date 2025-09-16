@@ -79,7 +79,11 @@ public final class JavaStructureMapper {
             }
             
             case ForStmt n -> {
-                //
+                var init = new ExprCode(n.getInitialization().toString(), startLine, endLine);
+                var compare = new ExprCode(n.getCompare().toString(), startLine, endLine);
+                var update = new ExprCode(n.getUpdate().toString(), startLine, endLine);
+                var body = mapStmt(n.getBody());
+                yield new ForNode(nextId(StructureKind.FOR.getPrefixId()), startLine, endLine, init, compare, update, body);
             }
             
             case ExpressionStmt n -> {

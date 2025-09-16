@@ -13,9 +13,9 @@ public final class ForNode extends StructureNode {
     private final ExprNode update;
     private final StructureNode body;
     
-    ForNode(String structureId, StructureKind kind, int start, int end,
+    public ForNode(String structureId, int start, int end,
             ExprNode initialization, ExprNode condition, ExprNode update, StructureNode body) {
-        super(structureId, kind, start, end);
+        super(structureId, StructureKind.FOR, start, end);
 
         Preconditions.requireNonNull(initialization, "initialization cannot be null");
         Preconditions.requireNonNull(condition, "condition cannot be null");

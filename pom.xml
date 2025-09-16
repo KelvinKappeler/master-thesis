@@ -7,6 +7,11 @@
     <groupId>ch.epfl.printwizard</groupId>
     <artifactId>PrintWizard</artifactId>
     <version>0.1</version>
+    <packaging>pom</packaging>
+    <modules>
+        <module>Agent</module>
+        <module>Main</module>
+    </modules>
 
     <dependencies>
         <!-- https://mvnrepository.com/artifact/com.github.javaparser/javaparser-core -->
@@ -29,5 +34,25 @@
         <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
+    
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.4.2</version>
+                <configuration>
+                    <archive>
+                        <manifestEntries>
+                            <Premain-Class>ch.epfl.printwizard.agent.TraceAgent</Premain-Class>
+                            <Agent-Class>ch.epfl.printwizard.agent.TraceAgent</Agent-Class>
+                            <Can-Redefine-Classes>true</Can-Redefine-Classes>
+                            <Can-Retransform-Classes>true</Can-Retransform-Classes>
+                        </manifestEntries>
+                    </archive>
+                </configuration> 
+            </plugin>
+        </plugins>
+    </build>
 
 </project>
