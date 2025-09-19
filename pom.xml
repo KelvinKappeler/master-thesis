@@ -11,6 +11,7 @@
     <modules>
         <module>Agent</module>
         <module>Main</module>
+        <module>Examples</module>
     </modules>
 
     <dependencies>
@@ -34,25 +35,5 @@
         <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
-    
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jar-plugin</artifactId>
-                <version>3.4.2</version>
-                <configuration>
-                    <archive>
-                        <manifestEntries>
-                            <Premain-Class>ch.epfl.printwizard.agent.TraceAgent</Premain-Class>
-                            <Agent-Class>ch.epfl.printwizard.agent.TraceAgent</Agent-Class>
-                            <Can-Redefine-Classes>true</Can-Redefine-Classes>
-                            <Can-Retransform-Classes>true</Can-Retransform-Classes>
-                        </manifestEntries>
-                    </archive>
-                </configuration> 
-            </plugin>
-        </plugins>
-    </build>
 
 </project>

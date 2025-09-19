@@ -9,7 +9,7 @@
         <version>0.1</version>
     </parent>
 
-    <artifactId>Main</artifactId>
+    <artifactId>Examples</artifactId>
 
     <properties>
         <maven.compiler.source>21</maven.compiler.source>
@@ -26,7 +26,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>ch.epfl.printwizard.Main</mainClass>
+                            <mainClass>ch.epfl.printwizard.examples.Main</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
