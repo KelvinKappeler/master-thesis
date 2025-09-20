@@ -12,11 +12,11 @@ public final class TraceAgent {
         System.out.println("TraceAgent initialized with args: " + agentArgs);
         
         TraceConfig config = new TraceConfig(
-                List.of("ch/epfl/printwizard/"),
-                List.of("java/", "javax/", "sun/", "com/sun/"),
+                List.of("ch/epfl/printwizard/examples/"),
+                List.of("java/", "javax/", "sun/", "com/sun/", "ch/epfl/printwizard/agent/"),
                 true,
                 true,
-                false,
+                true,
                 ""
         );
         
