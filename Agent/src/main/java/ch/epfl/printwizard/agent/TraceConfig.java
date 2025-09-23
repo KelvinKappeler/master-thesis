@@ -14,6 +14,7 @@ public final class TraceConfig {
     private final boolean isTraceNew;
     private final boolean isTraceFields;
     private final boolean isTraceArrays;
+    private final boolean isTraceLocals;
     private final String outPath;
 
     public TraceConfig(
@@ -22,6 +23,7 @@ public final class TraceConfig {
             boolean isTraceNew,
             boolean isTraceFields,
             boolean isTraceArrays,
+            boolean isTraceLocals,
             String outPath
     ) {
         Preconditions.requireNonNull(includePrefixes, "includePrefixes cannot be null");
@@ -33,6 +35,7 @@ public final class TraceConfig {
         this.isTraceNew = isTraceNew;
         this.isTraceFields = isTraceFields;
         this.isTraceArrays = isTraceArrays;
+        this.isTraceLocals = isTraceLocals;
         this.outPath = outPath;
     }
 
@@ -74,6 +77,14 @@ public final class TraceConfig {
      */
     public boolean isTraceArrays() {
         return isTraceArrays;
+    }
+    
+    /**
+     * Gets whether to trace local variable accesses.
+     * @return true if local variable accesses should be traced, false otherwise
+     */
+    public boolean isTraceLocals() {
+        return isTraceLocals;
     }
 
     /**

@@ -10,8 +10,9 @@
     <packaging>pom</packaging>
     <modules>
         <module>Agent</module>
-        <module>Main</module>
+        <module>Parser</module>
         <module>Examples</module>
+        <module>Shared</module>
     </modules>
 
     <dependencies>

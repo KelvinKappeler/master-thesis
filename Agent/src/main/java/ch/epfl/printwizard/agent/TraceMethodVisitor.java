@@ -4,10 +4,16 @@ import org.objectweb.asm.*;
 import org.objectweb.asm.commons.AdviceAdapter;
 import org.objectweb.asm.commons.Method;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public final class TraceMethodVisitor extends AdviceAdapter {
     
     private final TraceConfig config;
     private final String ownerInternal;
+
+    private final Map<Integer, String> varNameByIndex = new HashMap<>();
+    private final Map<Integer, String> varDescByIndex = new HashMap<>();
 
     TraceMethodVisitor(int api, MethodVisitor mv, int access, String name, String desc,
                        TraceConfig config, String ownerInternal) {
@@ -20,18 +26,25 @@ public final class TraceMethodVisitor extends AdviceAdapter {
     }
 
     @Override
+    public void visitLocalVariable(String name, String desc, String signature, Label start, Label end, int index) {
+        varNameByIndex.put(index, name);
+        varDescByIndex.put(index, desc);
+        
+        super.visitLocalVariable(name, desc, signature, start, end, index);
+    }
+
+    @Override
     public void visitFieldInsn(int opcode, String owner, String name, String desc) {
         if (config.isTraceFields() && opcode == PUTFIELD) {
             Type t = Type.getType(desc);
             int valueLocal  = newLocal(t);
             int objectLocal = newLocal(Type.getType(Object.class));
+            
+            storeLocal(valueLocal, t);
+            storeLocal(objectLocal, Type.getType(Object.class));
 
-            // store value, then object (order matters: top of stack is value)
-            storeLocal(valueLocal, t); // pops value
-            storeLocal(objectLocal, Type.getType(Object.class)); // pops objectref
-
-            // Call: logPutField(ownerInternal, field, desc, instanceOrNull, value)
-            push(owner); // internal name already (slashes), pass as-is
+            // logPutField(ownerInternal, field, desc, instanceOrNull, value)
+            push(owner);
             push(name);
             push(desc);
             loadLocal(objectLocal);
@@ -41,7 +54,7 @@ public final class TraceMethodVisitor extends AdviceAdapter {
                 new Method("logPutField",
                 "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Object;Ljava/lang/Object;)V"));
 
-            // Re-load for the original PUTFIELD
+            // Reload for the original PUTFIELD
             loadLocal(objectLocal);
             loadLocal(valueLocal);
             super.visitFieldInsn(opcode, owner, name, desc);
@@ -79,21 +92,19 @@ public final class TraceMethodVisitor extends AdviceAdapter {
                 case IASTORE: case LASTORE: case FASTORE: case DASTORE:
                 case AASTORE: case BASTORE: case CASTORE: case SASTORE: {
                     Type vtype = valueTypeForArrayStore(opcode);
-                    // Locals to preserve operands
                     int valueLocal  = newLocal(vtype);
                     int indexLocal  = newLocal(Type.INT_TYPE);
                     int arrayLocal  = newLocal(Type.getType(Object.class));
-
-                    // Pop into locals (top-first: value, then index, then arrayref)
+                    
                     storeLocal(valueLocal, vtype);
                     storeLocal(indexLocal, Type.INT_TYPE);
                     storeLocal(arrayLocal, Type.getType(Object.class));
 
-                    // --- Call logger: logArrayStore(arrayRef, index, valueBoxed) ---
-                    loadLocal(arrayLocal);              // Object arrayRef
-                    loadLocal(indexLocal);              // int index
-                    loadLocal(valueLocal);              // <T> value
-                    if (opcode != AASTORE) {            // only box primitives
+                    // logArrayStore(arrayRef, index, valueBoxed)
+                    loadLocal(arrayLocal);
+                    loadLocal(indexLocal);
+                    loadLocal(valueLocal);
+                    if (opcode != AASTORE) {
                         box(vtype);
                     }
                     invokeStatic(Type.getType(TraceSink.class),
@@ -108,6 +119,45 @@ public final class TraceMethodVisitor extends AdviceAdapter {
             }
         }
         super.visitInsn(opcode);
+    }
+    
+    @Override
+    public void visitVarInsn(int opcode, int var) {
+        if (config.isTraceLocals()
+            && (opcode == ISTORE || opcode == LSTORE || opcode == FSTORE
+            || opcode == DSTORE || opcode == ASTORE)) {
+
+            super.visitVarInsn(opcode, var);
+
+            String desc = varDescByIndex.get(var);
+            if (desc == null) {
+                desc = switch (opcode) {
+                    case ISTORE -> "I";
+                    case LSTORE -> "J";
+                    case FSTORE -> "F";
+                    case DSTORE -> "D";
+                    case ASTORE -> "Ljava/lang/Object;";
+                    default -> "Ljava/lang/Object;";
+                };
+            }
+            String name = varNameByIndex.getOrDefault(var, "#" + var);
+
+            // logLocal : owner, method, varName, index, value(Object)
+            push(ownerInternal);
+            push(getName());
+            push(name);
+            push(var);
+
+            Type t = Type.getType(desc);
+            loadLocal(var, t);
+            if (t.getSort() != Type.OBJECT && t.getSort() != Type.ARRAY) {
+                box(t);
+            }
+
+            invokeStatic(Type.getType(TraceSink.class),
+                    new Method("logLocal",
+                            "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)V"));
+        }
     }
 
     @Override

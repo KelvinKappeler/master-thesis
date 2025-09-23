@@ -47,6 +47,11 @@ public final class TraceSink {
         Out.println("ts: " + ts + ", op: arraystore, ref: " + ref + ", index: " + index + ", value: " + value);
     }
 
+    public static void logLocal(String ownerInternal, String methodName, String varName, int index, Object value) {
+        Out.println("ts: " + now() + ", op: local, method: " + ownerInternal.replace('/', '.') + "." + methodName +
+                ", varName: " + varName + ", index: " + index + ", value: " + value);
+    }
+
     private static long now() {
         return System.currentTimeMillis();
     }

@@ -17,6 +17,7 @@ public final class TraceAgent {
                 true,
                 true,
                 true,
+                true,
                 ""
         );
         
