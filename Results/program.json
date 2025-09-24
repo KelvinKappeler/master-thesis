@@ -1,0 +1,204 @@
+{
+  "sources" : [ {
+    "sourceId" : "src:Examples/src/main/java/ch/epfl/printwizard/examples/Main.java",
+    "path" : "Examples/src/main/java/ch/epfl/printwizard/examples/Main.java",
+    "language" : "java",
+    "lines" : 16
+  }, {
+    "sourceId" : "src:Examples/src/main/java/ch/epfl/printwizard/examples/Player.java",
+    "path" : "Examples/src/main/java/ch/epfl/printwizard/examples/Player.java",
+    "language" : "java",
+    "lines" : 19
+  } ],
+  "classes" : [ {
+    "id" : "cls:ch.epfl.printwizard.examples.Main",
+    "name" : "Main",
+    "packageName" : "ch.epfl.printwizard.examples",
+    "sourceId" : "src:Examples/src/main/java/ch/epfl/printwizard/examples/Main.java"
+  }, {
+    "id" : "cls:ch.epfl.printwizard.examples.Player",
+    "name" : "Player",
+    "packageName" : "ch.epfl.printwizard.examples",
+    "sourceId" : "src:Examples/src/main/java/ch/epfl/printwizard/examples/Player.java"
+  } ],
+  "interfaces" : [ ],
+  "records" : [ ],
+  "enums" : [ ],
+  "methods" : [ {
+    "methodId" : "m:Main.main(String[])",
+    "classId" : "cls:ch.epfl.printwizard.examples.Main",
+    "name" : "main",
+    "returnType" : "void",
+    "startLine" : 5,
+    "endLine" : 15,
+    "parameters" : [ {
+      "index" : 0,
+      "name" : "args",
+      "typeId" : "t:String[]"
+    } ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "startLine" : 5,
+      "endLine" : 15,
+      "structures" : [ {
+        "structureId" : "expr_stmt:1",
+        "kind" : "EXPR_STMT",
+        "startLine" : 6,
+        "endLine" : 6,
+        "expr" : {
+          "code" : "System.out.println(\"Hello, World!\")",
+          "startLine" : 6,
+          "endLine" : 6
+        }
+      }, {
+        "structureId" : "expr_stmt:2",
+        "kind" : "EXPR_STMT",
+        "startLine" : 8,
+        "endLine" : 8,
+        "expr" : {
+          "code" : "int[] array = { 1, 2, 3, 4, 5 }",
+          "startLine" : 8,
+          "endLine" : 8
+        }
+      }, {
+        "structureId" : "expr_stmt:3",
+        "kind" : "EXPR_STMT",
+        "startLine" : 9,
+        "endLine" : 9,
+        "expr" : {
+          "code" : "array[2] = 10",
+          "startLine" : 9,
+          "endLine" : 9
+        }
+      }, {
+        "structureId" : "expr_stmt:4",
+        "kind" : "EXPR_STMT",
+        "startLine" : 11,
+        "endLine" : 11,
+        "expr" : {
+          "code" : "Player player = new Player(100)",
+          "startLine" : 11,
+          "endLine" : 11
+        }
+      }, {
+        "structureId" : "expr_stmt:5",
+        "kind" : "EXPR_STMT",
+        "startLine" : 12,
+        "endLine" : 12,
+        "expr" : {
+          "code" : "System.out.println(\"Player health points: \" + player.getHealthPoints())",
+          "startLine" : 12,
+          "endLine" : 12
+        }
+      }, {
+        "structureId" : "expr_stmt:6",
+        "kind" : "EXPR_STMT",
+        "startLine" : 13,
+        "endLine" : 13,
+        "expr" : {
+          "code" : "player.setHealthPoints(80)",
+          "startLine" : 13,
+          "endLine" : 13
+        }
+      }, {
+        "structureId" : "expr_stmt:7",
+        "kind" : "EXPR_STMT",
+        "startLine" : 14,
+        "endLine" : 14,
+        "expr" : {
+          "code" : "System.out.println(\"Player health points after damage: \" + player.getHealthPoints())",
+          "startLine" : 14,
+          "endLine" : 14
+        }
+      } ]
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:Player.Player(int)",
+    "classId" : "cls:ch.epfl.printwizard.examples.Player",
+    "name" : "Player",
+    "returnType" : "<init>",
+    "startLine" : 7,
+    "endLine" : 9,
+    "parameters" : [ {
+      "index" : 0,
+      "name" : "healthPoints",
+      "typeId" : "t:int"
+    } ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "startLine" : 7,
+      "endLine" : 9,
+      "structures" : [ {
+        "structureId" : "expr_stmt:1",
+        "kind" : "EXPR_STMT",
+        "startLine" : 8,
+        "endLine" : 8,
+        "expr" : {
+          "code" : "this.healthPoints = healthPoints",
+          "startLine" : 8,
+          "endLine" : 8
+        }
+      } ]
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:Player.getHealthPoints()",
+    "classId" : "cls:ch.epfl.printwizard.examples.Player",
+    "name" : "getHealthPoints",
+    "returnType" : "int",
+    "startLine" : 11,
+    "endLine" : 13,
+    "parameters" : [ ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "startLine" : 11,
+      "endLine" : 13,
+      "structures" : [ {
+        "structureId" : "expr_stmt:1",
+        "kind" : "EXPR_STMT",
+        "startLine" : 12,
+        "endLine" : 12,
+        "expr" : {
+          "code" : "return healthPoints;",
+          "startLine" : 12,
+          "endLine" : 12
+        }
+      } ]
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:Player.setHealthPoints(int)",
+    "classId" : "cls:ch.epfl.printwizard.examples.Player",
+    "name" : "setHealthPoints",
+    "returnType" : "void",
+    "startLine" : 15,
+    "endLine" : 17,
+    "parameters" : [ {
+      "index" : 0,
+      "name" : "healthPoints",
+      "typeId" : "t:int"
+    } ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "startLine" : 15,
+      "endLine" : 17,
+      "structures" : [ {
+        "structureId" : "expr_stmt:1",
+        "kind" : "EXPR_STMT",
+        "startLine" : 16,
+        "endLine" : 16,
+        "expr" : {
+          "code" : "this.healthPoints = healthPoints",
+          "startLine" : 16,
+          "endLine" : 16
+        }
+      } ]
+    },
+    "localVars" : [ ]
+  } ]
+}

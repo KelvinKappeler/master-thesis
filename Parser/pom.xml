@@ -34,7 +34,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>ch.epfl.printwizard.Main</mainClass>
+                            <mainClass>ch.epfl.printwizard.parser.Main</mainClass>
                         </manifest>
                     </archive>
                 </configuration>

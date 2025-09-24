@@ -6,12 +6,12 @@ import java.io.IOException;
 import java.nio.file.Path;
 
 /**
- * Represents a writer for the program.json file.
- * This class is responsible for serializing the ProgramFile structure into JSON format.
+ * Represents a writer for the manifest.json file.
+ * This class is responsible for serializing the ManifestFile structure into JSON format.
  */
-public final class ProgramFileWriter {
-    
-    private ProgramFileWriter() {}
+public final class ManifestFileWriter {
+
+    private ManifestFileWriter() {}
 
     /**
      * Writes the given ProgramFile to the specified output path in JSON format.
@@ -22,4 +22,5 @@ public final class ProgramFileWriter {
     public static void write(ProgramFile program, Path outPath) throws IOException {
         JsonFileWriter.write(program, outPath);
     }
+
 }
