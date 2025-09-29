@@ -8,7 +8,92 @@ import ch.epfl.printwizard.shared.utils.Preconditions;
 public final class IdGenerator {
 
     private IdGenerator() {}
-    
+
+    /**
+     * Generates a unique ID for a source.
+     * @param source the source string (e.g., file name)
+     * @return the unique ID for the source (e.g., "src:MyClass.java")
+     */
+    public static String sourceId(String source) {
+        Preconditions.requireNonNull(source, "source is null");
+        Preconditions.require(!source.isEmpty(), "source is empty");
+
+        return "src:" + source;
+    }
+
+    /**
+     * Generates a unique ID for a trace.
+     * @param trace the trace string (e.g., trace identifier)
+     * @return the unique ID for the trace (e.g., "trc:trace123")
+     */
+    public static String traceId(String trace) {
+        Preconditions.requireNonNull(trace, "trace is null");
+        Preconditions.require(!trace.isEmpty(), "trace is empty");
+
+        return "trc:" + trace;
+    }
+
+    /**
+     * Generates a unique ID for an event.
+     * @param id the event identifier
+     * @return the unique ID for the event (e.g., "ev:event456")
+     */
+    public static String eventId(String id) {
+        Preconditions.requireNonNull(id, "id is null");
+        Preconditions.require(!id.isEmpty(), "id is empty");
+
+        return "eve:" + id;
+    }
+
+    /**
+     * Generates a unique ID for a span.
+     * @param id the span identifier
+     * @return the unique ID for the span (e.g., "spn:span789")
+     */
+    public static String spanId(String id) {
+        Preconditions.requireNonNull(id, "id is null");
+        Preconditions.require(!id.isEmpty(), "id is empty");
+
+        return "spn:" + id;
+    }
+
+    /**
+     * Generates a unique ID for a frame.
+     * @param id the frame identifier
+     * @return the unique ID for the frame (e.g., "frm:frame012")
+     */
+    public static String frameId(String id) {
+        Preconditions.requireNonNull(id, "id is null");
+        Preconditions.require(!id.isEmpty(), "id is empty");
+
+        return "frm:" + id;
+    }
+
+    /**
+     * Generates a unique ID for a type.
+     * @param id the type identifier
+     * @return the unique ID for the type (e.g., "t:TypeName")
+     */
+    public static String typeId(String id) {
+        Preconditions.requireNonNull(id, "id is null");
+        Preconditions.require(!id.isEmpty(), "id is empty");
+
+        return "t:" + id;
+    }
+
+    /**
+     * Generates a unique ID for an object based on its identity hash code.
+     * @param object the object to generate the ID for
+     * @return the unique ID for the object (e.g., "o:1a2b3c4d")
+     */
+    public static String objectId(Object object) {
+        Preconditions.requireNonNull(object, "object is null");
+
+        String id = Integer.toHexString(System.identityHashCode(object));
+
+        return "o:" + id;
+    }
+
     /**
      * Generates a unique ID for a class based on its internal name.
      * @param internal the internal name of the class (e.g., "java/lang/String")

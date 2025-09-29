@@ -1,0 +1,13 @@
+ch\epfl\printwizard\shared\model\trace\events\PutFieldEvent.class
+ch\epfl\printwizard\shared\model\trace\events\LocalEvent.class
+ch\epfl\printwizard\shared\model\trace\Arg.class
+ch\epfl\printwizard\shared\model\trace\events\CallEvent.class
+ch\epfl\printwizard\shared\model\trace\TraceSpan.class
+ch\epfl\printwizard\shared\model\trace\events\ArrayStoreEvent.class
+ch\epfl\printwizard\shared\model\trace\events\ThrowEvent.class
+ch\epfl\printwizard\shared\model\trace\events\ReturnEvent.class
+ch\epfl\printwizard\shared\model\trace\events\TraceEvent.class
+ch\epfl\printwizard\shared\model\trace\events\NewEvent.class
+ch\epfl\printwizard\shared\model\trace\TraceFrame.class
+ch\epfl\printwizard\shared\model\trace\TraceFile.class
+ch\epfl\printwizard\shared\model\trace\TraceLoc.class
