@@ -19,7 +19,7 @@ public final class TraceMethodVisitor extends AdviceAdapter {
 
     private final Map<Integer, String> varNameByIndex = new HashMap<>();
     private final Map<Integer, String> varDescByIndex = new HashMap<>();
-    private int currentLine = -1;
+    private int currentLine = 1;
 
     private final Label tryStart = new Label();
     private final Label tryEnd   = new Label();
@@ -72,10 +72,10 @@ public final class TraceMethodVisitor extends AdviceAdapter {
 
     @Override
     public void visitFieldInsn(int opcode, String owner, String name, String desc) {
-        if (config.isTraceFields() && (opcode == PUTFIELD || opcode == PUTSTATIC)) {
+        if (opcode == PUTFIELD || opcode == PUTSTATIC) {
             Type t = Type.getType(desc);
+            int valueLocal  = newLocal(t);
             if (opcode == PUTFIELD) {
-                int valueLocal  = newLocal(t);
                 int objectLocal = newLocal(Type.getType(Object.class));
 
                 storeLocal(valueLocal, t);
@@ -93,11 +93,7 @@ public final class TraceMethodVisitor extends AdviceAdapter {
                 "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/String;I)V"));
 
                 loadLocal(objectLocal);
-                loadLocal(valueLocal);
-                super.visitFieldInsn(opcode, owner, name, desc);
-                return;
             } else {
-                int valueLocal = newLocal(t);
                 storeLocal(valueLocal, t);
 
                 push(owner);
@@ -110,46 +106,45 @@ public final class TraceMethodVisitor extends AdviceAdapter {
                 invokeStatic(Type.getType(TraceSink.class), new Method("logPutField",
                 "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/String;I)V"));
 
-                loadLocal(valueLocal);
-                super.visitFieldInsn(opcode, owner, name, desc);
-                return;
             }
+            loadLocal(valueLocal);
+            super.visitFieldInsn(opcode, owner, name, desc);
+            return;
         }
+        
         super.visitFieldInsn(opcode, owner, name, desc);
     }
 
     @Override
     public void visitInsn(int opcode) {
-        if (config.isTraceArrays()) {
-            switch (opcode) {
-                case IASTORE: case LASTORE: case FASTORE: case DASTORE:
-                case AASTORE: case BASTORE: case CASTORE: case SASTORE: {
-                    Type vtype = valueTypeForArrayStore(opcode);
-                    int valueLocal  = newLocal(vtype);
-                    int indexLocal  = newLocal(Type.INT_TYPE);
-                    int arrayLocal  = newLocal(Type.getType(Object.class));
+        switch (opcode) {
+            case IASTORE: case LASTORE: case FASTORE: case DASTORE:
+            case AASTORE: case BASTORE: case CASTORE: case SASTORE: {
+                Type vtype = valueTypeForArrayStore(opcode);
+                
+                int valueLocal = newLocal(vtype);
+                int indexLocal = newLocal(Type.INT_TYPE);
+                int arrayLocal = newLocal(Type.getType(Object.class));
 
-                    storeLocal(valueLocal, vtype);
-                    storeLocal(indexLocal, Type.INT_TYPE);
-                    storeLocal(arrayLocal, Type.getType(Object.class));
+                storeLocal(valueLocal, vtype);
+                storeLocal(indexLocal, Type.INT_TYPE);
+                storeLocal(arrayLocal, Type.getType(Object.class));
 
-                    // logArrayStore(array, index, value, sourceId, line)
-                    loadLocal(arrayLocal);
-                    loadLocal(indexLocal);
-                    loadLocal(valueLocal);
-                    if (opcode != AASTORE) box(vtype);
-                    pushSourceIdAndLine();
-                    invokeStatic(Type.getType(TraceSink.class), new Method("logArrayStore",
-                    "(Ljava/lang/Object;ILjava/lang/Object;Ljava/lang/String;I)V"));
+                // logArrayStore(array, index, value, sourceId, line)
+                loadLocal(arrayLocal);
+                loadLocal(indexLocal);
+                loadLocal(valueLocal);
+                if (opcode != AASTORE) box(vtype);
+                pushSourceIdAndLine();
+                invokeStatic(Type.getType(TraceSink.class), new Method("logArrayStore",
+                "(Ljava/lang/Object;ILjava/lang/Object;Ljava/lang/String;I)V"));
 
-                    loadLocal(arrayLocal);
-                    loadLocal(indexLocal);
-                    loadLocal(valueLocal);
-                    super.visitInsn(opcode);
-                    return;
-                }
+                loadLocal(arrayLocal);
+                loadLocal(indexLocal);
+                loadLocal(valueLocal);
             }
         }
+        
         super.visitInsn(opcode);
     }
 
@@ -157,7 +152,7 @@ public final class TraceMethodVisitor extends AdviceAdapter {
     public void visitVarInsn(int opcode, int var) {
         boolean store = opcode == ISTORE || opcode == LSTORE || opcode == FSTORE || opcode == DSTORE || opcode == ASTORE;
 
-        if (config.isTraceLocals() && store) {
+        if (store) {
             super.visitVarInsn(opcode, var);
 
             String desc = varDescByIndex.get(var);
@@ -206,14 +201,19 @@ public final class TraceMethodVisitor extends AdviceAdapter {
                     + "Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;"
                     + "Ljava/lang/String;I)V"));
         }
+        
         super.visitMethodInsn(opcode, owner, name, desc, itf);
     }
 
     @Override
     protected void onMethodEnter() {
         // onEnter(Object thisRef, Object[] args, String owner, String name, String desc, String sourceId, int line)
-        if (isStatic) visitInsn(ACONST_NULL);
-        else loadThis();
+        if (isStatic) {
+            visitInsn(ACONST_NULL);
+        }
+        else {
+            loadThis();
+        }
 
         loadArgArray();
 
@@ -230,7 +230,7 @@ public final class TraceMethodVisitor extends AdviceAdapter {
 
     @Override
     protected void onMethodExit(int opcode) {
-        if (config.isTraceNew() && "<init>".equals(getName()) && opcode == RETURN) {
+        if ("<init>".equals(getName()) && opcode == RETURN) {
             loadThis();
             push(ownerInternal);
             pushSourceIdAndLine();
@@ -267,6 +267,7 @@ public final class TraceMethodVisitor extends AdviceAdapter {
 
     @Override
     public void visitMaxs(int maxStack, int maxLocals) {
+        /*
         visitLabel(tryEnd);
 
         super.visitTryCatchBlock(tryStart, tryEnd, handler, null);
@@ -281,7 +282,7 @@ public final class TraceMethodVisitor extends AdviceAdapter {
 
         loadLocal(exLocal);
         visitInsn(ATHROW);
-
+*/
         super.visitMaxs(maxStack, maxLocals);
     }
 }

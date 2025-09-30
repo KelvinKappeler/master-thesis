@@ -7,7 +7,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 
 import java.io.*;
-import java.nio.charset.StandardCharsets;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -89,7 +88,7 @@ public final class TraceSink {
             }
         }
 
-        traceFileBuilder.frames.add(new TraceFrame(frameId, spanId, methodId, IdGenerator.objectId(thisRef), List.copyOf(argList)));
+        traceFileBuilder.frames.add(new TraceFrame(frameId, spanId, methodId, thisRef == null ? null : IdGenerator.objectId(thisRef), List.copyOf(argList)));
         STACK.get().push(new FrameCtx(spanId, frameId, methodId));
     }
 
@@ -203,7 +202,7 @@ public final class TraceSink {
         for (int i = traceFileBuilder.spans.size() - 1; i >= 0; i--) {
             TraceSpan s = traceFileBuilder.spans.get(i);
             if (s.spanId().equals(spanId) && s.endEventId().equals("end")) {
-                traceFileBuilder.spans.set(i, new TraceSpan(s.spanId(), s.methodId(), s.parentSpanId(), s.startEventId(), endEventId, s.startLoc(), endLoc, status));
+                traceFileBuilder.spans.set(i, new TraceSpan(s.spanId(), s.parentSpanId(), s.methodId(), s.startEventId(), endEventId, s.startLoc(), endLoc, status));
                 return;
             }
         }
@@ -253,8 +252,15 @@ public final class TraceSink {
         final List<TraceEvent> events = new ArrayList<>();
 
         public void writeJsonTo(File f) throws Exception {
+            List<TraceSpan>  s;
+            List<TraceFrame> fr;
+            List<TraceEvent> ev;
+            synchronized (spans)  { s  = List.copyOf(spans); }
+            synchronized (frames) { fr = List.copyOf(frames); }
+            synchronized (events) { ev = List.copyOf(events); }
+            
             ObjectMapper om = new ObjectMapper().enable(SerializationFeature.INDENT_OUTPUT);
-            om.writeValue(f, new TraceFile(IdGenerator.traceId("1"), spans, frames, events));
+            om.writeValue(f, new TraceFile(IdGenerator.traceId("1"), s, fr, ev));
         }
     }
 

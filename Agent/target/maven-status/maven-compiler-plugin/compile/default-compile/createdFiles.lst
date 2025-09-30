@@ -1,3 +1,3 @@
-ch\epfl\printwizard\agent\TraceClassVisitor.class
-ch\epfl\printwizard\agent\TraceSink$FrameCtx.class
-ch\epfl\printwizard\agent\TraceSink$TraceFileBuilder.class
+ch/epfl/printwizard/agent/TraceClassVisitor.class
+ch/epfl/printwizard/agent/TraceSink$FrameCtx.class
+ch/epfl/printwizard/agent/TraceSink$TraceFileBuilder.class
