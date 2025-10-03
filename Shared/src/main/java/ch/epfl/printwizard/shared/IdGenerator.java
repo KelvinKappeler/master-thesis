@@ -119,8 +119,10 @@ public final class IdGenerator {
         Preconditions.requireNonNull(name, "name is null");
         Preconditions.require(!name.isEmpty(), "name is empty");
         Preconditions.requireNonNull(desc, "desc is null");
-        
-        return "m:" + classInternal + "." + name + "(" + desc + ")";
+
+        String simplifiedDesc = desc.replace("Ljava/lang/", "L");
+
+        return "m:" + classInternal + "." + name + "(" + simplifiedDesc + ")";
     }
 
     /**

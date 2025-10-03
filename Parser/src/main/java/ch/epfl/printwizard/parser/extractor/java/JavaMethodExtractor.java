@@ -2,9 +2,11 @@ package ch.epfl.printwizard.parser.extractor.java;
 
 import ch.epfl.printwizard.parser.extractor.IExtractor;
 import ch.epfl.printwizard.parser.extractor.java.mapper.JavaStructureMapper;
+import ch.epfl.printwizard.shared.IdGenerator;
 import ch.epfl.printwizard.shared.model.program.*;
 import ch.epfl.printwizard.shared.model.program.structures.StructureNode;
 import ch.epfl.printwizard.shared.utils.Preconditions;
+import ch.epfl.printwizard.shared.utils.TypeIdUtils;
 import com.github.javaparser.ast.body.*;
 import com.github.javaparser.ast.stmt.BlockStmt;
 
@@ -20,7 +22,6 @@ import java.util.Optional;
 public record JavaMethodExtractor(Source source, BaseTypeInfo typeInfo) implements IExtractor<TypeDeclaration<?>, MethodInfo> {
 
     private static final String CONSTRUCTOR_NAME = "<init>";
-    private static final String METHOD_ID_PREFIX = "m";
 
     /**
      * Constructs a JavaMethodExtractor with the given source ID.
@@ -68,9 +69,10 @@ public record JavaMethodExtractor(Source source, BaseTypeInfo typeInfo) implemen
             params.add(new ParameterInfo(pIndex++, p.getNameAsString(), "t:" + p.getType().toString()));
         }
 
-        // Method ID "m:Class.method(Type,Type)"
-        String sig = String.join(",", paramTypes);
-        String methodId = METHOD_ID_PREFIX + ":" + typeInfo.getName() + "." + name + "(" + sig + ")";
+        // Method ID "m:Class.method(Args in JVM Desc)"
+        String classInternal = typeInfo.getPackageName().replace('.', '/') + "/" + typeInfo.getName();
+        String jvmDescriptor = TypeIdUtils.buildMethodDescriptor(paramTypes, returnType, isConstructor);
+        String methodId = IdGenerator.methodId(classInternal, name, jvmDescriptor);
 
         // Lines
         int startLine = c.getRange().map(r -> r.begin.line).orElse(0);

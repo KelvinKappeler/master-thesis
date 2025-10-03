@@ -3,8 +3,6 @@ package ch.epfl.printwizard.agent;
 import ch.epfl.printwizard.shared.IdGenerator;
 import ch.epfl.printwizard.shared.model.trace.*;
 import ch.epfl.printwizard.shared.model.trace.events.*;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
 
 import java.io.*;
 import java.util.*;
@@ -13,7 +11,8 @@ import java.util.concurrent.ConcurrentHashMap;
 public final class TraceSink {
     private TraceSink() {}
 
-    private static final TraceFileBuilder traceFileBuilder = new TraceFileBuilder();
+    private static final TraceBuilder traceFileBuilder = new TraceBuilder();
+    private static final IndexBuilder indexFileBuilder = new IndexBuilder();
 
     private static final ThreadLocal<Deque<FrameCtx>> STACK = ThreadLocal.withInitial(ArrayDeque::new);
     private static final ConcurrentHashMap<String, String> ownerToSourceId = new ConcurrentHashMap<>();
@@ -58,7 +57,7 @@ public final class TraceSink {
 
         String caller = IdGenerator.methodId(callerOwner, callerName, callerDesc);
         String callee = IdGenerator.methodId(calleeOwner, calleeName, calleeDesc);
-        traceFileBuilder.events.add(new CallEvent(nextEventId(), topSpan(), topFrame(), new TraceLoc(sourceId, line), caller, callee));
+        addEvent(new CallEvent(nextEventId(), topSpan(), topFrame(), new TraceLoc(sourceId, line), caller, callee));
     }
 
     /**
@@ -78,8 +77,8 @@ public final class TraceSink {
         String parent = topSpan();
         String startEventId = nextEventId();
 
-        traceFileBuilder.events.add(new CallEvent(startEventId, spanId, frameId, new TraceLoc(sourceId, line), parent, methodId));
-        traceFileBuilder.spans.add(new TraceSpan(spanId, parent, methodId, startEventId, "end", new TraceLoc(sourceId, line), new TraceLoc("source", 1), "Waiting"));
+        addEvent(new CallEvent(startEventId, spanId, frameId, new TraceLoc(sourceId, line), parent, methodId));
+        traceFileBuilder.addSpan(new TraceSpan(spanId, parent, methodId, startEventId, "end", new TraceLoc(sourceId, line), new TraceLoc("source", 1), "Waiting"));
 
         List<Arg> argList = new ArrayList<>();
         if (args != null) {
@@ -88,7 +87,7 @@ public final class TraceSink {
             }
         }
 
-        traceFileBuilder.frames.add(new TraceFrame(frameId, spanId, methodId, thisRef == null ? null : IdGenerator.objectId(thisRef), List.copyOf(argList)));
+        traceFileBuilder.addFrame(new TraceFrame(frameId, spanId, methodId, thisRef == null ? null : IdGenerator.objectId(thisRef), List.copyOf(argList)));
         STACK.get().push(new FrameCtx(spanId, frameId, methodId));
     }
 
@@ -104,7 +103,7 @@ public final class TraceSink {
         var f = st.pop();
 
         String evId = nextEventId();
-        traceFileBuilder.events.add(new ReturnEvent(evId, f.spanId(), f.frameId(), new TraceLoc(sourceId, line), ret));
+        addEvent(new ReturnEvent(evId, f.spanId(), f.frameId(), new TraceLoc(sourceId, line), ret));
 
         patchSpanEnd(f.spanId(), evId, new TraceLoc(sourceId, line), "OK");
     }
@@ -121,7 +120,7 @@ public final class TraceSink {
         var f = st.pop();
 
         String evId = nextEventId();
-        traceFileBuilder.events.add(new ThrowEvent(evId, f.spanId(), f.frameId(), new TraceLoc(sourceId, line), ex.getClass().getName(), ex.getMessage()));
+        addEvent(new ThrowEvent(evId, f.spanId(), f.frameId(), new TraceLoc(sourceId, line), ex.getClass().getName(), ex.getMessage()));
 
         patchSpanEnd(f.spanId(), evId, new TraceLoc(sourceId, line), "THROW:" + ex.getClass().getName());
     }
@@ -140,7 +139,7 @@ public final class TraceSink {
         var f = STACK.get().peek();
         if (f == null) return;
 
-        traceFileBuilder.events.add(
+        addEvent(
             new PutFieldEvent(nextEventId(), f.spanId(), f.frameId(), new TraceLoc(sourceId, line), owner, field, desc, IdGenerator.objectId(instanceOrNull), value)
         );
     }
@@ -157,7 +156,7 @@ public final class TraceSink {
         var f = STACK.get().peek();
         if (f == null) return;
 
-        traceFileBuilder.events.add(
+        addEvent(
             new ArrayStoreEvent(nextEventId(), f.spanId(), f.frameId(), new TraceLoc(sourceId, line), IdGenerator.objectId(array), index, value)
         );
     }
@@ -176,7 +175,7 @@ public final class TraceSink {
         var f = STACK.get().peek();
         if (f == null) return;
 
-        traceFileBuilder.events.add(
+        addEvent(
             new LocalEvent(nextEventId(), f.spanId(), f.frameId(), new TraceLoc(sourceId, line), owner, method, varName, index, value)
         );
     }
@@ -192,17 +191,17 @@ public final class TraceSink {
         var f = STACK.get().peek();
         String typeId = IdGenerator.typeId(ownerInternal.replace('/', '.'));
 
-        traceFileBuilder.events.add(
+        addEvent(
             new NewEvent(nextEventId(), f == null ? null : f.spanId(), f == null ? null : f.frameId(),
                 new TraceLoc(sourceId, line), typeId, IdGenerator.objectId(thisObj))
         );
     }
 
     private static void patchSpanEnd(String spanId, String endEventId, TraceLoc endLoc, String status) {
-        for (int i = traceFileBuilder.spans.size() - 1; i >= 0; i--) {
-            TraceSpan s = traceFileBuilder.spans.get(i);
+        for (int i = traceFileBuilder.getSpans().size() - 1; i >= 0; i--) {
+            TraceSpan s = traceFileBuilder.getSpans().get(i);
             if (s.spanId().equals(spanId) && s.endEventId().equals("end")) {
-                traceFileBuilder.spans.set(i, new TraceSpan(s.spanId(), s.parentSpanId(), s.methodId(), s.startEventId(), endEventId, s.startLoc(), endLoc, status));
+                traceFileBuilder.getSpans().set(i, new TraceSpan(s.spanId(), s.parentSpanId(), s.methodId(), s.startEventId(), endEventId, s.startLoc(), endLoc, status));
                 return;
             }
         }
@@ -235,33 +234,22 @@ public final class TraceSink {
         return f == null ? null : f.methodId();
     }
 
+    private static void addEvent(TraceEvent event)
+    {
+        traceFileBuilder.addEvent(event);
+        indexFileBuilder.addEvent(event);
+    }
+
     static {
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
             try {
                 traceFileBuilder.writeJsonTo(new File("Results/trace.json"));
+                indexFileBuilder.writeJsonTo(new File("Results/index.json"));
             }
             catch (Exception e) {
-                System.err.println("Failed to write trace file: " + e.getMessage());
+                System.err.println("Failed to write trace/index file: " + e.getMessage());
             }
         }, "trace-flush"));
-    }
-
-    private static final class TraceFileBuilder {
-        final List<TraceSpan> spans = new ArrayList<>();
-        final List<TraceFrame> frames = new ArrayList<>();
-        final List<TraceEvent> events = new ArrayList<>();
-
-        public void writeJsonTo(File f) throws Exception {
-            List<TraceSpan>  s;
-            List<TraceFrame> fr;
-            List<TraceEvent> ev;
-            synchronized (spans)  { s  = List.copyOf(spans); }
-            synchronized (frames) { fr = List.copyOf(frames); }
-            synchronized (events) { ev = List.copyOf(events); }
-            
-            ObjectMapper om = new ObjectMapper().enable(SerializationFeature.INDENT_OUTPUT);
-            om.writeValue(f, new TraceFile(IdGenerator.traceId("1"), s, fr, ev));
-        }
     }
 
     private record FrameCtx(String spanId, String frameId, String methodId) {}
