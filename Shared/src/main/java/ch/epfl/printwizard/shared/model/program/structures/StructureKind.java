@@ -20,7 +20,6 @@ public enum StructureKind {
     CONTINUE("continue"),
     ASSERT("assert"),
     BLOCK("block"),
-    LOCAL_VAR_DECL("loc_var_decl"),
     EXPR_STMT("expr_stmt");
     
     private final String prefixId;

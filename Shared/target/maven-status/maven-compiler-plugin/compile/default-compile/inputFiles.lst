@@ -10,6 +10,7 @@ C:\Users\kelvi\GitHub\master-thesis\Shared\src\main\java\ch\epfl\printwizard\sha
 C:\Users\kelvi\GitHub\master-thesis\Shared\src\main\java\ch\epfl\printwizard\shared\model\program\MethodInfo.java
 C:\Users\kelvi\GitHub\master-thesis\Shared\src\main\java\ch\epfl\printwizard\shared\model\program\ParameterInfo.java
 C:\Users\kelvi\GitHub\master-thesis\Shared\src\main\java\ch\epfl\printwizard\shared\model\program\ProgramFile.java
+C:\Users\kelvi\GitHub\master-thesis\Shared\src\main\java\ch\epfl\printwizard\shared\model\program\ProgramPosition.java
 C:\Users\kelvi\GitHub\master-thesis\Shared\src\main\java\ch\epfl\printwizard\shared\model\program\RecordInfo.java
 C:\Users\kelvi\GitHub\master-thesis\Shared\src\main\java\ch\epfl\printwizard\shared\model\program\Source.java
 C:\Users\kelvi\GitHub\master-thesis\Shared\src\main\java\ch\epfl\printwizard\shared\model\program\structures\BlockNode.java
@@ -18,7 +19,7 @@ C:\Users\kelvi\GitHub\master-thesis\Shared\src\main\java\ch\epfl\printwizard\sha
 C:\Users\kelvi\GitHub\master-thesis\Shared\src\main\java\ch\epfl\printwizard\shared\model\program\structures\ExprStmtNode.java
 C:\Users\kelvi\GitHub\master-thesis\Shared\src\main\java\ch\epfl\printwizard\shared\model\program\structures\ForNode.java
 C:\Users\kelvi\GitHub\master-thesis\Shared\src\main\java\ch\epfl\printwizard\shared\model\program\structures\IfNode.java
-C:\Users\kelvi\GitHub\master-thesis\Shared\src\main\java\ch\epfl\printwizard\shared\model\program\structures\LocalVarDeclNode.java
+C:\Users\kelvi\GitHub\master-thesis\Shared\src\main\java\ch\epfl\printwizard\shared\model\program\structures\ReturnNode.java
 C:\Users\kelvi\GitHub\master-thesis\Shared\src\main\java\ch\epfl\printwizard\shared\model\program\structures\StructureKind.java
 C:\Users\kelvi\GitHub\master-thesis\Shared\src\main\java\ch\epfl\printwizard\shared\model\program\structures\StructureNode.java
 C:\Users\kelvi\GitHub\master-thesis\Shared\src\main\java\ch\epfl\printwizard\shared\model\stream\BaseEntryStream.java

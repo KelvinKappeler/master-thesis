@@ -1,5 +1,6 @@
 package ch.epfl.printwizard.shared.model.program.structures;
 
+import ch.epfl.printwizard.shared.model.program.ProgramPosition;
 import ch.epfl.printwizard.shared.model.program.structures.expr.ExprNode;
 import ch.epfl.printwizard.shared.utils.Preconditions;
 
@@ -13,9 +14,9 @@ public final class ForNode extends StructureNode {
     private final ExprNode update;
     private final StructureNode body;
     
-    public ForNode(String structureId, int start, int end,
-            ExprNode initialization, ExprNode condition, ExprNode update, StructureNode body) {
-        super(structureId, StructureKind.FOR, start, end);
+    public ForNode(String structureId, String code, ProgramPosition start, ProgramPosition end,
+                   ExprNode initialization, ExprNode condition, ExprNode update, StructureNode body) {
+        super(structureId, StructureKind.FOR, code, start, end);
 
         Preconditions.requireNonNull(initialization, "initialization cannot be null");
         Preconditions.requireNonNull(condition, "condition cannot be null");

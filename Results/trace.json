@@ -7,11 +7,11 @@
     "startEventId" : "eve:1",
     "endEventId" : "eve:5",
     "startLoc" : {
-      "sourceId" : "src:Examples/src/main/java/ch/epfl/printwizard/examples/Main/Main.java",
+      "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
       "line" : 1
     },
     "endLoc" : {
-      "sourceId" : "src:Examples/src/main/java/ch/epfl/printwizard/examples/Main/Main.java",
+      "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
       "line" : 17
     },
     "status" : "OK"
@@ -32,7 +32,7 @@
     "spanId" : "spn:1",
     "frameId" : "frm:1",
     "location" : {
-      "sourceId" : "src:Examples/src/main/java/ch/epfl/printwizard/examples/Main/Main.java",
+      "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
       "line" : 1
     },
     "callerMethodId" : null,
@@ -43,7 +43,7 @@
     "spanId" : "spn:1",
     "frameId" : "frm:1",
     "location" : {
-      "sourceId" : "src:Examples/src/main/java/ch/epfl/printwizard/examples/Main/Main.java",
+      "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
       "line" : 6
     },
     "callerMethodId" : "m:ch/epfl/printwizard/examples/Main.main(([LString;)V)",
@@ -54,7 +54,7 @@
     "spanId" : "spn:1",
     "frameId" : "frm:1",
     "location" : {
-      "sourceId" : "src:Examples/src/main/java/ch/epfl/printwizard/examples/Main/Main.java",
+      "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
       "line" : 8
     },
     "owner" : "ch/epfl/printwizard/examples/Main",
@@ -68,7 +68,7 @@
     "spanId" : "spn:1",
     "frameId" : "frm:1",
     "location" : {
-      "sourceId" : "src:Examples/src/main/java/ch/epfl/printwizard/examples/Main/Main.java",
+      "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
       "line" : 9
     },
     "owner" : "ch/epfl/printwizard/examples/Main",
@@ -82,7 +82,7 @@
     "spanId" : "spn:1",
     "frameId" : "frm:1",
     "location" : {
-      "sourceId" : "src:Examples/src/main/java/ch/epfl/printwizard/examples/Main/Main.java",
+      "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
       "line" : 17
     },
     "returnValue" : null

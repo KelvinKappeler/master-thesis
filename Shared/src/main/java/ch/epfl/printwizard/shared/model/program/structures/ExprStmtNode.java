@@ -1,5 +1,6 @@
 package ch.epfl.printwizard.shared.model.program.structures;
 
+import ch.epfl.printwizard.shared.model.program.ProgramPosition;
 import ch.epfl.printwizard.shared.model.program.structures.expr.ExprNode;
 import ch.epfl.printwizard.shared.utils.Preconditions;
 
@@ -10,8 +11,8 @@ public final class ExprStmtNode extends StructureNode {
     
     private final ExprNode expr;
 
-    public ExprStmtNode(String structureId, int startLine, int endLine, ExprNode expr) {
-        super(structureId, StructureKind.EXPR_STMT, startLine, endLine);
+    public ExprStmtNode(String structureId, ProgramPosition start, ProgramPosition end, ExprNode expr) {
+        super(structureId, StructureKind.EXPR_STMT, null, start, end);
 
         Preconditions.requireNonNull(expr, "expr cannot be null");
 

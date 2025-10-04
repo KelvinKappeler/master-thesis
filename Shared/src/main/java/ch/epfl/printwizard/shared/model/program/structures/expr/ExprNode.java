@@ -1,5 +1,6 @@
 package ch.epfl.printwizard.shared.model.program.structures.expr;
 
+import ch.epfl.printwizard.shared.model.program.ProgramPosition;
 import ch.epfl.printwizard.shared.utils.Preconditions;
 
 /**
@@ -8,18 +9,18 @@ import ch.epfl.printwizard.shared.utils.Preconditions;
 public abstract class ExprNode {
 
     private final String code;
-    private final int startLine;
-    private final int endLine;
+    private final ProgramPosition startPosition;
+    private final ProgramPosition endPosition;
     
-    protected ExprNode(String code, int startLine, int endLine) {
+    protected ExprNode(String code, ProgramPosition startPosition, ProgramPosition endPosition) {
         Preconditions.requireNonNull(code, "Code cannot be null");
         Preconditions.require(!code.isEmpty(), "Code cannot be empty");
-        Preconditions.require(startLine >= 0, "Start line cannot be negative");
-        Preconditions.require(endLine >= startLine, "End line cannot be less than start line");
+        Preconditions.requireNonNull(startPosition, "Start position cannot be null");
+        Preconditions.requireNonNull(endPosition, "End position cannot be null");
         
         this.code = code;
-        this.startLine = startLine;
-        this.endLine = endLine;
+        this.startPosition = startPosition;
+        this.endPosition = endPosition;
     }
 
     /**
@@ -31,18 +32,18 @@ public abstract class ExprNode {
     }
 
     /**
-     * Gets the starting line number of the expression in the source code.
-     * @return the starting line number
+     * Gets the starting position of the expression in the source code.
+     * @return the starting position
      */
-    public int getStartLine() {
-        return startLine;
+    public ProgramPosition getStartPosition() {
+        return startPosition;
     }
 
     /**
-     * Gets the ending line number of the expression in the source code.
-     * @return the ending line number
+     * Gets the ending position of the expression in the source code.
+     * @return the ending position
      */
-    public int getEndLine() {
-        return endLine;
+    public ProgramPosition getEndPosition() {
+        return endPosition;
     }
 }

@@ -1,5 +1,6 @@
 package ch.epfl.printwizard.shared.model.program.structures;
 
+import ch.epfl.printwizard.shared.model.program.ProgramPosition;
 import ch.epfl.printwizard.shared.model.program.structures.expr.ExprNode;
 import ch.epfl.printwizard.shared.utils.Preconditions;
 
@@ -12,8 +13,8 @@ public final class IfNode extends StructureNode {
     private final StructureNode thenBranch;
     private final StructureNode elseBranch; // can be null
     
-    public IfNode(String structureId, int startLine, int endLine, ExprNode condition, StructureNode thenBranch, StructureNode elseBranch) {
-        super(structureId, StructureKind.IF, startLine, endLine);
+    public IfNode(String structureId, String code, ProgramPosition start, ProgramPosition end, ExprNode condition, StructureNode thenBranch, StructureNode elseBranch) {
+        super(structureId, StructureKind.IF, code, start, end);
         
         Preconditions.requireNonNull(condition, "condition cannot be null");
         Preconditions.requireNonNull(thenBranch, "thenBranch cannot be null");

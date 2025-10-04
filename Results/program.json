@@ -1,11 +1,11 @@
 {
   "sources" : [ {
-    "sourceId" : "src:Examples/src/main/java/ch/epfl/printwizard/examples/Main.java",
+    "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
     "path" : "Examples/src/main/java/ch/epfl/printwizard/examples/Main.java",
     "language" : "java",
     "lines" : 18
   }, {
-    "sourceId" : "src:Examples/src/main/java/ch/epfl/printwizard/examples/Player.java",
+    "sourceId" : "src:ch/epfl/printwizard/examples/Player.java",
     "path" : "Examples/src/main/java/ch/epfl/printwizard/examples/Player.java",
     "language" : "java",
     "lines" : 19
@@ -14,12 +14,12 @@
     "id" : "cls:ch.epfl.printwizard.examples.Main",
     "name" : "Main",
     "packageName" : "ch.epfl.printwizard.examples",
-    "sourceId" : "src:Examples/src/main/java/ch/epfl/printwizard/examples/Main.java"
+    "sourceId" : "src:ch/epfl/printwizard/examples/Main.java"
   }, {
     "id" : "cls:ch.epfl.printwizard.examples.Player",
     "name" : "Player",
     "packageName" : "ch.epfl.printwizard.examples",
-    "sourceId" : "src:Examples/src/main/java/ch/epfl/printwizard/examples/Player.java"
+    "sourceId" : "src:ch/epfl/printwizard/examples/Player.java"
   } ],
   "interfaces" : [ ],
   "records" : [ ],
@@ -39,41 +39,91 @@
     "structure" : {
       "structureId" : "block:1",
       "kind" : "BLOCK",
-      "startLine" : 5,
-      "endLine" : 17,
+      "code" : null,
+      "startPosition" : {
+        "line" : 5,
+        "column" : 44
+      },
+      "endPosition" : {
+        "line" : 17,
+        "column" : 5
+      },
       "structures" : [ {
         "structureId" : "expr_stmt:1",
         "kind" : "EXPR_STMT",
-        "startLine" : 6,
-        "endLine" : 6,
+        "code" : null,
+        "startPosition" : {
+          "line" : 6,
+          "column" : 9
+        },
+        "endPosition" : {
+          "line" : 6,
+          "column" : 44
+        },
         "expr" : {
-          "code" : "System.out.println(\"Hello, World!\")",
-          "startLine" : 6,
-          "endLine" : 6
+          "code" : "System.out.println(\"Hello, World!\");",
+          "startPosition" : {
+            "line" : 6,
+            "column" : 9
+          },
+          "endPosition" : {
+            "line" : 6,
+            "column" : 44
+          }
         }
       }, {
         "structureId" : "expr_stmt:2",
         "kind" : "EXPR_STMT",
-        "startLine" : 8,
-        "endLine" : 8,
+        "code" : null,
+        "startPosition" : {
+          "line" : 8,
+          "column" : 9
+        },
+        "endPosition" : {
+          "line" : 8,
+          "column" : 18
+        },
         "expr" : {
-          "code" : "int i = 0",
-          "startLine" : 8,
-          "endLine" : 8
+          "code" : "int i = 0;",
+          "startPosition" : {
+            "line" : 8,
+            "column" : 9
+          },
+          "endPosition" : {
+            "line" : 8,
+            "column" : 18
+          }
         }
       }, {
         "structureId" : "expr_stmt:3",
         "kind" : "EXPR_STMT",
-        "startLine" : 9,
-        "endLine" : 9,
+        "code" : null,
+        "startPosition" : {
+          "line" : 9,
+          "column" : 9
+        },
+        "endPosition" : {
+          "line" : 9,
+          "column" : 18
+        },
         "expr" : {
-          "code" : "i = 5 + 2",
-          "startLine" : 9,
-          "endLine" : 9
+          "code" : "i = 5 + 2;",
+          "startPosition" : {
+            "line" : 9,
+            "column" : 9
+          },
+          "endPosition" : {
+            "line" : 9,
+            "column" : 18
+          }
         }
       } ]
     },
-    "localVars" : [ ]
+    "localVars" : [ {
+      "index" : 1,
+      "name" : "i",
+      "typeId" : "int"
+    } ]
   }, {
     "methodId" : "m:ch/epfl/printwizard/examples/Player.Player((I)V)",
     "classId" : "cls:ch.epfl.printwizard.examples.Player",
@@ -89,17 +139,37 @@
     "structure" : {
       "structureId" : "block:1",
       "kind" : "BLOCK",
-      "startLine" : 7,
-      "endLine" : 9,
+      "code" : null,
+      "startPosition" : {
+        "line" : 7,
+        "column" : 37
+      },
+      "endPosition" : {
+        "line" : 9,
+        "column" : 5
+      },
       "structures" : [ {
         "structureId" : "expr_stmt:1",
         "kind" : "EXPR_STMT",
-        "startLine" : 8,
-        "endLine" : 8,
+        "code" : null,
+        "startPosition" : {
+          "line" : 8,
+          "column" : 9
+        },
+        "endPosition" : {
+          "line" : 8,
+          "column" : 41
+        },
         "expr" : {
-          "code" : "this.healthPoints = healthPoints",
-          "startLine" : 8,
-          "endLine" : 8
+          "code" : "this.healthPoints = healthPoints;",
+          "startPosition" : {
+            "line" : 8,
+            "column" : 9
+          },
+          "endPosition" : {
+            "line" : 8,
+            "column" : 41
+          }
         }
       } ]
     },
@@ -115,17 +185,37 @@
     "structure" : {
       "structureId" : "block:1",
       "kind" : "BLOCK",
-      "startLine" : 11,
-      "endLine" : 13,
+      "code" : null,
+      "startPosition" : {
+        "line" : 11,
+        "column" : 34
+      },
+      "endPosition" : {
+        "line" : 13,
+        "column" : 5
+      },
       "structures" : [ {
-        "structureId" : "expr_stmt:1",
-        "kind" : "EXPR_STMT",
-        "startLine" : 12,
-        "endLine" : 12,
-        "expr" : {
-          "code" : "return healthPoints;",
-          "startLine" : 12,
-          "endLine" : 12
+        "structureId" : "return:1",
+        "kind" : "RETURN",
+        "code" : "return healthPoints;",
+        "startPosition" : {
+          "line" : 12,
+          "column" : 9
+        },
+        "endPosition" : {
+          "line" : 12,
+          "column" : 28
+        },
+        "value" : {
+          "code" : "healthPoints",
+          "startPosition" : {
+            "line" : 12,
+            "column" : 9
+          },
+          "endPosition" : {
+            "line" : 12,
+            "column" : 28
+          }
         }
       } ]
     },
@@ -145,17 +235,37 @@
     "structure" : {
       "structureId" : "block:1",
       "kind" : "BLOCK",
-      "startLine" : 15,
-      "endLine" : 17,
+      "code" : null,
+      "startPosition" : {
+        "line" : 15,
+        "column" : 51
+      },
+      "endPosition" : {
+        "line" : 17,
+        "column" : 5
+      },
       "structures" : [ {
         "structureId" : "expr_stmt:1",
         "kind" : "EXPR_STMT",
-        "startLine" : 16,
-        "endLine" : 16,
+        "code" : null,
+        "startPosition" : {
+          "line" : 16,
+          "column" : 9
+        },
+        "endPosition" : {
+          "line" : 16,
+          "column" : 41
+        },
         "expr" : {
-          "code" : "this.healthPoints = healthPoints",
-          "startLine" : 16,
-          "endLine" : 16
+          "code" : "this.healthPoints = healthPoints;",
+          "startPosition" : {
+            "line" : 16,
+            "column" : 9
+          },
+          "endPosition" : {
+            "line" : 16,
+            "column" : 41
+          }
         }
       } ]
     },

@@ -1,8 +1,11 @@
 package ch.epfl.printwizard.parser.extractor.java.mapper;
 
 import ch.epfl.printwizard.shared.model.program.LocalVar;
+import ch.epfl.printwizard.shared.model.program.ProgramPosition;
 import ch.epfl.printwizard.shared.model.program.structures.*;
 import ch.epfl.printwizard.shared.model.program.structures.expr.ExprCode;
+import ch.epfl.printwizard.shared.model.program.structures.expr.ExprNode;
+import com.github.javaparser.ast.expr.VariableDeclarationExpr;
 import com.github.javaparser.ast.stmt.*;
 
 import java.util.*;
@@ -36,10 +39,10 @@ public final class JavaStructureMapper {
     public BlockNode mapBlock(BlockStmt b) {
         List<StructureNode> kids = new ArrayList<>();
         for (Statement s : b.getStatements()) kids.add(mapStmt(s));
-        int startLine = b.getRange().map(r -> r.begin.line).orElse(0);
-        int endLine = b.getRange().map(r -> r.end.line).orElse(0);
+        ProgramPosition start = lineStart(b);
+        ProgramPosition end = lineEnd(b);
         
-        return new BlockNode(nextId(StructureKind.BLOCK.getPrefixId()), StructureKind.BLOCK, startLine, endLine, kids);
+        return new BlockNode(nextId(StructureKind.BLOCK.getPrefixId()), StructureKind.BLOCK, start, end, kids);
     }
 
     /**
@@ -48,52 +51,64 @@ public final class JavaStructureMapper {
      * @return the corresponding StructureNode
      */
     public StructureNode mapStmt(Statement s) {
-        int startLine = s.getRange().map(r -> r.begin.line).orElse(0);
-        int endLine = s.getRange().map(r -> r.end.line).orElse(0);
-        
-        /*
-        if (s.isLocalDeclarationStmt()) {
-            LocalDeclarationStmt n = s.asLocalDeclarationStmt();
-            List<LocalVar> declared = new ArrayList<>();
-            n.getVariables().forEach(v -> {
-                String name = v.getNameAsString();
-                String typeId = "t:" + v.getType().toString();
-                locals.add(new LocalVar(nextLocalSlot, name, typeId));
-                declared.add(new LocalVar(nextLocalSlot++, name, typeId));
-            });
-            return new VarDeclNode(nextId("vardecl"), StructureKind.VAR_DECL, ls(n), le(n), declared);
-        }
-        */
+        ProgramPosition start = lineStart(s);
+        ProgramPosition end = lineEnd(s);
         
         return switch (s) {
             case BlockStmt n -> {
                 var kids = n.getStatements().stream().map(this::mapStmt).toList();
-                yield new BlockNode(nextId(StructureKind.BLOCK.getPrefixId()), StructureKind.BLOCK, startLine, endLine, kids);
+                yield new BlockNode(nextId(StructureKind.BLOCK.getPrefixId()), StructureKind.BLOCK, start, end, kids);
             }
             
             case IfStmt n -> {
-                var cond = new ExprCode(n.getCondition().toString(), startLine, endLine);
+                var cond = new ExprCode(n.getCondition().toString(), start, end);
                 var thenNode = mapStmt(n.getThenStmt());
                 var elseNode = n.getElseStmt().map(this::mapStmt).orElse(null);
-                yield new IfNode(nextId(StructureKind.IF.getPrefixId()), startLine, endLine, cond, thenNode, elseNode);
+                var content = n.toString();
+
+                yield new IfNode(nextId(StructureKind.IF.getPrefixId()), content, start, end, cond, thenNode, elseNode);
             }
             
             case ForStmt n -> {
-                var init = new ExprCode(n.getInitialization().toString(), startLine, endLine);
-                var compare = new ExprCode(n.getCompare().toString(), startLine, endLine);
-                var update = new ExprCode(n.getUpdate().toString(), startLine, endLine);
+                var init = new ExprCode(n.getInitialization().toString(), start, end);
+                var compare = new ExprCode(n.getCompare().toString(), start, end);
+                var update = new ExprCode(n.getUpdate().toString(), start, end);
                 var body = mapStmt(n.getBody());
-                yield new ForNode(nextId(StructureKind.FOR.getPrefixId()), startLine, endLine, init, compare, update, body);
-            }
-            
-            case ExpressionStmt n -> {
-                var e = n.getExpression();
-                yield new ExprStmtNode(nextId(StructureKind.EXPR_STMT.getPrefixId()), startLine, endLine,
-                        new ExprCode(e.toString(), startLine, endLine));
+                var content = n.toString();
+
+                yield new ForNode(nextId(StructureKind.FOR.getPrefixId()), content, start, end, init, compare, update, body);
             }
 
-            default -> new ExprStmtNode(nextId(StructureKind.EXPR_STMT.getPrefixId()), startLine, endLine,
-                    new ExprCode(s.toString(), startLine, endLine));
+            case ReturnStmt n -> {
+                var expr = n.getExpression().map(e -> new ExprCode(e.toString(), start, end)).orElse(null);
+                var content = n.toString();
+
+                yield new ReturnNode(nextId(StructureKind.RETURN.getPrefixId()), content, start, end, expr);
+            }
+
+            case ExpressionStmt expr -> new ExprStmtNode(nextId(StructureKind.EXPR_STMT.getPrefixId()), start, end, mapExpr(expr));
+
+            default -> throw new IllegalArgumentException("Unsupported statement type: " + s.getClass());
+        };
+    }
+
+    private ExprNode mapExpr(ExpressionStmt expr) {
+        ProgramPosition start = lineStart(expr);
+        ProgramPosition end = lineEnd(expr);
+
+        return switch (expr.getExpression()) {
+            case VariableDeclarationExpr varExpr -> {
+                varExpr.getVariables().forEach(v -> {
+                    String name = v.getNameAsString();
+                    String typeId = v.getType().toString();
+                    LocalVar localVar = new LocalVar(nextLocalSlot, name, typeId);
+                    locals.add(localVar);
+                });
+
+                yield new ExprCode(expr.toString(), start, end);
+            }
+
+            default -> new ExprCode(expr.toString(), start, end);
         };
     }
 
@@ -101,5 +116,19 @@ public final class JavaStructureMapper {
         int v = counters.getOrDefault(prefix, 0) + 1;
         counters.put(prefix, v);
         return prefix + ":" + v;
+    }
+
+    private ProgramPosition lineStart(Statement s) {
+        int startLine = s.getRange().map(r -> r.begin.line).orElse(0);
+        int startColumn = s.getRange().map(r -> r.begin.column).orElse(0);
+
+        return new ProgramPosition(startLine, startColumn);
+    }
+
+    private ProgramPosition lineEnd(Statement s) {
+        int endLine = s.getRange().map(r -> r.end.line).orElse(0);
+        int endColumn = s.getRange().map(r -> r.end.column).orElse(0);
+
+        return new ProgramPosition(endLine, endColumn);
     }
 }

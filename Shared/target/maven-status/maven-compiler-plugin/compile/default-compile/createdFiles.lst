@@ -1,7 +1,7 @@
-ch\epfl\printwizard\shared\model\program\structures\LocalVarDeclNode.class
 ch\epfl\printwizard\shared\writer\ProgramFileWriter.class
 ch\epfl\printwizard\shared\IdGenerator.class
 ch\epfl\printwizard\shared\model\program\structures\BlockNode.class
+ch\epfl\printwizard\shared\model\program\structures\ReturnNode.class
 ch\epfl\printwizard\shared\model\program\structures\ForNode.class
 ch\epfl\printwizard\shared\model\trace\events\PutFieldEvent.class
 ch\epfl\printwizard\shared\model\program\ClassInfo.class
@@ -27,6 +27,7 @@ ch\epfl\printwizard\shared\model\trace\events\ThrowEvent.class
 ch\epfl\printwizard\shared\model\trace\events\ReturnEvent.class
 ch\epfl\printwizard\shared\model\trace\events\TraceEvent.class
 ch\epfl\printwizard\shared\model\program\structures\expr\ExprNode.class
+ch\epfl\printwizard\shared\model\program\ProgramPosition.class
 ch\epfl\printwizard\shared\model\program\Source.class
 ch\epfl\printwizard\shared\model\program\structures\IfNode.class
 ch\epfl\printwizard\shared\model\trace\events\NewEvent.class

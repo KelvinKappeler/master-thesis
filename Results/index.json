@@ -1,6 +1,6 @@
 {
   "byLine" : {
-    "src:Examples/src/main/java/ch/epfl/printwizard/examples/Main/Main.java" : {
+    "src:ch/epfl/printwizard/examples/Main.java" : {
       "1" : [ "eve:1" ],
       "6" : [ "eve:2" ],
       "17" : [ "eve:5" ],

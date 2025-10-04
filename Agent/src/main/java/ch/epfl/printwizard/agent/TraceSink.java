@@ -27,8 +27,8 @@ public final class TraceSink {
      * @param sourceFile the source file name
      */
     public static void registerSource(String ownerInternal, String sourceFile) {
-        // TODO: Remove hardcoded Examples/src/main/java/
-        String path = "Examples/src/main/java/" + ownerInternal + "/" + sourceFile;
+        String packagePath = ownerInternal.substring(0, ownerInternal.lastIndexOf('/'));
+        String path = packagePath + "/" + sourceFile;
         ownerToSourceId.put(ownerInternal, IdGenerator.sourceId(path));
     }
 
@@ -38,7 +38,16 @@ public final class TraceSink {
      * @return the sourceId
      */
     public static String sourceIdForOwner(String ownerInternal, String sourceFile) {
-        return ownerToSourceId.getOrDefault(ownerInternal, IdGenerator.sourceId(sourceFile));
+        if (ownerToSourceId.containsKey(ownerInternal)) {
+            return ownerToSourceId.get(ownerInternal);
+        }
+
+        String packagePath = ownerInternal.substring(0, ownerInternal.lastIndexOf('/'));
+        String path = packagePath + "/" + sourceFile;
+        String sourceId = IdGenerator.sourceId(path);
+        ownerToSourceId.put(ownerInternal, sourceId);
+
+        return sourceId;
     }
 
     /**

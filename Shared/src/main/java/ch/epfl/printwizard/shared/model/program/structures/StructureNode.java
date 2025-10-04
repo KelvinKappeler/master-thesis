@@ -1,5 +1,6 @@
 package ch.epfl.printwizard.shared.model.program.structures;
 
+import ch.epfl.printwizard.shared.model.program.ProgramPosition;
 import ch.epfl.printwizard.shared.utils.Preconditions;
 
 /**
@@ -9,20 +10,22 @@ public abstract class StructureNode
 {
     private final String structureId;
     private final StructureKind kind;
-    private final int startLine;
-    private final int endLine;
+    private final String code;
+    private final ProgramPosition startPosition;
+    private final ProgramPosition endPosition;
 
-    protected StructureNode(String structureId, StructureKind kind, int start, int end) {
+    protected StructureNode(String structureId, StructureKind kind, String code, ProgramPosition startPosition, ProgramPosition endPosition) {
         Preconditions.requireNonNull(structureId, "Structure ID cannot be null");
         Preconditions.requireNonNull(kind, "Structure kind cannot be null");
         Preconditions.require(!structureId.isEmpty(), "Structure ID cannot be empty");
-        Preconditions.require(start >= 0, "Start line cannot be negative");
-        Preconditions.require(end >= start, "End line cannot be less than start line");
+        Preconditions.requireNonNull(startPosition, "Start position cannot be null");
+        Preconditions.requireNonNull(endPosition, "End position cannot be null");
 
         this.structureId = structureId;
         this.kind = kind;
-        this.startLine = start;
-        this.endLine = end;
+        this.code = code;
+        this.startPosition = startPosition;
+        this.endPosition = endPosition;
     }
 
     /**
@@ -42,18 +45,26 @@ public abstract class StructureNode
     }
 
     /**
-     * Gets the starting line number of the structure in the source code.
-     * @return the starting line number
+     * Gets the code snippet representing the structure.
+     * @return the code snippet
      */
-    public int getStartLine() {
-        return startLine;
+    public String getCode() {
+        return code;
     }
 
     /**
-     * Gets the ending line number of the structure in the source code.
-     * @return the ending line number
+     * Gets the starting position of the structure in the source code.
+     * @return the starting position
      */
-    public int getEndLine() {
-        return endLine;
+    public ProgramPosition getStartPosition() {
+        return startPosition;
+    }
+
+    /**
+     * Gets the ending position of the structure in the source code.
+     * @return the ending position
+     */
+    public ProgramPosition getEndPosition() {
+        return endPosition;
     }
 }
