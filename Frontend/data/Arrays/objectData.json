@@ -1,0 +1,264 @@
+[
+  {
+    "values": [
+      {
+        "value": 1,
+        "dataType": "int"
+      },
+      {
+        "value": 2,
+        "dataType": "int"
+      },
+      {
+        "value": 3,
+        "dataType": "int"
+      },
+      {
+        "value": 4,
+        "dataType": "int"
+      },
+      {
+        "value": 5,
+        "dataType": "int"
+      }
+    ],
+    "self": {
+      "elemType": "class [[I",
+      "pointer": 284720968,
+      "version": 1,
+      "dataType": "arrayRef"
+    }
+  },
+  {
+    "self": {
+      "pointer": 500977346,
+      "className": {
+        "className": "Player",
+        "packageName": ""
+      },
+      "version": 2,
+      "dataType": "instanceRef"
+    },
+    "fields": [
+      {
+        "identifier": {
+          "owner": {
+            "pointer": 500977346,
+            "className": {
+              "className": "Player",
+              "packageName": ""
+            },
+            "version": 2,
+            "dataType": "instanceRef"
+          },
+          "name": "name",
+          "dataType": "fieldIdentifier"
+        },
+        "value": {
+          "value": "Bastien",
+          "dataType": "string"
+        }
+      },
+      {
+        "identifier": {
+          "owner": {
+            "pointer": 500977346,
+            "className": {
+              "className": "Player",
+              "packageName": ""
+            },
+            "version": 2,
+            "dataType": "instanceRef"
+          },
+          "name": "hp",
+          "dataType": "fieldIdentifier"
+        },
+        "value": {
+          "value": 30,
+          "dataType": "int"
+        }
+      }
+    ]
+  },
+  {
+    "self": {
+      "pointer": 1848402763,
+      "className": {
+        "className": "Player",
+        "packageName": ""
+      },
+      "version": 3,
+      "dataType": "instanceRef"
+    },
+    "fields": [
+      {
+        "identifier": {
+          "owner": {
+            "pointer": 1848402763,
+            "className": {
+              "className": "Player",
+              "packageName": ""
+            },
+            "version": 3,
+            "dataType": "instanceRef"
+          },
+          "name": "name",
+          "dataType": "fieldIdentifier"
+        },
+        "value": {
+          "value": "Kelvin",
+          "dataType": "string"
+        }
+      },
+      {
+        "identifier": {
+          "owner": {
+            "pointer": 1848402763,
+            "className": {
+              "className": "Player",
+              "packageName": ""
+            },
+            "version": 3,
+            "dataType": "instanceRef"
+          },
+          "name": "hp",
+          "dataType": "fieldIdentifier"
+        },
+        "value": {
+          "value": 20,
+          "dataType": "int"
+        }
+      }
+    ]
+  },
+  {
+    "self": {
+      "pointer": 500977346,
+      "className": {
+        "className": "Player",
+        "packageName": ""
+      },
+      "version": 5,
+      "dataType": "instanceRef"
+    },
+    "fields": [
+      {
+        "identifier": {
+          "owner": {
+            "pointer": 500977346,
+            "className": {
+              "className": "Player",
+              "packageName": ""
+            },
+            "version": 5,
+            "dataType": "instanceRef"
+          },
+          "name": "name",
+          "dataType": "fieldIdentifier"
+        },
+        "value": {
+          "value": "Bastien",
+          "dataType": "string"
+        }
+      },
+      {
+        "identifier": {
+          "owner": {
+            "pointer": 500977346,
+            "className": {
+              "className": "Player",
+              "packageName": ""
+            },
+            "version": 5,
+            "dataType": "instanceRef"
+          },
+          "name": "hp",
+          "dataType": "fieldIdentifier"
+        },
+        "value": {
+          "value": 30,
+          "dataType": "int"
+        }
+      }
+    ]
+  },
+  {
+    "self": {
+      "pointer": 1848402763,
+      "className": {
+        "className": "Player",
+        "packageName": ""
+      },
+      "version": 7,
+      "dataType": "instanceRef"
+    },
+    "fields": [
+      {
+        "identifier": {
+          "owner": {
+            "pointer": 1848402763,
+            "className": {
+              "className": "Player",
+              "packageName": ""
+            },
+            "version": 7,
+            "dataType": "instanceRef"
+          },
+          "name": "name",
+          "dataType": "fieldIdentifier"
+        },
+        "value": {
+          "value": "Kelvin",
+          "dataType": "string"
+        }
+      },
+      {
+        "identifier": {
+          "owner": {
+            "pointer": 1848402763,
+            "className": {
+              "className": "Player",
+              "packageName": ""
+            },
+            "version": 7,
+            "dataType": "instanceRef"
+          },
+          "name": "hp",
+          "dataType": "fieldIdentifier"
+        },
+        "value": {
+          "value": 20,
+          "dataType": "int"
+        }
+      }
+    ]
+  },
+  {
+    "values": [
+      {
+        "pointer": 500977346,
+        "className": {
+          "className": "Player",
+          "packageName": ""
+        },
+        "version": 6,
+        "dataType": "instanceRef"
+      },
+      {
+        "pointer": 1848402763,
+        "className": {
+          "className": "Player",
+          "packageName": ""
+        },
+        "version": 8,
+        "dataType": "instanceRef"
+      }
+    ],
+    "self": {
+      "elemType": "class [[LArrays$Player;",
+      "pointer": 933699219,
+      "version": 4,
+      "dataType": "arrayRef"
+    }
+  }
+]

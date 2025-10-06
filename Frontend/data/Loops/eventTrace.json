@@ -1,0 +1,3837 @@
+{
+  "trace": [
+    {
+      "eventId": 0,
+      "eventType": "controlFlow",
+      "type": "GroupEvent",
+      "pos": "start",
+      "kind": {
+        "type": "FunctionContext",
+        "functionName": "main"
+      }
+    },
+    {
+      "eventId": 1,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 2,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 2,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "nodeKey": "Loops.java-3:9-3:26",
+      "assigns": [
+        {
+          "identifier": {
+            "name": "compteur",
+            "parent": "-",
+            "dataType": "localIdentifier"
+          },
+          "value": {
+            "value": 0,
+            "dataType": "int"
+          },
+          "dataType": "write"
+        }
+      ],
+      "type": "ExecutionStep",
+      "kind": "expressionWithoutReturn"
+    },
+    {
+      "eventId": 1,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 3,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 4,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 4,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "nodeKey": "Loops.java-4:14-4:23",
+      "assigns": [
+        {
+          "identifier": {
+            "name": "i",
+            "parent": "-",
+            "dataType": "localIdentifier"
+          },
+          "value": {
+            "value": 0,
+            "dataType": "int"
+          },
+          "dataType": "write"
+        }
+      ],
+      "type": "ExecutionStep",
+      "kind": "expressionWithoutReturn"
+    },
+    {
+      "eventId": 3,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 5,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 6,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 6,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 7,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 7,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "result": {
+        "value": true,
+        "dataType": "bool"
+      },
+      "nodeKey": "Loops.java-4:25-4:255",
+      "assigns": [],
+      "type": "ExecutionStep",
+      "kind": "expression"
+    },
+    {
+      "eventId": 5,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 8,
+      "eventType": "controlFlow",
+      "type": "GroupEvent",
+      "pos": "start",
+      "kind": {
+        "type": "DefaultContext"
+      }
+    },
+    {
+      "eventId": 9,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "result": {
+        "value": 1,
+        "dataType": "int"
+      },
+      "nodeKey": "Loops.java-5:13-5:1310",
+      "assigns": [
+        {
+          "identifier": {
+            "name": "compteur",
+            "parent": "-",
+            "dataType": "localIdentifier"
+          },
+          "value": {
+            "value": 1,
+            "dataType": "int"
+          },
+          "dataType": "write"
+        }
+      ],
+      "type": "ExecutionStep",
+      "kind": "expression"
+    },
+    {
+      "eventId": 9,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 8,
+      "eventType": "controlFlow",
+      "type": "GroupEvent",
+      "pos": "end",
+      "kind": {
+        "type": "DefaultContext"
+      }
+    },
+    {
+      "eventId": 10,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "result": {
+        "value": 1,
+        "dataType": "int"
+      },
+      "nodeKey": "Loops.java-4:32-4:323",
+      "assigns": [
+        {
+          "identifier": {
+            "name": "i",
+            "parent": "-",
+            "dataType": "localIdentifier"
+          },
+          "value": {
+            "value": 1,
+            "dataType": "int"
+          },
+          "dataType": "write"
+        }
+      ],
+      "type": "ExecutionStep",
+      "kind": "expression"
+    },
+    {
+      "eventId": 10,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 11,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 12,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 12,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 13,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 13,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "result": {
+        "value": true,
+        "dataType": "bool"
+      },
+      "nodeKey": "Loops.java-4:25-4:255",
+      "assigns": [],
+      "type": "ExecutionStep",
+      "kind": "expression"
+    },
+    {
+      "eventId": 11,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 14,
+      "eventType": "controlFlow",
+      "type": "GroupEvent",
+      "pos": "start",
+      "kind": {
+        "type": "DefaultContext"
+      }
+    },
+    {
+      "eventId": 15,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "result": {
+        "value": 2,
+        "dataType": "int"
+      },
+      "nodeKey": "Loops.java-5:13-5:1310",
+      "assigns": [
+        {
+          "identifier": {
+            "name": "compteur",
+            "parent": "-",
+            "dataType": "localIdentifier"
+          },
+          "value": {
+            "value": 2,
+            "dataType": "int"
+          },
+          "dataType": "write"
+        }
+      ],
+      "type": "ExecutionStep",
+      "kind": "expression"
+    },
+    {
+      "eventId": 15,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 14,
+      "eventType": "controlFlow",
+      "type": "GroupEvent",
+      "pos": "end",
+      "kind": {
+        "type": "DefaultContext"
+      }
+    },
+    {
+      "eventId": 16,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "result": {
+        "value": 2,
+        "dataType": "int"
+      },
+      "nodeKey": "Loops.java-4:32-4:323",
+      "assigns": [
+        {
+          "identifier": {
+            "name": "i",
+            "parent": "-",
+            "dataType": "localIdentifier"
+          },
+          "value": {
+            "value": 2,
+            "dataType": "int"
+          },
+          "dataType": "write"
+        }
+      ],
+      "type": "ExecutionStep",
+      "kind": "expression"
+    },
+    {
+      "eventId": 16,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 17,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 18,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 18,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 19,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 19,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "result": {
+        "value": true,
+        "dataType": "bool"
+      },
+      "nodeKey": "Loops.java-4:25-4:255",
+      "assigns": [],
+      "type": "ExecutionStep",
+      "kind": "expression"
+    },
+    {
+      "eventId": 17,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 20,
+      "eventType": "controlFlow",
+      "type": "GroupEvent",
+      "pos": "start",
+      "kind": {
+        "type": "DefaultContext"
+      }
+    },
+    {
+      "eventId": 21,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "result": {
+        "value": 3,
+        "dataType": "int"
+      },
+      "nodeKey": "Loops.java-5:13-5:1310",
+      "assigns": [
+        {
+          "identifier": {
+            "name": "compteur",
+            "parent": "-",
+            "dataType": "localIdentifier"
+          },
+          "value": {
+            "value": 3,
+            "dataType": "int"
+          },
+          "dataType": "write"
+        }
+      ],
+      "type": "ExecutionStep",
+      "kind": "expression"
+    },
+    {
+      "eventId": 21,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 20,
+      "eventType": "controlFlow",
+      "type": "GroupEvent",
+      "pos": "end",
+      "kind": {
+        "type": "DefaultContext"
+      }
+    },
+    {
+      "eventId": 22,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "result": {
+        "value": 3,
+        "dataType": "int"
+      },
+      "nodeKey": "Loops.java-4:32-4:323",
+      "assigns": [
+        {
+          "identifier": {
+            "name": "i",
+            "parent": "-",
+            "dataType": "localIdentifier"
+          },
+          "value": {
+            "value": 3,
+            "dataType": "int"
+          },
+          "dataType": "write"
+        }
+      ],
+      "type": "ExecutionStep",
+      "kind": "expression"
+    },
+    {
+      "eventId": 22,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 23,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 24,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 24,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 25,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 25,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "result": {
+        "value": true,
+        "dataType": "bool"
+      },
+      "nodeKey": "Loops.java-4:25-4:255",
+      "assigns": [],
+      "type": "ExecutionStep",
+      "kind": "expression"
+    },
+    {
+      "eventId": 23,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 26,
+      "eventType": "controlFlow",
+      "type": "GroupEvent",
+      "pos": "start",
+      "kind": {
+        "type": "DefaultContext"
+      }
+    },
+    {
+      "eventId": 27,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "result": {
+        "value": 4,
+        "dataType": "int"
+      },
+      "nodeKey": "Loops.java-5:13-5:1310",
+      "assigns": [
+        {
+          "identifier": {
+            "name": "compteur",
+            "parent": "-",
+            "dataType": "localIdentifier"
+          },
+          "value": {
+            "value": 4,
+            "dataType": "int"
+          },
+          "dataType": "write"
+        }
+      ],
+      "type": "ExecutionStep",
+      "kind": "expression"
+    },
+    {
+      "eventId": 27,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 26,
+      "eventType": "controlFlow",
+      "type": "GroupEvent",
+      "pos": "end",
+      "kind": {
+        "type": "DefaultContext"
+      }
+    },
+    {
+      "eventId": 28,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "result": {
+        "value": 4,
+        "dataType": "int"
+      },
+      "nodeKey": "Loops.java-4:32-4:323",
+      "assigns": [
+        {
+          "identifier": {
+            "name": "i",
+            "parent": "-",
+            "dataType": "localIdentifier"
+          },
+          "value": {
+            "value": 4,
+            "dataType": "int"
+          },
+          "dataType": "write"
+        }
+      ],
+      "type": "ExecutionStep",
+      "kind": "expression"
+    },
+    {
+      "eventId": 28,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 29,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 30,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 30,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 31,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 31,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "result": {
+        "value": true,
+        "dataType": "bool"
+      },
+      "nodeKey": "Loops.java-4:25-4:255",
+      "assigns": [],
+      "type": "ExecutionStep",
+      "kind": "expression"
+    },
+    {
+      "eventId": 29,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 32,
+      "eventType": "controlFlow",
+      "type": "GroupEvent",
+      "pos": "start",
+      "kind": {
+        "type": "DefaultContext"
+      }
+    },
+    {
+      "eventId": 33,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "result": {
+        "value": 5,
+        "dataType": "int"
+      },
+      "nodeKey": "Loops.java-5:13-5:1310",
+      "assigns": [
+        {
+          "identifier": {
+            "name": "compteur",
+            "parent": "-",
+            "dataType": "localIdentifier"
+          },
+          "value": {
+            "value": 5,
+            "dataType": "int"
+          },
+          "dataType": "write"
+        }
+      ],
+      "type": "ExecutionStep",
+      "kind": "expression"
+    },
+    {
+      "eventId": 33,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 32,
+      "eventType": "controlFlow",
+      "type": "GroupEvent",
+      "pos": "end",
+      "kind": {
+        "type": "DefaultContext"
+      }
+    },
+    {
+      "eventId": 34,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "result": {
+        "value": 5,
+        "dataType": "int"
+      },
+      "nodeKey": "Loops.java-4:32-4:323",
+      "assigns": [
+        {
+          "identifier": {
+            "name": "i",
+            "parent": "-",
+            "dataType": "localIdentifier"
+          },
+          "value": {
+            "value": 5,
+            "dataType": "int"
+          },
+          "dataType": "write"
+        }
+      ],
+      "type": "ExecutionStep",
+      "kind": "expression"
+    },
+    {
+      "eventId": 34,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 35,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 36,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 36,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 37,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 37,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "result": {
+        "value": false,
+        "dataType": "bool"
+      },
+      "nodeKey": "Loops.java-4:25-4:255",
+      "assigns": [],
+      "type": "ExecutionStep",
+      "kind": "expression"
+    },
+    {
+      "eventId": 35,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 38,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 39,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 39,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 40,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 40,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "result": {
+        "value": true,
+        "dataType": "bool"
+      },
+      "nodeKey": "Loops.java-8:16-8:1613",
+      "assigns": [],
+      "type": "ExecutionStep",
+      "kind": "expression"
+    },
+    {
+      "eventId": 38,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 41,
+      "eventType": "controlFlow",
+      "type": "GroupEvent",
+      "pos": "start",
+      "kind": {
+        "type": "DefaultContext"
+      }
+    },
+    {
+      "eventId": 42,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 43,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 43,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "nodeKey": "Loops.java-9:18-9:27",
+      "assigns": [
+        {
+          "identifier": {
+            "name": "j",
+            "parent": "-",
+            "dataType": "localIdentifier"
+          },
+          "value": {
+            "value": 0,
+            "dataType": "int"
+          },
+          "dataType": "write"
+        }
+      ],
+      "type": "ExecutionStep",
+      "kind": "expressionWithoutReturn"
+    },
+    {
+      "eventId": 42,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 44,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 45,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 45,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 46,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 46,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "result": {
+        "value": true,
+        "dataType": "bool"
+      },
+      "nodeKey": "Loops.java-9:29-9:2912",
+      "assigns": [],
+      "type": "ExecutionStep",
+      "kind": "expression"
+    },
+    {
+      "eventId": 44,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 47,
+      "eventType": "controlFlow",
+      "type": "GroupEvent",
+      "pos": "start",
+      "kind": {
+        "type": "DefaultContext"
+      }
+    },
+    {
+      "eventId": 48,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 49,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 49,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "stepId": 0,
+      "argsValues": [
+        {
+          "value": "Bonjour",
+          "dataType": "string"
+        }
+      ],
+      "nodeKey": "Loops.java-10:17-10:46",
+      "type": "ExecutionStep",
+      "kind": "logVoidCall"
+    },
+    {
+      "eventId": 48,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 47,
+      "eventType": "controlFlow",
+      "type": "GroupEvent",
+      "pos": "end",
+      "kind": {
+        "type": "DefaultContext"
+      }
+    },
+    {
+      "eventId": 50,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "result": {
+        "value": 1,
+        "dataType": "int"
+      },
+      "nodeKey": "Loops.java-9:43-9:433",
+      "assigns": [
+        {
+          "identifier": {
+            "name": "j",
+            "parent": "-",
+            "dataType": "localIdentifier"
+          },
+          "value": {
+            "value": 1,
+            "dataType": "int"
+          },
+          "dataType": "write"
+        }
+      ],
+      "type": "ExecutionStep",
+      "kind": "expression"
+    },
+    {
+      "eventId": 50,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 51,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 52,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 52,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 53,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 53,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "result": {
+        "value": true,
+        "dataType": "bool"
+      },
+      "nodeKey": "Loops.java-9:29-9:2912",
+      "assigns": [],
+      "type": "ExecutionStep",
+      "kind": "expression"
+    },
+    {
+      "eventId": 51,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 54,
+      "eventType": "controlFlow",
+      "type": "GroupEvent",
+      "pos": "start",
+      "kind": {
+        "type": "DefaultContext"
+      }
+    },
+    {
+      "eventId": 55,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 56,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 56,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "stepId": 0,
+      "argsValues": [
+        {
+          "value": "Bonjour",
+          "dataType": "string"
+        }
+      ],
+      "nodeKey": "Loops.java-10:17-10:46",
+      "type": "ExecutionStep",
+      "kind": "logVoidCall"
+    },
+    {
+      "eventId": 55,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 54,
+      "eventType": "controlFlow",
+      "type": "GroupEvent",
+      "pos": "end",
+      "kind": {
+        "type": "DefaultContext"
+      }
+    },
+    {
+      "eventId": 57,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "result": {
+        "value": 2,
+        "dataType": "int"
+      },
+      "nodeKey": "Loops.java-9:43-9:433",
+      "assigns": [
+        {
+          "identifier": {
+            "name": "j",
+            "parent": "-",
+            "dataType": "localIdentifier"
+          },
+          "value": {
+            "value": 2,
+            "dataType": "int"
+          },
+          "dataType": "write"
+        }
+      ],
+      "type": "ExecutionStep",
+      "kind": "expression"
+    },
+    {
+      "eventId": 57,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 58,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 59,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 59,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 60,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 60,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "result": {
+        "value": true,
+        "dataType": "bool"
+      },
+      "nodeKey": "Loops.java-9:29-9:2912",
+      "assigns": [],
+      "type": "ExecutionStep",
+      "kind": "expression"
+    },
+    {
+      "eventId": 58,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 61,
+      "eventType": "controlFlow",
+      "type": "GroupEvent",
+      "pos": "start",
+      "kind": {
+        "type": "DefaultContext"
+      }
+    },
+    {
+      "eventId": 62,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 63,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 63,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "stepId": 0,
+      "argsValues": [
+        {
+          "value": "Bonjour",
+          "dataType": "string"
+        }
+      ],
+      "nodeKey": "Loops.java-10:17-10:46",
+      "type": "ExecutionStep",
+      "kind": "logVoidCall"
+    },
+    {
+      "eventId": 62,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 61,
+      "eventType": "controlFlow",
+      "type": "GroupEvent",
+      "pos": "end",
+      "kind": {
+        "type": "DefaultContext"
+      }
+    },
+    {
+      "eventId": 64,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "result": {
+        "value": 3,
+        "dataType": "int"
+      },
+      "nodeKey": "Loops.java-9:43-9:433",
+      "assigns": [
+        {
+          "identifier": {
+            "name": "j",
+            "parent": "-",
+            "dataType": "localIdentifier"
+          },
+          "value": {
+            "value": 3,
+            "dataType": "int"
+          },
+          "dataType": "write"
+        }
+      ],
+      "type": "ExecutionStep",
+      "kind": "expression"
+    },
+    {
+      "eventId": 64,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 65,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 66,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 66,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 67,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 67,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "result": {
+        "value": true,
+        "dataType": "bool"
+      },
+      "nodeKey": "Loops.java-9:29-9:2912",
+      "assigns": [],
+      "type": "ExecutionStep",
+      "kind": "expression"
+    },
+    {
+      "eventId": 65,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 68,
+      "eventType": "controlFlow",
+      "type": "GroupEvent",
+      "pos": "start",
+      "kind": {
+        "type": "DefaultContext"
+      }
+    },
+    {
+      "eventId": 69,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 70,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 70,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "stepId": 0,
+      "argsValues": [
+        {
+          "value": "Bonjour",
+          "dataType": "string"
+        }
+      ],
+      "nodeKey": "Loops.java-10:17-10:46",
+      "type": "ExecutionStep",
+      "kind": "logVoidCall"
+    },
+    {
+      "eventId": 69,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 68,
+      "eventType": "controlFlow",
+      "type": "GroupEvent",
+      "pos": "end",
+      "kind": {
+        "type": "DefaultContext"
+      }
+    },
+    {
+      "eventId": 71,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "result": {
+        "value": 4,
+        "dataType": "int"
+      },
+      "nodeKey": "Loops.java-9:43-9:433",
+      "assigns": [
+        {
+          "identifier": {
+            "name": "j",
+            "parent": "-",
+            "dataType": "localIdentifier"
+          },
+          "value": {
+            "value": 4,
+            "dataType": "int"
+          },
+          "dataType": "write"
+        }
+      ],
+      "type": "ExecutionStep",
+      "kind": "expression"
+    },
+    {
+      "eventId": 71,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 72,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 73,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 73,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 74,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 74,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "result": {
+        "value": true,
+        "dataType": "bool"
+      },
+      "nodeKey": "Loops.java-9:29-9:2912",
+      "assigns": [],
+      "type": "ExecutionStep",
+      "kind": "expression"
+    },
+    {
+      "eventId": 72,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 75,
+      "eventType": "controlFlow",
+      "type": "GroupEvent",
+      "pos": "start",
+      "kind": {
+        "type": "DefaultContext"
+      }
+    },
+    {
+      "eventId": 76,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 77,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 77,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "stepId": 0,
+      "argsValues": [
+        {
+          "value": "Bonjour",
+          "dataType": "string"
+        }
+      ],
+      "nodeKey": "Loops.java-10:17-10:46",
+      "type": "ExecutionStep",
+      "kind": "logVoidCall"
+    },
+    {
+      "eventId": 76,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 75,
+      "eventType": "controlFlow",
+      "type": "GroupEvent",
+      "pos": "end",
+      "kind": {
+        "type": "DefaultContext"
+      }
+    },
+    {
+      "eventId": 78,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "result": {
+        "value": 5,
+        "dataType": "int"
+      },
+      "nodeKey": "Loops.java-9:43-9:433",
+      "assigns": [
+        {
+          "identifier": {
+            "name": "j",
+            "parent": "-",
+            "dataType": "localIdentifier"
+          },
+          "value": {
+            "value": 5,
+            "dataType": "int"
+          },
+          "dataType": "write"
+        }
+      ],
+      "type": "ExecutionStep",
+      "kind": "expression"
+    },
+    {
+      "eventId": 78,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 79,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 80,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 80,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 81,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 81,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "result": {
+        "value": false,
+        "dataType": "bool"
+      },
+      "nodeKey": "Loops.java-9:29-9:2912",
+      "assigns": [],
+      "type": "ExecutionStep",
+      "kind": "expression"
+    },
+    {
+      "eventId": 79,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 82,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "result": {
+        "value": 4,
+        "dataType": "int"
+      },
+      "nodeKey": "Loops.java-13:13-13:1310",
+      "assigns": [
+        {
+          "identifier": {
+            "name": "compteur",
+            "parent": "-",
+            "dataType": "localIdentifier"
+          },
+          "value": {
+            "value": 4,
+            "dataType": "int"
+          },
+          "dataType": "write"
+        }
+      ],
+      "type": "ExecutionStep",
+      "kind": "expression"
+    },
+    {
+      "eventId": 82,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 41,
+      "eventType": "controlFlow",
+      "type": "GroupEvent",
+      "pos": "end",
+      "kind": {
+        "type": "DefaultContext"
+      }
+    },
+    {
+      "eventId": 83,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 84,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 84,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 85,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 85,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "result": {
+        "value": true,
+        "dataType": "bool"
+      },
+      "nodeKey": "Loops.java-8:16-8:1613",
+      "assigns": [],
+      "type": "ExecutionStep",
+      "kind": "expression"
+    },
+    {
+      "eventId": 83,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 86,
+      "eventType": "controlFlow",
+      "type": "GroupEvent",
+      "pos": "start",
+      "kind": {
+        "type": "DefaultContext"
+      }
+    },
+    {
+      "eventId": 87,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 88,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 88,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "nodeKey": "Loops.java-9:18-9:27",
+      "assigns": [
+        {
+          "identifier": {
+            "name": "j",
+            "parent": "-",
+            "dataType": "localIdentifier"
+          },
+          "value": {
+            "value": 0,
+            "dataType": "int"
+          },
+          "dataType": "write"
+        }
+      ],
+      "type": "ExecutionStep",
+      "kind": "expressionWithoutReturn"
+    },
+    {
+      "eventId": 87,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 89,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 90,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 90,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 91,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 91,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "result": {
+        "value": true,
+        "dataType": "bool"
+      },
+      "nodeKey": "Loops.java-9:29-9:2912",
+      "assigns": [],
+      "type": "ExecutionStep",
+      "kind": "expression"
+    },
+    {
+      "eventId": 89,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 92,
+      "eventType": "controlFlow",
+      "type": "GroupEvent",
+      "pos": "start",
+      "kind": {
+        "type": "DefaultContext"
+      }
+    },
+    {
+      "eventId": 93,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 94,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 94,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "stepId": 0,
+      "argsValues": [
+        {
+          "value": "Bonjour",
+          "dataType": "string"
+        }
+      ],
+      "nodeKey": "Loops.java-10:17-10:46",
+      "type": "ExecutionStep",
+      "kind": "logVoidCall"
+    },
+    {
+      "eventId": 93,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 92,
+      "eventType": "controlFlow",
+      "type": "GroupEvent",
+      "pos": "end",
+      "kind": {
+        "type": "DefaultContext"
+      }
+    },
+    {
+      "eventId": 95,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "result": {
+        "value": 1,
+        "dataType": "int"
+      },
+      "nodeKey": "Loops.java-9:43-9:433",
+      "assigns": [
+        {
+          "identifier": {
+            "name": "j",
+            "parent": "-",
+            "dataType": "localIdentifier"
+          },
+          "value": {
+            "value": 1,
+            "dataType": "int"
+          },
+          "dataType": "write"
+        }
+      ],
+      "type": "ExecutionStep",
+      "kind": "expression"
+    },
+    {
+      "eventId": 95,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 96,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 97,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 97,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 98,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 98,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "result": {
+        "value": true,
+        "dataType": "bool"
+      },
+      "nodeKey": "Loops.java-9:29-9:2912",
+      "assigns": [],
+      "type": "ExecutionStep",
+      "kind": "expression"
+    },
+    {
+      "eventId": 96,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 99,
+      "eventType": "controlFlow",
+      "type": "GroupEvent",
+      "pos": "start",
+      "kind": {
+        "type": "DefaultContext"
+      }
+    },
+    {
+      "eventId": 100,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 101,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 101,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "stepId": 0,
+      "argsValues": [
+        {
+          "value": "Bonjour",
+          "dataType": "string"
+        }
+      ],
+      "nodeKey": "Loops.java-10:17-10:46",
+      "type": "ExecutionStep",
+      "kind": "logVoidCall"
+    },
+    {
+      "eventId": 100,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 99,
+      "eventType": "controlFlow",
+      "type": "GroupEvent",
+      "pos": "end",
+      "kind": {
+        "type": "DefaultContext"
+      }
+    },
+    {
+      "eventId": 102,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "result": {
+        "value": 2,
+        "dataType": "int"
+      },
+      "nodeKey": "Loops.java-9:43-9:433",
+      "assigns": [
+        {
+          "identifier": {
+            "name": "j",
+            "parent": "-",
+            "dataType": "localIdentifier"
+          },
+          "value": {
+            "value": 2,
+            "dataType": "int"
+          },
+          "dataType": "write"
+        }
+      ],
+      "type": "ExecutionStep",
+      "kind": "expression"
+    },
+    {
+      "eventId": 102,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 103,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 104,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 104,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 105,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 105,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "result": {
+        "value": true,
+        "dataType": "bool"
+      },
+      "nodeKey": "Loops.java-9:29-9:2912",
+      "assigns": [],
+      "type": "ExecutionStep",
+      "kind": "expression"
+    },
+    {
+      "eventId": 103,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 106,
+      "eventType": "controlFlow",
+      "type": "GroupEvent",
+      "pos": "start",
+      "kind": {
+        "type": "DefaultContext"
+      }
+    },
+    {
+      "eventId": 107,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 108,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 108,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "stepId": 0,
+      "argsValues": [
+        {
+          "value": "Bonjour",
+          "dataType": "string"
+        }
+      ],
+      "nodeKey": "Loops.java-10:17-10:46",
+      "type": "ExecutionStep",
+      "kind": "logVoidCall"
+    },
+    {
+      "eventId": 107,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 106,
+      "eventType": "controlFlow",
+      "type": "GroupEvent",
+      "pos": "end",
+      "kind": {
+        "type": "DefaultContext"
+      }
+    },
+    {
+      "eventId": 109,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "result": {
+        "value": 3,
+        "dataType": "int"
+      },
+      "nodeKey": "Loops.java-9:43-9:433",
+      "assigns": [
+        {
+          "identifier": {
+            "name": "j",
+            "parent": "-",
+            "dataType": "localIdentifier"
+          },
+          "value": {
+            "value": 3,
+            "dataType": "int"
+          },
+          "dataType": "write"
+        }
+      ],
+      "type": "ExecutionStep",
+      "kind": "expression"
+    },
+    {
+      "eventId": 109,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 110,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 111,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 111,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 112,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 112,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "result": {
+        "value": true,
+        "dataType": "bool"
+      },
+      "nodeKey": "Loops.java-9:29-9:2912",
+      "assigns": [],
+      "type": "ExecutionStep",
+      "kind": "expression"
+    },
+    {
+      "eventId": 110,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 113,
+      "eventType": "controlFlow",
+      "type": "GroupEvent",
+      "pos": "start",
+      "kind": {
+        "type": "DefaultContext"
+      }
+    },
+    {
+      "eventId": 114,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 115,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 115,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "stepId": 0,
+      "argsValues": [
+        {
+          "value": "Bonjour",
+          "dataType": "string"
+        }
+      ],
+      "nodeKey": "Loops.java-10:17-10:46",
+      "type": "ExecutionStep",
+      "kind": "logVoidCall"
+    },
+    {
+      "eventId": 114,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 113,
+      "eventType": "controlFlow",
+      "type": "GroupEvent",
+      "pos": "end",
+      "kind": {
+        "type": "DefaultContext"
+      }
+    },
+    {
+      "eventId": 116,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "result": {
+        "value": 4,
+        "dataType": "int"
+      },
+      "nodeKey": "Loops.java-9:43-9:433",
+      "assigns": [
+        {
+          "identifier": {
+            "name": "j",
+            "parent": "-",
+            "dataType": "localIdentifier"
+          },
+          "value": {
+            "value": 4,
+            "dataType": "int"
+          },
+          "dataType": "write"
+        }
+      ],
+      "type": "ExecutionStep",
+      "kind": "expression"
+    },
+    {
+      "eventId": 116,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 117,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 118,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 118,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 119,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 119,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "result": {
+        "value": false,
+        "dataType": "bool"
+      },
+      "nodeKey": "Loops.java-9:29-9:2912",
+      "assigns": [],
+      "type": "ExecutionStep",
+      "kind": "expression"
+    },
+    {
+      "eventId": 117,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 120,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "result": {
+        "value": 3,
+        "dataType": "int"
+      },
+      "nodeKey": "Loops.java-13:13-13:1310",
+      "assigns": [
+        {
+          "identifier": {
+            "name": "compteur",
+            "parent": "-",
+            "dataType": "localIdentifier"
+          },
+          "value": {
+            "value": 3,
+            "dataType": "int"
+          },
+          "dataType": "write"
+        }
+      ],
+      "type": "ExecutionStep",
+      "kind": "expression"
+    },
+    {
+      "eventId": 120,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 86,
+      "eventType": "controlFlow",
+      "type": "GroupEvent",
+      "pos": "end",
+      "kind": {
+        "type": "DefaultContext"
+      }
+    },
+    {
+      "eventId": 121,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 122,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 122,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 123,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 123,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "result": {
+        "value": true,
+        "dataType": "bool"
+      },
+      "nodeKey": "Loops.java-8:16-8:1613",
+      "assigns": [],
+      "type": "ExecutionStep",
+      "kind": "expression"
+    },
+    {
+      "eventId": 121,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 124,
+      "eventType": "controlFlow",
+      "type": "GroupEvent",
+      "pos": "start",
+      "kind": {
+        "type": "DefaultContext"
+      }
+    },
+    {
+      "eventId": 125,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 126,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 126,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "nodeKey": "Loops.java-9:18-9:27",
+      "assigns": [
+        {
+          "identifier": {
+            "name": "j",
+            "parent": "-",
+            "dataType": "localIdentifier"
+          },
+          "value": {
+            "value": 0,
+            "dataType": "int"
+          },
+          "dataType": "write"
+        }
+      ],
+      "type": "ExecutionStep",
+      "kind": "expressionWithoutReturn"
+    },
+    {
+      "eventId": 125,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 127,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 128,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 128,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 129,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 129,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "result": {
+        "value": true,
+        "dataType": "bool"
+      },
+      "nodeKey": "Loops.java-9:29-9:2912",
+      "assigns": [],
+      "type": "ExecutionStep",
+      "kind": "expression"
+    },
+    {
+      "eventId": 127,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 130,
+      "eventType": "controlFlow",
+      "type": "GroupEvent",
+      "pos": "start",
+      "kind": {
+        "type": "DefaultContext"
+      }
+    },
+    {
+      "eventId": 131,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 132,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 132,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "stepId": 0,
+      "argsValues": [
+        {
+          "value": "Bonjour",
+          "dataType": "string"
+        }
+      ],
+      "nodeKey": "Loops.java-10:17-10:46",
+      "type": "ExecutionStep",
+      "kind": "logVoidCall"
+    },
+    {
+      "eventId": 131,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 130,
+      "eventType": "controlFlow",
+      "type": "GroupEvent",
+      "pos": "end",
+      "kind": {
+        "type": "DefaultContext"
+      }
+    },
+    {
+      "eventId": 133,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "result": {
+        "value": 1,
+        "dataType": "int"
+      },
+      "nodeKey": "Loops.java-9:43-9:433",
+      "assigns": [
+        {
+          "identifier": {
+            "name": "j",
+            "parent": "-",
+            "dataType": "localIdentifier"
+          },
+          "value": {
+            "value": 1,
+            "dataType": "int"
+          },
+          "dataType": "write"
+        }
+      ],
+      "type": "ExecutionStep",
+      "kind": "expression"
+    },
+    {
+      "eventId": 133,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 134,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 135,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 135,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 136,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 136,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "result": {
+        "value": true,
+        "dataType": "bool"
+      },
+      "nodeKey": "Loops.java-9:29-9:2912",
+      "assigns": [],
+      "type": "ExecutionStep",
+      "kind": "expression"
+    },
+    {
+      "eventId": 134,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 137,
+      "eventType": "controlFlow",
+      "type": "GroupEvent",
+      "pos": "start",
+      "kind": {
+        "type": "DefaultContext"
+      }
+    },
+    {
+      "eventId": 138,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 139,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 139,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "stepId": 0,
+      "argsValues": [
+        {
+          "value": "Bonjour",
+          "dataType": "string"
+        }
+      ],
+      "nodeKey": "Loops.java-10:17-10:46",
+      "type": "ExecutionStep",
+      "kind": "logVoidCall"
+    },
+    {
+      "eventId": 138,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 137,
+      "eventType": "controlFlow",
+      "type": "GroupEvent",
+      "pos": "end",
+      "kind": {
+        "type": "DefaultContext"
+      }
+    },
+    {
+      "eventId": 140,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "result": {
+        "value": 2,
+        "dataType": "int"
+      },
+      "nodeKey": "Loops.java-9:43-9:433",
+      "assigns": [
+        {
+          "identifier": {
+            "name": "j",
+            "parent": "-",
+            "dataType": "localIdentifier"
+          },
+          "value": {
+            "value": 2,
+            "dataType": "int"
+          },
+          "dataType": "write"
+        }
+      ],
+      "type": "ExecutionStep",
+      "kind": "expression"
+    },
+    {
+      "eventId": 140,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 141,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 142,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 142,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 143,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 143,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "result": {
+        "value": true,
+        "dataType": "bool"
+      },
+      "nodeKey": "Loops.java-9:29-9:2912",
+      "assigns": [],
+      "type": "ExecutionStep",
+      "kind": "expression"
+    },
+    {
+      "eventId": 141,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 144,
+      "eventType": "controlFlow",
+      "type": "GroupEvent",
+      "pos": "start",
+      "kind": {
+        "type": "DefaultContext"
+      }
+    },
+    {
+      "eventId": 145,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 146,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 146,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "stepId": 0,
+      "argsValues": [
+        {
+          "value": "Bonjour",
+          "dataType": "string"
+        }
+      ],
+      "nodeKey": "Loops.java-10:17-10:46",
+      "type": "ExecutionStep",
+      "kind": "logVoidCall"
+    },
+    {
+      "eventId": 145,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 144,
+      "eventType": "controlFlow",
+      "type": "GroupEvent",
+      "pos": "end",
+      "kind": {
+        "type": "DefaultContext"
+      }
+    },
+    {
+      "eventId": 147,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "result": {
+        "value": 3,
+        "dataType": "int"
+      },
+      "nodeKey": "Loops.java-9:43-9:433",
+      "assigns": [
+        {
+          "identifier": {
+            "name": "j",
+            "parent": "-",
+            "dataType": "localIdentifier"
+          },
+          "value": {
+            "value": 3,
+            "dataType": "int"
+          },
+          "dataType": "write"
+        }
+      ],
+      "type": "ExecutionStep",
+      "kind": "expression"
+    },
+    {
+      "eventId": 147,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 148,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 149,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 149,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 150,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 150,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "result": {
+        "value": false,
+        "dataType": "bool"
+      },
+      "nodeKey": "Loops.java-9:29-9:2912",
+      "assigns": [],
+      "type": "ExecutionStep",
+      "kind": "expression"
+    },
+    {
+      "eventId": 148,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 151,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "result": {
+        "value": 2,
+        "dataType": "int"
+      },
+      "nodeKey": "Loops.java-13:13-13:1310",
+      "assigns": [
+        {
+          "identifier": {
+            "name": "compteur",
+            "parent": "-",
+            "dataType": "localIdentifier"
+          },
+          "value": {
+            "value": 2,
+            "dataType": "int"
+          },
+          "dataType": "write"
+        }
+      ],
+      "type": "ExecutionStep",
+      "kind": "expression"
+    },
+    {
+      "eventId": 151,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 124,
+      "eventType": "controlFlow",
+      "type": "GroupEvent",
+      "pos": "end",
+      "kind": {
+        "type": "DefaultContext"
+      }
+    },
+    {
+      "eventId": 152,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 153,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 153,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 154,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 154,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "result": {
+        "value": true,
+        "dataType": "bool"
+      },
+      "nodeKey": "Loops.java-8:16-8:1613",
+      "assigns": [],
+      "type": "ExecutionStep",
+      "kind": "expression"
+    },
+    {
+      "eventId": 152,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 155,
+      "eventType": "controlFlow",
+      "type": "GroupEvent",
+      "pos": "start",
+      "kind": {
+        "type": "DefaultContext"
+      }
+    },
+    {
+      "eventId": 156,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 157,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 157,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "nodeKey": "Loops.java-9:18-9:27",
+      "assigns": [
+        {
+          "identifier": {
+            "name": "j",
+            "parent": "-",
+            "dataType": "localIdentifier"
+          },
+          "value": {
+            "value": 0,
+            "dataType": "int"
+          },
+          "dataType": "write"
+        }
+      ],
+      "type": "ExecutionStep",
+      "kind": "expressionWithoutReturn"
+    },
+    {
+      "eventId": 156,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 158,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 159,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 159,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 160,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 160,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "result": {
+        "value": true,
+        "dataType": "bool"
+      },
+      "nodeKey": "Loops.java-9:29-9:2912",
+      "assigns": [],
+      "type": "ExecutionStep",
+      "kind": "expression"
+    },
+    {
+      "eventId": 158,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 161,
+      "eventType": "controlFlow",
+      "type": "GroupEvent",
+      "pos": "start",
+      "kind": {
+        "type": "DefaultContext"
+      }
+    },
+    {
+      "eventId": 162,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 163,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 163,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "stepId": 0,
+      "argsValues": [
+        {
+          "value": "Bonjour",
+          "dataType": "string"
+        }
+      ],
+      "nodeKey": "Loops.java-10:17-10:46",
+      "type": "ExecutionStep",
+      "kind": "logVoidCall"
+    },
+    {
+      "eventId": 162,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 161,
+      "eventType": "controlFlow",
+      "type": "GroupEvent",
+      "pos": "end",
+      "kind": {
+        "type": "DefaultContext"
+      }
+    },
+    {
+      "eventId": 164,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "result": {
+        "value": 1,
+        "dataType": "int"
+      },
+      "nodeKey": "Loops.java-9:43-9:433",
+      "assigns": [
+        {
+          "identifier": {
+            "name": "j",
+            "parent": "-",
+            "dataType": "localIdentifier"
+          },
+          "value": {
+            "value": 1,
+            "dataType": "int"
+          },
+          "dataType": "write"
+        }
+      ],
+      "type": "ExecutionStep",
+      "kind": "expression"
+    },
+    {
+      "eventId": 164,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 165,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 166,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 166,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 167,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 167,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "result": {
+        "value": true,
+        "dataType": "bool"
+      },
+      "nodeKey": "Loops.java-9:29-9:2912",
+      "assigns": [],
+      "type": "ExecutionStep",
+      "kind": "expression"
+    },
+    {
+      "eventId": 165,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 168,
+      "eventType": "controlFlow",
+      "type": "GroupEvent",
+      "pos": "start",
+      "kind": {
+        "type": "DefaultContext"
+      }
+    },
+    {
+      "eventId": 169,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 170,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 170,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "stepId": 0,
+      "argsValues": [
+        {
+          "value": "Bonjour",
+          "dataType": "string"
+        }
+      ],
+      "nodeKey": "Loops.java-10:17-10:46",
+      "type": "ExecutionStep",
+      "kind": "logVoidCall"
+    },
+    {
+      "eventId": 169,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 168,
+      "eventType": "controlFlow",
+      "type": "GroupEvent",
+      "pos": "end",
+      "kind": {
+        "type": "DefaultContext"
+      }
+    },
+    {
+      "eventId": 171,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "result": {
+        "value": 2,
+        "dataType": "int"
+      },
+      "nodeKey": "Loops.java-9:43-9:433",
+      "assigns": [
+        {
+          "identifier": {
+            "name": "j",
+            "parent": "-",
+            "dataType": "localIdentifier"
+          },
+          "value": {
+            "value": 2,
+            "dataType": "int"
+          },
+          "dataType": "write"
+        }
+      ],
+      "type": "ExecutionStep",
+      "kind": "expression"
+    },
+    {
+      "eventId": 171,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 172,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 173,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 173,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 174,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 174,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "result": {
+        "value": false,
+        "dataType": "bool"
+      },
+      "nodeKey": "Loops.java-9:29-9:2912",
+      "assigns": [],
+      "type": "ExecutionStep",
+      "kind": "expression"
+    },
+    {
+      "eventId": 172,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 175,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "result": {
+        "value": 1,
+        "dataType": "int"
+      },
+      "nodeKey": "Loops.java-13:13-13:1310",
+      "assigns": [
+        {
+          "identifier": {
+            "name": "compteur",
+            "parent": "-",
+            "dataType": "localIdentifier"
+          },
+          "value": {
+            "value": 1,
+            "dataType": "int"
+          },
+          "dataType": "write"
+        }
+      ],
+      "type": "ExecutionStep",
+      "kind": "expression"
+    },
+    {
+      "eventId": 175,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 155,
+      "eventType": "controlFlow",
+      "type": "GroupEvent",
+      "pos": "end",
+      "kind": {
+        "type": "DefaultContext"
+      }
+    },
+    {
+      "eventId": 176,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 177,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 177,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 178,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 178,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "result": {
+        "value": true,
+        "dataType": "bool"
+      },
+      "nodeKey": "Loops.java-8:16-8:1613",
+      "assigns": [],
+      "type": "ExecutionStep",
+      "kind": "expression"
+    },
+    {
+      "eventId": 176,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 179,
+      "eventType": "controlFlow",
+      "type": "GroupEvent",
+      "pos": "start",
+      "kind": {
+        "type": "DefaultContext"
+      }
+    },
+    {
+      "eventId": 180,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 181,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 181,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "nodeKey": "Loops.java-9:18-9:27",
+      "assigns": [
+        {
+          "identifier": {
+            "name": "j",
+            "parent": "-",
+            "dataType": "localIdentifier"
+          },
+          "value": {
+            "value": 0,
+            "dataType": "int"
+          },
+          "dataType": "write"
+        }
+      ],
+      "type": "ExecutionStep",
+      "kind": "expressionWithoutReturn"
+    },
+    {
+      "eventId": 180,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 182,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 183,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 183,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 184,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 184,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "result": {
+        "value": true,
+        "dataType": "bool"
+      },
+      "nodeKey": "Loops.java-9:29-9:2912",
+      "assigns": [],
+      "type": "ExecutionStep",
+      "kind": "expression"
+    },
+    {
+      "eventId": 182,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 185,
+      "eventType": "controlFlow",
+      "type": "GroupEvent",
+      "pos": "start",
+      "kind": {
+        "type": "DefaultContext"
+      }
+    },
+    {
+      "eventId": 186,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 187,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 187,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "stepId": 0,
+      "argsValues": [
+        {
+          "value": "Bonjour",
+          "dataType": "string"
+        }
+      ],
+      "nodeKey": "Loops.java-10:17-10:46",
+      "type": "ExecutionStep",
+      "kind": "logVoidCall"
+    },
+    {
+      "eventId": 186,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 185,
+      "eventType": "controlFlow",
+      "type": "GroupEvent",
+      "pos": "end",
+      "kind": {
+        "type": "DefaultContext"
+      }
+    },
+    {
+      "eventId": 188,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "result": {
+        "value": 1,
+        "dataType": "int"
+      },
+      "nodeKey": "Loops.java-9:43-9:433",
+      "assigns": [
+        {
+          "identifier": {
+            "name": "j",
+            "parent": "-",
+            "dataType": "localIdentifier"
+          },
+          "value": {
+            "value": 1,
+            "dataType": "int"
+          },
+          "dataType": "write"
+        }
+      ],
+      "type": "ExecutionStep",
+      "kind": "expression"
+    },
+    {
+      "eventId": 188,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 189,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 190,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 190,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 191,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 191,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "result": {
+        "value": false,
+        "dataType": "bool"
+      },
+      "nodeKey": "Loops.java-9:29-9:2912",
+      "assigns": [],
+      "type": "ExecutionStep",
+      "kind": "expression"
+    },
+    {
+      "eventId": 189,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 192,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "result": {
+        "value": 0,
+        "dataType": "int"
+      },
+      "nodeKey": "Loops.java-13:13-13:1310",
+      "assigns": [
+        {
+          "identifier": {
+            "name": "compteur",
+            "parent": "-",
+            "dataType": "localIdentifier"
+          },
+          "value": {
+            "value": 0,
+            "dataType": "int"
+          },
+          "dataType": "write"
+        }
+      ],
+      "type": "ExecutionStep",
+      "kind": "expression"
+    },
+    {
+      "eventId": 192,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 179,
+      "eventType": "controlFlow",
+      "type": "GroupEvent",
+      "pos": "end",
+      "kind": {
+        "type": "DefaultContext"
+      }
+    },
+    {
+      "eventId": 193,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 194,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 194,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 195,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 195,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "result": {
+        "value": false,
+        "dataType": "bool"
+      },
+      "nodeKey": "Loops.java-8:16-8:1613",
+      "assigns": [],
+      "type": "ExecutionStep",
+      "kind": "expression"
+    },
+    {
+      "eventId": 193,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 0,
+      "eventType": "controlFlow",
+      "type": "GroupEvent",
+      "pos": "end",
+      "kind": {
+        "type": "FunctionContext",
+        "functionName": "main"
+      }
+    }
+  ]
+}

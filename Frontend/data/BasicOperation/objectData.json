@@ -1,0 +1,26 @@
+[
+  {
+    "self": {
+      "className": {
+        "className": "A",
+        "packageName": ""
+      },
+      "pointer": 885284298,
+      "version": 1,
+      "dataType": "instanceRef"
+    },
+    "fields": []
+  },
+  {
+    "self": {
+      "className": {
+        "className": "A",
+        "packageName": ""
+      },
+      "pointer": 885284298,
+      "version": 2,
+      "dataType": "instanceRef"
+    },
+    "fields": []
+  }
+]

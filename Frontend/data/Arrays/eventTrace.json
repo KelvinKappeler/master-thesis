@@ -1,0 +1,466 @@
+{
+  "trace": [
+    {
+      "eventId": 0,
+      "eventType": "controlFlow",
+      "type": "GroupEvent",
+      "pos": "start",
+      "kind": {
+        "type": "FunctionContext",
+        "functionName": "main"
+      }
+    },
+    {
+      "eventId": 1,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 2,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 2,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "nodeKey": "Arrays.java-3:9-3:51",
+      "assigns": [
+        {
+          "identifier": {
+            "name": "numbers",
+            "parent": "-",
+            "dataType": "localIdentifier"
+          },
+          "value": {
+            "elemType": "class [[I",
+            "pointer": 284720968,
+            "version": 1,
+            "dataType": "arrayRef"
+          },
+          "dataType": "write"
+        }
+      ],
+      "type": "ExecutionStep",
+      "kind": "expressionWithoutReturn"
+    },
+    {
+      "eventId": 1,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 3,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 4,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "stepId": 5,
+      "nodeKey": "Arrays.java-6:13-6:38",
+      "argsValues": [
+        {
+          "value": "Bastien",
+          "dataType": "string"
+        },
+        {
+          "value": 30,
+          "dataType": "int"
+        }
+      ],
+      "type": "ExecutionStep",
+      "kind": "logCall"
+    },
+    {
+      "eventId": 6,
+      "eventType": "controlFlow",
+      "type": "GroupEvent",
+      "pos": "start",
+      "kind": {
+        "type": "FunctionContext",
+        "functionName": "<init>"
+      }
+    },
+    {
+      "eventId": 7,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 8,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 8,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "stepId": 0,
+      "nodeKey": "absent",
+      "argsValues": [],
+      "type": "ExecutionStep",
+      "kind": "logVoidCall"
+    },
+    {
+      "eventId": 7,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 9,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 10,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 10,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "result": {
+        "value": "Bastien",
+        "dataType": "string"
+      },
+      "nodeKey": "Arrays.java-16:13-16:29",
+      "assigns": [
+        {
+          "identifier": {
+            "name": "this.name",
+            "parent": "-",
+            "dataType": "localIdentifier"
+          },
+          "value": {
+            "value": "Bastien",
+            "dataType": "string"
+          },
+          "dataType": "write"
+        }
+      ],
+      "type": "ExecutionStep",
+      "kind": "expression"
+    },
+    {
+      "eventId": 9,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 11,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 12,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 12,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "result": {
+        "value": 30,
+        "dataType": "int"
+      },
+      "nodeKey": "Arrays.java-17:13-17:25",
+      "assigns": [
+        {
+          "identifier": {
+            "name": "this.hp",
+            "parent": "-",
+            "dataType": "localIdentifier"
+          },
+          "value": {
+            "value": 30,
+            "dataType": "int"
+          },
+          "dataType": "write"
+        }
+      ],
+      "type": "ExecutionStep",
+      "kind": "expression"
+    },
+    {
+      "eventId": 11,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 6,
+      "eventType": "controlFlow",
+      "type": "GroupEvent",
+      "pos": "end",
+      "kind": {
+        "type": "FunctionContext",
+        "functionName": "<init>"
+      }
+    },
+    {
+      "result": {
+        "pointer": 500977346,
+        "className": {
+          "className": "Player",
+          "packageName": ""
+        },
+        "version": 2,
+        "dataType": "instanceRef"
+      },
+      "stepId": 5,
+      "nodeKey": "Arrays.java-6:13-6:38",
+      "type": "ExecutionStep",
+      "kind": "logReturn"
+    },
+    {
+      "stepId": 13,
+      "nodeKey": "Arrays.java-7:13-7:37",
+      "argsValues": [
+        {
+          "value": "Kelvin",
+          "dataType": "string"
+        },
+        {
+          "value": 20,
+          "dataType": "int"
+        }
+      ],
+      "type": "ExecutionStep",
+      "kind": "logCall"
+    },
+    {
+      "eventId": 14,
+      "eventType": "controlFlow",
+      "type": "GroupEvent",
+      "pos": "start",
+      "kind": {
+        "type": "FunctionContext",
+        "functionName": "<init>"
+      }
+    },
+    {
+      "eventId": 15,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 16,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 16,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "stepId": 0,
+      "nodeKey": "absent",
+      "argsValues": [],
+      "type": "ExecutionStep",
+      "kind": "logVoidCall"
+    },
+    {
+      "eventId": 15,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 17,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 18,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 18,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "result": {
+        "value": "Kelvin",
+        "dataType": "string"
+      },
+      "nodeKey": "Arrays.java-16:13-16:29",
+      "assigns": [
+        {
+          "identifier": {
+            "name": "this.name",
+            "parent": "-",
+            "dataType": "localIdentifier"
+          },
+          "value": {
+            "value": "Kelvin",
+            "dataType": "string"
+          },
+          "dataType": "write"
+        }
+      ],
+      "type": "ExecutionStep",
+      "kind": "expression"
+    },
+    {
+      "eventId": 17,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 19,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 20,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 20,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "result": {
+        "value": 20,
+        "dataType": "int"
+      },
+      "nodeKey": "Arrays.java-17:13-17:25",
+      "assigns": [
+        {
+          "identifier": {
+            "name": "this.hp",
+            "parent": "-",
+            "dataType": "localIdentifier"
+          },
+          "value": {
+            "value": 20,
+            "dataType": "int"
+          },
+          "dataType": "write"
+        }
+      ],
+      "type": "ExecutionStep",
+      "kind": "expression"
+    },
+    {
+      "eventId": 19,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 14,
+      "eventType": "controlFlow",
+      "type": "GroupEvent",
+      "pos": "end",
+      "kind": {
+        "type": "FunctionContext",
+        "functionName": "<init>"
+      }
+    },
+    {
+      "result": {
+        "pointer": 1848402763,
+        "className": {
+          "className": "Player",
+          "packageName": ""
+        },
+        "version": 3,
+        "dataType": "instanceRef"
+      },
+      "stepId": 13,
+      "nodeKey": "Arrays.java-7:13-7:37",
+      "type": "ExecutionStep",
+      "kind": "logReturn"
+    },
+    {
+      "eventId": 4,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "nodeKey": "Arrays.java-5:9-8:11",
+      "assigns": [
+        {
+          "identifier": {
+            "name": "players",
+            "parent": "-",
+            "dataType": "localIdentifier"
+          },
+          "value": {
+            "elemType": "class [[LArrays$Player;",
+            "pointer": 933699219,
+            "version": 4,
+            "dataType": "arrayRef"
+          },
+          "dataType": "write"
+        }
+      ],
+      "type": "ExecutionStep",
+      "kind": "expressionWithoutReturn"
+    },
+    {
+      "eventId": 3,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 0,
+      "eventType": "controlFlow",
+      "type": "GroupEvent",
+      "pos": "end",
+      "kind": {
+        "type": "FunctionContext",
+        "functionName": "main"
+      }
+    }
+  ]
+}

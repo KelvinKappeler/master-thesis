@@ -1,0 +1,404 @@
+{
+  "sourceFile": {
+    "fileName": "Conditions.java",
+    "packageName": ""
+  },
+  "syntaxNodes": {
+    "Conditions.java-11:9-11:19": {
+      "endLine": 11,
+      "identifier": "Conditions.java-11:9-11:19",
+      "expression": {
+        "tokens": [
+          {
+            "kind": "Text",
+            "text": "int j = 3;"
+          }
+        ],
+        "kind": "expression"
+      },
+      "children": [],
+      "kind": "presentInSourceCode",
+      "prefix": {
+        "kind": "Text",
+        "text": "        "
+      },
+      "startLine": 11,
+      "suffix": {
+        "kind": "Text",
+        "text": "\n"
+      },
+      "sourceFile": {
+        "fileName": "Conditions.java",
+        "packageName": ""
+      }
+    },
+    "Conditions.java-6:20-6:21": {
+      "endLine": 6,
+      "identifier": "Conditions.java-6:20-6:21",
+      "expression": {
+        "tokens": [
+          {
+            "kind": "Text",
+            "text": "i"
+          }
+        ],
+        "kind": "expression"
+      },
+      "children": [],
+      "kind": "presentInSourceCode",
+      "prefix": {
+        "kind": "Text",
+        "text": "        } else if ("
+      },
+      "startLine": 6,
+      "suffix": {
+        "kind": "Text",
+        "text": " == 0) {\n"
+      },
+      "sourceFile": {
+        "fileName": "Conditions.java",
+        "packageName": ""
+      }
+    },
+    "Conditions.java-3:9-3:19": {
+      "endLine": 3,
+      "identifier": "Conditions.java-3:9-3:19",
+      "expression": {
+        "tokens": [
+          {
+            "kind": "Text",
+            "text": "int i = 0;"
+          }
+        ],
+        "kind": "expression"
+      },
+      "children": [],
+      "kind": "presentInSourceCode",
+      "prefix": {
+        "kind": "Text",
+        "text": "        "
+      },
+      "startLine": 3,
+      "suffix": {
+        "kind": "Text",
+        "text": "\n"
+      },
+      "sourceFile": {
+        "fileName": "Conditions.java",
+        "packageName": ""
+      }
+    },
+    "Conditions.java-7:13-7:18": {
+      "endLine": 7,
+      "identifier": "Conditions.java-7:13-7:18",
+      "expression": {
+        "tokens": [
+          {
+            "kind": "Text",
+            "text": "i = 2"
+          }
+        ],
+        "kind": "expression"
+      },
+      "children": [],
+      "kind": "presentInSourceCode",
+      "prefix": {
+        "kind": "Text",
+        "text": "            "
+      },
+      "startLine": 7,
+      "suffix": {
+        "kind": "Text",
+        "text": ";\n"
+      },
+      "sourceFile": {
+        "fileName": "Conditions.java",
+        "packageName": ""
+      }
+    },
+    "Conditions.java-2:29-2:42": {
+      "endLine": 2,
+      "identifier": "Conditions.java-2:29-2:42",
+      "expression": {
+        "tokens": [
+          {
+            "kind": "Text",
+            "text": "String[] args"
+          }
+        ],
+        "kind": "expression"
+      },
+      "children": [],
+      "kind": "presentInSourceCode",
+      "prefix": {
+        "kind": "Text",
+        "text": "    public static void main("
+      },
+      "startLine": 2,
+      "suffix": {
+        "kind": "Text",
+        "text": ") {\n"
+      },
+      "sourceFile": {
+        "fileName": "Conditions.java",
+        "packageName": ""
+      }
+    },
+    "Conditions.java-7:13-7:14": {
+      "endLine": 7,
+      "identifier": "Conditions.java-7:13-7:14",
+      "expression": {
+        "tokens": [
+          {
+            "kind": "Text",
+            "text": "i"
+          }
+        ],
+        "kind": "expression"
+      },
+      "children": [],
+      "kind": "presentInSourceCode",
+      "prefix": {
+        "kind": "Text",
+        "text": "            "
+      },
+      "startLine": 7,
+      "suffix": {
+        "kind": "Text",
+        "text": " = 2;\n"
+      },
+      "sourceFile": {
+        "fileName": "Conditions.java",
+        "packageName": ""
+      }
+    },
+    "Conditions.java-5:13-5:18": {
+      "endLine": 5,
+      "identifier": "Conditions.java-5:13-5:18",
+      "expression": {
+        "tokens": [
+          {
+            "kind": "Text",
+            "text": "i = 3"
+          }
+        ],
+        "kind": "expression"
+      },
+      "children": [],
+      "kind": "presentInSourceCode",
+      "prefix": {
+        "kind": "Text",
+        "text": "            "
+      },
+      "startLine": 5,
+      "suffix": {
+        "kind": "Text",
+        "text": ";\n"
+      },
+      "sourceFile": {
+        "fileName": "Conditions.java",
+        "packageName": ""
+      }
+    },
+    "Conditions.java-2:29-2:35": {
+      "endLine": 2,
+      "identifier": "Conditions.java-2:29-2:35",
+      "expression": {
+        "tokens": [
+          {
+            "kind": "Text",
+            "text": "String"
+          }
+        ],
+        "kind": "expression"
+      },
+      "children": [],
+      "kind": "presentInSourceCode",
+      "prefix": {
+        "kind": "Text",
+        "text": "    public static void main("
+      },
+      "startLine": 2,
+      "suffix": {
+        "kind": "Text",
+        "text": "[] args) {\n"
+      },
+      "sourceFile": {
+        "fileName": "Conditions.java",
+        "packageName": ""
+      }
+    },
+    "Conditions.java-4:13-4:136": {
+      "endLine": 4,
+      "identifier": "Conditions.java-4:13-4:136",
+      "expression": {
+        "tokens": [
+          {
+            "kind": "Text",
+            "text": "i == 2"
+          }
+        ],
+        "kind": "expression"
+      },
+      "children": [],
+      "kind": "presentInSourceCode",
+      "prefix": {
+        "kind": "Text",
+        "text": "        if ("
+      },
+      "startLine": 4,
+      "suffix": {
+        "kind": "Text",
+        "text": ""
+      },
+      "sourceFile": {
+        "fileName": "Conditions.java",
+        "packageName": ""
+      }
+    },
+    "Conditions.java-5:13-5:14": {
+      "endLine": 5,
+      "identifier": "Conditions.java-5:13-5:14",
+      "expression": {
+        "tokens": [
+          {
+            "kind": "Text",
+            "text": "i"
+          }
+        ],
+        "kind": "expression"
+      },
+      "children": [],
+      "kind": "presentInSourceCode",
+      "prefix": {
+        "kind": "Text",
+        "text": "            "
+      },
+      "startLine": 5,
+      "suffix": {
+        "kind": "Text",
+        "text": " = 3;\n"
+      },
+      "sourceFile": {
+        "fileName": "Conditions.java",
+        "packageName": ""
+      }
+    },
+    "Conditions.java-6:20-6:206": {
+      "endLine": 6,
+      "identifier": "Conditions.java-6:20-6:206",
+      "expression": {
+        "tokens": [
+          {
+            "kind": "Text",
+            "text": "i == 0"
+          }
+        ],
+        "kind": "expression"
+      },
+      "children": [],
+      "kind": "presentInSourceCode",
+      "prefix": {
+        "kind": "Text",
+        "text": "        } else if ("
+      },
+      "startLine": 6,
+      "suffix": {
+        "kind": "Text",
+        "text": ""
+      },
+      "sourceFile": {
+        "fileName": "Conditions.java",
+        "packageName": ""
+      }
+    },
+    "absent": {
+      "identifier": "absent",
+      "kind": "absent"
+    },
+    "Conditions.java-9:13-9:14": {
+      "endLine": 9,
+      "identifier": "Conditions.java-9:13-9:14",
+      "expression": {
+        "tokens": [
+          {
+            "kind": "Text",
+            "text": "i"
+          }
+        ],
+        "kind": "expression"
+      },
+      "children": [],
+      "kind": "presentInSourceCode",
+      "prefix": {
+        "kind": "Text",
+        "text": "            "
+      },
+      "startLine": 9,
+      "suffix": {
+        "kind": "Text",
+        "text": " = -1;\n"
+      },
+      "sourceFile": {
+        "fileName": "Conditions.java",
+        "packageName": ""
+      }
+    },
+    "Conditions.java-9:13-9:19": {
+      "endLine": 9,
+      "identifier": "Conditions.java-9:13-9:19",
+      "expression": {
+        "tokens": [
+          {
+            "kind": "Text",
+            "text": "i = -1"
+          }
+        ],
+        "kind": "expression"
+      },
+      "children": [],
+      "kind": "presentInSourceCode",
+      "prefix": {
+        "kind": "Text",
+        "text": "            "
+      },
+      "startLine": 9,
+      "suffix": {
+        "kind": "Text",
+        "text": ";\n"
+      },
+      "sourceFile": {
+        "fileName": "Conditions.java",
+        "packageName": ""
+      }
+    },
+    "Conditions.java-4:13-4:14": {
+      "endLine": 4,
+      "identifier": "Conditions.java-4:13-4:14",
+      "expression": {
+        "tokens": [
+          {
+            "kind": "Text",
+            "text": "i"
+          }
+        ],
+        "kind": "expression"
+      },
+      "children": [],
+      "kind": "presentInSourceCode",
+      "prefix": {
+        "kind": "Text",
+        "text": "        if ("
+      },
+      "startLine": 4,
+      "suffix": {
+        "kind": "Text",
+        "text": " == 2) {\n"
+      },
+      "sourceFile": {
+        "fileName": "Conditions.java",
+        "packageName": ""
+      }
+    }
+  }
+}

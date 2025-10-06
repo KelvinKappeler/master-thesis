@@ -1,0 +1,403 @@
+{
+  "trace": [
+    {
+      "eventId": 0,
+      "eventType": "controlFlow",
+      "type": "GroupEvent",
+      "pos": "start",
+      "kind": {
+        "type": "FunctionContext",
+        "functionName": "main"
+      }
+    },
+    {
+      "eventId": 1,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 2,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "stepId": 3,
+      "argsValues": [],
+      "nodeKey": "BasicOperation.java-7:15-7:22",
+      "type": "ExecutionStep",
+      "kind": "logCall"
+    },
+    {
+      "eventId": 4,
+      "eventType": "controlFlow",
+      "type": "GroupEvent",
+      "pos": "start",
+      "kind": {
+        "type": "FunctionContext",
+        "functionName": "<init>"
+      }
+    },
+    {
+      "eventId": 5,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 6,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 6,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "stepId": 0,
+      "argsValues": [],
+      "nodeKey": "absent",
+      "type": "ExecutionStep",
+      "kind": "logVoidCall"
+    },
+    {
+      "eventId": 5,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 4,
+      "eventType": "controlFlow",
+      "type": "GroupEvent",
+      "pos": "end",
+      "kind": {
+        "type": "FunctionContext",
+        "functionName": "<init>"
+      }
+    },
+    {
+      "result": {
+        "className": {
+          "className": "A",
+          "packageName": ""
+        },
+        "pointer": 885284298,
+        "version": 1,
+        "dataType": "instanceRef"
+      },
+      "stepId": 3,
+      "nodeKey": "BasicOperation.java-7:15-7:22",
+      "type": "ExecutionStep",
+      "kind": "logReturn"
+    },
+    {
+      "eventId": 2,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "nodeKey": "BasicOperation.java-7:9-7:23",
+      "assigns": [
+        {
+          "value": {
+            "className": {
+              "className": "A",
+              "packageName": ""
+            },
+            "pointer": 885284298,
+            "version": 3,
+            "dataType": "instanceRef"
+          },
+          "identifier": {
+            "name": "a",
+            "parent": "-",
+            "dataType": "localIdentifier"
+          },
+          "dataType": "write"
+        }
+      ],
+      "type": "ExecutionStep",
+      "kind": "expressionWithoutReturn"
+    },
+    {
+      "eventId": 1,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 7,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 8,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "stepId": 9,
+      "argsValues": [],
+      "nodeKey": "BasicOperation.java-8:32-8:43",
+      "type": "ExecutionStep",
+      "kind": "logCall"
+    },
+    {
+      "eventId": 10,
+      "eventType": "controlFlow",
+      "type": "GroupEvent",
+      "pos": "start",
+      "kind": {
+        "type": "FunctionContext",
+        "functionName": "number2"
+      }
+    },
+    {
+      "eventId": 10,
+      "eventType": "controlFlow",
+      "type": "GroupEvent",
+      "pos": "end",
+      "kind": {
+        "type": "FunctionContext",
+        "functionName": "number2"
+      }
+    },
+    {
+      "result": {
+        "value": 1,
+        "dataType": "int"
+      },
+      "stepId": 9,
+      "nodeKey": "BasicOperation.java-8:32-8:43",
+      "type": "ExecutionStep",
+      "kind": "logReturn"
+    },
+    {
+      "eventId": 8,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "stepId": 11,
+      "argsValues": [
+        {
+          "value": 1,
+          "dataType": "int"
+        }
+      ],
+      "nodeKey": "BasicOperation.java-8:9-8:44",
+      "type": "ExecutionStep",
+      "kind": "logCall"
+    },
+    {
+      "eventId": 12,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "stepId": 13,
+      "argsValues": [],
+      "nodeKey": "BasicOperation.java-8:15-8:26",
+      "type": "ExecutionStep",
+      "kind": "logCall"
+    },
+    {
+      "eventId": 14,
+      "eventType": "controlFlow",
+      "type": "GroupEvent",
+      "pos": "start",
+      "kind": {
+        "type": "FunctionContext",
+        "functionName": "number1"
+      }
+    },
+    {
+      "eventId": 14,
+      "eventType": "controlFlow",
+      "type": "GroupEvent",
+      "pos": "end",
+      "kind": {
+        "type": "FunctionContext",
+        "functionName": "number1"
+      }
+    },
+    {
+      "result": {
+        "value": 1,
+        "dataType": "int"
+      },
+      "stepId": 13,
+      "nodeKey": "BasicOperation.java-8:15-8:26",
+      "type": "ExecutionStep",
+      "kind": "logReturn"
+    },
+    {
+      "stepId": 15,
+      "argsValues": [
+        {
+          "value": 1,
+          "dataType": "int"
+        }
+      ],
+      "nodeKey": "BasicOperation.java-8:9-8:27",
+      "type": "ExecutionStep",
+      "kind": "logCall"
+    },
+    {
+      "eventId": 16,
+      "eventType": "controlFlow",
+      "type": "GroupEvent",
+      "pos": "start",
+      "kind": {
+        "type": "FunctionContext",
+        "functionName": "foo"
+      }
+    },
+    {
+      "eventId": 17,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "result": {
+        "className": {
+          "className": "A",
+          "packageName": ""
+        },
+        "pointer": 885284298,
+        "version": 5,
+        "dataType": "instanceRef"
+      },
+      "nodeKey": "BasicOperation.java-21:20-21:24",
+      "assigns": [],
+      "type": "ExecutionStep",
+      "kind": "expression"
+    },
+    {
+      "eventId": 17,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 16,
+      "eventType": "controlFlow",
+      "type": "GroupEvent",
+      "pos": "end",
+      "kind": {
+        "type": "FunctionContext",
+        "functionName": "foo"
+      }
+    },
+    {
+      "result": {
+        "className": {
+          "className": "A",
+          "packageName": ""
+        },
+        "pointer": 885284298,
+        "version": 7,
+        "dataType": "instanceRef"
+      },
+      "stepId": 15,
+      "nodeKey": "BasicOperation.java-8:9-8:27",
+      "type": "ExecutionStep",
+      "kind": "logReturn"
+    },
+    {
+      "eventId": 12,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 18,
+      "eventType": "controlFlow",
+      "type": "GroupEvent",
+      "pos": "start",
+      "kind": {
+        "type": "FunctionContext",
+        "functionName": "bar"
+      }
+    },
+    {
+      "eventId": 19,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "result": {
+        "className": {
+          "className": "A",
+          "packageName": ""
+        },
+        "pointer": 885284298,
+        "version": 9,
+        "dataType": "instanceRef"
+      },
+      "nodeKey": "BasicOperation.java-25:20-25:24",
+      "assigns": [],
+      "type": "ExecutionStep",
+      "kind": "expression"
+    },
+    {
+      "eventId": 19,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 18,
+      "eventType": "controlFlow",
+      "type": "GroupEvent",
+      "pos": "end",
+      "kind": {
+        "type": "FunctionContext",
+        "functionName": "bar"
+      }
+    },
+    {
+      "result": {
+        "className": {
+          "className": "A",
+          "packageName": ""
+        },
+        "pointer": 885284298,
+        "version": 11,
+        "dataType": "instanceRef"
+      },
+      "stepId": 11,
+      "nodeKey": "BasicOperation.java-8:9-8:44",
+      "type": "ExecutionStep",
+      "kind": "logReturn"
+    },
+    {
+      "eventId": 7,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 0,
+      "eventType": "controlFlow",
+      "type": "GroupEvent",
+      "pos": "end",
+      "kind": {
+        "type": "FunctionContext",
+        "functionName": "main"
+      }
+    }
+  ]
+}

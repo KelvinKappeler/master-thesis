@@ -1,0 +1,282 @@
+{
+  "sources" : [ {
+    "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
+    "path" : "Examples/src/main/java/ch/epfl/printwizard/examples/Main.java",
+    "language" : "java",
+    "lines" : 18,
+    "sourceContent" : "package ch.epfl.printwizard.examples;\n\npublic class Main {\n\n    public static void main(String[] args) {\n        System.out.println(\"Hello, World!\");\n\n        int i = 0;\n        i = 5 + 2;\n        //int[] array = new int[5];\n        //array[2] = 10;\n        \n        //Player player = new Player(100);\n        //System.out.println(\"Player health points: \" + player.getHealthPoints());\n        //player.setHealthPoints(80);\n        //System.out.println(\"Player health points after damage: \" + player.getHealthPoints());\n    }\n}\n"
+  }, {
+    "sourceId" : "src:ch/epfl/printwizard/examples/Player.java",
+    "path" : "Examples/src/main/java/ch/epfl/printwizard/examples/Player.java",
+    "language" : "java",
+    "lines" : 19,
+    "sourceContent" : "package ch.epfl.printwizard.examples;\n\npublic final class Player {\n    \n    private int healthPoints;\n    \n    public Player(int healthPoints) {\n        this.healthPoints = healthPoints;\n    }\n    \n    public int getHealthPoints() {\n        return healthPoints;\n    }\n    \n    public void setHealthPoints(int healthPoints) {\n        this.healthPoints = healthPoints;\n    }\n    \n}\n"
+  } ],
+  "classes" : [ {
+    "id" : "cls:ch.epfl.printwizard.examples.Main",
+    "name" : "Main",
+    "packageName" : "ch.epfl.printwizard.examples",
+    "sourceId" : "src:ch/epfl/printwizard/examples/Main.java"
+  }, {
+    "id" : "cls:ch.epfl.printwizard.examples.Player",
+    "name" : "Player",
+    "packageName" : "ch.epfl.printwizard.examples",
+    "sourceId" : "src:ch/epfl/printwizard/examples/Player.java"
+  } ],
+  "interfaces" : [ ],
+  "records" : [ ],
+  "enums" : [ ],
+  "methods" : [ {
+    "methodId" : "m:ch/epfl/printwizard/examples/Main.main(([LString;)V)",
+    "classId" : "cls:ch.epfl.printwizard.examples.Main",
+    "name" : "main",
+    "returnType" : "void",
+    "startLine" : 5,
+    "endLine" : 17,
+    "parameters" : [ {
+      "index" : 0,
+      "name" : "args",
+      "typeId" : "t:String[]"
+    } ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "code" : null,
+      "startPosition" : {
+        "line" : 5,
+        "column" : 44
+      },
+      "endPosition" : {
+        "line" : 17,
+        "column" : 5
+      },
+      "structures" : [ {
+        "structureId" : "expr_stmt:1",
+        "kind" : "EXPR_STMT",
+        "code" : null,
+        "startPosition" : {
+          "line" : 6,
+          "column" : 9
+        },
+        "endPosition" : {
+          "line" : 6,
+          "column" : 44
+        },
+        "expr" : {
+          "code" : "System.out.println(\"Hello, World!\");",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 6,
+            "column" : 9
+          },
+          "endPosition" : {
+            "line" : 6,
+            "column" : 44
+          }
+        }
+      }, {
+        "structureId" : "expr_stmt:2",
+        "kind" : "EXPR_STMT",
+        "code" : null,
+        "startPosition" : {
+          "line" : 8,
+          "column" : 9
+        },
+        "endPosition" : {
+          "line" : 8,
+          "column" : 18
+        },
+        "expr" : {
+          "code" : "int i = 0;",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 8,
+            "column" : 9
+          },
+          "endPosition" : {
+            "line" : 8,
+            "column" : 18
+          }
+        }
+      }, {
+        "structureId" : "expr_stmt:3",
+        "kind" : "EXPR_STMT",
+        "code" : null,
+        "startPosition" : {
+          "line" : 9,
+          "column" : 9
+        },
+        "endPosition" : {
+          "line" : 9,
+          "column" : 18
+        },
+        "expr" : {
+          "code" : "i = 5 + 2;",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 9,
+            "column" : 9
+          },
+          "endPosition" : {
+            "line" : 9,
+            "column" : 18
+          }
+        }
+      } ]
+    },
+    "localVars" : [ {
+      "index" : 1,
+      "name" : "i",
+      "typeId" : "int"
+    } ]
+  }, {
+    "methodId" : "m:ch/epfl/printwizard/examples/Player.Player((I)V)",
+    "classId" : "cls:ch.epfl.printwizard.examples.Player",
+    "name" : "Player",
+    "returnType" : "<init>",
+    "startLine" : 7,
+    "endLine" : 9,
+    "parameters" : [ {
+      "index" : 0,
+      "name" : "healthPoints",
+      "typeId" : "t:int"
+    } ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "code" : null,
+      "startPosition" : {
+        "line" : 7,
+        "column" : 37
+      },
+      "endPosition" : {
+        "line" : 9,
+        "column" : 5
+      },
+      "structures" : [ {
+        "structureId" : "expr_stmt:1",
+        "kind" : "EXPR_STMT",
+        "code" : null,
+        "startPosition" : {
+          "line" : 8,
+          "column" : 9
+        },
+        "endPosition" : {
+          "line" : 8,
+          "column" : 41
+        },
+        "expr" : {
+          "code" : "this.healthPoints = healthPoints;",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 8,
+            "column" : 9
+          },
+          "endPosition" : {
+            "line" : 8,
+            "column" : 41
+          }
+        }
+      } ]
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:ch/epfl/printwizard/examples/Player.getHealthPoints(()I)",
+    "classId" : "cls:ch.epfl.printwizard.examples.Player",
+    "name" : "getHealthPoints",
+    "returnType" : "int",
+    "startLine" : 11,
+    "endLine" : 13,
+    "parameters" : [ ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "code" : null,
+      "startPosition" : {
+        "line" : 11,
+        "column" : 34
+      },
+      "endPosition" : {
+        "line" : 13,
+        "column" : 5
+      },
+      "structures" : [ {
+        "structureId" : "return:1",
+        "kind" : "RETURN",
+        "code" : "return healthPoints;",
+        "startPosition" : {
+          "line" : 12,
+          "column" : 9
+        },
+        "endPosition" : {
+          "line" : 12,
+          "column" : 28
+        },
+        "value" : {
+          "code" : "healthPoints",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 12,
+            "column" : 9
+          },
+          "endPosition" : {
+            "line" : 12,
+            "column" : 28
+          }
+        }
+      } ]
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:ch/epfl/printwizard/examples/Player.setHealthPoints((I)V)",
+    "classId" : "cls:ch.epfl.printwizard.examples.Player",
+    "name" : "setHealthPoints",
+    "returnType" : "void",
+    "startLine" : 15,
+    "endLine" : 17,
+    "parameters" : [ {
+      "index" : 0,
+      "name" : "healthPoints",
+      "typeId" : "t:int"
+    } ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "code" : null,
+      "startPosition" : {
+        "line" : 15,
+        "column" : 51
+      },
+      "endPosition" : {
+        "line" : 17,
+        "column" : 5
+      },
+      "structures" : [ {
+        "structureId" : "expr_stmt:1",
+        "kind" : "EXPR_STMT",
+        "code" : null,
+        "startPosition" : {
+          "line" : 16,
+          "column" : 9
+        },
+        "endPosition" : {
+          "line" : 16,
+          "column" : 41
+        },
+        "expr" : {
+          "code" : "this.healthPoints = healthPoints;",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 16,
+            "column" : 9
+          },
+          "endPosition" : {
+            "line" : 16,
+            "column" : 41
+          }
+        }
+      } ]
+    },
+    "localVars" : [ ]
+  } ]
+}

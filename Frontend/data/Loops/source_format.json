@@ -1,0 +1,639 @@
+{
+  "syntaxNodes": {
+    "Loops.java-8:16-8:1613": {
+      "endLine": 8,
+      "identifier": "Loops.java-8:16-8:1613",
+      "expression": {
+        "kind": "expression",
+        "tokens": [
+          {
+            "kind": "Text",
+            "text": "compteur != 0"
+          }
+        ]
+      },
+      "children": [],
+      "kind": "presentInSourceCode",
+      "prefix": {
+        "kind": "Text",
+        "text": "        while ("
+      },
+      "startLine": 8,
+      "suffix": {
+        "kind": "Text",
+        "text": ""
+      },
+      "sourceFile": {
+        "fileName": "Loops.java",
+        "packageName": ""
+      }
+    },
+    "Loops.java-9:33-9:41": {
+      "endLine": 9,
+      "identifier": "Loops.java-9:33-9:41",
+      "expression": {
+        "kind": "expression",
+        "tokens": [
+          {
+            "kind": "Text",
+            "text": "compteur"
+          }
+        ]
+      },
+      "children": [],
+      "kind": "presentInSourceCode",
+      "prefix": {
+        "kind": "Text",
+        "text": "            for (int j = 0; j < "
+      },
+      "startLine": 9,
+      "suffix": {
+        "kind": "Text",
+        "text": "; ++j) {\n"
+      },
+      "sourceFile": {
+        "fileName": "Loops.java",
+        "packageName": ""
+      }
+    },
+    "Loops.java-9:43-9:433": {
+      "endLine": 9,
+      "identifier": "Loops.java-9:43-9:433",
+      "expression": {
+        "kind": "expression",
+        "tokens": [
+          {
+            "kind": "Text",
+            "text": "++j"
+          }
+        ]
+      },
+      "children": [],
+      "kind": "presentInSourceCode",
+      "prefix": {
+        "kind": "Text",
+        "text": "            for (int j = 0; j < compteur; "
+      },
+      "startLine": 9,
+      "suffix": {
+        "kind": "Text",
+        "text": ""
+      },
+      "sourceFile": {
+        "fileName": "Loops.java",
+        "packageName": ""
+      }
+    },
+    "Loops.java-13:13-13:1310": {
+      "endLine": 13,
+      "identifier": "Loops.java-13:13-13:1310",
+      "expression": {
+        "kind": "expression",
+        "tokens": [
+          {
+            "kind": "Text",
+            "text": "--compteur"
+          }
+        ]
+      },
+      "children": [],
+      "kind": "presentInSourceCode",
+      "prefix": {
+        "kind": "Text",
+        "text": "            "
+      },
+      "startLine": 13,
+      "suffix": {
+        "kind": "Text",
+        "text": ""
+      },
+      "sourceFile": {
+        "fileName": "Loops.java",
+        "packageName": ""
+      }
+    },
+    "Loops.java-9:29-9:30": {
+      "endLine": 9,
+      "identifier": "Loops.java-9:29-9:30",
+      "expression": {
+        "kind": "expression",
+        "tokens": [
+          {
+            "kind": "Text",
+            "text": "j"
+          }
+        ]
+      },
+      "children": [],
+      "kind": "presentInSourceCode",
+      "prefix": {
+        "kind": "Text",
+        "text": "            for (int j = 0; "
+      },
+      "startLine": 9,
+      "suffix": {
+        "kind": "Text",
+        "text": " < compteur; ++j) {\n"
+      },
+      "sourceFile": {
+        "fileName": "Loops.java",
+        "packageName": ""
+      }
+    },
+    "Loops.java-9:29-9:2912": {
+      "endLine": 9,
+      "identifier": "Loops.java-9:29-9:2912",
+      "expression": {
+        "kind": "expression",
+        "tokens": [
+          {
+            "kind": "Text",
+            "text": "j < compteur"
+          }
+        ]
+      },
+      "children": [],
+      "kind": "presentInSourceCode",
+      "prefix": {
+        "kind": "Text",
+        "text": "            for (int j = 0; "
+      },
+      "startLine": 9,
+      "suffix": {
+        "kind": "Text",
+        "text": ""
+      },
+      "sourceFile": {
+        "fileName": "Loops.java",
+        "packageName": ""
+      }
+    },
+    "Loops.java-4:25-4:26": {
+      "endLine": 4,
+      "identifier": "Loops.java-4:25-4:26",
+      "expression": {
+        "kind": "expression",
+        "tokens": [
+          {
+            "kind": "Text",
+            "text": "i"
+          }
+        ]
+      },
+      "children": [],
+      "kind": "presentInSourceCode",
+      "prefix": {
+        "kind": "Text",
+        "text": "        for (int i = 0; "
+      },
+      "startLine": 4,
+      "suffix": {
+        "kind": "Text",
+        "text": " < 5; ++i) {\n"
+      },
+      "sourceFile": {
+        "fileName": "Loops.java",
+        "packageName": ""
+      }
+    },
+    "Loops.java-9:45-9:46": {
+      "endLine": 9,
+      "identifier": "Loops.java-9:45-9:46",
+      "expression": {
+        "kind": "expression",
+        "tokens": [
+          {
+            "kind": "Text",
+            "text": "j"
+          }
+        ]
+      },
+      "children": [],
+      "kind": "presentInSourceCode",
+      "prefix": {
+        "kind": "Text",
+        "text": "            for (int j = 0; j < compteur; ++"
+      },
+      "startLine": 9,
+      "suffix": {
+        "kind": "Text",
+        "text": ") {\n"
+      },
+      "sourceFile": {
+        "fileName": "Loops.java",
+        "packageName": ""
+      }
+    },
+    "Loops.java-9:18-9:27": {
+      "endLine": 9,
+      "identifier": "Loops.java-9:18-9:27",
+      "expression": {
+        "kind": "expression",
+        "tokens": [
+          {
+            "kind": "Text",
+            "text": "int j = 0"
+          }
+        ]
+      },
+      "children": [],
+      "kind": "presentInSourceCode",
+      "prefix": {
+        "kind": "Text",
+        "text": "            for ("
+      },
+      "startLine": 9,
+      "suffix": {
+        "kind": "Text",
+        "text": "; j < compteur; ++j) {\n"
+      },
+      "sourceFile": {
+        "fileName": "Loops.java",
+        "packageName": ""
+      }
+    },
+    "Loops.java-4:32-4:323": {
+      "endLine": 4,
+      "identifier": "Loops.java-4:32-4:323",
+      "expression": {
+        "kind": "expression",
+        "tokens": [
+          {
+            "kind": "Text",
+            "text": "++i"
+          }
+        ]
+      },
+      "children": [],
+      "kind": "presentInSourceCode",
+      "prefix": {
+        "kind": "Text",
+        "text": "        for (int i = 0; i < 5; "
+      },
+      "startLine": 4,
+      "suffix": {
+        "kind": "Text",
+        "text": ""
+      },
+      "sourceFile": {
+        "fileName": "Loops.java",
+        "packageName": ""
+      }
+    },
+    "Loops.java-13:15-13:23": {
+      "endLine": 13,
+      "identifier": "Loops.java-13:15-13:23",
+      "expression": {
+        "kind": "expression",
+        "tokens": [
+          {
+            "kind": "Text",
+            "text": "compteur"
+          }
+        ]
+      },
+      "children": [],
+      "kind": "presentInSourceCode",
+      "prefix": {
+        "kind": "Text",
+        "text": "            --"
+      },
+      "startLine": 13,
+      "suffix": {
+        "kind": "Text",
+        "text": ";\n"
+      },
+      "sourceFile": {
+        "fileName": "Loops.java",
+        "packageName": ""
+      }
+    },
+    "Loops.java-5:13-5:1310": {
+      "endLine": 5,
+      "identifier": "Loops.java-5:13-5:1310",
+      "expression": {
+        "kind": "expression",
+        "tokens": [
+          {
+            "kind": "Text",
+            "text": "++compteur"
+          }
+        ]
+      },
+      "children": [],
+      "kind": "presentInSourceCode",
+      "prefix": {
+        "kind": "Text",
+        "text": "            "
+      },
+      "startLine": 5,
+      "suffix": {
+        "kind": "Text",
+        "text": ""
+      },
+      "sourceFile": {
+        "fileName": "Loops.java",
+        "packageName": ""
+      }
+    },
+    "Loops.java-2:29-2:35": {
+      "endLine": 2,
+      "identifier": "Loops.java-2:29-2:35",
+      "expression": {
+        "kind": "expression",
+        "tokens": [
+          {
+            "kind": "Text",
+            "text": "String"
+          }
+        ]
+      },
+      "children": [],
+      "kind": "presentInSourceCode",
+      "prefix": {
+        "kind": "Text",
+        "text": "    public static void main("
+      },
+      "startLine": 2,
+      "suffix": {
+        "kind": "Text",
+        "text": "[] args) {\n"
+      },
+      "sourceFile": {
+        "fileName": "Loops.java",
+        "packageName": ""
+      }
+    },
+    "Loops.java-4:34-4:35": {
+      "endLine": 4,
+      "identifier": "Loops.java-4:34-4:35",
+      "expression": {
+        "kind": "expression",
+        "tokens": [
+          {
+            "kind": "Text",
+            "text": "i"
+          }
+        ]
+      },
+      "children": [],
+      "kind": "presentInSourceCode",
+      "prefix": {
+        "kind": "Text",
+        "text": "        for (int i = 0; i < 5; ++"
+      },
+      "startLine": 4,
+      "suffix": {
+        "kind": "Text",
+        "text": ") {\n"
+      },
+      "sourceFile": {
+        "fileName": "Loops.java",
+        "packageName": ""
+      }
+    },
+    "Loops.java-4:14-4:23": {
+      "endLine": 4,
+      "identifier": "Loops.java-4:14-4:23",
+      "expression": {
+        "kind": "expression",
+        "tokens": [
+          {
+            "kind": "Text",
+            "text": "int i = 0"
+          }
+        ]
+      },
+      "children": [],
+      "kind": "presentInSourceCode",
+      "prefix": {
+        "kind": "Text",
+        "text": "        for ("
+      },
+      "startLine": 4,
+      "suffix": {
+        "kind": "Text",
+        "text": "; i < 5; ++i) {\n"
+      },
+      "sourceFile": {
+        "fileName": "Loops.java",
+        "packageName": ""
+      }
+    },
+    "Loops.java-2:29-2:42": {
+      "endLine": 2,
+      "identifier": "Loops.java-2:29-2:42",
+      "expression": {
+        "kind": "expression",
+        "tokens": [
+          {
+            "kind": "Text",
+            "text": "String[] args"
+          }
+        ]
+      },
+      "children": [],
+      "kind": "presentInSourceCode",
+      "prefix": {
+        "kind": "Text",
+        "text": "    public static void main("
+      },
+      "startLine": 2,
+      "suffix": {
+        "kind": "Text",
+        "text": ") {\n"
+      },
+      "sourceFile": {
+        "fileName": "Loops.java",
+        "packageName": ""
+      }
+    },
+    "absent": {
+      "identifier": "absent",
+      "kind": "absent"
+    },
+    "Loops.java-8:16-8:24": {
+      "endLine": 8,
+      "identifier": "Loops.java-8:16-8:24",
+      "expression": {
+        "kind": "expression",
+        "tokens": [
+          {
+            "kind": "Text",
+            "text": "compteur"
+          }
+        ]
+      },
+      "children": [],
+      "kind": "presentInSourceCode",
+      "prefix": {
+        "kind": "Text",
+        "text": "        while ("
+      },
+      "startLine": 8,
+      "suffix": {
+        "kind": "Text",
+        "text": " != 0) {\n"
+      },
+      "sourceFile": {
+        "fileName": "Loops.java",
+        "packageName": ""
+      }
+    },
+    "Loops.java-3:9-3:26": {
+      "endLine": 3,
+      "identifier": "Loops.java-3:9-3:26",
+      "expression": {
+        "kind": "expression",
+        "tokens": [
+          {
+            "kind": "Text",
+            "text": "int compteur = 0;"
+          }
+        ]
+      },
+      "children": [],
+      "kind": "presentInSourceCode",
+      "prefix": {
+        "kind": "Text",
+        "text": "        "
+      },
+      "startLine": 3,
+      "suffix": {
+        "kind": "Text",
+        "text": "\n"
+      },
+      "sourceFile": {
+        "fileName": "Loops.java",
+        "packageName": ""
+      }
+    },
+    "Loops.java-5:15-5:23": {
+      "endLine": 5,
+      "identifier": "Loops.java-5:15-5:23",
+      "expression": {
+        "kind": "expression",
+        "tokens": [
+          {
+            "kind": "Text",
+            "text": "compteur"
+          }
+        ]
+      },
+      "children": [],
+      "kind": "presentInSourceCode",
+      "prefix": {
+        "kind": "Text",
+        "text": "            ++"
+      },
+      "startLine": 5,
+      "suffix": {
+        "kind": "Text",
+        "text": ";\n"
+      },
+      "sourceFile": {
+        "fileName": "Loops.java",
+        "packageName": ""
+      }
+    },
+    "Loops.java-10:17-10:23": {
+      "endLine": 10,
+      "identifier": "Loops.java-10:17-10:23",
+      "expression": {
+        "kind": "expression",
+        "tokens": [
+          {
+            "kind": "Text",
+            "text": "System"
+          }
+        ]
+      },
+      "children": [],
+      "kind": "presentInSourceCode",
+      "prefix": {
+        "kind": "Text",
+        "text": "                "
+      },
+      "startLine": 10,
+      "suffix": {
+        "kind": "Text",
+        "text": ".out.println(\"Bonjour\");\n"
+      },
+      "sourceFile": {
+        "fileName": "Loops.java",
+        "packageName": ""
+      }
+    },
+    "Loops.java-10:17-10:46": {
+      "endLine": 10,
+      "identifier": "Loops.java-10:17-10:46",
+      "expression": {
+        "kind": "expression",
+        "tokens": [
+          {
+            "kind": "Text",
+            "text": "System.out.println("
+          },
+          {
+            "kind": "Child",
+            "childIndex": 0,
+            "text": "\"Bonjour\""
+          },
+          {
+            "kind": "Text",
+            "text": ")"
+          }
+        ]
+      },
+      "children": [
+        "absent"
+      ],
+      "kind": "presentInSourceCode",
+      "prefix": {
+        "kind": "Text",
+        "text": "                "
+      },
+      "startLine": 10,
+      "suffix": {
+        "kind": "Text",
+        "text": ";\n"
+      },
+      "sourceFile": {
+        "fileName": "Loops.java",
+        "packageName": ""
+      }
+    },
+    "Loops.java-4:25-4:255": {
+      "endLine": 4,
+      "identifier": "Loops.java-4:25-4:255",
+      "expression": {
+        "kind": "expression",
+        "tokens": [
+          {
+            "kind": "Text",
+            "text": "i < 5"
+          }
+        ]
+      },
+      "children": [],
+      "kind": "presentInSourceCode",
+      "prefix": {
+        "kind": "Text",
+        "text": "        for (int i = 0; "
+      },
+      "startLine": 4,
+      "suffix": {
+        "kind": "Text",
+        "text": ""
+      },
+      "sourceFile": {
+        "fileName": "Loops.java",
+        "packageName": ""
+      }
+    }
+  },
+  "sourceFile": {
+    "fileName": "Loops.java",
+    "packageName": ""
+  }
+}

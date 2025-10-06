@@ -1,0 +1,103 @@
+header {
+    background-color: #333;
+    overflow: hidden;
+}
+
+header a {
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+header a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+header a#logo:hover {
+    background-color: #5ab2dc;
+}
+
+header a#logo {
+    background-color: #4383a1;
+    color: white;
+}
+
+.dropdownButton {
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+    background-color: inherit;
+    border: none;
+}
+
+.dropdown:hover .dropdownButton {
+    background-color: #ddd;
+    color: black;
+}
+
+.dropdownContent {
+    display: none;
+    position: absolute;
+    background-color: #4c4c4c;
+    min-width: 150px;
+}
+
+.dropdown {
+    float: left;
+    overflow: hidden;
+}
+
+.dropdown:hover .dropdownContent {
+    display: block;
+}
+
+.dropdownContent a {
+    float: none;
+    text-align: left;
+    text-decoration: none;
+    display: flex;
+}
+
+.dropdownItem {
+    flex-grow: 1;
+}
+
+.nestedDropdown {
+    position: relative;
+}
+
+.nestedDropdownContent {
+    display: none;
+    position: absolute;
+    left: 100%;
+    top: 0;
+    background-color: #5c5c5c;
+}
+
+.nestedDropdown:hover .nestedDropdownContent {
+    display: block;
+}
+
+.nestedDropdownContent a:hover {
+    background-color: #c6c6c6;
+}
+
+.nestedDropdown:hover >  a {
+    background-color: #ddd;
+    color: black;
+}
+
+header input {
+    float: right;
+    padding: 6px;
+    border: none;
+    margin-top: 8px;
+    margin-right: 16px;
+    font-size: 17px;
+}

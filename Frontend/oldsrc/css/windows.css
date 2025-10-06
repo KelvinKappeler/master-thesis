@@ -1,0 +1,22 @@
+.window {
+    position: absolute;
+    z-index: 9;
+    border: 1px solid #7c7979;
+    min-width: 400px;
+    background-color: #3a3d41;
+    transform: translate(-200px, 200px);
+}
+
+.headerWindow {
+    z-index: 10;
+    cursor: move;
+    min-height: 30px;
+    background-color: #403D3DFF;
+    text-align: center;
+    padding: 10px;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Print Wizard</title>
+    <link rel="icon" type="image/x-icon" href="res/favicon.ico">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="src/css/printWizard.css">
+    <link rel="stylesheet" href="src/css/header.css">
+    <link rel="stylesheet" href="src/css/trace.css">
+    <link rel="stylesheet" href="src/css/breadcrumb.css">
+    <link rel="stylesheet" href="src/css/inspectors/inspector.css">
+    <link rel="stylesheet" href="src/css/inspectors/objectInspector.css">
+    <link rel="stylesheet" href="src/css/inspectors/searchInspector.css">
+    <link rel="stylesheet" href="src/css/inspectors/loopInspector.css">
+    <link rel="stylesheet" href="src/css/windows.css">
+</head>
+<body>
+<header>
+    <a id="logo" href="#" onclick="window.location.reload()">Print Wizard</a>
+    <div class="dropdown">
+        <button class="dropdownButton">Files <i class="bi bi-chevron-down"></i></button>
+        <div class="dropdownContent">
+            <a href="#" onclick="pw.loadData('/data/Arrays/');">Arrays</a>
+            <a href="#" onclick="pw.loadData('/data/BasicOperation/');">Basic Operations</a>
+            <a href="#" onclick="pw.loadData('/data/Boids/');">Boids</a>
+            <a href="#" onclick="pw.loadData('/data/Conditions/');">Conditions</a>
+            <a href="#" onclick="pw.loadData('/data/Custom/');">Custom</a>
+            <a href="#" onclick="pw.loadData('/data/ExternalFunctions/');">External Functions</a>
+            <a href="#" onclick="pw.loadData('/data/Functions/');">Functions</a>
+            <a href="#" onclick="pw.loadData('/data/ImmutableObjects/');">Immutable Objects</a>
+            <a href="#" onclick="pw.loadData('/data/Loops/');">Loops</a>
+            <a href="#" onclick="pw.loadData('/data/ObjectFieldsModif/');">Objects</a>
+        </div>
+    </div>
+</header>
+
+<main>
+    <div class="trace">
+        <div class="breadcrumb"></div>
+        <div class="traceBody">
+            <div class="lineNumbers"></div>
+            <div class="traceTriangles"></div>
+            <div class="traceContent"></div>
+        </div>
+    </div>
+
+    <div id="inspector">
+        <div class="inspector_tab">
+            <!--<button class="tab_button" onclick="pw.openInspectorTab('objectInspector')">Object</button>
+            <button class="tab_button" onclick="pw.openInspectorTab('searchInspector')">Search</button>-->
+        </div>
+    </div>
+</main>
+
+<script type="module">
+    import { pw } from './src/js/Main.js';
+    window.pw = pw;
+</script>
+<script type="module" src="src/js/Main.js"></script>
+</body>
+
+</html>

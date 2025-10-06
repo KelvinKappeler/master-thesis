@@ -1,0 +1,111 @@
+.traceBody {
+    padding: 20px;
+    background-color: #1e1f22;
+    color: #cbcbcbff;
+    /* overflow-y: auto; */
+    /* overflow-x: auto; */
+    font-size: 18px;
+    display: flex;
+    line-height: 1.4;
+    /* height: 90%; */
+    width: auto;
+}
+
+.trace {
+    flex: 0.7;
+    overflow-x: auto;
+}
+
+.lineNumbers {
+    text-align: right;
+    padding-right: 10px;
+    color: #858585;
+    user-select: none;
+    min-width: 20px;
+}
+
+.traceTriangles {
+    border-right: 1px solid #555;
+    padding-right: 10px;
+    padding-left: 10px;
+    color: #858585;
+    user-select: none;
+}
+
+.traceTriangles i:hover {
+    color: #4383a1;
+}
+
+.fullTraceTriangles:hover {
+    color: #4383a1;
+}
+
+.traceContent {
+    padding-left: 10px;
+    white-space: pre;
+    cursor: text;
+    background-color: #1e1f22;
+}
+
+.hidden {
+    display: none;
+}
+
+.keyword {
+    color: #9b68c3;
+}
+
+.brace {
+    color: #4a76c6;
+}
+
+.parenthesis {
+    color: #9c9c41;
+}
+
+.functionName {
+    color: #4a76c6;
+}
+
+.returnValue {
+    border: 1px solid #af4b4b;
+}
+
+.returnValue:hover {
+    background-color: #af4b4b;
+    cursor: pointer;
+}
+
+.returnValuePrimitive {
+    color: #af4b4b;
+}
+
+.loopHeaderAssignment {
+    border: 1px solid teal;
+}
+
+.loopIterationCondition {
+    border: 1px solid teal;
+}
+
+.argsValue {
+    border: 1px solid #4baf4b;
+}
+
+.argsValue:hover {
+    background-color: #4baf4b;
+    cursor: pointer;
+}
+
+.argsValuePrimitive {
+    color: #4baf4b;
+}
+
+.keywords {
+    color: #bd7c3e;
+}
+
+.loopIteration {
+    border: 1px solid #2e4a70;
+    margin-right: 5px;
+}

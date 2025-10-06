@@ -1,0 +1,1533 @@
+{
+  "trace": [
+    {
+      "eventId": 0,
+      "eventType": "controlFlow",
+      "type": "GroupEvent",
+      "pos": "start",
+      "kind": {
+        "type": "FunctionContext",
+        "functionName": "main"
+      }
+    },
+    {
+      "eventId": 1,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 2,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "stepId": 3,
+      "nodeKey": "Garage.java-5:19-5:42",
+      "argsValues": [
+        {
+          "value": "Toyota",
+          "dataType": "string"
+        },
+        {
+          "value": 2005,
+          "dataType": "int"
+        }
+      ],
+      "type": "ExecutionStep",
+      "kind": "logCall"
+    },
+    {
+      "eventId": 4,
+      "eventType": "controlFlow",
+      "type": "GroupEvent",
+      "pos": "start",
+      "kind": {
+        "type": "FunctionContext",
+        "functionName": "<init>"
+      }
+    },
+    {
+      "eventId": 5,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 6,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 6,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "stepId": 0,
+      "nodeKey": "absent",
+      "argsValues": [],
+      "type": "ExecutionStep",
+      "kind": "logVoidCall"
+    },
+    {
+      "eventId": 5,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 7,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 8,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 8,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "result": {
+        "value": "Toyota",
+        "dataType": "string"
+      },
+      "nodeKey": "Garage.java-54:13-54:31",
+      "assigns": [
+        {
+          "identifier": {
+            "name": "this.model",
+            "parent": "-",
+            "dataType": "localIdentifier"
+          },
+          "value": {
+            "value": "Toyota",
+            "dataType": "string"
+          },
+          "dataType": "write"
+        }
+      ],
+      "type": "ExecutionStep",
+      "kind": "expression"
+    },
+    {
+      "eventId": 7,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 9,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 10,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 10,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "result": {
+        "value": 2005,
+        "dataType": "int"
+      },
+      "nodeKey": "Garage.java-55:13-55:29",
+      "assigns": [
+        {
+          "identifier": {
+            "name": "this.year",
+            "parent": "-",
+            "dataType": "localIdentifier"
+          },
+          "value": {
+            "value": 2005,
+            "dataType": "int"
+          },
+          "dataType": "write"
+        }
+      ],
+      "type": "ExecutionStep",
+      "kind": "expression"
+    },
+    {
+      "eventId": 9,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 4,
+      "eventType": "controlFlow",
+      "type": "GroupEvent",
+      "pos": "end",
+      "kind": {
+        "type": "FunctionContext",
+        "functionName": "<init>"
+      }
+    },
+    {
+      "stepId": 3,
+      "result": {
+        "pointer": 960604060,
+        "className": {
+          "className": "Car",
+          "packageName": ""
+        },
+        "version": 1,
+        "dataType": "instanceRef"
+      },
+      "nodeKey": "Garage.java-5:19-5:42",
+      "type": "ExecutionStep",
+      "kind": "logReturn"
+    },
+    {
+      "eventId": 2,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "nodeKey": "Garage.java-5:9-5:43",
+      "assigns": [
+        {
+          "identifier": {
+            "name": "car",
+            "parent": "-",
+            "dataType": "localIdentifier"
+          },
+          "value": {
+            "pointer": 960604060,
+            "className": {
+              "className": "Car",
+              "packageName": ""
+            },
+            "version": 3,
+            "dataType": "instanceRef"
+          },
+          "dataType": "write"
+        }
+      ],
+      "type": "ExecutionStep",
+      "kind": "expressionWithoutReturn"
+    },
+    {
+      "eventId": 1,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 11,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 12,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "stepId": 13,
+      "nodeKey": "Garage.java-6:24-6:52",
+      "argsValues": [
+        {
+          "value": "Alice",
+          "dataType": "string"
+        },
+        {
+          "value": 30,
+          "dataType": "int"
+        },
+        {
+          "pointer": 960604060,
+          "className": {
+            "className": "Car",
+            "packageName": ""
+          },
+          "version": 5,
+          "dataType": "instanceRef"
+        }
+      ],
+      "type": "ExecutionStep",
+      "kind": "logCall"
+    },
+    {
+      "eventId": 14,
+      "eventType": "controlFlow",
+      "type": "GroupEvent",
+      "pos": "start",
+      "kind": {
+        "type": "FunctionContext",
+        "functionName": "<init>"
+      }
+    },
+    {
+      "eventId": 15,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 16,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 16,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "stepId": 0,
+      "nodeKey": "absent",
+      "argsValues": [],
+      "type": "ExecutionStep",
+      "kind": "logVoidCall"
+    },
+    {
+      "eventId": 15,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 17,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 18,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 18,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "result": {
+        "value": "Alice",
+        "dataType": "string"
+      },
+      "nodeKey": "Garage.java-27:13-27:29",
+      "assigns": [
+        {
+          "identifier": {
+            "name": "this.name",
+            "parent": "-",
+            "dataType": "localIdentifier"
+          },
+          "value": {
+            "value": "Alice",
+            "dataType": "string"
+          },
+          "dataType": "write"
+        }
+      ],
+      "type": "ExecutionStep",
+      "kind": "expression"
+    },
+    {
+      "eventId": 17,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 19,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 20,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 20,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "result": {
+        "value": 30,
+        "dataType": "int"
+      },
+      "nodeKey": "Garage.java-28:13-28:27",
+      "assigns": [
+        {
+          "identifier": {
+            "name": "this.age",
+            "parent": "-",
+            "dataType": "localIdentifier"
+          },
+          "value": {
+            "value": 30,
+            "dataType": "int"
+          },
+          "dataType": "write"
+        }
+      ],
+      "type": "ExecutionStep",
+      "kind": "expression"
+    },
+    {
+      "eventId": 19,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 21,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 22,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 22,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "result": {
+        "pointer": 960604060,
+        "className": {
+          "className": "Car",
+          "packageName": ""
+        },
+        "version": 7,
+        "dataType": "instanceRef"
+      },
+      "nodeKey": "Garage.java-29:13-29:27",
+      "assigns": [
+        {
+          "identifier": {
+            "name": "this.car",
+            "parent": "-",
+            "dataType": "localIdentifier"
+          },
+          "value": {
+            "pointer": 960604060,
+            "className": {
+              "className": "Car",
+              "packageName": ""
+            },
+            "version": 9,
+            "dataType": "instanceRef"
+          },
+          "dataType": "write"
+        }
+      ],
+      "type": "ExecutionStep",
+      "kind": "expression"
+    },
+    {
+      "eventId": 21,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 14,
+      "eventType": "controlFlow",
+      "type": "GroupEvent",
+      "pos": "end",
+      "kind": {
+        "type": "FunctionContext",
+        "functionName": "<init>"
+      }
+    },
+    {
+      "stepId": 13,
+      "result": {
+        "pointer": 1199823423,
+        "className": {
+          "className": "Person",
+          "packageName": ""
+        },
+        "version": 10,
+        "dataType": "instanceRef"
+      },
+      "nodeKey": "Garage.java-6:24-6:52",
+      "type": "ExecutionStep",
+      "kind": "logReturn"
+    },
+    {
+      "eventId": 12,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "nodeKey": "Garage.java-6:9-6:53",
+      "assigns": [
+        {
+          "identifier": {
+            "name": "alice",
+            "parent": "-",
+            "dataType": "localIdentifier"
+          },
+          "value": {
+            "pointer": 1199823423,
+            "className": {
+              "className": "Person",
+              "packageName": ""
+            },
+            "version": 16,
+            "dataType": "instanceRef"
+          },
+          "dataType": "write"
+        }
+      ],
+      "type": "ExecutionStep",
+      "kind": "expressionWithoutReturn"
+    },
+    {
+      "eventId": 11,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 23,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 24,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 24,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "stepId": 0,
+      "nodeKey": "Garage.java-9:9-9:25",
+      "argsValues": [
+        {
+          "value": 31,
+          "dataType": "int"
+        }
+      ],
+      "type": "ExecutionStep",
+      "kind": "logVoidCall"
+    },
+    {
+      "eventId": 25,
+      "eventType": "controlFlow",
+      "type": "GroupEvent",
+      "pos": "start",
+      "kind": {
+        "type": "FunctionContext",
+        "functionName": "setAge"
+      }
+    },
+    {
+      "eventId": 26,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 27,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 27,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "result": {
+        "value": 31,
+        "dataType": "int"
+      },
+      "nodeKey": "Garage.java-37:13-37:27",
+      "assigns": [
+        {
+          "identifier": {
+            "name": "this.age",
+            "parent": "-",
+            "dataType": "localIdentifier"
+          },
+          "value": {
+            "value": 31,
+            "dataType": "int"
+          },
+          "dataType": "write"
+        }
+      ],
+      "type": "ExecutionStep",
+      "kind": "expression"
+    },
+    {
+      "eventId": 26,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 25,
+      "eventType": "controlFlow",
+      "type": "GroupEvent",
+      "pos": "end",
+      "kind": {
+        "type": "FunctionContext",
+        "functionName": "setAge"
+      }
+    },
+    {
+      "eventId": 23,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 28,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 29,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 29,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "stepId": 0,
+      "nodeKey": "Garage.java-10:9-10:37",
+      "argsValues": [
+        {
+          "value": "Alice Smith",
+          "dataType": "string"
+        }
+      ],
+      "type": "ExecutionStep",
+      "kind": "logVoidCall"
+    },
+    {
+      "eventId": 30,
+      "eventType": "controlFlow",
+      "type": "GroupEvent",
+      "pos": "start",
+      "kind": {
+        "type": "FunctionContext",
+        "functionName": "setName"
+      }
+    },
+    {
+      "eventId": 31,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 32,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 32,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "result": {
+        "value": "Alice Smith",
+        "dataType": "string"
+      },
+      "nodeKey": "Garage.java-33:13-33:29",
+      "assigns": [
+        {
+          "identifier": {
+            "name": "this.name",
+            "parent": "-",
+            "dataType": "localIdentifier"
+          },
+          "value": {
+            "value": "Alice Smith",
+            "dataType": "string"
+          },
+          "dataType": "write"
+        }
+      ],
+      "type": "ExecutionStep",
+      "kind": "expression"
+    },
+    {
+      "eventId": 31,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 30,
+      "eventType": "controlFlow",
+      "type": "GroupEvent",
+      "pos": "end",
+      "kind": {
+        "type": "FunctionContext",
+        "functionName": "setName"
+      }
+    },
+    {
+      "eventId": 28,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 33,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 34,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 34,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "stepId": 0,
+      "nodeKey": "Garage.java-11:9-11:41",
+      "argsValues": [
+        {
+          "value": "Honda",
+          "dataType": "string"
+        }
+      ],
+      "type": "ExecutionStep",
+      "kind": "logVoidCall"
+    },
+    {
+      "stepId": 35,
+      "nodeKey": "Garage.java-11:9-11:23",
+      "argsValues": [],
+      "type": "ExecutionStep",
+      "kind": "logCall"
+    },
+    {
+      "eventId": 36,
+      "eventType": "controlFlow",
+      "type": "GroupEvent",
+      "pos": "start",
+      "kind": {
+        "type": "FunctionContext",
+        "functionName": "getCar"
+      }
+    },
+    {
+      "eventId": 37,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "result": {
+        "pointer": 960604060,
+        "className": {
+          "className": "Car",
+          "packageName": ""
+        },
+        "version": 18,
+        "dataType": "instanceRef"
+      },
+      "nodeKey": "Garage.java-41:20-41:23",
+      "assigns": [],
+      "type": "ExecutionStep",
+      "kind": "expression"
+    },
+    {
+      "eventId": 37,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 36,
+      "eventType": "controlFlow",
+      "type": "GroupEvent",
+      "pos": "end",
+      "kind": {
+        "type": "FunctionContext",
+        "functionName": "getCar"
+      }
+    },
+    {
+      "stepId": 35,
+      "result": {
+        "pointer": 960604060,
+        "className": {
+          "className": "Car",
+          "packageName": ""
+        },
+        "version": 20,
+        "dataType": "instanceRef"
+      },
+      "nodeKey": "Garage.java-11:9-11:23",
+      "type": "ExecutionStep",
+      "kind": "logReturn"
+    },
+    {
+      "eventId": 38,
+      "eventType": "controlFlow",
+      "type": "GroupEvent",
+      "pos": "start",
+      "kind": {
+        "type": "FunctionContext",
+        "functionName": "setModel"
+      }
+    },
+    {
+      "eventId": 39,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 40,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 40,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "result": {
+        "value": "Honda",
+        "dataType": "string"
+      },
+      "nodeKey": "Garage.java-59:13-59:31",
+      "assigns": [
+        {
+          "identifier": {
+            "name": "this.model",
+            "parent": "-",
+            "dataType": "localIdentifier"
+          },
+          "value": {
+            "value": "Honda",
+            "dataType": "string"
+          },
+          "dataType": "write"
+        }
+      ],
+      "type": "ExecutionStep",
+      "kind": "expression"
+    },
+    {
+      "eventId": 39,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 38,
+      "eventType": "controlFlow",
+      "type": "GroupEvent",
+      "pos": "end",
+      "kind": {
+        "type": "FunctionContext",
+        "functionName": "setModel"
+      }
+    },
+    {
+      "eventId": 33,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 41,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 42,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 42,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "stepId": 0,
+      "nodeKey": "Garage.java-12:9-12:37",
+      "argsValues": [
+        {
+          "value": 2010,
+          "dataType": "int"
+        }
+      ],
+      "type": "ExecutionStep",
+      "kind": "logVoidCall"
+    },
+    {
+      "stepId": 43,
+      "nodeKey": "Garage.java-12:9-12:23",
+      "argsValues": [],
+      "type": "ExecutionStep",
+      "kind": "logCall"
+    },
+    {
+      "eventId": 44,
+      "eventType": "controlFlow",
+      "type": "GroupEvent",
+      "pos": "start",
+      "kind": {
+        "type": "FunctionContext",
+        "functionName": "getCar"
+      }
+    },
+    {
+      "eventId": 45,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "result": {
+        "pointer": 960604060,
+        "className": {
+          "className": "Car",
+          "packageName": ""
+        },
+        "version": 22,
+        "dataType": "instanceRef"
+      },
+      "nodeKey": "Garage.java-41:20-41:23",
+      "assigns": [],
+      "type": "ExecutionStep",
+      "kind": "expression"
+    },
+    {
+      "eventId": 45,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 44,
+      "eventType": "controlFlow",
+      "type": "GroupEvent",
+      "pos": "end",
+      "kind": {
+        "type": "FunctionContext",
+        "functionName": "getCar"
+      }
+    },
+    {
+      "stepId": 43,
+      "result": {
+        "pointer": 960604060,
+        "className": {
+          "className": "Car",
+          "packageName": ""
+        },
+        "version": 24,
+        "dataType": "instanceRef"
+      },
+      "nodeKey": "Garage.java-12:9-12:23",
+      "type": "ExecutionStep",
+      "kind": "logReturn"
+    },
+    {
+      "eventId": 46,
+      "eventType": "controlFlow",
+      "type": "GroupEvent",
+      "pos": "start",
+      "kind": {
+        "type": "FunctionContext",
+        "functionName": "setYear"
+      }
+    },
+    {
+      "eventId": 47,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 48,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 48,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "result": {
+        "value": 2010,
+        "dataType": "int"
+      },
+      "nodeKey": "Garage.java-63:13-63:29",
+      "assigns": [
+        {
+          "identifier": {
+            "name": "this.year",
+            "parent": "-",
+            "dataType": "localIdentifier"
+          },
+          "value": {
+            "value": 2010,
+            "dataType": "int"
+          },
+          "dataType": "write"
+        }
+      ],
+      "type": "ExecutionStep",
+      "kind": "expression"
+    },
+    {
+      "eventId": 47,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 46,
+      "eventType": "controlFlow",
+      "type": "GroupEvent",
+      "pos": "end",
+      "kind": {
+        "type": "FunctionContext",
+        "functionName": "setYear"
+      }
+    },
+    {
+      "eventId": 41,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 49,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 50,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 50,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "stepId": 0,
+      "nodeKey": "Garage.java-15:9-15:29",
+      "argsValues": [
+        {
+          "value": "Ford",
+          "dataType": "string"
+        }
+      ],
+      "type": "ExecutionStep",
+      "kind": "logVoidCall"
+    },
+    {
+      "eventId": 51,
+      "eventType": "controlFlow",
+      "type": "GroupEvent",
+      "pos": "start",
+      "kind": {
+        "type": "FunctionContext",
+        "functionName": "setModel"
+      }
+    },
+    {
+      "eventId": 52,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 53,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 53,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "result": {
+        "value": "Ford",
+        "dataType": "string"
+      },
+      "nodeKey": "Garage.java-59:13-59:31",
+      "assigns": [
+        {
+          "identifier": {
+            "name": "this.model",
+            "parent": "-",
+            "dataType": "localIdentifier"
+          },
+          "value": {
+            "value": "Ford",
+            "dataType": "string"
+          },
+          "dataType": "write"
+        }
+      ],
+      "type": "ExecutionStep",
+      "kind": "expression"
+    },
+    {
+      "eventId": 52,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 51,
+      "eventType": "controlFlow",
+      "type": "GroupEvent",
+      "pos": "end",
+      "kind": {
+        "type": "FunctionContext",
+        "functionName": "setModel"
+      }
+    },
+    {
+      "eventId": 49,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 54,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 55,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 55,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "nodeKey": "Garage.java-17:9-17:27",
+      "assigns": [
+        {
+          "identifier": {
+            "name": "testCar",
+            "parent": "-",
+            "dataType": "localIdentifier"
+          },
+          "value": {
+            "pointer": 960604060,
+            "className": {
+              "className": "Car",
+              "packageName": ""
+            },
+            "version": 26,
+            "dataType": "instanceRef"
+          },
+          "dataType": "write"
+        }
+      ],
+      "type": "ExecutionStep",
+      "kind": "expressionWithoutReturn"
+    },
+    {
+      "eventId": 54,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 56,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 57,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "stepId": 58,
+      "nodeKey": "Garage.java-18:22-18:44",
+      "argsValues": [
+        {
+          "value": "Mazda",
+          "dataType": "string"
+        },
+        {
+          "value": 2022,
+          "dataType": "int"
+        }
+      ],
+      "type": "ExecutionStep",
+      "kind": "logCall"
+    },
+    {
+      "eventId": 59,
+      "eventType": "controlFlow",
+      "type": "GroupEvent",
+      "pos": "start",
+      "kind": {
+        "type": "FunctionContext",
+        "functionName": "<init>"
+      }
+    },
+    {
+      "eventId": 60,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 61,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 61,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "stepId": 0,
+      "nodeKey": "absent",
+      "argsValues": [],
+      "type": "ExecutionStep",
+      "kind": "logVoidCall"
+    },
+    {
+      "eventId": 60,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 62,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 63,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 63,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "result": {
+        "value": "Mazda",
+        "dataType": "string"
+      },
+      "nodeKey": "Garage.java-54:13-54:31",
+      "assigns": [
+        {
+          "identifier": {
+            "name": "this.model",
+            "parent": "-",
+            "dataType": "localIdentifier"
+          },
+          "value": {
+            "value": "Mazda",
+            "dataType": "string"
+          },
+          "dataType": "write"
+        }
+      ],
+      "type": "ExecutionStep",
+      "kind": "expression"
+    },
+    {
+      "eventId": 62,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 64,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 65,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 65,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "result": {
+        "value": 2022,
+        "dataType": "int"
+      },
+      "nodeKey": "Garage.java-55:13-55:29",
+      "assigns": [
+        {
+          "identifier": {
+            "name": "this.year",
+            "parent": "-",
+            "dataType": "localIdentifier"
+          },
+          "value": {
+            "value": 2022,
+            "dataType": "int"
+          },
+          "dataType": "write"
+        }
+      ],
+      "type": "ExecutionStep",
+      "kind": "expression"
+    },
+    {
+      "eventId": 64,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 59,
+      "eventType": "controlFlow",
+      "type": "GroupEvent",
+      "pos": "end",
+      "kind": {
+        "type": "FunctionContext",
+        "functionName": "<init>"
+      }
+    },
+    {
+      "stepId": 58,
+      "result": {
+        "pointer": 1848402763,
+        "className": {
+          "className": "Car",
+          "packageName": ""
+        },
+        "version": 27,
+        "dataType": "instanceRef"
+      },
+      "nodeKey": "Garage.java-18:22-18:44",
+      "type": "ExecutionStep",
+      "kind": "logReturn"
+    },
+    {
+      "eventId": 57,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "stepId": 0,
+      "nodeKey": "Garage.java-18:9-18:45",
+      "argsValues": [
+        {
+          "pointer": 1848402763,
+          "className": {
+            "className": "Car",
+            "packageName": ""
+          },
+          "version": 29,
+          "dataType": "instanceRef"
+        }
+      ],
+      "type": "ExecutionStep",
+      "kind": "logVoidCall"
+    },
+    {
+      "eventId": 66,
+      "eventType": "controlFlow",
+      "type": "GroupEvent",
+      "pos": "start",
+      "kind": {
+        "type": "FunctionContext",
+        "functionName": "setCar"
+      }
+    },
+    {
+      "eventId": 67,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 68,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 68,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "result": {
+        "pointer": 1848402763,
+        "className": {
+          "className": "Car",
+          "packageName": ""
+        },
+        "version": 31,
+        "dataType": "instanceRef"
+      },
+      "nodeKey": "Garage.java-45:13-45:27",
+      "assigns": [
+        {
+          "identifier": {
+            "name": "this.car",
+            "parent": "-",
+            "dataType": "localIdentifier"
+          },
+          "value": {
+            "pointer": 1848402763,
+            "className": {
+              "className": "Car",
+              "packageName": ""
+            },
+            "version": 33,
+            "dataType": "instanceRef"
+          },
+          "dataType": "write"
+        }
+      ],
+      "type": "ExecutionStep",
+      "kind": "expression"
+    },
+    {
+      "eventId": 67,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 66,
+      "eventType": "controlFlow",
+      "type": "GroupEvent",
+      "pos": "end",
+      "kind": {
+        "type": "FunctionContext",
+        "functionName": "setCar"
+      }
+    },
+    {
+      "eventId": 56,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 0,
+      "eventType": "controlFlow",
+      "type": "GroupEvent",
+      "pos": "end",
+      "kind": {
+        "type": "FunctionContext",
+        "functionName": "main"
+      }
+    }
+  ]
+}

@@ -1,0 +1,2587 @@
+{
+  "syntaxNodes": {
+    "Garage.java-9:9-9:14": {
+      "endLine": 9,
+      "identifier": "Garage.java-9:9-9:14",
+      "expression": {
+        "tokens": [
+          {
+            "kind": "Text",
+            "text": "alice"
+          }
+        ],
+        "kind": "expression"
+      },
+      "children": [],
+      "kind": "presentInSourceCode",
+      "prefix": {
+        "kind": "Text",
+        "text": "        "
+      },
+      "startLine": 9,
+      "suffix": {
+        "kind": "Text",
+        "text": ".setAge(31);\n"
+      },
+      "sourceFile": {
+        "fileName": "Garage.java",
+        "packageName": ""
+      }
+    },
+    "Garage.java-41:20-41:23": {
+      "endLine": 41,
+      "identifier": "Garage.java-41:20-41:23",
+      "expression": {
+        "tokens": [
+          {
+            "kind": "Text",
+            "text": "car"
+          }
+        ],
+        "kind": "expression"
+      },
+      "children": [],
+      "kind": "presentInSourceCode",
+      "prefix": {
+        "kind": "Text",
+        "text": "            return "
+      },
+      "startLine": 41,
+      "suffix": {
+        "kind": "Text",
+        "text": ";\n"
+      },
+      "sourceFile": {
+        "fileName": "Garage.java",
+        "packageName": ""
+      }
+    },
+    "Garage.java-37:13-37:27": {
+      "endLine": 37,
+      "identifier": "Garage.java-37:13-37:27",
+      "expression": {
+        "tokens": [
+          {
+            "kind": "Text",
+            "text": "this.age = age"
+          }
+        ],
+        "kind": "expression"
+      },
+      "children": [],
+      "kind": "presentInSourceCode",
+      "prefix": {
+        "kind": "Text",
+        "text": "            "
+      },
+      "startLine": 37,
+      "suffix": {
+        "kind": "Text",
+        "text": ";\n"
+      },
+      "sourceFile": {
+        "fileName": "Garage.java",
+        "packageName": ""
+      }
+    },
+    "Garage.java-5:19-5:42": {
+      "endLine": 5,
+      "identifier": "Garage.java-5:19-5:42",
+      "expression": {
+        "tokens": [
+          {
+            "kind": "Text",
+            "text": "new Car("
+          },
+          {
+            "kind": "Child",
+            "text": "\"Toyota\"",
+            "childIndex": 0
+          },
+          {
+            "kind": "Text",
+            "text": ", "
+          },
+          {
+            "kind": "Child",
+            "text": "2005",
+            "childIndex": 1
+          },
+          {
+            "kind": "Text",
+            "text": ")"
+          }
+        ],
+        "kind": "expression"
+      },
+      "children": [
+        "absent",
+        "absent"
+      ],
+      "kind": "presentInSourceCode",
+      "prefix": {
+        "kind": "Text",
+        "text": "        Car car = "
+      },
+      "startLine": 5,
+      "suffix": {
+        "kind": "Text",
+        "text": ";\n"
+      },
+      "sourceFile": {
+        "fileName": "Garage.java",
+        "packageName": ""
+      }
+    },
+    "Garage.java-63:13-63:17": {
+      "endLine": 63,
+      "identifier": "Garage.java-63:13-63:17",
+      "expression": {
+        "tokens": [
+          {
+            "kind": "Text",
+            "text": "this"
+          }
+        ],
+        "kind": "expression"
+      },
+      "children": [],
+      "kind": "presentInSourceCode",
+      "prefix": {
+        "kind": "Text",
+        "text": "            "
+      },
+      "startLine": 63,
+      "suffix": {
+        "kind": "Text",
+        "text": ".year = year;\n"
+      },
+      "sourceFile": {
+        "fileName": "Garage.java",
+        "packageName": ""
+      }
+    },
+    "Garage.java-26:23-26:29": {
+      "endLine": 26,
+      "identifier": "Garage.java-26:23-26:29",
+      "expression": {
+        "tokens": [
+          {
+            "kind": "Text",
+            "text": "String"
+          }
+        ],
+        "kind": "expression"
+      },
+      "children": [],
+      "kind": "presentInSourceCode",
+      "prefix": {
+        "kind": "Text",
+        "text": "        public Person("
+      },
+      "startLine": 26,
+      "suffix": {
+        "kind": "Text",
+        "text": " name, int age, Car car) {\n"
+      },
+      "sourceFile": {
+        "fileName": "Garage.java",
+        "packageName": ""
+      }
+    },
+    "Garage.java-50:9-50:30": {
+      "endLine": 50,
+      "identifier": "Garage.java-50:9-50:30",
+      "expression": {
+        "tokens": [
+          {
+            "kind": "Text",
+            "text": "private String model;"
+          }
+        ],
+        "kind": "expression"
+      },
+      "children": [],
+      "kind": "presentInSourceCode",
+      "prefix": {
+        "kind": "Text",
+        "text": "        "
+      },
+      "startLine": 50,
+      "suffix": {
+        "kind": "Text",
+        "text": "\n"
+      },
+      "sourceFile": {
+        "fileName": "Garage.java",
+        "packageName": ""
+      }
+    },
+    "Garage.java-26:45-26:52": {
+      "endLine": 26,
+      "identifier": "Garage.java-26:45-26:52",
+      "expression": {
+        "tokens": [
+          {
+            "kind": "Text",
+            "text": "Car car"
+          }
+        ],
+        "kind": "expression"
+      },
+      "children": [],
+      "kind": "presentInSourceCode",
+      "prefix": {
+        "kind": "Text",
+        "text": "        public Person(String name, int age, "
+      },
+      "startLine": 26,
+      "suffix": {
+        "kind": "Text",
+        "text": ") {\n"
+      },
+      "sourceFile": {
+        "fileName": "Garage.java",
+        "packageName": ""
+      }
+    },
+    "Garage.java-24:17-24:20": {
+      "endLine": 24,
+      "identifier": "Garage.java-24:17-24:20",
+      "expression": {
+        "tokens": [
+          {
+            "kind": "Text",
+            "text": "Car"
+          }
+        ],
+        "kind": "expression"
+      },
+      "children": [],
+      "kind": "presentInSourceCode",
+      "prefix": {
+        "kind": "Text",
+        "text": "        private "
+      },
+      "startLine": 24,
+      "suffix": {
+        "kind": "Text",
+        "text": " car;\n"
+      },
+      "sourceFile": {
+        "fileName": "Garage.java",
+        "packageName": ""
+      }
+    },
+    "Garage.java-17:9-17:27": {
+      "endLine": 17,
+      "identifier": "Garage.java-17:9-17:27",
+      "expression": {
+        "tokens": [
+          {
+            "kind": "Text",
+            "text": "Car testCar = car;"
+          }
+        ],
+        "kind": "expression"
+      },
+      "children": [],
+      "kind": "presentInSourceCode",
+      "prefix": {
+        "kind": "Text",
+        "text": "        "
+      },
+      "startLine": 17,
+      "suffix": {
+        "kind": "Text",
+        "text": "\n"
+      },
+      "sourceFile": {
+        "fileName": "Garage.java",
+        "packageName": ""
+      }
+    },
+    "Garage.java-51:9-51:26": {
+      "endLine": 51,
+      "identifier": "Garage.java-51:9-51:26",
+      "expression": {
+        "tokens": [
+          {
+            "kind": "Text",
+            "text": "private int year;"
+          }
+        ],
+        "kind": "expression"
+      },
+      "children": [],
+      "kind": "presentInSourceCode",
+      "prefix": {
+        "kind": "Text",
+        "text": "        "
+      },
+      "startLine": 51,
+      "suffix": {
+        "kind": "Text",
+        "text": "\n"
+      },
+      "sourceFile": {
+        "fileName": "Garage.java",
+        "packageName": ""
+      }
+    },
+    "Garage.java-6:9-6:15": {
+      "endLine": 6,
+      "identifier": "Garage.java-6:9-6:15",
+      "expression": {
+        "tokens": [
+          {
+            "kind": "Text",
+            "text": "Person"
+          }
+        ],
+        "kind": "expression"
+      },
+      "children": [],
+      "kind": "presentInSourceCode",
+      "prefix": {
+        "kind": "Text",
+        "text": "        "
+      },
+      "startLine": 6,
+      "suffix": {
+        "kind": "Text",
+        "text": " alice = new Person(\"Alice\", 30, car);\n"
+      },
+      "sourceFile": {
+        "fileName": "Garage.java",
+        "packageName": ""
+      }
+    },
+    "Garage.java-5:9-5:43": {
+      "endLine": 5,
+      "identifier": "Garage.java-5:9-5:43",
+      "expression": {
+        "tokens": [
+          {
+            "kind": "Text",
+            "text": "Car car = new Car(\"Toyota\", 2005);"
+          }
+        ],
+        "kind": "expression"
+      },
+      "children": [],
+      "kind": "presentInSourceCode",
+      "prefix": {
+        "kind": "Text",
+        "text": "        "
+      },
+      "startLine": 5,
+      "suffix": {
+        "kind": "Text",
+        "text": "\n"
+      },
+      "sourceFile": {
+        "fileName": "Garage.java",
+        "packageName": ""
+      }
+    },
+    "Garage.java-26:23-26:34": {
+      "endLine": 26,
+      "identifier": "Garage.java-26:23-26:34",
+      "expression": {
+        "tokens": [
+          {
+            "kind": "Text",
+            "text": "String name"
+          }
+        ],
+        "kind": "expression"
+      },
+      "children": [],
+      "kind": "presentInSourceCode",
+      "prefix": {
+        "kind": "Text",
+        "text": "        public Person("
+      },
+      "startLine": 26,
+      "suffix": {
+        "kind": "Text",
+        "text": ", int age, Car car) {\n"
+      },
+      "sourceFile": {
+        "fileName": "Garage.java",
+        "packageName": ""
+      }
+    },
+    "Garage.java-6:28-6:34": {
+      "endLine": 6,
+      "identifier": "Garage.java-6:28-6:34",
+      "expression": {
+        "tokens": [
+          {
+            "kind": "Text",
+            "text": "Person"
+          }
+        ],
+        "kind": "expression"
+      },
+      "children": [],
+      "kind": "presentInSourceCode",
+      "prefix": {
+        "kind": "Text",
+        "text": "        Person alice = new "
+      },
+      "startLine": 6,
+      "suffix": {
+        "kind": "Text",
+        "text": "(\"Alice\", 30, car);\n"
+      },
+      "sourceFile": {
+        "fileName": "Garage.java",
+        "packageName": ""
+      }
+    },
+    "Garage.java-26:45-26:48": {
+      "endLine": 26,
+      "identifier": "Garage.java-26:45-26:48",
+      "expression": {
+        "tokens": [
+          {
+            "kind": "Text",
+            "text": "Car"
+          }
+        ],
+        "kind": "expression"
+      },
+      "children": [],
+      "kind": "presentInSourceCode",
+      "prefix": {
+        "kind": "Text",
+        "text": "        public Person(String name, int age, "
+      },
+      "startLine": 26,
+      "suffix": {
+        "kind": "Text",
+        "text": " car) {\n"
+      },
+      "sourceFile": {
+        "fileName": "Garage.java",
+        "packageName": ""
+      }
+    },
+    "Garage.java-29:13-29:27": {
+      "endLine": 29,
+      "identifier": "Garage.java-29:13-29:27",
+      "expression": {
+        "tokens": [
+          {
+            "kind": "Text",
+            "text": "this.car = car"
+          }
+        ],
+        "kind": "expression"
+      },
+      "children": [],
+      "kind": "presentInSourceCode",
+      "prefix": {
+        "kind": "Text",
+        "text": "            "
+      },
+      "startLine": 29,
+      "suffix": {
+        "kind": "Text",
+        "text": ";\n"
+      },
+      "sourceFile": {
+        "fileName": "Garage.java",
+        "packageName": ""
+      }
+    },
+    "absent": {
+      "identifier": "absent",
+      "kind": "absent"
+    },
+    "Garage.java-18:9-18:14": {
+      "endLine": 18,
+      "identifier": "Garage.java-18:9-18:14",
+      "expression": {
+        "tokens": [
+          {
+            "kind": "Text",
+            "text": "alice"
+          }
+        ],
+        "kind": "expression"
+      },
+      "children": [],
+      "kind": "presentInSourceCode",
+      "prefix": {
+        "kind": "Text",
+        "text": "        "
+      },
+      "startLine": 18,
+      "suffix": {
+        "kind": "Text",
+        "text": ".setCar(new Car(\"Mazda\", 2022));\n"
+      },
+      "sourceFile": {
+        "fileName": "Garage.java",
+        "packageName": ""
+      }
+    },
+    "Garage.java-12:9-12:23": {
+      "endLine": 12,
+      "identifier": "Garage.java-12:9-12:23",
+      "expression": {
+        "tokens": [
+          {
+            "kind": "Text",
+            "text": "alice.getCar()"
+          }
+        ],
+        "kind": "expression"
+      },
+      "children": [],
+      "kind": "presentInSourceCode",
+      "prefix": {
+        "kind": "Text",
+        "text": "        "
+      },
+      "startLine": 12,
+      "suffix": {
+        "kind": "Text",
+        "text": ".setYear(2010);\n"
+      },
+      "sourceFile": {
+        "fileName": "Garage.java",
+        "packageName": ""
+      }
+    },
+    "Garage.java-27:25-27:29": {
+      "endLine": 27,
+      "identifier": "Garage.java-27:25-27:29",
+      "expression": {
+        "tokens": [
+          {
+            "kind": "Text",
+            "text": "name"
+          }
+        ],
+        "kind": "expression"
+      },
+      "children": [],
+      "kind": "presentInSourceCode",
+      "prefix": {
+        "kind": "Text",
+        "text": "            this.name = "
+      },
+      "startLine": 27,
+      "suffix": {
+        "kind": "Text",
+        "text": ";\n"
+      },
+      "sourceFile": {
+        "fileName": "Garage.java",
+        "packageName": ""
+      }
+    },
+    "Garage.java-59:13-59:17": {
+      "endLine": 59,
+      "identifier": "Garage.java-59:13-59:17",
+      "expression": {
+        "tokens": [
+          {
+            "kind": "Text",
+            "text": "this"
+          }
+        ],
+        "kind": "expression"
+      },
+      "children": [],
+      "kind": "presentInSourceCode",
+      "prefix": {
+        "kind": "Text",
+        "text": "            "
+      },
+      "startLine": 59,
+      "suffix": {
+        "kind": "Text",
+        "text": ".model = model;\n"
+      },
+      "sourceFile": {
+        "fileName": "Garage.java",
+        "packageName": ""
+      }
+    },
+    "Garage.java-24:9-24:25": {
+      "endLine": 24,
+      "identifier": "Garage.java-24:9-24:25",
+      "expression": {
+        "tokens": [
+          {
+            "kind": "Text",
+            "text": "private Car car;"
+          }
+        ],
+        "kind": "expression"
+      },
+      "children": [],
+      "kind": "presentInSourceCode",
+      "prefix": {
+        "kind": "Text",
+        "text": "        "
+      },
+      "startLine": 24,
+      "suffix": {
+        "kind": "Text",
+        "text": "\n"
+      },
+      "sourceFile": {
+        "fileName": "Garage.java",
+        "packageName": ""
+      }
+    },
+    "Garage.java-6:48-6:51": {
+      "endLine": 6,
+      "identifier": "Garage.java-6:48-6:51",
+      "expression": {
+        "tokens": [
+          {
+            "kind": "Text",
+            "text": "car"
+          }
+        ],
+        "kind": "expression"
+      },
+      "children": [],
+      "kind": "presentInSourceCode",
+      "prefix": {
+        "kind": "Text",
+        "text": "        Person alice = new Person(\"Alice\", 30, "
+      },
+      "startLine": 6,
+      "suffix": {
+        "kind": "Text",
+        "text": ");\n"
+      },
+      "sourceFile": {
+        "fileName": "Garage.java",
+        "packageName": ""
+      }
+    },
+    "Garage.java-37:13-37:17": {
+      "endLine": 37,
+      "identifier": "Garage.java-37:13-37:17",
+      "expression": {
+        "tokens": [
+          {
+            "kind": "Text",
+            "text": "this"
+          }
+        ],
+        "kind": "expression"
+      },
+      "children": [],
+      "kind": "presentInSourceCode",
+      "prefix": {
+        "kind": "Text",
+        "text": "            "
+      },
+      "startLine": 37,
+      "suffix": {
+        "kind": "Text",
+        "text": ".age = age;\n"
+      },
+      "sourceFile": {
+        "fileName": "Garage.java",
+        "packageName": ""
+      }
+    },
+    "Garage.java-9:9-9:25": {
+      "endLine": 9,
+      "identifier": "Garage.java-9:9-9:25",
+      "expression": {
+        "tokens": [
+          {
+            "kind": "Text",
+            "text": "alice.setAge("
+          },
+          {
+            "kind": "Child",
+            "text": "31",
+            "childIndex": 0
+          },
+          {
+            "kind": "Text",
+            "text": ")"
+          }
+        ],
+        "kind": "expression"
+      },
+      "children": [
+        "absent"
+      ],
+      "kind": "presentInSourceCode",
+      "prefix": {
+        "kind": "Text",
+        "text": "        "
+      },
+      "startLine": 9,
+      "suffix": {
+        "kind": "Text",
+        "text": ";\n"
+      },
+      "sourceFile": {
+        "fileName": "Garage.java",
+        "packageName": ""
+      }
+    },
+    "Garage.java-28:13-28:27": {
+      "endLine": 28,
+      "identifier": "Garage.java-28:13-28:27",
+      "expression": {
+        "tokens": [
+          {
+            "kind": "Text",
+            "text": "this.age = age"
+          }
+        ],
+        "kind": "expression"
+      },
+      "children": [],
+      "kind": "presentInSourceCode",
+      "prefix": {
+        "kind": "Text",
+        "text": "            "
+      },
+      "startLine": 28,
+      "suffix": {
+        "kind": "Text",
+        "text": ";\n"
+      },
+      "sourceFile": {
+        "fileName": "Garage.java",
+        "packageName": ""
+      }
+    },
+    "Garage.java-33:25-33:29": {
+      "endLine": 33,
+      "identifier": "Garage.java-33:25-33:29",
+      "expression": {
+        "tokens": [
+          {
+            "kind": "Text",
+            "text": "name"
+          }
+        ],
+        "kind": "expression"
+      },
+      "children": [],
+      "kind": "presentInSourceCode",
+      "prefix": {
+        "kind": "Text",
+        "text": "            this.name = "
+      },
+      "startLine": 33,
+      "suffix": {
+        "kind": "Text",
+        "text": ";\n"
+      },
+      "sourceFile": {
+        "fileName": "Garage.java",
+        "packageName": ""
+      }
+    },
+    "Garage.java-59:13-59:31": {
+      "endLine": 59,
+      "identifier": "Garage.java-59:13-59:31",
+      "expression": {
+        "tokens": [
+          {
+            "kind": "Text",
+            "text": "this.model = model"
+          }
+        ],
+        "kind": "expression"
+      },
+      "children": [],
+      "kind": "presentInSourceCode",
+      "prefix": {
+        "kind": "Text",
+        "text": "            "
+      },
+      "startLine": 59,
+      "suffix": {
+        "kind": "Text",
+        "text": ";\n"
+      },
+      "sourceFile": {
+        "fileName": "Garage.java",
+        "packageName": ""
+      }
+    },
+    "Garage.java-54:13-54:17": {
+      "endLine": 54,
+      "identifier": "Garage.java-54:13-54:17",
+      "expression": {
+        "tokens": [
+          {
+            "kind": "Text",
+            "text": "this"
+          }
+        ],
+        "kind": "expression"
+      },
+      "children": [],
+      "kind": "presentInSourceCode",
+      "prefix": {
+        "kind": "Text",
+        "text": "            "
+      },
+      "startLine": 54,
+      "suffix": {
+        "kind": "Text",
+        "text": ".model = model;\n"
+      },
+      "sourceFile": {
+        "fileName": "Garage.java",
+        "packageName": ""
+      }
+    },
+    "Garage.java-63:13-63:29": {
+      "endLine": 63,
+      "identifier": "Garage.java-63:13-63:29",
+      "expression": {
+        "tokens": [
+          {
+            "kind": "Text",
+            "text": "this.year = year"
+          }
+        ],
+        "kind": "expression"
+      },
+      "children": [],
+      "kind": "presentInSourceCode",
+      "prefix": {
+        "kind": "Text",
+        "text": "            "
+      },
+      "startLine": 63,
+      "suffix": {
+        "kind": "Text",
+        "text": ";\n"
+      },
+      "sourceFile": {
+        "fileName": "Garage.java",
+        "packageName": ""
+      }
+    },
+    "Garage.java-62:29-62:37": {
+      "endLine": 62,
+      "identifier": "Garage.java-62:29-62:37",
+      "expression": {
+        "tokens": [
+          {
+            "kind": "Text",
+            "text": "int year"
+          }
+        ],
+        "kind": "expression"
+      },
+      "children": [],
+      "kind": "presentInSourceCode",
+      "prefix": {
+        "kind": "Text",
+        "text": "        public void setYear("
+      },
+      "startLine": 62,
+      "suffix": {
+        "kind": "Text",
+        "text": ") {\n"
+      },
+      "sourceFile": {
+        "fileName": "Garage.java",
+        "packageName": ""
+      }
+    },
+    "Garage.java-37:24-37:27": {
+      "endLine": 37,
+      "identifier": "Garage.java-37:24-37:27",
+      "expression": {
+        "tokens": [
+          {
+            "kind": "Text",
+            "text": "age"
+          }
+        ],
+        "kind": "expression"
+      },
+      "children": [],
+      "kind": "presentInSourceCode",
+      "prefix": {
+        "kind": "Text",
+        "text": "            this.age = "
+      },
+      "startLine": 37,
+      "suffix": {
+        "kind": "Text",
+        "text": ";\n"
+      },
+      "sourceFile": {
+        "fileName": "Garage.java",
+        "packageName": ""
+      }
+    },
+    "Garage.java-6:9-6:53": {
+      "endLine": 6,
+      "identifier": "Garage.java-6:9-6:53",
+      "expression": {
+        "tokens": [
+          {
+            "kind": "Text",
+            "text": "Person alice = new Person(\"Alice\", 30, car);"
+          }
+        ],
+        "kind": "expression"
+      },
+      "children": [],
+      "kind": "presentInSourceCode",
+      "prefix": {
+        "kind": "Text",
+        "text": "        "
+      },
+      "startLine": 6,
+      "suffix": {
+        "kind": "Text",
+        "text": "\n"
+      },
+      "sourceFile": {
+        "fileName": "Garage.java",
+        "packageName": ""
+      }
+    },
+    "Garage.java-50:17-50:23": {
+      "endLine": 50,
+      "identifier": "Garage.java-50:17-50:23",
+      "expression": {
+        "tokens": [
+          {
+            "kind": "Text",
+            "text": "String"
+          }
+        ],
+        "kind": "expression"
+      },
+      "children": [],
+      "kind": "presentInSourceCode",
+      "prefix": {
+        "kind": "Text",
+        "text": "        private "
+      },
+      "startLine": 50,
+      "suffix": {
+        "kind": "Text",
+        "text": " model;\n"
+      },
+      "sourceFile": {
+        "fileName": "Garage.java",
+        "packageName": ""
+      }
+    },
+    "Garage.java-15:9-15:29": {
+      "endLine": 15,
+      "identifier": "Garage.java-15:9-15:29",
+      "expression": {
+        "tokens": [
+          {
+            "kind": "Text",
+            "text": "car.setModel("
+          },
+          {
+            "kind": "Child",
+            "text": "\"Ford\"",
+            "childIndex": 0
+          },
+          {
+            "kind": "Text",
+            "text": ")"
+          }
+        ],
+        "kind": "expression"
+      },
+      "children": [
+        "absent"
+      ],
+      "kind": "presentInSourceCode",
+      "prefix": {
+        "kind": "Text",
+        "text": "        "
+      },
+      "startLine": 15,
+      "suffix": {
+        "kind": "Text",
+        "text": ";\n"
+      },
+      "sourceFile": {
+        "fileName": "Garage.java",
+        "packageName": ""
+      }
+    },
+    "Garage.java-55:25-55:29": {
+      "endLine": 55,
+      "identifier": "Garage.java-55:25-55:29",
+      "expression": {
+        "tokens": [
+          {
+            "kind": "Text",
+            "text": "year"
+          }
+        ],
+        "kind": "expression"
+      },
+      "children": [],
+      "kind": "presentInSourceCode",
+      "prefix": {
+        "kind": "Text",
+        "text": "            this.year = "
+      },
+      "startLine": 55,
+      "suffix": {
+        "kind": "Text",
+        "text": ";\n"
+      },
+      "sourceFile": {
+        "fileName": "Garage.java",
+        "packageName": ""
+      }
+    },
+    "Garage.java-32:29-32:40": {
+      "endLine": 32,
+      "identifier": "Garage.java-32:29-32:40",
+      "expression": {
+        "tokens": [
+          {
+            "kind": "Text",
+            "text": "String name"
+          }
+        ],
+        "kind": "expression"
+      },
+      "children": [],
+      "kind": "presentInSourceCode",
+      "prefix": {
+        "kind": "Text",
+        "text": "        public void setName("
+      },
+      "startLine": 32,
+      "suffix": {
+        "kind": "Text",
+        "text": ") {\n"
+      },
+      "sourceFile": {
+        "fileName": "Garage.java",
+        "packageName": ""
+      }
+    },
+    "Garage.java-44:28-44:35": {
+      "endLine": 44,
+      "identifier": "Garage.java-44:28-44:35",
+      "expression": {
+        "tokens": [
+          {
+            "kind": "Text",
+            "text": "Car car"
+          }
+        ],
+        "kind": "expression"
+      },
+      "children": [],
+      "kind": "presentInSourceCode",
+      "prefix": {
+        "kind": "Text",
+        "text": "        public void setCar("
+      },
+      "startLine": 44,
+      "suffix": {
+        "kind": "Text",
+        "text": ") {\n"
+      },
+      "sourceFile": {
+        "fileName": "Garage.java",
+        "packageName": ""
+      }
+    },
+    "Garage.java-22:17-22:23": {
+      "endLine": 22,
+      "identifier": "Garage.java-22:17-22:23",
+      "expression": {
+        "tokens": [
+          {
+            "kind": "Text",
+            "text": "String"
+          }
+        ],
+        "kind": "expression"
+      },
+      "children": [],
+      "kind": "presentInSourceCode",
+      "prefix": {
+        "kind": "Text",
+        "text": "        private "
+      },
+      "startLine": 22,
+      "suffix": {
+        "kind": "Text",
+        "text": " name;\n"
+      },
+      "sourceFile": {
+        "fileName": "Garage.java",
+        "packageName": ""
+      }
+    },
+    "Garage.java-5:9-5:12": {
+      "endLine": 5,
+      "identifier": "Garage.java-5:9-5:12",
+      "expression": {
+        "tokens": [
+          {
+            "kind": "Text",
+            "text": "Car"
+          }
+        ],
+        "kind": "expression"
+      },
+      "children": [],
+      "kind": "presentInSourceCode",
+      "prefix": {
+        "kind": "Text",
+        "text": "        "
+      },
+      "startLine": 5,
+      "suffix": {
+        "kind": "Text",
+        "text": " car = new Car(\"Toyota\", 2005);\n"
+      },
+      "sourceFile": {
+        "fileName": "Garage.java",
+        "packageName": ""
+      }
+    },
+    "Garage.java-11:9-11:23": {
+      "endLine": 11,
+      "identifier": "Garage.java-11:9-11:23",
+      "expression": {
+        "tokens": [
+          {
+            "kind": "Text",
+            "text": "alice.getCar()"
+          }
+        ],
+        "kind": "expression"
+      },
+      "children": [],
+      "kind": "presentInSourceCode",
+      "prefix": {
+        "kind": "Text",
+        "text": "        "
+      },
+      "startLine": 11,
+      "suffix": {
+        "kind": "Text",
+        "text": ".setModel(\"Honda\");\n"
+      },
+      "sourceFile": {
+        "fileName": "Garage.java",
+        "packageName": ""
+      }
+    },
+    "Garage.java-10:9-10:37": {
+      "endLine": 10,
+      "identifier": "Garage.java-10:9-10:37",
+      "expression": {
+        "tokens": [
+          {
+            "kind": "Text",
+            "text": "alice.setName("
+          },
+          {
+            "kind": "Child",
+            "text": "\"Alice Smith\"",
+            "childIndex": 0
+          },
+          {
+            "kind": "Text",
+            "text": ")"
+          }
+        ],
+        "kind": "expression"
+      },
+      "children": [
+        "absent"
+      ],
+      "kind": "presentInSourceCode",
+      "prefix": {
+        "kind": "Text",
+        "text": "        "
+      },
+      "startLine": 10,
+      "suffix": {
+        "kind": "Text",
+        "text": ";\n"
+      },
+      "sourceFile": {
+        "fileName": "Garage.java",
+        "packageName": ""
+      }
+    },
+    "Garage.java-41:13-41:24": {
+      "endLine": 41,
+      "identifier": "Garage.java-41:13-41:24",
+      "expression": {
+        "tokens": [
+          {
+            "kind": "Text",
+            "text": "return car;"
+          }
+        ],
+        "kind": "expression"
+      },
+      "children": [],
+      "kind": "presentInSourceCode",
+      "prefix": {
+        "kind": "Text",
+        "text": "            "
+      },
+      "startLine": 41,
+      "suffix": {
+        "kind": "Text",
+        "text": "\n"
+      },
+      "sourceFile": {
+        "fileName": "Garage.java",
+        "packageName": ""
+      }
+    },
+    "Garage.java-6:24-6:52": {
+      "endLine": 6,
+      "identifier": "Garage.java-6:24-6:52",
+      "expression": {
+        "tokens": [
+          {
+            "kind": "Text",
+            "text": "new Person("
+          },
+          {
+            "kind": "Child",
+            "text": "\"Alice\"",
+            "childIndex": 0
+          },
+          {
+            "kind": "Text",
+            "text": ", "
+          },
+          {
+            "kind": "Child",
+            "text": "30",
+            "childIndex": 1
+          },
+          {
+            "kind": "Text",
+            "text": ", "
+          },
+          {
+            "kind": "Child",
+            "text": "car",
+            "childIndex": 2
+          },
+          {
+            "kind": "Text",
+            "text": ")"
+          }
+        ],
+        "kind": "expression"
+      },
+      "children": [
+        "absent",
+        "absent",
+        "Garage.java-6:48-6:51"
+      ],
+      "kind": "presentInSourceCode",
+      "prefix": {
+        "kind": "Text",
+        "text": "        Person alice = "
+      },
+      "startLine": 6,
+      "suffix": {
+        "kind": "Text",
+        "text": ";\n"
+      },
+      "sourceFile": {
+        "fileName": "Garage.java",
+        "packageName": ""
+      }
+    },
+    "Garage.java-58:30-58:42": {
+      "endLine": 58,
+      "identifier": "Garage.java-58:30-58:42",
+      "expression": {
+        "tokens": [
+          {
+            "kind": "Text",
+            "text": "String model"
+          }
+        ],
+        "kind": "expression"
+      },
+      "children": [],
+      "kind": "presentInSourceCode",
+      "prefix": {
+        "kind": "Text",
+        "text": "        public void setModel("
+      },
+      "startLine": 58,
+      "suffix": {
+        "kind": "Text",
+        "text": ") {\n"
+      },
+      "sourceFile": {
+        "fileName": "Garage.java",
+        "packageName": ""
+      }
+    },
+    "Garage.java-28:24-28:27": {
+      "endLine": 28,
+      "identifier": "Garage.java-28:24-28:27",
+      "expression": {
+        "tokens": [
+          {
+            "kind": "Text",
+            "text": "age"
+          }
+        ],
+        "kind": "expression"
+      },
+      "children": [],
+      "kind": "presentInSourceCode",
+      "prefix": {
+        "kind": "Text",
+        "text": "            this.age = "
+      },
+      "startLine": 28,
+      "suffix": {
+        "kind": "Text",
+        "text": ";\n"
+      },
+      "sourceFile": {
+        "fileName": "Garage.java",
+        "packageName": ""
+      }
+    },
+    "Garage.java-3:29-3:35": {
+      "endLine": 3,
+      "identifier": "Garage.java-3:29-3:35",
+      "expression": {
+        "tokens": [
+          {
+            "kind": "Text",
+            "text": "String"
+          }
+        ],
+        "kind": "expression"
+      },
+      "children": [],
+      "kind": "presentInSourceCode",
+      "prefix": {
+        "kind": "Text",
+        "text": "    public static void main("
+      },
+      "startLine": 3,
+      "suffix": {
+        "kind": "Text",
+        "text": "[] args) {\n"
+      },
+      "sourceFile": {
+        "fileName": "Garage.java",
+        "packageName": ""
+      }
+    },
+    "Garage.java-44:28-44:31": {
+      "endLine": 44,
+      "identifier": "Garage.java-44:28-44:31",
+      "expression": {
+        "tokens": [
+          {
+            "kind": "Text",
+            "text": "Car"
+          }
+        ],
+        "kind": "expression"
+      },
+      "children": [],
+      "kind": "presentInSourceCode",
+      "prefix": {
+        "kind": "Text",
+        "text": "        public void setCar("
+      },
+      "startLine": 44,
+      "suffix": {
+        "kind": "Text",
+        "text": " car) {\n"
+      },
+      "sourceFile": {
+        "fileName": "Garage.java",
+        "packageName": ""
+      }
+    },
+    "Garage.java-12:9-12:14": {
+      "endLine": 12,
+      "identifier": "Garage.java-12:9-12:14",
+      "expression": {
+        "tokens": [
+          {
+            "kind": "Text",
+            "text": "alice"
+          }
+        ],
+        "kind": "expression"
+      },
+      "children": [],
+      "kind": "presentInSourceCode",
+      "prefix": {
+        "kind": "Text",
+        "text": "        "
+      },
+      "startLine": 12,
+      "suffix": {
+        "kind": "Text",
+        "text": ".getCar().setYear(2010);\n"
+      },
+      "sourceFile": {
+        "fileName": "Garage.java",
+        "packageName": ""
+      }
+    },
+    "Garage.java-26:36-26:43": {
+      "endLine": 26,
+      "identifier": "Garage.java-26:36-26:43",
+      "expression": {
+        "tokens": [
+          {
+            "kind": "Text",
+            "text": "int age"
+          }
+        ],
+        "kind": "expression"
+      },
+      "children": [],
+      "kind": "presentInSourceCode",
+      "prefix": {
+        "kind": "Text",
+        "text": "        public Person(String name, "
+      },
+      "startLine": 26,
+      "suffix": {
+        "kind": "Text",
+        "text": ", Car car) {\n"
+      },
+      "sourceFile": {
+        "fileName": "Garage.java",
+        "packageName": ""
+      }
+    },
+    "Garage.java-45:24-45:27": {
+      "endLine": 45,
+      "identifier": "Garage.java-45:24-45:27",
+      "expression": {
+        "tokens": [
+          {
+            "kind": "Text",
+            "text": "car"
+          }
+        ],
+        "kind": "expression"
+      },
+      "children": [],
+      "kind": "presentInSourceCode",
+      "prefix": {
+        "kind": "Text",
+        "text": "            this.car = "
+      },
+      "startLine": 45,
+      "suffix": {
+        "kind": "Text",
+        "text": ";\n"
+      },
+      "sourceFile": {
+        "fileName": "Garage.java",
+        "packageName": ""
+      }
+    },
+    "Garage.java-28:13-28:17": {
+      "endLine": 28,
+      "identifier": "Garage.java-28:13-28:17",
+      "expression": {
+        "tokens": [
+          {
+            "kind": "Text",
+            "text": "this"
+          }
+        ],
+        "kind": "expression"
+      },
+      "children": [],
+      "kind": "presentInSourceCode",
+      "prefix": {
+        "kind": "Text",
+        "text": "            "
+      },
+      "startLine": 28,
+      "suffix": {
+        "kind": "Text",
+        "text": ".age = age;\n"
+      },
+      "sourceFile": {
+        "fileName": "Garage.java",
+        "packageName": ""
+      }
+    },
+    "Garage.java-15:9-15:12": {
+      "endLine": 15,
+      "identifier": "Garage.java-15:9-15:12",
+      "expression": {
+        "tokens": [
+          {
+            "kind": "Text",
+            "text": "car"
+          }
+        ],
+        "kind": "expression"
+      },
+      "children": [],
+      "kind": "presentInSourceCode",
+      "prefix": {
+        "kind": "Text",
+        "text": "        "
+      },
+      "startLine": 15,
+      "suffix": {
+        "kind": "Text",
+        "text": ".setModel(\"Ford\");\n"
+      },
+      "sourceFile": {
+        "fileName": "Garage.java",
+        "packageName": ""
+      }
+    },
+    "Garage.java-45:13-45:17": {
+      "endLine": 45,
+      "identifier": "Garage.java-45:13-45:17",
+      "expression": {
+        "tokens": [
+          {
+            "kind": "Text",
+            "text": "this"
+          }
+        ],
+        "kind": "expression"
+      },
+      "children": [],
+      "kind": "presentInSourceCode",
+      "prefix": {
+        "kind": "Text",
+        "text": "            "
+      },
+      "startLine": 45,
+      "suffix": {
+        "kind": "Text",
+        "text": ".car = car;\n"
+      },
+      "sourceFile": {
+        "fileName": "Garage.java",
+        "packageName": ""
+      }
+    },
+    "Garage.java-33:13-33:29": {
+      "endLine": 33,
+      "identifier": "Garage.java-33:13-33:29",
+      "expression": {
+        "tokens": [
+          {
+            "kind": "Text",
+            "text": "this.name = name"
+          }
+        ],
+        "kind": "expression"
+      },
+      "children": [],
+      "kind": "presentInSourceCode",
+      "prefix": {
+        "kind": "Text",
+        "text": "            "
+      },
+      "startLine": 33,
+      "suffix": {
+        "kind": "Text",
+        "text": ";\n"
+      },
+      "sourceFile": {
+        "fileName": "Garage.java",
+        "packageName": ""
+      }
+    },
+    "Garage.java-63:25-63:29": {
+      "endLine": 63,
+      "identifier": "Garage.java-63:25-63:29",
+      "expression": {
+        "tokens": [
+          {
+            "kind": "Text",
+            "text": "year"
+          }
+        ],
+        "kind": "expression"
+      },
+      "children": [],
+      "kind": "presentInSourceCode",
+      "prefix": {
+        "kind": "Text",
+        "text": "            this.year = "
+      },
+      "startLine": 63,
+      "suffix": {
+        "kind": "Text",
+        "text": ";\n"
+      },
+      "sourceFile": {
+        "fileName": "Garage.java",
+        "packageName": ""
+      }
+    },
+    "Garage.java-27:13-27:29": {
+      "endLine": 27,
+      "identifier": "Garage.java-27:13-27:29",
+      "expression": {
+        "tokens": [
+          {
+            "kind": "Text",
+            "text": "this.name = name"
+          }
+        ],
+        "kind": "expression"
+      },
+      "children": [],
+      "kind": "presentInSourceCode",
+      "prefix": {
+        "kind": "Text",
+        "text": "            "
+      },
+      "startLine": 27,
+      "suffix": {
+        "kind": "Text",
+        "text": ";\n"
+      },
+      "sourceFile": {
+        "fileName": "Garage.java",
+        "packageName": ""
+      }
+    },
+    "Garage.java-22:9-22:29": {
+      "endLine": 22,
+      "identifier": "Garage.java-22:9-22:29",
+      "expression": {
+        "tokens": [
+          {
+            "kind": "Text",
+            "text": "private String name;"
+          }
+        ],
+        "kind": "expression"
+      },
+      "children": [],
+      "kind": "presentInSourceCode",
+      "prefix": {
+        "kind": "Text",
+        "text": "        "
+      },
+      "startLine": 22,
+      "suffix": {
+        "kind": "Text",
+        "text": "\n"
+      },
+      "sourceFile": {
+        "fileName": "Garage.java",
+        "packageName": ""
+      }
+    },
+    "Garage.java-11:9-11:14": {
+      "endLine": 11,
+      "identifier": "Garage.java-11:9-11:14",
+      "expression": {
+        "tokens": [
+          {
+            "kind": "Text",
+            "text": "alice"
+          }
+        ],
+        "kind": "expression"
+      },
+      "children": [],
+      "kind": "presentInSourceCode",
+      "prefix": {
+        "kind": "Text",
+        "text": "        "
+      },
+      "startLine": 11,
+      "suffix": {
+        "kind": "Text",
+        "text": ".getCar().setModel(\"Honda\");\n"
+      },
+      "sourceFile": {
+        "fileName": "Garage.java",
+        "packageName": ""
+      }
+    },
+    "Garage.java-32:29-32:35": {
+      "endLine": 32,
+      "identifier": "Garage.java-32:29-32:35",
+      "expression": {
+        "tokens": [
+          {
+            "kind": "Text",
+            "text": "String"
+          }
+        ],
+        "kind": "expression"
+      },
+      "children": [],
+      "kind": "presentInSourceCode",
+      "prefix": {
+        "kind": "Text",
+        "text": "        public void setName("
+      },
+      "startLine": 32,
+      "suffix": {
+        "kind": "Text",
+        "text": " name) {\n"
+      },
+      "sourceFile": {
+        "fileName": "Garage.java",
+        "packageName": ""
+      }
+    },
+    "Garage.java-54:26-54:31": {
+      "endLine": 54,
+      "identifier": "Garage.java-54:26-54:31",
+      "expression": {
+        "tokens": [
+          {
+            "kind": "Text",
+            "text": "model"
+          }
+        ],
+        "kind": "expression"
+      },
+      "children": [],
+      "kind": "presentInSourceCode",
+      "prefix": {
+        "kind": "Text",
+        "text": "            this.model = "
+      },
+      "startLine": 54,
+      "suffix": {
+        "kind": "Text",
+        "text": ";\n"
+      },
+      "sourceFile": {
+        "fileName": "Garage.java",
+        "packageName": ""
+      }
+    },
+    "Garage.java-3:29-3:42": {
+      "endLine": 3,
+      "identifier": "Garage.java-3:29-3:42",
+      "expression": {
+        "tokens": [
+          {
+            "kind": "Text",
+            "text": "String[] args"
+          }
+        ],
+        "kind": "expression"
+      },
+      "children": [],
+      "kind": "presentInSourceCode",
+      "prefix": {
+        "kind": "Text",
+        "text": "    public static void main("
+      },
+      "startLine": 3,
+      "suffix": {
+        "kind": "Text",
+        "text": ") {\n"
+      },
+      "sourceFile": {
+        "fileName": "Garage.java",
+        "packageName": ""
+      }
+    },
+    "Garage.java-53:20-53:26": {
+      "endLine": 53,
+      "identifier": "Garage.java-53:20-53:26",
+      "expression": {
+        "tokens": [
+          {
+            "kind": "Text",
+            "text": "String"
+          }
+        ],
+        "kind": "expression"
+      },
+      "children": [],
+      "kind": "presentInSourceCode",
+      "prefix": {
+        "kind": "Text",
+        "text": "        public Car("
+      },
+      "startLine": 53,
+      "suffix": {
+        "kind": "Text",
+        "text": " model, int year) {\n"
+      },
+      "sourceFile": {
+        "fileName": "Garage.java",
+        "packageName": ""
+      }
+    },
+    "Garage.java-55:13-55:29": {
+      "endLine": 55,
+      "identifier": "Garage.java-55:13-55:29",
+      "expression": {
+        "tokens": [
+          {
+            "kind": "Text",
+            "text": "this.year = year"
+          }
+        ],
+        "kind": "expression"
+      },
+      "children": [],
+      "kind": "presentInSourceCode",
+      "prefix": {
+        "kind": "Text",
+        "text": "            "
+      },
+      "startLine": 55,
+      "suffix": {
+        "kind": "Text",
+        "text": ";\n"
+      },
+      "sourceFile": {
+        "fileName": "Garage.java",
+        "packageName": ""
+      }
+    },
+    "Garage.java-40:16-40:19": {
+      "endLine": 40,
+      "identifier": "Garage.java-40:16-40:19",
+      "expression": {
+        "tokens": [
+          {
+            "kind": "Text",
+            "text": "Car"
+          }
+        ],
+        "kind": "expression"
+      },
+      "children": [],
+      "kind": "presentInSourceCode",
+      "prefix": {
+        "kind": "Text",
+        "text": "        public "
+      },
+      "startLine": 40,
+      "suffix": {
+        "kind": "Text",
+        "text": " getCar() {\n"
+      },
+      "sourceFile": {
+        "fileName": "Garage.java",
+        "packageName": ""
+      }
+    },
+    "Garage.java-18:26-18:29": {
+      "endLine": 18,
+      "identifier": "Garage.java-18:26-18:29",
+      "expression": {
+        "tokens": [
+          {
+            "kind": "Text",
+            "text": "Car"
+          }
+        ],
+        "kind": "expression"
+      },
+      "children": [],
+      "kind": "presentInSourceCode",
+      "prefix": {
+        "kind": "Text",
+        "text": "        alice.setCar(new "
+      },
+      "startLine": 18,
+      "suffix": {
+        "kind": "Text",
+        "text": "(\"Mazda\", 2022));\n"
+      },
+      "sourceFile": {
+        "fileName": "Garage.java",
+        "packageName": ""
+      }
+    },
+    "Garage.java-58:30-58:36": {
+      "endLine": 58,
+      "identifier": "Garage.java-58:30-58:36",
+      "expression": {
+        "tokens": [
+          {
+            "kind": "Text",
+            "text": "String"
+          }
+        ],
+        "kind": "expression"
+      },
+      "children": [],
+      "kind": "presentInSourceCode",
+      "prefix": {
+        "kind": "Text",
+        "text": "        public void setModel("
+      },
+      "startLine": 58,
+      "suffix": {
+        "kind": "Text",
+        "text": " model) {\n"
+      },
+      "sourceFile": {
+        "fileName": "Garage.java",
+        "packageName": ""
+      }
+    },
+    "Garage.java-36:28-36:35": {
+      "endLine": 36,
+      "identifier": "Garage.java-36:28-36:35",
+      "expression": {
+        "tokens": [
+          {
+            "kind": "Text",
+            "text": "int age"
+          }
+        ],
+        "kind": "expression"
+      },
+      "children": [],
+      "kind": "presentInSourceCode",
+      "prefix": {
+        "kind": "Text",
+        "text": "        public void setAge("
+      },
+      "startLine": 36,
+      "suffix": {
+        "kind": "Text",
+        "text": ") {\n"
+      },
+      "sourceFile": {
+        "fileName": "Garage.java",
+        "packageName": ""
+      }
+    },
+    "Garage.java-17:23-17:26": {
+      "endLine": 17,
+      "identifier": "Garage.java-17:23-17:26",
+      "expression": {
+        "tokens": [
+          {
+            "kind": "Text",
+            "text": "car"
+          }
+        ],
+        "kind": "expression"
+      },
+      "children": [],
+      "kind": "presentInSourceCode",
+      "prefix": {
+        "kind": "Text",
+        "text": "        Car testCar = "
+      },
+      "startLine": 17,
+      "suffix": {
+        "kind": "Text",
+        "text": ";\n"
+      },
+      "sourceFile": {
+        "fileName": "Garage.java",
+        "packageName": ""
+      }
+    },
+    "Garage.java-5:23-5:26": {
+      "endLine": 5,
+      "identifier": "Garage.java-5:23-5:26",
+      "expression": {
+        "tokens": [
+          {
+            "kind": "Text",
+            "text": "Car"
+          }
+        ],
+        "kind": "expression"
+      },
+      "children": [],
+      "kind": "presentInSourceCode",
+      "prefix": {
+        "kind": "Text",
+        "text": "        Car car = new "
+      },
+      "startLine": 5,
+      "suffix": {
+        "kind": "Text",
+        "text": "(\"Toyota\", 2005);\n"
+      },
+      "sourceFile": {
+        "fileName": "Garage.java",
+        "packageName": ""
+      }
+    },
+    "Garage.java-11:9-11:41": {
+      "endLine": 11,
+      "identifier": "Garage.java-11:9-11:41",
+      "expression": {
+        "tokens": [
+          {
+            "kind": "Text",
+            "text": "alice.getCar().setModel("
+          },
+          {
+            "kind": "Child",
+            "text": "\"Honda\"",
+            "childIndex": 0
+          },
+          {
+            "kind": "Text",
+            "text": ")"
+          }
+        ],
+        "kind": "expression"
+      },
+      "children": [
+        "absent"
+      ],
+      "kind": "presentInSourceCode",
+      "prefix": {
+        "kind": "Text",
+        "text": "        "
+      },
+      "startLine": 11,
+      "suffix": {
+        "kind": "Text",
+        "text": ";\n"
+      },
+      "sourceFile": {
+        "fileName": "Garage.java",
+        "packageName": ""
+      }
+    },
+    "Garage.java-45:13-45:27": {
+      "endLine": 45,
+      "identifier": "Garage.java-45:13-45:27",
+      "expression": {
+        "tokens": [
+          {
+            "kind": "Text",
+            "text": "this.car = car"
+          }
+        ],
+        "kind": "expression"
+      },
+      "children": [],
+      "kind": "presentInSourceCode",
+      "prefix": {
+        "kind": "Text",
+        "text": "            "
+      },
+      "startLine": 45,
+      "suffix": {
+        "kind": "Text",
+        "text": ";\n"
+      },
+      "sourceFile": {
+        "fileName": "Garage.java",
+        "packageName": ""
+      }
+    },
+    "Garage.java-53:34-53:42": {
+      "endLine": 53,
+      "identifier": "Garage.java-53:34-53:42",
+      "expression": {
+        "tokens": [
+          {
+            "kind": "Text",
+            "text": "int year"
+          }
+        ],
+        "kind": "expression"
+      },
+      "children": [],
+      "kind": "presentInSourceCode",
+      "prefix": {
+        "kind": "Text",
+        "text": "        public Car(String model, "
+      },
+      "startLine": 53,
+      "suffix": {
+        "kind": "Text",
+        "text": ") {\n"
+      },
+      "sourceFile": {
+        "fileName": "Garage.java",
+        "packageName": ""
+      }
+    },
+    "Garage.java-59:26-59:31": {
+      "endLine": 59,
+      "identifier": "Garage.java-59:26-59:31",
+      "expression": {
+        "tokens": [
+          {
+            "kind": "Text",
+            "text": "model"
+          }
+        ],
+        "kind": "expression"
+      },
+      "children": [],
+      "kind": "presentInSourceCode",
+      "prefix": {
+        "kind": "Text",
+        "text": "            this.model = "
+      },
+      "startLine": 59,
+      "suffix": {
+        "kind": "Text",
+        "text": ";\n"
+      },
+      "sourceFile": {
+        "fileName": "Garage.java",
+        "packageName": ""
+      }
+    },
+    "Garage.java-54:13-54:31": {
+      "endLine": 54,
+      "identifier": "Garage.java-54:13-54:31",
+      "expression": {
+        "tokens": [
+          {
+            "kind": "Text",
+            "text": "this.model = model"
+          }
+        ],
+        "kind": "expression"
+      },
+      "children": [],
+      "kind": "presentInSourceCode",
+      "prefix": {
+        "kind": "Text",
+        "text": "            "
+      },
+      "startLine": 54,
+      "suffix": {
+        "kind": "Text",
+        "text": ";\n"
+      },
+      "sourceFile": {
+        "fileName": "Garage.java",
+        "packageName": ""
+      }
+    },
+    "Garage.java-27:13-27:17": {
+      "endLine": 27,
+      "identifier": "Garage.java-27:13-27:17",
+      "expression": {
+        "tokens": [
+          {
+            "kind": "Text",
+            "text": "this"
+          }
+        ],
+        "kind": "expression"
+      },
+      "children": [],
+      "kind": "presentInSourceCode",
+      "prefix": {
+        "kind": "Text",
+        "text": "            "
+      },
+      "startLine": 27,
+      "suffix": {
+        "kind": "Text",
+        "text": ".name = name;\n"
+      },
+      "sourceFile": {
+        "fileName": "Garage.java",
+        "packageName": ""
+      }
+    },
+    "Garage.java-29:24-29:27": {
+      "endLine": 29,
+      "identifier": "Garage.java-29:24-29:27",
+      "expression": {
+        "tokens": [
+          {
+            "kind": "Text",
+            "text": "car"
+          }
+        ],
+        "kind": "expression"
+      },
+      "children": [],
+      "kind": "presentInSourceCode",
+      "prefix": {
+        "kind": "Text",
+        "text": "            this.car = "
+      },
+      "startLine": 29,
+      "suffix": {
+        "kind": "Text",
+        "text": ";\n"
+      },
+      "sourceFile": {
+        "fileName": "Garage.java",
+        "packageName": ""
+      }
+    },
+    "Garage.java-10:9-10:14": {
+      "endLine": 10,
+      "identifier": "Garage.java-10:9-10:14",
+      "expression": {
+        "tokens": [
+          {
+            "kind": "Text",
+            "text": "alice"
+          }
+        ],
+        "kind": "expression"
+      },
+      "children": [],
+      "kind": "presentInSourceCode",
+      "prefix": {
+        "kind": "Text",
+        "text": "        "
+      },
+      "startLine": 10,
+      "suffix": {
+        "kind": "Text",
+        "text": ".setName(\"Alice Smith\");\n"
+      },
+      "sourceFile": {
+        "fileName": "Garage.java",
+        "packageName": ""
+      }
+    },
+    "Garage.java-53:20-53:32": {
+      "endLine": 53,
+      "identifier": "Garage.java-53:20-53:32",
+      "expression": {
+        "tokens": [
+          {
+            "kind": "Text",
+            "text": "String model"
+          }
+        ],
+        "kind": "expression"
+      },
+      "children": [],
+      "kind": "presentInSourceCode",
+      "prefix": {
+        "kind": "Text",
+        "text": "        public Car("
+      },
+      "startLine": 53,
+      "suffix": {
+        "kind": "Text",
+        "text": ", int year) {\n"
+      },
+      "sourceFile": {
+        "fileName": "Garage.java",
+        "packageName": ""
+      }
+    },
+    "Garage.java-17:9-17:12": {
+      "endLine": 17,
+      "identifier": "Garage.java-17:9-17:12",
+      "expression": {
+        "tokens": [
+          {
+            "kind": "Text",
+            "text": "Car"
+          }
+        ],
+        "kind": "expression"
+      },
+      "children": [],
+      "kind": "presentInSourceCode",
+      "prefix": {
+        "kind": "Text",
+        "text": "        "
+      },
+      "startLine": 17,
+      "suffix": {
+        "kind": "Text",
+        "text": " testCar = car;\n"
+      },
+      "sourceFile": {
+        "fileName": "Garage.java",
+        "packageName": ""
+      }
+    },
+    "Garage.java-18:22-18:44": {
+      "endLine": 18,
+      "identifier": "Garage.java-18:22-18:44",
+      "expression": {
+        "tokens": [
+          {
+            "kind": "Text",
+            "text": "new Car("
+          },
+          {
+            "kind": "Child",
+            "text": "\"Mazda\"",
+            "childIndex": 0
+          },
+          {
+            "kind": "Text",
+            "text": ", "
+          },
+          {
+            "kind": "Child",
+            "text": "2022",
+            "childIndex": 1
+          },
+          {
+            "kind": "Text",
+            "text": ")"
+          }
+        ],
+        "kind": "expression"
+      },
+      "children": [
+        "absent",
+        "absent"
+      ],
+      "kind": "presentInSourceCode",
+      "prefix": {
+        "kind": "Text",
+        "text": "        alice.setCar("
+      },
+      "startLine": 18,
+      "suffix": {
+        "kind": "Text",
+        "text": ");\n"
+      },
+      "sourceFile": {
+        "fileName": "Garage.java",
+        "packageName": ""
+      }
+    },
+    "Garage.java-33:13-33:17": {
+      "endLine": 33,
+      "identifier": "Garage.java-33:13-33:17",
+      "expression": {
+        "tokens": [
+          {
+            "kind": "Text",
+            "text": "this"
+          }
+        ],
+        "kind": "expression"
+      },
+      "children": [],
+      "kind": "presentInSourceCode",
+      "prefix": {
+        "kind": "Text",
+        "text": "            "
+      },
+      "startLine": 33,
+      "suffix": {
+        "kind": "Text",
+        "text": ".name = name;\n"
+      },
+      "sourceFile": {
+        "fileName": "Garage.java",
+        "packageName": ""
+      }
+    },
+    "Garage.java-12:9-12:37": {
+      "endLine": 12,
+      "identifier": "Garage.java-12:9-12:37",
+      "expression": {
+        "tokens": [
+          {
+            "kind": "Text",
+            "text": "alice.getCar().setYear("
+          },
+          {
+            "kind": "Child",
+            "text": "2010",
+            "childIndex": 0
+          },
+          {
+            "kind": "Text",
+            "text": ")"
+          }
+        ],
+        "kind": "expression"
+      },
+      "children": [
+        "absent"
+      ],
+      "kind": "presentInSourceCode",
+      "prefix": {
+        "kind": "Text",
+        "text": "        "
+      },
+      "startLine": 12,
+      "suffix": {
+        "kind": "Text",
+        "text": ";\n"
+      },
+      "sourceFile": {
+        "fileName": "Garage.java",
+        "packageName": ""
+      }
+    },
+    "Garage.java-18:9-18:45": {
+      "endLine": 18,
+      "identifier": "Garage.java-18:9-18:45",
+      "expression": {
+        "tokens": [
+          {
+            "kind": "Text",
+            "text": "alice.setCar("
+          },
+          {
+            "kind": "Child",
+            "text": "new Car(\"Mazda\", 2022)",
+            "childIndex": 0
+          },
+          {
+            "kind": "Text",
+            "text": ")"
+          }
+        ],
+        "kind": "expression"
+      },
+      "children": [
+        "Garage.java-18:22-18:44"
+      ],
+      "kind": "presentInSourceCode",
+      "prefix": {
+        "kind": "Text",
+        "text": "        "
+      },
+      "startLine": 18,
+      "suffix": {
+        "kind": "Text",
+        "text": ";\n"
+      },
+      "sourceFile": {
+        "fileName": "Garage.java",
+        "packageName": ""
+      }
+    },
+    "Garage.java-29:13-29:17": {
+      "endLine": 29,
+      "identifier": "Garage.java-29:13-29:17",
+      "expression": {
+        "tokens": [
+          {
+            "kind": "Text",
+            "text": "this"
+          }
+        ],
+        "kind": "expression"
+      },
+      "children": [],
+      "kind": "presentInSourceCode",
+      "prefix": {
+        "kind": "Text",
+        "text": "            "
+      },
+      "startLine": 29,
+      "suffix": {
+        "kind": "Text",
+        "text": ".car = car;\n"
+      },
+      "sourceFile": {
+        "fileName": "Garage.java",
+        "packageName": ""
+      }
+    },
+    "Garage.java-23:9-23:25": {
+      "endLine": 23,
+      "identifier": "Garage.java-23:9-23:25",
+      "expression": {
+        "tokens": [
+          {
+            "kind": "Text",
+            "text": "private int age;"
+          }
+        ],
+        "kind": "expression"
+      },
+      "children": [],
+      "kind": "presentInSourceCode",
+      "prefix": {
+        "kind": "Text",
+        "text": "        "
+      },
+      "startLine": 23,
+      "suffix": {
+        "kind": "Text",
+        "text": "\n"
+      },
+      "sourceFile": {
+        "fileName": "Garage.java",
+        "packageName": ""
+      }
+    },
+    "Garage.java-55:13-55:17": {
+      "endLine": 55,
+      "identifier": "Garage.java-55:13-55:17",
+      "expression": {
+        "tokens": [
+          {
+            "kind": "Text",
+            "text": "this"
+          }
+        ],
+        "kind": "expression"
+      },
+      "children": [],
+      "kind": "presentInSourceCode",
+      "prefix": {
+        "kind": "Text",
+        "text": "            "
+      },
+      "startLine": 55,
+      "suffix": {
+        "kind": "Text",
+        "text": ".year = year;\n"
+      },
+      "sourceFile": {
+        "fileName": "Garage.java",
+        "packageName": ""
+      }
+    }
+  },
+  "sourceFile": {
+    "fileName": "Garage.java",
+    "packageName": ""
+  }
+}

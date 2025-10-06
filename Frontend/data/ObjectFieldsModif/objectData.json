@@ -1,0 +1,458 @@
+[
+  {
+    "self": {
+      "pointer": 960604060,
+      "className": {
+        "className": "Car",
+        "packageName": ""
+      },
+      "version": 1,
+      "dataType": "instanceRef"
+    },
+    "fields": [
+      {
+        "identifier": {
+          "name": "model",
+          "owner": {
+            "pointer": 960604060,
+            "className": {
+              "className": "Car",
+              "packageName": ""
+            },
+            "version": 1,
+            "dataType": "instanceRef"
+          },
+          "dataType": "fieldIdentifier"
+        },
+        "value": {
+          "value": "Toyota",
+          "dataType": "string"
+        }
+      },
+      {
+        "identifier": {
+          "name": "year",
+          "owner": {
+            "pointer": 960604060,
+            "className": {
+              "className": "Car",
+              "packageName": ""
+            },
+            "version": 1,
+            "dataType": "instanceRef"
+          },
+          "dataType": "fieldIdentifier"
+        },
+        "value": {
+          "value": 2005,
+          "dataType": "int"
+        }
+      }
+    ]
+  },
+  {
+    "self": {
+      "pointer": 960604060,
+      "className": {
+        "className": "Car",
+        "packageName": ""
+      },
+      "version": 2,
+      "dataType": "instanceRef"
+    },
+    "fields": [
+      {
+        "identifier": {
+          "name": "model",
+          "owner": {
+            "pointer": 960604060,
+            "className": {
+              "className": "Car",
+              "packageName": ""
+            },
+            "version": 2,
+            "dataType": "instanceRef"
+          },
+          "dataType": "fieldIdentifier"
+        },
+        "value": {
+          "value": "Toyota",
+          "dataType": "string"
+        }
+      },
+      {
+        "identifier": {
+          "name": "year",
+          "owner": {
+            "pointer": 960604060,
+            "className": {
+              "className": "Car",
+              "packageName": ""
+            },
+            "version": 2,
+            "dataType": "instanceRef"
+          },
+          "dataType": "fieldIdentifier"
+        },
+        "value": {
+          "value": 2005,
+          "dataType": "int"
+        }
+      }
+    ]
+  },
+  {
+    "self": {
+      "pointer": 1199823423,
+      "className": {
+        "className": "Person",
+        "packageName": ""
+      },
+      "version": 10,
+      "dataType": "instanceRef"
+    },
+    "fields": [
+      {
+        "identifier": {
+          "name": "name",
+          "owner": {
+            "pointer": 1199823423,
+            "className": {
+              "className": "Person",
+              "packageName": ""
+            },
+            "version": 10,
+            "dataType": "instanceRef"
+          },
+          "dataType": "fieldIdentifier"
+        },
+        "value": {
+          "value": "Alice",
+          "dataType": "string"
+        }
+      },
+      {
+        "identifier": {
+          "name": "age",
+          "owner": {
+            "pointer": 1199823423,
+            "className": {
+              "className": "Person",
+              "packageName": ""
+            },
+            "version": 10,
+            "dataType": "instanceRef"
+          },
+          "dataType": "fieldIdentifier"
+        },
+        "value": {
+          "value": 30,
+          "dataType": "int"
+        }
+      },
+      {
+        "identifier": {
+          "name": "car",
+          "owner": {
+            "pointer": 1199823423,
+            "className": {
+              "className": "Person",
+              "packageName": ""
+            },
+            "version": 10,
+            "dataType": "instanceRef"
+          },
+          "dataType": "fieldIdentifier"
+        },
+        "value": {
+          "pointer": 960604060,
+          "className": {
+            "className": "Car",
+            "packageName": ""
+          },
+          "version": 12,
+          "dataType": "instanceRef"
+        }
+      }
+    ]
+  },
+  {
+    "self": {
+      "pointer": 1199823423,
+      "className": {
+        "className": "Person",
+        "packageName": ""
+      },
+      "version": 13,
+      "dataType": "instanceRef"
+    },
+    "fields": [
+      {
+        "identifier": {
+          "name": "name",
+          "owner": {
+            "pointer": 1199823423,
+            "className": {
+              "className": "Person",
+              "packageName": ""
+            },
+            "version": 13,
+            "dataType": "instanceRef"
+          },
+          "dataType": "fieldIdentifier"
+        },
+        "value": {
+          "value": "Alice",
+          "dataType": "string"
+        }
+      },
+      {
+        "identifier": {
+          "name": "age",
+          "owner": {
+            "pointer": 1199823423,
+            "className": {
+              "className": "Person",
+              "packageName": ""
+            },
+            "version": 13,
+            "dataType": "instanceRef"
+          },
+          "dataType": "fieldIdentifier"
+        },
+        "value": {
+          "value": 30,
+          "dataType": "int"
+        }
+      },
+      {
+        "identifier": {
+          "name": "car",
+          "owner": {
+            "pointer": 1199823423,
+            "className": {
+              "className": "Person",
+              "packageName": ""
+            },
+            "version": 13,
+            "dataType": "instanceRef"
+          },
+          "dataType": "fieldIdentifier"
+        },
+        "value": {
+          "pointer": 960604060,
+          "className": {
+            "className": "Car",
+            "packageName": ""
+          },
+          "version": 15,
+          "dataType": "instanceRef"
+        }
+      }
+    ]
+  },
+  {
+    "self": {
+      "pointer": 1848402763,
+      "className": {
+        "className": "Car",
+        "packageName": ""
+      },
+      "version": 27,
+      "dataType": "instanceRef"
+    },
+    "fields": [
+      {
+        "identifier": {
+          "name": "model",
+          "owner": {
+            "pointer": 1848402763,
+            "className": {
+              "className": "Car",
+              "packageName": ""
+            },
+            "version": 27,
+            "dataType": "instanceRef"
+          },
+          "dataType": "fieldIdentifier"
+        },
+        "value": {
+          "value": "Mazda",
+          "dataType": "string"
+        }
+      },
+      {
+        "identifier": {
+          "name": "year",
+          "owner": {
+            "pointer": 1848402763,
+            "className": {
+              "className": "Car",
+              "packageName": ""
+            },
+            "version": 27,
+            "dataType": "instanceRef"
+          },
+          "dataType": "fieldIdentifier"
+        },
+        "value": {
+          "value": 2022,
+          "dataType": "int"
+        }
+      }
+    ]
+  },
+  {
+    "self": {
+      "pointer": 1848402763,
+      "className": {
+        "className": "Car",
+        "packageName": ""
+      },
+      "version": 28,
+      "dataType": "instanceRef"
+    },
+    "fields": [
+      {
+        "identifier": {
+          "name": "model",
+          "owner": {
+            "pointer": 1848402763,
+            "className": {
+              "className": "Car",
+              "packageName": ""
+            },
+            "version": 28,
+            "dataType": "instanceRef"
+          },
+          "dataType": "fieldIdentifier"
+        },
+        "value": {
+          "value": "Mazda",
+          "dataType": "string"
+        }
+      },
+      {
+        "identifier": {
+          "name": "year",
+          "owner": {
+            "pointer": 1848402763,
+            "className": {
+              "className": "Car",
+              "packageName": ""
+            },
+            "version": 28,
+            "dataType": "instanceRef"
+          },
+          "dataType": "fieldIdentifier"
+        },
+        "value": {
+          "value": 2022,
+          "dataType": "int"
+        }
+      }
+    ]
+  },
+  {
+    "self": {
+      "pointer": 960604060,
+      "className": {
+        "className": "Car",
+        "packageName": ""
+      },
+      "version": 21,
+      "dataType": "instanceRef"
+    },
+    "fields": [
+      {
+        "identifier": {
+          "name": "model",
+          "owner": {
+            "pointer": 960604060,
+            "className": {
+              "className": "Car",
+              "packageName": ""
+            },
+            "version": 1,
+            "dataType": "instanceRef"
+          },
+          "dataType": "fieldIdentifier"
+        },
+        "value": {
+          "value": "Honda",
+          "dataType": "string"
+        }
+      },
+      {
+        "identifier": {
+          "name": "year",
+          "owner": {
+            "pointer": 960604060,
+            "className": {
+              "className": "Car",
+              "packageName": ""
+            },
+            "version": 1,
+            "dataType": "instanceRef"
+          },
+          "dataType": "fieldIdentifier"
+        },
+        "value": {
+          "value": 2005,
+          "dataType": "int"
+        }
+      }
+    ]
+  },
+  {
+    "self": {
+      "pointer": 960604060,
+      "className": {
+        "className": "Car",
+        "packageName": ""
+      },
+      "version": 25,
+      "dataType": "instanceRef"
+    },
+    "fields": [
+      {
+        "identifier": {
+          "name": "model",
+          "owner": {
+            "pointer": 960604060,
+            "className": {
+              "className": "Car",
+              "packageName": ""
+            },
+            "version": 1,
+            "dataType": "instanceRef"
+          },
+          "dataType": "fieldIdentifier"
+        },
+        "value": {
+          "value": "Ford",
+          "dataType": "string"
+        }
+      },
+      {
+        "identifier": {
+          "name": "year",
+          "owner": {
+            "pointer": 960604060,
+            "className": {
+              "className": "Car",
+              "packageName": ""
+            },
+            "version": 1,
+            "dataType": "instanceRef"
+          },
+          "dataType": "fieldIdentifier"
+        },
+        "value": {
+          "value": 2010,
+          "dataType": "int"
+        }
+      }
+    ]
+  }
+]

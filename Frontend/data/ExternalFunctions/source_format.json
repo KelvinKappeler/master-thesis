@@ -1,0 +1,409 @@
+{
+  "syntaxNodes": {
+    "ExternalFunction.java-5:28-5:34": {
+      "endLine": 5,
+      "identifier": "ExternalFunction.java-5:28-5:34",
+      "expression": {
+        "tokens": [
+          {
+            "kind": "Text",
+            "text": "System"
+          }
+        ],
+        "kind": "expression"
+      },
+      "children": [],
+      "prefix": {
+        "kind": "Text",
+        "text": "        long currentTime = "
+      },
+      "kind": "presentInSourceCode",
+      "startLine": 5,
+      "suffix": {
+        "kind": "Text",
+        "text": ".currentTimeMillis();\n"
+      },
+      "sourceFile": {
+        "fileName": "ExternalFunction.java",
+        "packageName": ""
+      }
+    },
+    "ExternalFunction.java-5:28-5:54": {
+      "endLine": 5,
+      "identifier": "ExternalFunction.java-5:28-5:54",
+      "expression": {
+        "tokens": [
+          {
+            "kind": "Text",
+            "text": "System.currentTimeMillis()"
+          }
+        ],
+        "kind": "expression"
+      },
+      "children": [],
+      "prefix": {
+        "kind": "Text",
+        "text": "        long currentTime = "
+      },
+      "kind": "presentInSourceCode",
+      "startLine": 5,
+      "suffix": {
+        "kind": "Text",
+        "text": ";\n"
+      },
+      "sourceFile": {
+        "fileName": "ExternalFunction.java",
+        "packageName": ""
+      }
+    },
+    "ExternalFunction.java-7:28-7:52": {
+      "endLine": 7,
+      "identifier": "ExternalFunction.java-7:28-7:52",
+      "expression": {
+        "tokens": [
+          {
+            "kind": "Text",
+            "text": "Math.sqrt("
+          },
+          {
+            "kind": "Child",
+            "childIndex": 0,
+            "text": "Math.random()"
+          },
+          {
+            "kind": "Text",
+            "text": ")"
+          }
+        ],
+        "kind": "expression"
+      },
+      "children": [
+        "ExternalFunction.java-7:38-7:51"
+      ],
+      "prefix": {
+        "kind": "Text",
+        "text": "        System.out.println("
+      },
+      "kind": "presentInSourceCode",
+      "startLine": 7,
+      "suffix": {
+        "kind": "Text",
+        "text": ");\n"
+      },
+      "sourceFile": {
+        "fileName": "ExternalFunction.java",
+        "packageName": ""
+      }
+    },
+    "ExternalFunction.java-7:28-7:32": {
+      "endLine": 7,
+      "identifier": "ExternalFunction.java-7:28-7:32",
+      "expression": {
+        "tokens": [
+          {
+            "kind": "Text",
+            "text": "Math"
+          }
+        ],
+        "kind": "expression"
+      },
+      "children": [],
+      "prefix": {
+        "kind": "Text",
+        "text": "        System.out.println("
+      },
+      "kind": "presentInSourceCode",
+      "startLine": 7,
+      "suffix": {
+        "kind": "Text",
+        "text": ".sqrt(Math.random()));\n"
+      },
+      "sourceFile": {
+        "fileName": "ExternalFunction.java",
+        "packageName": ""
+      }
+    },
+    "ExternalFunction.java-2:29-2:42": {
+      "endLine": 2,
+      "identifier": "ExternalFunction.java-2:29-2:42",
+      "expression": {
+        "tokens": [
+          {
+            "kind": "Text",
+            "text": "String[] args"
+          }
+        ],
+        "kind": "expression"
+      },
+      "children": [],
+      "prefix": {
+        "kind": "Text",
+        "text": "    public static void main("
+      },
+      "kind": "presentInSourceCode",
+      "startLine": 2,
+      "suffix": {
+        "kind": "Text",
+        "text": ") {\n"
+      },
+      "sourceFile": {
+        "fileName": "ExternalFunction.java",
+        "packageName": ""
+      }
+    },
+    "ExternalFunction.java-2:29-2:35": {
+      "endLine": 2,
+      "identifier": "ExternalFunction.java-2:29-2:35",
+      "expression": {
+        "tokens": [
+          {
+            "kind": "Text",
+            "text": "String"
+          }
+        ],
+        "kind": "expression"
+      },
+      "children": [],
+      "prefix": {
+        "kind": "Text",
+        "text": "    public static void main("
+      },
+      "kind": "presentInSourceCode",
+      "startLine": 2,
+      "suffix": {
+        "kind": "Text",
+        "text": "[] args) {\n"
+      },
+      "sourceFile": {
+        "fileName": "ExternalFunction.java",
+        "packageName": ""
+      }
+    },
+    "absent": {
+      "identifier": "absent",
+      "kind": "absent"
+    },
+    "ExternalFunction.java-3:9-3:15": {
+      "endLine": 3,
+      "identifier": "ExternalFunction.java-3:9-3:15",
+      "expression": {
+        "tokens": [
+          {
+            "kind": "Text",
+            "text": "System"
+          }
+        ],
+        "kind": "expression"
+      },
+      "children": [],
+      "prefix": {
+        "kind": "Text",
+        "text": "        "
+      },
+      "kind": "presentInSourceCode",
+      "startLine": 3,
+      "suffix": {
+        "kind": "Text",
+        "text": ".out.println(\"Simple print\");\n"
+      },
+      "sourceFile": {
+        "fileName": "ExternalFunction.java",
+        "packageName": ""
+      }
+    },
+    "ExternalFunction.java-7:9-7:53": {
+      "endLine": 7,
+      "identifier": "ExternalFunction.java-7:9-7:53",
+      "expression": {
+        "tokens": [
+          {
+            "kind": "Text",
+            "text": "System.out.println("
+          },
+          {
+            "kind": "Child",
+            "childIndex": 0,
+            "text": "Math.sqrt(Math.random())"
+          },
+          {
+            "kind": "Text",
+            "text": ")"
+          }
+        ],
+        "kind": "expression"
+      },
+      "children": [
+        "ExternalFunction.java-7:28-7:52"
+      ],
+      "prefix": {
+        "kind": "Text",
+        "text": "        "
+      },
+      "kind": "presentInSourceCode",
+      "startLine": 7,
+      "suffix": {
+        "kind": "Text",
+        "text": ";\n"
+      },
+      "sourceFile": {
+        "fileName": "ExternalFunction.java",
+        "packageName": ""
+      }
+    },
+    "ExternalFunction.java-7:38-7:42": {
+      "endLine": 7,
+      "identifier": "ExternalFunction.java-7:38-7:42",
+      "expression": {
+        "tokens": [
+          {
+            "kind": "Text",
+            "text": "Math"
+          }
+        ],
+        "kind": "expression"
+      },
+      "children": [],
+      "prefix": {
+        "kind": "Text",
+        "text": "        System.out.println(Math.sqrt("
+      },
+      "kind": "presentInSourceCode",
+      "startLine": 7,
+      "suffix": {
+        "kind": "Text",
+        "text": ".random()));\n"
+      },
+      "sourceFile": {
+        "fileName": "ExternalFunction.java",
+        "packageName": ""
+      }
+    },
+    "ExternalFunction.java-7:9-7:15": {
+      "endLine": 7,
+      "identifier": "ExternalFunction.java-7:9-7:15",
+      "expression": {
+        "tokens": [
+          {
+            "kind": "Text",
+            "text": "System"
+          }
+        ],
+        "kind": "expression"
+      },
+      "children": [],
+      "prefix": {
+        "kind": "Text",
+        "text": "        "
+      },
+      "kind": "presentInSourceCode",
+      "startLine": 7,
+      "suffix": {
+        "kind": "Text",
+        "text": ".out.println(Math.sqrt(Math.random()));\n"
+      },
+      "sourceFile": {
+        "fileName": "ExternalFunction.java",
+        "packageName": ""
+      }
+    },
+    "ExternalFunction.java-3:9-3:43": {
+      "endLine": 3,
+      "identifier": "ExternalFunction.java-3:9-3:43",
+      "expression": {
+        "tokens": [
+          {
+            "kind": "Text",
+            "text": "System.out.println("
+          },
+          {
+            "kind": "Child",
+            "childIndex": 0,
+            "text": "\"Simple print\""
+          },
+          {
+            "kind": "Text",
+            "text": ")"
+          }
+        ],
+        "kind": "expression"
+      },
+      "children": [
+        "absent"
+      ],
+      "prefix": {
+        "kind": "Text",
+        "text": "        "
+      },
+      "kind": "presentInSourceCode",
+      "startLine": 3,
+      "suffix": {
+        "kind": "Text",
+        "text": ";\n"
+      },
+      "sourceFile": {
+        "fileName": "ExternalFunction.java",
+        "packageName": ""
+      }
+    },
+    "ExternalFunction.java-7:38-7:51": {
+      "endLine": 7,
+      "identifier": "ExternalFunction.java-7:38-7:51",
+      "expression": {
+        "tokens": [
+          {
+            "kind": "Text",
+            "text": "Math.random()"
+          }
+        ],
+        "kind": "expression"
+      },
+      "children": [],
+      "prefix": {
+        "kind": "Text",
+        "text": "        System.out.println(Math.sqrt("
+      },
+      "kind": "presentInSourceCode",
+      "startLine": 7,
+      "suffix": {
+        "kind": "Text",
+        "text": "));\n"
+      },
+      "sourceFile": {
+        "fileName": "ExternalFunction.java",
+        "packageName": ""
+      }
+    },
+    "ExternalFunction.java-5:9-5:55": {
+      "endLine": 5,
+      "identifier": "ExternalFunction.java-5:9-5:55",
+      "expression": {
+        "tokens": [
+          {
+            "kind": "Text",
+            "text": "long currentTime = System.currentTimeMillis();"
+          }
+        ],
+        "kind": "expression"
+      },
+      "children": [],
+      "prefix": {
+        "kind": "Text",
+        "text": "        "
+      },
+      "kind": "presentInSourceCode",
+      "startLine": 5,
+      "suffix": {
+        "kind": "Text",
+        "text": "\n"
+      },
+      "sourceFile": {
+        "fileName": "ExternalFunction.java",
+        "packageName": ""
+      }
+    }
+  },
+  "sourceFile": {
+    "fileName": "ExternalFunction.java",
+    "packageName": ""
+  }
+}

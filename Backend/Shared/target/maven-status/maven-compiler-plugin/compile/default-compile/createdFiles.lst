@@ -1,0 +1,5 @@
+ch/epfl/printwizard/shared/model/program/structures/ReturnNode.class
+ch/epfl/printwizard/shared/model/program/structures/expr/ExprKind.class
+ch/epfl/printwizard/shared/model/index/IndexFile.class
+ch/epfl/printwizard/shared/model/program/ProgramPosition.class
+ch/epfl/printwizard/shared/utils/TypeIdUtils.class

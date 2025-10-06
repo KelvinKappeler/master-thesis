@@ -1,0 +1,195 @@
+{
+  "trace": [
+    {
+      "eventId": 0,
+      "eventType": "controlFlow",
+      "type": "GroupEvent",
+      "pos": "start",
+      "kind": {
+        "type": "FunctionContext",
+        "functionName": "main"
+      }
+    },
+    {
+      "eventId": 1,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 2,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 2,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "stepId": 0,
+      "nodeKey": "ExternalFunction.java-3:9-3:43",
+      "argsValues": [
+        {
+          "value": "Simple print",
+          "dataType": "string"
+        }
+      ],
+      "type": "ExecutionStep",
+      "kind": "logVoidCall"
+    },
+    {
+      "eventId": 1,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 3,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 4,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "stepId": 5,
+      "nodeKey": "ExternalFunction.java-5:28-5:54",
+      "argsValues": [],
+      "type": "ExecutionStep",
+      "kind": "logCall"
+    },
+    {
+      "result": {
+        "value": 1731161985023,
+        "dataType": "long"
+      },
+      "stepId": 5,
+      "nodeKey": "ExternalFunction.java-5:28-5:54",
+      "type": "ExecutionStep",
+      "kind": "logReturn"
+    },
+    {
+      "eventId": 4,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "nodeKey": "ExternalFunction.java-5:9-5:55",
+      "assigns": [
+        {
+          "identifier": {
+            "name": "currentTime",
+            "parent": "-",
+            "dataType": "localIdentifier"
+          },
+          "value": {
+            "value": 1731161985023,
+            "dataType": "long"
+          },
+          "dataType": "write"
+        }
+      ],
+      "type": "ExecutionStep",
+      "kind": "expressionWithoutReturn"
+    },
+    {
+      "eventId": 3,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 6,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "eventId": 7,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "start"
+    },
+    {
+      "stepId": 8,
+      "nodeKey": "ExternalFunction.java-7:38-7:51",
+      "argsValues": [],
+      "type": "ExecutionStep",
+      "kind": "logCall"
+    },
+    {
+      "result": {
+        "value": 0.4543246063493803,
+        "dataType": "double"
+      },
+      "stepId": 8,
+      "nodeKey": "ExternalFunction.java-7:38-7:51",
+      "type": "ExecutionStep",
+      "kind": "logReturn"
+    },
+    {
+      "stepId": 9,
+      "nodeKey": "ExternalFunction.java-7:28-7:52",
+      "argsValues": [
+        {
+          "value": 0.4543246063493803,
+          "dataType": "double"
+        }
+      ],
+      "type": "ExecutionStep",
+      "kind": "logCall"
+    },
+    {
+      "result": {
+        "value": 0.674036057158206,
+        "dataType": "double"
+      },
+      "stepId": 9,
+      "nodeKey": "ExternalFunction.java-7:28-7:52",
+      "type": "ExecutionStep",
+      "kind": "logReturn"
+    },
+    {
+      "eventId": 7,
+      "eventType": "subStatement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "stepId": 0,
+      "nodeKey": "ExternalFunction.java-7:9-7:53",
+      "argsValues": [
+        {
+          "value": 0.674036057158206,
+          "dataType": "double"
+        }
+      ],
+      "type": "ExecutionStep",
+      "kind": "logVoidCall"
+    },
+    {
+      "eventId": 6,
+      "eventType": "statement",
+      "type": "GroupEvent",
+      "pos": "end"
+    },
+    {
+      "eventId": 0,
+      "eventType": "controlFlow",
+      "type": "GroupEvent",
+      "pos": "end",
+      "kind": {
+        "type": "FunctionContext",
+        "functionName": "main"
+      }
+    }
+  ]
+}
