@@ -1,6 +1,7 @@
 import {JsonData} from "./JsonData.js";
 import {Preconditions} from "../utils/Preconditions.js";
-import {TraceAssembler} from "./TraceAssembler.js";
+import {MainDataAssembler} from "./MainDataAssembler.js";
+import {TraceModel} from "../model/TraceModel.js";
 
 /**
  * This class is responsible to manage PrintWizard
@@ -28,17 +29,21 @@ export class PrintWizard {
         console.clear();
         this.jsonData = new JsonData(manifestLocation);
 
-        TraceAssembler.assemble(this.jsonData).then((trace) => {
-            console.log(trace.program);
-            console.log(trace.trace);
-            console.log(trace.index);
+        MainDataAssembler.assemble(this.jsonData).then((mainData) => {
+            console.log(mainData.program);
+            console.log(mainData.trace);
+            console.log(mainData.index);
+
+            const trace = new TraceModel(mainData);
+            console.log(trace.getEventsFromSpan("spn:1"));
+            console.log(trace.getAstFromEvent("eve:2"));
         });
 
         /*this.jsonData.getAllData().then(data => {
             const finalTreeTrace = translateToTreeFormat(data[2], data[0], data[1]).inlineLoops();
             console.log(finalTreeTrace);
 
-            this.trace = new Trace(finalTreeTrace);
+            this.trace = new TraceModel(finalTreeTrace);
             this.trace.show();
             this.parser = new Parser(this.trace);
 

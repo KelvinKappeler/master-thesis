@@ -3,7 +3,7 @@ import {Event, Step} from "./json/EventTrace.js";
 
 /**
  * Translates the given trace to a tree format.
- * @param {Trace} trace - The trace object to be translated.
+ * @param {TraceModel} trace - The trace object to be translated.
  * @param {SourceFormat} sourceFormat - The source format containing syntax nodes.
  * @param {ObjectData} objectData - The object data used for value creation.
  * @returns {TraceElement} The translated tree format.
@@ -68,7 +68,7 @@ function createLineNumberToSyntaxNodeMap(sourceFormat) {
  * Handles an event element in the trace.
  * @param {Event} elem - The event element to handle.
  * @param {Array} dataStack - The stack of data elements.
- * @param {Trace} newTrace - The current trace object.
+ * @param {TraceModel} newTrace - The current trace object.
  * @param {Map[int, SyntaxNode]} lineNumberToSyntaxNode - The map of line numbers to syntax nodes.
  */
 function handleEvent(elem, dataStack, newTrace, lineNumberToSyntaxNode) {
@@ -110,7 +110,7 @@ function handleFunctionContext(elem, dataStack) {
  * Handles a statement event.
  * @param {Event} elem - The statement event element.
  * @param {Array} dataStack - The stack of data elements.
- * @param {Trace} newTrace - The current trace object.
+ * @param {TraceModel} newTrace - The current trace object.
  * @param {Map[int, SyntaxNode]} lineNumberToSyntaxNode - The map of line numbers to syntax nodes.
  */
 function handleStatement(elem, dataStack, newTrace, lineNumberToSyntaxNode) {
@@ -152,7 +152,7 @@ function handleDefaultContextEnd(dataStack, lineNumberToSyntaxNode) {
  * Handles a step element in the trace.
  * @param {Step} elem - The step element to handle.
  * @param {Array} dataStack - The stack of data elements.
- * @param {Trace} newTrace - The current trace object.
+ * @param {TraceModel} newTrace - The current trace object.
  * @param {Map} syntaxNodeCache - The cache of syntax nodes.
  * @param {ObjectData} objectData - The object data used for value creation.
  */
@@ -170,7 +170,7 @@ function handleStep(elem, dataStack, newTrace, syntaxNodeCache, objectData) {
  * Handles a log call step.
  * @param {Step} elem - The log call step element.
  * @param {Array} dataStack - The stack of data elements.
- * @param {Trace} newTrace - The current trace object.
+ * @param {TraceModel} newTrace - The current trace object.
  * @param {Map} syntaxNodeCache - The cache of syntax nodes.
  * @param {ObjectData} objectData - The object data used for value creation.
  */

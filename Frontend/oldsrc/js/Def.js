@@ -14,7 +14,7 @@ class TraceElement {
 
     /**
      * Append the trace element to the trace.
-     * @param trace {Trace} The trace to append the element to.
+     * @param trace {TraceModel} The trace to append the element to.
      */
     append(trace) {}
 

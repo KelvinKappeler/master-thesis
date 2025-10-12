@@ -1,7 +1,7 @@
 /**
- * Represents a trace of events. Core of the tracing debugger.
+ * Represents the main data for the application.
  */
-export class Trace {
+export class MainData {
 
     constructor(program, trace, index) {
         this.program = program;

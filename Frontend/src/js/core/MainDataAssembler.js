@@ -1,4 +1,3 @@
-import {Trace} from "../model/Trace.js";
 import {Preconditions} from "../utils/Preconditions.js";
 import {Class, Enum, Interface, Method, ProgramTrace, Record, Source, Variable} from "../model/ProgramDefs.js";
 import {BlockNode, CodePosition, ExprStmtNode, ReturnNode} from "../model/StructureDefs.js";
@@ -6,16 +5,17 @@ import {ExprCode} from "../model/ExprDefs.js";
 import {Index} from "../model/IndexDefs.js";
 import {Argument, Frame, Span, TraceData, TraceLocation} from "../model/TraceDefs.js";
 import {CallTraceEvent, LocalTraceEvent, ReturnTraceEvent} from "../model/EventDefs.js";
+import {MainData} from "./MainData.js";
 
 /**
- * This class is used to assemble a Trace object from JSON data.
+ * This class is used to assemble a MainData object from JSON data.
  */
-export class TraceAssembler {
+export class MainDataAssembler {
 
     /**
-     * Assembles a Trace object from JSON data.
-     * @param jsonData {JsonData} The JSON data to assemble the trace from.
-     * @returns {Promise<Trace>} A promise that resolves to the assembled Trace object.
+     * Assembles a MainData object from JSON data.
+     * @param jsonData {JsonData} The JSON data to assemble the main data from.
+     * @returns {Promise<MainData>} A promise that resolves to the assembled TraceData object.
      */
     static async assemble(jsonData) {
         Preconditions.requireNonNull(jsonData, "jsonData is null");
@@ -26,7 +26,7 @@ export class TraceAssembler {
         let index = this.#assembleIndex(indexFile);
         let traceData = this.#assembleTraceData(traceFile);
 
-        return new Trace(program, traceData, index);
+        return new MainData(program, traceData, index);
     }
 
     static #assembleIndex(indexJson) {
