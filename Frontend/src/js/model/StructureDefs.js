@@ -40,6 +40,14 @@ export class StructureNode {
     containsLine(line) {
         return line >= this.startPosition.line && line <= this.endPosition.line;
     }
+
+    /**
+     * Returns the line content of the structure node.
+     * @returns {string} The line content.
+     */
+    getLineContent() {
+        return this.code;
+    }
 }
 
 /**
@@ -76,6 +84,10 @@ export class ExprStmtNode extends StructureNode {
         if (!this.containsLine(line)) return null;
 
         return this;
+    }
+
+    getLineContent() {
+        return this.expr.code;
     }
 }
 

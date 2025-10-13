@@ -1,0 +1,16 @@
+ch\epfl\printwizard\parser\extractor\java\AbstractJavaTypeExtractor.class
+ch\epfl\printwizard\parser\assembler\ProgramModelAssembler.class
+ch\epfl\printwizard\parser\scanner\java\JavaProgramScanner.class
+ch\epfl\printwizard\parser\extractor\java\JavaSourceExtractor.class
+ch\epfl\printwizard\parser\java\TypeIdUtils.class
+ch\epfl\printwizard\parser\extractor\java\mapper\JavaStructureMapper.class
+ch\epfl\printwizard\parser\extractor\java\JavaEnumExtractor.class
+ch\epfl\printwizard\parser\Main.class
+ch\epfl\printwizard\parser\extractor\IExtractor.class
+ch\epfl\printwizard\parser\extractor\java\JavaMethodExtractor.class
+ch\epfl\printwizard\parser\scanner\java\JavaProgramScanner$Builder.class
+ch\epfl\printwizard\parser\extractor\java\JavaInterfaceExtractor.class
+ch\epfl\printwizard\parser\extractor\java\JavaRecordExtractor.class
+ch\epfl\printwizard\parser\scanner\IProgramScanner.class
+ch\epfl\printwizard\parser\scanner\ProgramScanResult.class
+ch\epfl\printwizard\parser\extractor\java\JavaClassExtractor.class

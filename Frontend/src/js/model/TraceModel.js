@@ -19,7 +19,7 @@ export class TraceModel {
     /**
      * Returns all events for a given span.
      * @param spanId {string} - The ID of the span.
-     * @returns {Array} Array of events for the given span.
+     * @returns {TraceEvent[]} - An array of events for the given span.
      */
     getEventsFromSpan(spanId) {
         let eventIds = this.mainData.index.bySpan.get(spanId);
@@ -43,9 +43,7 @@ export class TraceModel {
         const method = this.methodsById.get(span.methodId);
         if (!method) return null;
 
-        console.log(method);
-        console.log(ev);
-        console.log(method.structures.visitForLine(ev.location.line));
+        return method.structures.visitForLine(ev.location.line);
     }
 
     #createCacheEventsById() {

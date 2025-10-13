@@ -64,6 +64,7 @@ public final class TraceMethodVisitor extends AdviceAdapter {
 
     @Override
     public void visitLocalVariable(String name, String desc, String signature, Label start, Label end, int index) {
+        System.out.println("var " + name + " " + desc + " at index " + index);
         varNameByIndex.put(index, name);
         varDescByIndex.put(index, desc);
 
@@ -165,6 +166,9 @@ public final class TraceMethodVisitor extends AdviceAdapter {
                     default -> "Ljava/lang/Object;";
                 };
             }
+
+            System.out.println("TEST " + var);
+            varNameByIndex.forEach((k, v) -> System.out.println(k + " -> " + v));
             String name = varNameByIndex.getOrDefault(var, "#" + var);
 
             push(ownerInternal);
