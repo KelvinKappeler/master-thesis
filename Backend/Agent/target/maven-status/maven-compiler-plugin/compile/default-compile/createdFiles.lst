@@ -1,11 +1,13 @@
-ch\epfl\printwizard\agent\TraceBuilder.class
 ch\epfl\printwizard\agent\TraceClassVisitor.class
-ch\epfl\printwizard\agent\TraceSink.class
 ch\epfl\printwizard\agent\utils\Preconditions.class
-ch\epfl\printwizard\agent\ObjectIds.class
 ch\epfl\printwizard\agent\TraceAgent.class
 ch\epfl\printwizard\agent\TraceSink$FrameCtx.class
-ch\epfl\printwizard\agent\IndexBuilder.class
 ch\epfl\printwizard\agent\TraceMethodVisitor.class
 ch\epfl\printwizard\agent\TraceConfig.class
 ch\epfl\printwizard\agent\TraceTransformer.class
+ch\epfl\printwizard\agent\TraceBuilder.class
+ch\epfl\printwizard\agent\TraceSink.class
+ch\epfl\printwizard\agent\ObjectIds.class
+ch\epfl\printwizard\agent\utils\JvmDescriptor.class
+ch\epfl\printwizard\agent\IndexBuilder.class
+ch\epfl\printwizard\agent\utils\JvmDescriptor$Index.class

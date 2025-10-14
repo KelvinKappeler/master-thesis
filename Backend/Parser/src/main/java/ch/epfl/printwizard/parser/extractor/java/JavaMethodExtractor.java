@@ -69,10 +69,9 @@ public record JavaMethodExtractor(Source source, BaseTypeInfo typeInfo) implemen
             params.add(new ParameterInfo(pIndex++, p.getNameAsString(), "t:" + p.getType().toString()));
         }
 
-        // Method ID "m:Class.method(Args in JVM Desc)"
+        // Method ID "m:Class.method(Args)"
         String classInternal = typeInfo.getPackageName().replace('.', '/') + "/" + typeInfo.getName();
-        String jvmDescriptor = TypeIdUtils.buildMethodDescriptor(paramTypes, returnType, isConstructor);
-        String methodId = IdGenerator.methodId(classInternal, name, jvmDescriptor);
+        String methodId = IdGenerator.methodId(classInternal, name, String.join(",", paramTypes), returnType);
 
         // Lines
         int startLine = c.getRange().map(r -> r.begin.line).orElse(0);

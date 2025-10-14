@@ -4,13 +4,13 @@
     "path" : "Examples/src/main/java/ch/epfl/printwizard/examples/Main.java",
     "language" : "java",
     "lines" : 18,
-    "sourceContent" : "package ch.epfl.printwizard.examples;\n\npublic class Main {\n\n    public static void main(String[] args) {\n        System.out.println(\"Hello, World!\");\n\n        int i = 0;\n        i = 5 + 2;\n        //int[] array = new int[5];\n        //array[2] = 10;\n        \n        //Player player = new Player(100);\n        //System.out.println(\"Player health points: \" + player.getHealthPoints());\n        //player.setHealthPoints(80);\n        //System.out.println(\"Player health points after damage: \" + player.getHealthPoints());\n    }\n}\n"
+    "sourceContent" : "package ch.epfl.printwizard.examples;\r\n\r\npublic class Main {\r\n\r\n    public static void main(String[] args) {\r\n        System.out.println(\"Hello, World!\");\r\n\r\n        int i = 0;\r\n        i = 5 + 2;\r\n        //int[] array = new int[5];\r\n        //array[2] = 10;\r\n        \r\n        //Player player = new Player(100);\r\n        //System.out.println(\"Player health points: \" + player.getHealthPoints());\r\n        //player.setHealthPoints(80);\r\n        //System.out.println(\"Player health points after damage: \" + player.getHealthPoints());\r\n    }\r\n}\r\n"
   }, {
     "sourceId" : "src:ch/epfl/printwizard/examples/Player.java",
     "path" : "Examples/src/main/java/ch/epfl/printwizard/examples/Player.java",
     "language" : "java",
     "lines" : 19,
-    "sourceContent" : "package ch.epfl.printwizard.examples;\n\npublic final class Player {\n    \n    private int healthPoints;\n    \n    public Player(int healthPoints) {\n        this.healthPoints = healthPoints;\n    }\n    \n    public int getHealthPoints() {\n        return healthPoints;\n    }\n    \n    public void setHealthPoints(int healthPoints) {\n        this.healthPoints = healthPoints;\n    }\n    \n}\n"
+    "sourceContent" : "package ch.epfl.printwizard.examples;\r\n\r\npublic final class Player {\r\n    \r\n    private int healthPoints;\r\n    \r\n    public Player(int healthPoints) {\r\n        this.healthPoints = healthPoints;\r\n    }\r\n    \r\n    public int getHealthPoints() {\r\n        return healthPoints;\r\n    }\r\n    \r\n    public void setHealthPoints(int healthPoints) {\r\n        this.healthPoints = healthPoints;\r\n    }\r\n    \r\n}\r\n"
   } ],
   "classes" : [ {
     "id" : "cls:ch.epfl.printwizard.examples.Main",
@@ -27,7 +27,7 @@
   "records" : [ ],
   "enums" : [ ],
   "methods" : [ {
-    "methodId" : "m:ch/epfl/printwizard/examples/Main.main(([LString;)V)",
+    "methodId" : "m:ch/epfl/printwizard/examples/Main.main(String[])void",
     "classId" : "cls:ch.epfl.printwizard.examples.Main",
     "name" : "main",
     "returnType" : "void",
@@ -130,7 +130,7 @@
       "typeId" : "int"
     } ]
   }, {
-    "methodId" : "m:ch/epfl/printwizard/examples/Player.Player((I)V)",
+    "methodId" : "m:ch/epfl/printwizard/examples/Player.Player(int)<init>",
     "classId" : "cls:ch.epfl.printwizard.examples.Player",
     "name" : "Player",
     "returnType" : "<init>",
@@ -181,7 +181,7 @@
     },
     "localVars" : [ ]
   }, {
-    "methodId" : "m:ch/epfl/printwizard/examples/Player.getHealthPoints(()I)",
+    "methodId" : "m:ch/epfl/printwizard/examples/Player.getHealthPoints()int",
     "classId" : "cls:ch.epfl.printwizard.examples.Player",
     "name" : "getHealthPoints",
     "returnType" : "int",
@@ -228,7 +228,7 @@
     },
     "localVars" : [ ]
   }, {
-    "methodId" : "m:ch/epfl/printwizard/examples/Player.setHealthPoints((I)V)",
+    "methodId" : "m:ch/epfl/printwizard/examples/Player.setHealthPoints(int)void",
     "classId" : "cls:ch.epfl.printwizard.examples.Player",
     "name" : "setHealthPoints",
     "returnType" : "void",

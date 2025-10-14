@@ -110,19 +110,19 @@ public final class IdGenerator {
      * Generates a unique ID for a method.
      * @param classInternal the internal name of the class containing the method
      * @param name the name of the method
-     * @param desc the descriptor of the method
+     * @param params the parameter types
+     * @param returnType the return type of the method
      * @return the unique ID for the method (e.g., "m:java/lang/String.charAt(I)")
      */
-    public static String methodId(String classInternal, String name, String desc) {
+    public static String methodId(String classInternal, String name, String params, String returnType) {
         Preconditions.requireNonNull(classInternal, "classInternal is null");
         Preconditions.require(!classInternal.isEmpty(), "classInternal is empty");
         Preconditions.requireNonNull(name, "name is null");
         Preconditions.require(!name.isEmpty(), "name is empty");
-        Preconditions.requireNonNull(desc, "desc is null");
+        Preconditions.requireNonNull(params, "params is null");
+        Preconditions.requireNonNull(returnType, "returnType is null");
 
-        String simplifiedDesc = desc.replace("Ljava/lang/", "L");
-
-        return "m:" + classInternal + "." + name + "(" + simplifiedDesc + ")";
+        return "m:" + classInternal + "." + name + "(" + params + ")" + returnType;
     }
 
     /**

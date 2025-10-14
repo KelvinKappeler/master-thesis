@@ -1,5 +1,6 @@
 package ch.epfl.printwizard.agent;
 
+import ch.epfl.printwizard.agent.utils.JvmDescriptor;
 import ch.epfl.printwizard.shared.IdGenerator;
 import ch.epfl.printwizard.shared.model.trace.*;
 import ch.epfl.printwizard.shared.model.trace.events.*;
@@ -64,8 +65,9 @@ public final class TraceSink {
     public static void beforeCall(String callerOwner, String callerName, String callerDesc,
         String calleeOwner, String calleeName, String calleeDesc, String sourceId, int line) {
 
-        String caller = IdGenerator.methodId(callerOwner, callerName, callerDesc);
-        String callee = IdGenerator.methodId(calleeOwner, calleeName, calleeDesc);
+        String[] paramsAndType = JvmDescriptor.toHuman(callerDesc);
+        String caller = IdGenerator.methodId(callerOwner, callerName, paramsAndType[0], paramsAndType[1]);
+        String callee = IdGenerator.methodId(calleeOwner, calleeName, paramsAndType[0], paramsAndType[1]);
         addEvent(new CallEvent(nextEventId(), topSpan(), topFrame(), new TraceLoc(sourceId, line), caller, callee));
     }
 
@@ -82,7 +84,8 @@ public final class TraceSink {
     public static void onEnter(Object thisRef, Object[] args, String owner, String name, String desc, String sourceId, int line) {
         String spanId = nextSpanId();
         String frameId = nextFrameId();
-        String methodId = IdGenerator.methodId(owner, name, desc);
+        String[] paramsAndType = JvmDescriptor.toHuman(desc);
+        String methodId = IdGenerator.methodId(owner, name, paramsAndType[0], paramsAndType[1]);
         String parent = topSpan();
         String startEventId = nextEventId();
 
