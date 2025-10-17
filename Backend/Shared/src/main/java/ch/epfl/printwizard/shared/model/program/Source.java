@@ -13,15 +13,13 @@ public record Source(
     String sourceId,
     String path,
     String language,
-    int lines,
-    String sourceContent
+    int lines
 ) {
     
     public Source {
         Preconditions.requireNonNull(sourceId, "sourceId is null");
         Preconditions.requireNonNull(path, "path is null");
         Preconditions.requireNonNull(language, "language is null");
-        Preconditions.requireNonNull(sourceContent, "sourceContent is null");
         Preconditions.require(!sourceId.isEmpty(), "sourceId is empty");
         Preconditions.require(!path.isEmpty(), "path is empty");
         Preconditions.require(!language.isEmpty(), "language is empty");

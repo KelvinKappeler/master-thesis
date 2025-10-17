@@ -3,23 +3,23 @@
   "spans" : [ {
     "spanId" : "spn:1",
     "parentSpanId" : null,
-    "methodId" : "m:ch/epfl/printwizard/examples/Main.main(([LString;)V)",
+    "methodId" : "m:ch/epfl/printwizard/examples/Main.main(java.lang.String[])void",
     "startEventId" : "eve:1",
-    "endEventId" : "eve:5",
+    "endEventId" : "eve:8",
     "startLoc" : {
       "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
       "line" : 1
     },
     "endLoc" : {
       "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
-      "line" : 17
+      "line" : 21
     },
     "status" : "OK"
   } ],
   "frames" : [ {
     "frameId" : "frm:1",
     "spanId" : "spn:1",
-    "methodId" : "m:ch/epfl/printwizard/examples/Main.main(([LString;)V)",
+    "methodId" : "m:ch/epfl/printwizard/examples/Main.main(java.lang.String[])void",
     "thisRef" : null,
     "args" : [ {
       "name" : "#0",
@@ -36,7 +36,7 @@
       "line" : 1
     },
     "callerMethodId" : null,
-    "calleeMethodId" : "m:ch/epfl/printwizard/examples/Main.main(([LString;)V)"
+    "calleeMethodId" : "m:ch/epfl/printwizard/examples/Main.main(java.lang.String[])void"
   }, {
     "type" : "CALL",
     "eventId" : "eve:2",
@@ -46,8 +46,8 @@
       "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
       "line" : 6
     },
-    "callerMethodId" : "m:ch/epfl/printwizard/examples/Main.main(([LString;)V)",
-    "calleeMethodId" : "m:java/io/PrintStream.println((LString;)V)"
+    "callerMethodId" : "m:ch/epfl/printwizard/examples/Main.main(java.lang.String[])void",
+    "calleeMethodId" : "m:java/io/PrintStream.println(java.lang.String[])void"
   }, {
     "type" : "LOCAL",
     "eventId" : "eve:3",
@@ -58,8 +58,8 @@
       "line" : 8
     },
     "owner" : "ch/epfl/printwizard/examples/Main",
-    "method" : "main",
-    "varName" : "#1",
+    "method" : "m:ch/epfl/printwizard/examples/Main.main(java.lang.String[])void",
+    "varName" : "1",
     "index" : 1,
     "value" : 0
   }, {
@@ -72,18 +72,60 @@
       "line" : 9
     },
     "owner" : "ch/epfl/printwizard/examples/Main",
-    "method" : "main",
-    "varName" : "#1",
+    "method" : "m:ch/epfl/printwizard/examples/Main.main(java.lang.String[])void",
+    "varName" : "1",
     "index" : 1,
     "value" : 7
   }, {
-    "type" : "RETURN",
+    "type" : "LOCAL",
     "eventId" : "eve:5",
     "spanId" : "spn:1",
     "frameId" : "frm:1",
     "location" : {
       "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
-      "line" : 17
+      "line" : 11
+    },
+    "owner" : "ch/epfl/printwizard/examples/Main",
+    "method" : "m:ch/epfl/printwizard/examples/Main.main(java.lang.String[])void",
+    "varName" : "2",
+    "index" : 2,
+    "value" : 3
+  }, {
+    "type" : "LOCAL",
+    "eventId" : "eve:6",
+    "spanId" : "spn:1",
+    "frameId" : "frm:1",
+    "location" : {
+      "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
+      "line" : 12
+    },
+    "owner" : "ch/epfl/printwizard/examples/Main",
+    "method" : "m:ch/epfl/printwizard/examples/Main.main(java.lang.String[])void",
+    "varName" : "2",
+    "index" : 2,
+    "value" : 6
+  }, {
+    "type" : "LOCAL",
+    "eventId" : "eve:7",
+    "spanId" : "spn:1",
+    "frameId" : "frm:1",
+    "location" : {
+      "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
+      "line" : 13
+    },
+    "owner" : "ch/epfl/printwizard/examples/Main",
+    "method" : "m:ch/epfl/printwizard/examples/Main.main(java.lang.String[])void",
+    "varName" : "2",
+    "index" : 2,
+    "value" : 9
+  }, {
+    "type" : "RETURN",
+    "eventId" : "eve:8",
+    "spanId" : "spn:1",
+    "frameId" : "frm:1",
+    "location" : {
+      "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
+      "line" : 21
     },
     "returnValue" : null
   } ]

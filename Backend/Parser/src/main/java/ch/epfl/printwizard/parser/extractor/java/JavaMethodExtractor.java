@@ -65,7 +65,7 @@ public record JavaMethodExtractor(Source source, BaseTypeInfo typeInfo) implemen
         List<String> paramTypes = new ArrayList<>();
         int pIndex = 0;
         for (Parameter p : c.getParameters()) {
-            paramTypes.add(p.getType().toString());
+            paramTypes.add(ch.epfl.printwizard.parser.java.TypeIdUtils.canonical(p.getType()));
             params.add(new ParameterInfo(pIndex++, p.getNameAsString(), "t:" + p.getType().toString()));
         }
 

@@ -7,6 +7,10 @@ public class Main {
 
         int i = 0;
         i = 5 + 2;
+
+        int r = 3;
+        r = r * 2;
+        r = i + 2;
         //int[] array = new int[5];
         //array[2] = 10;
         

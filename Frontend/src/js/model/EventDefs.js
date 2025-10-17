@@ -26,12 +26,11 @@ export class CallTraceEvent extends TraceEvent {
  * Represents an event where a local variable is assigned a value.
  */
 export class LocalTraceEvent extends TraceEvent {
-    constructor(eventId, spanId, frameId, location, owner, method, varName, index, value) {
+    constructor(eventId, spanId, frameId, location, owner, methodId, index, value) {
         super(eventId, spanId, frameId, location);
 
         this.owner = owner;
-        this.method = method;
-        this.varName = varName;
+        this.methodId = methodId;
         this.index = index;
         this.value = value;
     }

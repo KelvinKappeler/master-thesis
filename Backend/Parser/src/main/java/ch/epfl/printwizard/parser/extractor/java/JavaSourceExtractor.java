@@ -38,8 +38,6 @@ public record JavaSourceExtractor(Path baseDir, JavaParser parser) implements IE
 
         String sourceId = IdGenerator.sourceId(packagePath);
         
-        String sourceContent = Files.readString(filePath);
-        
-        return List.of(new Source(sourceId, rel.toString().replace('\\', '/'), "java", lines, sourceContent));
+        return List.of(new Source(sourceId, rel.toString().replace('\\', '/'), "java", lines));
     }
 }

@@ -11,6 +11,11 @@ import com.github.javaparser.JavaParser;
 import com.github.javaparser.ParserConfiguration;
 import com.github.javaparser.ast.CompilationUnit;
 import com.github.javaparser.ast.body.TypeDeclaration;
+import com.github.javaparser.resolution.TypeSolver;
+import com.github.javaparser.symbolsolver.JavaSymbolSolver;
+import com.github.javaparser.symbolsolver.resolution.typesolvers.CombinedTypeSolver;
+import com.github.javaparser.symbolsolver.resolution.typesolvers.JavaParserTypeSolver;
+import com.github.javaparser.symbolsolver.resolution.typesolvers.ReflectionTypeSolver;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -183,10 +188,15 @@ public record JavaProgramScanner(Path baseDir, JavaParser parser, Predicate<Path
         }
 
         public JavaProgramScanner build() {
+            TypeSolver typeSolver = new CombinedTypeSolver(
+                    new ReflectionTypeSolver(),
+                    new JavaParserTypeSolver(baseDir.toFile())
+            );
             ParserConfiguration config = new ParserConfiguration()
                     .setCharacterEncoding(StandardCharsets.UTF_8)
                     .setLanguageLevel(languageLevel)
-                    .setAttributeComments(true);
+                    .setAttributeComments(true)
+                    .setSymbolResolver(new JavaSymbolSolver(typeSolver));
             JavaParser parser = new JavaParser(config);
 
             Predicate<Path> filter = buildPathFilter();

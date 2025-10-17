@@ -276,7 +276,6 @@ export class MainDataAssembler {
                     location,
                     eventJson.owner,
                     eventJson.method,
-                    eventJson.varName,
                     eventJson.index,
                     eventJson.value
                 );

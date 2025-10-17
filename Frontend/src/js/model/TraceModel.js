@@ -10,10 +10,12 @@ export class TraceModel {
         this.eventsById = new Map();
         this.spansById = new Map();
         this.methodsById = new Map();
+        this.localVarsByIdByMethodId = new Map();
 
         this.#createCacheEventsById();
         this.#createCacheSpansById();
         this.#createCacheMethodsById();
+        this.#createCacheLocalVarsByIdByMethodId();
     }
 
     /**
@@ -46,6 +48,25 @@ export class TraceModel {
         return method.structures.visitForLine(ev.location.line);
     }
 
+    /**
+     * Returns the method for a given ID.
+     * @param id {string} - The ID of the method.
+     * @returns {Method} - The method for the given ID.
+     */
+    getMethod(id) {
+        return this.methodsById.get(id);
+    }
+
+    /**
+     * Returns the local variable for a given method and index.
+     * @param methodId {string} - The ID of the method.
+     * @param index {number} - The index of the local variable.
+     * @returns {Variable} - The local variable for the given method and index.
+     */
+    getLocalVar(methodId, index) {
+        return this.localVarsByIdByMethodId.get(methodId).get(index);
+    }
+
     #createCacheEventsById() {
         for (const ev of this.mainData.trace.events || []) {
             this.eventsById.set(ev.eventId, ev);
@@ -61,6 +82,16 @@ export class TraceModel {
     #createCacheSpansById() {
         for (const span of this.mainData.trace.spans || []) {
             this.spansById.set(span.id, span);
+        }
+    }
+
+    #createCacheLocalVarsByIdByMethodId() {
+        for (const method of this.mainData.program.methods || []) {
+            const localVarsById = new Map();
+            for (const localVar of method.localVars) {
+                localVarsById.set(localVar.index, localVar);
+            }
+            this.localVarsByIdByMethodId.set(method.id, localVarsById);
         }
     }
 }

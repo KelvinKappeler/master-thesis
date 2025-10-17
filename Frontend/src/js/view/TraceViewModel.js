@@ -25,6 +25,25 @@ export class TraceViewModel {
     }
 
     /**
+     * Returns the method with the given ID.
+     * @param id {string} The ID of the method.
+     * @returns {Method} The method with the given ID.
+     */
+    getMethod(id) {
+        return this.traceModel.getMethod(id);
+    }
+
+    /**
+     * Returns the local variable with the given method ID and index.
+     * @param methodId {string} The ID of the method.
+     * @param index {number} The index of the local variable.
+     * @returns {Variable} The variable with the given method ID and index.
+     */
+    getLocalVar(methodId, index) {
+        return this.traceModel.getLocalVar(methodId, index);
+    }
+
+    /**
      * Gets a map of events to their corresponding structure nodes.
      * @returns {Map<TraceEvent, StructureNode>} A map of events to structure nodes.
      */

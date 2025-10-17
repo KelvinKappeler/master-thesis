@@ -3,6 +3,10 @@ package ch.epfl.printwizard.parser.java;
 import com.github.javaparser.ast.CompilationUnit;
 import com.github.javaparser.ast.Node;
 import com.github.javaparser.ast.body.*;
+import com.github.javaparser.ast.type.Type;
+import com.github.javaparser.resolution.UnsolvedSymbolException;
+import com.github.javaparser.resolution.declarations.ResolvedTypeParameterDeclaration;
+import com.github.javaparser.resolution.types.ResolvedType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -57,5 +61,37 @@ public final class TypeIdUtils {
             cur = cur.getParentNode().orElse(null);
         }
         return String.join(".", parts);
+    }
+
+    public static String canonical(Type t) {
+        if (t.isVoidType()) return "void";
+        if (t.isPrimitiveType()) return t.asPrimitiveType().toString();
+        if (t.isArrayType()) return canonical(t.asArrayType().getComponentType()) + "[]";
+
+        try {
+            ResolvedType rt = t.resolve();
+            return canonical(rt);
+        } catch (UnsolvedSymbolException | UnsupportedOperationException e) {
+            return t.toString();
+        }
+    }
+
+    public static String canonical(ResolvedType rt) {
+        if (rt.isPrimitive()) return rt.describe();
+        if (rt.isVoid()) return "void";
+        if (rt.isArray()) return canonical(rt.asArrayType().getComponentType()) + "[]";
+        if (rt.isReferenceType()) return rt.asReferenceType().getQualifiedName();
+
+        if (rt.isTypeVariable()) {
+            ResolvedTypeParameterDeclaration tp = rt.asTypeVariable().asTypeParameter();
+
+            if (!tp.getBounds().isEmpty()) {
+                ResolvedType firstBound = tp.getBounds().getFirst().getType();
+
+                return canonical(firstBound);
+            }
+        }
+
+        return "java.lang.Object";
     }
 }

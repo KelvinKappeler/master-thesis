@@ -101,7 +101,7 @@ public final class JavaStructureMapper {
                 varExpr.getVariables().forEach(v -> {
                     String name = v.getNameAsString();
                     String typeId = v.getType().toString();
-                    LocalVar localVar = new LocalVar(nextLocalSlot, name, typeId);
+                    LocalVar localVar = new LocalVar(nextLocalSlot++, name, typeId);
                     locals.add(localVar);
                 });
 

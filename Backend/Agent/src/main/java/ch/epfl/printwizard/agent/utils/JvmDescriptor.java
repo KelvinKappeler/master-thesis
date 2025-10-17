@@ -13,79 +13,105 @@ public final class JvmDescriptor {
      * @return array of two strings: parameter types and return type
      */
     public static String[] toHuman(String descriptor) {
-        Index idx = new Index();
+        Preconditions.requireNonNull(descriptor, "descriptor is null");
+        Preconditions.require(!descriptor.isEmpty(), "descriptor is empty");
+
         String params = "";
         String ret;
 
         if (descriptor.charAt(0) == '(') {
-            idx.pos++;
+            int i = 1;
+            int end = descriptor.indexOf(')', i);
+            if (end < 0) {
+                throw new IllegalArgumentException("Unterminated parameter list: " + descriptor);
+            }
+
             StringBuilder p = new StringBuilder();
             boolean first = true;
-            while (descriptor.charAt(idx.pos) != ')') {
-                String t = readType(descriptor, idx);
+            while (i < end) {
                 if (!first) p.append(", ");
+                StringBuilder t = new StringBuilder();
+                int next = readType(descriptor, i, t);
+                if (next > end) {
+                    throw new IllegalArgumentException("Parameter overruns ')': " + descriptor);
+                }
                 p.append(t);
+                i = next;
                 first = false;
             }
-            idx.pos++;
-            ret = readType(descriptor, idx);
-            if (idx.pos != descriptor.length()) {
+
+            i = end + 1;
+
+            StringBuilder r = new StringBuilder();
+            i = readType(descriptor, i, r);
+
+            if (i != descriptor.length()) {
                 throw new IllegalArgumentException("Trailing characters in descriptor: " + descriptor);
             }
+
             params = p.toString();
-        }
-        else {
-            String t = readType(descriptor, idx);
-            if (t.equals("void")) {
+            ret = r.toString();
+        } else {
+            StringBuilder r = new StringBuilder();
+            int i = readType(descriptor, 0, r);
+
+            if ("void".contentEquals(r)) {
                 throw new IllegalArgumentException("'V' is only valid as a method return type");
             }
-            if (idx.pos != descriptor.length()) {
+            if (i != descriptor.length()) {
                 throw new IllegalArgumentException("Trailing characters in descriptor: " + descriptor);
             }
-            ret = t;
+            ret = r.toString();
         }
+
         return new String[] { params, ret };
     }
 
-    private static String readType(String s, Index idx) {
-        int arrayDims = 0;
-        while (s.charAt(idx.pos) == '[') {
-            arrayDims++;
-            idx.pos++;
+    /**
+     * Reads one JVM type starting at index {@code pos}, appends its human form to {@code out},
+     * and returns the next index to read from.
+     */
+    private static int readType(String s, int pos, StringBuilder out) {
+        final int n = s.length();
+        int i = pos;
+
+        int dims = 0;
+        while (i < n && s.charAt(i) == '[') {
+            dims++;
+            i++;
+        }
+        if (i >= n) {
+            throw new IllegalArgumentException("Unexpected end of descriptor: " + s);
         }
 
-        char c = s.charAt(idx.pos);
-        String base;
+        char c = s.charAt(i++);
         switch (c) {
-            case 'B': base = "byte";    idx.pos++; break;
-            case 'C': base = "char";    idx.pos++; break;
-            case 'D': base = "double";  idx.pos++; break;
-            case 'F': base = "float";   idx.pos++; break;
-            case 'I': base = "int";     idx.pos++; break;
-            case 'J': base = "long";    idx.pos++; break;
-            case 'S': base = "short";   idx.pos++; break;
-            case 'Z': base = "boolean"; idx.pos++; break;
-            case 'V': base = "void";    idx.pos++; break;
+            case 'B': out.append("byte");    break;
+            case 'C': out.append("char");    break;
+            case 'D': out.append("double");  break;
+            case 'F': out.append("float");   break;
+            case 'I': out.append("int");     break;
+            case 'J': out.append("long");    break;
+            case 'S': out.append("short");   break;
+            case 'Z': out.append("boolean"); break;
+            case 'V': out.append("void");    break;
             case 'L': {
-                int semi = s.indexOf(';', idx.pos);
-                if (semi < 0) throw new IllegalArgumentException("Missing ';' in object type: " + s);
-                String name = s.substring(idx.pos + 1, semi);
-                base = name.replace('/', '.');
-                idx.pos = semi + 1;
+                int semi = s.indexOf(';', i);
+                if (semi < 0) {
+                    throw new IllegalArgumentException("Missing ';' in object type: " + s);
+                }
+                String name = s.substring(i, semi).replace('/', '.');
+                out.append(name);
+                i = semi + 1;
                 break;
             }
             default:
                 throw new IllegalArgumentException("Unknown type code '" + c + "' in: " + s);
         }
 
-        if (arrayDims > 0) {
-            return base + "[]".repeat(arrayDims);
-        }
-        return base;
-    }
+        out.append("[]".repeat(Math.max(0, dims)));
 
-    private static final class Index {
-        int pos = 0;
+        return i;
     }
 }
 

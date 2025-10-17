@@ -1,5 +1,7 @@
 package ch.epfl.printwizard.agent;
 
+import ch.epfl.printwizard.agent.utils.JvmDescriptor;
+import ch.epfl.printwizard.shared.IdGenerator;
 import org.objectweb.asm.*;
 import org.objectweb.asm.commons.AdviceAdapter;
 import org.objectweb.asm.commons.Method;
@@ -16,9 +18,8 @@ public final class TraceMethodVisitor extends AdviceAdapter {
     private final String ownerInternal;
     private final String sourceFile;
     private final boolean isStatic;
+    private final String methodId;
 
-    private final Map<Integer, String> varNameByIndex = new HashMap<>();
-    private final Map<Integer, String> varDescByIndex = new HashMap<>();
     private int currentLine = 1;
 
     private final Label tryStart = new Label();
@@ -32,6 +33,9 @@ public final class TraceMethodVisitor extends AdviceAdapter {
         this.ownerInternal = ownerInternal;
         this.sourceFile = sourceFile;
         this.isStatic = (access & ACC_STATIC) != 0;
+
+        String[] humanDesc  = JvmDescriptor.toHuman(desc);
+        this.methodId = IdGenerator.methodId(ownerInternal, name, humanDesc[0], humanDesc[1]);
     }
 
     @Override public void visitLineNumber(int line, Label start) {
@@ -60,15 +64,6 @@ public final class TraceMethodVisitor extends AdviceAdapter {
             case IASTORE, BASTORE, CASTORE, SASTORE -> Type.INT_TYPE;
             default -> Type.getType(Object.class);
         };
-    }
-
-    @Override
-    public void visitLocalVariable(String name, String desc, String signature, Label start, Label end, int index) {
-        System.out.println("var " + name + " " + desc + " at index " + index);
-        varNameByIndex.put(index, name);
-        varDescByIndex.put(index, desc);
-
-        super.visitLocalVariable(name, desc, signature, start, end, index);
     }
 
     @Override
@@ -156,23 +151,18 @@ public final class TraceMethodVisitor extends AdviceAdapter {
         if (store) {
             super.visitVarInsn(opcode, var);
 
-            String desc = varDescByIndex.get(var);
-            if (desc == null) {
-                desc = switch (opcode) {
-                    case ISTORE -> "I";
-                    case LSTORE -> "J";
-                    case FSTORE -> "F";
-                    case DSTORE -> "D";
-                    default -> "Ljava/lang/Object;";
-                };
-            }
+            String desc = switch (opcode) {
+                case ISTORE -> "I";
+                case LSTORE -> "J";
+                case FSTORE -> "F";
+                case DSTORE -> "D";
+                default -> "Ljava/lang/Object;";
+            };
 
-            System.out.println("TEST " + var);
-            varNameByIndex.forEach((k, v) -> System.out.println(k + " -> " + v));
-            String name = varNameByIndex.getOrDefault(var, "#" + var);
+            String name = String.valueOf(var);
 
             push(ownerInternal);
-            push(getName());
+            push(methodId);
             push(name);
             push(var);
 
