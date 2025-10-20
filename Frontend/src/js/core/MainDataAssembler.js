@@ -265,7 +265,8 @@ export class MainDataAssembler {
                     frameId,
                     location,
                     eventJson.callerMethodId,
-                    eventJson.calleeMethodId
+                    eventJson.calleeMethodId,
+                    eventJson.name
                 );
 
             case "LOCAL":

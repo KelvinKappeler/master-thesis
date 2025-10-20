@@ -2,6 +2,7 @@ import {TraceContainer} from "./TraceContainer.js";
 import {CallTraceEvent, LocalTraceEvent} from "../model/EventDefs.js";
 import {BaseTriangle} from "../elements/BaseTriangle.js";
 import {TraceBlock} from "./TraceBlock.js";
+import {TraceSpan} from "./TraceSpan.js";
 
 /**
  * Represents the view for the trace part of the application.
@@ -25,7 +26,7 @@ export class TraceView {
         for (const [event, structure] of eventStructureMap) {
             if (structure === null || structure === undefined) continue;
 
-            const headerFrag = this.#highlight(structure.getLineContent());
+            const headerFrag = TraceSpan.wrapLineColors(structure.getLineContent());
             const block = new TraceBlock(this.container, null, event.location.line, headerFrag, true, false);
             block.addLine(event.location.line, this.#getEventLine(event));
         }
@@ -72,50 +73,17 @@ export class TraceView {
         if (event instanceof CallTraceEvent) {
             const callee = this.traceViewModel.getMethod(event.calleeMethodId);
             if (callee === undefined) {
-                return "<internal method>";
+                return event.name;
             }
 
             return callee.name;
         }
         else if (event instanceof LocalTraceEvent) {
             const variable = this.traceViewModel.getLocalVar(event.methodId, event.index);
-            return variable.name + " := " + event.value;
+            return variable.name + " ← " + event.value;
         }
         else {
             throw new Error("Event type not implemented : " + event.constructor.name);
         }
-    }
-
-    #highlight(line) {
-        const keywords = [
-            "abstract", "continue", "for", "new", "switch", "default", "do", "if", "private", "this",
-            "break", "double", "implements", "protected", "throw", "byte", "else", "import", "public", "throws",
-            "case", "enum", "instanceof", "return", "transient", "catch", "extends", "int", "short", "try",
-            "char", "final", "interface", "static", "void", "class", "finally", "long", "volatile", "float",
-            "native", "super", "while"
-        ];
-        const frag = document.createDocumentFragment();
-        const text = String(line);
-        const re = new RegExp(`(\\b(?:${keywords.join("|")})\\b|[()])`, "g");
-
-        let last = 0;
-        let m;
-        while ((m = re.exec(text)) !== null) {
-            if (m.index > last) frag.appendChild(document.createTextNode(text.slice(last, m.index)));
-
-            const span = document.createElement("span");
-            if (m[0] === "(" || m[0] === ")") {
-                span.className = "parenthesis";
-            } else {
-                span.className = "keyword";
-            }
-            span.textContent = m[0];
-            frag.appendChild(span);
-
-            last = re.lastIndex;
-        }
-        if (last < text.length) frag.appendChild(document.createTextNode(text.slice(last)));
-
-        return frag;
     }
 }

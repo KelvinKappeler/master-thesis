@@ -18,7 +18,8 @@ public record CallEvent(
     String frameId,
     TraceLoc location,
     String callerMethodId,
-    String calleeMethodId
+    String calleeMethodId,
+    String name
 ) implements TraceEvent {
 
     public CallEvent {
@@ -27,10 +28,12 @@ public record CallEvent(
         Preconditions.requireNonNull(frameId, "frameId is null");
         Preconditions.requireNonNull(location, "location is null");
         Preconditions.requireNonNull(calleeMethodId, "calleeMethodId is null");
+        Preconditions.requireNonNull(name, "name is null");
         Preconditions.require(!eventId.isEmpty(), "eventId is empty");
         Preconditions.require(!spanId.isEmpty(), "spanId is empty");
         Preconditions.require(!frameId.isEmpty(), "frameId is empty");
         Preconditions.require(!calleeMethodId.isEmpty(), "calleeMethodId is empty");
+        Preconditions.require(!name.isEmpty(), "name is empty");
     }
 
 }

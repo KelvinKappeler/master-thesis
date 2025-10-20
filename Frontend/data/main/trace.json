@@ -36,7 +36,8 @@
       "line" : 1
     },
     "callerMethodId" : null,
-    "calleeMethodId" : "m:ch/epfl/printwizard/examples/Main.main(java.lang.String[])void"
+    "calleeMethodId" : "m:ch/epfl/printwizard/examples/Main.main(java.lang.String[])void",
+    "name" : "main"
   }, {
     "type" : "CALL",
     "eventId" : "eve:2",
@@ -47,7 +48,8 @@
       "line" : 6
     },
     "callerMethodId" : "m:ch/epfl/printwizard/examples/Main.main(java.lang.String[])void",
-    "calleeMethodId" : "m:java/io/PrintStream.println(java.lang.String[])void"
+    "calleeMethodId" : "m:java/io/PrintStream.println(java.lang.String)void",
+    "name" : "println"
   }, {
     "type" : "LOCAL",
     "eventId" : "eve:3",

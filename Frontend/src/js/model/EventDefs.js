@@ -14,9 +14,10 @@ export class TraceEvent {
  * Represents an event where a method is called.
  */
 export class CallTraceEvent extends TraceEvent {
-    constructor(eventId, spanId, frameId, location, callerMethodId, calleeMethodId) {
+    constructor(eventId, spanId, frameId, location, callerMethodId, calleeMethodId, name) {
         super(eventId, spanId, frameId, location);
 
+        this.name = name;
         this.callerMethodId = callerMethodId;
         this.calleeMethodId = calleeMethodId;
     }

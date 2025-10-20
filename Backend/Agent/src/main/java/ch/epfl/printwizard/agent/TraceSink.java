@@ -64,11 +64,13 @@ public final class TraceSink {
      */
     public static void beforeCall(String callerOwner, String callerName, String callerDesc,
         String calleeOwner, String calleeName, String calleeDesc, String sourceId, int line) {
-
-        String[] paramsAndType = JvmDescriptor.toHuman(callerDesc);
-        String caller = IdGenerator.methodId(callerOwner, callerName, paramsAndType[0], paramsAndType[1]);
-        String callee = IdGenerator.methodId(calleeOwner, calleeName, paramsAndType[0], paramsAndType[1]);
-        addEvent(new CallEvent(nextEventId(), topSpan(), topFrame(), new TraceLoc(sourceId, line), caller, callee));
+        
+        String[] paramsAndTypeCaller = JvmDescriptor.toHuman(callerDesc);
+        String[] paramsAndTypeCallee = JvmDescriptor.toHuman(calleeDesc);
+        String caller = IdGenerator.methodId(callerOwner, callerName, paramsAndTypeCaller[0], paramsAndTypeCaller[1]);
+        String callee = IdGenerator.methodId(calleeOwner, calleeName, paramsAndTypeCallee[0], paramsAndTypeCallee[1]);
+        addEvent(new CallEvent(nextEventId(), topSpan(), topFrame(), new TraceLoc(sourceId, line),
+                caller, callee, calleeName));
     }
 
     /**
@@ -89,7 +91,7 @@ public final class TraceSink {
         String parent = topSpan();
         String startEventId = nextEventId();
 
-        addEvent(new CallEvent(startEventId, spanId, frameId, new TraceLoc(sourceId, line), parent, methodId));
+        addEvent(new CallEvent(startEventId, spanId, frameId, new TraceLoc(sourceId, line), parent, methodId, name));
         traceFileBuilder.addSpan(new TraceSpan(spanId, parent, methodId, startEventId, "end", new TraceLoc(sourceId, line), new TraceLoc("source", 1), "Waiting"));
 
         List<Arg> argList = new ArrayList<>();
