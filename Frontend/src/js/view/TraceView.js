@@ -1,6 +1,7 @@
 import {TraceContainer} from "./TraceContainer.js";
 import {CallTraceEvent, LocalTraceEvent} from "../model/EventDefs.js";
-import {BaseTriangle} from "../elements/Triangle.js";
+import {BaseTriangle} from "../elements/BaseTriangle.js";
+import {TraceBlock} from "./TraceBlock.js";
 
 /**
  * Represents the view for the trace part of the application.
@@ -17,14 +18,16 @@ export class TraceView {
      * Renders the trace view.
      */
     render() {
+        this.container.clear();
+
         const eventStructureMap = this.traceViewModel.getEventsProgramStructureMap();
 
         for (const [event, structure] of eventStructureMap) {
             if (structure === null || structure === undefined) continue;
 
-            const firstLineFrag = this.#highlight(structure.getLineContent());
-            const ct = this.#addLine(event.location.line, firstLineFrag, null, true);
-            this.#addLine(event.location.line, this.#getEventLine(event), ct);
+            const headerFrag = this.#highlight(structure.getLineContent());
+            const block = new TraceBlock(this.container, null, event.location.line, headerFrag, true, false);
+            block.addLine(event.location.line, this.#getEventLine(event));
         }
     }
 
@@ -114,9 +117,5 @@ export class TraceView {
         if (last < text.length) frag.appendChild(document.createTextNode(text.slice(last)));
 
         return frag;
-    }
-
-    #manageTriangle() {
-
     }
 }

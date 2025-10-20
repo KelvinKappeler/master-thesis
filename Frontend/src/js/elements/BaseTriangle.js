@@ -1,9 +1,9 @@
-import {Preconditions} from "../../../oldsrc/js/utils/Preconditions.js";
+import {PWElement} from "./PWElement.js";
 
 /**
  * This class is used to create a triangle that can be used to collapse and expand elements (hide/show a list of DOM elements).
  */
-export class BaseTriangle {
+export class BaseTriangle extends PWElement {
     static iconFold = "bi-chevron-down";
     static iconExpanded = "bi-chevron-right";
 
@@ -18,8 +18,8 @@ export class BaseTriangle {
         const element = document.createElement('i');
         element.classList.add('bi');
         element.addEventListener('click', (event) => this.toggle(event));
+        super(element);
 
-        this.element = element;
         this.isCollapse = !isCollapse;
         this.iconFold = iconFold;
         this.iconExpanded = iconExpanded;
@@ -53,21 +53,5 @@ export class BaseTriangle {
      */
     toggle() {
         this.isCollapse ? this.expand() : this.collapse();
-    }
-
-    /**
-     * Attaches the triangle to a parent element.
-     * @param parent {Element} The parent element to attach the triangle to.
-     * @param isAppend {Boolean} Whether to append the triangle to the parent element.
-     */
-    attachTo(parent, isAppend = true) {
-        Preconditions.checkType(parent, Element);
-        Preconditions.checkIfBoolean(isAppend);
-
-        if (!isAppend) {
-            parent.prepend(this.element);
-        } else {
-            parent.append(this.element);
-        }
     }
 }

@@ -13,4 +13,13 @@ export class TraceContainer {
         this.lineNumbersArea = lineNumbersArea;
         this.trianglesArea = trianglesArea;
     }
+
+    /**
+     * Clears the trace container.
+     */
+    clear() {
+        this.traceContentArea.replaceChildren();
+        this.lineNumbersArea.replaceChildren();
+        this.trianglesArea.replaceChildren();
+    }
 }
