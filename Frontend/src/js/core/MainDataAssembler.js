@@ -4,7 +4,7 @@ import {BlockNode, CodePosition, ExprStmtNode, ReturnNode} from "../model/Struct
 import {ExprCode} from "../model/ExprDefs.js";
 import {Index} from "../model/IndexDefs.js";
 import {Argument, Frame, Span, TraceData, TraceLocation} from "../model/TraceDefs.js";
-import {CallTraceEvent, LocalTraceEvent, ReturnTraceEvent} from "../model/EventDefs.js";
+import {ArithmeticTraceEvent, CallTraceEvent, LocalTraceEvent, ReturnTraceEvent} from "../model/EventDefs.js";
 import {MainData} from "./MainData.js";
 
 /**
@@ -289,6 +289,19 @@ export class MainDataAssembler {
                     location,
                     eventJson.returnValue
                 );
+
+            case "ARITHMETIC":
+                return new ArithmeticTraceEvent(
+                    eventId,
+                    spanId,
+                    frameId,
+                    location,
+                    eventJson.operation,
+                    eventJson.type,
+                    eventJson.left,
+                    eventJson.right,
+                    eventJson.result,
+                )
 
             default:
                 throw new Error(`Unknown event type: ${eventJson.eventType}`);

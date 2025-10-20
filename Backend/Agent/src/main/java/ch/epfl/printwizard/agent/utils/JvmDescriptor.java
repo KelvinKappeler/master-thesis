@@ -10,7 +10,7 @@ public final class JvmDescriptor {
     /**
      * Convert a JVM descriptor to a human-readable form.
      * @param descriptor JVM descriptor (e.g., "I", "[[Ljava/lang/String;", "(I)V")
-     * @return array of two strings: parameter types and return type
+     * @return array of two strings: parameter types and return resultType
      */
     public static String[] toHuman(String descriptor) {
         Preconditions.requireNonNull(descriptor, "descriptor is null");
@@ -56,7 +56,7 @@ public final class JvmDescriptor {
             int i = readType(descriptor, 0, r);
 
             if ("void".contentEquals(r)) {
-                throw new IllegalArgumentException("'V' is only valid as a method return type");
+                throw new IllegalArgumentException("'V' is only valid as a method return resultType");
             }
             if (i != descriptor.length()) {
                 throw new IllegalArgumentException("Trailing characters in descriptor: " + descriptor);
@@ -68,7 +68,7 @@ public final class JvmDescriptor {
     }
 
     /**
-     * Reads one JVM type starting at index {@code pos}, appends its human form to {@code out},
+     * Reads one JVM resultType starting at index {@code pos}, appends its human form to {@code out},
      * and returns the next index to read from.
      */
     private static int readType(String s, int pos, StringBuilder out) {
@@ -98,7 +98,7 @@ public final class JvmDescriptor {
             case 'L': {
                 int semi = s.indexOf(';', i);
                 if (semi < 0) {
-                    throw new IllegalArgumentException("Missing ';' in object type: " + s);
+                    throw new IllegalArgumentException("Missing ';' in object resultType: " + s);
                 }
                 String name = s.substring(i, semi).replace('/', '.');
                 out.append(name);
@@ -106,7 +106,7 @@ public final class JvmDescriptor {
                 break;
             }
             default:
-                throw new IllegalArgumentException("Unknown type code '" + c + "' in: " + s);
+                throw new IllegalArgumentException("Unknown resultType code '" + c + "' in: " + s);
         }
 
         out.append("[]".repeat(Math.max(0, dims)));

@@ -22,7 +22,7 @@ public final class JsonFileWriter {
      * Writes the given object to the specified output path in JSON format.
      * @param obj the object to write
      * @param outPath the output path where the JSON file will be written
-     * @param <T> the type of the object to write
+     * @param <T> the resultType of the object to write
      * @throws IOException if an I/O error occurs
      */
     public static <T> void write(T obj, Path outPath) throws IOException {

@@ -10,7 +10,7 @@ import java.util.List;
  * @param methodId ID of the method
  * @param classId ID of the class where the method is defined
  * @param name Name of the method
- * @param returnType Return type of the method
+ * @param returnType Return resultType of the method
  * @param startLine Start line of the method
  * @param endLine End line of the method
  * @param parameters List of parameters of the method

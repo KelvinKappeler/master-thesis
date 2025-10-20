@@ -9,7 +9,7 @@ import ch.epfl.printwizard.shared.utils.Preconditions;
  * @param spanId the identifier of the span this event belongs to
  * @param frameId the identifier of the frame this event belongs to
  * @param location the location in the source code where the event occurred
- * @param throwableType the type of the thrown exception
+ * @param throwableType the resultType of the thrown exception
  * @param message the message of the thrown exception
  */
 public record ThrowEvent(

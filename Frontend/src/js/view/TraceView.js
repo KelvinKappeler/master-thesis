@@ -1,5 +1,5 @@
 import {TraceContainer} from "./TraceContainer.js";
-import {CallTraceEvent, LocalTraceEvent} from "../model/EventDefs.js";
+import {ArithmeticTraceEvent, CallTraceEvent, LocalTraceEvent, ReturnTraceEvent} from "../model/EventDefs.js";
 import {BaseTriangle} from "../elements/BaseTriangle.js";
 import {TraceBlock} from "./TraceBlock.js";
 import {TraceSpan} from "./TraceSpan.js";
@@ -23,11 +23,18 @@ export class TraceView {
 
         const eventStructureMap = this.traceViewModel.getEventsProgramStructureMap();
 
+        let traceLoc = null;
+        let block = null;
         for (const [event, structure] of eventStructureMap) {
             if (structure === null || structure === undefined) continue;
 
-            const headerFrag = TraceSpan.wrapLineColors(structure.getLineContent());
-            const block = new TraceBlock(this.container, null, event.location.line, headerFrag, true, false);
+            const location = event.location;
+            if (!location.equals(traceLoc)) {
+                const headerFrag = TraceSpan.wrapLineColors(structure.getLineContent());
+                block = new TraceBlock(this.container, null, location.line, headerFrag, true, false);
+            }
+
+            traceLoc = location;
             block.addLine(event.location.line, this.#getEventLine(event));
         }
     }
@@ -81,6 +88,9 @@ export class TraceView {
         else if (event instanceof LocalTraceEvent) {
             const variable = this.traceViewModel.getLocalVar(event.methodId, event.index);
             return variable.name + " ← " + event.value;
+        }
+        else if (event instanceof ArithmeticTraceEvent) {
+            return `${event.left} ${event.operation} ${event.right} = ${event.result}`;
         }
         else {
             throw new Error("Event type not implemented : " + event.constructor.name);

@@ -12,8 +12,8 @@ import java.util.List;
 import java.util.stream.Stream;
 
 /**
- * Represents an abstract extractor that extracts type information from a Java CompilationUnit.
- * Subclasses should specify which type declarations to extract (e.g., classes, interfaces, records).ß
+ * Represents an abstract extractor that extracts resultType information from a Java CompilationUnit.
+ * Subclasses should specify which resultType declarations to extract (e.g., classes, interfaces, records).ß
  */
 abstract class AbstractJavaTypeExtractor<T extends BaseTypeInfo> implements IExtractor<CompilationUnit, T> {
     protected final String sourceId;
@@ -40,14 +40,14 @@ abstract class AbstractJavaTypeExtractor<T extends BaseTypeInfo> implements IExt
     }
 
     /**
-     * Subclasses implement this method to find the specific type declarations they are interested in.
+     * Subclasses implement this method to find the specific resultType declarations they are interested in.
      * @param cu the CompilationUnit to search
-     * @return a stream of the target type declarations
+     * @return a stream of the target resultType declarations
      */
     protected abstract Stream<? extends TypeDeclaration<?>> findTargetDeclarations(CompilationUnit cu);
     
     /**
-     * Creates a BaseTypeInfo object. Subclasses can override this method to create specific type info objects.
+     * Creates a BaseTypeInfo object. Subclasses can override this method to create specific resultType info objects.
      * @param id Fully qualified ID
      * @param name Name without package
      * @param packageName Package name

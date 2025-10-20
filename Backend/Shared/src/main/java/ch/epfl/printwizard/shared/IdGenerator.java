@@ -70,9 +70,9 @@ public final class IdGenerator {
     }
 
     /**
-     * Generates a unique ID for a type.
-     * @param id the type identifier
-     * @return the unique ID for the type (e.g., "t:TypeName")
+     * Generates a unique ID for a resultType.
+     * @param id the resultType identifier
+     * @return the unique ID for the resultType (e.g., "t:TypeName")
      */
     public static String typeId(String id) {
         Preconditions.requireNonNull(id, "id is null");
@@ -111,7 +111,7 @@ public final class IdGenerator {
      * @param classInternal the internal name of the class containing the method
      * @param name the name of the method
      * @param params the parameter types
-     * @param returnType the return type of the method
+     * @param returnType the return resultType of the method
      * @return the unique ID for the method (e.g., "m:java/lang/String.charAt(I)")
      */
     public static String methodId(String classInternal, String name, String params, String returnType) {

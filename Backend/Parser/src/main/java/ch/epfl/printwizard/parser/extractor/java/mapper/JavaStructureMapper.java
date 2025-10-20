@@ -88,7 +88,7 @@ public final class JavaStructureMapper {
 
             case ExpressionStmt expr -> new ExprStmtNode(nextId(StructureKind.EXPR_STMT.getPrefixId()), start, end, mapExpr(expr));
 
-            default -> throw new IllegalArgumentException("Unsupported statement type: " + s.getClass());
+            default -> throw new IllegalArgumentException("Unsupported statement resultType: " + s.getClass());
         };
     }
 

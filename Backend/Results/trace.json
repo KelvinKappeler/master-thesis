@@ -5,7 +5,7 @@
     "parentSpanId" : null,
     "methodId" : "m:ch/epfl/printwizard/examples/Main.main(java.lang.String[])void",
     "startEventId" : "eve:1",
-    "endEventId" : "eve:8",
+    "endEventId" : "eve:10",
     "startLoc" : {
       "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
       "line" : 1
@@ -93,8 +93,22 @@
     "index" : 2,
     "value" : 3
   }, {
-    "type" : "LOCAL",
+    "type" : "ARITHMETIC",
     "eventId" : "eve:6",
+    "spanId" : "spn:1",
+    "frameId" : "frm:1",
+    "location" : {
+      "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
+      "line" : 12
+    },
+    "operation" : "*",
+    "resultType" : "int",
+    "left" : 3,
+    "right" : 2,
+    "result" : 6
+  }, {
+    "type" : "LOCAL",
+    "eventId" : "eve:7",
     "spanId" : "spn:1",
     "frameId" : "frm:1",
     "location" : {
@@ -107,8 +121,22 @@
     "index" : 2,
     "value" : 6
   }, {
+    "type" : "ARITHMETIC",
+    "eventId" : "eve:8",
+    "spanId" : "spn:1",
+    "frameId" : "frm:1",
+    "location" : {
+      "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
+      "line" : 13
+    },
+    "operation" : "+",
+    "resultType" : "int",
+    "left" : 7,
+    "right" : 2,
+    "result" : 9
+  }, {
     "type" : "LOCAL",
-    "eventId" : "eve:7",
+    "eventId" : "eve:9",
     "spanId" : "spn:1",
     "frameId" : "frm:1",
     "location" : {
@@ -122,7 +150,7 @@
     "value" : 9
   }, {
     "type" : "RETURN",
-    "eventId" : "eve:8",
+    "eventId" : "eve:10",
     "spanId" : "spn:1",
     "frameId" : "frm:1",
     "location" : {

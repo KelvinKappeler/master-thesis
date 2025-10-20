@@ -114,6 +114,7 @@ public final class TraceMethodVisitor extends AdviceAdapter {
     @Override
     public void visitInsn(int opcode) {
         switch (opcode) {
+            // Management of array stores
             case IASTORE: case LASTORE: case FASTORE: case DASTORE:
             case AASTORE: case BASTORE: case CASTORE: case SASTORE: {
                 Type vtype = valueTypeForArrayStore(opcode);
@@ -138,6 +139,51 @@ public final class TraceMethodVisitor extends AdviceAdapter {
                 loadLocal(arrayLocal);
                 loadLocal(indexLocal);
                 loadLocal(valueLocal);
+            }
+
+            // Management of arithmetic operations
+            case IADD: case LADD: case FADD: case DADD:
+            case ISUB: case LSUB: case FSUB: case DSUB:
+            case IMUL: case LMUL: case FMUL: case DMUL:
+            case IDIV: case LDIV: case FDIV: case DDIV:
+            case IREM: case LREM: case FREM: case DREM: {
+                Type t = valueTypeForComputing(opcode);
+
+                int rightLocal = newLocal(t);
+                int leftLocal = newLocal(t);
+                storeLocal(rightLocal, t);
+                storeLocal(leftLocal, t);
+
+                // Re-execute the original operation to compute the real result
+                loadLocal(leftLocal, t);
+                loadLocal(rightLocal, t);
+                super.visitInsn(opcode); // result now on stack
+
+                // Save the result so we can both log and restore it
+                int resLocal = newLocal(t);
+                storeLocal(resLocal, t);
+
+                // TraceSink.logComputation(op, resultType, left, right, result, sourceId, line)
+                push(getArithmeticOp(opcode));
+                push(t.getDescriptor());
+
+                loadLocal(leftLocal, t);
+                if (t.getSort() != Type.OBJECT && t.getSort() != Type.ARRAY) box(t);
+
+                loadLocal(rightLocal, t);
+                if (t.getSort() != Type.OBJECT && t.getSort() != Type.ARRAY) box(t);
+
+                loadLocal(resLocal, t);
+                if (t.getSort() != Type.OBJECT && t.getSort() != Type.ARRAY) box(t);
+
+                pushSourceIdAndLine();
+                invokeStatic(Type.getType(TraceSink.class), new Method("logArithmetic",
+                "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/String;I)V"));
+
+                // Put the original result back on the stack for the program to continue
+                loadLocal(resLocal, t);
+
+                return;
             }
         }
         
@@ -278,5 +324,29 @@ public final class TraceMethodVisitor extends AdviceAdapter {
         visitInsn(ATHROW);
 */
         super.visitMaxs(maxStack, maxLocals);
+    }
+
+    private static Type valueTypeForComputing(int opcode) {
+        return switch (opcode) {
+            case IADD, ISUB, IMUL, IDIV, IREM, IAND, IOR, IXOR -> Type.INT_TYPE;
+            case LADD, LSUB, LMUL, LDIV, LREM, LAND, LOR, LXOR -> Type.LONG_TYPE;
+            case FADD, FSUB, FMUL, FDIV, FREM -> Type.FLOAT_TYPE;
+            case DADD, DSUB, DMUL, DDIV, DREM -> Type.DOUBLE_TYPE;
+            default -> Type.getType(Object.class);
+        };
+    }
+
+    private static String getArithmeticOp(int opcode) {
+        return switch (opcode) {
+            case IADD, LADD, FADD, DADD -> "+";
+            case ISUB, LSUB, FSUB, DSUB -> "-";
+            case IMUL, LMUL, FMUL, DMUL -> "*";
+            case IDIV, LDIV, FDIV, DDIV -> "/";
+            case IREM, LREM, FREM, DREM -> "%";
+            case IAND, LAND -> "&";
+            case IOR, LOR -> "|";
+            case IXOR, LXOR -> "^";
+            default -> throw new IllegalArgumentException("Invalid opcode: " + opcode);
+        };
     }
 }

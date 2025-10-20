@@ -3,7 +3,7 @@ package ch.epfl.printwizard.shared.model.program;
 import ch.epfl.printwizard.shared.utils.Preconditions;
 
 /**
- * Represents the base information of a type (class, interface, record, etc.) in the program.
+ * Represents the base information of a resultType (class, interface, record, etc.) in the program.
  */
 public abstract class BaseTypeInfo {
 
@@ -17,7 +17,7 @@ public abstract class BaseTypeInfo {
         Preconditions.requireNonNull(name, "name cannot be null");
         Preconditions.requireNonNull(packageName, "package name cannot be null");
         Preconditions.requireNonNull(sourceId, "source id cannot be null");
-        Preconditions.require(!id.isEmpty(), "type id cannot be empty");
+        Preconditions.require(!id.isEmpty(), "resultType id cannot be empty");
         
         this.id = id;
         this.name = name;
@@ -26,23 +26,23 @@ public abstract class BaseTypeInfo {
     }
 
     /**
-     * Gets the unique identifier of the type.
-     * @return the type ID
+     * Gets the unique identifier of the resultType.
+     * @return the resultType ID
      */
     public String getId() {
         return id;
     }
 
     /**
-     * Gets the simple name of the type.
-     * @return the type name
+     * Gets the simple name of the resultType.
+     * @return the resultType name
      */
     public String getName() {
         return name;
     }
 
     /**
-     * Gets the package name of the type.
+     * Gets the package name of the resultType.
      * @return the package name
      */
     public String getPackageName() {
@@ -50,7 +50,7 @@ public abstract class BaseTypeInfo {
     }
 
     /**
-     * Gets the ID of the source file where the type is defined.
+     * Gets the ID of the source file where the resultType is defined.
      * @return the source file ID
      */
     public String getSourceId() {

@@ -6,7 +6,7 @@ import ch.epfl.printwizard.shared.utils.Preconditions;
  * Represents a local variable in a method.
  * @param index the index of the local variable
  * @param name the name of the local variable
- * @param typeId the type ID of the local variable
+ * @param typeId the resultType ID of the local variable
  */
 public record LocalVar(int index, String name, String typeId) {
     

@@ -6,7 +6,7 @@ import ch.epfl.printwizard.shared.utils.Preconditions;
  * Represents a parameter for a method or constructor in the program.json file.
  * @param index the index of the parameter in the parameter list
  * @param name the name of the parameter
- * @param typeId the type ID of the parameter
+ * @param typeId the resultType ID of the parameter
  */
 public record ParameterInfo(int index, String name, String typeId) {
 

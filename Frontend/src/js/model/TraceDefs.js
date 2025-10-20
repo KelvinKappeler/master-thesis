@@ -32,6 +32,17 @@ export class TraceLocation {
         this.sourceId = sourceId;
         this.line = line;
     }
+
+    /**
+     * Checks if this location is equal to another location.
+     * @param other {TraceLocation} The other location to compare with.
+     * @returns {boolean} True if the locations are equal, false otherwise.
+     */
+    equals(other) {
+        if (other === null || other === undefined) return false;
+
+        return this.sourceId === other.sourceId && this.line === other.line;
+    }
 }
 
 /**

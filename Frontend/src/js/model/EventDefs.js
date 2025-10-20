@@ -47,3 +47,18 @@ export class ReturnTraceEvent extends TraceEvent {
         this.returnValue = returnValue;
     }
 }
+
+/**
+ * Represents an event where an arithmetic operation is performed.
+ */
+export class ArithmeticTraceEvent extends TraceEvent {
+    constructor(eventId, spanId, frameId, location, operation, resultType, left, right, result) {
+        super(eventId, spanId, frameId, location);
+
+        this.operation = operation;
+        this.resultType = resultType;
+        this.left = left;
+        this.right = right;
+        this.result = result;
+    }
+}

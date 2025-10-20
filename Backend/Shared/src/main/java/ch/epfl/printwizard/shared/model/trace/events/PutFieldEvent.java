@@ -11,7 +11,7 @@ import ch.epfl.printwizard.shared.utils.Preconditions;
  * @param location the location in the source code where the event occurred
  * @param owner the class that owns the field being modified
  * @param field the name of the field being modified
- * @param description a description of the field being modified (e.g., its type)
+ * @param description a description of the field being modified (e.g., its resultType)
  * @param instanceRef a reference to the instance whose field is being modified
  * @param value the new value being assigned to the field
  */

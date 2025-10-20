@@ -12,16 +12,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Represents a utility class for generating unique type identifiers for Java types.
+ * Represents a utility class for generating unique resultType identifiers for Java types.
  */
 public final class TypeIdUtils {
     
     private TypeIdUtils() {}
 
     /**
-     * Generates a unique identifier for a given type declaration within a compilation unit.
+     * Generates a unique identifier for a given resultType declaration within a compilation unit.
      * @param cu the compilation unit
-     * @param td the type declaration
+     * @param td the resultType declaration
      * @return the unique identifier in the format "prefix:fully.qualified.Name"
      */
     public static String idFor(CompilationUnit cu, TypeDeclaration<?> td) {
@@ -29,8 +29,8 @@ public final class TypeIdUtils {
     }
 
     /**
-     * Determines the prefix for the type declaration based on its kind (class, interface, record, etc.).
-     * @param td the type declaration
+     * Determines the prefix for the resultType declaration based on its kind (class, interface, record, etc.).
+     * @param td the resultType declaration
      * @return the prefix string
      */
     public static String prefix(TypeDeclaration<?> td) {
@@ -42,9 +42,9 @@ public final class TypeIdUtils {
     }
 
     /**
-     * Generates the fully qualified name for a given type declaration within a compilation unit.
+     * Generates the fully qualified name for a given resultType declaration within a compilation unit.
      * @param cu the compilation unit
-     * @param td the type declaration
+     * @param td the resultType declaration
      * @return the fully qualified name
      */
     public static String fqName(CompilationUnit cu, TypeDeclaration<?> td) {

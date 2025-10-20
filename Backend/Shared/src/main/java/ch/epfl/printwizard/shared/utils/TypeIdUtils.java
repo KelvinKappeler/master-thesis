@@ -10,9 +10,9 @@ public final class TypeIdUtils {
     private TypeIdUtils() {}
 
     /**
-     * Builds a JVM method descriptor from parameter types and return type
+     * Builds a JVM method descriptor from parameter types and return resultType
      * @param paramTypes list of parameter types (e.g., ["String", "int"])
-     * @param returnType return type (e.g., "void", "int", "<init>")
+     * @param returnType return resultType (e.g., "void", "int", "<init>")
      * @param isConstructor true if this is a constructor
      * @return JVM descriptor (e.g., "(Ljava/lang/String;I)V")
      */
@@ -35,8 +35,8 @@ public final class TypeIdUtils {
     }
 
     /**
-     * Converts a Java type to JVM descriptor format
-     * @param javaType Java type (e.g., "String", "int", "String[]")
+     * Converts a Java resultType to JVM descriptor format
+     * @param javaType Java resultType (e.g., "String", "int", "String[]")
      * @return JVM descriptor (e.g., "Ljava/lang/String;", "I", "[Ljava/lang/String;")
      */
     public static String toJvmType(String javaType) {

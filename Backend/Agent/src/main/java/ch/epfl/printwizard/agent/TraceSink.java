@@ -195,6 +195,27 @@ public final class TraceSink {
     }
 
     /**
+     * Writes the collected trace data when an arithmetic operation is performed
+     * @param op the operation performed
+     * @param desc the descriptor of the operation
+     * @param left the left operand
+     * @param right the right operand
+     * @param result the result of the operation
+     * @param sourceId the source ID where the computation occurs
+     * @param line the line number where the computation occurs
+     */
+    public static void logArithmetic(String op, String desc, Object left, Object right, Object result, String sourceId, int line) {
+        var f = STACK.get().peek();
+        if (f == null) return;
+
+        String resultType = JvmDescriptor.toHuman(desc)[1];
+
+        addEvent(
+            new ArithmeticEvent(nextEventId(), f.spanId(), f.frameId(), new TraceLoc(sourceId, line), op, resultType, left, right, result)
+        );
+    }
+
+    /**
      * Writes the collected trace data when a new object is created
      * @param thisObj the newly created object
      * @param ownerInternal the internal name of the owner class
