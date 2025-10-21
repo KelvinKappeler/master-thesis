@@ -105,10 +105,10 @@ public final class JavaStructureMapper {
                     locals.add(localVar);
                 });
 
-                yield new ExprCode(expr.toString(), start, end);
+                yield new ExprCode(expr.getExpression().toString(), start, end);
             }
 
-            default -> new ExprCode(expr.toString(), start, end);
+            default -> new ExprCode(expr.getExpression().toString(), start, end);
         };
     }
 

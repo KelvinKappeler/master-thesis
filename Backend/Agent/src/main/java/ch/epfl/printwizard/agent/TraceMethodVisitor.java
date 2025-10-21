@@ -6,9 +6,6 @@ import org.objectweb.asm.*;
 import org.objectweb.asm.commons.AdviceAdapter;
 import org.objectweb.asm.commons.Method;
 
-import java.util.HashMap;
-import java.util.Map;
-
 /**
  * Represents a method visitor that instruments methods for tracing.
  */
@@ -21,10 +18,6 @@ public final class TraceMethodVisitor extends AdviceAdapter {
     private final String methodId;
 
     private int currentLine = 1;
-
-    private final Label tryStart = new Label();
-    private final Label tryEnd   = new Label();
-    private final Label handler  = new Label();
 
     TraceMethodVisitor(int api, MethodVisitor mv, int access, String name, String desc, TraceConfig config, String ownerInternal, String sourceFile) {
         super(api, mv, access, name, desc);
@@ -43,29 +36,7 @@ public final class TraceMethodVisitor extends AdviceAdapter {
         super.visitLineNumber(line, start);
     }
 
-    @Override public void visitCode() {
-        super.visitCode();
-        visitLabel(tryStart);
-    }
-
-    private void pushSourceIdAndLine() {
-        push(ownerInternal);
-        push(sourceFile);
-        invokeStatic(Type.getType(TraceSink.class), new Method("sourceIdForOwner",
-        "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;"));
-        push(currentLine);
-    }
-
-    private static Type valueTypeForArrayStore(int opcode) {
-        return switch (opcode) {
-            case LASTORE -> Type.LONG_TYPE;
-            case DASTORE -> Type.DOUBLE_TYPE;
-            case FASTORE -> Type.FLOAT_TYPE;
-            case IASTORE, BASTORE, CASTORE, SASTORE -> Type.INT_TYPE;
-            default -> Type.getType(Object.class);
-        };
-    }
-
+    /*
     @Override
     public void visitFieldInsn(int opcode, String owner, String name, String desc) {
         if (opcode == PUTFIELD || opcode == PUTSTATIC) {
@@ -109,15 +80,16 @@ public final class TraceMethodVisitor extends AdviceAdapter {
         }
         
         super.visitFieldInsn(opcode, owner, name, desc);
-    }
-
+    }*/
+    
     @Override
     public void visitInsn(int opcode) {
         switch (opcode) {
+            /*
             // Management of array stores
             case IASTORE: case LASTORE: case FASTORE: case DASTORE:
             case AASTORE: case BASTORE: case CASTORE: case SASTORE: {
-                Type vtype = valueTypeForArrayStore(opcode);
+                Type vtype = valueTypeFor(opcode);
                 
                 int valueLocal = newLocal(vtype);
                 int indexLocal = newLocal(Type.INT_TYPE);
@@ -139,7 +111,7 @@ public final class TraceMethodVisitor extends AdviceAdapter {
                 loadLocal(arrayLocal);
                 loadLocal(indexLocal);
                 loadLocal(valueLocal);
-            }
+            }*/
 
             // Management of arithmetic operations
             case IADD: case LADD: case FADD: case DADD:
@@ -147,7 +119,8 @@ public final class TraceMethodVisitor extends AdviceAdapter {
             case IMUL: case LMUL: case FMUL: case DMUL:
             case IDIV: case LDIV: case FDIV: case DDIV:
             case IREM: case LREM: case FREM: case DREM: {
-                Type t = valueTypeForComputing(opcode);
+                System.out.println("Arithmetic operation: " + opcode);
+                Type t = valueTypeFor(opcode);
 
                 int rightLocal = newLocal(t);
                 int leftLocal = newLocal(t);
@@ -192,38 +165,44 @@ public final class TraceMethodVisitor extends AdviceAdapter {
 
     @Override
     public void visitVarInsn(int opcode, int var) {
-        boolean store = opcode == ISTORE || opcode == LSTORE || opcode == FSTORE || opcode == DSTORE || opcode == ASTORE;
+        switch (opcode) {
+            case ISTORE, LSTORE, FSTORE, DSTORE, ASTORE : {
+                String desc = switch (opcode) {
+                    case ISTORE -> "I";
+                    case LSTORE -> "J";
+                    case FSTORE -> "F";
+                    case DSTORE -> "D";
+                    default -> "Ljava/lang/Object;";
+                };
 
-        if (store) {
-            super.visitVarInsn(opcode, var);
+                // long and double take two slots
+                if (opcode == LSTORE || opcode == DSTORE) {
+                    dup2();
+                } else {
+                    dup();
+                }
+                
+                super.visitVarInsn(opcode, var);
+                
+                Type t = Type.getType(desc);
+                if (t.getSort() != Type.OBJECT && t.getSort() != Type.ARRAY) box(t);
 
-            String desc = switch (opcode) {
-                case ISTORE -> "I";
-                case LSTORE -> "J";
-                case FSTORE -> "F";
-                case DSTORE -> "D";
-                default -> "Ljava/lang/Object;";
-            };
+                // push args and swap the result (mId, res, name) -> (mId, name, res)
+                push(ownerInternal); swap();
+                push(methodId); swap();
+                push(String.valueOf(var)); swap();
+                push(var); swap();
 
-            String name = String.valueOf(var);
-
-            push(ownerInternal);
-            push(methodId);
-            push(name);
-            push(var);
-
-            Type t = Type.getType(desc);
-            loadLocal(var, t);
-            if (t.getSort() != Type.OBJECT && t.getSort() != Type.ARRAY) box(t);
-
-            pushSourceIdAndLine();
-            invokeStatic(Type.getType(TraceSink.class), new Method("logLocal",
-            "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;Ljava/lang/String;I)V"));
-
-            return;
+                pushSourceIdAndLine();
+                invokeStatic(Type.getType(TraceSink.class), new Method("logLocal",
+                        "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;Ljava/lang/String;I)V"));
+                
+                return;
+            }
+            default: {
+                super.visitVarInsn(opcode, var);
+            }
         }
-
-        super.visitVarInsn(opcode, var);
     }
 
     @Override
@@ -305,33 +284,16 @@ public final class TraceMethodVisitor extends AdviceAdapter {
                 new Method("onReturn", "(Ljava/lang/Object;Ljava/lang/String;I)V"));
     }
 
-    @Override
-    public void visitMaxs(int maxStack, int maxLocals) {
-        /*
-        visitLabel(tryEnd);
-
-        super.visitTryCatchBlock(tryStart, tryEnd, handler, null);
-        visitLabel(handler);
-
-        int exLocal = newLocal(Type.getType(Throwable.class));
-        storeLocal(exLocal);
-
-        loadLocal(exLocal);
-        pushSourceIdAndLine();
-        invokeStatic(Type.getType(TraceSink.class), new Method("onThrow", "(Ljava/lang/Throwable;Ljava/lang/String;I)V"));
-
-        loadLocal(exLocal);
-        visitInsn(ATHROW);
-*/
-        super.visitMaxs(maxStack, maxLocals);
-    }
-
-    private static Type valueTypeForComputing(int opcode) {
+    private static Type valueTypeFor(int opcode) {
         return switch (opcode) {
-            case IADD, ISUB, IMUL, IDIV, IREM, IAND, IOR, IXOR -> Type.INT_TYPE;
-            case LADD, LSUB, LMUL, LDIV, LREM, LAND, LOR, LXOR -> Type.LONG_TYPE;
-            case FADD, FSUB, FMUL, FDIV, FREM -> Type.FLOAT_TYPE;
-            case DADD, DSUB, DMUL, DDIV, DREM -> Type.DOUBLE_TYPE;
+            case IADD, ISUB, IMUL, IDIV, IREM, IAND, IOR, IXOR,
+                 IASTORE, BASTORE, CASTORE, SASTORE -> Type.INT_TYPE;
+            case LADD, LSUB, LMUL, LDIV, LREM, LAND, LOR, LXOR,
+                 LASTORE -> Type.LONG_TYPE;
+            case FADD, FSUB, FMUL, FDIV, FREM,
+                 FASTORE -> Type.FLOAT_TYPE;
+            case DADD, DSUB, DMUL, DDIV, DREM,
+                 DASTORE -> Type.DOUBLE_TYPE;
             default -> Type.getType(Object.class);
         };
     }
@@ -348,5 +310,13 @@ public final class TraceMethodVisitor extends AdviceAdapter {
             case IXOR, LXOR -> "^";
             default -> throw new IllegalArgumentException("Invalid opcode: " + opcode);
         };
+    }
+
+    private void pushSourceIdAndLine() {
+        push(ownerInternal);
+        push(sourceFile);
+        invokeStatic(Type.getType(TraceSink.class), new Method("sourceIdForOwner",
+                "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;"));
+        push(currentLine);
     }
 }

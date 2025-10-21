@@ -6,11 +6,18 @@ public class Main {
         System.out.println("Hello, World!");
 
         int i = 0;
-        i = 5 + 2;
+        i = i + 1;
+        //i = 5 + 2;
 
-        int r = 3;
-        r = r * 2;
-        r = i + 2;
+        //int r = 3;
+        //r = r * 2;
+        //r = i + 2;
+        
+        float v = 4.3f;
+        v = v * 2.1f;
+        
+        double d = 5.6;
+        d = d * 2.1;
         //int[] array = new int[5];
         //array[2] = 10;
         

@@ -33,7 +33,8 @@ public record TraceTransformer(TraceConfig config) implements ClassFileTransform
         ClassWriter cw = new ClassWriter(cr, ClassWriter.COMPUTE_FRAMES | ClassWriter.COMPUTE_MAXS);
         ClassVisitor cv = new TraceClassVisitor(Opcodes.ASM9, cw, config);
 
-        cr.accept(cv, ClassReader.SKIP_FRAMES);
+        cr.accept(cv, ClassReader.EXPAND_FRAMES);
+        
         return cw.toByteArray();
     }
 

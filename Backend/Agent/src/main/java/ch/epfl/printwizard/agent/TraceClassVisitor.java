@@ -37,7 +37,7 @@ public class TraceClassVisitor extends ClassVisitor {
     public MethodVisitor visitMethod(int access, String name, String descriptor, String signature, String[] exceptions) {
         MethodVisitor mv = super.visitMethod(access, name, descriptor, signature, exceptions);
         if (mv == null) return null;
-
+        
         return new TraceMethodVisitor(api, mv, access, name, descriptor, config, ownerInternal, sourceFile);
     }
 }
