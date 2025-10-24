@@ -107,3 +107,16 @@ export class ReturnNode extends StructureNode {
         return this;
     }
 }
+
+/**
+ * Represents an if-else statement in the code.
+ */
+export class IfNode extends StructureNode {
+    constructor(structureId, code, startPosition, endPosition, condition, thenBranch, elseBranch) {
+        super(structureId, code, startPosition, endPosition);
+
+        this.condition = condition;
+        this.thenBranch = thenBranch;
+        this.elseBranch = elseBranch;
+    }
+}

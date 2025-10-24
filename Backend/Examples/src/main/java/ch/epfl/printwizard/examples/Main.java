@@ -14,6 +14,16 @@ public class Main {
 
         i = add(i, 1);
 
+        if (i == 1) {
+            System.out.println("The condition is true");
+        }
+        else if (i == 2) {
+            System.out.println("The condition is false");
+        }
+        else {
+            System.out.println("Else block");
+        }
+
         //int[] array = new int[5];
         //array[2] = 10;
         

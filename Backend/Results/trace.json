@@ -5,14 +5,14 @@
     "parentSpanId" : null,
     "methodId" : "m:ch/epfl/printwizard/examples/Main.main(java.lang.String[])void",
     "startEventId" : "eve:1",
-    "endEventId" : "eve:14",
+    "endEventId" : "eve:17",
     "startLoc" : {
       "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
       "line" : 1
     },
     "endLoc" : {
       "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
-      "line" : 24
+      "line" : 34
     },
     "status" : "OK"
   }, {
@@ -27,7 +27,7 @@
     },
     "endLoc" : {
       "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
-      "line" : 27
+      "line" : 37
     },
     "status" : "OK"
   } ],
@@ -192,7 +192,7 @@
     "frameId" : "frm:2",
     "location" : {
       "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
-      "line" : 27
+      "line" : 37
     },
     "operation" : "+",
     "resultType" : "int",
@@ -206,7 +206,7 @@
     "frameId" : "frm:2",
     "location" : {
       "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
-      "line" : 27
+      "line" : 37
     },
     "returnValue" : 2
   }, {
@@ -224,13 +224,53 @@
     "index" : 1,
     "value" : 2
   }, {
-    "type" : "RETURN",
+    "type" : "ARITHMETIC",
     "eventId" : "eve:14",
     "spanId" : "spn:1",
     "frameId" : "frm:1",
     "location" : {
       "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
-      "line" : 24
+      "line" : 17
+    },
+    "operation" : "!=",
+    "resultType" : "int",
+    "left" : 2,
+    "right" : 1,
+    "result" : 1
+  }, {
+    "type" : "ARITHMETIC",
+    "eventId" : "eve:15",
+    "spanId" : "spn:1",
+    "frameId" : "frm:1",
+    "location" : {
+      "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
+      "line" : 20
+    },
+    "operation" : "!=",
+    "resultType" : "int",
+    "left" : 2,
+    "right" : 2,
+    "result" : 0
+  }, {
+    "type" : "CALL",
+    "eventId" : "eve:16",
+    "spanId" : "spn:1",
+    "frameId" : "frm:1",
+    "location" : {
+      "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
+      "line" : 21
+    },
+    "callerMethodId" : "m:ch/epfl/printwizard/examples/Main.main(java.lang.String[])void",
+    "calleeMethodId" : "m:java/io/PrintStream.println(java.lang.String)void",
+    "name" : "println"
+  }, {
+    "type" : "RETURN",
+    "eventId" : "eve:17",
+    "spanId" : "spn:1",
+    "frameId" : "frm:1",
+    "location" : {
+      "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
+      "line" : 34
     },
     "returnValue" : null
   } ]

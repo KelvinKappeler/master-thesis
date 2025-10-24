@@ -85,6 +85,7 @@ public final class TraceMethodVisitor extends AdviceAdapter {
     @Override
     public void visitInsn(int opcode) {
         switch (opcode) {
+            /*
             // Management of array stores
             case IASTORE: case LASTORE: case FASTORE: case DASTORE:
             case AASTORE: case BASTORE: case CASTORE: case SASTORE: {
@@ -110,7 +111,7 @@ public final class TraceMethodVisitor extends AdviceAdapter {
                 loadLocal(arrayLocal);
                 loadLocal(indexLocal);
                 loadLocal(valueLocal);
-            }
+            }*/
 
             // Management of arithmetic operations
             case IADD: case LADD: case FADD: case DADD:
@@ -282,6 +283,59 @@ public final class TraceMethodVisitor extends AdviceAdapter {
                 new Method("onReturn", "(Ljava/lang/Object;Ljava/lang/String;I)V"));
     }
 
+    @Override
+    public void visitJumpInsn(int opcode, Label label) {
+        switch (opcode) {
+            // int vs int
+            case IF_ICMPEQ: case IF_ICMPNE: case IF_ICMPLT:
+            case IF_ICMPLE: case IF_ICMPGT: case IF_ICMPGE: {
+                Type t = Type.INT_TYPE;
+
+                int right = newLocal(t);
+                int left = newLocal(t);
+                storeLocal(right, t);
+                storeLocal(left, t);
+
+                Label Ltrue = new Label();
+                Label Lend = new Label();
+                int condLocal = newLocal(Type.INT_TYPE);
+
+                loadLocal(left, t);
+                loadLocal(right, t);
+                super.visitJumpInsn(opcode, Ltrue);
+                push(0);
+                visitJumpInsn(GOTO, Lend);
+                visitLabel(Ltrue);
+                push(1);
+                visitLabel(Lend);
+                storeLocal(condLocal);
+
+                // LogArithmetic
+                push(getArithmeticOp(opcode));
+                push("I");
+                loadLocal(left, t); box(t);
+                loadLocal(right, t); box(t);
+                loadLocal(condLocal);
+
+                visitInsn(ICONST_1);
+                visitInsn(IAND);
+                box(Type.INT_TYPE);
+
+                pushSourceIdAndLine();
+
+                invokeStatic(Type.getType(TraceSink.class), new Method("logArithmetic",
+                        "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/String;I)V"));
+
+                loadLocal(condLocal);
+                super.visitJumpInsn(IFNE, label);
+
+                return;
+            }
+        }
+
+        super.visitJumpInsn(opcode, label);
+    }
+
     private static Type valueTypeFor(int opcode) {
         return switch (opcode) {
             case IADD, ISUB, IMUL, IDIV, IREM, IAND, IOR, IXOR,
@@ -306,6 +360,12 @@ public final class TraceMethodVisitor extends AdviceAdapter {
             case IAND, LAND -> "&";
             case IOR, LOR -> "|";
             case IXOR, LXOR -> "^";
+            case IF_ICMPEQ, IF_ACMPEQ -> "==";
+            case IF_ICMPNE, IF_ACMPNE -> "!=";
+            case IF_ICMPLT -> "<";
+            case IF_ICMPLE -> "<=";
+            case IF_ICMPGT -> ">";
+            case IF_ICMPGE -> ">=";
             default -> throw new IllegalArgumentException("Invalid opcode: " + opcode);
         };
     }

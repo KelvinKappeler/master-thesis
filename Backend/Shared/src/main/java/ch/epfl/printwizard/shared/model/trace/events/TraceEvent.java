@@ -18,7 +18,7 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
     @JsonSubTypes.Type(value = ThrowEvent.class, name = "THROW"),
     @JsonSubTypes.Type(value = ArithmeticEvent.class, name = "ARITHMETIC")
 })
-public sealed interface TraceEvent permits ArrayStoreEvent, CallEvent, ArithmeticEvent, LocalEvent, NewEvent, PutFieldEvent, ReturnEvent, ThrowEvent
+public sealed interface TraceEvent permits ArithmeticEvent, ArrayStoreEvent, CallEvent, LocalEvent, NewEvent, PutFieldEvent, ReturnEvent, ThrowEvent
 {
 
     /**

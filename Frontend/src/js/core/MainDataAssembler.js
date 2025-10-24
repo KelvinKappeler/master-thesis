@@ -1,6 +1,6 @@
 import {Preconditions} from "../utils/Preconditions.js";
 import {Class, Enum, Interface, Method, ProgramTrace, Record, Source, Variable} from "../model/ProgramDefs.js";
-import {BlockNode, CodePosition, ExprStmtNode, ReturnNode} from "../model/StructureDefs.js";
+import {BlockNode, CodePosition, ExprStmtNode, IfNode, ReturnNode} from "../model/StructureDefs.js";
 import {ExprCode} from "../model/ExprDefs.js";
 import {Index} from "../model/IndexDefs.js";
 import {Argument, Frame, Span, TraceData, TraceLocation} from "../model/TraceDefs.js";
@@ -163,6 +163,9 @@ export class MainDataAssembler {
 
             case "RETURN":
                 return new ReturnNode(id, structureJson.code, startPosition, endPosition, structureJson.value);
+
+            case "IF":
+                return new IfNode(id, structureJson.code, startPosition, endPosition, structureJson.condition, structureJson.thenBranch, structureJson.elseBranch);
 
             default:
                 throw new Error(`Unknown structure kind: ${structureJson.kind}`);
