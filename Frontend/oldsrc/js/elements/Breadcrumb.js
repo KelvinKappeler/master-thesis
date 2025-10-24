@@ -8,28 +8,16 @@ export class Breadcrumb extends PWElement {
 
     /**
      * Creates a new breadcrumb list
+     * @param traceViewModel {TraceViewModel}
      */
-    constructor() {
+    constructor(traceViewModel) {
         super(document.createElement('ul'));
         this.element.classList.add('breadcrumb');
+        this.traceViewModel = traceViewModel;
     }
 
-    /**
-     * Adds a new entry to the breadcrumb list
-     * @param entry {string} The entry to add
-     */
-    add(entry) {
-        Preconditions.checkIfString(entry);
-
-        let breadcrumbItem = document.createElement('li');
-        breadcrumbItem.append(document.createTextNode(entry));
-        this.element.append(breadcrumbItem);
-    }
-
-    /**
-     * Clears the breadcrumb list
-     */
-    clear() {
-        this.element.innerHTML = '';
+    setFromFilter() {
+        const filterType = this.traceViewModel.filterType;
+        const filterId = this.traceViewModel.filterId;
     }
 }

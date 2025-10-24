@@ -25,12 +25,67 @@
   "records" : [ ],
   "enums" : [ ],
   "methods" : [ {
+    "methodId" : "m:ch/epfl/printwizard/examples/Main.add(int,int)int",
+    "classId" : "cls:ch.epfl.printwizard.examples.Main",
+    "name" : "add",
+    "returnType" : "int",
+    "startLine" : 26,
+    "endLine" : 28,
+    "parameters" : [ {
+      "index" : 0,
+      "name" : "a",
+      "typeId" : "t:int"
+    }, {
+      "index" : 1,
+      "name" : "b",
+      "typeId" : "t:int"
+    } ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "code" : null,
+      "startPosition" : {
+        "line" : 26,
+        "column" : 42
+      },
+      "endPosition" : {
+        "line" : 28,
+        "column" : 5
+      },
+      "structures" : [ {
+        "structureId" : "return:1",
+        "kind" : "RETURN",
+        "code" : "return a + b;",
+        "startPosition" : {
+          "line" : 27,
+          "column" : 9
+        },
+        "endPosition" : {
+          "line" : 27,
+          "column" : 21
+        },
+        "value" : {
+          "code" : "a + b",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 27,
+            "column" : 9
+          },
+          "endPosition" : {
+            "line" : 27,
+            "column" : 21
+          }
+        }
+      } ]
+    },
+    "localVars" : [ ]
+  }, {
     "methodId" : "m:ch/epfl/printwizard/examples/Main.main(java.lang.String[])void",
     "classId" : "cls:ch.epfl.printwizard.examples.Main",
     "name" : "main",
     "returnType" : "void",
     "startLine" : 5,
-    "endLine" : 28,
+    "endLine" : 24,
     "parameters" : [ {
       "index" : 0,
       "name" : "args",
@@ -45,7 +100,7 @@
         "column" : 44
       },
       "endPosition" : {
-        "line" : 28,
+        "line" : 24,
         "column" : 5
       },
       "structures" : [ {
@@ -125,22 +180,22 @@
         "kind" : "EXPR_STMT",
         "code" : null,
         "startPosition" : {
-          "line" : 16,
+          "line" : 12,
           "column" : 9
         },
         "endPosition" : {
-          "line" : 16,
+          "line" : 12,
           "column" : 23
         },
         "expr" : {
           "code" : "float v = 4.3f",
           "kind" : "ALL",
           "startPosition" : {
-            "line" : 16,
+            "line" : 12,
             "column" : 9
           },
           "endPosition" : {
-            "line" : 16,
+            "line" : 12,
             "column" : 23
           }
         }
@@ -149,22 +204,22 @@
         "kind" : "EXPR_STMT",
         "code" : null,
         "startPosition" : {
-          "line" : 17,
+          "line" : 13,
           "column" : 9
         },
         "endPosition" : {
-          "line" : 17,
+          "line" : 13,
           "column" : 21
         },
         "expr" : {
           "code" : "v = v * 2.1f",
           "kind" : "ALL",
           "startPosition" : {
-            "line" : 17,
+            "line" : 13,
             "column" : 9
           },
           "endPosition" : {
-            "line" : 17,
+            "line" : 13,
             "column" : 21
           }
         }
@@ -173,47 +228,23 @@
         "kind" : "EXPR_STMT",
         "code" : null,
         "startPosition" : {
-          "line" : 19,
+          "line" : 15,
           "column" : 9
         },
         "endPosition" : {
-          "line" : 19,
-          "column" : 23
+          "line" : 15,
+          "column" : 22
         },
         "expr" : {
-          "code" : "double d = 5.6",
+          "code" : "i = add(i, 1)",
           "kind" : "ALL",
           "startPosition" : {
-            "line" : 19,
+            "line" : 15,
             "column" : 9
           },
           "endPosition" : {
-            "line" : 19,
-            "column" : 23
-          }
-        }
-      }, {
-        "structureId" : "expr_stmt:7",
-        "kind" : "EXPR_STMT",
-        "code" : null,
-        "startPosition" : {
-          "line" : 20,
-          "column" : 9
-        },
-        "endPosition" : {
-          "line" : 20,
-          "column" : 20
-        },
-        "expr" : {
-          "code" : "d = d * 2.1",
-          "kind" : "ALL",
-          "startPosition" : {
-            "line" : 20,
-            "column" : 9
-          },
-          "endPosition" : {
-            "line" : 20,
-            "column" : 20
+            "line" : 15,
+            "column" : 22
           }
         }
       } ]
@@ -226,10 +257,6 @@
       "index" : 2,
       "name" : "v",
       "typeId" : "float"
-    }, {
-      "index" : 3,
-      "name" : "d",
-      "typeId" : "double"
     } ]
   }, {
     "methodId" : "m:ch/epfl/printwizard/examples/Player.Player(int)<init>",

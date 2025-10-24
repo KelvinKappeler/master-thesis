@@ -34,6 +34,29 @@ export class TraceViewModel {
     }
 
     /**
+     * Returns the class with the given ID.
+     * @param id {string} The ID of the class.
+     * @returns {Class} The class with the given ID.
+     */
+    getClass(id) {
+        return this.traceModel.getClass(id);
+    }
+
+    /**
+     * Gets the current method based on the filter type and ID.
+     * @returns {Method} The current method.
+     */
+    getCurrentMethod() {
+        switch (this.filterType.name) {
+            case "span":
+                const span = this.traceModel.getSpan(this.filterId);
+                return this.traceModel.getMethod(span.methodId);
+            default:
+                throw new Error("Filter type not implemented");
+        }
+    }
+
+    /**
      * Returns the local variable with the given method ID and index.
      * @param methodId {string} The ID of the method.
      * @param index {number} The index of the local variable.

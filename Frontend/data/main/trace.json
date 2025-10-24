@@ -5,6 +5,21 @@
     "parentSpanId" : null,
     "methodId" : "m:ch/epfl/printwizard/examples/Main.main(java.lang.String[])void",
     "startEventId" : "eve:1",
+    "endEventId" : "eve:14",
+    "startLoc" : {
+      "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
+      "line" : 1
+    },
+    "endLoc" : {
+      "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
+      "line" : 24
+    },
+    "status" : "OK"
+  }, {
+    "spanId" : "spn:2",
+    "parentSpanId" : "spn:1",
+    "methodId" : "m:ch/epfl/printwizard/examples/Main.add(int, int)int",
+    "startEventId" : "eve:10",
     "endEventId" : "eve:12",
     "startLoc" : {
       "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
@@ -12,7 +27,7 @@
     },
     "endLoc" : {
       "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
-      "line" : 28
+      "line" : 27
     },
     "status" : "OK"
   } ],
@@ -24,6 +39,18 @@
     "args" : [ {
       "name" : "#0",
       "value" : [ ]
+    } ]
+  }, {
+    "frameId" : "frm:2",
+    "spanId" : "spn:2",
+    "methodId" : "m:ch/epfl/printwizard/examples/Main.add(int, int)int",
+    "thisRef" : null,
+    "args" : [ {
+      "name" : "#0",
+      "value" : 1
+    }, {
+      "name" : "#1",
+      "value" : 1
     } ]
   } ],
   "events" : [ {
@@ -99,7 +126,7 @@
     "frameId" : "frm:1",
     "location" : {
       "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
-      "line" : 16
+      "line" : 12
     },
     "owner" : "ch/epfl/printwizard/examples/Main",
     "method" : "m:ch/epfl/printwizard/examples/Main.main(java.lang.String[])void",
@@ -113,7 +140,7 @@
     "frameId" : "frm:1",
     "location" : {
       "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
-      "line" : 17
+      "line" : 13
     },
     "operation" : "*",
     "resultType" : "float",
@@ -127,7 +154,7 @@
     "frameId" : "frm:1",
     "location" : {
       "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
-      "line" : 17
+      "line" : 13
     },
     "owner" : "ch/epfl/printwizard/examples/Main",
     "method" : "m:ch/epfl/printwizard/examples/Main.main(java.lang.String[])void",
@@ -135,55 +162,75 @@
     "index" : 2,
     "value" : 9.03
   }, {
-    "type" : "LOCAL",
+    "type" : "CALL",
     "eventId" : "eve:9",
     "spanId" : "spn:1",
     "frameId" : "frm:1",
     "location" : {
       "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
-      "line" : 19
+      "line" : 15
     },
-    "owner" : "ch/epfl/printwizard/examples/Main",
-    "method" : "m:ch/epfl/printwizard/examples/Main.main(java.lang.String[])void",
-    "varName" : "3",
-    "index" : 3,
-    "value" : 5.6
+    "callerMethodId" : "m:ch/epfl/printwizard/examples/Main.main(java.lang.String[])void",
+    "calleeMethodId" : "m:ch/epfl/printwizard/examples/Main.add(int, int)int",
+    "name" : "add"
+  }, {
+    "type" : "CALL",
+    "eventId" : "eve:10",
+    "spanId" : "spn:2",
+    "frameId" : "frm:2",
+    "location" : {
+      "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
+      "line" : 1
+    },
+    "callerMethodId" : "spn:1",
+    "calleeMethodId" : "m:ch/epfl/printwizard/examples/Main.add(int, int)int",
+    "name" : "add"
   }, {
     "type" : "ARITHMETIC",
-    "eventId" : "eve:10",
-    "spanId" : "spn:1",
-    "frameId" : "frm:1",
-    "location" : {
-      "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
-      "line" : 20
-    },
-    "operation" : "*",
-    "resultType" : "double",
-    "left" : 5.6,
-    "right" : 2.1,
-    "result" : 11.76
-  }, {
-    "type" : "LOCAL",
     "eventId" : "eve:11",
-    "spanId" : "spn:1",
-    "frameId" : "frm:1",
+    "spanId" : "spn:2",
+    "frameId" : "frm:2",
     "location" : {
       "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
-      "line" : 20
+      "line" : 27
     },
-    "owner" : "ch/epfl/printwizard/examples/Main",
-    "method" : "m:ch/epfl/printwizard/examples/Main.main(java.lang.String[])void",
-    "varName" : "3",
-    "index" : 3,
-    "value" : 11.76
+    "operation" : "+",
+    "resultType" : "int",
+    "left" : 1,
+    "right" : 1,
+    "result" : 2
   }, {
     "type" : "RETURN",
     "eventId" : "eve:12",
+    "spanId" : "spn:2",
+    "frameId" : "frm:2",
+    "location" : {
+      "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
+      "line" : 27
+    },
+    "returnValue" : 2
+  }, {
+    "type" : "LOCAL",
+    "eventId" : "eve:13",
     "spanId" : "spn:1",
     "frameId" : "frm:1",
     "location" : {
       "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
-      "line" : 28
+      "line" : 15
+    },
+    "owner" : "ch/epfl/printwizard/examples/Main",
+    "method" : "m:ch/epfl/printwizard/examples/Main.main(java.lang.String[])void",
+    "varName" : "1",
+    "index" : 1,
+    "value" : 2
+  }, {
+    "type" : "RETURN",
+    "eventId" : "eve:14",
+    "spanId" : "spn:1",
+    "frameId" : "frm:1",
+    "location" : {
+      "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
+      "line" : 24
     },
     "returnValue" : null
   } ]

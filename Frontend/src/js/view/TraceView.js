@@ -3,6 +3,7 @@ import {ArithmeticTraceEvent, CallTraceEvent, LocalTraceEvent, ReturnTraceEvent}
 import {BaseTriangle} from "../elements/BaseTriangle.js";
 import {TraceBlock} from "./TraceBlock.js";
 import {TraceSpan} from "./TraceSpan.js";
+import {Breadcrumb} from "../elements/Breadcrumb.js";
 
 /**
  * Represents the view for the trace part of the application.
@@ -13,6 +14,9 @@ export class TraceView {
     constructor(traceViewModel, traceContainer) {
         this.traceViewModel = traceViewModel;
         this.container = traceContainer;
+
+        this.breadcrumb = new Breadcrumb(traceViewModel);
+        this.breadcrumb.attachTo(document.querySelector('.breadcrumb'));
     }
 
     /**
@@ -20,6 +24,7 @@ export class TraceView {
      */
     render() {
         this.container.clear();
+        this.breadcrumb.render();
 
         const eventStructureMap = this.traceViewModel.getEventsProgramStructureMap();
 
@@ -31,7 +36,7 @@ export class TraceView {
             const location = event.location;
             if (!location.equals(traceLoc)) {
                 const headerFrag = TraceSpan.wrapLineColors(structure.getLineContent());
-                block = new TraceBlock(this.container, null, location.line, headerFrag, true, false);
+                block = new TraceBlock(this.container, null, location.line, headerFrag, true, true);
             }
 
             traceLoc = location;

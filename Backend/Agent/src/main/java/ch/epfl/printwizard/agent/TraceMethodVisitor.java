@@ -85,7 +85,6 @@ public final class TraceMethodVisitor extends AdviceAdapter {
     @Override
     public void visitInsn(int opcode) {
         switch (opcode) {
-            /*
             // Management of array stores
             case IASTORE: case LASTORE: case FASTORE: case DASTORE:
             case AASTORE: case BASTORE: case CASTORE: case SASTORE: {
@@ -111,7 +110,7 @@ public final class TraceMethodVisitor extends AdviceAdapter {
                 loadLocal(arrayLocal);
                 loadLocal(indexLocal);
                 loadLocal(valueLocal);
-            }*/
+            }
 
             // Management of arithmetic operations
             case IADD: case LADD: case FADD: case DADD:
@@ -119,7 +118,6 @@ public final class TraceMethodVisitor extends AdviceAdapter {
             case IMUL: case LMUL: case FMUL: case DMUL:
             case IDIV: case LDIV: case FDIV: case DDIV:
             case IREM: case LREM: case FREM: case DREM: {
-                System.out.println("Arithmetic operation: " + opcode);
                 Type t = valueTypeFor(opcode);
 
                 int rightLocal = newLocal(t);
