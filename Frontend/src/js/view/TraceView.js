@@ -25,7 +25,7 @@ export class TraceView {
     render() {
         this.container.clear();
         this.breadcrumb.render();
-        
+
         const eventStructureMap = this.traceViewModel.getEventsProgramStructureMap();
 
         let traceLoc = null;
@@ -41,6 +41,7 @@ export class TraceView {
 
             traceLoc = location;
             block.addLine(event.location.line, this.#getEventLine(event));
+            this.#manageInnerEvents(event, block);
         }
     }
 
@@ -102,6 +103,21 @@ export class TraceView {
         }
         else {
             throw new Error("Event type not implemented : " + event.constructor.name);
+        }
+    }
+
+    #manageInnerEvents(event, block) {
+        if (event instanceof ConditionTraceEvent) {
+            if (event.childrenEventIds.length > 0) {
+                for (const childEventId of event.childrenEventIds) {
+                    const [childEvent, childStructure] = this.traceViewModel.getEvent(childEventId);
+                    if (childEvent !== undefined) {
+                        const headerFrag = TraceSpan.wrapLineColors(childStructure.getLineContent());
+                        const conditionBlock = new TraceBlock(this.container, block, childEvent.location.line, headerFrag, true, true);
+                        conditionBlock.addLine(childEvent.location.line, this.#getEventLine(childEvent));
+                    }
+                }
+            }
         }
     }
 }

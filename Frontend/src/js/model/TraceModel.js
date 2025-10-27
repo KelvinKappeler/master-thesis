@@ -60,6 +60,15 @@ export class TraceModel {
     }
 
     /**
+     * Returns the event for a given ID.
+     * @param id {string} - The ID of the event.
+     * @returns {TraceEvent} - The event for the given ID.
+     */
+    getEvent(id) {
+        return this.eventsById.get(id);
+    }
+
+    /**
      * Returns the class for a given ID.
      * @param id {string} - The ID of the class.
      * @returns {Class} - The class for the given ID.

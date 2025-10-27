@@ -1,5 +1,4 @@
 import {Preconditions} from "../utils/Preconditions.js";
-import {TraceTriangle} from "../../../oldsrc/js/elements/TraceTriangle.js";
 import {BaseTriangle} from "../elements/BaseTriangle.js";
 
 /**

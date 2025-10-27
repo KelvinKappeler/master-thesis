@@ -25,6 +25,16 @@ export class TraceViewModel {
     }
 
     /**
+     * Returns the event with the given ID and its corresponding structure node.
+     * @param id {string} - The ID of the event.
+     * @returns {[TraceEvent, StructureNode]} The event with the given ID and its corresponding structure node.
+     */
+    getEvent(id) {
+        const event = this.traceModel.getEvent(id);
+        return [event, this.traceModel.getAstFromEvent(event.eventId)]
+    }
+
+    /**
      * Returns the method with the given ID.
      * @param id {string} The ID of the method.
      * @returns {Method} The method with the given ID.
