@@ -3,7 +3,7 @@
     "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
     "path" : "Examples/src/main/java/ch/epfl/printwizard/examples/Main.java",
     "language" : "java",
-    "lines" : 39
+    "lines" : 40
   }, {
     "sourceId" : "src:ch/epfl/printwizard/examples/Player.java",
     "path" : "Examples/src/main/java/ch/epfl/printwizard/examples/Player.java",
@@ -29,8 +29,8 @@
     "classId" : "cls:ch.epfl.printwizard.examples.Main",
     "name" : "add",
     "returnType" : "int",
-    "startLine" : 36,
-    "endLine" : 38,
+    "startLine" : 37,
+    "endLine" : 39,
     "parameters" : [ {
       "index" : 0,
       "name" : "a",
@@ -45,11 +45,11 @@
       "kind" : "BLOCK",
       "code" : null,
       "startPosition" : {
-        "line" : 36,
+        "line" : 37,
         "column" : 42
       },
       "endPosition" : {
-        "line" : 38,
+        "line" : 39,
         "column" : 5
       },
       "structures" : [ {
@@ -57,22 +57,22 @@
         "kind" : "RETURN",
         "code" : "return a + b;",
         "startPosition" : {
-          "line" : 37,
+          "line" : 38,
           "column" : 9
         },
         "endPosition" : {
-          "line" : 37,
+          "line" : 38,
           "column" : 21
         },
         "value" : {
           "code" : "a + b",
           "kind" : "ALL",
           "startPosition" : {
-            "line" : 37,
+            "line" : 38,
             "column" : 9
           },
           "endPosition" : {
-            "line" : 37,
+            "line" : 38,
             "column" : 21
           }
         }
@@ -85,7 +85,7 @@
     "name" : "main",
     "returnType" : "void",
     "startLine" : 5,
-    "endLine" : 34,
+    "endLine" : 35,
     "parameters" : [ {
       "index" : 0,
       "name" : "args",
@@ -100,7 +100,7 @@
         "column" : 44
       },
       "endPosition" : {
-        "line" : 34,
+        "line" : 35,
         "column" : 5
       },
       "structures" : [ {
@@ -113,10 +113,10 @@
         },
         "endPosition" : {
           "line" : 6,
-          "column" : 44
+          "column" : 18
         },
         "expr" : {
-          "code" : "System.out.println(\"Hello, World!\")",
+          "code" : "int i = 1",
           "kind" : "ALL",
           "startPosition" : {
             "line" : 6,
@@ -124,150 +124,30 @@
           },
           "endPosition" : {
             "line" : 6,
-            "column" : 44
-          }
-        }
-      }, {
-        "structureId" : "expr_stmt:2",
-        "kind" : "EXPR_STMT",
-        "code" : null,
-        "startPosition" : {
-          "line" : 8,
-          "column" : 9
-        },
-        "endPosition" : {
-          "line" : 8,
-          "column" : 18
-        },
-        "expr" : {
-          "code" : "int i = 0",
-          "kind" : "ALL",
-          "startPosition" : {
-            "line" : 8,
-            "column" : 9
-          },
-          "endPosition" : {
-            "line" : 8,
             "column" : 18
-          }
-        }
-      }, {
-        "structureId" : "expr_stmt:3",
-        "kind" : "EXPR_STMT",
-        "code" : null,
-        "startPosition" : {
-          "line" : 9,
-          "column" : 9
-        },
-        "endPosition" : {
-          "line" : 9,
-          "column" : 18
-        },
-        "expr" : {
-          "code" : "i = i + 1",
-          "kind" : "ALL",
-          "startPosition" : {
-            "line" : 9,
-            "column" : 9
-          },
-          "endPosition" : {
-            "line" : 9,
-            "column" : 18
-          }
-        }
-      }, {
-        "structureId" : "expr_stmt:4",
-        "kind" : "EXPR_STMT",
-        "code" : null,
-        "startPosition" : {
-          "line" : 12,
-          "column" : 9
-        },
-        "endPosition" : {
-          "line" : 12,
-          "column" : 23
-        },
-        "expr" : {
-          "code" : "float v = 4.3f",
-          "kind" : "ALL",
-          "startPosition" : {
-            "line" : 12,
-            "column" : 9
-          },
-          "endPosition" : {
-            "line" : 12,
-            "column" : 23
-          }
-        }
-      }, {
-        "structureId" : "expr_stmt:5",
-        "kind" : "EXPR_STMT",
-        "code" : null,
-        "startPosition" : {
-          "line" : 13,
-          "column" : 9
-        },
-        "endPosition" : {
-          "line" : 13,
-          "column" : 21
-        },
-        "expr" : {
-          "code" : "v = v * 2.1f",
-          "kind" : "ALL",
-          "startPosition" : {
-            "line" : 13,
-            "column" : 9
-          },
-          "endPosition" : {
-            "line" : 13,
-            "column" : 21
-          }
-        }
-      }, {
-        "structureId" : "expr_stmt:6",
-        "kind" : "EXPR_STMT",
-        "code" : null,
-        "startPosition" : {
-          "line" : 15,
-          "column" : 9
-        },
-        "endPosition" : {
-          "line" : 15,
-          "column" : 22
-        },
-        "expr" : {
-          "code" : "i = add(i, 1)",
-          "kind" : "ALL",
-          "startPosition" : {
-            "line" : 15,
-            "column" : 9
-          },
-          "endPosition" : {
-            "line" : 15,
-            "column" : 22
           }
         }
       }, {
         "structureId" : "if:2",
         "kind" : "IF",
-        "code" : "if (i == 1) {\r\n    System.out.println(\"The condition is true\");\r\n} else if (i == 2) {\r\n    System.out.println(\"The condition is false\");\r\n} else {\r\n    System.out.println(\"Else block\");\r\n}",
+        "code" : "if (i == 0)",
         "startPosition" : {
-          "line" : 17,
+          "line" : 8,
           "column" : 9
         },
         "endPosition" : {
-          "line" : 25,
+          "line" : 15,
           "column" : 9
         },
         "condition" : {
-          "code" : "i == 1",
+          "code" : "i == 0",
           "kind" : "ALL",
           "startPosition" : {
-            "line" : 17,
+            "line" : 8,
             "column" : 9
           },
           "endPosition" : {
-            "line" : 25,
+            "line" : 15,
             "column" : 9
           }
         },
@@ -276,35 +156,59 @@
           "kind" : "BLOCK",
           "code" : null,
           "startPosition" : {
-            "line" : 17,
+            "line" : 8,
             "column" : 21
           },
           "endPosition" : {
-            "line" : 19,
+            "line" : 11,
             "column" : 9
           },
           "structures" : [ {
-            "structureId" : "expr_stmt:7",
+            "structureId" : "expr_stmt:2",
             "kind" : "EXPR_STMT",
             "code" : null,
             "startPosition" : {
-              "line" : 18,
+              "line" : 9,
               "column" : 13
             },
             "endPosition" : {
-              "line" : 18,
+              "line" : 9,
               "column" : 56
             },
             "expr" : {
               "code" : "System.out.println(\"The condition is true\")",
               "kind" : "ALL",
               "startPosition" : {
-                "line" : 18,
+                "line" : 9,
                 "column" : 13
               },
               "endPosition" : {
-                "line" : 18,
+                "line" : 9,
                 "column" : 56
+              }
+            }
+          }, {
+            "structureId" : "expr_stmt:3",
+            "kind" : "EXPR_STMT",
+            "code" : null,
+            "startPosition" : {
+              "line" : 10,
+              "column" : 13
+            },
+            "endPosition" : {
+              "line" : 10,
+              "column" : 18
+            },
+            "expr" : {
+              "code" : "i = 2",
+              "kind" : "ALL",
+              "startPosition" : {
+                "line" : 10,
+                "column" : 13
+              },
+              "endPosition" : {
+                "line" : 10,
+                "column" : 18
               }
             }
           } ]
@@ -312,24 +216,24 @@
         "elseBranch" : {
           "structureId" : "if:1",
           "kind" : "IF",
-          "code" : "if (i == 2) {\r\n    System.out.println(\"The condition is false\");\r\n} else {\r\n    System.out.println(\"Else block\");\r\n}",
+          "code" : "else if (i > 0)",
           "startPosition" : {
-            "line" : 20,
+            "line" : 12,
             "column" : 14
           },
           "endPosition" : {
-            "line" : 25,
+            "line" : 15,
             "column" : 9
           },
           "condition" : {
-            "code" : "i == 2",
+            "code" : "i > 0",
             "kind" : "ALL",
             "startPosition" : {
-              "line" : 20,
+              "line" : 12,
               "column" : 14
             },
             "endPosition" : {
-              "line" : 25,
+              "line" : 15,
               "column" : 9
             }
           },
@@ -338,88 +242,134 @@
             "kind" : "BLOCK",
             "code" : null,
             "startPosition" : {
-              "line" : 20,
-              "column" : 26
+              "line" : 12,
+              "column" : 25
             },
             "endPosition" : {
-              "line" : 22,
+              "line" : 15,
               "column" : 9
             },
             "structures" : [ {
-              "structureId" : "expr_stmt:8",
+              "structureId" : "expr_stmt:4",
               "kind" : "EXPR_STMT",
               "code" : null,
               "startPosition" : {
-                "line" : 21,
+                "line" : 13,
                 "column" : 13
               },
               "endPosition" : {
-                "line" : 21,
-                "column" : 57
+                "line" : 13,
+                "column" : 66
               },
               "expr" : {
-                "code" : "System.out.println(\"The condition is false\")",
+                "code" : "System.out.println(\"The condition is true and i > 0\")",
                 "kind" : "ALL",
                 "startPosition" : {
-                  "line" : 21,
+                  "line" : 13,
                   "column" : 13
                 },
                 "endPosition" : {
-                  "line" : 21,
-                  "column" : 57
+                  "line" : 13,
+                  "column" : 66
+                }
+              }
+            }, {
+              "structureId" : "expr_stmt:5",
+              "kind" : "EXPR_STMT",
+              "code" : null,
+              "startPosition" : {
+                "line" : 14,
+                "column" : 13
+              },
+              "endPosition" : {
+                "line" : 14,
+                "column" : 18
+              },
+              "expr" : {
+                "code" : "i = 3",
+                "kind" : "ALL",
+                "startPosition" : {
+                  "line" : 14,
+                  "column" : 13
+                },
+                "endPosition" : {
+                  "line" : 14,
+                  "column" : 18
                 }
               }
             } ]
           },
-          "elseBranch" : {
-            "structureId" : "block:3",
-            "kind" : "BLOCK",
+          "elseBranch" : null
+        }
+      }, {
+        "structureId" : "if:3",
+        "kind" : "IF",
+        "code" : "if (i > 0)",
+        "startPosition" : {
+          "line" : 17,
+          "column" : 9
+        },
+        "endPosition" : {
+          "line" : 19,
+          "column" : 9
+        },
+        "condition" : {
+          "code" : "i > 0",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 17,
+            "column" : 9
+          },
+          "endPosition" : {
+            "line" : 19,
+            "column" : 9
+          }
+        },
+        "thenBranch" : {
+          "structureId" : "block:3",
+          "kind" : "BLOCK",
+          "code" : null,
+          "startPosition" : {
+            "line" : 17,
+            "column" : 20
+          },
+          "endPosition" : {
+            "line" : 19,
+            "column" : 9
+          },
+          "structures" : [ {
+            "structureId" : "expr_stmt:6",
+            "kind" : "EXPR_STMT",
             "code" : null,
             "startPosition" : {
-              "line" : 23,
-              "column" : 14
+              "line" : 18,
+              "column" : 13
             },
             "endPosition" : {
-              "line" : 25,
-              "column" : 9
+              "line" : 18,
+              "column" : 67
             },
-            "structures" : [ {
-              "structureId" : "expr_stmt:9",
-              "kind" : "EXPR_STMT",
-              "code" : null,
+            "expr" : {
+              "code" : "System.out.println(\"The condition is true and i > -1\")",
+              "kind" : "ALL",
               "startPosition" : {
-                "line" : 24,
+                "line" : 18,
                 "column" : 13
               },
               "endPosition" : {
-                "line" : 24,
-                "column" : 45
-              },
-              "expr" : {
-                "code" : "System.out.println(\"Else block\")",
-                "kind" : "ALL",
-                "startPosition" : {
-                  "line" : 24,
-                  "column" : 13
-                },
-                "endPosition" : {
-                  "line" : 24,
-                  "column" : 45
-                }
+                "line" : 18,
+                "column" : 67
               }
-            } ]
-          }
-        }
+            }
+          } ]
+        },
+        "elseBranch" : null
       } ]
     },
     "localVars" : [ {
       "index" : 1,
       "name" : "i",
       "typeId" : "int"
-    }, {
-      "index" : 2,
-      "name" : "v",
-      "typeId" : "float"
     } ]
   }, {
     "methodId" : "m:ch/epfl/printwizard/examples/Player.Player(int)<init>",

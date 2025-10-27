@@ -4,7 +4,13 @@ import {BlockNode, CodePosition, ExprStmtNode, IfNode, ReturnNode} from "../mode
 import {ExprCode} from "../model/ExprDefs.js";
 import {Index} from "../model/IndexDefs.js";
 import {Argument, Frame, Span, TraceData, TraceLocation} from "../model/TraceDefs.js";
-import {ArithmeticTraceEvent, CallTraceEvent, LocalTraceEvent, ReturnTraceEvent} from "../model/EventDefs.js";
+import {
+    ArithmeticTraceEvent,
+    CallTraceEvent,
+    ConditionTraceEvent,
+    LocalTraceEvent,
+    ReturnTraceEvent
+} from "../model/EventDefs.js";
 import {MainData} from "./MainData.js";
 
 /**
@@ -148,6 +154,8 @@ export class MainDataAssembler {
     }
 
     static #assembleMethodStructure(structureJson) {
+        if (structureJson === null) return null;
+
         let id = structureJson.id;
         let startPosition = this.#assemblePosition(structureJson.startPosition);
         let endPosition = this.#assemblePosition(structureJson.endPosition);
@@ -165,7 +173,8 @@ export class MainDataAssembler {
                 return new ReturnNode(id, structureJson.code, startPosition, endPosition, structureJson.value);
 
             case "IF":
-                return new IfNode(id, structureJson.code, startPosition, endPosition, structureJson.condition, structureJson.thenBranch, structureJson.elseBranch);
+                return new IfNode(id, structureJson.code, startPosition, endPosition, structureJson.condition,
+                    this.#assembleMethodStructure(structureJson.thenBranch), this.#assembleMethodStructure(structureJson.elseBranch));
 
             default:
                 throw new Error(`Unknown structure kind: ${structureJson.kind}`);
@@ -305,6 +314,9 @@ export class MainDataAssembler {
                     eventJson.right,
                     eventJson.result,
                 )
+
+            case "CONDITION":
+                return new ConditionTraceEvent(eventId, spanId, frameId, location, eventJson.left, eventJson.right, eventJson.result, eventJson.childrenEventIds);
 
             default:
                 throw new Error(`Unknown event type: ${eventJson.eventType}`);

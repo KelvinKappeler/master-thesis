@@ -5,6 +5,7 @@ import ch.epfl.printwizard.shared.model.program.ProgramPosition;
 import ch.epfl.printwizard.shared.model.program.structures.*;
 import ch.epfl.printwizard.shared.model.program.structures.expr.ExprCode;
 import ch.epfl.printwizard.shared.model.program.structures.expr.ExprNode;
+import com.github.javaparser.ast.Node;
 import com.github.javaparser.ast.expr.VariableDeclarationExpr;
 import com.github.javaparser.ast.stmt.*;
 
@@ -64,7 +65,12 @@ public final class JavaStructureMapper {
                 var cond = new ExprCode(n.getCondition().toString(), start, end);
                 var thenNode = mapStmt(n.getThenStmt());
                 var elseNode = n.getElseStmt().map(this::mapStmt).orElse(null);
-                var content = n.toString();
+
+                var content = "if (" + n.getCondition() + ")";
+                Optional<Node> parent = n.getParentNode();
+                if (parent.isPresent() && parent.get() instanceof IfStmt p) {
+                    content = "else if (" + n.getCondition() + ")";
+                }
 
                 yield new IfNode(nextId(StructureKind.IF.getPrefixId()), content, start, end, cond, thenNode, elseNode);
             }

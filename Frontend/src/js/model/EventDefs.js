@@ -62,3 +62,17 @@ export class ArithmeticTraceEvent extends TraceEvent {
         this.result = result;
     }
 }
+
+/**
+ * Represents an event where a condition is evaluated.
+ */
+export class ConditionTraceEvent extends TraceEvent {
+    constructor(eventId, spanId, frameId, location, left, right, result, childrenEventIds) {
+        super(eventId, spanId, frameId, location);
+
+        this.left = left;
+        this.right = right;
+        this.result = result;
+        this.childrenEventIds = childrenEventIds;
+    }
+}

@@ -9,18 +9,15 @@ public class Main {
             System.out.println("The condition is true");
             i = 2;
         }
-        else {
-            System.out.println("The condition is false");
-            i = -2;
-        }
-
-        if (i < 0) {
-            System.out.println("The condition is true and i < 0");
+        else if (i > 0) {
+            System.out.println("The condition is true and i > 0");
+            i = 3;
         }
 
         if (i > 0) {
-            System.out.println("The condition is true and i > 0");
+            System.out.println("The condition is true and i > -1");
         }
+
         /*else if (i > 0) {
             System.out.println("The condition is true and i > 0");
         }

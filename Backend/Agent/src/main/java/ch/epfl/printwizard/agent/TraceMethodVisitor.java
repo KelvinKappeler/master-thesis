@@ -306,7 +306,61 @@ public final class TraceMethodVisitor extends AdviceAdapter {
             // int vs int
             case IF_ICMPEQ: case IF_ICMPNE: case IF_ICMPLT:
             case IF_ICMPLE: case IF_ICMPGT: case IF_ICMPGE: {
-                super.visitJumpInsn(opcode, label);
+                Type t = Type.INT_TYPE;
+
+                int rightLocal = newLocal(t);
+                int leftLocal  = newLocal(t);
+                storeLocal(rightLocal, t);
+                storeLocal(leftLocal, t);
+
+                Label labelTrue = new Label();
+                Label labelEnd  = new Label();
+                int condLocal   = newLocal(t);
+
+                loadLocal(leftLocal, t);
+                loadLocal(rightLocal, t);
+                super.visitJumpInsn(opcode, labelTrue);
+
+                // false
+                push(0);
+                visitJumpInsn(GOTO, labelEnd);
+
+                // true
+                visitLabel(labelTrue);
+                push(1);
+
+                visitLabel(labelEnd);
+                storeLocal(condLocal, t);
+
+                // == Call logCondition ==
+                // left
+                loadLocal(leftLocal, t);
+                box(t);
+
+                // right
+                loadLocal(rightLocal, t);
+                box(t);
+
+                loadLocal(condLocal, t);
+                push(1);
+                visitInsn(IXOR);
+
+                pushSourceIdAndLine();
+                invokeStatic(Type.getType(TraceSink.class), new Method("logCondition",
+                "(Ljava/lang/Object;Ljava/lang/Object;ZLjava/lang/String;I)Ljava/lang/String;"));
+
+                int evLocal = newLocal(Type.getType(String.class));
+                storeLocal(evLocal, Type.getType(String.class));
+
+                enqueueEnd(label, evLocal);
+
+                Label fallThrough = new Label();
+                loadLocal(condLocal, t);
+                super.visitJumpInsn(IFNE, label);
+                visitLabel(fallThrough);
+
+                loadLocal(evLocal, Type.getType(String.class));
+                invokeStatic(Type.getType(TraceSink.class), new Method("beginBlock", "(Ljava/lang/String;)V"));
 
                 return;
             }

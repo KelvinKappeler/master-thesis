@@ -12,7 +12,7 @@
     },
     "endLoc" : {
       "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
-      "line" : 38
+      "line" : 35
     },
     "status" : "OK"
   } ],
@@ -66,8 +66,21 @@
     "result" : false,
     "childrenEventIds" : [ ]
   }, {
-    "type" : "CALL",
+    "type" : "CONDITION",
     "eventId" : "eve:4",
+    "spanId" : "spn:1",
+    "frameId" : "frm:1",
+    "location" : {
+      "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
+      "line" : 12
+    },
+    "left" : 1,
+    "right" : 0,
+    "result" : true,
+    "childrenEventIds" : [ "eve:5", "eve:6" ]
+  }, {
+    "type" : "CALL",
+    "eventId" : "eve:5",
     "spanId" : "spn:1",
     "frameId" : "frm:1",
     "location" : {
@@ -79,7 +92,7 @@
     "name" : "println"
   }, {
     "type" : "LOCAL",
-    "eventId" : "eve:5",
+    "eventId" : "eve:6",
     "spanId" : "spn:1",
     "frameId" : "frm:1",
     "location" : {
@@ -90,23 +103,23 @@
     "method" : "m:ch/epfl/printwizard/examples/Main.main(java.lang.String[])void",
     "varName" : "1",
     "index" : 1,
-    "value" : -2
+    "value" : 3
   }, {
     "type" : "CONDITION",
-    "eventId" : "eve:6",
+    "eventId" : "eve:7",
     "spanId" : "spn:1",
     "frameId" : "frm:1",
     "location" : {
       "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
       "line" : 17
     },
-    "left" : -2,
+    "left" : 3,
     "right" : 0,
     "result" : true,
-    "childrenEventIds" : [ "eve:7" ]
+    "childrenEventIds" : [ "eve:8" ]
   }, {
     "type" : "CALL",
-    "eventId" : "eve:7",
+    "eventId" : "eve:8",
     "spanId" : "spn:1",
     "frameId" : "frm:1",
     "location" : {
@@ -117,26 +130,13 @@
     "calleeMethodId" : "m:java/io/PrintStream.println(java.lang.String)void",
     "name" : "println"
   }, {
-    "type" : "CONDITION",
-    "eventId" : "eve:8",
-    "spanId" : "spn:1",
-    "frameId" : "frm:1",
-    "location" : {
-      "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
-      "line" : 21
-    },
-    "left" : -2,
-    "right" : 0,
-    "result" : false,
-    "childrenEventIds" : [ ]
-  }, {
     "type" : "RETURN",
     "eventId" : "eve:9",
     "spanId" : "spn:1",
     "frameId" : "frm:1",
     "location" : {
       "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
-      "line" : 38
+      "line" : 35
     },
     "returnValue" : null
   } ]

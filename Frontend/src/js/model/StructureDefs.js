@@ -119,4 +119,16 @@ export class IfNode extends StructureNode {
         this.thenBranch = thenBranch;
         this.elseBranch = elseBranch;
     }
+
+    visitForLine(line) {
+        if (!this.containsLine(line)) return null;
+
+        const resultThen = this.thenBranch.visitForLine(line);
+        if (resultThen) return resultThen;
+
+        const resultElse = this.elseBranch?.visitForLine(line);
+        if (resultElse) return resultElse;
+
+        return this;
+    }
 }

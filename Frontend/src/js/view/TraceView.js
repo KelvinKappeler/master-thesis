@@ -1,5 +1,5 @@
 import {TraceContainer} from "./TraceContainer.js";
-import {ArithmeticTraceEvent, CallTraceEvent, LocalTraceEvent, ReturnTraceEvent} from "../model/EventDefs.js";
+import {ArithmeticTraceEvent, CallTraceEvent,ConditionTraceEvent, LocalTraceEvent, ReturnTraceEvent} from "../model/EventDefs.js";
 import {BaseTriangle} from "../elements/BaseTriangle.js";
 import {TraceBlock} from "./TraceBlock.js";
 import {TraceSpan} from "./TraceSpan.js";
@@ -25,7 +25,7 @@ export class TraceView {
     render() {
         this.container.clear();
         this.breadcrumb.render();
-
+        
         const eventStructureMap = this.traceViewModel.getEventsProgramStructureMap();
 
         let traceLoc = null;
@@ -96,6 +96,9 @@ export class TraceView {
         }
         else if (event instanceof ArithmeticTraceEvent) {
             return `${event.left} ${event.operation} ${event.right} = ${event.result}`;
+        }
+        else if (event instanceof ConditionTraceEvent) {
+            return event.result ? "true" : "false";
         }
         else {
             throw new Error("Event type not implemented : " + event.constructor.name);
