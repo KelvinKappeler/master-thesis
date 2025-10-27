@@ -6,6 +6,8 @@ import org.objectweb.asm.*;
 import org.objectweb.asm.commons.AdviceAdapter;
 import org.objectweb.asm.commons.Method;
 
+import java.util.*;
+
 /**
  * Represents a method visitor that instruments methods for tracing.
  */
@@ -16,6 +18,8 @@ public final class TraceMethodVisitor extends AdviceAdapter {
     private final String sourceFile;
     private final boolean isStatic;
     private final String methodId;
+
+    private final Map<Label, List<Integer>> pendingEndBlocks = new IdentityHashMap<>();
 
     private int currentLine = 1;
 
@@ -34,6 +38,19 @@ public final class TraceMethodVisitor extends AdviceAdapter {
     @Override public void visitLineNumber(int line, Label start) {
         currentLine = line;
         super.visitLineNumber(line, start);
+    }
+
+    @Override
+    public void visitLabel(Label label) {
+        List<Integer> locals = pendingEndBlocks.remove(label);
+        if (locals != null) {
+            for (int evLocal : locals) {
+                loadLocal(evLocal, Type.getType(String.class));
+                invokeStatic(Type.getType(TraceSink.class), new Method("endBlock", "(Ljava/lang/String;)V"));
+            }
+        }
+
+        super.visitLabel(label);
     }
 
     /*
@@ -301,33 +318,33 @@ public final class TraceMethodVisitor extends AdviceAdapter {
                 int val = newLocal(t);
                 storeLocal(val, t);
 
-                Label Ltrue = new Label();
-                Label Lend = new Label();
-                int condLocal = newLocal(Type.INT_TYPE);
+                Label labelTrue = new Label();
+                Label labelEnd = new Label();
+                int condLocal = newLocal(t);
 
-                loadLocal(val, Type.INT_TYPE);
-                super.visitJumpInsn(opcode, Ltrue);
+                loadLocal(val, t);
+                super.visitJumpInsn(opcode, labelTrue);
 
                 // false
                 push(0);
-                visitJumpInsn(GOTO, Lend);
+                visitJumpInsn(GOTO, labelEnd);
 
                 // true
-                visitLabel(Ltrue);
+                visitLabel(labelTrue);
                 push(1);
 
-                visitLabel(Lend);
+                visitLabel(labelEnd);
                 storeLocal(condLocal);
 
                 // == Call logCondition ==
 
                 // left
                 loadLocal(val, t);
-                if (t.getSort() != Type.OBJECT && t.getSort() != Type.ARRAY) box(t);
+                box(t);
 
                 // right
                 push(0);
-                box(Type.INT_TYPE);
+                box(t);
 
                 // result
                 loadLocal(condLocal);
@@ -336,10 +353,20 @@ public final class TraceMethodVisitor extends AdviceAdapter {
 
                 pushSourceIdAndLine();
                 invokeStatic(Type.getType(TraceSink.class), new Method("logCondition",
-                "(Ljava/lang/Object;Ljava/lang/Object;ZLjava/lang/String;I)V"));
+                "(Ljava/lang/Object;Ljava/lang/Object;ZLjava/lang/String;I)Ljava/lang/String;"));
 
+                int evLocal = newLocal(Type.getType(String.class));
+                storeLocal(evLocal, Type.getType(String.class));
+
+                enqueueEnd(label, evLocal);
+
+                Label fallThrough = new Label();
                 loadLocal(condLocal);
                 super.visitJumpInsn(IFNE, label);
+                visitLabel(fallThrough);
+
+                loadLocal(evLocal);
+                invokeStatic(Type.getType(TraceSink.class), new Method("beginBlock", "(Ljava/lang/String;)V"));
 
                 return;
             }
@@ -388,5 +415,9 @@ public final class TraceMethodVisitor extends AdviceAdapter {
         invokeStatic(Type.getType(TraceSink.class), new Method("sourceIdForOwner",
                 "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;"));
         push(currentLine);
+    }
+
+    private void enqueueEnd(Label label, int evLocal) {
+        pendingEndBlocks.computeIfAbsent(label, l -> new ArrayList<>()).add(evLocal);
     }
 }

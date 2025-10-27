@@ -38,6 +38,13 @@ public final class IndexBuilder {
         if (event.spanId() != null) {
             bySpan.computeIfAbsent(event.spanId(), k -> Collections.synchronizedList(new ArrayList<>()))
                 .add(eventId);
+
+            if (event instanceof ConditionEvent conditionEvent) {
+                for (String eId : conditionEvent.childrenEventIds()) {
+                    bySpan.computeIfAbsent(event.spanId(), k -> Collections.synchronizedList(new ArrayList<>()))
+                        .remove(eId);
+                }
+            }
         }
 
         // Index by object
