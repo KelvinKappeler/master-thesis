@@ -45,6 +45,30 @@ public final class IndexBuilder {
     }
 
     /**
+     * Replaces an event in the index with a new event.
+     * @param event the new event to replace the old one with
+     */
+    public void replaceEvent(TraceEvent event) {
+        String eventId = event.eventId();
+
+        for (Map<String, List<String>> lineMap : byLine.values()) {
+            for (List<String> eventIds : lineMap.values()) {
+                eventIds.remove(eventId);
+            }
+        }
+
+        for (List<String> eventIds : bySpan.values()) {
+            eventIds.remove(eventId);
+        }
+
+        for (List<String> eventIds : byObject.values()) {
+            eventIds.remove(eventId);
+        }
+
+        addEvent(event);
+    }
+
+    /**
      * Writes the index to a JSON file
      * @param file the file to write to
      * @throws Exception if writing fails

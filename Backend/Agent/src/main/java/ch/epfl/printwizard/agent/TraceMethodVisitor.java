@@ -289,42 +289,54 @@ public final class TraceMethodVisitor extends AdviceAdapter {
             // int vs int
             case IF_ICMPEQ: case IF_ICMPNE: case IF_ICMPLT:
             case IF_ICMPLE: case IF_ICMPGT: case IF_ICMPGE: {
+                super.visitJumpInsn(opcode, label);
+
+                return;
+            }
+
+            // int against 0
+            case IFEQ: case IFNE: case IFLT: case IFLE: case IFGT: case IFGE: {
                 Type t = Type.INT_TYPE;
 
-                int right = newLocal(t);
-                int left = newLocal(t);
-                storeLocal(right, t);
-                storeLocal(left, t);
+                int val = newLocal(t);
+                storeLocal(val, t);
 
                 Label Ltrue = new Label();
                 Label Lend = new Label();
                 int condLocal = newLocal(Type.INT_TYPE);
 
-                loadLocal(left, t);
-                loadLocal(right, t);
+                loadLocal(val, Type.INT_TYPE);
                 super.visitJumpInsn(opcode, Ltrue);
+
+                // false
                 push(0);
                 visitJumpInsn(GOTO, Lend);
+
+                // true
                 visitLabel(Ltrue);
                 push(1);
+
                 visitLabel(Lend);
                 storeLocal(condLocal);
 
-                // LogArithmetic
-                push(getArithmeticOp(opcode));
-                push("I");
-                loadLocal(left, t); box(t);
-                loadLocal(right, t); box(t);
-                loadLocal(condLocal);
+                // == Call logCondition ==
 
-                visitInsn(ICONST_1);
-                visitInsn(IAND);
+                // left
+                loadLocal(val, t);
+                if (t.getSort() != Type.OBJECT && t.getSort() != Type.ARRAY) box(t);
+
+                // right
+                push(0);
                 box(Type.INT_TYPE);
 
-                pushSourceIdAndLine();
+                // result
+                loadLocal(condLocal);
+                push(1);
+                visitInsn(IXOR);
 
-                invokeStatic(Type.getType(TraceSink.class), new Method("logArithmetic",
-                        "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/String;I)V"));
+                pushSourceIdAndLine();
+                invokeStatic(Type.getType(TraceSink.class), new Method("logCondition",
+                "(Ljava/lang/Object;Ljava/lang/Object;ZLjava/lang/String;I)V"));
 
                 loadLocal(condLocal);
                 super.visitJumpInsn(IFNE, label);
@@ -360,12 +372,12 @@ public final class TraceMethodVisitor extends AdviceAdapter {
             case IAND, LAND -> "&";
             case IOR, LOR -> "|";
             case IXOR, LXOR -> "^";
-            case IF_ICMPEQ, IF_ACMPEQ -> "==";
-            case IF_ICMPNE, IF_ACMPNE -> "!=";
-            case IF_ICMPLT -> "<";
-            case IF_ICMPLE -> "<=";
-            case IF_ICMPGT -> ">";
-            case IF_ICMPGE -> ">=";
+            case IF_ICMPEQ, IF_ACMPEQ, IFEQ -> "==";
+            case IF_ICMPNE, IF_ACMPNE, IFNE -> "!=";
+            case IF_ICMPLT, IFLT -> "<";
+            case IF_ICMPLE, IFLE -> "<=";
+            case IF_ICMPGT, IFGT -> ">";
+            case IF_ICMPGE, IFGE -> ">=";
             default -> throw new IllegalArgumentException("Invalid opcode: " + opcode);
         };
     }

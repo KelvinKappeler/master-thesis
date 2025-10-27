@@ -30,6 +30,7 @@ C:\Users\kelvi\GitHub\master-thesis\Backend\Shared\src\main\java\ch\epfl\printwi
 C:\Users\kelvi\GitHub\master-thesis\Backend\Shared\src\main\java\ch\epfl\printwizard\shared\model\trace\events\ArithmeticEvent.java
 C:\Users\kelvi\GitHub\master-thesis\Backend\Shared\src\main\java\ch\epfl\printwizard\shared\model\trace\events\ArrayStoreEvent.java
 C:\Users\kelvi\GitHub\master-thesis\Backend\Shared\src\main\java\ch\epfl\printwizard\shared\model\trace\events\CallEvent.java
+C:\Users\kelvi\GitHub\master-thesis\Backend\Shared\src\main\java\ch\epfl\printwizard\shared\model\trace\events\ConditionEvent.java
 C:\Users\kelvi\GitHub\master-thesis\Backend\Shared\src\main\java\ch\epfl\printwizard\shared\model\trace\events\LocalEvent.java
 C:\Users\kelvi\GitHub\master-thesis\Backend\Shared\src\main\java\ch\epfl\printwizard\shared\model\trace\events\NewEvent.java
 C:\Users\kelvi\GitHub\master-thesis\Backend\Shared\src\main\java\ch\epfl\printwizard\shared\model\trace\events\PutFieldEvent.java

@@ -56,6 +56,14 @@ public final class TraceBuilder {
     }
 
     /**
+     * Retrieves the list of trace events maintained by the builder.
+     * @return the list of trace events
+     */
+    public List<TraceEvent> getEvents() {
+        return events;
+    }
+
+    /**
      * Writes the currently collected trace data, including spans, frames, and events,
      * to the specified file in JSON format.
      * @param f the file where the JSON output will be written

@@ -16,6 +16,8 @@ public final class TraceSink {
     private static final IndexBuilder indexFileBuilder = new IndexBuilder();
 
     private static final ThreadLocal<Deque<FrameCtx>> STACK = ThreadLocal.withInitial(ArrayDeque::new);
+    private static final ThreadLocal<Deque<BlockCtx>> BLOCKS = ThreadLocal.withInitial(ArrayDeque::new);
+
     private static final ConcurrentHashMap<String, String> ownerToSourceId = new ConcurrentHashMap<>();
 
     private static int nextSpanId = 1;
@@ -112,6 +114,8 @@ public final class TraceSink {
      * @param line the line number where the return occurs
      */
     public static void onReturn(Object ret, String sourceId, int line) {
+        clearBlocks();
+
         var st = STACK.get();
         if (st.isEmpty()) return;
         var f = st.pop();
@@ -129,6 +133,8 @@ public final class TraceSink {
      * @param line the line number where the throw occurs
      */
     public static void onThrow(Throwable ex, String sourceId, int line) {
+        clearBlocks();
+
         var st = STACK.get();
         if (st.isEmpty()) return;
         var f = st.pop();
@@ -216,6 +222,25 @@ public final class TraceSink {
     }
 
     /**
+     * Writes the collected trace data when a condition is evaluated
+     * @param left the left operand of the condition
+     * @param right the right operand of the condition
+     * @param result the result of the condition
+     * @param sourceId the source ID where the condition occurs
+     * @param line the line number where the condition occurs
+     * @return the event ID of the logged condition
+     */
+    public static String logCondition(Object left, Object right, boolean result, String sourceId, int line) {
+        var f = STACK.get().peek();
+        if (f == null) return null;
+
+        String id = nextEventId();
+        addEvent(new ConditionEvent(id, f.spanId(), f.frameId(), new TraceLoc(sourceId, line), left, right, result, new String[0]));
+
+        return id;
+    }
+
+    /**
      * Writes the collected trace data when a new object is created
      * @param thisObj the newly created object
      * @param ownerInternal the internal name of the owner class
@@ -230,6 +255,56 @@ public final class TraceSink {
             new NewEvent(nextEventId(), f == null ? null : f.spanId(), f == null ? null : f.frameId(),
                 new TraceLoc(sourceId, line), typeId, IdGenerator.objectId(thisObj))
         );
+    }
+
+    /**
+     * Begins a block of events under a parent event
+     * @param parentEventId the parent's event ID
+     */
+    public static void beginBlock(String parentEventId) {
+        BLOCKS.get().push(new BlockCtx(parentEventId, new ArrayList<>()));
+    }
+
+    /**
+     * Ends the current block of events
+     * @param parentEventId the parent's event ID
+     */
+    public static void endBlock(String parentEventId) {
+        var bs = BLOCKS.get();
+        if (bs.isEmpty()) return;
+        var b = bs.pop();
+        if (!Objects.equals(b.parentEventId(), parentEventId)) {
+            return;
+        }
+
+        patchBlockEvents(parentEventId, b.eventIds());
+    }
+
+    private static void clearBlocks() {
+        while (!BLOCKS.get().isEmpty()) {
+            BlockCtx block = BLOCKS.get().peek();
+            if (block != null) {
+                endBlock(block.parentEventId());
+            }
+        }
+    }
+
+    private static void patchBlockEvents(String parentEventId, List<String> eventIds) {
+        var events = traceFileBuilder.getEvents();
+        for (int i = events.size() - 1; i >= 0; i--) {
+            var e = events.get(i);
+            if (e instanceof ConditionEvent ce && ce.eventId().equals(parentEventId)) {
+                var patched = new ConditionEvent(
+                        ce.eventId(), ce.spanId(), ce.frameId(), ce.location(),
+                        ce.left(), ce.right(), ce.result(),
+                        eventIds.toArray(String[]::new)
+                );
+                events.set(i, patched);
+
+                indexFileBuilder.replaceEvent(patched);
+                return;
+            }
+        }
     }
 
     private static void patchSpanEnd(String spanId, String endEventId, TraceLoc endLoc, String status) {
@@ -273,6 +348,11 @@ public final class TraceSink {
     {
         traceFileBuilder.addEvent(event);
         indexFileBuilder.addEvent(event);
+
+        var bs = BLOCKS.get();
+        if (!bs.isEmpty()) {
+            bs.peek().eventIds().add(event.eventId());
+        }
     }
 
     static {
@@ -288,4 +368,5 @@ public final class TraceSink {
     }
 
     private record FrameCtx(String spanId, String frameId, String methodId) {}
+    private record BlockCtx(String parentEventId, List<String> eventIds) {}
 }
