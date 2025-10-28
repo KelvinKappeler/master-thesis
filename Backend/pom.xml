@@ -11,6 +11,7 @@
     <modules>
         <module>Agent</module>
         <module>Parser</module>
+        <module>Plugin</module>
         <module>Examples</module>
         <module>Shared</module>
         <module>Tooling</module>
