@@ -53,6 +53,25 @@ public final class TraceMethodVisitor extends AdviceAdapter {
         super.visitLabel(label);
     }
 
+    @Override
+    public void visitIincInsn(int var, int increment) {
+        loadLocal(var, Type.INT_TYPE);
+        push(increment);
+        visitInsn(IADD);
+        dup();
+        storeLocal(var, Type.INT_TYPE);
+        box(Type.INT_TYPE);
+        
+        push(ownerInternal); swap();
+        push(methodId); swap();
+        push(String.valueOf(var)); swap();
+        push(var); swap();
+
+        pushSourceIdAndLine();
+        invokeStatic(Type.getType(TraceSink.class), new Method("logLocal",
+        "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;Ljava/lang/String;I)V"));
+    }
+    
     /*
     @Override
     public void visitFieldInsn(int opcode, String owner, String name, String desc) {
@@ -102,7 +121,6 @@ public final class TraceMethodVisitor extends AdviceAdapter {
     @Override
     public void visitInsn(int opcode) {
         switch (opcode) {
-            /*
             // Management of array stores
             case IASTORE: case LASTORE: case FASTORE: case DASTORE:
             case AASTORE: case BASTORE: case CASTORE: case SASTORE: {
@@ -128,7 +146,7 @@ public final class TraceMethodVisitor extends AdviceAdapter {
                 loadLocal(arrayLocal);
                 loadLocal(indexLocal);
                 loadLocal(valueLocal);
-            }*/
+            }
 
             // Management of arithmetic operations
             case IADD: case LADD: case FADD: case DADD:
@@ -309,13 +327,13 @@ public final class TraceMethodVisitor extends AdviceAdapter {
                 Type t = Type.INT_TYPE;
 
                 int rightLocal = newLocal(t);
-                int leftLocal  = newLocal(t);
+                int leftLocal = newLocal(t);
                 storeLocal(rightLocal, t);
                 storeLocal(leftLocal, t);
 
                 Label labelTrue = new Label();
-                Label labelEnd  = new Label();
-                int condLocal   = newLocal(t);
+                Label labelEnd = new Label();
+                int condLocal = newLocal(t);
 
                 loadLocal(leftLocal, t);
                 loadLocal(rightLocal, t);

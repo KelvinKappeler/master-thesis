@@ -17,6 +17,8 @@ export class TraceView {
 
         this.breadcrumb = new Breadcrumb(traceViewModel);
         this.breadcrumb.attachTo(document.querySelector('.breadcrumb'));
+
+        this.childRunState = new Map();
     }
 
     /**
@@ -25,6 +27,7 @@ export class TraceView {
     render() {
         this.container.clear();
         this.breadcrumb.render();
+        this.childRunState.clear();
 
         const eventStructureMap = this.traceViewModel.getEventsProgramStructureMap();
 
@@ -43,43 +46,6 @@ export class TraceView {
             block.addLine(event.location.line, this.#getEventLine(event));
             this.#manageInnerEvents(event, block);
         }
-    }
-
-    #addLine(lineNumber, content, parent = null, addTriangle = false, isContentDefaultHidden = false) {
-        const ln = document.createElement('div');
-        ln.textContent = String(lineNumber);
-
-        const ct = document.createElement('div');
-        const depth = parent ? (Number(parent.dataset.depth || 0) + 1) : 0;
-        ct.dataset.depth = depth.toString();
-        ct.style.paddingLeft = `${depth * 2}ch`;
-
-        if (content instanceof Node) {
-            ct.append(content);
-        } else {
-            ct.textContent = String(content);
-        }
-
-        if (parent !== null) {
-            parent.append(ct);
-        }
-        else {
-            this.container.traceContentArea.append(ct);
-        }
-        this.container.lineNumbersArea.append(ln);
-
-        if (addTriangle) {
-            const placeholder = document.createElement('div');
-            const triangle = new BaseTriangle([ct], isContentDefaultHidden);
-            triangle.attachTo(placeholder);
-            this.container.trianglesArea.append(placeholder);
-        } else {
-            const placeholder = document.createElement('div');
-            placeholder.textContent = " ";
-            this.container.trianglesArea.append(placeholder);
-        }
-
-        return ct;
     }
 
     #getEventLine(event) {
@@ -106,18 +72,29 @@ export class TraceView {
         }
     }
 
-    #manageInnerEvents(event, block) {
-        if (event instanceof ConditionTraceEvent) {
-            if (event.childrenEventIds.length > 0) {
-                for (const childEventId of event.childrenEventIds) {
-                    const [childEvent, childStructure] = this.traceViewModel.getEvent(childEventId);
-                    if (childEvent !== undefined) {
-                        const headerFrag = TraceSpan.wrapLineColors(childStructure.getLineContent());
-                        const conditionBlock = new TraceBlock(this.container, block, childEvent.location.line, headerFrag, true, true);
-                        conditionBlock.addLine(childEvent.location.line, this.#getEventLine(childEvent));
-                    }
-                }
+    #manageInnerEvents(event, parentBlock) {
+        if (!(event instanceof ConditionTraceEvent)) return;
+        if (event.childrenEventIds.length === 0) return;
+
+        let state = this.childRunState.get(parentBlock);
+        if (!state) {
+            state = { lastLine: null, currentChildBlock: null };
+            this.childRunState.set(parentBlock, state);
+        }
+
+        for (const childEventId of event.childrenEventIds) {
+            const [childEvent, childStructure] = this.traceViewModel.getEvent(childEventId);
+            if (!childEvent || !childStructure) continue;
+
+            const childLine = childEvent.location.line;
+
+            if (state.lastLine !== childLine) {
+                const headerFrag = TraceSpan.wrapLineColors(childStructure.getLineContent());
+                state.currentChildBlock = new TraceBlock(this.container, parentBlock, childLine, headerFrag, true, true);
             }
+
+            state.lastLine = childLine;
+            state.currentChildBlock.addLine(childLine, this.#getEventLine(childEvent));
         }
     }
 }
