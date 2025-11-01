@@ -1,0 +1,50 @@
+{
+  "spans" : [ {
+    "spanId" : "spn:4",
+    "parentSpanId" : "null",
+    "methodId" : "testMethodId",
+    "startEventId" : "null",
+    "endEventId" : "null",
+    "startLoc" : {
+      "sourceId" : "src:/C:/Users/kelvi/GitHub/master-thesis/Backend/Examples/src/main/java/ch/epfl/printwizard/examples/Player.java",
+      "line" : 7
+    },
+    "endLoc" : {
+      "sourceId" : "src:/C:/Users/kelvi/GitHub/master-thesis/Backend/Examples/src/main/java/ch/epfl/printwizard/examples/Player.java",
+      "line" : 9
+    },
+    "status" : "OK"
+  }, {
+    "spanId" : "spn:5",
+    "parentSpanId" : "null",
+    "methodId" : "testMethodId",
+    "startEventId" : "null",
+    "endEventId" : "null",
+    "startLoc" : {
+      "sourceId" : "src:/C:/Users/kelvi/GitHub/master-thesis/Backend/Examples/src/main/java/ch/epfl/printwizard/examples/Player.java",
+      "line" : 11
+    },
+    "endLoc" : {
+      "sourceId" : "src:/C:/Users/kelvi/GitHub/master-thesis/Backend/Examples/src/main/java/ch/epfl/printwizard/examples/Player.java",
+      "line" : 13
+    },
+    "status" : "OK"
+  }, {
+    "spanId" : "spn:6",
+    "parentSpanId" : "null",
+    "methodId" : "testMethodId",
+    "startEventId" : "null",
+    "endEventId" : "null",
+    "startLoc" : {
+      "sourceId" : "src:/C:/Users/kelvi/GitHub/master-thesis/Backend/Examples/src/main/java/ch/epfl/printwizard/examples/Player.java",
+      "line" : 15
+    },
+    "endLoc" : {
+      "sourceId" : "src:/C:/Users/kelvi/GitHub/master-thesis/Backend/Examples/src/main/java/ch/epfl/printwizard/examples/Player.java",
+      "line" : 17
+    },
+    "status" : "OK"
+  } ],
+  "frames" : [ ],
+  "events" : [ ]
+}
