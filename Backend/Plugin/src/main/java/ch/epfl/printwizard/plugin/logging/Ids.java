@@ -1,4 +1,4 @@
-package ch.epfl.printwizard.plugin.tracing;
+package ch.epfl.printwizard.plugin.logging;
 
 import java.util.concurrent.atomic.AtomicLong;
 

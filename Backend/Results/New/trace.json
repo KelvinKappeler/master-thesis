@@ -1,0 +1,257 @@
+{
+  "spans" : [ ],
+  "frames" : [ ],
+  "events" : [ {
+    "type" : "LOCAL",
+    "eventId" : "eve:1",
+    "spanId" : "spanId",
+    "frameId" : "frameId",
+    "location" : {
+      "sourceId" : "TraceOut.java",
+      "line" : 28
+    },
+    "owner" : "owner",
+    "method" : "method",
+    "varName" : "i@6",
+    "index" : -1,
+    "value" : 1
+  }, {
+    "type" : "LOCAL",
+    "eventId" : "eve:2",
+    "spanId" : "spanId",
+    "frameId" : "frameId",
+    "location" : {
+      "sourceId" : "TraceOut.java",
+      "line" : 28
+    },
+    "owner" : "owner",
+    "method" : "method",
+    "varName" : "i@7",
+    "index" : -1,
+    "value" : 4
+  }, {
+    "type" : "LOCAL",
+    "eventId" : "eve:3",
+    "spanId" : "spanId",
+    "frameId" : "frameId",
+    "location" : {
+      "sourceId" : "TraceOut.java",
+      "line" : 28
+    },
+    "owner" : "owner",
+    "method" : "method",
+    "varName" : "j@8",
+    "index" : -1,
+    "value" : 0
+  }, {
+    "type" : "LOCAL",
+    "eventId" : "eve:4",
+    "spanId" : "spanId",
+    "frameId" : "frameId",
+    "location" : {
+      "sourceId" : "TraceOut.java",
+      "line" : 28
+    },
+    "owner" : "owner",
+    "method" : "method",
+    "varName" : "j@16",
+    "index" : -1,
+    "value" : 1
+  }, {
+    "type" : "LOCAL",
+    "eventId" : "eve:5",
+    "spanId" : "spanId",
+    "frameId" : "frameId",
+    "location" : {
+      "sourceId" : "TraceOut.java",
+      "line" : 28
+    },
+    "owner" : "owner",
+    "method" : "method",
+    "varName" : "j@18",
+    "index" : -1,
+    "value" : 6
+  }, {
+    "type" : "LOCAL",
+    "eventId" : "eve:6",
+    "spanId" : "spanId",
+    "frameId" : "frameId",
+    "location" : {
+      "sourceId" : "TraceOut.java",
+      "line" : 28
+    },
+    "owner" : "owner",
+    "method" : "method",
+    "varName" : "j@19",
+    "index" : -1,
+    "value" : 10
+  }, {
+    "type" : "LOCAL",
+    "eventId" : "eve:7",
+    "spanId" : "spanId",
+    "frameId" : "frameId",
+    "location" : {
+      "sourceId" : "TraceOut.java",
+      "line" : 28
+    },
+    "owner" : "owner",
+    "method" : "method",
+    "varName" : "j@21",
+    "index" : -1,
+    "value" : 7
+  }, {
+    "type" : "LOCAL",
+    "eventId" : "eve:8",
+    "spanId" : "spanId",
+    "frameId" : "frameId",
+    "location" : {
+      "sourceId" : "TraceOut.java",
+      "line" : 28
+    },
+    "owner" : "owner",
+    "method" : "method",
+    "varName" : "j@22",
+    "index" : -1,
+    "value" : 6
+  }, {
+    "type" : "LOCAL",
+    "eventId" : "eve:9",
+    "spanId" : "spanId",
+    "frameId" : "frameId",
+    "location" : {
+      "sourceId" : "TraceOut.java",
+      "line" : 28
+    },
+    "owner" : "owner",
+    "method" : "method",
+    "varName" : "r@24",
+    "index" : -1,
+    "value" : 3.4
+  }, {
+    "type" : "LOCAL",
+    "eventId" : "eve:10",
+    "spanId" : "spanId",
+    "frameId" : "frameId",
+    "location" : {
+      "sourceId" : "TraceOut.java",
+      "line" : 28
+    },
+    "owner" : "owner",
+    "method" : "method",
+    "varName" : "r@25",
+    "index" : -1,
+    "value" : 4.6
+  }, {
+    "type" : "LOCAL",
+    "eventId" : "eve:11",
+    "spanId" : "spanId",
+    "frameId" : "frameId",
+    "location" : {
+      "sourceId" : "TraceOut.java",
+      "line" : 28
+    },
+    "owner" : "owner",
+    "method" : "method",
+    "varName" : "r@26",
+    "index" : -1,
+    "value" : 14.719999999999999
+  }, {
+    "type" : "LOCAL",
+    "eventId" : "eve:12",
+    "spanId" : "spanId",
+    "frameId" : "frameId",
+    "location" : {
+      "sourceId" : "TraceOut.java",
+      "line" : 28
+    },
+    "owner" : "owner",
+    "method" : "method",
+    "varName" : "i@27",
+    "index" : -1,
+    "value" : 0
+  }, {
+    "type" : "LOCAL",
+    "eventId" : "eve:13",
+    "spanId" : "spanId",
+    "frameId" : "frameId",
+    "location" : {
+      "sourceId" : "TraceOut.java",
+      "line" : 28
+    },
+    "owner" : "owner",
+    "method" : "method",
+    "varName" : "l@28",
+    "index" : -1,
+    "value" : 2
+  }, {
+    "type" : "LOCAL",
+    "eventId" : "eve:14",
+    "spanId" : "spanId",
+    "frameId" : "frameId",
+    "location" : {
+      "sourceId" : "TraceOut.java",
+      "line" : 28
+    },
+    "owner" : "owner",
+    "method" : "method",
+    "varName" : "l@29",
+    "index" : -1,
+    "value" : 3
+  }, {
+    "type" : "LOCAL",
+    "eventId" : "eve:15",
+    "spanId" : "spanId",
+    "frameId" : "frameId",
+    "location" : {
+      "sourceId" : "TraceOut.java",
+      "line" : 28
+    },
+    "owner" : "owner",
+    "method" : "method",
+    "varName" : "f@30",
+    "index" : -1,
+    "value" : 1.2
+  }, {
+    "type" : "LOCAL",
+    "eventId" : "eve:16",
+    "spanId" : "spanId",
+    "frameId" : "frameId",
+    "location" : {
+      "sourceId" : "TraceOut.java",
+      "line" : 28
+    },
+    "owner" : "owner",
+    "method" : "method",
+    "varName" : "f@31",
+    "index" : -1,
+    "value" : 2.4
+  }, {
+    "type" : "LOCAL",
+    "eventId" : "eve:17",
+    "spanId" : "spanId",
+    "frameId" : "frameId",
+    "location" : {
+      "sourceId" : "TraceOut.java",
+      "line" : 28
+    },
+    "owner" : "owner",
+    "method" : "method",
+    "varName" : "test1@33",
+    "index" : -1,
+    "value" : 3
+  }, {
+    "type" : "LOCAL",
+    "eventId" : "eve:18",
+    "spanId" : "spanId",
+    "frameId" : "frameId",
+    "location" : {
+      "sourceId" : "TraceOut.java",
+      "line" : 28
+    },
+    "owner" : "owner",
+    "method" : "method",
+    "varName" : "test@34",
+    "index" : -1,
+    "value" : 0.33333334
+  } ]
+}

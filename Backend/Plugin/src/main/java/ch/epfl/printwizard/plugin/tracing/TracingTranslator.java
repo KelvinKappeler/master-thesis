@@ -1,5 +1,7 @@
 package ch.epfl.printwizard.plugin.tracing;
 
+import ch.epfl.printwizard.plugin.logging.Ids;
+import ch.epfl.printwizard.plugin.logging.OutputManager;
 import ch.epfl.printwizard.plugin.model.trace.TraceFile;
 import ch.epfl.printwizard.plugin.model.trace.TraceLoc;
 import ch.epfl.printwizard.plugin.model.trace.TraceSpan;
@@ -62,7 +64,7 @@ public class TracingTranslator extends TreeTranslator {
         super.visitClassDef(jcClassDecl);
     }
 
-    @Override
+    /*@Override
     public void visitMethodDef(JCTree.JCMethodDecl jcMethodDecl) {
         JavaFileObject sfo = cu.getSourceFile();
         String sourcePath = (sfo != null ? sfo.toUri().getPath() : jcMethodDecl.name.toString());
@@ -86,29 +88,72 @@ public class TracingTranslator extends TreeTranslator {
 
         TraceSpan span = new TraceSpan(spanId, "null", methodId, "null", "null", start, end, "OK");
 
-        traceFileBuilder.addSpan(span);
+        OutputManager.getTraceFileBuilder().addSpan(span);
 
         super.visitMethodDef(jcMethodDecl);
-    }
+    }*/
 
+    // Example : int i = 3;
     @Override
     public void visitVarDef(JCTree.JCVariableDecl jcVariableDecl) {
         if (jcVariableDecl.init != null) {
             int line = cu.getLineMap().getLineNumber(jcVariableDecl.pos);
             jcVariableDecl.init = callStatic(
-                    "ch.epfl.printwizard.plugin.tracing.TraceOut",
-                    "tap",
-                    java.util.List.of(
-                            mk.Literal(jcVariableDecl.getName().toString() + "@" + line),
-                            jcVariableDecl.init // IMPORTANT : on réutilise l'expression d'origine
-                    ),
-                    jcVariableDecl.pos
+                "ch.epfl.printwizard.plugin.logging.TraceOut",
+                "recordLocalEvent",
+                java.util.List.of(
+                        mk.Literal(jcVariableDecl.getName().toString() + "@" + line),
+                        jcVariableDecl.init
+                ),
+                jcVariableDecl.pos
             );
         }
         super.visitVarDef(jcVariableDecl);
     }
 
-    JCTree.JCMethodInvocation callStatic(String ownerFqn, String method, java.util.List<JCTree.JCExpression> args, int pos) {
+    // Example : i = 3;
+    @Override
+    public void visitAssign(JCTree.JCAssign jcAssign) {
+        int line = cu.getLineMap().getLineNumber(jcAssign.pos);
+        jcAssign.rhs = callStatic(
+            "ch.epfl.printwizard.plugin.logging.TraceOut",
+            "recordLocalEvent",
+            java.util.List.of(
+                    mk.Literal(jcAssign.lhs.toString() + "@" + line),
+                    jcAssign.rhs
+            ),
+            jcAssign.pos
+        );
+        super.visitAssign(jcAssign);
+    }
+
+    // Example : i += 3;
+    @Override
+    public void visitAssignop(JCTree.JCAssignOp jcAssignOp) {
+        super.visitAssignop(jcAssignOp);
+
+        JCTree.Tag binOpTag = toBinaryTag(jcAssignOp.getTag());
+        JCTree.JCExpression lhs = jcAssignOp.lhs;
+        JCTree.JCExpression rhs = jcAssignOp.rhs;
+        JCTree.JCBinary bin = mk.Binary(binOpTag, lhs, rhs);
+
+        String lhsLabel = lhs.toString();
+        int line = cu.getLineMap().getLineNumber(jcAssignOp.pos);
+
+        JCTree.JCExpression modifiedRhs = callStatic(
+            "ch.epfl.printwizard.plugin.logging.TraceOut",
+            "recordLocalEvent",
+            java.util.List.of(
+                    mk.Literal(lhsLabel + "@" + line),
+                    bin
+            ),
+            jcAssignOp.pos
+        );
+
+        result = mk.Assign(lhs, modifiedRhs);
+    }
+
+    private JCTree.JCMethodInvocation callStatic(String ownerFqn, String method, java.util.List<JCTree.JCExpression> args, int pos) {
         Symbol.ClassSymbol ownerSym = elements.getTypeElement(ownerFqn);
         if (ownerSym == null) {
             throw new IllegalStateException("Type not found: " + ownerFqn);
@@ -119,6 +164,23 @@ public class TracingTranslator extends TreeTranslator {
         JCTree.JCExpression sel = mk.Select(owner, names.fromString(method));
 
         return mk.Apply(com.sun.tools.javac.util.List.nil(), sel, com.sun.tools.javac.util.List.from(args));
+    }
+
+    private JCTree.Tag toBinaryTag(JCTree.Tag assignOp) {
+        return switch (assignOp) {
+            case PLUS_ASG -> JCTree.Tag.PLUS;
+            case MINUS_ASG -> JCTree.Tag.MINUS;
+            case MUL_ASG -> JCTree.Tag.MUL;
+            case DIV_ASG -> JCTree.Tag.DIV;
+            case MOD_ASG -> JCTree.Tag.MOD;
+            case BITAND_ASG -> JCTree.Tag.BITAND;
+            case BITOR_ASG -> JCTree.Tag.BITOR;
+            case BITXOR_ASG -> JCTree.Tag.BITXOR;
+            case SL_ASG -> JCTree.Tag.SL;
+            case SR_ASG -> JCTree.Tag.SR;
+            case USR_ASG -> JCTree.Tag.USR;
+            default -> throw new IllegalArgumentException("Unsupported assign op: " + assignOp);
+        };
     }
 
 }

@@ -4,6 +4,7 @@ public class Main {
 
     public static void main(String[] args) {
         int i = 1;
+        i = 4;
         int j = 0;
 
         if (i == 0) {
