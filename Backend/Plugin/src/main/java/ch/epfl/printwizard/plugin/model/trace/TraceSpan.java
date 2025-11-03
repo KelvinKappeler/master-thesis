@@ -11,7 +11,6 @@ import ch.epfl.printwizard.plugin.utils.Preconditions;
  * @param endEventId End event identifier
  * @param startLoc Start location
  * @param endLoc End location
- * @param status Status of the span (e.g., "OK", "ERROR")
  */
 public record TraceSpan(
     String spanId,
@@ -20,8 +19,7 @@ public record TraceSpan(
     String startEventId,
     String endEventId,
     TraceLoc startLoc,
-    TraceLoc endLoc,
-    String status
+    TraceLoc endLoc
 ) {
 
     public TraceSpan {
@@ -35,7 +33,6 @@ public record TraceSpan(
         Preconditions.require(!endEventId.isEmpty(), "endEventId is empty");
         Preconditions.requireNonNull(startLoc, "startLoc is null");
         Preconditions.requireNonNull(endLoc, "endLoc is null");
-        Preconditions.requireNonNull(status, "status is null");
     }
 
 }

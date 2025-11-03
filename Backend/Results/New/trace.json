@@ -1,257 +1,303 @@
 {
-  "spans" : [ ],
-  "frames" : [ ],
+  "spans" : [ {
+    "spanId" : "spn:1",
+    "parentSpanId" : "null",
+    "methodId" : "m:ch.epfl.printwizard.examples.main.main(String[]):void",
+    "startEventId" : "eve:1",
+    "endEventId" : "eve:20",
+    "startLoc" : {
+      "sourceId" : "src:/C:/Users/kelvi/GitHub/master-thesis/Backend/Examples/src/main/java/ch/epfl/printwizard/examples/Main.java",
+      "line" : 5
+    },
+    "endLoc" : {
+      "sourceId" : "src:/C:/Users/kelvi/GitHub/master-thesis/Backend/Examples/src/main/java/ch/epfl/printwizard/examples/Main.java",
+      "line" : 45
+    }
+  } ],
+  "frames" : [ {
+    "frameId" : "frm:1",
+    "spanId" : "spn:1",
+    "methodId" : "m:ch.epfl.printwizard.examples.main.main(String[]):void",
+    "thisRef" : null,
+    "args" : [ {
+      "name" : "args",
+      "value" : [ ],
+      "type" : "String[]"
+    } ]
+  } ],
   "events" : [ {
-    "type" : "LOCAL",
+    "type" : "CALL",
     "eventId" : "eve:1",
-    "spanId" : "spanId",
-    "frameId" : "frameId",
+    "spanId" : "spn:1",
+    "frameId" : "frm:1",
     "location" : {
-      "sourceId" : "TraceOut.java",
-      "line" : 28
+      "sourceId" : "src:/C:/Users/kelvi/GitHub/master-thesis/Backend/Examples/src/main/java/ch/epfl/printwizard/examples/Main.java",
+      "line" : 5
+    },
+    "callerMethodId" : "null",
+    "calleeMethodId" : "m:ch.epfl.printwizard.examples.main.main(String[]):void",
+    "name" : "main"
+  }, {
+    "type" : "LOCAL",
+    "eventId" : "eve:2",
+    "spanId" : "ctx.spanId()",
+    "frameId" : "ctx.frameId()",
+    "location" : {
+      "sourceId" : "/C:/Users/kelvi/GitHub/master-thesis/Backend/Examples/src/main/java/ch/epfl/printwizard/examples/Main.java",
+      "line" : 6
     },
     "owner" : "owner",
-    "method" : "method",
+    "method" : "ctx.methodId()",
     "varName" : "i@6",
     "index" : -1,
     "value" : 1
   }, {
     "type" : "LOCAL",
-    "eventId" : "eve:2",
-    "spanId" : "spanId",
-    "frameId" : "frameId",
+    "eventId" : "eve:3",
+    "spanId" : "ctx.spanId()",
+    "frameId" : "ctx.frameId()",
     "location" : {
-      "sourceId" : "TraceOut.java",
-      "line" : 28
+      "sourceId" : "/C:/Users/kelvi/GitHub/master-thesis/Backend/Examples/src/main/java/ch/epfl/printwizard/examples/Main.java",
+      "line" : 7
     },
     "owner" : "owner",
-    "method" : "method",
+    "method" : "ctx.methodId()",
     "varName" : "i@7",
     "index" : -1,
     "value" : 4
   }, {
     "type" : "LOCAL",
-    "eventId" : "eve:3",
-    "spanId" : "spanId",
-    "frameId" : "frameId",
+    "eventId" : "eve:4",
+    "spanId" : "ctx.spanId()",
+    "frameId" : "ctx.frameId()",
     "location" : {
-      "sourceId" : "TraceOut.java",
-      "line" : 28
+      "sourceId" : "/C:/Users/kelvi/GitHub/master-thesis/Backend/Examples/src/main/java/ch/epfl/printwizard/examples/Main.java",
+      "line" : 8
     },
     "owner" : "owner",
-    "method" : "method",
+    "method" : "ctx.methodId()",
     "varName" : "j@8",
     "index" : -1,
     "value" : 0
   }, {
     "type" : "LOCAL",
-    "eventId" : "eve:4",
-    "spanId" : "spanId",
-    "frameId" : "frameId",
+    "eventId" : "eve:5",
+    "spanId" : "ctx.spanId()",
+    "frameId" : "ctx.frameId()",
     "location" : {
-      "sourceId" : "TraceOut.java",
-      "line" : 28
+      "sourceId" : "/C:/Users/kelvi/GitHub/master-thesis/Backend/Examples/src/main/java/ch/epfl/printwizard/examples/Main.java",
+      "line" : 16
     },
     "owner" : "owner",
-    "method" : "method",
+    "method" : "ctx.methodId()",
     "varName" : "j@16",
     "index" : -1,
     "value" : 1
   }, {
     "type" : "LOCAL",
-    "eventId" : "eve:5",
-    "spanId" : "spanId",
-    "frameId" : "frameId",
+    "eventId" : "eve:6",
+    "spanId" : "ctx.spanId()",
+    "frameId" : "ctx.frameId()",
     "location" : {
-      "sourceId" : "TraceOut.java",
-      "line" : 28
+      "sourceId" : "/C:/Users/kelvi/GitHub/master-thesis/Backend/Examples/src/main/java/ch/epfl/printwizard/examples/Main.java",
+      "line" : 18
     },
     "owner" : "owner",
-    "method" : "method",
+    "method" : "ctx.methodId()",
     "varName" : "j@18",
     "index" : -1,
     "value" : 6
   }, {
     "type" : "LOCAL",
-    "eventId" : "eve:6",
-    "spanId" : "spanId",
-    "frameId" : "frameId",
+    "eventId" : "eve:7",
+    "spanId" : "ctx.spanId()",
+    "frameId" : "ctx.frameId()",
     "location" : {
-      "sourceId" : "TraceOut.java",
-      "line" : 28
+      "sourceId" : "/C:/Users/kelvi/GitHub/master-thesis/Backend/Examples/src/main/java/ch/epfl/printwizard/examples/Main.java",
+      "line" : 19
     },
     "owner" : "owner",
-    "method" : "method",
+    "method" : "ctx.methodId()",
     "varName" : "j@19",
     "index" : -1,
     "value" : 10
   }, {
     "type" : "LOCAL",
-    "eventId" : "eve:7",
-    "spanId" : "spanId",
-    "frameId" : "frameId",
+    "eventId" : "eve:8",
+    "spanId" : "ctx.spanId()",
+    "frameId" : "ctx.frameId()",
     "location" : {
-      "sourceId" : "TraceOut.java",
-      "line" : 28
+      "sourceId" : "/C:/Users/kelvi/GitHub/master-thesis/Backend/Examples/src/main/java/ch/epfl/printwizard/examples/Main.java",
+      "line" : 21
     },
     "owner" : "owner",
-    "method" : "method",
+    "method" : "ctx.methodId()",
     "varName" : "j@21",
     "index" : -1,
     "value" : 7
   }, {
     "type" : "LOCAL",
-    "eventId" : "eve:8",
-    "spanId" : "spanId",
-    "frameId" : "frameId",
+    "eventId" : "eve:9",
+    "spanId" : "ctx.spanId()",
+    "frameId" : "ctx.frameId()",
     "location" : {
-      "sourceId" : "TraceOut.java",
-      "line" : 28
+      "sourceId" : "/C:/Users/kelvi/GitHub/master-thesis/Backend/Examples/src/main/java/ch/epfl/printwizard/examples/Main.java",
+      "line" : 22
     },
     "owner" : "owner",
-    "method" : "method",
+    "method" : "ctx.methodId()",
     "varName" : "j@22",
     "index" : -1,
     "value" : 6
   }, {
     "type" : "LOCAL",
-    "eventId" : "eve:9",
-    "spanId" : "spanId",
-    "frameId" : "frameId",
+    "eventId" : "eve:10",
+    "spanId" : "ctx.spanId()",
+    "frameId" : "ctx.frameId()",
     "location" : {
-      "sourceId" : "TraceOut.java",
-      "line" : 28
+      "sourceId" : "/C:/Users/kelvi/GitHub/master-thesis/Backend/Examples/src/main/java/ch/epfl/printwizard/examples/Main.java",
+      "line" : 24
     },
     "owner" : "owner",
-    "method" : "method",
+    "method" : "ctx.methodId()",
     "varName" : "r@24",
     "index" : -1,
     "value" : 3.4
   }, {
     "type" : "LOCAL",
-    "eventId" : "eve:10",
-    "spanId" : "spanId",
-    "frameId" : "frameId",
+    "eventId" : "eve:11",
+    "spanId" : "ctx.spanId()",
+    "frameId" : "ctx.frameId()",
     "location" : {
-      "sourceId" : "TraceOut.java",
-      "line" : 28
+      "sourceId" : "/C:/Users/kelvi/GitHub/master-thesis/Backend/Examples/src/main/java/ch/epfl/printwizard/examples/Main.java",
+      "line" : 25
     },
     "owner" : "owner",
-    "method" : "method",
+    "method" : "ctx.methodId()",
     "varName" : "r@25",
     "index" : -1,
     "value" : 4.6
   }, {
     "type" : "LOCAL",
-    "eventId" : "eve:11",
-    "spanId" : "spanId",
-    "frameId" : "frameId",
+    "eventId" : "eve:12",
+    "spanId" : "ctx.spanId()",
+    "frameId" : "ctx.frameId()",
     "location" : {
-      "sourceId" : "TraceOut.java",
-      "line" : 28
+      "sourceId" : "/C:/Users/kelvi/GitHub/master-thesis/Backend/Examples/src/main/java/ch/epfl/printwizard/examples/Main.java",
+      "line" : 26
     },
     "owner" : "owner",
-    "method" : "method",
+    "method" : "ctx.methodId()",
     "varName" : "r@26",
     "index" : -1,
     "value" : 14.719999999999999
   }, {
     "type" : "LOCAL",
-    "eventId" : "eve:12",
-    "spanId" : "spanId",
-    "frameId" : "frameId",
+    "eventId" : "eve:13",
+    "spanId" : "ctx.spanId()",
+    "frameId" : "ctx.frameId()",
     "location" : {
-      "sourceId" : "TraceOut.java",
-      "line" : 28
+      "sourceId" : "/C:/Users/kelvi/GitHub/master-thesis/Backend/Examples/src/main/java/ch/epfl/printwizard/examples/Main.java",
+      "line" : 27
     },
     "owner" : "owner",
-    "method" : "method",
+    "method" : "ctx.methodId()",
     "varName" : "i@27",
     "index" : -1,
     "value" : 0
   }, {
     "type" : "LOCAL",
-    "eventId" : "eve:13",
-    "spanId" : "spanId",
-    "frameId" : "frameId",
+    "eventId" : "eve:14",
+    "spanId" : "ctx.spanId()",
+    "frameId" : "ctx.frameId()",
     "location" : {
-      "sourceId" : "TraceOut.java",
+      "sourceId" : "/C:/Users/kelvi/GitHub/master-thesis/Backend/Examples/src/main/java/ch/epfl/printwizard/examples/Main.java",
       "line" : 28
     },
     "owner" : "owner",
-    "method" : "method",
+    "method" : "ctx.methodId()",
     "varName" : "l@28",
     "index" : -1,
     "value" : 2
   }, {
     "type" : "LOCAL",
-    "eventId" : "eve:14",
-    "spanId" : "spanId",
-    "frameId" : "frameId",
+    "eventId" : "eve:15",
+    "spanId" : "ctx.spanId()",
+    "frameId" : "ctx.frameId()",
     "location" : {
-      "sourceId" : "TraceOut.java",
-      "line" : 28
+      "sourceId" : "/C:/Users/kelvi/GitHub/master-thesis/Backend/Examples/src/main/java/ch/epfl/printwizard/examples/Main.java",
+      "line" : 29
     },
     "owner" : "owner",
-    "method" : "method",
+    "method" : "ctx.methodId()",
     "varName" : "l@29",
     "index" : -1,
     "value" : 3
   }, {
     "type" : "LOCAL",
-    "eventId" : "eve:15",
-    "spanId" : "spanId",
-    "frameId" : "frameId",
+    "eventId" : "eve:16",
+    "spanId" : "ctx.spanId()",
+    "frameId" : "ctx.frameId()",
     "location" : {
-      "sourceId" : "TraceOut.java",
-      "line" : 28
+      "sourceId" : "/C:/Users/kelvi/GitHub/master-thesis/Backend/Examples/src/main/java/ch/epfl/printwizard/examples/Main.java",
+      "line" : 30
     },
     "owner" : "owner",
-    "method" : "method",
+    "method" : "ctx.methodId()",
     "varName" : "f@30",
     "index" : -1,
     "value" : 1.2
   }, {
     "type" : "LOCAL",
-    "eventId" : "eve:16",
-    "spanId" : "spanId",
-    "frameId" : "frameId",
+    "eventId" : "eve:17",
+    "spanId" : "ctx.spanId()",
+    "frameId" : "ctx.frameId()",
     "location" : {
-      "sourceId" : "TraceOut.java",
-      "line" : 28
+      "sourceId" : "/C:/Users/kelvi/GitHub/master-thesis/Backend/Examples/src/main/java/ch/epfl/printwizard/examples/Main.java",
+      "line" : 31
     },
     "owner" : "owner",
-    "method" : "method",
+    "method" : "ctx.methodId()",
     "varName" : "f@31",
     "index" : -1,
     "value" : 2.4
   }, {
     "type" : "LOCAL",
-    "eventId" : "eve:17",
-    "spanId" : "spanId",
-    "frameId" : "frameId",
+    "eventId" : "eve:18",
+    "spanId" : "ctx.spanId()",
+    "frameId" : "ctx.frameId()",
     "location" : {
-      "sourceId" : "TraceOut.java",
-      "line" : 28
+      "sourceId" : "/C:/Users/kelvi/GitHub/master-thesis/Backend/Examples/src/main/java/ch/epfl/printwizard/examples/Main.java",
+      "line" : 33
     },
     "owner" : "owner",
-    "method" : "method",
+    "method" : "ctx.methodId()",
     "varName" : "test1@33",
     "index" : -1,
     "value" : 3
   }, {
     "type" : "LOCAL",
-    "eventId" : "eve:18",
-    "spanId" : "spanId",
-    "frameId" : "frameId",
+    "eventId" : "eve:19",
+    "spanId" : "ctx.spanId()",
+    "frameId" : "ctx.frameId()",
     "location" : {
-      "sourceId" : "TraceOut.java",
-      "line" : 28
+      "sourceId" : "/C:/Users/kelvi/GitHub/master-thesis/Backend/Examples/src/main/java/ch/epfl/printwizard/examples/Main.java",
+      "line" : 34
     },
     "owner" : "owner",
-    "method" : "method",
+    "method" : "ctx.methodId()",
     "varName" : "test@34",
     "index" : -1,
     "value" : 0.33333334
+  }, {
+    "type" : "RETURN",
+    "eventId" : "eve:20",
+    "spanId" : "spn:1",
+    "frameId" : "frm:1",
+    "location" : {
+      "sourceId" : "src:/C:/Users/kelvi/GitHub/master-thesis/Backend/Examples/src/main/java/ch/epfl/printwizard/examples/Main.java",
+      "line" : 45
+    },
+    "returnValue" : "1"
   } ]
 }

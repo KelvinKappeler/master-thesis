@@ -11,6 +11,7 @@ import com.sun.tools.javac.tree.JCTree;
 import com.sun.tools.javac.tree.TreeMaker;
 import com.sun.tools.javac.tree.TreeTranslator;
 import com.sun.tools.javac.util.Context;
+import com.sun.tools.javac.util.List;
 import com.sun.tools.javac.util.Names;
 import com.sun.tools.javac.model.JavacElements;
 
@@ -64,49 +65,92 @@ public class TracingTranslator extends TreeTranslator {
         super.visitClassDef(jcClassDecl);
     }
 
-    /*@Override
+    @Override
     public void visitMethodDef(JCTree.JCMethodDecl jcMethodDecl) {
+        int startLine = cu.getLineMap().getLineNumber(jcMethodDecl.pos);
         JavaFileObject sfo = cu.getSourceFile();
         String sourcePath = (sfo != null ? sfo.toUri().getPath() : jcMethodDecl.name.toString());
-        String sourceId = "src:" + sourcePath;
+        String sourceId = Ids.createSourceId(sourcePath);
+        String owner = cu.packge != null ? cu.packge + "." + jcMethodDecl.getName().toString() : jcMethodDecl.getName().toString();
+        String returnType = (jcMethodDecl.getReturnType() != null) ? jcMethodDecl.getReturnType().toString() : "void";
 
-        int startPos = jcMethodDecl.getStartPosition();
-        int endPos = jcMethodDecl.getPreferredPosition();
-        if (cu.endPositions != null) {
+        JCTree.JCExpression argsArrayExpr = makeArgArrayExpr(jcMethodDecl, jcMethodDecl.pos);
+
+        JCTree.JCStatement enterCall = mk.Exec(
+            callStatic("ch.epfl.printwizard.plugin.logging.TraceOut", "onEnter",
+                List.of(
+                    mk.Literal(owner),
+                    mk.Literal(jcMethodDecl.getName().toString()),
+                    argsArrayExpr,
+                    mk.Literal(returnType),
+                    makeTraceLocExpr(new TraceLoc(sourceId, startLine), jcMethodDecl.pos)
+                ),
+                jcMethodDecl.pos
+            )
+        );
+
+        JCTree.JCBlock originalBody = jcMethodDecl.getBody();
+        if (originalBody != null) {
             int ep = jcMethodDecl.getEndPosition(cu.endPositions);
-            if (ep >= 0) endPos = ep;
+            int endLine = cu.getLineMap().getLineNumber(ep);
+            if (endLine == 0) endLine = startLine;
+
+            JCTree.JCStatement exitCall = mk.Exec(
+                callStatic("ch.epfl.printwizard.plugin.logging.TraceOut", "onReturn",
+                    List.of(mk.Literal("1"), makeTraceLocExpr(new TraceLoc(sourceId, endLine), ep)),
+                    ep
+                )
+            );
+
+            boolean isConstructor = jcMethodDecl.name.contentEquals("<init>");
+
+            if (isConstructor) {
+                List<JCTree.JCStatement> origStmts = originalBody.getStatements();
+
+                JCTree.JCStatement superOrThisStmt = null;
+                List<JCTree.JCStatement> rest = origStmts;
+                if (!origStmts.isEmpty()) {
+                    JCTree.JCStatement first = origStmts.getFirst();
+                    boolean firstIsCtorCall =
+                        first instanceof JCTree.JCExpressionStatement es
+                        && es.expr instanceof JCTree.JCMethodInvocation mi
+                        && (mi.meth.toString().equals("super") || mi.meth.toString().equals("this"));
+                    if (firstIsCtorCall) {
+                        superOrThisStmt = first;
+                        rest = origStmts.tail;
+                    }
+                }
+
+                if (superOrThisStmt == null) {
+                    mk.at(jcMethodDecl.pos);
+                    JCTree.JCExpression superIdent = mk.Ident(names._super);
+                    JCTree.JCExpression superCall = mk.Apply(List.nil(), superIdent, List.nil());
+                    superOrThisStmt = mk.Exec(superCall);
+                }
+
+                List<JCTree.JCStatement> newStmts = List.of(superOrThisStmt, enterCall).appendList(rest).append(exitCall);
+
+                jcMethodDecl.body = mk.Block(0, newStmts);
+            } else {
+                JCTree.JCBlock tryBlock = mk.Block(0, originalBody.getStatements());
+                JCTree.JCBlock finallyBlock = mk.Block(0, List.of(exitCall));
+                JCTree.JCTry tryFinally = mk.Try(tryBlock, List.nil(), finallyBlock);
+
+                jcMethodDecl.body = mk.Block(0, List.of(enterCall, tryFinally));
+            }
         }
 
-        int startLine = cu.getLineMap() != null ? cu.getLineMap().getLineNumber(startPos) : 1;
-        int endLine = cu.getLineMap() != null ? cu.getLineMap().getLineNumber(endPos) : startLine;
-
-        String methodId = "testMethodId";
-
-        String spanId = Ids.nextSpanId();
-        TraceLoc start = new TraceLoc(sourceId, startLine);
-        TraceLoc end = new TraceLoc(sourceId, Math.max(startLine, endLine));
-
-        TraceSpan span = new TraceSpan(spanId, "null", methodId, "null", "null", start, end, "OK");
-
-        OutputManager.getTraceFileBuilder().addSpan(span);
-
         super.visitMethodDef(jcMethodDecl);
-    }*/
+    }
 
     // Example : int i = 3;
     @Override
     public void visitVarDef(JCTree.JCVariableDecl jcVariableDecl) {
         if (jcVariableDecl.init != null) {
             int line = cu.getLineMap().getLineNumber(jcVariableDecl.pos);
-            jcVariableDecl.init = callStatic(
-                "ch.epfl.printwizard.plugin.logging.TraceOut",
-                "recordLocalEvent",
-                java.util.List.of(
-                        mk.Literal(jcVariableDecl.getName().toString() + "@" + line),
-                        jcVariableDecl.init
-                ),
-                jcVariableDecl.pos
-            );
+
+            TraceLoc loc = new TraceLoc(cu.getSourceFile().toUri().getPath(), line);
+            jcVariableDecl.init = callRecordLocalEvent(jcVariableDecl.getName().toString() + "@" + line, jcVariableDecl.init, loc, jcVariableDecl.pos);
         }
         super.visitVarDef(jcVariableDecl);
     }
@@ -115,15 +159,10 @@ public class TracingTranslator extends TreeTranslator {
     @Override
     public void visitAssign(JCTree.JCAssign jcAssign) {
         int line = cu.getLineMap().getLineNumber(jcAssign.pos);
-        jcAssign.rhs = callStatic(
-            "ch.epfl.printwizard.plugin.logging.TraceOut",
-            "recordLocalEvent",
-            java.util.List.of(
-                    mk.Literal(jcAssign.lhs.toString() + "@" + line),
-                    jcAssign.rhs
-            ),
-            jcAssign.pos
-        );
+
+        TraceLoc loc = new TraceLoc(cu.getSourceFile().toUri().getPath(), line);
+        jcAssign.rhs = callRecordLocalEvent(jcAssign.lhs.toString() + "@" + line, jcAssign.rhs, loc, jcAssign.pos);
+
         super.visitAssign(jcAssign);
     }
 
@@ -140,15 +179,8 @@ public class TracingTranslator extends TreeTranslator {
         String lhsLabel = lhs.toString();
         int line = cu.getLineMap().getLineNumber(jcAssignOp.pos);
 
-        JCTree.JCExpression modifiedRhs = callStatic(
-            "ch.epfl.printwizard.plugin.logging.TraceOut",
-            "recordLocalEvent",
-            java.util.List.of(
-                    mk.Literal(lhsLabel + "@" + line),
-                    bin
-            ),
-            jcAssignOp.pos
-        );
+        TraceLoc loc = new TraceLoc(cu.getSourceFile().toUri().getPath(), line);
+        JCTree.JCExpression modifiedRhs = callRecordLocalEvent(lhsLabel + "@" + line, bin, loc, jcAssignOp.pos);
 
         result = mk.Assign(lhs, modifiedRhs);
     }
@@ -183,4 +215,55 @@ public class TracingTranslator extends TreeTranslator {
         };
     }
 
+    private JCTree.JCMethodInvocation callRecordLocalEvent(String label, JCTree.JCExpression value, TraceLoc loc, int pos) {
+        return callStatic(
+            "ch.epfl.printwizard.plugin.logging.TraceOut",
+            "recordLocalEvent",
+            java.util.List.of(mk.Literal(label), value, makeTraceLocExpr(loc, pos)),
+            pos
+        );
+    }
+
+    private JCTree.JCExpression makeTraceLocExpr(TraceLoc loc, int pos) {
+        String traceLocFqn = "ch.epfl.printwizard.plugin.model.trace.TraceLoc";
+        Symbol.ClassSymbol traceLocSym = elements.getTypeElement(traceLocFqn);
+
+        mk.at(pos);
+        return mk.NewClass(
+            null,
+            List.nil(),
+            traceLocSym != null ? mk.Ident(traceLocSym) : mk.Ident(names.fromString(traceLocFqn)),
+            List.of(mk.Literal(loc.sourceId()), mk.Literal(loc.line())),
+            null
+        );
+    }
+
+    private JCTree.JCExpression makeArgArrayExpr(JCTree.JCMethodDecl md, int pos) {
+        String argFqn = "ch.epfl.printwizard.plugin.model.trace.Arg";
+        Symbol.ClassSymbol argSym = elements.getTypeElement(argFqn);
+
+        mk.at(pos);
+
+        java.util.List<JCTree.JCExpression> argInits = new java.util.ArrayList<>();
+        for (JCTree.JCVariableDecl param : md.getParameters()) {
+            String paramName = param.getName().toString();
+            String paramTypeStr = param.vartype.toString();
+
+            JCTree.JCExpression paramIdent = mk.Ident(param.getName());
+
+            JCTree.JCExpression newArg = mk.NewClass(
+                null,
+                List.nil(),
+                argSym != null ? mk.Ident(argSym) : mk.Ident(names.fromString(argFqn)),
+                List.of(mk.Literal(paramName), paramIdent, mk.Literal(paramTypeStr)),
+                null
+            );
+
+            argInits.add(newArg);
+        }
+
+        JCTree.JCExpression argTypeExpr = argSym != null ? mk.Ident(argSym) : mk.Ident(names.fromString(argFqn));
+
+        return mk.NewArray(argTypeExpr, List.nil(), List.from(argInits));
+    }
 }
