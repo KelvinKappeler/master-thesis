@@ -1,0 +1,9 @@
+{
+  "version" : "1.0.0",
+  "generatedAt" : "2025-11-03T16:42:24.242016700",
+  "fileLocations" : {
+    "programFilePath" : "program.json",
+    "traceFilePath" : "trace.json",
+    "indexFilePath" : "index.json"
+  }
+}

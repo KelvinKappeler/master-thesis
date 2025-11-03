@@ -1,10 +1,8 @@
 package ch.epfl.printwizard.plugin.tracing;
 
-import ch.epfl.printwizard.plugin.logging.Ids;
-import ch.epfl.printwizard.plugin.logging.OutputManager;
+import ch.epfl.printwizard.plugin.utils.Ids;
 import ch.epfl.printwizard.plugin.model.trace.TraceFile;
 import ch.epfl.printwizard.plugin.model.trace.TraceLoc;
-import ch.epfl.printwizard.plugin.model.trace.TraceSpan;
 import com.sun.tools.javac.api.JavacTrees;
 import com.sun.tools.javac.code.Symbol;
 import com.sun.tools.javac.tree.JCTree;
@@ -143,6 +141,30 @@ public class TracingTranslator extends TreeTranslator {
         super.visitMethodDef(jcMethodDecl);
     }
 
+    @Override
+    public void visitBinary(JCTree.JCBinary jcBinary) {
+        super.visitBinary(jcBinary);
+
+        if (!isArithmetic(jcBinary.getTag())) return;
+
+        int line = cu.getLineMap().getLineNumber(jcBinary.pos);
+        JCTree.JCExpression locExpr = makeTraceLocExpr(new TraceLoc(cu.getSourceFile().toUri().getPath(), line), jcBinary.pos);
+        JCTree.JCExpression recomputed = mk.Binary(jcBinary.getTag(), jcBinary.lhs, jcBinary.rhs);
+
+        result = callStatic(
+            "ch.epfl.printwizard.plugin.logging.TraceOut",
+            "recordArithmetic",
+            java.util.List.of(
+                mk.Literal(jcBinary.getTag().toString()),
+                jcBinary.lhs,
+                jcBinary.rhs,
+                recomputed,
+                locExpr
+            ),
+            jcBinary.pos
+        );
+    }
+
     // Example : int i = 3;
     @Override
     public void visitVarDef(JCTree.JCVariableDecl jcVariableDecl) {
@@ -265,5 +287,13 @@ public class TracingTranslator extends TreeTranslator {
         JCTree.JCExpression argTypeExpr = argSym != null ? mk.Ident(argSym) : mk.Ident(names.fromString(argFqn));
 
         return mk.NewArray(argTypeExpr, List.nil(), List.from(argInits));
+    }
+
+    private boolean isArithmetic(JCTree.Tag tag) {
+        return tag == JCTree.Tag.PLUS
+            || tag == JCTree.Tag.MINUS
+            || tag == JCTree.Tag.MUL
+            || tag == JCTree.Tag.DIV
+            || tag == JCTree.Tag.MOD;
     }
 }

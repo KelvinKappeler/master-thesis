@@ -1,10 +1,8 @@
 package ch.epfl.printwizard.plugin.logging;
 
 import ch.epfl.printwizard.plugin.model.trace.*;
-import ch.epfl.printwizard.plugin.model.trace.events.CallEvent;
-import ch.epfl.printwizard.plugin.model.trace.events.LocalEvent;
-import ch.epfl.printwizard.plugin.model.trace.events.ReturnEvent;
-import ch.epfl.printwizard.plugin.model.trace.events.TraceEvent;
+import ch.epfl.printwizard.plugin.model.trace.events.*;
+import ch.epfl.printwizard.plugin.utils.Ids;
 
 import java.util.*;
 
@@ -67,16 +65,27 @@ public class TraceOut {
         FrameCtx ctx = currentFrameCtx();
 
         addEvent(new LocalEvent(
-            Ids.nextEventId(), "ctx.spanId()", "ctx.frameId()", loc, "owner", "ctx.methodId()", label, -1, value
+            Ids.nextEventId(), ctx.spanId(), ctx.frameId(), loc, "owner", ctx.methodId(), label, -1, value
         ));
 
         return value;
     }
 
+    @SuppressWarnings("unused")
+    public static Object recordArithmetic(String op, Object left, Object right, Object result, TraceLoc loc) {
+        FrameCtx ctx = currentFrameCtx();
+
+        addEvent(new ArithmeticEvent(
+            Ids.nextEventId(), ctx.spanId(), ctx.frameId(), loc, op, left, right, result
+        ));
+
+        return result;
+    }
+
     private static void addEvent(TraceEvent event)
     {
         OutputManager.getTraceFileBuilder().addEvent(event);
-        //indexFileBuilder.addEvent(event);
+        OutputManager.getIndexFileBuilder().addEvent(event);
 
         //var bs = BLOCKS.get();
         //if (!bs.isEmpty()) {

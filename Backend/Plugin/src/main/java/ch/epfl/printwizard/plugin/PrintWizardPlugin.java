@@ -1,6 +1,6 @@
 package ch.epfl.printwizard.plugin;
 
-import ch.epfl.printwizard.plugin.model.trace.TraceFileJson;
+import ch.epfl.printwizard.plugin.utils.JsonManager;
 import ch.epfl.printwizard.plugin.tracing.TracingTranslator;
 import com.sun.source.util.*;
 import com.sun.tools.javac.api.BasicJavacTask;
@@ -39,7 +39,7 @@ public class PrintWizardPlugin implements Plugin {
                 tracingTranslator.translate();
 
                 try {
-                    TraceFileJson.write("test.json", tracingTranslator.getTraceFile());
+                    JsonManager.write("test.json", tracingTranslator.getTraceFile());
                 } catch (IOException ex) {
                     System.err.println("Error writing trace file: " + ex.getMessage());
                 }
