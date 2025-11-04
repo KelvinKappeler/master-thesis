@@ -187,7 +187,7 @@ public class TracingTranslator extends TreeTranslator {
 
         super.visitAssign(jcAssign);
     }
-
+    
     // Example : i += 3;
     @Override
     public void visitAssignop(JCTree.JCAssignOp jcAssignOp) {

@@ -72,7 +72,7 @@ public class TraceOut {
     }
 
     @SuppressWarnings("unused")
-    public static Object recordArithmetic(String op, Object left, Object right, Object result, TraceLoc loc) {
+    public static <T> T recordArithmetic(String op, Object left, Object right, T result, TraceLoc loc) {
         FrameCtx ctx = currentFrameCtx();
 
         addEvent(new ArithmeticEvent(
