@@ -4,36 +4,37 @@ import ch.epfl.printwizard.plugin.model.trace.TraceLoc;
 import ch.epfl.printwizard.plugin.utils.Preconditions;
 
 /**
- * A ConditionEvent represents an event where a condition is evaluated.
+ * A ComparisonEvent represents an event where a comparison operation is performed.
  * @param eventId the unique identifier of the event
  * @param spanId the identifier of the span this event belongs to
  * @param frameId the identifier of the frame this event belongs to
  * @param location the location in the source code where the event occurred
- * @param conditionEventIds the identifiers of any related condition events
- * @param thenEventIds the identifiers of events executed if the condition is true
- * @param elseEventIds the identifiers of events executed if the condition is false
+ * @param operator the comparison operator used
+ * @param left the left operand involved in the comparison
+ * @param right the right operand involved in the comparison
+ * @param result the result of the comparison
  */
-public record ConditionEvent(
-    String eventId,
-    String spanId,
-    String frameId,
-    TraceLoc location,
-    String[] conditionEventIds,
-    String[] thenEventIds,
-    String[] elseEventIds
+public record ComparisonEvent(
+        String eventId,
+        String spanId,
+        String frameId,
+        TraceLoc location,
+        String operator,
+        Object left,
+        Object right,
+        boolean result
 ) implements TraceEvent {
 
-    public ConditionEvent {
+    public ComparisonEvent {
         Preconditions.requireNonNull(eventId, "eventId is null");
         Preconditions.requireNonNull(spanId, "spanId is null");
         Preconditions.requireNonNull(frameId, "frameId is null");
         Preconditions.requireNonNull(location, "location is null");
-        Preconditions.requireNonNull(conditionEventIds, "conditionEventIds is null");
-        Preconditions.requireNonNull(thenEventIds, "thenEventIds is null");
-        Preconditions.requireNonNull(elseEventIds, "elseEventIds is null");
+        Preconditions.requireNonNull(operator, "operator is null");
         Preconditions.require(!eventId.isEmpty(), "eventId is empty");
         Preconditions.require(!spanId.isEmpty(), "spanId is empty");
         Preconditions.require(!frameId.isEmpty(), "frameId is empty");
+        Preconditions.require(!operator.isEmpty(), "operator is empty");
     }
 
 }

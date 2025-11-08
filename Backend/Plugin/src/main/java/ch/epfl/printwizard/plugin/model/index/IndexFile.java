@@ -72,12 +72,6 @@ public record IndexFile(
             if (event.spanId() != null) {
                 bySpan.computeIfAbsent(event.spanId(), k -> Collections.synchronizedList(new ArrayList<>()))
                         .add(event.eventId());
-
-                if (event instanceof ConditionEvent conditionEvent) {
-                    for (String eId : conditionEvent.bodyEventIds()) {
-                        bySpan.computeIfAbsent(event.spanId(), k -> Collections.synchronizedList(new ArrayList<>())).remove(eId);
-                    }
-                }
             }
         }
 

@@ -14,6 +14,7 @@ public class TraceOut {
 
     private static final ThreadLocal<Deque<FrameCtx>> STACK = ThreadLocal.withInitial(ArrayDeque::new);
     private static final ThreadLocal<Deque<BlockCtx>> BLOCKS = ThreadLocal.withInitial(ArrayDeque::new);
+    private static final ThreadLocal<Deque<CondBlockCtx>> COND_BLOCKS = ThreadLocal.withInitial(ArrayDeque::new);
 
     private TraceOut() {}
 
@@ -75,16 +76,15 @@ public class TraceOut {
     }
 
     @SuppressWarnings("unused")
-    public static String recordCondition(Object left, Object right, boolean result, String sourceId, int line) {
+    public static boolean recordComparison(String op, Object left, Object right, boolean result, String sourceId, int line) {
         FrameCtx ctx = currentFrameCtx();
-        String eventId = Ids.nextEventId();
         TraceLoc loc = new TraceLoc(sourceId, line);
 
-        addEvent(new ConditionEvent(
-            eventId, ctx.spanId(), ctx.frameId(), loc, left, right, result, new String[0], new String[0]
+        addEvent(new ComparisonEvent(
+            Ids.nextEventId(), ctx.spanId(), ctx.frameId(), loc, op, left, right, result
         ));
 
-        return eventId;
+        return result;
     }
 
     @SuppressWarnings("unused")
@@ -105,14 +105,82 @@ public class TraceOut {
         patchBlockEvents(parentEventId, block.eventIds());
     }
 
+    @SuppressWarnings("unused")
+    public static String beginCondition(String sourceId, int line) {
+        FrameCtx ctx = currentFrameCtx();
+        String eventId = Ids.nextEventId();
+        TraceLoc loc = new TraceLoc(sourceId, line);
+
+        addEvent(new ConditionEvent(eventId, ctx.spanId(), ctx.frameId(), loc, new String[0], new String[0], new String[0]));
+
+        COND_BLOCKS.get().push(new CondBlockCtx(eventId, new ArrayList<>(), new ArrayList<>(), new ArrayList<>()));
+
+        return eventId;
+    }
+
+    @SuppressWarnings("unused")
+    public static void endCondition(String conditionEventId) {
+        Deque<CondBlockCtx> stack = COND_BLOCKS.get();
+        if (stack.isEmpty()) return;
+
+        CondBlockCtx ctx = stack.pop();
+        if (!Objects.equals(ctx.conditionEventId(), conditionEventId)) {
+            throw new IllegalStateException("Invalid condition end");
+        }
+
+        patchCondition(conditionEventId, ctx.conditionEvents(), ctx.thenEvents(), ctx.elseEvents());
+    }
+
+    @SuppressWarnings("unused")
+    public static void beginThenBlock(String conditionEventId) {
+        BLOCKS.get().push(new BlockCtx(conditionEventId, new ArrayList<>()));
+    }
+
+    @SuppressWarnings("unused")
+    public static void endThenBlock(String conditionEventId) {
+        Deque<BlockCtx> blocks = BLOCKS.get();
+        if (blocks.isEmpty()) return;
+
+        BlockCtx block = blocks.pop();
+        if (!Objects.equals(block.parentEventId(), conditionEventId)) {
+            throw new IllegalStateException("Invalid then block end");
+        }
+
+        attachThenEvents(conditionEventId, block.eventIds());
+    }
+
+    @SuppressWarnings("unused")
+    public static void beginElseBlock(String conditionEventId) {
+        BLOCKS.get().push(new BlockCtx(conditionEventId, new ArrayList<>()));
+    }
+
+    @SuppressWarnings("unused")
+    public static void endElseBlock(String conditionEventId) {
+        Deque<BlockCtx> blocks = BLOCKS.get();
+        if (blocks.isEmpty()) return;
+
+        BlockCtx block = blocks.pop();
+        if (!Objects.equals(block.parentEventId(), conditionEventId)) {
+            throw new IllegalStateException("Invalid else block end");
+        }
+
+        attachElseEvents(conditionEventId, block.eventIds());
+    }
+
     private static void addEvent(TraceEvent event)
     {
         OutputManager.getTraceFileBuilder().addEvent(event);
         OutputManager.getIndexFileBuilder().addEvent(event);
 
-        var blocks = BLOCKS.get();
-        if (!blocks.isEmpty()) {
-            blocks.peek().eventIds().add(event.eventId());
+        var block = BLOCKS.get();
+        if (!block.isEmpty()) {
+            block.peek().eventIds().add(event.eventId());
+            return;
+        }
+        
+        var condBlock = COND_BLOCKS.get();
+        if (!condBlock.isEmpty()) {
+            condBlock.peek().conditionEvents().add(event.eventId());
         }
     }
 
@@ -142,8 +210,66 @@ public class TraceOut {
 
                 ConditionEvent patched = new ConditionEvent(
                     ce.eventId(), ce.spanId(), ce.frameId(), ce.location(),
-                    ce.left(), ce.right(), ce.result(),
-                    existingConditionIds, bodyEventsIds.toArray(String[]::new)
+                    existingConditionIds, existingConditionIds, bodyEventsIds.toArray(String[]::new)
+                );
+
+                events.set(i, patched);
+
+                return;
+            }
+        }
+    }
+
+    private static void patchCondition(String conditionEventId, List<String> condIds, List<String> thenIds, List<String> elseIds) {
+        TraceFile.Builder traceFileBuilder = OutputManager.getTraceFileBuilder();
+        List<TraceEvent> events = traceFileBuilder.getEvents();
+
+        for (int i = events.size() - 1; i >= 0; i--) {
+            TraceEvent e = events.get(i);
+            if (e instanceof ConditionEvent ce && ce.eventId().equals(conditionEventId)) {
+                ConditionEvent patched = new ConditionEvent(
+                    ce.eventId(), ce.spanId(), ce.frameId(), ce.location(),
+                    condIds.toArray(String[]::new), thenIds.toArray(String[]::new), elseIds.toArray(String[]::new)
+                );
+
+                events.set(i, patched);
+
+                return;
+            }
+        }
+    }
+
+    private static void attachThenEvents(String conditionEventId, List<String> thenIds) {
+        TraceFile.Builder traceFileBuilder = OutputManager.getTraceFileBuilder();
+        List<TraceEvent> events = traceFileBuilder.getEvents();
+
+        for (int i = events.size() - 1; i >= 0; i--) {
+            TraceEvent e = events.get(i);
+            if (e instanceof ConditionEvent ce && ce.eventId().equals(conditionEventId)) {
+                ConditionEvent patched = new ConditionEvent(
+                    ce.eventId(), ce.spanId(), ce.frameId(), ce.location(),
+                    ce.conditionEventIds(),
+                    thenIds.toArray(String[]::new),
+                    ce.elseEventIds()
+                );
+
+                events.set(i, patched);
+
+                return;
+            }
+        }
+    }
+
+    private static void attachElseEvents(String conditionEventId, List<String> elseIds) {
+        TraceFile.Builder traceFileBuilder = OutputManager.getTraceFileBuilder();
+        List<TraceEvent> events = traceFileBuilder.getEvents();
+
+        for (int i = events.size() - 1; i >= 0; i--) {
+            TraceEvent e = events.get(i);
+            if (e instanceof ConditionEvent ce && ce.eventId().equals(conditionEventId)) {
+                ConditionEvent patched = new ConditionEvent(
+                    ce.eventId(), ce.spanId(), ce.frameId(), ce.location(),
+                    ce.conditionEventIds(), ce.thenEventIds(), elseIds.toArray(String[]::new)
                 );
 
                 events.set(i, patched);

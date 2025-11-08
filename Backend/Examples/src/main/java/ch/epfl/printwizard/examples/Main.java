@@ -12,6 +12,19 @@ public class Main {
         if (i == 7) {
             System.out.println("The condition is true");
         }
+        else {
+            System.out.println("The condition is false");
+        }
+
+        if (i > 0) {
+            System.out.println("The condition is true and i > 0");
+        }
+        else if (i < 0) {
+            i -= 2;
+        }
+        else {
+            i += 3;
+        }
 
         /*
         if (i == 0) {

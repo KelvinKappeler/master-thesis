@@ -3,9 +3,7 @@ package ch.epfl.printwizard.plugin.tracing;
 import ch.epfl.printwizard.plugin.utils.Ids;
 import ch.epfl.printwizard.plugin.model.trace.TraceFile;
 import com.sun.tools.javac.api.JavacTrees;
-import com.sun.tools.javac.code.Symbol;
-import com.sun.tools.javac.code.TypeTag;
-import com.sun.tools.javac.code.Types;
+import com.sun.tools.javac.code.*;
 import com.sun.tools.javac.tree.JCTree;
 import com.sun.tools.javac.tree.TreeMaker;
 import com.sun.tools.javac.tree.TreeTranslator;
@@ -29,8 +27,11 @@ public class TracingTranslator extends TreeTranslator {
     private final JavacTrees trees;
     private final JavacElements elements;
     private final Types types;
+    private final Symtab symtab;
 
     private final TraceFile.Builder traceFileBuilder;
+
+    private Symbol.MethodSymbol currentMethod;
 
     public TracingTranslator(Context ctx, JCTree.JCCompilationUnit cu) {
         this.ctx = ctx;
@@ -41,6 +42,7 @@ public class TracingTranslator extends TreeTranslator {
         this.trees = JavacTrees.instance(ctx);
         this.elements = JavacElements.instance(ctx);
         this.types = Types.instance(ctx);
+        this.symtab = Symtab.instance(ctx);
 
         this.traceFileBuilder = new TraceFile.Builder();
     }
@@ -68,6 +70,9 @@ public class TracingTranslator extends TreeTranslator {
 
     @Override
     public void visitMethodDef(JCTree.JCMethodDecl jcMethodDecl) {
+        Symbol.MethodSymbol previousMethod = this.currentMethod;
+        this.currentMethod = jcMethodDecl.sym;
+
         int startLine = cu.getLineMap().getLineNumber(jcMethodDecl.pos);
         String owner = cu.packge != null ? cu.packge + "." + jcMethodDecl.getName().toString() : jcMethodDecl.getName().toString();
         String returnType = (jcMethodDecl.getReturnType() != null) ? jcMethodDecl.getReturnType().toString() : "void";
@@ -140,108 +145,172 @@ public class TracingTranslator extends TreeTranslator {
         }
 
         super.visitMethodDef(jcMethodDecl);
+
+        this.currentMethod = previousMethod;
     }
 
     @Override
     public void visitIf(JCTree.JCIf jcIf) {
+        JCTree.JCExpression condExpr = translate(jcIf.cond);
+        JCTree.JCStatement thenStmt = jcIf.thenpart == null ? mk.Block(0, List.nil()) : translate(jcIf.thenpart);
+        JCTree.JCStatement elseStmt = jcIf.elsepart == null ? null : translate(jcIf.elsepart);
+
         int line = cu.getLineMap().getLineNumber(jcIf.pos);
         String sourceId = getSourceId();
 
-        JCTree.JCExpression condExpr = translate(jcIf.cond);
+        // String __pw_cond_evt_<pos> = TraceOut.beginCondition(sourceId, line);
+        String condEvtVarNameStr = "__pw_cond_evt_" + jcIf.pos;
+        var condEvtVarName = names.fromString(condEvtVarNameStr);
 
-        String condVarNameStr = "__pw_cond_" + jcIf.pos;
-        var condVarName = names.fromString(condVarNameStr);
+        JCTree.JCExpression stringTypeTree = mk.QualIdent(symtab.stringType.tsym);
+        stringTypeTree.type = symtab.stringType;
 
-        // boolean __pw_cond_xxx = ...;
-        JCTree.JCVariableDecl condVar = mk.VarDef(
-            mk.Modifiers(0),
-            condVarName,
-            mk.TypeIdent(TypeTag.BOOLEAN),
-            condExpr
-        );
-
-        JCTree.JCMethodInvocation recCondCall = callStatic(
+        JCTree.JCMethodInvocation beginCondCall = callStatic(
             "ch.epfl.printwizard.plugin.logging.TraceOut",
-            "recordCondition",
-            List.of(
-                mk.Ident(condVarName),
-                mk.Literal(true),
-                mk.Ident(condVarName),
-                mk.Literal(sourceId),
-                mk.Literal(line)
-            ),
+            "beginCondition",
+            List.of(mk.Literal(sourceId), mk.Literal(line)),
             jcIf.pos
         );
 
-        // String __pw_cond_evt_xxx = TraceOut.recordCondition(...);
-        String condEvtVarNameStr = "__pw_cond_evt_" + jcIf.pos;
-        var condEvtVarName = names.fromString(condEvtVarNameStr);
-        JCTree.JCVariableDecl condEvtVar = mk.VarDef(
-            mk.Modifiers(0),
+        JCTree.JCVariableDecl condEvtVar = mk.VarDef(mk.Modifiers(Flags.SYNTHETIC), condEvtVarName, stringTypeTree, beginCondCall);
+        Symbol.VarSymbol condEvtSym = new Symbol.VarSymbol(
+            Flags.SYNTHETIC,
             condEvtVarName,
-            mk.Ident(elements.getTypeElement("java.lang.String")),
-            recCondCall
+            symtab.stringType,
+            (currentMethod != null ? currentMethod : symtab.noSymbol)
         );
+        condEvtVar.sym = condEvtSym;
+        condEvtVar.type = symtab.stringType;
 
-        JCTree.JCStatement thenStmt = jcIf.thenpart == null ? mk.Block(0, List.nil()) : translate(jcIf.thenpart);
+        // boolean __pw_cond_<pos> = <condition>;
+        String condVarNameStr = "__pw_cond_" + jcIf.pos;
+        var condVarName = names.fromString(condVarNameStr);
 
-        // TraceOut.beginBlock(__pw_cond_evt_xxx);
-        JCTree.JCStatement beginBlock = mk.Exec(
+        JCTree.JCExpression boolTypeTree = mk.TypeIdent(com.sun.tools.javac.code.TypeTag.BOOLEAN);
+        boolTypeTree.type = symtab.booleanType;
+
+        JCTree.JCVariableDecl condVar = mk.VarDef(mk.Modifiers(Flags.SYNTHETIC), condVarName, boolTypeTree, condExpr);
+        Symbol.VarSymbol condSym = new Symbol.VarSymbol(
+            Flags.SYNTHETIC,
+            condVarName,
+            symtab.booleanType,
+            (currentMethod != null ? currentMethod : symtab.noSymbol)
+        );
+        condVar.sym = condSym;
+        condVar.type = symtab.booleanType;
+
+        // TraceOut.endCondition(__pw_cond_evt_<pos>);
+        JCTree.JCStatement endCondStmt = mk.Exec(
             callStatic(
                 "ch.epfl.printwizard.plugin.logging.TraceOut",
-                "beginBlock",
-                List.of(mk.Ident(condEvtVarName)),
+                "endCondition",
+                List.of(mk.Ident(condEvtSym)),   // ident AVEC sym
                 jcIf.pos
             )
         );
 
-        // TraceOut.endBlock(__pw_cond_evt_xxx);
-        JCTree.JCStatement endBlock = mk.Exec(
+        /*
+         * then/else
+         *
+         * if (__pw_cond_<pos>) {
+         *   TraceOut.beginThenBlock(__pw_cond_evt_<pos>);
+         *   <then>
+         *   TraceOut.endThenBlock(__pw_cond_evt_<pos>);
+         * } else {
+         *   TraceOut.beginElseBlock(__pw_cond_evt_<pos>);
+         *   <else>
+         *   TraceOut.endElseBlock(__pw_cond_evt_<pos>);
+         * }
+         */
+        JCTree.JCStatement beginThen = mk.Exec(
             callStatic(
                 "ch.epfl.printwizard.plugin.logging.TraceOut",
-                "endBlock",
-                List.of(mk.Ident(condEvtVarName)),
+                "beginThenBlock",
+                List.of(mk.Ident(condEvtSym)),
                 jcIf.pos
             )
         );
+        JCTree.JCStatement endThen = mk.Exec(
+            callStatic(
+                "ch.epfl.printwizard.plugin.logging.TraceOut",
+                "endThenBlock",
+                List.of(mk.Ident(condEvtSym)),
+                jcIf.pos
+            )
+        );
+        JCTree.JCBlock tracedThen = mk.Block(0, List.of(beginThen, thenStmt, endThen));
 
-        JCTree.JCBlock tracedThenBlock = mk.Block(0, List.of(beginBlock, thenStmt, endBlock));
+        JCTree.JCStatement tracedElse = null;
+        if (elseStmt != null) {
+            JCTree.JCStatement beginElse = mk.Exec(
+                callStatic(
+                    "ch.epfl.printwizard.plugin.logging.TraceOut",
+                    "beginElseBlock",
+                    List.of(mk.Ident(condEvtSym)),
+                    jcIf.pos
+                )
+            );
+            JCTree.JCStatement endElse = mk.Exec(
+                callStatic(
+                    "ch.epfl.printwizard.plugin.logging.TraceOut",
+                    "endElseBlock",
+                    List.of(mk.Ident(condEvtSym)),
+                    jcIf.pos
+                )
+            );
+            tracedElse = mk.Block(0, List.of(beginElse, elseStmt, endElse));
+        }
 
-        JCTree.JCStatement elseStmt = jcIf.elsepart == null ? null : translate(jcIf.elsepart);
+        JCTree.JCIf newIf = mk.If(mk.Ident(condSym), tracedThen, tracedElse);
 
-        // if (__pw_cond_xxx) { ...tracedThenBlock... } else { ... }
-        JCTree.JCIf newIf = mk.If(mk.Ident(condVarName), tracedThenBlock, elseStmt);
-
-        // We replace the if by a block:
-        // {
-        //   boolean __pw_cond_xxx = ...;
-        //   String  __pw_cond_evt_xxx = ...;
-        //   if (__pw_cond_xxx) { ... } else { ... }
-        // }
-        this.result = mk.Block(0, List.of(condVar, condEvtVar, newIf));
+        /*
+         * {
+         *   String  __pw_cond_evt = TraceOut.beginCondition(...);
+         *   boolean __pw_cond = ...;
+         *   TraceOut.endCondition(__pw_cond_evt);
+         *   if (__pw_cond) { ... } else { ... }
+         * }
+         */
+        this.result = mk.Block(0, List.of(condEvtVar, condVar, endCondStmt, newIf));
     }
 
     @Override
     public void visitBinary(JCTree.JCBinary jcBinary) {
         super.visitBinary(jcBinary);
 
-        if (!isArithmetic(jcBinary.getTag())) return;
-
         int line = cu.getLineMap().getLineNumber(jcBinary.pos);
 
-        result = callStatic(
-            "ch.epfl.printwizard.plugin.logging.TraceOut",
-            "recordArithmetic",
-            List.of(
-                mk.Literal(jcBinary.getTag().toString()),
-                jcBinary.lhs,
-                jcBinary.rhs,
-                (JCTree.JCExpression) result,
-                mk.Literal(getSourceId()),
-                mk.Literal(line)
-            ),
-            jcBinary.pos
-        );
+        if (isArithmetic(jcBinary.getTag())) {
+            result = callStatic(
+                "ch.epfl.printwizard.plugin.logging.TraceOut",
+                "recordArithmetic",
+                List.of(
+                    mk.Literal(jcBinary.getTag().toString()),
+                    jcBinary.lhs,
+                    jcBinary.rhs,
+                    (JCTree.JCExpression) result,
+                    mk.Literal(getSourceId()),
+                    mk.Literal(line)
+                ),
+                jcBinary.pos
+            );
+        }
+
+        if (isComparison(jcBinary.getTag())) {
+            result = callStatic(
+                "ch.epfl.printwizard.plugin.logging.TraceOut",
+                "recordComparison",
+                List.of(
+                    mk.Literal(jcBinary.getTag().toString()),
+                    jcBinary.lhs,
+                    jcBinary.rhs,
+                    (JCTree.JCExpression) result,
+                    mk.Literal(getSourceId()),
+                    mk.Literal(line)
+                ),
+                jcBinary.pos
+            );
+        }
     }
 
     // Example : int i = 3;
@@ -363,6 +432,15 @@ public class TracingTranslator extends TreeTranslator {
             || tag == JCTree.Tag.MUL
             || tag == JCTree.Tag.DIV
             || tag == JCTree.Tag.MOD;
+    }
+
+    private boolean isComparison(JCTree.Tag tag) {
+        return tag == JCTree.Tag.EQ
+            || tag == JCTree.Tag.NE
+            || tag == JCTree.Tag.LT
+            || tag == JCTree.Tag.LE
+            || tag == JCTree.Tag.GT
+            || tag == JCTree.Tag.GE;
     }
 
     private String getSourceId() {
