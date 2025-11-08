@@ -6,7 +6,14 @@ public class Main {
         int i = 1;
         i = 4;
         int j = 0;
+        i = 3 + 4;
+        i += add(3, j);
 
+        if (i == 7) {
+            System.out.println("The condition is true");
+        }
+
+        /*
         if (i == 0) {
             System.out.println("The condition is true");
             j = -1;
@@ -32,7 +39,7 @@ public class Main {
             
             int test1 = 10/3;
             float test = 1/3f;
-        }
+        }*/
 
         //int[] array = new int[5];
         //array[0] = 1;

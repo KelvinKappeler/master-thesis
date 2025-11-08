@@ -74,7 +74,7 @@ public record IndexFile(
                         .add(event.eventId());
 
                 if (event instanceof ConditionEvent conditionEvent) {
-                    for (String eId : conditionEvent.childrenEventIds()) {
+                    for (String eId : conditionEvent.bodyEventIds()) {
                         bySpan.computeIfAbsent(event.spanId(), k -> Collections.synchronizedList(new ArrayList<>())).remove(eId);
                     }
                 }

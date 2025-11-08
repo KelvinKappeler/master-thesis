@@ -12,17 +12,19 @@ import ch.epfl.printwizard.plugin.utils.Preconditions;
  * @param left the left operand of the condition
  * @param right the right operand of the condition
  * @param result the result of the condition evaluation
- * @param childrenEventIds the identifiers of any child events related to this condition
+ * @param conditionEventIds the identifiers of any related condition events
+ * @param bodyEventIds the identifiers of any related body events
  */
 public record ConditionEvent(
-        String eventId,
-        String spanId,
-        String frameId,
-        TraceLoc location,
-        Object left,
-        Object right,
-        boolean result,
-        String[] childrenEventIds
+    String eventId,
+    String spanId,
+    String frameId,
+    TraceLoc location,
+    Object left,
+    Object right,
+    boolean result,
+    String[] conditionEventIds,
+    String[] bodyEventIds
 ) implements TraceEvent {
 
     public ConditionEvent {
@@ -30,7 +32,8 @@ public record ConditionEvent(
         Preconditions.requireNonNull(spanId, "spanId is null");
         Preconditions.requireNonNull(frameId, "frameId is null");
         Preconditions.requireNonNull(location, "location is null");
-        Preconditions.requireNonNull(childrenEventIds, "childrenEventIds is null");
+        Preconditions.requireNonNull(conditionEventIds, "conditionEventIds is null");
+        Preconditions.requireNonNull(bodyEventIds, "bodyEventIds is null");
         Preconditions.require(!eventId.isEmpty(), "eventId is empty");
         Preconditions.require(!spanId.isEmpty(), "spanId is empty");
         Preconditions.require(!frameId.isEmpty(), "frameId is empty");

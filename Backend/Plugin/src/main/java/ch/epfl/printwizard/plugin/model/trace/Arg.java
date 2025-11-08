@@ -21,4 +21,15 @@ public record Arg(
         Preconditions.require(!type.isEmpty(), "type is empty");
     }
 
+    /**
+     * Creates a new argument.
+     * @param name the name of the argument
+     * @param value the value of the argument
+     * @param type the type of the argument
+     * @return the new argument
+     */
+    public static Arg of(String name, Object value, String type) {
+        return new Arg(name, value, type);
+    }
+
 }

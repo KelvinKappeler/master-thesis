@@ -31,7 +31,7 @@ public class PrintWizardPlugin implements Plugin {
 
             @Override
             public void finished(TaskEvent e) {
-                if (e.getKind() != TaskEvent.Kind.ENTER) return;
+                if (e.getKind() != TaskEvent.Kind.ANALYZE) return;
 
                 if (!(e.getCompilationUnit() instanceof JCTree.JCCompilationUnit cu)) return;
 

@@ -1,0 +1,7 @@
+-cp
+Plugin/target/PrintWizardPlugin.jar;Plugin/lib/jackson-annotations-2.20.0.jar;Plugin/lib/jackson-core-2.20.0.jar;Plugin/lib/jackson-databind-2.20.0.jar;Plugin/lib/jackson-datatype-jsr310-2.20.0.jar
+-Xplugin:PrintWizardPlugin
+-d
+Examples/target/classes
+Examples/src/main/java/ch/epfl/printwizard/examples/Main.java
+Examples/src/main/java/ch/epfl/printwizard/examples/Player.java

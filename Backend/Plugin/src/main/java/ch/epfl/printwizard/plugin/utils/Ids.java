@@ -45,7 +45,7 @@ public class Ids {
      * @return the unique identifier for the method
      */
     public static String createNewMethodId(String owner, String name, String[] paramTypes, String returnType) {
-        return "m:" + owner + "." + name + "(" + String.join(",", paramTypes) + "):" + returnType;
+        return "m:" + owner + "." + name + "(" + String.join(",", paramTypes) + ")" + returnType;
     }
 
     /**

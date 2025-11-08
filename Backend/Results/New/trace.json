@@ -2,27 +2,55 @@
   "spans" : [ {
     "spanId" : "spn:1",
     "parentSpanId" : "null",
-    "methodId" : "m:ch.epfl.printwizard.examples.main.main(String[]):void",
+    "methodId" : "m:ch.epfl.printwizard.examples.main.main(String[])void",
     "startEventId" : "eve:1",
-    "endEventId" : "eve:20",
+    "endEventId" : "eve:11",
     "startLoc" : {
-      "sourceId" : "src:/C:/Users/kelvi/GitHub/master-thesis/Backend/Examples/src/main/java/ch/epfl/printwizard/examples/Main.java",
+      "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
       "line" : 5
     },
     "endLoc" : {
-      "sourceId" : "src:/C:/Users/kelvi/GitHub/master-thesis/Backend/Examples/src/main/java/ch/epfl/printwizard/examples/Main.java",
-      "line" : 45
+      "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
+      "line" : 48
+    }
+  }, {
+    "spanId" : "spn:2",
+    "parentSpanId" : "spn:1",
+    "methodId" : "m:ch.epfl.printwizard.examples.add.add(int,int)int",
+    "startEventId" : "eve:7",
+    "endEventId" : "eve:9",
+    "startLoc" : {
+      "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
+      "line" : 50
+    },
+    "endLoc" : {
+      "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
+      "line" : 52
     }
   } ],
   "frames" : [ {
     "frameId" : "frm:1",
     "spanId" : "spn:1",
-    "methodId" : "m:ch.epfl.printwizard.examples.main.main(String[]):void",
+    "methodId" : "m:ch.epfl.printwizard.examples.main.main(String[])void",
     "thisRef" : null,
     "args" : [ {
       "name" : "args",
       "value" : [ ],
       "type" : "String[]"
+    } ]
+  }, {
+    "frameId" : "frm:2",
+    "spanId" : "spn:2",
+    "methodId" : "m:ch.epfl.printwizard.examples.add.add(int,int)int",
+    "thisRef" : null,
+    "args" : [ {
+      "name" : "a",
+      "value" : 3,
+      "type" : "int"
+    }, {
+      "name" : "b",
+      "value" : 0,
+      "type" : "int"
     } ]
   } ],
   "events" : [ {
@@ -31,11 +59,11 @@
     "spanId" : "spn:1",
     "frameId" : "frm:1",
     "location" : {
-      "sourceId" : "src:/C:/Users/kelvi/GitHub/master-thesis/Backend/Examples/src/main/java/ch/epfl/printwizard/examples/Main.java",
+      "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
       "line" : 5
     },
     "callerMethodId" : "null",
-    "calleeMethodId" : "m:ch.epfl.printwizard.examples.main.main(String[]):void",
+    "calleeMethodId" : "m:ch.epfl.printwizard.examples.main.main(String[])void",
     "name" : "main"
   }, {
     "type" : "LOCAL",
@@ -43,12 +71,12 @@
     "spanId" : "spn:1",
     "frameId" : "frm:1",
     "location" : {
-      "sourceId" : "/C:/Users/kelvi/GitHub/master-thesis/Backend/Examples/src/main/java/ch/epfl/printwizard/examples/Main.java",
+      "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
       "line" : 6
     },
     "owner" : "owner",
-    "method" : "m:ch.epfl.printwizard.examples.main.main(String[]):void",
-    "varName" : "i@6",
+    "method" : "m:ch.epfl.printwizard.examples.main.main(String[])void",
+    "varName" : "i",
     "index" : -1,
     "value" : 1
   }, {
@@ -57,12 +85,12 @@
     "spanId" : "spn:1",
     "frameId" : "frm:1",
     "location" : {
-      "sourceId" : "/C:/Users/kelvi/GitHub/master-thesis/Backend/Examples/src/main/java/ch/epfl/printwizard/examples/Main.java",
+      "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
       "line" : 7
     },
     "owner" : "owner",
-    "method" : "m:ch.epfl.printwizard.examples.main.main(String[]):void",
-    "varName" : "i@7",
+    "method" : "m:ch.epfl.printwizard.examples.main.main(String[])void",
+    "varName" : "i",
     "index" : -1,
     "value" : 4
   }, {
@@ -71,233 +99,99 @@
     "spanId" : "spn:1",
     "frameId" : "frm:1",
     "location" : {
-      "sourceId" : "/C:/Users/kelvi/GitHub/master-thesis/Backend/Examples/src/main/java/ch/epfl/printwizard/examples/Main.java",
+      "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
       "line" : 8
     },
     "owner" : "owner",
-    "method" : "m:ch.epfl.printwizard.examples.main.main(String[]):void",
-    "varName" : "j@8",
+    "method" : "m:ch.epfl.printwizard.examples.main.main(String[])void",
+    "varName" : "j",
     "index" : -1,
     "value" : 0
   }, {
-    "type" : "LOCAL",
+    "type" : "ARITHMETIC",
     "eventId" : "eve:5",
     "spanId" : "spn:1",
     "frameId" : "frm:1",
     "location" : {
-      "sourceId" : "/C:/Users/kelvi/GitHub/master-thesis/Backend/Examples/src/main/java/ch/epfl/printwizard/examples/Main.java",
-      "line" : 16
+      "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
+      "line" : 9
     },
-    "owner" : "owner",
-    "method" : "m:ch.epfl.printwizard.examples.main.main(String[]):void",
-    "varName" : "j@16",
-    "index" : -1,
-    "value" : 1
+    "operation" : "PLUS",
+    "left" : 3,
+    "right" : 4,
+    "result" : 7
   }, {
     "type" : "LOCAL",
     "eventId" : "eve:6",
     "spanId" : "spn:1",
     "frameId" : "frm:1",
     "location" : {
-      "sourceId" : "/C:/Users/kelvi/GitHub/master-thesis/Backend/Examples/src/main/java/ch/epfl/printwizard/examples/Main.java",
-      "line" : 18
+      "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
+      "line" : 9
     },
     "owner" : "owner",
-    "method" : "m:ch.epfl.printwizard.examples.main.main(String[]):void",
-    "varName" : "j@18",
-    "index" : -1,
-    "value" : 6
-  }, {
-    "type" : "LOCAL",
-    "eventId" : "eve:7",
-    "spanId" : "spn:1",
-    "frameId" : "frm:1",
-    "location" : {
-      "sourceId" : "/C:/Users/kelvi/GitHub/master-thesis/Backend/Examples/src/main/java/ch/epfl/printwizard/examples/Main.java",
-      "line" : 19
-    },
-    "owner" : "owner",
-    "method" : "m:ch.epfl.printwizard.examples.main.main(String[]):void",
-    "varName" : "j@19",
-    "index" : -1,
-    "value" : 10
-  }, {
-    "type" : "LOCAL",
-    "eventId" : "eve:8",
-    "spanId" : "spn:1",
-    "frameId" : "frm:1",
-    "location" : {
-      "sourceId" : "/C:/Users/kelvi/GitHub/master-thesis/Backend/Examples/src/main/java/ch/epfl/printwizard/examples/Main.java",
-      "line" : 21
-    },
-    "owner" : "owner",
-    "method" : "m:ch.epfl.printwizard.examples.main.main(String[]):void",
-    "varName" : "j@21",
+    "method" : "m:ch.epfl.printwizard.examples.main.main(String[])void",
+    "varName" : "i",
     "index" : -1,
     "value" : 7
   }, {
-    "type" : "LOCAL",
-    "eventId" : "eve:9",
-    "spanId" : "spn:1",
-    "frameId" : "frm:1",
+    "type" : "CALL",
+    "eventId" : "eve:7",
+    "spanId" : "spn:2",
+    "frameId" : "frm:2",
     "location" : {
-      "sourceId" : "/C:/Users/kelvi/GitHub/master-thesis/Backend/Examples/src/main/java/ch/epfl/printwizard/examples/Main.java",
-      "line" : 22
+      "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
+      "line" : 50
     },
-    "owner" : "owner",
-    "method" : "m:ch.epfl.printwizard.examples.main.main(String[]):void",
-    "varName" : "j@22",
-    "index" : -1,
-    "value" : 6
+    "callerMethodId" : "spn:1",
+    "calleeMethodId" : "m:ch.epfl.printwizard.examples.add.add(int,int)int",
+    "name" : "add"
+  }, {
+    "type" : "ARITHMETIC",
+    "eventId" : "eve:8",
+    "spanId" : "spn:2",
+    "frameId" : "frm:2",
+    "location" : {
+      "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
+      "line" : 51
+    },
+    "operation" : "PLUS",
+    "left" : 3,
+    "right" : 0,
+    "result" : 3
+  }, {
+    "type" : "RETURN",
+    "eventId" : "eve:9",
+    "spanId" : "spn:2",
+    "frameId" : "frm:2",
+    "location" : {
+      "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
+      "line" : 52
+    },
+    "returnValue" : ""
   }, {
     "type" : "LOCAL",
     "eventId" : "eve:10",
     "spanId" : "spn:1",
     "frameId" : "frm:1",
     "location" : {
-      "sourceId" : "/C:/Users/kelvi/GitHub/master-thesis/Backend/Examples/src/main/java/ch/epfl/printwizard/examples/Main.java",
-      "line" : 24
+      "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
+      "line" : 10
     },
     "owner" : "owner",
-    "method" : "m:ch.epfl.printwizard.examples.main.main(String[]):void",
-    "varName" : "r@24",
+    "method" : "m:ch.epfl.printwizard.examples.main.main(String[])void",
+    "varName" : "i",
     "index" : -1,
-    "value" : 3.4
+    "value" : 10
   }, {
-    "type" : "LOCAL",
+    "type" : "RETURN",
     "eventId" : "eve:11",
     "spanId" : "spn:1",
     "frameId" : "frm:1",
     "location" : {
-      "sourceId" : "/C:/Users/kelvi/GitHub/master-thesis/Backend/Examples/src/main/java/ch/epfl/printwizard/examples/Main.java",
-      "line" : 25
+      "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
+      "line" : 48
     },
-    "owner" : "owner",
-    "method" : "m:ch.epfl.printwizard.examples.main.main(String[]):void",
-    "varName" : "r@25",
-    "index" : -1,
-    "value" : 4.6
-  }, {
-    "type" : "LOCAL",
-    "eventId" : "eve:12",
-    "spanId" : "spn:1",
-    "frameId" : "frm:1",
-    "location" : {
-      "sourceId" : "/C:/Users/kelvi/GitHub/master-thesis/Backend/Examples/src/main/java/ch/epfl/printwizard/examples/Main.java",
-      "line" : 26
-    },
-    "owner" : "owner",
-    "method" : "m:ch.epfl.printwizard.examples.main.main(String[]):void",
-    "varName" : "r@26",
-    "index" : -1,
-    "value" : 14.719999999999999
-  }, {
-    "type" : "LOCAL",
-    "eventId" : "eve:13",
-    "spanId" : "spn:1",
-    "frameId" : "frm:1",
-    "location" : {
-      "sourceId" : "/C:/Users/kelvi/GitHub/master-thesis/Backend/Examples/src/main/java/ch/epfl/printwizard/examples/Main.java",
-      "line" : 27
-    },
-    "owner" : "owner",
-    "method" : "m:ch.epfl.printwizard.examples.main.main(String[]):void",
-    "varName" : "i@27",
-    "index" : -1,
-    "value" : 0
-  }, {
-    "type" : "LOCAL",
-    "eventId" : "eve:14",
-    "spanId" : "spn:1",
-    "frameId" : "frm:1",
-    "location" : {
-      "sourceId" : "/C:/Users/kelvi/GitHub/master-thesis/Backend/Examples/src/main/java/ch/epfl/printwizard/examples/Main.java",
-      "line" : 28
-    },
-    "owner" : "owner",
-    "method" : "m:ch.epfl.printwizard.examples.main.main(String[]):void",
-    "varName" : "l@28",
-    "index" : -1,
-    "value" : 2
-  }, {
-    "type" : "LOCAL",
-    "eventId" : "eve:15",
-    "spanId" : "spn:1",
-    "frameId" : "frm:1",
-    "location" : {
-      "sourceId" : "/C:/Users/kelvi/GitHub/master-thesis/Backend/Examples/src/main/java/ch/epfl/printwizard/examples/Main.java",
-      "line" : 29
-    },
-    "owner" : "owner",
-    "method" : "m:ch.epfl.printwizard.examples.main.main(String[]):void",
-    "varName" : "l@29",
-    "index" : -1,
-    "value" : 3
-  }, {
-    "type" : "LOCAL",
-    "eventId" : "eve:16",
-    "spanId" : "spn:1",
-    "frameId" : "frm:1",
-    "location" : {
-      "sourceId" : "/C:/Users/kelvi/GitHub/master-thesis/Backend/Examples/src/main/java/ch/epfl/printwizard/examples/Main.java",
-      "line" : 30
-    },
-    "owner" : "owner",
-    "method" : "m:ch.epfl.printwizard.examples.main.main(String[]):void",
-    "varName" : "f@30",
-    "index" : -1,
-    "value" : 1.2
-  }, {
-    "type" : "LOCAL",
-    "eventId" : "eve:17",
-    "spanId" : "spn:1",
-    "frameId" : "frm:1",
-    "location" : {
-      "sourceId" : "/C:/Users/kelvi/GitHub/master-thesis/Backend/Examples/src/main/java/ch/epfl/printwizard/examples/Main.java",
-      "line" : 31
-    },
-    "owner" : "owner",
-    "method" : "m:ch.epfl.printwizard.examples.main.main(String[]):void",
-    "varName" : "f@31",
-    "index" : -1,
-    "value" : 2.4
-  }, {
-    "type" : "LOCAL",
-    "eventId" : "eve:18",
-    "spanId" : "spn:1",
-    "frameId" : "frm:1",
-    "location" : {
-      "sourceId" : "/C:/Users/kelvi/GitHub/master-thesis/Backend/Examples/src/main/java/ch/epfl/printwizard/examples/Main.java",
-      "line" : 33
-    },
-    "owner" : "owner",
-    "method" : "m:ch.epfl.printwizard.examples.main.main(String[]):void",
-    "varName" : "test1@33",
-    "index" : -1,
-    "value" : 3
-  }, {
-    "type" : "LOCAL",
-    "eventId" : "eve:19",
-    "spanId" : "spn:1",
-    "frameId" : "frm:1",
-    "location" : {
-      "sourceId" : "/C:/Users/kelvi/GitHub/master-thesis/Backend/Examples/src/main/java/ch/epfl/printwizard/examples/Main.java",
-      "line" : 34
-    },
-    "owner" : "owner",
-    "method" : "m:ch.epfl.printwizard.examples.main.main(String[]):void",
-    "varName" : "test@34",
-    "index" : -1,
-    "value" : 0.33333334
-  }, {
-    "type" : "RETURN",
-    "eventId" : "eve:20",
-    "spanId" : "spn:1",
-    "frameId" : "frm:1",
-    "location" : {
-      "sourceId" : "src:/C:/Users/kelvi/GitHub/master-thesis/Backend/Examples/src/main/java/ch/epfl/printwizard/examples/Main.java",
-      "line" : 45
-    },
-    "returnValue" : "1"
+    "returnValue" : ""
   } ]
 }
