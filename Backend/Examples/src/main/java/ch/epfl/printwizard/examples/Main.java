@@ -9,21 +9,17 @@ public class Main {
         i = 3 + 4;
         i += add(3, j);
 
-        if (i == 7) {
-            System.out.println("The condition is true");
-        }
-        else {
-            System.out.println("The condition is false");
-        }
-
-        if (i > 0) {
+        if (i < 0) {
+            i = 3;
             System.out.println("The condition is true and i > 0");
         }
-        else if (i < 0) {
-            i -= 2;
+        else if (i == 0) {
+            i = 1;
+            System.out.println("The condition is true and i == 0");
         }
         else {
-            i += 3;
+            i = 2;
+            System.out.println("The condition is false");
         }
 
         /*

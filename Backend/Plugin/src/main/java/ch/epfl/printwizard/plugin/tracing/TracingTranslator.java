@@ -265,13 +265,13 @@ public class TracingTranslator extends TreeTranslator {
 
         /*
          * {
-         *   String  __pw_cond_evt = TraceOut.beginCondition(...);
+         *   String __pw_cond_evt = TraceOut.beginCondition(...);
          *   boolean __pw_cond = ...;
-         *   TraceOut.endCondition(__pw_cond_evt);
          *   if (__pw_cond) { ... } else { ... }
+         *   TraceOut.endCondition(__pw_cond_evt);
          * }
          */
-        this.result = mk.Block(0, List.of(condEvtVar, condVar, endCondStmt, newIf));
+        this.result = mk.Block(0, List.of(condEvtVar, condVar, newIf, endCondStmt));
     }
 
     @Override

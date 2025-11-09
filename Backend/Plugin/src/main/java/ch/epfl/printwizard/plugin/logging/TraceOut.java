@@ -147,6 +147,14 @@ public class TraceOut {
         }
 
         attachThenEvents(conditionEventId, block.eventIds());
+
+        Deque<CondBlockCtx> condStack = COND_BLOCKS.get();
+        for (CondBlockCtx c : condStack) {
+            if (Objects.equals(c.conditionEventId(), conditionEventId)) {
+                c.thenEvents().addAll(block.eventIds());
+                break;
+            }
+        }
     }
 
     @SuppressWarnings("unused")
@@ -165,23 +173,45 @@ public class TraceOut {
         }
 
         attachElseEvents(conditionEventId, block.eventIds());
+
+        Deque<CondBlockCtx> condStack = COND_BLOCKS.get();
+        for (CondBlockCtx c : condStack) {
+            if (Objects.equals(c.conditionEventId(), conditionEventId)) {
+                c.elseEvents().addAll(block.eventIds());
+                break;
+            }
+        }
     }
 
     private static void addEvent(TraceEvent event)
     {
         OutputManager.getTraceFileBuilder().addEvent(event);
-        OutputManager.getIndexFileBuilder().addEvent(event);
 
-        var block = BLOCKS.get();
-        if (!block.isEmpty()) {
-            block.peek().eventIds().add(event.eventId());
+        var condStack = COND_BLOCKS.get();
+        var blockStack = BLOCKS.get();
+
+        boolean inCond = !condStack.isEmpty();
+        boolean inBlock = !blockStack.isEmpty();
+
+        if (inCond && inBlock && blockStack.peek().parentEventId().equals(condStack.peek().conditionEventId())) {
+            blockStack.peek().eventIds().add(event.eventId());
+            OutputManager.getIndexFileBuilder().addEvent(event, false);
             return;
         }
-        
-        var condBlock = COND_BLOCKS.get();
-        if (!condBlock.isEmpty()) {
-            condBlock.peek().conditionEvents().add(event.eventId());
+
+        if (inCond) {
+            condStack.peek().conditionEvents().add(event.eventId());
+            OutputManager.getIndexFileBuilder().addEvent(event, false);
+            return;
         }
+
+        if (inBlock) {
+            blockStack.peek().eventIds().add(event.eventId());
+            OutputManager.getIndexFileBuilder().addEvent(event, false);
+            return;
+        }
+
+        OutputManager.getIndexFileBuilder().addEvent(event, true);
     }
 
     private static FrameCtx currentFrameCtx() {

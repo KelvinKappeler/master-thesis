@@ -78,11 +78,15 @@ public record IndexFile(
         /**
          * Adds an event to the index file.
          * @param event The event to be added
+         * @param shouldBeAddedInSpan Whether the event should be added in span
          */
-        public void addEvent(TraceEvent event) {
+        public void addEvent(TraceEvent event, boolean shouldBeAddedInSpan) {
             addEventByLine(event);
             addEventByObject(event);
-            addEventBySpan(event);
+
+            if (shouldBeAddedInSpan) {
+                addEventBySpan(event);
+            }
         }
 
         /**
