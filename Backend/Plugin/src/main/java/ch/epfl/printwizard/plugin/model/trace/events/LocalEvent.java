@@ -12,7 +12,6 @@ import ch.epfl.printwizard.plugin.utils.Preconditions;
  * @param owner the class that owns the field being modified
  * @param method the method in which the field modification occurs
  * @param varName the name of the field being modified
- * @param index the index of the variable in case of an array or list, -1 if not applicable
  * @param value the new value being assigned to the field
  */
 public record LocalEvent(
@@ -23,7 +22,6 @@ public record LocalEvent(
         String owner,
         String method,
         String varName,
-        int index,
         Object value
 ) implements TraceEvent {
 
@@ -41,7 +39,6 @@ public record LocalEvent(
         Preconditions.require(!owner.isEmpty(), "owner is empty");
         Preconditions.require(!method.isEmpty(), "field is empty");
         Preconditions.require(!varName.isEmpty(), "description is empty");
-        Preconditions.require(index >= -1, "index is less than -1");
     }
 
 }

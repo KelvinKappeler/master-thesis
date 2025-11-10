@@ -3,7 +3,7 @@ package ch.epfl.printwizard.examples;
 public class Main {
 
     public static void main(String[] args) {
-        int i = 1;
+        /*int i = 1;
         i = 4;
         int j = 0;
         i = 3 + 4;
@@ -20,7 +20,7 @@ public class Main {
         else {
             i = 2;
             System.out.println("The condition is false");
-        }
+        }*/
 
         /*
         if (i == 0) {
@@ -50,9 +50,8 @@ public class Main {
             float test = 1/3f;
         }*/
 
-        //int[] array = new int[5];
-        //array[0] = 1;
-        //array[2] = 10;
+        int[] array2 = {10, 20, 30, 40};
+        array2[2] = 100;
         
         //Player player = new Player(100);
         //System.out.println("Player health points: " + player.getHealthPoints());

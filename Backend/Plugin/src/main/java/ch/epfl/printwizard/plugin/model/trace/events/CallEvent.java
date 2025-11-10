@@ -1,5 +1,6 @@
 package ch.epfl.printwizard.plugin.model.trace.events;
 
+import ch.epfl.printwizard.plugin.model.trace.Arg;
 import ch.epfl.printwizard.plugin.model.trace.TraceLoc;
 import ch.epfl.printwizard.plugin.utils.Preconditions;
 
@@ -20,7 +21,9 @@ public record CallEvent(
     TraceLoc location,
     String callerMethodId,
     String calleeMethodId,
-    String name
+    String name,
+    boolean external,
+    Arg[] args
 ) implements TraceEvent {
 
     public CallEvent {
@@ -30,6 +33,7 @@ public record CallEvent(
         Preconditions.requireNonNull(location, "location is null");
         Preconditions.requireNonNull(calleeMethodId, "calleeMethodId is null");
         Preconditions.requireNonNull(name, "name is null");
+        Preconditions.requireNonNull(args, "args is null");
         Preconditions.require(!eventId.isEmpty(), "eventId is empty");
         Preconditions.require(!spanId.isEmpty(), "spanId is empty");
         Preconditions.require(!frameId.isEmpty(), "frameId is empty");

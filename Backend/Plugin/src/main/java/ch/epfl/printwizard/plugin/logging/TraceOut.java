@@ -4,6 +4,7 @@ import ch.epfl.printwizard.plugin.model.trace.*;
 import ch.epfl.printwizard.plugin.model.trace.events.*;
 import ch.epfl.printwizard.plugin.utils.Ids;
 
+import java.lang.reflect.Array;
 import java.util.*;
 
 /**
@@ -28,13 +29,14 @@ public class TraceOut {
         String startEventId = Ids.nextEventId();
         TraceLoc loc = new TraceLoc(sourceId, line);
 
-        addEvent(new CallEvent(startEventId, spanId, frameId, loc, parent, methodId, method));
+        addEvent(new CallEvent(startEventId, spanId, frameId, loc, parent, methodId, method, false, args));
+
         OutputManager.getTraceFileBuilder().addSpan(new TraceSpan(
             spanId, parent, methodId, startEventId, "end",
             loc, new TraceLoc("source", 1))
         );
-
         OutputManager.getTraceFileBuilder().addFrame(new TraceFrame(frameId, spanId, methodId, null, List.of(args)));
+
         STACK.get().push(new FrameCtx(spanId, frameId, methodId));
     }
 
@@ -52,12 +54,24 @@ public class TraceOut {
     }
 
     @SuppressWarnings("unused")
+    public static void recordCall(String owner, String method, Arg[] args, String returnType, boolean isExternal, String sourceId, int line) {
+        FrameCtx ctx = currentFrameCtx();
+        TraceLoc loc = new TraceLoc(sourceId, line);
+        String[] argTypes = Arrays.stream(args).map(Arg::type).toArray(String[]::new);
+        String eventId = Ids.nextEventId();
+        String callerMethodId = ctx.methodId();
+        String calleeMethodId = isExternal ? "-" : Ids.createNewMethodId(owner, method, argTypes, returnType);
+
+        addEvent(new CallEvent(eventId, ctx.spanId(), ctx.frameId(), loc, callerMethodId, calleeMethodId, method, isExternal, args));
+    }
+
+    @SuppressWarnings("unused")
     public static <T> T recordLocalEvent(String label, T value, String sourceId, int line) {
         FrameCtx ctx = currentFrameCtx();
         TraceLoc loc = new TraceLoc(sourceId, line);
 
         addEvent(new LocalEvent(
-            Ids.nextEventId(), ctx.spanId(), ctx.frameId(), loc, "owner", ctx.methodId(), label, -1, value
+            Ids.nextEventId(), ctx.spanId(), ctx.frameId(), loc, "owner", ctx.methodId(), label, value
         ));
 
         return value;
@@ -76,6 +90,16 @@ public class TraceOut {
     }
 
     @SuppressWarnings("unused")
+    public static <T> T recordArrayStore(String arrayName, int index, T value, String sourceId, int line) {
+        FrameCtx ctx = currentFrameCtx();
+        TraceLoc loc = new TraceLoc(sourceId, line);
+
+        addEvent(new ArrayStoreEvent(Ids.nextEventId(), ctx.spanId(), ctx.frameId(), loc, arrayName, index, value));
+
+        return value;
+    }
+
+    @SuppressWarnings("unused")
     public static boolean recordComparison(String op, Object left, Object right, boolean result, String sourceId, int line) {
         FrameCtx ctx = currentFrameCtx();
         TraceLoc loc = new TraceLoc(sourceId, line);
@@ -85,6 +109,22 @@ public class TraceOut {
         ));
 
         return result;
+    }
+
+    @SuppressWarnings("unused")
+    public static Object recordArrayInit(String arrayName, Object arrayRef, String sourceId, int line) {
+        FrameCtx ctx = currentFrameCtx();
+        TraceLoc loc = new TraceLoc(sourceId, line);
+
+        int length = Array.getLength(arrayRef);
+        for (int i = 0; i < length; i++) {
+            Object value = Array.get(arrayRef, i);
+            addEvent(new ArrayStoreEvent(
+                Ids.nextEventId(), ctx.spanId(), ctx.frameId(), loc, arrayName, i, value
+            ));
+        }
+
+        return arrayRef;
     }
 
     @SuppressWarnings("unused")

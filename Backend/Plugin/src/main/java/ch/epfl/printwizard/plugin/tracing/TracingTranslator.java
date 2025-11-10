@@ -74,10 +74,10 @@ public class TracingTranslator extends TreeTranslator {
         this.currentMethod = jcMethodDecl.sym;
 
         int startLine = cu.getLineMap().getLineNumber(jcMethodDecl.pos);
-        String owner = cu.packge != null ? cu.packge + "." + jcMethodDecl.getName().toString() : jcMethodDecl.getName().toString();
+        String owner = cu.packge != null ? cu.packge.toString() : "";
         String returnType = (jcMethodDecl.getReturnType() != null) ? jcMethodDecl.getReturnType().toString() : "void";
 
-        JCTree.JCExpression argsArrayExpr = makeArgArrayExpr(jcMethodDecl, jcMethodDecl.pos);
+        JCTree.JCExpression argsArrayExpr = makeArgArrayExpr(jcMethodDecl.getParameters(), jcMethodDecl.pos);
 
         JCTree.JCStatement enterCall = mk.Exec(
             callStatic("ch.epfl.printwizard.plugin.logging.TraceOut", "onEnter",
@@ -313,21 +313,61 @@ public class TracingTranslator extends TreeTranslator {
         }
     }
 
-    // Example : int i = 3;
+    // Example : int i = 3; int[] array = { 1, 2, 3 };
     @Override
     public void visitVarDef(JCTree.JCVariableDecl jcVariableDecl) {
         if (jcVariableDecl.init != null) {
             int line = cu.getLineMap().getLineNumber(jcVariableDecl.pos);
 
-            jcVariableDecl.init = callRecordLocalEvent(jcVariableDecl.getName().toString(), jcVariableDecl.init, getSourceId(), line, jcVariableDecl.pos);
+            if (jcVariableDecl.init instanceof JCTree.JCNewArray newArr && newArr.elems != null) {
+                JCTree.JCExpression call = callStatic(
+                    "ch.epfl.printwizard.plugin.logging.TraceOut",
+                    "recordArrayInit",
+                    List.of(
+                        mk.Literal(jcVariableDecl.getName().toString()),
+                        jcVariableDecl.init,
+                        mk.Literal(getSourceId()),
+                        mk.Literal(line)
+                    ),
+                    jcVariableDecl.pos
+                );
+
+                JCTree.JCExpression casted = mk.TypeCast(jcVariableDecl.vartype, call);
+                casted.type = jcVariableDecl.vartype.type;
+
+                jcVariableDecl.init = casted;
+            }
+            else {
+                jcVariableDecl.init = callRecordLocalEvent(jcVariableDecl.getName().toString(), jcVariableDecl.init, getSourceId(), line, jcVariableDecl.pos);
+            }
         }
         super.visitVarDef(jcVariableDecl);
     }
 
-    // Example : i = 3;
+    // Examples : i = 3; array[2] = 3;
     @Override
     public void visitAssign(JCTree.JCAssign jcAssign) {
         int line = cu.getLineMap().getLineNumber(jcAssign.pos);
+
+        // If the assignment is to an array element
+        if (jcAssign.lhs instanceof JCTree.JCArrayAccess arrAccess) {
+
+            jcAssign.rhs = callStatic(
+                "ch.epfl.printwizard.plugin.logging.TraceOut",
+                "recordArrayStore",
+                List.of(
+                    mk.Literal(arrAccess.indexed.toString()),
+                    arrAccess.index,
+                    jcAssign.rhs,
+                    mk.Literal(getSourceId()),
+                    mk.Literal(line)
+                ),
+                jcAssign.pos
+            );
+            super.visitAssign(jcAssign);
+
+            return;
+        }
 
         jcAssign.rhs = callRecordLocalEvent(jcAssign.lhs.toString(), jcAssign.rhs, getSourceId(), line, jcAssign.pos);
 
@@ -391,7 +431,7 @@ public class TracingTranslator extends TreeTranslator {
         );
     }
 
-    private JCTree.JCExpression makeArgArrayExpr(JCTree.JCMethodDecl md, int pos) {
+    private JCTree.JCExpression makeArgArrayExpr(List<JCTree.JCVariableDecl> args, int pos) {
         mk.at(pos);
         String argFqn = "ch.epfl.printwizard.plugin.model.trace.Arg";
 
@@ -403,7 +443,7 @@ public class TracingTranslator extends TreeTranslator {
 
         java.util.List<JCTree.JCExpression> argInits = new java.util.ArrayList<>();
 
-        for (JCTree.JCVariableDecl param : md.getParameters()) {
+        for (JCTree.JCVariableDecl param : args) {
             String paramName = param.getName().toString();
             String paramTypeStr = param.vartype.toString();
 
