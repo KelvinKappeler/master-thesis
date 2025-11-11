@@ -273,6 +273,26 @@ public class TracingTranslator extends TreeTranslator {
          */
         this.result = mk.Block(0, List.of(condEvtVar, condVar, newIf, endCondStmt));
     }
+    
+    @Override
+    public void visitWhileLoop(JCTree.JCWhileLoop jcWhileLoop) {
+        super.visitWhileLoop(jcWhileLoop);
+    }
+    
+    @Override
+    public void visitForLoop(JCTree.JCForLoop jcForLoop) {
+        super.visitForLoop(jcForLoop);
+    }
+    
+    @Override
+    public void visitDoLoop(JCTree.JCDoWhileLoop jcDoWhileLoop) {
+        super.visitDoLoop(jcDoWhileLoop);
+    }
+    
+    @Override
+    public void visitForeachLoop(JCTree.JCEnhancedForLoop jcEnhancedForLoop) {
+        super.visitForeachLoop(jcEnhancedForLoop);
+    }
 
     @Override
     public void visitBinary(JCTree.JCBinary jcBinary) {
