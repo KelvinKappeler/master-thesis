@@ -311,6 +311,50 @@ public class TracingTranslator extends TreeTranslator {
         loopEvtVar.sym = loopEvtSym;
         loopEvtVar.type = symtab.stringType;
 
+        JCTree.JCExpression boolTypeTree = mk.TypeIdent(com.sun.tools.javac.code.TypeTag.BOOLEAN);
+        boolTypeTree.type = symtab.booleanType;
+
+        String continuedNameStr = "__pw_while_continued_" + jcWhileLoop.pos;
+        var continuedName = names.fromString(continuedNameStr);
+        JCTree.JCVariableDecl continuedVar = mk.VarDef(
+            mk.Modifiers(Flags.SYNTHETIC),
+            continuedName,
+            boolTypeTree,
+            mk.Literal(true)
+        );
+        Symbol.VarSymbol continuedSym = new Symbol.VarSymbol(
+            Flags.SYNTHETIC,
+            continuedName,
+            symtab.booleanType,
+            (currentMethod != null ? currentMethod : symtab.noSymbol)
+        );
+        continuedVar.sym = continuedSym;
+        continuedVar.type = symtab.booleanType;
+
+        String hasRunNameStr = "__pw_while_hasRun_" + jcWhileLoop.pos;
+        var hasRunName = names.fromString(hasRunNameStr);
+        JCTree.JCVariableDecl hasRunVar = mk.VarDef(
+            mk.Modifiers(Flags.SYNTHETIC),
+            hasRunName,
+            boolTypeTree,
+            mk.Literal(false)
+        );
+        Symbol.VarSymbol hasRunSym = new Symbol.VarSymbol(
+            Flags.SYNTHETIC,
+            hasRunName,
+            symtab.booleanType,
+            (currentMethod != null ? currentMethod : symtab.noSymbol)
+        );
+        hasRunVar.sym = hasRunSym;
+        hasRunVar.type = symtab.booleanType;
+
+        mk.at(jcWhileLoop.pos);
+        JCTree.JCExpression whileCond = mk.Ident(continuedSym);
+        whileCond.type = symtab.booleanType;
+
+        JCTree.JCExpression hasRunIdent = mk.Ident(hasRunSym);
+        hasRunIdent.type = symtab.booleanType;
+
         String iterEvtVarNameStr = "__pw_iter_evt_" + jcWhileLoop.pos;
         var iterEvtVarName = names.fromString(iterEvtVarNameStr);
 
@@ -349,8 +393,42 @@ public class TracingTranslator extends TreeTranslator {
         JCTree.JCBlock finallyBlock = mk.Block(0, List.of(endIterStmt));
         JCTree.JCTry tryFinally = mk.Try(tryBlock, List.nil(), finallyBlock);
 
-        JCTree.JCBlock newWhileBody = mk.Block(0, List.of(iterEvtVar, tryFinally));
-        JCTree.JCWhileLoop newWhileLoop = mk.WhileLoop(condExpr, newWhileBody);
+        JCTree.JCBlock iterBlock = mk.Block(0, List.of(iterEvtVar, tryFinally));
+
+        JCTree.JCIf ifHasRun = mk.If(hasRunIdent, iterBlock, null);
+
+        JCTree.JCAssign assignHasRunTrue = mk.Assign(
+                mk.Ident(hasRunSym),
+                mk.Literal(true)
+        );
+        assignHasRunTrue.type = symtab.booleanType;
+        JCTree.JCStatement hasRunAssignStmt = mk.Exec(assignHasRunTrue);
+
+        JCTree.JCStatement beginCondStmt = mk.Exec(
+            callStatic(
+                "ch.epfl.printwizard.plugin.logging.TraceOut",
+                "beginLoopCondition",
+                List.of(mk.Ident(loopEvtSym)),
+                jcWhileLoop.pos
+            )
+        );
+
+        JCTree.JCAssign assignContinued = mk.Assign(mk.Ident(continuedSym), condExpr);
+        assignContinued.type = symtab.booleanType;
+        JCTree.JCStatement continuedAssignStmt = mk.Exec(assignContinued);
+
+        JCTree.JCStatement endCondStmt = mk.Exec(
+            callStatic(
+                "ch.epfl.printwizard.plugin.logging.TraceOut",
+                "endLoopCondition",
+                List.of(mk.Ident(loopEvtSym)),
+                jcWhileLoop.pos
+            )
+        );
+
+        JCTree.JCBlock whileBody = mk.Block(0, List.of(ifHasRun, hasRunAssignStmt, beginCondStmt, continuedAssignStmt, endCondStmt));
+
+        JCTree.JCWhileLoop newWhileLoop = mk.WhileLoop(whileCond, whileBody);
 
         JCTree.JCStatement endLoopStmt = mk.Exec(
             callStatic(
@@ -361,7 +439,7 @@ public class TracingTranslator extends TreeTranslator {
             )
         );
 
-        this.result = mk.Block(0, List.of(loopEvtVar, newWhileLoop, endLoopStmt));
+        this.result = mk.Block(0, List.of(loopEvtVar, continuedVar, hasRunVar, newWhileLoop, endLoopStmt));
     }
     
     @Override

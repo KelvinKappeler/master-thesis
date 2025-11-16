@@ -248,10 +248,31 @@ public class TraceOut {
         Deque<LoopCtx> loops = LOOPS.get();
         if (loops.isEmpty()) return;
 
-        LoopCtx ctx = loops.pop();
+        LoopCtx ctx = loops.peek();
         if (!Objects.equals(ctx.loopEventId(), loopEventId)) {
             throw new IllegalStateException("Invalid loop end");
         }
+
+        if (!ctx.pendingConditionEvents().isEmpty()) {
+            String[] condIds = ctx.pendingConditionEvents().toArray(String[]::new);
+            String[] bodyIds = new String[0];
+            String[] updateIds = new String[0];
+
+            String iterEventId = Ids.nextEventId();
+
+            LoopIterationEvent exitIteration = new LoopIterationEvent(
+                iterEventId, ctx.spanId(), ctx.frameId(),
+                ctx.location(), ctx.nextIterationIndex(),
+                condIds, bodyIds, updateIds
+            );
+
+            addEvent(exitIteration);
+            ctx.iterationEventIds().add(iterEventId);
+
+            ctx.pendingConditionEvents().clear();
+        }
+
+        loops.pop();
 
         String[] initEventIds = ctx.initEventIds().toArray(String[]::new);
         String[] iterationEventIds = ctx.iterationEventIds().toArray(String[]::new);
