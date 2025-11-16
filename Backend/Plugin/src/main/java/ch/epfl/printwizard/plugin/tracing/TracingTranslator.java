@@ -1,5 +1,6 @@
 package ch.epfl.printwizard.plugin.tracing;
 
+import ch.epfl.printwizard.plugin.model.trace.events.LoopKind;
 import ch.epfl.printwizard.plugin.utils.Ids;
 import ch.epfl.printwizard.plugin.model.trace.TraceFile;
 import com.sun.tools.javac.api.JavacTrees;
@@ -273,10 +274,94 @@ public class TracingTranslator extends TreeTranslator {
          */
         this.result = mk.Block(0, List.of(condEvtVar, condVar, newIf, endCondStmt));
     }
-    
+
     @Override
     public void visitWhileLoop(JCTree.JCWhileLoop jcWhileLoop) {
-        super.visitWhileLoop(jcWhileLoop);
+        JCTree.JCExpression condExpr = translate(jcWhileLoop.cond);
+        JCTree.JCStatement bodyStmt = jcWhileLoop.body == null ? mk.Block(0, List.nil()) : translate(jcWhileLoop.body);
+
+        int line = cu.getLineMap().getLineNumber(jcWhileLoop.pos);
+        String sourceId = getSourceId();
+
+        String loopEvtVarNameStr = "__pw_loop_evt_" + jcWhileLoop.pos;
+        var loopEvtVarName = names.fromString(loopEvtVarNameStr);
+
+        JCTree.JCExpression stringTypeTree = mk.QualIdent(symtab.stringType.tsym);
+        stringTypeTree.type = symtab.stringType;
+
+        JCTree.JCMethodInvocation beginLoopCall = callStatic(
+            "ch.epfl.printwizard.plugin.logging.TraceOut",
+            "beginLoop",
+            List.of(mk.Literal(sourceId), mk.Literal(line), mk.Literal("WHILE")),
+            jcWhileLoop.pos
+        );
+
+        JCTree.JCVariableDecl loopEvtVar = mk.VarDef(
+            mk.Modifiers(Flags.SYNTHETIC),
+            loopEvtVarName,
+            stringTypeTree,
+            beginLoopCall
+        );
+        Symbol.VarSymbol loopEvtSym = new Symbol.VarSymbol(
+            Flags.SYNTHETIC,
+            loopEvtVarName,
+            symtab.stringType,
+            (currentMethod != null ? currentMethod : symtab.noSymbol)
+        );
+        loopEvtVar.sym = loopEvtSym;
+        loopEvtVar.type = symtab.stringType;
+
+        String iterEvtVarNameStr = "__pw_iter_evt_" + jcWhileLoop.pos;
+        var iterEvtVarName = names.fromString(iterEvtVarNameStr);
+
+        JCTree.JCMethodInvocation beginIterCall = callStatic(
+            "ch.epfl.printwizard.plugin.logging.TraceOut",
+            "beginLoopIteration",
+            List.of(mk.Ident(loopEvtSym)),
+            jcWhileLoop.pos
+        );
+
+        JCTree.JCVariableDecl iterEvtVar = mk.VarDef(
+            mk.Modifiers(Flags.SYNTHETIC),
+            iterEvtVarName,
+            stringTypeTree,
+            beginIterCall
+        );
+        Symbol.VarSymbol iterEvtSym = new Symbol.VarSymbol(
+            Flags.SYNTHETIC,
+            iterEvtVarName,
+            symtab.stringType,
+            (currentMethod != null ? currentMethod : symtab.noSymbol)
+        );
+        iterEvtVar.sym = iterEvtSym;
+        iterEvtVar.type = symtab.stringType;
+
+        JCTree.JCStatement endIterStmt = mk.Exec(
+            callStatic(
+                "ch.epfl.printwizard.plugin.logging.TraceOut",
+                "endLoopIteration",
+                List.of(mk.Ident(iterEvtSym)),
+                jcWhileLoop.pos
+            )
+        );
+
+        JCTree.JCBlock tryBlock = mk.Block(0, List.of(bodyStmt));
+        JCTree.JCBlock finallyBlock = mk.Block(0, List.of(endIterStmt));
+        JCTree.JCTry tryFinally = mk.Try(tryBlock, List.nil(), finallyBlock);
+
+        JCTree.JCBlock newWhileBody = mk.Block(0, List.of(iterEvtVar, tryFinally));
+        JCTree.JCWhileLoop newWhileLoop = mk.WhileLoop(condExpr, newWhileBody);
+
+        JCTree.JCStatement endLoopStmt = mk.Exec(
+            callStatic(
+                "ch.epfl.printwizard.plugin.logging.TraceOut",
+                "endLoop",
+                List.of(mk.Ident(loopEvtSym)),
+                jcWhileLoop.pos
+            )
+        );
+
+        this.result = mk.Block(0, List.of(loopEvtVar, newWhileLoop, endLoopStmt));
     }
     
     @Override

@@ -50,8 +50,10 @@ public class Main {
             float test = 1/3f;
         }*/
 
-        int[] array2 = {10, 20, 30, 40};
-        array2[2] = 100;
+        int i = 0;
+        while (i < 10) {
+            i += 1;
+        }
         
         //Player player = new Player(100);
         //System.out.println("Player health points: " + player.getHealthPoints());
