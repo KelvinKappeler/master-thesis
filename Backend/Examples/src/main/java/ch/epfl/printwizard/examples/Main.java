@@ -3,56 +3,8 @@ package ch.epfl.printwizard.examples;
 public class Main {
 
     public static void main(String[] args) {
-        /*int i = 1;
-        i = 4;
-        int j = 0;
-        i = 3 + 4;
-        i += add(3, j);
-
-        if (i < 0) {
-            i = 3;
-            System.out.println("The condition is true and i > 0");
-        }
-        else if (i == 0) {
-            i = 1;
-            System.out.println("The condition is true and i == 0");
-        }
-        else {
-            i = 2;
-            System.out.println("The condition is false");
-        }*/
-
-        /*
-        if (i == 0) {
-            System.out.println("The condition is true");
-            j = -1;
-        }
-        else if (i > 0) {
-            System.out.println("The condition is true and i > 0");
-            j += 1;
-            i++;
-            j = i + 1;
-            j += 4;
-            j--;
-            j -= 2;
-            j -= 1;
-            
-            double r = 3.4;
-            r += 1.2;
-            r *= 3.2;
-            i = j % 2;
-            long l = 2L;
-            l += 1L;
-            float f = 1.2f;
-            f += 1.2f;
-            
-            int test1 = 10/3;
-            float test = 1/3f;
-        }*/
-
-        int i = 0;
-        while (i < 10) {
-            i += 1;
+        for (int i = 0; i < 10; i += 1) {
+            int j = 0;
         }
         
         //Player player = new Player(100);
