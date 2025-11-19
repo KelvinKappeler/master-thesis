@@ -16,14 +16,6 @@ public class TraceOut {
     private static final ThreadLocal<Deque<FrameCtx>> FRAME_STACK = ThreadLocal.withInitial(ArrayDeque::new);
     private static final ThreadLocal<Deque<ExecCtx>> CTX_STACK = ThreadLocal.withInitial(ArrayDeque::new);
 
-    private static final ThreadLocal<Deque<BlockCtx>> BLOCKS = ThreadLocal.withInitial(ArrayDeque::new);
-    private static final ThreadLocal<Deque<CondBlockCtx>> COND_BLOCKS = ThreadLocal.withInitial(ArrayDeque::new);
-    private static final ThreadLocal<Deque<LoopCtx>> LOOPS = ThreadLocal.withInitial(ArrayDeque::new);
-    private static final ThreadLocal<Deque<LoopIterationCtx>> LOOP_ITER_STACK = ThreadLocal.withInitial(ArrayDeque::new);
-    private static final ThreadLocal<Deque<String>> LOOP_COND_STACK = ThreadLocal.withInitial(ArrayDeque::new);
-    private static final ThreadLocal<Deque<String>> LOOP_INIT_STACK = ThreadLocal.withInitial(ArrayDeque::new);
-    private static final ThreadLocal<Deque<String>> LOOP_UPDATE_STACK = ThreadLocal.withInitial(ArrayDeque::new);
-
     private TraceOut() {}
 
     @SuppressWarnings("unused")
@@ -135,24 +127,6 @@ public class TraceOut {
     }
 
     @SuppressWarnings("unused")
-    public static void beginBlock(String parentEventId) {
-        BLOCKS.get().push(new BlockCtx(parentEventId, new ArrayList<>()));
-    }
-
-    @SuppressWarnings("unused")
-    public static void endBlock(String parentEventId) {
-        Deque<BlockCtx> blocks = BLOCKS.get();
-        if (blocks.isEmpty()) return;
-
-        BlockCtx block = blocks.pop();
-        if (!Objects.equals(block.parentEventId(), parentEventId)) {
-            throw new IllegalStateException("Invalid block end");
-        }
-
-        patchBlockEvents(parentEventId, block.eventIds());
-    }
-
-    @SuppressWarnings("unused")
     public static String beginCondition(String sourceId, int line) {
         FrameCtx ctx = currentFrameCtx();
         String eventId = Ids.nextEventId();
@@ -160,73 +134,77 @@ public class TraceOut {
 
         addEvent(new ConditionEvent(eventId, ctx.spanId(), ctx.frameId(), loc, new String[0], new String[0], new String[0]));
 
-        COND_BLOCKS.get().push(new CondBlockCtx(eventId, new ArrayList<>(), new ArrayList<>(), new ArrayList<>()));
+        ConditionCtx conditionCtx = new ConditionCtx(eventId);
+        CTX_STACK.get().push(conditionCtx);
+        CTX_STACK.get().push(new ConditionPhaseCtx(conditionCtx, ConditionPhase.CONDITION_EXPR));
 
         return eventId;
     }
 
     @SuppressWarnings("unused")
     public static void endCondition(String conditionEventId) {
-        Deque<CondBlockCtx> stack = COND_BLOCKS.get();
-        if (stack.isEmpty()) return;
+        Deque<ExecCtx> stack = CTX_STACK.get();
 
-        CondBlockCtx ctx = stack.pop();
-        if (!Objects.equals(ctx.conditionEventId(), conditionEventId)) {
-            throw new IllegalStateException("Invalid condition end");
+        if (!stack.isEmpty() && stack.peek() instanceof ConditionPhaseCtx) {
+            stack.pop();
         }
 
-        patchCondition(conditionEventId, ctx.conditionEvents(), ctx.thenEvents(), ctx.elseEvents());
+        if (!stack.isEmpty() && stack.peek() instanceof ConditionCtx c && Objects.equals(c.getConditionEventId(), conditionEventId)) {
+            ConditionCtx condCtx = (ConditionCtx) stack.pop();
+
+            patchCondition(conditionEventId, condCtx.getConditionEventIds(), condCtx.getThenEventIds(), condCtx.getElseEventIds());
+        }
     }
 
     @SuppressWarnings("unused")
     public static void beginThenBlock(String conditionEventId) {
-        BLOCKS.get().push(new BlockCtx(conditionEventId, new ArrayList<>()));
+        ConditionCtx condCtx = findConditionCtx(conditionEventId);
+
+        if (condCtx == null) {
+            throw new IllegalStateException("No condition context for id " + conditionEventId);
+        }
+
+        CTX_STACK.get().push(new ConditionPhaseCtx(condCtx, ConditionPhase.THEN_BLOCK));
     }
 
     @SuppressWarnings("unused")
     public static void endThenBlock(String conditionEventId) {
-        Deque<BlockCtx> blocks = BLOCKS.get();
-        if (blocks.isEmpty()) return;
-
-        BlockCtx block = blocks.pop();
-        if (!Objects.equals(block.parentEventId(), conditionEventId)) {
-            throw new IllegalStateException("Invalid then block end");
-        }
-
-        attachThenEvents(conditionEventId, block.eventIds());
-
-        Deque<CondBlockCtx> condStack = COND_BLOCKS.get();
-        for (CondBlockCtx c : condStack) {
-            if (Objects.equals(c.conditionEventId(), conditionEventId)) {
-                c.thenEvents().addAll(block.eventIds());
-                break;
-            }
-        }
+        popPhase(ConditionPhase.THEN_BLOCK);
     }
 
     @SuppressWarnings("unused")
     public static void beginElseBlock(String conditionEventId) {
-        BLOCKS.get().push(new BlockCtx(conditionEventId, new ArrayList<>()));
+        ConditionCtx condCtx = findConditionCtx(conditionEventId);
+
+        if (condCtx == null) {
+            throw new IllegalStateException("No condition context for id " + conditionEventId);
+        }
+
+        CTX_STACK.get().push(new ConditionPhaseCtx(condCtx, ConditionPhase.ELSE_BLOCK));
     }
 
     @SuppressWarnings("unused")
     public static void endElseBlock(String conditionEventId) {
-        Deque<BlockCtx> blocks = BLOCKS.get();
-        if (blocks.isEmpty()) return;
+        popPhase(ConditionPhase.ELSE_BLOCK);
+    }
 
-        BlockCtx block = blocks.pop();
-        if (!Objects.equals(block.parentEventId(), conditionEventId)) {
-            throw new IllegalStateException("Invalid else block end");
+    private static ConditionCtx findConditionCtx(String conditionEventId) {
+        Deque<ExecCtx> stack = CTX_STACK.get();
+
+        for (ExecCtx ctx : stack) {
+            if (ctx instanceof ConditionCtx c && Objects.equals(c.getConditionEventId(), conditionEventId)) {
+                return c;
+            }
         }
 
-        attachElseEvents(conditionEventId, block.eventIds());
+        return null;
+    }
 
-        Deque<CondBlockCtx> condStack = COND_BLOCKS.get();
-        for (CondBlockCtx c : condStack) {
-            if (Objects.equals(c.conditionEventId(), conditionEventId)) {
-                c.elseEvents().addAll(block.eventIds());
-                break;
-            }
+    private static void popPhase(ConditionPhase phase) {
+        Deque<ExecCtx> stack = CTX_STACK.get();
+
+        if (!stack.isEmpty() && stack.peek() instanceof ConditionPhaseCtx cp && cp.getPhase() == phase) {
+            stack.pop();
         }
     }
 
@@ -237,303 +215,202 @@ public class TraceOut {
         TraceLoc loc = new TraceLoc(sourceId, line);
         LoopKind loopKind = LoopKind.valueOf(kindName);
 
-        LoopCtx loopCtx = new LoopCtx(
-            loopEventId, frame.spanId(), frame.frameId(),
-            loc, loopKind, 0,
-            new ArrayList<>(), new ArrayList<>(), new ArrayList<>()
-        );
+        CTX_STACK.get().push(new LoopCtx(loopEventId, frame.spanId(), frame.frameId(), loc, loopKind));
 
-        LOOPS.get().push(loopCtx);
         return loopEventId;
     }
 
     @SuppressWarnings("unused")
     public static void endLoop(String loopEventId) {
-        Deque<LoopCtx> loops = LOOPS.get();
-        if (loops.isEmpty()) return;
+        Deque<ExecCtx> stack = CTX_STACK.get();
 
-        LoopCtx ctx = loops.peek();
-        if (!Objects.equals(ctx.loopEventId(), loopEventId)) {
-            throw new IllegalStateException("Invalid loop end");
+        while (!stack.isEmpty()) {
+            ExecCtx ctx = stack.pop();
+            if (ctx instanceof LoopCtx loopCtx && Objects.equals(loopCtx.getLoopEventId(), loopEventId)) {
+
+                String[] initEventIds = loopCtx.getInitEventIds().toArray(String[]::new);
+                String[] iterationEventIds = loopCtx.getIterationEventIds().toArray(String[]::new);
+
+                LoopEvent loopEvent = new LoopEvent(
+                    loopCtx.getLoopEventId(), loopCtx.getSpanId(), loopCtx.getFrameId(),
+                    loopCtx.getLocation(), loopCtx.getKind(),
+                    initEventIds, iterationEventIds
+                );
+
+                addEvent(loopEvent);
+
+                break;
+            }
+        }
+    }
+
+    @SuppressWarnings("unused")
+    public static void beginLoopCondition(String loopEventId) {
+        LoopCtx loopCtx = findLoopCtx(loopEventId);
+
+        if (loopCtx == null) {
+            throw new IllegalStateException("No loop context for id " + loopEventId);
         }
 
-        if (!ctx.pendingConditionEvents().isEmpty()) {
-            String[] condIds = ctx.pendingConditionEvents().toArray(String[]::new);
-            String[] bodyIds = new String[0];
-            String[] updateIds = new String[0];
+        loopCtx.getPendingConditionEvents().clear();
 
-            String iterEventId = Ids.nextEventId();
+        CTX_STACK.get().push(new LoopPhaseCtx(loopCtx, null, LoopPhase.CONDITION));
+    }
 
-            LoopIterationEvent exitIteration = new LoopIterationEvent(
-                iterEventId, ctx.spanId(), ctx.frameId(),
-                ctx.location(), ctx.nextIterationIndex(),
-                condIds, bodyIds, updateIds
-            );
+    @SuppressWarnings("unused")
+    public static void endLoopCondition(String loopEventId) {
+        Deque<ExecCtx> stack = CTX_STACK.get();
 
-            addEvent(exitIteration);
-            ctx.iterationEventIds().add(iterEventId);
+        if (!stack.isEmpty() && stack.peek() instanceof LoopPhaseCtx lp &&
+                lp.getPhase() == LoopPhase.CONDITION) {
+            stack.pop();
+        }
+    }
 
-            ctx.pendingConditionEvents().clear();
+    @SuppressWarnings("unused")
+    public static void beginLoopInit(String loopEventId) {
+        LoopCtx loopCtx = findLoopCtx(loopEventId);
+
+        if (loopCtx == null) {
+            throw new IllegalStateException("No loop context for id " + loopEventId);
         }
 
-        loops.pop();
+        CTX_STACK.get().push(new LoopPhaseCtx(loopCtx, null, LoopPhase.INIT));
+    }
 
-        String[] initEventIds = ctx.initEventIds().toArray(String[]::new);
-        String[] iterationEventIds = ctx.iterationEventIds().toArray(String[]::new);
+    @SuppressWarnings("unused")
+    public static void endLoopInit(String loopEventId) {
+        Deque<ExecCtx> stack = CTX_STACK.get();
 
-        LoopEvent loopEvent = new LoopEvent(
-            ctx.loopEventId(), ctx.spanId(), ctx.frameId(),
-            ctx.location(), ctx.kind(),
-            initEventIds, iterationEventIds
-        );
-
-        addEvent(loopEvent);
+        if (!stack.isEmpty() && stack.peek() instanceof LoopPhaseCtx lp &&
+                lp.getPhase() == LoopPhase.INIT) {
+            stack.pop();
+        }
     }
 
     @SuppressWarnings("unused")
     public static String beginLoopIteration(String loopEventId) {
-        Deque<LoopCtx> loops = LOOPS.get();
-        LoopCtx ctx = null;
-        for (LoopCtx c : loops) {
-            if (Objects.equals(c.loopEventId(), loopEventId)) {
-                ctx = c;
-                break;
-            }
-        }
-        if (ctx == null) {
+        LoopCtx loopCtx = findLoopCtx(loopEventId);
+
+        if (loopCtx == null) {
             throw new IllegalStateException("Loop iteration without active loop context");
         }
 
-        int iterationIndex = ctx.nextIterationIndex();
-        loops.remove(ctx);
-        loops.push(new LoopCtx(
-            ctx.loopEventId(), ctx.spanId(), ctx.frameId(),
-            ctx.location(), ctx.kind(),
-            iterationIndex + 1,
-            ctx.initEventIds(), ctx.iterationEventIds(), ctx.pendingConditionEvents()
-        ));
+        int idx = loopCtx.getNextIterationIndex();
+        loopCtx.setNextIterationIndex(idx + 1);
 
         String iterEventId = Ids.nextEventId();
 
-        LoopIterationCtx iterCtx = new LoopIterationCtx(
-            loopEventId, iterEventId, iterationIndex,
-            new ArrayList<>(ctx.pendingConditionEvents()), new ArrayList<>(), new ArrayList<>()
-        );
-        LOOP_ITER_STACK.get().push(iterCtx);
+        LoopIterationCtx iterCtx = new LoopIterationCtx(loopCtx, idx, iterEventId);
+        iterCtx.getConditionEventIds().addAll(loopCtx.getPendingConditionEvents());
+
+        CTX_STACK.get().push(iterCtx);
+        CTX_STACK.get().push(new LoopPhaseCtx(loopCtx, iterCtx, LoopPhase.BODY));
 
         return iterEventId;
     }
 
     @SuppressWarnings("unused")
     public static void endLoopIteration(String iterationEventId) {
-        Deque<LoopIterationCtx> iterStack = LOOP_ITER_STACK.get();
-        if (iterStack.isEmpty()) {
-            return;
+        Deque<ExecCtx> stack = CTX_STACK.get();
+
+        while (!stack.isEmpty() && stack.peek() instanceof LoopPhaseCtx) {
+            stack.pop();
         }
 
-        LoopIterationCtx iterCtx = iterStack.pop();
-        if (!Objects.equals(iterCtx.iterationEventId(), iterationEventId)) {
+        if (stack.isEmpty() || !(stack.peek() instanceof LoopIterationCtx iterCtx) || !Objects.equals(iterCtx.getIterationEventId(), iterationEventId)) {
             throw new IllegalStateException("Invalid loop iteration end");
         }
 
-        Deque<LoopCtx> loops = LOOPS.get();
-        LoopCtx loopCtx = null;
-        for (LoopCtx c : loops) {
-            if (Objects.equals(c.loopEventId(), iterCtx.loopEventId())) {
-                loopCtx = c;
-                break;
-            }
-        }
-        if (loopCtx == null) {
-            throw new IllegalStateException("Loop context not found for iteration");
-        }
+        iterCtx = (LoopIterationCtx) stack.pop();
+        LoopCtx loopCtx = iterCtx.getLoopCtx();
 
-        String[] condIds = iterCtx.conditionEventIds().toArray(String[]::new);
-        String[] bodyIds = iterCtx.bodyEventIds().toArray(String[]::new);
-        String[] updateIds = iterCtx.updateEventIds().toArray(String[]::new);
+        String[] condIds = iterCtx.getConditionEventIds().toArray(String[]::new);
+        String[] bodyIds = iterCtx.getBodyEventIds().toArray(String[]::new);
+        String[] updateIds = iterCtx.getUpdateEventIds().toArray(String[]::new);
 
         LoopIterationEvent iterEvent = new LoopIterationEvent(
-            iterCtx.iterationEventId(), loopCtx.spanId(), loopCtx.frameId(),
-            loopCtx.location(), iterCtx.iterationIndex(),
+            iterCtx.getIterationEventId(), loopCtx.getSpanId(), loopCtx.getFrameId(),
+            loopCtx.getLocation(), iterCtx.getIterationIndex(),
             condIds, bodyIds, updateIds
         );
 
         addEvent(iterEvent);
-        loopCtx.iterationEventIds().add(iterCtx.iterationEventId());
-    }
-
-    @SuppressWarnings("unused")
-    public static void beginLoopCondition(String loopEventId) {
-        Deque<LoopCtx> loops = LOOPS.get();
-        LoopCtx ctx = null;
-        for (LoopCtx c : loops) {
-            if (Objects.equals(c.loopEventId(), loopEventId)) {
-                ctx = c;
-                break;
-            }
-        }
-        if (ctx == null) {
-            throw new IllegalStateException("No loop context for id " + loopEventId);
-        }
-
-        ctx.pendingConditionEvents().clear();
-        LOOP_COND_STACK.get().push(loopEventId);
-    }
-
-    @SuppressWarnings("unused")
-    public static void endLoopCondition(String loopEventId) {
-        Deque<String> stack = LOOP_COND_STACK.get();
-        if (stack.isEmpty()) {
-            return;
-        }
-        String top = stack.pop();
-        if (!Objects.equals(top, loopEventId)) {
-            throw new IllegalStateException("Invalid loop condition end");
-        }
-    }
-
-    @SuppressWarnings("unused")
-    public static void beginLoopInit(String loopEventId) {
-        Deque<LoopCtx> loops = LOOPS.get();
-        LoopCtx ctx = null;
-        for (LoopCtx c : loops) {
-            if (Objects.equals(c.loopEventId(), loopEventId)) {
-                ctx = c;
-                break;
-            }
-        }
-        if (ctx == null) {
-            throw new IllegalStateException("No loop context for id " + loopEventId);
-        }
-        LOOP_INIT_STACK.get().push(loopEventId);
-    }
-
-    @SuppressWarnings("unused")
-    public static void endLoopInit(String loopEventId) {
-        Deque<String> stack = LOOP_INIT_STACK.get();
-        if (stack.isEmpty()) {
-            return;
-        }
-        String top = stack.pop();
-        if (!Objects.equals(top, loopEventId)) {
-            throw new IllegalStateException("Invalid loop init end");
-        }
+        loopCtx.getIterationEventIds().add(iterCtx.getIterationEventId());
     }
 
     @SuppressWarnings("unused")
     public static void beginLoopUpdate(String loopEventId) {
-        Deque<LoopCtx> loops = LOOPS.get();
-        LoopCtx ctx = null;
-        for (LoopCtx c : loops) {
-            if (Objects.equals(c.loopEventId(), loopEventId)) {
-                ctx = c;
-                break;
-            }
-        }
-        if (ctx == null) {
+        LoopCtx loopCtx = findLoopCtx(loopEventId);
+
+        if (loopCtx == null) {
             throw new IllegalStateException("No loop context for id " + loopEventId);
         }
-        LOOP_UPDATE_STACK.get().push(loopEventId);
+
+        LoopIterationCtx iterCtx = getCurrentIterationCtx(loopCtx);
+
+        if (iterCtx == null) {
+            throw new IllegalStateException("No loop iteration context for update");
+        }
+
+        CTX_STACK.get().push(new LoopPhaseCtx(loopCtx, iterCtx, LoopPhase.UPDATE));
     }
 
     @SuppressWarnings("unused")
     public static void endLoopUpdate(String loopEventId) {
-        Deque<String> stack = LOOP_UPDATE_STACK.get();
-        if (stack.isEmpty()) {
-            return;
+        Deque<ExecCtx> stack = CTX_STACK.get();
+
+        if (!stack.isEmpty() && stack.peek() instanceof LoopPhaseCtx lp && lp.getPhase() == LoopPhase.UPDATE) {
+            stack.pop();
         }
-        String top = stack.pop();
-        if (!Objects.equals(top, loopEventId)) {
-            throw new IllegalStateException("Invalid loop update end");
+    }
+
+    private static LoopCtx findLoopCtx(String loopEventId) {
+        Deque<ExecCtx> stack = CTX_STACK.get();
+        for (ExecCtx ctx : stack) {
+            if (ctx instanceof LoopCtx lc &&
+                    Objects.equals(lc.getLoopEventId(), loopEventId)) {
+                return lc;
+            }
         }
+        return null;
+    }
+
+    private static LoopIterationCtx getCurrentIterationCtx(LoopCtx loopCtx) {
+        Deque<ExecCtx> stack = CTX_STACK.get();
+        for (ExecCtx ctx : stack) {
+            if (ctx instanceof LoopIterationCtx li &&
+                    li.getLoopCtx() == loopCtx) {
+                return li;
+            }
+        }
+        return null;
     }
 
     private static void addEvent(TraceEvent event)
     {
         OutputManager.getTraceFileBuilder().addEvent(event);
 
-        Deque<String> initStack = LOOP_INIT_STACK.get();
-        if (!initStack.isEmpty()) {
-            String loopEventId = initStack.peek();
-            Deque<LoopCtx> loops = LOOPS.get();
-            for (LoopCtx c : loops) {
-                if (Objects.equals(c.loopEventId(), loopEventId)) {
-                    c.initEventIds().add(event.eventId());
+        Deque<ExecCtx> stack = CTX_STACK.get();
+
+        for (ExecCtx ctx : stack) {
+            if (ctx.handleEvent(event)) {
+                break;
+            }
+        }
+
+        boolean indexAsRoot = !(event instanceof LoopEvent) && !(event instanceof LoopIterationEvent) && !(event instanceof ConditionEvent);
+
+        if (indexAsRoot && !stack.isEmpty()) {
+            for (ExecCtx ctx : stack) {
+                if (ctx instanceof LoopCtx || ctx instanceof LoopIterationCtx || ctx instanceof ConditionCtx || ctx instanceof ConditionPhaseCtx || ctx instanceof LoopPhaseCtx) {
+                    indexAsRoot = false;
+
                     break;
                 }
             }
         }
 
-        Deque<String> updateStack = LOOP_UPDATE_STACK.get();
-        if (!updateStack.isEmpty()) {
-            String loopEventId = updateStack.peek();
-            Deque<LoopIterationCtx> iterStack = LOOP_ITER_STACK.get();
-            for (LoopIterationCtx c : iterStack) {
-                if (Objects.equals(c.loopEventId(), loopEventId)) {
-                    c.updateEventIds().add(event.eventId());
-                    break;
-                }
-            }
-        }
-
-        Deque<String> condLoopStack = LOOP_COND_STACK.get();
-        if (!condLoopStack.isEmpty()) {
-            String loopEventId = condLoopStack.peek();
-            Deque<LoopCtx> loops = LOOPS.get();
-            for (LoopCtx c : loops) {
-                if (Objects.equals(c.loopEventId(), loopEventId)) {
-                    c.pendingConditionEvents().add(event.eventId());
-                    break;
-                }
-            }
-        } else {
-            Deque<LoopIterationCtx> iterStack = LOOP_ITER_STACK.get();
-            if (!iterStack.isEmpty()
-                    && !(event instanceof LoopIterationEvent)
-                    && !(event instanceof LoopEvent)) {
-                LoopIterationCtx iterCtx = iterStack.peek();
-                if (iterCtx != null && LOOP_UPDATE_STACK.get().isEmpty()) {
-                    iterCtx.bodyEventIds().add(event.eventId());
-                }
-            }
-        }
-
-        var condStack = COND_BLOCKS.get();
-        var blockStack = BLOCKS.get();
-        var loopsStack = LOOPS.get();
-
-        boolean inCond = !condStack.isEmpty();
-        boolean inBlock = !blockStack.isEmpty();
-        boolean inLoop = !loopsStack.isEmpty();
-
-        if (inCond && inBlock && blockStack.peek().parentEventId().equals(condStack.peek().conditionEventId())) {
-            blockStack.peek().eventIds().add(event.eventId());
-            OutputManager.getIndexFileBuilder().addEvent(event, false);
-
-            return;
-        }
-
-        if (inCond) {
-            condStack.peek().conditionEvents().add(event.eventId());
-            OutputManager.getIndexFileBuilder().addEvent(event, false);
-
-            return;
-        }
-
-        if (inBlock) {
-            blockStack.peek().eventIds().add(event.eventId());
-            OutputManager.getIndexFileBuilder().addEvent(event, false);
-
-            return;
-        }
-
-        if (inLoop && !(event instanceof LoopEvent)) {
-            OutputManager.getIndexFileBuilder().addEvent(event, false);
-
-            return;
-        }
-
-        boolean indexAsRoot = !(event instanceof LoopIterationEvent);
         OutputManager.getIndexFileBuilder().addEvent(event, indexAsRoot);
     }
 

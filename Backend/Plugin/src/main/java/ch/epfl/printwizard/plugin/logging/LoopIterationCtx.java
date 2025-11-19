@@ -1,36 +1,81 @@
 package ch.epfl.printwizard.plugin.logging;
 
+import ch.epfl.printwizard.plugin.model.trace.events.TraceEvent;
+import ch.epfl.printwizard.plugin.utils.Ids;
 import ch.epfl.printwizard.plugin.utils.Preconditions;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Represents the context of a loop iteration.
- * @param loopEventId the identifier of the loop event
- * @param iterationEventId the identifier of the iteration event
- * @param iterationIndex the index of the iteration
- * @param conditionEventIds the identifiers of any related condition events
- * @param bodyEventIds the identifiers of events executed in the loop body
- * @param updateEventIds the identifiers of events executed in the loop update
  */
-public record LoopIterationCtx(
-    String loopEventId,
-    String iterationEventId,
-    int iterationIndex,
-    List<String> conditionEventIds,
-    List<String> bodyEventIds,
-    List<String> updateEventIds
-) {
+public class LoopIterationCtx implements ExecCtx {
 
-    public LoopIterationCtx {
-        Preconditions.requireNonNull(loopEventId, "loopEventId is null");
+    private LoopCtx loopCtx;
+    private String iterationEventId;
+    private int iterationIndex;
+    private final List<String> conditionEventIds = new ArrayList<>();
+    private final List<String> bodyEventIds = new ArrayList<>();
+    private final List<String> updateEventIds = new ArrayList<>();
+
+    public LoopIterationCtx(LoopCtx loopCtx, int iterationIndex, String iterationEventId) {
+        Preconditions.requireNonNull(loopCtx, "loopCtx is null");
         Preconditions.requireNonNull(iterationEventId, "iterationEventId is null");
-        Preconditions.requireNonNull(bodyEventIds, "bodyEventIds is null");
-        Preconditions.requireNonNull(conditionEventIds, "conditionEventIds is null");
-        Preconditions.requireNonNull(updateEventIds, "updateEventIds is null");
-        Preconditions.require(!loopEventId.isEmpty(), "loopEventId is empty");
-        Preconditions.require(!iterationEventId.isEmpty(), "iterationEventId is empty");
         Preconditions.require(iterationIndex >= 0, "iterationIndex is negative");
+        Preconditions.require(!iterationEventId.isEmpty(), "iterationEventId is empty");
+
+        this.loopCtx = loopCtx;
+        this.iterationIndex = iterationIndex;
+        this.iterationEventId = iterationEventId;
     }
 
+    public LoopCtx getLoopCtx() {
+        return loopCtx;
+    }
+
+    public void setLoopCtx(LoopCtx loopCtx) {
+        Preconditions.requireNonNull(loopCtx, "loopCtx is null");
+
+        this.loopCtx = loopCtx;
+    }
+
+    public String getIterationEventId() {
+        return iterationEventId;
+    }
+
+    public void setIterationEventId(String iterationEventId) {
+        Preconditions.requireNonNull(iterationEventId, "iterationEventId is null");
+        Preconditions.require(!iterationEventId.isEmpty(), "iterationEventId is empty");
+
+        this.iterationEventId = iterationEventId;
+    }
+
+    public int getIterationIndex() {
+        return iterationIndex;
+    }
+
+    public void setIterationIndex(int iterationIndex) {
+        Preconditions.require(iterationIndex >= 0, "iterationIndex is negative");
+
+        this.iterationIndex = iterationIndex;
+    }
+
+    public List<String> getConditionEventIds() {
+        return conditionEventIds;
+    }
+
+    public List<String> getBodyEventIds() {
+        return bodyEventIds;
+    }
+
+    public List<String> getUpdateEventIds() {
+        return updateEventIds;
+    }
+
+    @Override
+    public boolean handleEvent(TraceEvent event) {
+
+        return false;
+    }
 }

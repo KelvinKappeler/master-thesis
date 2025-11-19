@@ -4,7 +4,7 @@
     "parentSpanId" : "null",
     "methodId" : "m:ch.epfl.printwizard.examples.main(String[])void",
     "startEventId" : "eve:1",
-    "endEventId" : "eve:52",
+    "endEventId" : "eve:51",
     "startLoc" : {
       "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
       "line" : 5
@@ -118,7 +118,7 @@
     },
     "iterationIndex" : 0,
     "conditionEventIds" : [ "eve:4" ],
-    "bodyEventIds" : [ "eve:6", "eve:7", "eve:8" ],
+    "bodyEventIds" : [ "eve:6", "eve:8" ],
     "updateEventIds" : [ ]
   }, {
     "type" : "COMPARISON",
@@ -182,7 +182,7 @@
     },
     "iterationIndex" : 1,
     "conditionEventIds" : [ "eve:9" ],
-    "bodyEventIds" : [ "eve:11", "eve:12", "eve:13" ],
+    "bodyEventIds" : [ "eve:11", "eve:13" ],
     "updateEventIds" : [ ]
   }, {
     "type" : "COMPARISON",
@@ -246,7 +246,7 @@
     },
     "iterationIndex" : 2,
     "conditionEventIds" : [ "eve:14" ],
-    "bodyEventIds" : [ "eve:16", "eve:17", "eve:18" ],
+    "bodyEventIds" : [ "eve:16", "eve:18" ],
     "updateEventIds" : [ ]
   }, {
     "type" : "COMPARISON",
@@ -310,7 +310,7 @@
     },
     "iterationIndex" : 3,
     "conditionEventIds" : [ "eve:19" ],
-    "bodyEventIds" : [ "eve:21", "eve:22", "eve:23" ],
+    "bodyEventIds" : [ "eve:21", "eve:23" ],
     "updateEventIds" : [ ]
   }, {
     "type" : "COMPARISON",
@@ -374,7 +374,7 @@
     },
     "iterationIndex" : 4,
     "conditionEventIds" : [ "eve:24" ],
-    "bodyEventIds" : [ "eve:26", "eve:27", "eve:28" ],
+    "bodyEventIds" : [ "eve:26", "eve:28" ],
     "updateEventIds" : [ ]
   }, {
     "type" : "COMPARISON",
@@ -451,7 +451,7 @@
     },
     "iterationIndex" : 5,
     "conditionEventIds" : [ "eve:29" ],
-    "bodyEventIds" : [ "eve:31", "eve:32", "eve:33", "eve:34" ],
+    "bodyEventIds" : [ "eve:31", "eve:34" ],
     "updateEventIds" : [ ]
   }, {
     "type" : "COMPARISON",
@@ -515,7 +515,7 @@
     },
     "iterationIndex" : 6,
     "conditionEventIds" : [ "eve:35" ],
-    "bodyEventIds" : [ "eve:37", "eve:38", "eve:39" ],
+    "bodyEventIds" : [ "eve:37", "eve:39" ],
     "updateEventIds" : [ ]
   }, {
     "type" : "COMPARISON",
@@ -579,7 +579,7 @@
     },
     "iterationIndex" : 7,
     "conditionEventIds" : [ "eve:40" ],
-    "bodyEventIds" : [ "eve:42", "eve:43", "eve:44" ],
+    "bodyEventIds" : [ "eve:42", "eve:44" ],
     "updateEventIds" : [ ]
   }, {
     "type" : "COMPARISON",
@@ -643,7 +643,7 @@
     },
     "iterationIndex" : 8,
     "conditionEventIds" : [ "eve:45" ],
-    "bodyEventIds" : [ "eve:47", "eve:48", "eve:49" ],
+    "bodyEventIds" : [ "eve:47", "eve:49" ],
     "updateEventIds" : [ ]
   }, {
     "type" : "COMPARISON",
@@ -659,19 +659,6 @@
     "right" : 10,
     "result" : false
   }, {
-    "type" : "LOOP_ITERATION",
-    "eventId" : "eve:51",
-    "spanId" : "spn:1",
-    "frameId" : "frm:1",
-    "location" : {
-      "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
-      "line" : 8
-    },
-    "iterationIndex" : 9,
-    "conditionEventIds" : [ "eve:50" ],
-    "bodyEventIds" : [ ],
-    "updateEventIds" : [ ]
-  }, {
     "type" : "LOOP",
     "eventId" : "eve:3",
     "spanId" : "spn:1",
@@ -682,10 +669,10 @@
     },
     "loopKind" : "WHILE",
     "initEventIds" : [ ],
-    "iterationsEventIds" : [ "eve:5", "eve:10", "eve:15", "eve:20", "eve:25", "eve:30", "eve:36", "eve:41", "eve:46", "eve:51" ]
+    "iterationsEventIds" : [ "eve:5", "eve:10", "eve:15", "eve:20", "eve:25", "eve:30", "eve:36", "eve:41", "eve:46" ]
   }, {
     "type" : "RETURN",
-    "eventId" : "eve:52",
+    "eventId" : "eve:51",
     "spanId" : "spn:1",
     "frameId" : "frm:1",
     "location" : {
