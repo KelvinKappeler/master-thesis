@@ -455,6 +455,57 @@ public class TracingTranslator extends TreeTranslator {
         );
     }
 
+    @Override
+    public void visitUnary(JCTree.JCUnary jcUnary) {
+        super.visitUnary(jcUnary);
+
+        int line = cu.getLineMap().getLineNumber(jcUnary.pos);
+        String sourceId = getSourceId();
+        JCTree.Tag tag = jcUnary.getTag();
+
+        JCTree.JCUnary translatedUnary = (JCTree.JCUnary) result;
+        JCTree.JCExpression argExpr = translatedUnary.arg;
+
+        // ++i, i++, --i, i--
+        if (tag == JCTree.Tag.PREINC || tag == JCTree.Tag.POSTINC || tag == JCTree.Tag.PREDEC || tag == JCTree.Tag.POSTDEC) {
+            result = callRecordLocalEvent(argExpr.toString(), translatedUnary, sourceId, line, jcUnary.pos);
+
+            return;
+        }
+
+        // +x, -x
+        if (tag == JCTree.Tag.NEG || tag == JCTree.Tag.POS) {
+            JCTree.JCLiteral zeroLit;
+
+            if (argExpr.type != null && argExpr.type.isPrimitive()) {
+                switch (argExpr.type.getTag()) {
+                    case LONG -> zeroLit = mk.Literal(0L);
+                    case FLOAT -> zeroLit = mk.Literal(0.0f);
+                    case DOUBLE -> zeroLit = mk.Literal(0.0d);
+                    default -> zeroLit = mk.Literal(0);
+                }
+            } else {
+                zeroLit = mk.Literal(0);
+            }
+
+            result = callStatic(
+                "ch.epfl.printwizard.plugin.logging.TraceOut",
+                "recordArithmetic",
+                List.of(
+                    mk.Literal(tag.toString()),
+                    zeroLit,
+                    argExpr,
+                    translatedUnary,
+                    mk.Literal(sourceId),
+                    mk.Literal(line)
+                ),
+                jcUnary.pos
+            );
+
+            return;
+        }
+    }
+
     private JCTree.JCBlock makeInstrumentedLoop(
         LoopKind kind,
         JCTree.JCExpression condExpr,

@@ -13,7 +13,9 @@ import java.util.*;
 @SuppressWarnings("unused")
 public class TraceOut {
 
-    private static final ThreadLocal<Deque<FrameCtx>> STACK = ThreadLocal.withInitial(ArrayDeque::new);
+    private static final ThreadLocal<Deque<FrameCtx>> FRAME_STACK = ThreadLocal.withInitial(ArrayDeque::new);
+    private static final ThreadLocal<Deque<ExecCtx>> CTX_STACK = ThreadLocal.withInitial(ArrayDeque::new);
+
     private static final ThreadLocal<Deque<BlockCtx>> BLOCKS = ThreadLocal.withInitial(ArrayDeque::new);
     private static final ThreadLocal<Deque<CondBlockCtx>> COND_BLOCKS = ThreadLocal.withInitial(ArrayDeque::new);
     private static final ThreadLocal<Deque<LoopCtx>> LOOPS = ThreadLocal.withInitial(ArrayDeque::new);
@@ -30,7 +32,7 @@ public class TraceOut {
         String spanId = Ids.nextSpanId();
         String[] argsTypes = Arrays.stream(args).map(Arg::type).toArray(String[]::new);
         String methodId = Ids.createNewMethodId(owner, method, argsTypes, returnType);
-        String parent = STACK.get().isEmpty() ? "null" : currentFrameCtx().spanId();
+        String parent = FRAME_STACK.get().isEmpty() ? "null" : currentFrameCtx().spanId();
         String startEventId = Ids.nextEventId();
         TraceLoc loc = new TraceLoc(sourceId, line);
 
@@ -42,12 +44,12 @@ public class TraceOut {
         );
         OutputManager.getTraceFileBuilder().addFrame(new TraceFrame(frameId, spanId, methodId, null, List.of(args)));
 
-        STACK.get().push(new FrameCtx(spanId, frameId, methodId));
+        FRAME_STACK.get().push(new FrameCtx(spanId, frameId, methodId));
     }
 
     @SuppressWarnings("unused")
     public static void onReturn(Object ret, String sourceId, int line) {
-        var stack = STACK.get();
+        var stack = FRAME_STACK.get();
         if (stack.isEmpty()) return;
         var frameCtx = stack.pop();
 
@@ -536,7 +538,7 @@ public class TraceOut {
     }
 
     private static FrameCtx currentFrameCtx() {
-        return STACK.get().peek();
+        return FRAME_STACK.get().peek();
     }
 
     private static void patchSpanEnd(String spanId, String endEventId, TraceLoc endLoc) {
