@@ -14,6 +14,8 @@ import com.sun.tools.javac.util.Names;
 import com.sun.tools.javac.model.JavacElements;
 
 import javax.tools.JavaFileObject;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Represents the scanner for the PrintWizard instrumentation.
@@ -33,6 +35,7 @@ public class TracingTranslator extends TreeTranslator {
     private final TraceFile.Builder traceFileBuilder;
 
     private Symbol.MethodSymbol currentMethod;
+    private final Map<Symbol, String> localVarLabels = new HashMap<>();
 
     public TracingTranslator(Context ctx, JCTree.JCCompilationUnit cu) {
         this.ctx = ctx;
@@ -789,6 +792,14 @@ public class TracingTranslator extends TreeTranslator {
         newArr.type = types.makeArrayType(argSym.type);
 
         return newArr;
+    }
+
+    private String getOrCreateVarLabel(Symbol.VarSymbol varSym, String simpleName) {
+        return localVarLabels.computeIfAbsent(varSym, s -> {
+            String sourceId = getSourceId();
+            int pos = varSym.pos;
+            return simpleName + "@" + sourceId + ":" + pos;
+        });
     }
 
     private boolean isArithmetic(JCTree.Tag tag) {
