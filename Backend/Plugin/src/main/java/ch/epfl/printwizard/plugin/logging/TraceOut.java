@@ -65,12 +65,12 @@ public class TraceOut {
     }
 
     @SuppressWarnings("unused")
-    public static <T> T recordLocalEvent(String label, T value, String sourceId, int line) {
+    public static <T> T recordLocalEvent(String label, String varName, T value, String sourceId, int line) {
         FrameCtx ctx = currentFrameCtx();
         TraceLoc loc = new TraceLoc(sourceId, line);
 
         addEvent(new LocalEvent(
-            Ids.nextEventId(), ctx.spanId(), ctx.frameId(), loc, "owner", ctx.methodId(), label, value
+            Ids.nextEventId(), ctx.spanId(), ctx.frameId(), loc, "owner", ctx.methodId(), varName, value, label
         ));
 
         return value;

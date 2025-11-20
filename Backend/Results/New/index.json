@@ -1,17 +1,18 @@
 {
   "byLine" : {
     "src:ch/epfl/printwizard/examples/Main.java" : {
-      "12" : [ "eve:8", "eve:13", "eve:18", "eve:23", "eve:28", "eve:34", "eve:39", "eve:44", "eve:49" ],
+      "14" : [ "eve:5" ],
       "5" : [ "eve:1" ],
       "6" : [ "eve:2" ],
-      "8" : [ "eve:4", "eve:5", "eve:9", "eve:10", "eve:14", "eve:15", "eve:19", "eve:20", "eve:24", "eve:25", "eve:29", "eve:30", "eve:35", "eve:36", "eve:40", "eve:41", "eve:45", "eve:46", "eve:50", "eve:3" ],
-      "19" : [ "eve:51" ],
-      "9" : [ "eve:6", "eve:7", "eve:11", "eve:12", "eve:16", "eve:17", "eve:21", "eve:22", "eve:26", "eve:27", "eve:31", "eve:32", "eve:37", "eve:38", "eve:42", "eve:43", "eve:47", "eve:48" ],
-      "10" : [ "eve:33" ]
+      "7" : [ "eve:3" ],
+      "8" : [ "eve:4" ]
     }
   },
-  "byObject" : { },
+  "byObject" : {
+    "local:i@src:ch/epfl/printwizard/examples/Main.java:117#frm:1" : [ "eve:2", "eve:3" ],
+    "local:j@src:ch/epfl/printwizard/examples/Main.java:151#frm:1" : [ "eve:4" ]
+  },
   "bySpan" : {
-    "spn:1" : [ "eve:1", "eve:2", "eve:51" ]
+    "spn:1" : [ "eve:1", "eve:2", "eve:3", "eve:4", "eve:5" ]
   }
 }

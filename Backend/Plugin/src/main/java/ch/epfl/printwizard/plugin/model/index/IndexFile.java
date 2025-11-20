@@ -51,8 +51,8 @@ public record IndexFile(
                 String line = String.valueOf(event.location().line());
 
                 byLine.computeIfAbsent(sourceId, k -> new ConcurrentHashMap<>())
-                        .computeIfAbsent(line, k -> Collections.synchronizedList(new ArrayList<>()))
-                        .add(event.eventId());
+                    .computeIfAbsent(line, k -> Collections.synchronizedList(new ArrayList<>()))
+                    .add(event.eventId());
             }
         }
 
@@ -61,7 +61,15 @@ public record IndexFile(
          * @param event The event to be added
          */
         public void addEventByObject(TraceEvent event) {
-            // TODO: Need to implement this
+            if (event instanceof LocalEvent le) {
+                String localVarId = le.label();
+                String frameId = le.frameId();
+
+                String key = localVarId + "#" + frameId;
+
+                byObject.computeIfAbsent(key, k -> Collections.synchronizedList(new ArrayList<>()))
+                    .add(le.eventId());
+            }
         }
 
         /**
@@ -71,7 +79,7 @@ public record IndexFile(
         public void addEventBySpan(TraceEvent event) {
             if (event.spanId() != null) {
                 bySpan.computeIfAbsent(event.spanId(), k -> Collections.synchronizedList(new ArrayList<>()))
-                        .add(event.eventId());
+                    .add(event.eventId());
             }
         }
 

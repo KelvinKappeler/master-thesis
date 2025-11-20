@@ -13,6 +13,7 @@ import ch.epfl.printwizard.plugin.utils.Preconditions;
  * @param method the method in which the field modification occurs
  * @param varName the name of the field being modified
  * @param value the new value being assigned to the field
+ * @param label ID of the label associated with this event
  */
 public record LocalEvent(
         String eventId,
@@ -22,7 +23,8 @@ public record LocalEvent(
         String owner,
         String method,
         String varName,
-        Object value
+        Object value,
+        String label
 ) implements TraceEvent {
 
     public LocalEvent {
@@ -33,12 +35,14 @@ public record LocalEvent(
         Preconditions.requireNonNull(owner, "owner is null");
         Preconditions.requireNonNull(method, "field is null");
         Preconditions.requireNonNull(varName, "description is null");
+        Preconditions.requireNonNull(label, "label is null");
         Preconditions.require(!eventId.isEmpty(), "eventId is empty");
         Preconditions.require(!spanId.isEmpty(), "spanId is empty");
         Preconditions.require(!frameId.isEmpty(), "frameId is empty");
         Preconditions.require(!owner.isEmpty(), "owner is empty");
         Preconditions.require(!method.isEmpty(), "field is empty");
         Preconditions.require(!varName.isEmpty(), "description is empty");
+        Preconditions.require(!label.isEmpty(), "label is empty");
     }
 
 }

@@ -4,12 +4,8 @@ public class Main {
 
     public static void main(String[] args) {
         int i = 0;
-
-        if (i == 0) {
-            int j = 3;
-        } else {
-            int j = 2;
-        }
+        i = 3;
+        int j = 23;
 
         //Player player = new Player(100);
         //System.out.println("Player health points: " + player.getHealthPoints());
