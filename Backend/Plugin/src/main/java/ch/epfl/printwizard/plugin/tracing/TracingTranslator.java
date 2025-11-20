@@ -14,8 +14,7 @@ import com.sun.tools.javac.util.Names;
 import com.sun.tools.javac.model.JavacElements;
 
 import javax.tools.JavaFileObject;
-import java.util.HashMap;
-import java.util.Map;
+import java.awt.*;
 
 /**
  * Represents the scanner for the PrintWizard instrumentation.
@@ -382,12 +381,14 @@ public class TracingTranslator extends TreeTranslator {
     public void visitVarDef(JCTree.JCVariableDecl jcVariableDecl) {
         if (jcVariableDecl.init != null) {
             int line = cu.getLineMap().getLineNumber(jcVariableDecl.pos);
+            String label = makeLabel(jcVariableDecl.sym);
 
             if (jcVariableDecl.init instanceof JCTree.JCNewArray newArr && newArr.elems != null) {
                 JCTree.JCExpression call = callStatic(
                     "ch.epfl.printwizard.plugin.logging.TraceOut",
                     "recordArrayInit",
                     List.of(
+                        mk.Literal(label),
                         mk.Literal(jcVariableDecl.getName().toString()),
                         jcVariableDecl.init,
                         mk.Literal(getSourceId()),
@@ -402,8 +403,6 @@ public class TracingTranslator extends TreeTranslator {
                 jcVariableDecl.init = casted;
             }
             else {
-                String label = makeLabel(jcVariableDecl.sym);
-                
                 jcVariableDecl.init = callRecordLocalEvent(label, jcVariableDecl.getName().toString(), jcVariableDecl.init, getSourceId(), line, jcVariableDecl.pos);
             }
         }
@@ -418,10 +417,16 @@ public class TracingTranslator extends TreeTranslator {
         // If the assignment is to an array element
         if (jcAssign.lhs instanceof JCTree.JCArrayAccess arrAccess) {
 
+            String label = arrAccess.indexed.toString();
+            if (arrAccess.indexed instanceof JCTree.JCIdent id && id.sym instanceof Symbol.VarSymbol varSym && varSym.owner instanceof Symbol.MethodSymbol) {
+                label = makeLabel(varSym);
+            }
+            
             jcAssign.rhs = callStatic(
                 "ch.epfl.printwizard.plugin.logging.TraceOut",
                 "recordArrayStore",
                 List.of(
+                    mk.Literal(label),
                     mk.Literal(arrAccess.indexed.toString()),
                     arrAccess.index,
                     jcAssign.rhs,
@@ -450,23 +455,44 @@ public class TracingTranslator extends TreeTranslator {
         super.visitAssignop(jcAssignOp);
 
         int line = cu.getLineMap().getLineNumber(jcAssignOp.pos);
-        String lhsLabel = jcAssignOp.lhs.toString();
+        String sourceId = getSourceId();
+        
+        if (jcAssignOp.lhs instanceof JCTree.JCArrayAccess arrAccess) {
+            String arrayNameText = arrAccess.indexed.toString();
+            
+            String label = arrayNameText;
+            if (arrAccess.indexed instanceof JCTree.JCIdent id && id.sym instanceof Symbol.VarSymbol varSym && varSym.owner instanceof Symbol.MethodSymbol) {
+                label = makeLabel(varSym);
+            }
+            
+            JCTree.JCExpression assigned = (JCTree.JCExpression) result;
+            
+            result = callStatic(
+                "ch.epfl.printwizard.plugin.logging.TraceOut",
+                "recordArrayStore",
+                List.of(
+                    mk.Literal(label),
+                    mk.Literal(arrayNameText),
+                    arrAccess.index,
+                    assigned,
+                    mk.Literal(sourceId),
+                    mk.Literal(line)
+                ),
+                jcAssignOp.pos
+            );
 
-        String label = jcAssignOp.lhs.toString();
+            return;
+        }
+        
+        String lhsText = jcAssignOp.lhs.toString();
+        String label = lhsText;
         if (jcAssignOp.lhs instanceof JCTree.JCIdent id && id.sym instanceof Symbol.VarSymbol varSym && varSym.owner instanceof Symbol.MethodSymbol) {
             label = makeLabel(varSym);
         }
-        
+
         JCTree.JCExpression assigned = (JCTree.JCExpression) result;
 
-        result = callRecordLocalEvent(
-            label,
-            lhsLabel,
-            assigned,
-            getSourceId(),
-            line,
-            jcAssignOp.pos
-        );
+        result = callRecordLocalEvent(label, lhsText, assigned, sourceId, line, jcAssignOp.pos);
     }
 
     @Override
@@ -482,17 +508,43 @@ public class TracingTranslator extends TreeTranslator {
 
         // ++i, i++, --i, i--
         if (tag == JCTree.Tag.PREINC || tag == JCTree.Tag.POSTINC || tag == JCTree.Tag.PREDEC || tag == JCTree.Tag.POSTDEC) {
-            String label = argExpr.toString();
+            
+            if (argExpr instanceof JCTree.JCArrayAccess arrAccess) {
+                String arrayNameText = arrAccess.indexed.toString();
+
+                String label = arrayNameText;
+                if (arrAccess.indexed instanceof JCTree.JCIdent id && id.sym instanceof Symbol.VarSymbol varSym && varSym.owner instanceof Symbol.MethodSymbol) {
+                    label = makeLabel(varSym);
+                }
+                
+                result = callStatic(
+                    "ch.epfl.printwizard.plugin.logging.TraceOut",
+                    "recordArrayStore",
+                    List.of(
+                        mk.Literal(label),
+                        mk.Literal(arrayNameText),
+                        arrAccess.index,
+                        translatedUnary,
+                        mk.Literal(sourceId),
+                        mk.Literal(line)
+                    ),
+                    jcUnary.pos
+                );
+
+                return;
+            }
+            
+            String varText = argExpr.toString();
+            String label = varText;
             if (argExpr instanceof JCTree.JCIdent id && id.sym instanceof Symbol.VarSymbol varSym && varSym.owner instanceof Symbol.MethodSymbol) {
                 label = makeLabel(varSym);
             }
-            
-            result = callRecordLocalEvent(label, argExpr.toString(), translatedUnary, sourceId, line, jcUnary.pos);
+
+            result = callRecordLocalEvent(label, varText, translatedUnary, sourceId, line, jcUnary.pos);
 
             return;
         }
-
-        // +x, -x
+        
         if (tag == JCTree.Tag.NEG || tag == JCTree.Tag.POS) {
             JCTree.JCLiteral zeroLit;
 

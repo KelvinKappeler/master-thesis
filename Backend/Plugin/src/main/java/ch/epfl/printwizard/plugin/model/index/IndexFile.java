@@ -70,6 +70,15 @@ public record IndexFile(
                 byObject.computeIfAbsent(key, k -> Collections.synchronizedList(new ArrayList<>()))
                     .add(le.eventId());
             }
+            else if (event instanceof ArrayStoreEvent ase) {
+                String localVarId = ase.label();
+                String frameId = ase.frameId();
+
+                String key = localVarId + "#" + frameId;
+
+                byObject.computeIfAbsent(key, k -> Collections.synchronizedList(new ArrayList<>()))
+                    .add(ase.eventId());
+            }
         }
 
         /**

@@ -6,6 +6,11 @@ public class Main {
         int i = 0;
         i = 3;
         int j = 23;
+        
+        int[] test = {1, 2, 3};
+        test[2] = 5;
+        test[0] += 1;
+        test[0]++;
 
         //Player player = new Player(100);
         //System.out.println("Player health points: " + player.getHealthPoints());

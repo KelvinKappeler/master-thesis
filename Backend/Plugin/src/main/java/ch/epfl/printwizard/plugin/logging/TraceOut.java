@@ -89,11 +89,11 @@ public class TraceOut {
     }
 
     @SuppressWarnings("unused")
-    public static <T> T recordArrayStore(String arrayName, int index, T value, String sourceId, int line) {
+    public static <T> T recordArrayStore(String label, String arrayName, int index, T value, String sourceId, int line) {
         FrameCtx ctx = currentFrameCtx();
         TraceLoc loc = new TraceLoc(sourceId, line);
 
-        addEvent(new ArrayStoreEvent(Ids.nextEventId(), ctx.spanId(), ctx.frameId(), loc, arrayName, index, value));
+        addEvent(new ArrayStoreEvent(Ids.nextEventId(), ctx.spanId(), ctx.frameId(), loc, arrayName, index, value, label));
 
         return value;
     }
@@ -111,7 +111,7 @@ public class TraceOut {
     }
 
     @SuppressWarnings("unused")
-    public static Object recordArrayInit(String arrayName, Object arrayRef, String sourceId, int line) {
+    public static Object recordArrayInit(String label, String arrayName, Object arrayRef, String sourceId, int line) {
         FrameCtx ctx = currentFrameCtx();
         TraceLoc loc = new TraceLoc(sourceId, line);
 
@@ -119,7 +119,7 @@ public class TraceOut {
         for (int i = 0; i < length; i++) {
             Object value = Array.get(arrayRef, i);
             addEvent(new ArrayStoreEvent(
-                Ids.nextEventId(), ctx.spanId(), ctx.frameId(), loc, arrayName, i, value
+                Ids.nextEventId(), ctx.spanId(), ctx.frameId(), loc, arrayName, i, value, label
             ));
         }
 
@@ -429,27 +429,6 @@ public class TraceOut {
         }
     }
 
-    private static void patchBlockEvents(String parentEventId, List<String> bodyEventsIds) {
-        TraceFile.Builder traceFileBuilder = OutputManager.getTraceFileBuilder();
-        List<TraceEvent> events = traceFileBuilder.getEvents();
-
-        for (int i = events.size() - 1; i >= 0; i--) {
-            TraceEvent e = events.get(i);
-            if (e instanceof ConditionEvent ce && ce.eventId().equals(parentEventId)) {
-                String[] existingConditionIds = ce.conditionEventIds() != null ? ce.conditionEventIds() : new String[0];
-
-                ConditionEvent patched = new ConditionEvent(
-                    ce.eventId(), ce.spanId(), ce.frameId(), ce.location(),
-                    existingConditionIds, existingConditionIds, bodyEventsIds.toArray(String[]::new)
-                );
-
-                events.set(i, patched);
-
-                return;
-            }
-        }
-    }
-
     private static void patchCondition(String conditionEventId, List<String> condIds, List<String> thenIds, List<String> elseIds) {
         TraceFile.Builder traceFileBuilder = OutputManager.getTraceFileBuilder();
         List<TraceEvent> events = traceFileBuilder.getEvents();
@@ -460,46 +439,6 @@ public class TraceOut {
                 ConditionEvent patched = new ConditionEvent(
                     ce.eventId(), ce.spanId(), ce.frameId(), ce.location(),
                     condIds.toArray(String[]::new), thenIds.toArray(String[]::new), elseIds.toArray(String[]::new)
-                );
-
-                events.set(i, patched);
-
-                return;
-            }
-        }
-    }
-
-    private static void attachThenEvents(String conditionEventId, List<String> thenIds) {
-        TraceFile.Builder traceFileBuilder = OutputManager.getTraceFileBuilder();
-        List<TraceEvent> events = traceFileBuilder.getEvents();
-
-        for (int i = events.size() - 1; i >= 0; i--) {
-            TraceEvent e = events.get(i);
-            if (e instanceof ConditionEvent ce && ce.eventId().equals(conditionEventId)) {
-                ConditionEvent patched = new ConditionEvent(
-                    ce.eventId(), ce.spanId(), ce.frameId(), ce.location(),
-                    ce.conditionEventIds(),
-                    thenIds.toArray(String[]::new),
-                    ce.elseEventIds()
-                );
-
-                events.set(i, patched);
-
-                return;
-            }
-        }
-    }
-
-    private static void attachElseEvents(String conditionEventId, List<String> elseIds) {
-        TraceFile.Builder traceFileBuilder = OutputManager.getTraceFileBuilder();
-        List<TraceEvent> events = traceFileBuilder.getEvents();
-
-        for (int i = events.size() - 1; i >= 0; i--) {
-            TraceEvent e = events.get(i);
-            if (e instanceof ConditionEvent ce && ce.eventId().equals(conditionEventId)) {
-                ConditionEvent patched = new ConditionEvent(
-                    ce.eventId(), ce.spanId(), ce.frameId(), ce.location(),
-                    ce.conditionEventIds(), ce.thenEventIds(), elseIds.toArray(String[]::new)
                 );
 
                 events.set(i, patched);

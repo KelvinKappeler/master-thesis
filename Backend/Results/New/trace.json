@@ -4,14 +4,14 @@
     "parentSpanId" : "null",
     "methodId" : "m:ch.epfl.printwizard.examples.main(String[])void",
     "startEventId" : "eve:1",
-    "endEventId" : "eve:5",
+    "endEventId" : "eve:11",
     "startLoc" : {
       "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
       "line" : 5
     },
     "endLoc" : {
       "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
-      "line" : 14
+      "line" : 19
     }
   } ],
   "frames" : [ {
@@ -86,13 +86,91 @@
     "value" : 23,
     "label" : "local:j@src:ch/epfl/printwizard/examples/Main.java:151"
   }, {
-    "type" : "RETURN",
+    "type" : "ARRAYSTORE",
     "eventId" : "eve:5",
     "spanId" : "spn:1",
     "frameId" : "frm:1",
     "location" : {
       "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
-      "line" : 14
+      "line" : 10
+    },
+    "arrayRef" : "test",
+    "index" : 0,
+    "value" : 1,
+    "label" : "local:test@src:ch/epfl/printwizard/examples/Main.java:182"
+  }, {
+    "type" : "ARRAYSTORE",
+    "eventId" : "eve:6",
+    "spanId" : "spn:1",
+    "frameId" : "frm:1",
+    "location" : {
+      "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
+      "line" : 10
+    },
+    "arrayRef" : "test",
+    "index" : 1,
+    "value" : 2,
+    "label" : "local:test@src:ch/epfl/printwizard/examples/Main.java:182"
+  }, {
+    "type" : "ARRAYSTORE",
+    "eventId" : "eve:7",
+    "spanId" : "spn:1",
+    "frameId" : "frm:1",
+    "location" : {
+      "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
+      "line" : 10
+    },
+    "arrayRef" : "test",
+    "index" : 2,
+    "value" : 3,
+    "label" : "local:test@src:ch/epfl/printwizard/examples/Main.java:182"
+  }, {
+    "type" : "ARRAYSTORE",
+    "eventId" : "eve:8",
+    "spanId" : "spn:1",
+    "frameId" : "frm:1",
+    "location" : {
+      "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
+      "line" : 11
+    },
+    "arrayRef" : "test",
+    "index" : 2,
+    "value" : 5,
+    "label" : "local:test@src:ch/epfl/printwizard/examples/Main.java:182"
+  }, {
+    "type" : "ARRAYSTORE",
+    "eventId" : "eve:9",
+    "spanId" : "spn:1",
+    "frameId" : "frm:1",
+    "location" : {
+      "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
+      "line" : 12
+    },
+    "arrayRef" : "test",
+    "index" : 0,
+    "value" : 2,
+    "label" : "local:test@src:ch/epfl/printwizard/examples/Main.java:182"
+  }, {
+    "type" : "ARRAYSTORE",
+    "eventId" : "eve:10",
+    "spanId" : "spn:1",
+    "frameId" : "frm:1",
+    "location" : {
+      "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
+      "line" : 13
+    },
+    "arrayRef" : "test",
+    "index" : 0,
+    "value" : 2,
+    "label" : "local:test@src:ch/epfl/printwizard/examples/Main.java:182"
+  }, {
+    "type" : "RETURN",
+    "eventId" : "eve:11",
+    "spanId" : "spn:1",
+    "frameId" : "frm:1",
+    "location" : {
+      "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
+      "line" : 19
     },
     "returnValue" : ""
   } ]
