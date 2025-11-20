@@ -9,6 +9,7 @@ public class Ids {
     private static final AtomicLong SPAN = new AtomicLong(0L);
     private static final AtomicLong FRAME = new AtomicLong(0L);
     private static final AtomicLong EVE = new AtomicLong(0L);
+    private static final AtomicLong OBJECT = new AtomicLong(0L);
 
     private Ids() {}
 
@@ -34,6 +35,14 @@ public class Ids {
      */
     public static String nextEventId() {
         return "eve:" + EVE.incrementAndGet();
+    }
+
+    /**
+     * Generates a unique identifier for an object.
+     * @return the unique identifier for the object
+     */
+    public static String nextObjectId() {
+        return "obj:" + OBJECT.incrementAndGet();
     }
 
     /**

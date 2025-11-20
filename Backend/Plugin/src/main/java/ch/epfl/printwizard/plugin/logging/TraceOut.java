@@ -16,6 +16,8 @@ public class TraceOut {
     private static final ThreadLocal<Deque<FrameCtx>> FRAME_STACK = ThreadLocal.withInitial(ArrayDeque::new);
     private static final ThreadLocal<Deque<ExecCtx>> CTX_STACK = ThreadLocal.withInitial(ArrayDeque::new);
 
+    private static final Map<Object, String> OBJECT_IDS = Collections.synchronizedMap(new WeakHashMap<>());
+
     private TraceOut() {}
 
     @SuppressWarnings("unused")
@@ -124,6 +126,50 @@ public class TraceOut {
         }
 
         return arrayRef;
+    }
+
+    @SuppressWarnings("unused")
+    public static <T> T recordNewObject(T obj, String typeName, String sourceId, int line) {
+        FrameCtx ctx = currentFrameCtx();
+        TraceLoc loc = new TraceLoc(sourceId, line);
+
+        String objectId = getOrCreateObjectId(obj);
+
+        addEvent(new NewEvent(Ids.nextEventId(), ctx.spanId(), ctx.frameId(), loc, objectId, typeName));
+
+        return obj;
+    }
+
+    @SuppressWarnings("unused")
+    public static <T> T recordFieldWrite(Object target, String fieldName, T value, String sourceId, int line) {
+        FrameCtx ctx = currentFrameCtx();
+        TraceLoc loc = new TraceLoc(sourceId, line);
+
+        String objectId = getOrCreateObjectId(target);
+
+        addEvent(new FieldWriteEvent(
+            Ids.nextEventId(), ctx.spanId(), ctx.frameId(),
+            loc,
+            objectId, fieldName, value
+        ));
+
+        return value;
+    }
+
+    @SuppressWarnings("unused")
+    public static <T> T recordFieldRead(Object target, String fieldName, T value, String sourceId, int line) {
+        FrameCtx ctx = currentFrameCtx();
+
+        String objectId = getOrCreateObjectId(target);
+        TraceLoc loc = new TraceLoc(sourceId, line);
+
+        addEvent(new FieldReadEvent(
+            Ids.nextEventId(), ctx.spanId(), ctx.frameId(),
+            loc,
+            objectId, fieldName, value
+        ));
+
+        return value;
     }
 
     @SuppressWarnings("unused")
@@ -446,5 +492,11 @@ public class TraceOut {
                 return;
             }
         }
+    }
+
+    private static String getOrCreateObjectId(Object obj) {
+        if (obj == null) return "null";
+        
+        return OBJECT_IDS.computeIfAbsent(obj, o -> Ids.nextObjectId());
     }
 }

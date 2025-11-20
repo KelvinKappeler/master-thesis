@@ -575,6 +575,36 @@ public class TracingTranslator extends TreeTranslator {
         }
     }
 
+    @Override
+    public void visitNewClass(JCTree.JCNewClass jcNewClass) {
+        super.visitNewClass(jcNewClass);
+
+        int line = cu.getLineMap().getLineNumber(jcNewClass.pos);
+        String sourceId = getSourceId();
+        
+        String typeName;
+        if (jcNewClass.clazz != null && jcNewClass.clazz.type != null) {
+            typeName = jcNewClass.clazz.type.toString();
+        } else if (jcNewClass.type != null) {
+            typeName = jcNewClass.type.toString();
+        } else {
+            typeName = jcNewClass.clazz != null ? jcNewClass.clazz.toString() : "java.lang.Object";
+        }
+        
+        JCTree.JCExpression newExpr = (JCTree.JCExpression) this.result;
+
+        JCTree.JCExpression wrapped = callStatic(
+            "ch.epfl.printwizard.plugin.logging.TraceOut",
+            "recordNewObject",
+            List.of(newExpr, mk.Literal(typeName), mk.Literal(sourceId), mk.Literal(line)),
+            jcNewClass.pos
+        );
+        
+        wrapped.type = jcNewClass.type;
+
+        this.result = wrapped;
+    }
+
     private JCTree.JCBlock makeInstrumentedLoop(
         LoopKind kind,
         JCTree.JCExpression condExpr,
