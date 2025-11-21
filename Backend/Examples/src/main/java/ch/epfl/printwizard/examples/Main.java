@@ -3,16 +3,9 @@ package ch.epfl.printwizard.examples;
 public class Main {
 
     public static void main(String[] args) {
-        int i = 0;
-        i = 3;
-        int j = 23;
-        
-        int[] test = {1, 2, 3};
-        test[2] = 5;
-        test[0] += 1;
-        test[0]++;
-
-        Player player = new Player(100);
+        Player p1 = new Player(100, 20);
+        Player p2 = p1;
+        int currentHealthPointsP1 = p1.getHealthPoints();
         //System.out.println("Player health points: " + player.getHealthPoints());
         //player.setHealthPoints(80);
         //System.out.println("Player health points after damage: " + player.getHealthPoints());

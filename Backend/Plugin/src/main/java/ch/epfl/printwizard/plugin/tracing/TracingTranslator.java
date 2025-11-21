@@ -413,8 +413,8 @@ public class TracingTranslator extends TreeTranslator {
     @Override
     public void visitAssign(JCTree.JCAssign jcAssign) {
         int line = cu.getLineMap().getLineNumber(jcAssign.pos);
+        String sourceId = getSourceId();
 
-        // If the assignment is to an array element
         if (jcAssign.lhs instanceof JCTree.JCArrayAccess arrAccess) {
 
             String label = arrAccess.indexed.toString();
@@ -430,11 +430,30 @@ public class TracingTranslator extends TreeTranslator {
                     mk.Literal(arrAccess.indexed.toString()),
                     arrAccess.index,
                     jcAssign.rhs,
-                    mk.Literal(getSourceId()),
+                    mk.Literal(sourceId),
                     mk.Literal(line)
                 ),
                 jcAssign.pos
             );
+
+            super.visitAssign(jcAssign);
+
+            return;
+        }
+
+        if (jcAssign.lhs instanceof JCTree.JCFieldAccess fieldAccess) {
+            JCTree.JCExpression targetExpr = fieldAccess.selected;
+            String fieldName = fieldAccess.name.toString();
+
+            JCTree.JCExpression translatedRhs = translate(jcAssign.rhs);
+
+            jcAssign.rhs = callStatic(
+                "ch.epfl.printwizard.plugin.logging.TraceOut",
+                "recordFieldWrite",
+                List.of(targetExpr, mk.Literal(fieldName), translatedRhs, mk.Literal(sourceId), mk.Literal(line)),
+                jcAssign.pos
+            );
+
             super.visitAssign(jcAssign);
 
             return;
@@ -444,7 +463,7 @@ public class TracingTranslator extends TreeTranslator {
         if (jcAssign.lhs instanceof JCTree.JCIdent id && id.sym instanceof Symbol.VarSymbol varSym && varSym.owner instanceof Symbol.MethodSymbol) {
             label = makeLabel(varSym);
         }
-        jcAssign.rhs = callRecordLocalEvent(label, jcAssign.lhs.toString(), jcAssign.rhs, getSourceId(), line, jcAssign.pos);
+        jcAssign.rhs = callRecordLocalEvent(label, jcAssign.lhs.toString(), jcAssign.rhs, sourceId, line, jcAssign.pos);
 
         super.visitAssign(jcAssign);
     }

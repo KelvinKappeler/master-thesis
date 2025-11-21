@@ -71,8 +71,18 @@ public class TraceOut {
         FrameCtx ctx = currentFrameCtx();
         TraceLoc loc = new TraceLoc(sourceId, line);
 
+        Object storedValue = null;
+        String storedObjectId = null;
+
+        if (value == null || isSimpleValue(value)) {
+            storedValue = value;
+        }
+        else {
+            storedObjectId = getOrCreateObjectId(value);
+        }
+
         addEvent(new LocalEvent(
-            Ids.nextEventId(), ctx.spanId(), ctx.frameId(), loc, "owner", ctx.methodId(), varName, value, label
+            Ids.nextEventId(), ctx.spanId(), ctx.frameId(), loc, ctx.methodId(), varName, storedValue, storedObjectId, label
         ));
 
         return value;
@@ -498,5 +508,14 @@ public class TraceOut {
         if (obj == null) return "null";
         
         return OBJECT_IDS.computeIfAbsent(obj, o -> Ids.nextObjectId());
+    }
+
+    private static boolean isSimpleValue(Object v) {
+        Class<?> c = v.getClass();
+        return c.isPrimitive()
+            || Number.class.isAssignableFrom(c)
+            || c == Boolean.class
+            || c == Character.class
+            || c == String.class;
     }
 }

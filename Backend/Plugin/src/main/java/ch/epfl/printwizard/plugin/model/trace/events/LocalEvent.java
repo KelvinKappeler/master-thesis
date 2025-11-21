@@ -4,27 +4,27 @@ import ch.epfl.printwizard.plugin.model.trace.TraceLoc;
 import ch.epfl.printwizard.plugin.utils.Preconditions;
 
 /**
- * A LocalEvent represents a modification to a local variable or field within a specific method frame during the execution of a program.
+ * A LocalEvent represents a modification to a local variable during the execution of a program.
  * @param eventId the unique identifier of the event
  * @param spanId the identifier of the span this event belongs to
  * @param frameId the identifier of the frame this event belongs to
  * @param location the location in the source code where the event occurred
- * @param owner the class that owns the field being modified
- * @param method the method in which the field modification occurs
- * @param varName the name of the field being modified
- * @param value the new value being assigned to the field
+ * @param method the method in which the modification took place
+ * @param varName the name of the local variable being modified
+ * @param value the new value assigned to the local variable, if the local variable is of a primitive type, null or string
+ * @param objectId if the type of the local variable is an object, the ID of the object assigned to the local variable
  * @param label ID of the label associated with this event
  */
 public record LocalEvent(
-        String eventId,
-        String spanId,
-        String frameId,
-        TraceLoc location,
-        String owner,
-        String method,
-        String varName,
-        Object value,
-        String label
+    String eventId,
+    String spanId,
+    String frameId,
+    TraceLoc location,
+    String method,
+    String varName,
+    Object value,
+    String objectId,
+    String label
 ) implements TraceEvent {
 
     public LocalEvent {
@@ -32,14 +32,12 @@ public record LocalEvent(
         Preconditions.requireNonNull(spanId, "spanId is null");
         Preconditions.requireNonNull(frameId, "frameId is null");
         Preconditions.requireNonNull(location, "location is null");
-        Preconditions.requireNonNull(owner, "owner is null");
         Preconditions.requireNonNull(method, "field is null");
         Preconditions.requireNonNull(varName, "description is null");
         Preconditions.requireNonNull(label, "label is null");
         Preconditions.require(!eventId.isEmpty(), "eventId is empty");
         Preconditions.require(!spanId.isEmpty(), "spanId is empty");
         Preconditions.require(!frameId.isEmpty(), "frameId is empty");
-        Preconditions.require(!owner.isEmpty(), "owner is empty");
         Preconditions.require(!method.isEmpty(), "field is empty");
         Preconditions.require(!varName.isEmpty(), "description is empty");
         Preconditions.require(!label.isEmpty(), "label is empty");

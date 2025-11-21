@@ -80,7 +80,21 @@ public record TraceFile(
          * @return the built {@link TraceFile} instance
          */
         public TraceFile build() {
-            return new TraceFile(spans, frames, events);
+            List<TraceSpan> spansSnapshot;
+            List<TraceFrame> framesSnapshot;
+            List<TraceEvent> eventsSnapshot;
+
+            synchronized (spans) {
+                spansSnapshot = List.copyOf(spans);
+            }
+            synchronized (frames) {
+                framesSnapshot = List.copyOf(frames);
+            }
+            synchronized (events) {
+                eventsSnapshot = List.copyOf(events);
+            }
+
+            return new TraceFile(spansSnapshot, framesSnapshot, eventsSnapshot);
         }
     }
 }
