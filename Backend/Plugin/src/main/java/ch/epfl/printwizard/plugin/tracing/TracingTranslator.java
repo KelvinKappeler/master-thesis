@@ -111,6 +111,25 @@ public class TracingTranslator extends TreeTranslator {
             boolean isConstructor = jcMethodDecl.name.contentEquals("<init>");
 
             if (isConstructor) {
+                String typeName = "";
+                if (jcMethodDecl.sym != null && jcMethodDecl.sym.owner != null) {
+                    typeName = jcMethodDecl.sym.owner.getQualifiedName().toString();
+                }
+
+                JCTree.JCStatement newEventCall = mk.Exec(
+                    callStatic(
+                        "ch.epfl.printwizard.plugin.logging.TraceOut",
+                        "recordNewObject",
+                        List.of(
+                            mk.Ident(names._this),
+                            mk.Literal(typeName),
+                            mk.Literal(getSourceId()),
+                            mk.Literal(startLine)
+                        ),
+                        jcMethodDecl.pos
+                    )
+                );
+
                 List<JCTree.JCStatement> origStmts = originalBody.getStatements();
 
                 JCTree.JCStatement superOrThisStmt = null;
@@ -134,7 +153,7 @@ public class TracingTranslator extends TreeTranslator {
                     superOrThisStmt = mk.Exec(superCall);
                 }
 
-                List<JCTree.JCStatement> newStmts = List.of(superOrThisStmt, enterCall).appendList(rest).append(exitCall);
+                List<JCTree.JCStatement> newStmts = List.of(superOrThisStmt, newEventCall, enterCall).appendList(rest).append(exitCall);
 
                 jcMethodDecl.body = mk.Block(0, newStmts);
             } else {
@@ -597,7 +616,7 @@ public class TracingTranslator extends TreeTranslator {
     @Override
     public void visitNewClass(JCTree.JCNewClass jcNewClass) {
         super.visitNewClass(jcNewClass);
-
+/*
         int line = cu.getLineMap().getLineNumber(jcNewClass.pos);
         String sourceId = getSourceId();
         
@@ -621,7 +640,7 @@ public class TracingTranslator extends TreeTranslator {
         
         wrapped.type = jcNewClass.type;
 
-        this.result = wrapped;
+        this.result = wrapped;*/
     }
 
     private JCTree.JCBlock makeInstrumentedLoop(

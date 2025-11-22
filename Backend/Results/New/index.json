@@ -17,16 +17,16 @@
     }
   },
   "byLocal" : {
-    "local:p2@src:ch/epfl/printwizard/examples/Main.java:167#frm:1" : [ "eve:8" ],
     "local:p1@src:ch/epfl/printwizard/examples/Main.java:125#frm:1" : [ "eve:7" ],
+    "local:p2@src:ch/epfl/printwizard/examples/Main.java:167#frm:1" : [ "eve:8" ],
     "local:currentHealthPointsP1@src:ch/epfl/printwizard/examples/Main.java:189#frm:1" : [ "eve:11" ]
   },
   "byObject" : {
     "obj:1" : [ "eve:3", "eve:4", "eve:6" ]
   },
   "bySpan" : {
-    "spn:1" : [ "eve:1", "eve:6", "eve:7", "eve:8", "eve:11", "eve:12" ],
     "spn:2" : [ "eve:2", "eve:3", "eve:4", "eve:5" ],
+    "spn:1" : [ "eve:1", "eve:6", "eve:7", "eve:8", "eve:11", "eve:12" ],
     "spn:3" : [ "eve:9", "eve:10" ]
   }
 }

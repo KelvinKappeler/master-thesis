@@ -12,7 +12,7 @@ import ch.epfl.printwizard.plugin.utils.Preconditions;
  * @param method the method in which the modification took place
  * @param varName the name of the local variable being modified
  * @param value the new value assigned to the local variable, if the local variable is of a primitive type, null or string
- * @param objectId if the type of the local variable is an object, the ID of the object assigned to the local variable
+ * @param valueObjectId if the type of the local variable is an object, the ID of the object assigned to the local variable
  * @param label ID of the label associated with this event
  */
 public record LocalEvent(
@@ -23,7 +23,7 @@ public record LocalEvent(
     String method,
     String varName,
     Object value,
-    String objectId,
+    String valueObjectId,
     String label
 ) implements TraceEvent {
 

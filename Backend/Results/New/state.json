@@ -1,0 +1,53 @@
+{
+  "objects" : {
+    "obj:1" : {
+      "objectId" : "obj:1",
+      "type" : "ERROR",
+      "timeline" : [ {
+        "version" : 0,
+        "eventId" : "eve:3",
+        "fields" : { }
+      }, {
+        "version" : 1,
+        "eventId" : "eve:3",
+        "fields" : {
+          "healthPoints" : {
+            "type" : "int",
+            "value" : 100,
+            "objectId" : null
+          }
+        }
+      }, {
+        "version" : 2,
+        "eventId" : "eve:4",
+        "fields" : {
+          "healthPoints" : {
+            "type" : "int",
+            "value" : 100,
+            "objectId" : null
+          },
+          "manaPoints" : {
+            "type" : "int",
+            "value" : 20,
+            "objectId" : null
+          }
+        }
+      }, {
+        "version" : 2,
+        "eventId" : "eve:6",
+        "fields" : {
+          "healthPoints" : {
+            "type" : "int",
+            "value" : 100,
+            "objectId" : null
+          },
+          "manaPoints" : {
+            "type" : "int",
+            "value" : 20,
+            "objectId" : null
+          }
+        }
+      } ]
+    }
+  }
+}

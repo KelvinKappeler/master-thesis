@@ -3,6 +3,7 @@ package ch.epfl.printwizard.plugin.logging;
 import ch.epfl.printwizard.plugin.model.index.IndexFile;
 import ch.epfl.printwizard.plugin.model.manifest.FileLocations;
 import ch.epfl.printwizard.plugin.model.manifest.ManifestFile;
+import ch.epfl.printwizard.plugin.model.state.StateFile;
 import ch.epfl.printwizard.plugin.model.trace.TraceFile;
 import ch.epfl.printwizard.plugin.utils.JsonManager;
 
@@ -16,6 +17,7 @@ public class OutputManager {
 
     private static final TraceFile.Builder TRACE_FILE_BUILDER = new TraceFile.Builder();
     private static final IndexFile.Builder INDEX_FILE_BUILDER = new IndexFile.Builder();
+    private static final StateFile.Builder STATE_FILE_BUILDER = new StateFile.Builder();
 
     private OutputManager() {}
 
@@ -35,22 +37,33 @@ public class OutputManager {
         return INDEX_FILE_BUILDER;
     }
 
+    /**
+     * Gets the builder for the state file.
+     * @return the builder for the state file
+     */
+    public static StateFile.Builder getStateFileBuilder() {
+        return STATE_FILE_BUILDER;
+    }
+
     private static void flush() throws IOException {
         ManifestFile manifestFile = new ManifestFile(
             "1.0.0", LocalDateTime.now().toString(),
             new FileLocations(
                 "program.json",
                 "trace.json",
-                "index.json"
+                "index.json",
+                "state.json"
             )
         );
 
         TraceFile traceFile = TRACE_FILE_BUILDER.build();
         IndexFile indexFile = INDEX_FILE_BUILDER.build();
+        StateFile stateFile = STATE_FILE_BUILDER.build();
 
         JsonManager.write("Results/New/trace.json", traceFile);
         JsonManager.write("Results/New/index.json", indexFile);
         JsonManager.write("Results/New/manifest.json", manifestFile);
+        JsonManager.write("Results/New/state.json", stateFile);
     }
 
     static {

@@ -28,12 +28,12 @@ public record FieldReadEvent (
         Preconditions.requireNonNull(spanId, "spanId is null");
         Preconditions.requireNonNull(frameId, "frameId is null");
         Preconditions.requireNonNull(location, "location is null");
-        Preconditions.requireNonNull(objectId, "objectId is null");
+        Preconditions.requireNonNull(objectId, "valueObjectId is null");
         Preconditions.requireNonNull(fieldName, "fieldName is null");
         Preconditions.require(!eventId.isEmpty(), "eventId is empty");
         Preconditions.require(!spanId.isEmpty(), "spanId is empty");
         Preconditions.require(!frameId.isEmpty(), "frameId is empty");
-        Preconditions.require(!objectId.isEmpty(), "objectId is empty");
+        Preconditions.require(!objectId.isEmpty(), "valueObjectId is empty");
         Preconditions.require(!fieldName.isEmpty(), "fieldName is empty");
     }
     

@@ -156,11 +156,22 @@ public class TraceOut {
         TraceLoc loc = new TraceLoc(sourceId, line);
 
         String objectId = getOrCreateObjectId(target);
+        String fieldType = resolveFieldType(target, fieldName, value);
+
+        Object storedValue = null;
+        String storedObjectId = null;
+
+        if (value == null || isSimpleValue(value)) {
+            storedValue = value;
+        }
+        else {
+            storedObjectId = getOrCreateObjectId(value);
+        }
 
         addEvent(new FieldWriteEvent(
             Ids.nextEventId(), ctx.spanId(), ctx.frameId(),
             loc,
-            objectId, fieldName, value
+            objectId, fieldName, storedValue, storedObjectId, fieldType
         ));
 
         return value;
@@ -468,6 +479,7 @@ public class TraceOut {
         }
 
         OutputManager.getIndexFileBuilder().addEvent(event, indexAsRoot);
+        OutputManager.getStateFileBuilder().onEvent(event);
     }
 
     private static FrameCtx currentFrameCtx() {
@@ -517,5 +529,23 @@ public class TraceOut {
             || c == Boolean.class
             || c == Character.class
             || c == String.class;
+    }
+
+    private static String resolveFieldType(Object target, String fieldName, Object value) {
+        if (target != null) {
+            Class<?> c = target.getClass();
+            try {
+                var f = c.getDeclaredField(fieldName);
+                return f.getType().getTypeName();
+            } catch (NoSuchFieldException e) {
+                throw new IllegalStateException("Could not find field " + fieldName + " in class " + c.getTypeName(), e);
+            }
+        }
+
+        if (value != null) {
+            return value.getClass().getTypeName();
+        }
+
+        return "java.lang.Object";
     }
 }

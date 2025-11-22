@@ -3,17 +3,14 @@ package ch.epfl.printwizard.plugin.model.index;
 import ch.epfl.printwizard.plugin.model.trace.events.*;
 import ch.epfl.printwizard.plugin.utils.Preconditions;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Represents an index file containing mappings of various elements by line, object, and span.
  * @param byLine Events mapped by line
  * @param byLocal Events mapped by a local variable
- * @param byObject Events mapped by object
+ * @param byObject Events mapped by an object
  * @param bySpan Events mapped by span
  */
 public record IndexFile(
@@ -39,10 +36,10 @@ public record IndexFile(
         private final Map<String, List<String>> bySpan;
 
         public Builder() {
-            this.byLine = new java.util.LinkedHashMap<>();
-            this.byLocal = new java.util.LinkedHashMap<>();
-            this.byObject = new java.util.LinkedHashMap<>();
-            this.bySpan = new java.util.LinkedHashMap<>();
+            this.byLine = new LinkedHashMap<>();
+            this.byLocal = new LinkedHashMap<>();
+            this.byObject = new LinkedHashMap<>();
+            this.bySpan = new LinkedHashMap<>();
         }
 
         /**

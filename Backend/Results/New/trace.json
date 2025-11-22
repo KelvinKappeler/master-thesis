@@ -124,7 +124,9 @@
     },
     "objectId" : "obj:1",
     "fieldName" : "healthPoints",
-    "value" : 100
+    "value" : 100,
+    "valueObjectId" : null,
+    "fieldType" : "int"
   }, {
     "type" : "PUTFIELD",
     "eventId" : "eve:4",
@@ -136,7 +138,9 @@
     },
     "objectId" : "obj:1",
     "fieldName" : "manaPoints",
-    "value" : 20
+    "value" : 20,
+    "valueObjectId" : null,
+    "fieldType" : "int"
   }, {
     "type" : "RETURN",
     "eventId" : "eve:5",
@@ -170,7 +174,7 @@
     "method" : "m:ch.epfl.printwizard.examples.main(String[])void",
     "varName" : "p1",
     "value" : null,
-    "objectId" : "obj:1",
+    "valueObjectId" : "obj:1",
     "label" : "local:p1@src:ch/epfl/printwizard/examples/Main.java:125"
   }, {
     "type" : "LOCAL",
@@ -184,7 +188,7 @@
     "method" : "m:ch.epfl.printwizard.examples.main(String[])void",
     "varName" : "p2",
     "value" : null,
-    "objectId" : "obj:1",
+    "valueObjectId" : "obj:1",
     "label" : "local:p2@src:ch/epfl/printwizard/examples/Main.java:167"
   }, {
     "type" : "CALL",
@@ -222,7 +226,7 @@
     "method" : "m:ch.epfl.printwizard.examples.main(String[])void",
     "varName" : "currentHealthPointsP1",
     "value" : 100,
-    "objectId" : null,
+    "valueObjectId" : null,
     "label" : "local:currentHealthPointsP1@src:ch/epfl/printwizard/examples/Main.java:189"
   }, {
     "type" : "RETURN",
