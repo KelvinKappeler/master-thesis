@@ -126,13 +126,6 @@ public class TracingTranslator extends TreeTranslator {
             int endLine = cu.getLineMap().getLineNumber(ep);
             if (endLine == 0) endLine = startLine;
 
-            JCTree.JCStatement exitCall = mk.Exec(
-                callStatic("ch.epfl.printwizard.plugin.logging.TraceOut", "onReturn",
-                    List.of(mk.Literal(""), mk.Literal(getSourceId()), mk.Literal(endLine)),
-                    ep
-                )
-            );
-
             boolean isConstructor = jcMethodDecl.name.contentEquals("<init>");
 
             if (isConstructor) {
@@ -178,21 +171,67 @@ public class TracingTranslator extends TreeTranslator {
                     superOrThisStmt = mk.Exec(superCall);
                 }
 
-                List<JCTree.JCStatement> newStmts = List.of(superOrThisStmt, enterCall, newEventCall).appendList(rest).append(exitCall);
+                List<JCTree.JCStatement> newStmts = List.of(superOrThisStmt, enterCall, newEventCall).appendList(rest);
 
                 jcMethodDecl.body = mk.Block(0, newStmts);
             } else {
-                JCTree.JCBlock tryBlock = mk.Block(0, originalBody.getStatements());
-                JCTree.JCBlock finallyBlock = mk.Block(0, List.of(exitCall));
-                JCTree.JCTry tryFinally = mk.Try(tryBlock, List.nil(), finallyBlock);
+                List<JCTree.JCStatement> stmts = originalBody.getStatements();
 
-                jcMethodDecl.body = mk.Block(0, List.of(enterCall, tryFinally));
+                boolean isVoid = jcMethodDecl.sym != null && jcMethodDecl.sym.getReturnType() != null && jcMethodDecl.sym.getReturnType().getTag() == TypeTag.VOID;
+
+                if (isVoid) {
+                    JCTree.JCLiteral nullLit = mk.Literal(TypeTag.BOT, null);
+                    nullLit.type = symtab.botType;
+
+                    JCTree.JCStatement implicitExitCall = mk.Exec(
+                        callStatic(
+                            "ch.epfl.printwizard.plugin.logging.TraceOut",
+                            "onReturn",
+                            List.of(nullLit, mk.Literal(getSourceId()), mk.Literal(endLine)),
+                            ep
+                        )
+                    );
+
+                    stmts = stmts.append(implicitExitCall);
+                }
+
+                jcMethodDecl.body = mk.Block(0, stmts.prepend(enterCall));
             }
         }
 
         super.visitMethodDef(jcMethodDecl);
 
         this.currentMethod = previousMethod;
+    }
+
+    @Override
+    public void visitReturn(JCTree.JCReturn jcReturn) {
+        JCTree.JCExpression trExpr = jcReturn.expr == null ? null : translate(jcReturn.expr);
+
+        int line = cu.getLineMap().getLineNumber(jcReturn.pos);
+        String sourceId = getSourceId();
+
+        JCTree.JCExpression retArg;
+        if (trExpr == null) {
+            JCTree.JCLiteral nullLit = mk.Literal(TypeTag.BOT, null);
+            nullLit.type = symtab.botType;
+            retArg = nullLit;
+        } else {
+            retArg = trExpr;
+        }
+
+        JCTree.JCStatement logStmt = mk.Exec(
+            callStatic(
+                "ch.epfl.printwizard.plugin.logging.TraceOut",
+                "onReturn",
+                List.of(retArg, mk.Literal(sourceId), mk.Literal(line)),
+                jcReturn.pos
+            )
+        );
+
+        JCTree.JCReturn newReturn = mk.Return(trExpr);
+
+        this.result = mk.Block(0, List.of(logStmt, newReturn));
     }
 
     @Override
