@@ -21,22 +21,24 @@ public class TraceOut {
     private TraceOut() {}
 
     @SuppressWarnings("unused")
-    public static void onEnter(String owner, String method, Arg[] args, String returnType, String sourceId, int line) {
+    public static void onEnter(Object thisRef, String owner, String method, Arg[] args, String returnType, String sourceId, int line) {
         String frameId = Ids.nextFrameId();
         String spanId = Ids.nextSpanId();
         String[] argsTypes = Arrays.stream(args).map(Arg::type).toArray(String[]::new);
         String methodId = Ids.createNewMethodId(owner, method, argsTypes, returnType);
-        String parent = FRAME_STACK.get().isEmpty() ? "null" : currentFrameCtx().spanId();
+        String callerMethodId = FRAME_STACK.get().isEmpty() ? "null" : currentFrameCtx().methodId();
+        String parentSpanId = FRAME_STACK.get().isEmpty() ? "null" : currentFrameCtx().spanId();
         String startEventId = Ids.nextEventId();
         TraceLoc loc = new TraceLoc(sourceId, line);
+        String thisRefObjectId = thisRef != null ? getOrCreateObjectId(thisRef) : null;
 
-        addEvent(new CallEvent(startEventId, spanId, frameId, loc, parent, methodId, method, false, args));
+        addEvent(new CallEvent(startEventId, spanId, frameId, loc, callerMethodId, methodId, method, false, args));
 
         OutputManager.getTraceFileBuilder().addSpan(new TraceSpan(
-            spanId, parent, methodId, startEventId, "end",
+            spanId, parentSpanId, methodId, startEventId, "end",
             loc, new TraceLoc("source", 1))
         );
-        OutputManager.getTraceFileBuilder().addFrame(new TraceFrame(frameId, spanId, methodId, null, List.of(args)));
+        OutputManager.getTraceFileBuilder().addFrame(new TraceFrame(frameId, spanId, methodId, thisRefObjectId, List.of(args)));
 
         FRAME_STACK.get().push(new FrameCtx(spanId, frameId, methodId));
     }
@@ -49,7 +51,18 @@ public class TraceOut {
 
         String evId = Ids.nextEventId();
         TraceLoc loc = new TraceLoc(sourceId, line);
-        addEvent(new ReturnEvent(evId, frameCtx.spanId(), frameCtx.frameId(), loc, ret));
+
+        Object storedValue = null;
+        String storedObjectId = null;
+
+        if (ret == null || isSimpleValue(ret)) {
+            storedValue = ret;
+        }
+        else {
+            storedObjectId = getOrCreateObjectId(ret);
+        }
+
+        addEvent(new ReturnEvent(evId, frameCtx.spanId(), frameCtx.frameId(), loc, storedValue, storedObjectId));
 
         patchSpanEnd(frameCtx.spanId(), evId, loc);
     }
@@ -93,8 +106,18 @@ public class TraceOut {
         FrameCtx ctx = currentFrameCtx();
         TraceLoc loc = new TraceLoc(sourceId, line);
 
+        Object storedValue = null;
+        String storedObjectId = null;
+
+        if (result == null || isSimpleValue(result)) {
+            storedValue = result;
+        }
+        else {
+            storedObjectId = getOrCreateObjectId(result);
+        }
+
         addEvent(new ArithmeticEvent(
-            Ids.nextEventId(), ctx.spanId(), ctx.frameId(), loc, op, left, right, result
+            Ids.nextEventId(), ctx.spanId(), ctx.frameId(), loc, op, left, right, storedValue, storedObjectId
         ));
 
         return result;
@@ -105,7 +128,16 @@ public class TraceOut {
         FrameCtx ctx = currentFrameCtx();
         TraceLoc loc = new TraceLoc(sourceId, line);
 
-        addEvent(new ArrayStoreEvent(Ids.nextEventId(), ctx.spanId(), ctx.frameId(), loc, arrayName, index, value, label));
+        Object storedValue = null;
+        String storedObjectId = null;
+
+        if (value == null || isSimpleValue(value)) {
+            storedValue = value;
+        } else {
+            storedObjectId = getOrCreateObjectId(value);
+        }
+
+        addEvent(new ArrayStoreEvent(Ids.nextEventId(), ctx.spanId(), ctx.frameId(), loc, arrayName, index, storedValue, storedObjectId, label));
 
         return value;
     }
@@ -130,8 +162,18 @@ public class TraceOut {
         int length = Array.getLength(arrayRef);
         for (int i = 0; i < length; i++) {
             Object value = Array.get(arrayRef, i);
+
+            Object storedValue = null;
+            String storedObjectId = null;
+
+            if (value == null || isSimpleValue(value)) {
+                storedValue = value;
+            } else {
+                storedObjectId = getOrCreateObjectId(value);
+            }
+
             addEvent(new ArrayStoreEvent(
-                Ids.nextEventId(), ctx.spanId(), ctx.frameId(), loc, arrayName, i, value, label
+                Ids.nextEventId(), ctx.spanId(), ctx.frameId(), loc, arrayName, i, storedValue, storedObjectId, label
             ));
         }
 

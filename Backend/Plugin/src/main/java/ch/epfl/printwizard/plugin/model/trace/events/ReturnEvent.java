@@ -9,14 +9,16 @@ import ch.epfl.printwizard.plugin.utils.Preconditions;
  * @param spanId the identifier of the span this event belongs to
  * @param frameId the identifier of the frame this event belongs to
  * @param location the location in the source code where the event occurred
- * @param returnValue the value returned by the method
+ * @param value the value returned by the method
+ * @param valueObjectId the identifier of the object representing the returned value
  */
 public record ReturnEvent(
-        String eventId,
-        String spanId,
-        String frameId,
-        TraceLoc location,
-        Object returnValue
+    String eventId,
+    String spanId,
+    String frameId,
+    TraceLoc location,
+    Object value,
+    String valueObjectId
 ) implements TraceEvent {
 
     public ReturnEvent {

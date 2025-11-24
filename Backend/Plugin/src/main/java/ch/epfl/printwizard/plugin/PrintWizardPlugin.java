@@ -2,6 +2,7 @@ package ch.epfl.printwizard.plugin;
 
 import ch.epfl.printwizard.plugin.utils.JsonManager;
 import ch.epfl.printwizard.plugin.tracing.TracingTranslator;
+import ch.epfl.printwizard.plugin.utils.UserPackages;
 import com.sun.source.util.*;
 import com.sun.tools.javac.api.BasicJavacTask;
 import com.sun.tools.javac.tree.JCTree;
@@ -31,6 +32,14 @@ public class PrintWizardPlugin implements Plugin {
 
             @Override
             public void finished(TaskEvent e) {
+                if ((e.getKind() == TaskEvent.Kind.ENTER)) {
+                    if (!(e.getCompilationUnit() instanceof JCTree.JCCompilationUnit cu)) return;
+
+                    UserPackages.registerCompilationUnit(cu);
+
+                    return;
+                }
+
                 if (e.getKind() != TaskEvent.Kind.ANALYZE) return;
 
                 if (!(e.getCompilationUnit() instanceof JCTree.JCCompilationUnit cu)) return;

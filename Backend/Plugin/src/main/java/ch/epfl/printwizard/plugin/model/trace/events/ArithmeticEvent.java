@@ -13,16 +13,18 @@ import ch.epfl.printwizard.plugin.utils.Preconditions;
  * @param left the left operand involved in the computation
  * @param right the right operand involved in the computation
  * @param result the result of the computation
+ * @param resultObjectId the ID of the object representing the result, if applicable
  */
 public record ArithmeticEvent(
-        String eventId,
-        String spanId,
-        String frameId,
-        TraceLoc location,
-        String operation,
-        Object left,
-        Object right,
-        Object result
+    String eventId,
+    String spanId,
+    String frameId,
+    TraceLoc location,
+    String operation,
+    Object left,
+    Object right,
+    Object result,
+    String resultObjectId
 ) implements TraceEvent {
 
     public ArithmeticEvent {

@@ -4,21 +4,21 @@
     "parentSpanId" : "null",
     "methodId" : "m:ch.epfl.printwizard.examples.main(String[])void",
     "startEventId" : "eve:1",
-    "endEventId" : "eve:12",
+    "endEventId" : "eve:41",
     "startLoc" : {
       "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
       "line" : 5
     },
     "endLoc" : {
       "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
-      "line" : 12
+      "line" : 18
     }
   }, {
     "spanId" : "spn:2",
     "parentSpanId" : "spn:1",
     "methodId" : "m:ch.epfl.printwizard.examples.<init>(int,int)void",
     "startEventId" : "eve:2",
-    "endEventId" : "eve:5",
+    "endEventId" : "eve:6",
     "startLoc" : {
       "sourceId" : "src:ch/epfl/printwizard/examples/Player.java",
       "line" : 8
@@ -30,9 +30,107 @@
   }, {
     "spanId" : "spn:3",
     "parentSpanId" : "spn:1",
+    "methodId" : "m:ch.epfl.printwizard.examples.<init>(int,int)void",
+    "startEventId" : "eve:8",
+    "endEventId" : "eve:12",
+    "startLoc" : {
+      "sourceId" : "src:ch/epfl/printwizard/examples/Player.java",
+      "line" : 8
+    },
+    "endLoc" : {
+      "sourceId" : "src:ch/epfl/printwizard/examples/Player.java",
+      "line" : 11
+    }
+  }, {
+    "spanId" : "spn:4",
+    "parentSpanId" : "spn:1",
     "methodId" : "m:ch.epfl.printwizard.examples.getHealthPoints()int",
-    "startEventId" : "eve:9",
-    "endEventId" : "eve:10",
+    "startEventId" : "eve:14",
+    "endEventId" : "eve:15",
+    "startLoc" : {
+      "sourceId" : "src:ch/epfl/printwizard/examples/Player.java",
+      "line" : 13
+    },
+    "endLoc" : {
+      "sourceId" : "src:ch/epfl/printwizard/examples/Player.java",
+      "line" : 15
+    }
+  }, {
+    "spanId" : "spn:5",
+    "parentSpanId" : "spn:1",
+    "methodId" : "m:ch.epfl.printwizard.examples.add(int,int)int",
+    "startEventId" : "eve:17",
+    "endEventId" : "eve:19",
+    "startLoc" : {
+      "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
+      "line" : 20
+    },
+    "endLoc" : {
+      "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
+      "line" : 22
+    }
+  }, {
+    "spanId" : "spn:6",
+    "parentSpanId" : "spn:1",
+    "methodId" : "m:ch.epfl.printwizard.examples.setHealthPoints(int)void",
+    "startEventId" : "eve:20",
+    "endEventId" : "eve:22",
+    "startLoc" : {
+      "sourceId" : "src:ch/epfl/printwizard/examples/Player.java",
+      "line" : 17
+    },
+    "endLoc" : {
+      "sourceId" : "src:ch/epfl/printwizard/examples/Player.java",
+      "line" : 19
+    }
+  }, {
+    "spanId" : "spn:7",
+    "parentSpanId" : "spn:1",
+    "methodId" : "m:ch.epfl.printwizard.examples.getHealthPoints()int",
+    "startEventId" : "eve:23",
+    "endEventId" : "eve:24",
+    "startLoc" : {
+      "sourceId" : "src:ch/epfl/printwizard/examples/Player.java",
+      "line" : 13
+    },
+    "endLoc" : {
+      "sourceId" : "src:ch/epfl/printwizard/examples/Player.java",
+      "line" : 15
+    }
+  }, {
+    "spanId" : "spn:8",
+    "parentSpanId" : "spn:1",
+    "methodId" : "m:ch.epfl.printwizard.examples.getHealthPoints()int",
+    "startEventId" : "eve:25",
+    "endEventId" : "eve:26",
+    "startLoc" : {
+      "sourceId" : "src:ch/epfl/printwizard/examples/Player.java",
+      "line" : 13
+    },
+    "endLoc" : {
+      "sourceId" : "src:ch/epfl/printwizard/examples/Player.java",
+      "line" : 15
+    }
+  }, {
+    "spanId" : "spn:9",
+    "parentSpanId" : "spn:1",
+    "methodId" : "m:ch.epfl.printwizard.examples.getHealthPoints()int",
+    "startEventId" : "eve:29",
+    "endEventId" : "eve:30",
+    "startLoc" : {
+      "sourceId" : "src:ch/epfl/printwizard/examples/Player.java",
+      "line" : 13
+    },
+    "endLoc" : {
+      "sourceId" : "src:ch/epfl/printwizard/examples/Player.java",
+      "line" : 15
+    }
+  }, {
+    "spanId" : "spn:10",
+    "parentSpanId" : "spn:1",
+    "methodId" : "m:ch.epfl.printwizard.examples.getHealthPoints()int",
+    "startEventId" : "eve:31",
+    "endEventId" : "eve:32",
     "startLoc" : {
       "sourceId" : "src:ch/epfl/printwizard/examples/Player.java",
       "line" : 13
@@ -56,7 +154,7 @@
     "frameId" : "frm:2",
     "spanId" : "spn:2",
     "methodId" : "m:ch.epfl.printwizard.examples.<init>(int,int)void",
-    "thisRef" : null,
+    "thisRef" : "obj:1",
     "args" : [ {
       "name" : "healthPoints",
       "value" : 100,
@@ -69,8 +167,70 @@
   }, {
     "frameId" : "frm:3",
     "spanId" : "spn:3",
+    "methodId" : "m:ch.epfl.printwizard.examples.<init>(int,int)void",
+    "thisRef" : "obj:2",
+    "args" : [ {
+      "name" : "healthPoints",
+      "value" : 17,
+      "type" : "int"
+    }, {
+      "name" : "manaPoints",
+      "value" : 59,
+      "type" : "int"
+    } ]
+  }, {
+    "frameId" : "frm:4",
+    "spanId" : "spn:4",
     "methodId" : "m:ch.epfl.printwizard.examples.getHealthPoints()int",
+    "thisRef" : "obj:1",
+    "args" : [ ]
+  }, {
+    "frameId" : "frm:5",
+    "spanId" : "spn:5",
+    "methodId" : "m:ch.epfl.printwizard.examples.add(int,int)int",
     "thisRef" : null,
+    "args" : [ {
+      "name" : "a",
+      "value" : 10,
+      "type" : "int"
+    }, {
+      "name" : "b",
+      "value" : 15,
+      "type" : "int"
+    } ]
+  }, {
+    "frameId" : "frm:6",
+    "spanId" : "spn:6",
+    "methodId" : "m:ch.epfl.printwizard.examples.setHealthPoints(int)void",
+    "thisRef" : "obj:1",
+    "args" : [ {
+      "name" : "healthPoints",
+      "value" : 25,
+      "type" : "int"
+    } ]
+  }, {
+    "frameId" : "frm:7",
+    "spanId" : "spn:7",
+    "methodId" : "m:ch.epfl.printwizard.examples.getHealthPoints()int",
+    "thisRef" : "obj:1",
+    "args" : [ ]
+  }, {
+    "frameId" : "frm:8",
+    "spanId" : "spn:8",
+    "methodId" : "m:ch.epfl.printwizard.examples.getHealthPoints()int",
+    "thisRef" : "obj:1",
+    "args" : [ ]
+  }, {
+    "frameId" : "frm:9",
+    "spanId" : "spn:9",
+    "methodId" : "m:ch.epfl.printwizard.examples.getHealthPoints()int",
+    "thisRef" : "obj:1",
+    "args" : [ ]
+  }, {
+    "frameId" : "frm:10",
+    "spanId" : "spn:10",
+    "methodId" : "m:ch.epfl.printwizard.examples.getHealthPoints()int",
+    "thisRef" : "obj:1",
     "args" : [ ]
   } ],
   "events" : [ {
@@ -100,7 +260,7 @@
       "sourceId" : "src:ch/epfl/printwizard/examples/Player.java",
       "line" : 8
     },
-    "callerMethodId" : "spn:1",
+    "callerMethodId" : "m:ch.epfl.printwizard.examples.main(String[])void",
     "calleeMethodId" : "m:ch.epfl.printwizard.examples.<init>(int,int)void",
     "name" : "<init>",
     "external" : false,
@@ -114,8 +274,19 @@
       "type" : "int"
     } ]
   }, {
-    "type" : "PUTFIELD",
+    "type" : "NEW",
     "eventId" : "eve:3",
+    "spanId" : "spn:2",
+    "frameId" : "frm:2",
+    "location" : {
+      "sourceId" : "src:ch/epfl/printwizard/examples/Player.java",
+      "line" : 8
+    },
+    "objectId" : "obj:1",
+    "typeName" : "ch.epfl.printwizard.examples.Player"
+  }, {
+    "type" : "PUTFIELD",
+    "eventId" : "eve:4",
     "spanId" : "spn:2",
     "frameId" : "frm:2",
     "location" : {
@@ -129,7 +300,7 @@
     "fieldType" : "int"
   }, {
     "type" : "PUTFIELD",
-    "eventId" : "eve:4",
+    "eventId" : "eve:5",
     "spanId" : "spn:2",
     "frameId" : "frm:2",
     "location" : {
@@ -143,25 +314,15 @@
     "fieldType" : "int"
   }, {
     "type" : "RETURN",
-    "eventId" : "eve:5",
+    "eventId" : "eve:6",
     "spanId" : "spn:2",
     "frameId" : "frm:2",
     "location" : {
       "sourceId" : "src:ch/epfl/printwizard/examples/Player.java",
       "line" : 11
     },
-    "returnValue" : ""
-  }, {
-    "type" : "NEW",
-    "eventId" : "eve:6",
-    "spanId" : "spn:1",
-    "frameId" : "frm:1",
-    "location" : {
-      "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
-      "line" : 6
-    },
-    "objectId" : "obj:1",
-    "typeName" : "ch.epfl.printwizard.examples.Player"
+    "value" : "",
+    "valueObjectId" : null
   }, {
     "type" : "LOCAL",
     "eventId" : "eve:7",
@@ -177,8 +338,80 @@
     "valueObjectId" : "obj:1",
     "label" : "local:p1@src:ch/epfl/printwizard/examples/Main.java:125"
   }, {
-    "type" : "LOCAL",
+    "type" : "CALL",
     "eventId" : "eve:8",
+    "spanId" : "spn:3",
+    "frameId" : "frm:3",
+    "location" : {
+      "sourceId" : "src:ch/epfl/printwizard/examples/Player.java",
+      "line" : 8
+    },
+    "callerMethodId" : "m:ch.epfl.printwizard.examples.main(String[])void",
+    "calleeMethodId" : "m:ch.epfl.printwizard.examples.<init>(int,int)void",
+    "name" : "<init>",
+    "external" : false,
+    "args" : [ {
+      "name" : "healthPoints",
+      "value" : 17,
+      "type" : "int"
+    }, {
+      "name" : "manaPoints",
+      "value" : 59,
+      "type" : "int"
+    } ]
+  }, {
+    "type" : "NEW",
+    "eventId" : "eve:9",
+    "spanId" : "spn:3",
+    "frameId" : "frm:3",
+    "location" : {
+      "sourceId" : "src:ch/epfl/printwizard/examples/Player.java",
+      "line" : 8
+    },
+    "objectId" : "obj:2",
+    "typeName" : "ch.epfl.printwizard.examples.Player"
+  }, {
+    "type" : "PUTFIELD",
+    "eventId" : "eve:10",
+    "spanId" : "spn:3",
+    "frameId" : "frm:3",
+    "location" : {
+      "sourceId" : "src:ch/epfl/printwizard/examples/Player.java",
+      "line" : 9
+    },
+    "objectId" : "obj:2",
+    "fieldName" : "healthPoints",
+    "value" : 17,
+    "valueObjectId" : null,
+    "fieldType" : "int"
+  }, {
+    "type" : "PUTFIELD",
+    "eventId" : "eve:11",
+    "spanId" : "spn:3",
+    "frameId" : "frm:3",
+    "location" : {
+      "sourceId" : "src:ch/epfl/printwizard/examples/Player.java",
+      "line" : 10
+    },
+    "objectId" : "obj:2",
+    "fieldName" : "manaPoints",
+    "value" : 59,
+    "valueObjectId" : null,
+    "fieldType" : "int"
+  }, {
+    "type" : "RETURN",
+    "eventId" : "eve:12",
+    "spanId" : "spn:3",
+    "frameId" : "frm:3",
+    "location" : {
+      "sourceId" : "src:ch/epfl/printwizard/examples/Player.java",
+      "line" : 11
+    },
+    "value" : "",
+    "valueObjectId" : null
+  }, {
+    "type" : "LOCAL",
+    "eventId" : "eve:13",
     "spanId" : "spn:1",
     "frameId" : "frm:1",
     "location" : {
@@ -188,35 +421,36 @@
     "method" : "m:ch.epfl.printwizard.examples.main(String[])void",
     "varName" : "p2",
     "value" : null,
-    "valueObjectId" : "obj:1",
+    "valueObjectId" : "obj:2",
     "label" : "local:p2@src:ch/epfl/printwizard/examples/Main.java:167"
   }, {
     "type" : "CALL",
-    "eventId" : "eve:9",
-    "spanId" : "spn:3",
-    "frameId" : "frm:3",
+    "eventId" : "eve:14",
+    "spanId" : "spn:4",
+    "frameId" : "frm:4",
     "location" : {
       "sourceId" : "src:ch/epfl/printwizard/examples/Player.java",
       "line" : 13
     },
-    "callerMethodId" : "spn:1",
+    "callerMethodId" : "m:ch.epfl.printwizard.examples.main(String[])void",
     "calleeMethodId" : "m:ch.epfl.printwizard.examples.getHealthPoints()int",
     "name" : "getHealthPoints",
     "external" : false,
     "args" : [ ]
   }, {
     "type" : "RETURN",
-    "eventId" : "eve:10",
-    "spanId" : "spn:3",
-    "frameId" : "frm:3",
+    "eventId" : "eve:15",
+    "spanId" : "spn:4",
+    "frameId" : "frm:4",
     "location" : {
       "sourceId" : "src:ch/epfl/printwizard/examples/Player.java",
       "line" : 15
     },
-    "returnValue" : ""
+    "value" : "",
+    "valueObjectId" : null
   }, {
     "type" : "LOCAL",
-    "eventId" : "eve:11",
+    "eventId" : "eve:16",
     "spanId" : "spn:1",
     "frameId" : "frm:1",
     "location" : {
@@ -227,16 +461,348 @@
     "varName" : "currentHealthPointsP1",
     "value" : 100,
     "valueObjectId" : null,
-    "label" : "local:currentHealthPointsP1@src:ch/epfl/printwizard/examples/Main.java:189"
+    "label" : "local:currentHealthPointsP1@src:ch/epfl/printwizard/examples/Main.java:205"
+  }, {
+    "type" : "CALL",
+    "eventId" : "eve:17",
+    "spanId" : "spn:5",
+    "frameId" : "frm:5",
+    "location" : {
+      "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
+      "line" : 20
+    },
+    "callerMethodId" : "m:ch.epfl.printwizard.examples.main(String[])void",
+    "calleeMethodId" : "m:ch.epfl.printwizard.examples.add(int,int)int",
+    "name" : "add",
+    "external" : false,
+    "args" : [ {
+      "name" : "a",
+      "value" : 10,
+      "type" : "int"
+    }, {
+      "name" : "b",
+      "value" : 15,
+      "type" : "int"
+    } ]
+  }, {
+    "type" : "ARITHMETIC",
+    "eventId" : "eve:18",
+    "spanId" : "spn:5",
+    "frameId" : "frm:5",
+    "location" : {
+      "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
+      "line" : 21
+    },
+    "operation" : "PLUS",
+    "left" : 10,
+    "right" : 15,
+    "result" : 25,
+    "resultObjectId" : null
   }, {
     "type" : "RETURN",
-    "eventId" : "eve:12",
+    "eventId" : "eve:19",
+    "spanId" : "spn:5",
+    "frameId" : "frm:5",
+    "location" : {
+      "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
+      "line" : 22
+    },
+    "value" : "",
+    "valueObjectId" : null
+  }, {
+    "type" : "CALL",
+    "eventId" : "eve:20",
+    "spanId" : "spn:6",
+    "frameId" : "frm:6",
+    "location" : {
+      "sourceId" : "src:ch/epfl/printwizard/examples/Player.java",
+      "line" : 17
+    },
+    "callerMethodId" : "m:ch.epfl.printwizard.examples.main(String[])void",
+    "calleeMethodId" : "m:ch.epfl.printwizard.examples.setHealthPoints(int)void",
+    "name" : "setHealthPoints",
+    "external" : false,
+    "args" : [ {
+      "name" : "healthPoints",
+      "value" : 25,
+      "type" : "int"
+    } ]
+  }, {
+    "type" : "PUTFIELD",
+    "eventId" : "eve:21",
+    "spanId" : "spn:6",
+    "frameId" : "frm:6",
+    "location" : {
+      "sourceId" : "src:ch/epfl/printwizard/examples/Player.java",
+      "line" : 18
+    },
+    "objectId" : "obj:1",
+    "fieldName" : "healthPoints",
+    "value" : 25,
+    "valueObjectId" : null,
+    "fieldType" : "int"
+  }, {
+    "type" : "RETURN",
+    "eventId" : "eve:22",
+    "spanId" : "spn:6",
+    "frameId" : "frm:6",
+    "location" : {
+      "sourceId" : "src:ch/epfl/printwizard/examples/Player.java",
+      "line" : 19
+    },
+    "value" : "",
+    "valueObjectId" : null
+  }, {
+    "type" : "CALL",
+    "eventId" : "eve:23",
+    "spanId" : "spn:7",
+    "frameId" : "frm:7",
+    "location" : {
+      "sourceId" : "src:ch/epfl/printwizard/examples/Player.java",
+      "line" : 13
+    },
+    "callerMethodId" : "m:ch.epfl.printwizard.examples.main(String[])void",
+    "calleeMethodId" : "m:ch.epfl.printwizard.examples.getHealthPoints()int",
+    "name" : "getHealthPoints",
+    "external" : false,
+    "args" : [ ]
+  }, {
+    "type" : "RETURN",
+    "eventId" : "eve:24",
+    "spanId" : "spn:7",
+    "frameId" : "frm:7",
+    "location" : {
+      "sourceId" : "src:ch/epfl/printwizard/examples/Player.java",
+      "line" : 15
+    },
+    "value" : "",
+    "valueObjectId" : null
+  }, {
+    "type" : "CALL",
+    "eventId" : "eve:25",
+    "spanId" : "spn:8",
+    "frameId" : "frm:8",
+    "location" : {
+      "sourceId" : "src:ch/epfl/printwizard/examples/Player.java",
+      "line" : 13
+    },
+    "callerMethodId" : "m:ch.epfl.printwizard.examples.main(String[])void",
+    "calleeMethodId" : "m:ch.epfl.printwizard.examples.getHealthPoints()int",
+    "name" : "getHealthPoints",
+    "external" : false,
+    "args" : [ ]
+  }, {
+    "type" : "RETURN",
+    "eventId" : "eve:26",
+    "spanId" : "spn:8",
+    "frameId" : "frm:8",
+    "location" : {
+      "sourceId" : "src:ch/epfl/printwizard/examples/Player.java",
+      "line" : 15
+    },
+    "value" : "",
+    "valueObjectId" : null
+  }, {
+    "type" : "ARITHMETIC",
+    "eventId" : "eve:27",
+    "spanId" : "spn:1",
+    "frameId" : "frm:1",
+    "location" : {
+      "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
+      "line" : 10
+    },
+    "operation" : "PLUS",
+    "left" : "Player health points after damage: ",
+    "right" : 25,
+    "result" : "Player health points after damage: 25",
+    "resultObjectId" : null
+  }, {
+    "type" : "CALL",
+    "eventId" : "eve:28",
+    "spanId" : "spn:1",
+    "frameId" : "frm:1",
+    "location" : {
+      "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
+      "line" : 10
+    },
+    "callerMethodId" : "m:ch.epfl.printwizard.examples.main(String[])void",
+    "calleeMethodId" : "-",
+    "name" : "println",
+    "external" : true,
+    "args" : [ {
+      "name" : "arg0",
+      "value" : "Player health points after damage: 25",
+      "type" : "java.lang.String"
+    } ]
+  }, {
+    "type" : "CALL",
+    "eventId" : "eve:29",
+    "spanId" : "spn:9",
+    "frameId" : "frm:9",
+    "location" : {
+      "sourceId" : "src:ch/epfl/printwizard/examples/Player.java",
+      "line" : 13
+    },
+    "callerMethodId" : "m:ch.epfl.printwizard.examples.main(String[])void",
+    "calleeMethodId" : "m:ch.epfl.printwizard.examples.getHealthPoints()int",
+    "name" : "getHealthPoints",
+    "external" : false,
+    "args" : [ ]
+  }, {
+    "type" : "RETURN",
+    "eventId" : "eve:30",
+    "spanId" : "spn:9",
+    "frameId" : "frm:9",
+    "location" : {
+      "sourceId" : "src:ch/epfl/printwizard/examples/Player.java",
+      "line" : 15
+    },
+    "value" : "",
+    "valueObjectId" : null
+  }, {
+    "type" : "CALL",
+    "eventId" : "eve:31",
+    "spanId" : "spn:10",
+    "frameId" : "frm:10",
+    "location" : {
+      "sourceId" : "src:ch/epfl/printwizard/examples/Player.java",
+      "line" : 13
+    },
+    "callerMethodId" : "m:ch.epfl.printwizard.examples.main(String[])void",
+    "calleeMethodId" : "m:ch.epfl.printwizard.examples.getHealthPoints()int",
+    "name" : "getHealthPoints",
+    "external" : false,
+    "args" : [ ]
+  }, {
+    "type" : "RETURN",
+    "eventId" : "eve:32",
+    "spanId" : "spn:10",
+    "frameId" : "frm:10",
+    "location" : {
+      "sourceId" : "src:ch/epfl/printwizard/examples/Player.java",
+      "line" : 15
+    },
+    "value" : "",
+    "valueObjectId" : null
+  }, {
+    "type" : "ARITHMETIC",
+    "eventId" : "eve:33",
+    "spanId" : "spn:1",
+    "frameId" : "frm:1",
+    "location" : {
+      "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
+      "line" : 10
+    },
+    "operation" : "PLUS",
+    "left" : "Player health points after damage: ",
+    "right" : 25,
+    "result" : "Player health points after damage: 25",
+    "resultObjectId" : null
+  }, {
+    "type" : "LOCAL",
+    "eventId" : "eve:34",
     "spanId" : "spn:1",
     "frameId" : "frm:1",
     "location" : {
       "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
       "line" : 12
     },
-    "returnValue" : ""
+    "method" : "m:ch.epfl.printwizard.examples.main(String[])void",
+    "varName" : "testString",
+    "value" : "Hello",
+    "valueObjectId" : null,
+    "label" : "local:testString@src:ch/epfl/printwizard/examples/Main.java:402"
+  }, {
+    "type" : "ARRAYSTORE",
+    "eventId" : "eve:35",
+    "spanId" : "spn:1",
+    "frameId" : "frm:1",
+    "location" : {
+      "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
+      "line" : 13
+    },
+    "arrayRef" : "testArray",
+    "index" : 0,
+    "value" : 1.0,
+    "valueObjectId" : null,
+    "label" : "local:testArray@src:ch/epfl/printwizard/examples/Main.java:442"
+  }, {
+    "type" : "ARRAYSTORE",
+    "eventId" : "eve:36",
+    "spanId" : "spn:1",
+    "frameId" : "frm:1",
+    "location" : {
+      "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
+      "line" : 13
+    },
+    "arrayRef" : "testArray",
+    "index" : 1,
+    "value" : 2.0,
+    "valueObjectId" : null,
+    "label" : "local:testArray@src:ch/epfl/printwizard/examples/Main.java:442"
+  }, {
+    "type" : "ARRAYSTORE",
+    "eventId" : "eve:37",
+    "spanId" : "spn:1",
+    "frameId" : "frm:1",
+    "location" : {
+      "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
+      "line" : 13
+    },
+    "arrayRef" : "testArray",
+    "index" : 2,
+    "value" : 3.0,
+    "valueObjectId" : null,
+    "label" : "local:testArray@src:ch/epfl/printwizard/examples/Main.java:442"
+  }, {
+    "type" : "CONDITION",
+    "eventId" : "eve:38",
+    "spanId" : "spn:1",
+    "frameId" : "frm:1",
+    "location" : {
+      "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
+      "line" : 15
+    },
+    "conditionEventIds" : [ "eve:39" ],
+    "thenEventIds" : [ "eve:40" ],
+    "elseEventIds" : [ ]
+  }, {
+    "type" : "COMPARISON",
+    "eventId" : "eve:39",
+    "spanId" : "spn:1",
+    "frameId" : "frm:1",
+    "location" : {
+      "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
+      "line" : 15
+    },
+    "operator" : "GT",
+    "left" : 3,
+    "right" : 0,
+    "result" : true
+  }, {
+    "type" : "ARRAYSTORE",
+    "eventId" : "eve:40",
+    "spanId" : "spn:1",
+    "frameId" : "frm:1",
+    "location" : {
+      "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
+      "line" : 16
+    },
+    "arrayRef" : "testArray",
+    "index" : 0,
+    "value" : 10.0,
+    "valueObjectId" : null,
+    "label" : "local:testArray@src:ch/epfl/printwizard/examples/Main.java:442"
+  }, {
+    "type" : "RETURN",
+    "eventId" : "eve:41",
+    "spanId" : "spn:1",
+    "frameId" : "frm:1",
+    "location" : {
+      "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
+      "line" : 18
+    },
+    "value" : "",
+    "valueObjectId" : null
   } ]
 }

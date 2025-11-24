@@ -12,6 +12,7 @@ import ch.epfl.printwizard.plugin.utils.Preconditions;
  * @param arrayRef the reference ID of the array being modified
  * @param index the index in the array where the value is stored
  * @param value the value being stored in the array
+ * @param valueObjectId the ID of the object representing the value being stored, if applicable
  * @param label ID of the label associated with this event
  */
 public record ArrayStoreEvent(
@@ -22,6 +23,7 @@ public record ArrayStoreEvent(
     String arrayRef,
     int index,
     Object value,
+    String valueObjectId,
     String label
 ) implements TraceEvent {
 

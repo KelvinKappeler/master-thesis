@@ -15,14 +15,14 @@ import ch.epfl.printwizard.plugin.utils.Preconditions;
  * @param result the result of the comparison
  */
 public record ComparisonEvent(
-        String eventId,
-        String spanId,
-        String frameId,
-        TraceLoc location,
-        String operator,
-        Object left,
-        Object right,
-        boolean result
+    String eventId,
+    String spanId,
+    String frameId,
+    TraceLoc location,
+    String operator,
+    Object left,
+    Object right,
+    boolean result
 ) implements TraceEvent {
 
     public ComparisonEvent {
