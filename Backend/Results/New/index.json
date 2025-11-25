@@ -1,51 +1,52 @@
 {
   "byLine" : {
-    "src:ch/epfl/printwizard/examples/Player.java" : {
-      "13" : [ "eve:12", "eve:22", "eve:24", "eve:28", "eve:30" ],
-      "14" : [ "eve:13", "eve:23", "eve:25", "eve:29", "eve:31" ],
-      "17" : [ "eve:19" ],
-      "18" : [ "eve:20" ],
-      "8" : [ "eve:2", "eve:3", "eve:7", "eve:8" ],
-      "19" : [ "eve:21" ],
-      "9" : [ "eve:4", "eve:9" ],
-      "10" : [ "eve:5", "eve:10" ]
-    },
     "src:ch/epfl/printwizard/examples/Main.java" : {
-      "12" : [ "eve:33" ],
-      "13" : [ "eve:34", "eve:35", "eve:36" ],
-      "15" : [ "eve:37", "eve:38" ],
-      "16" : [ "eve:39" ],
-      "18" : [ "eve:40" ],
+      "12" : [ "eve:35" ],
+      "13" : [ "eve:36", "eve:37", "eve:38" ],
+      "15" : [ "eve:39", "eve:40" ],
+      "16" : [ "eve:41" ],
+      "18" : [ "eve:42" ],
       "5" : [ "eve:1" ],
-      "6" : [ "eve:6" ],
-      "7" : [ "eve:11" ],
-      "8" : [ "eve:14" ],
-      "20" : [ "eve:15" ],
-      "21" : [ "eve:16", "eve:17", "eve:18" ],
-      "10" : [ "eve:26", "eve:27", "eve:32" ]
+      "6" : [ "eve:7" ],
+      "7" : [ "eve:13" ],
+      "8" : [ "eve:16" ],
+      "20" : [ "eve:17" ],
+      "21" : [ "eve:18", "eve:19", "eve:20" ],
+      "10" : [ "eve:28", "eve:29", "eve:34" ]
+    },
+    "src:ch/epfl/printwizard/examples/Player.java" : {
+      "11" : [ "eve:6", "eve:12" ],
+      "13" : [ "eve:14", "eve:24", "eve:26", "eve:30", "eve:32" ],
+      "14" : [ "eve:15", "eve:25", "eve:27", "eve:31", "eve:33" ],
+      "17" : [ "eve:21" ],
+      "18" : [ "eve:22" ],
+      "8" : [ "eve:2", "eve:3", "eve:8", "eve:9" ],
+      "19" : [ "eve:23" ],
+      "9" : [ "eve:4", "eve:10" ],
+      "10" : [ "eve:5", "eve:11" ]
     }
   },
   "byLocal" : {
-    "local:testString@src:ch/epfl/printwizard/examples/Main.java:402#frm:3" : [ "eve:33" ],
-    "local:p2@src:ch/epfl/printwizard/examples/Main.java:167#frm:3" : [ "eve:11" ],
-    "local:currentHealthPointsP1@src:ch/epfl/printwizard/examples/Main.java:205#frm:3" : [ "eve:14" ],
-    "local:p1@src:ch/epfl/printwizard/examples/Main.java:125#frm:2" : [ "eve:6" ],
-    "local:testArray@src:ch/epfl/printwizard/examples/Main.java:442#frm:3" : [ "eve:34", "eve:35", "eve:36", "eve:39" ]
+    "local:testArray@src:ch/epfl/printwizard/examples/Main.java:430#frm:1" : [ "eve:36", "eve:37", "eve:38", "eve:41" ],
+    "local:p2@src:ch/epfl/printwizard/examples/Main.java:161#frm:1" : [ "eve:13" ],
+    "local:currentHealthPointsP1@src:ch/epfl/printwizard/examples/Main.java:198#frm:1" : [ "eve:16" ],
+    "local:p1@src:ch/epfl/printwizard/examples/Main.java:120#frm:1" : [ "eve:7" ],
+    "local:testString@src:ch/epfl/printwizard/examples/Main.java:391#frm:1" : [ "eve:35" ]
   },
   "byObject" : {
-    "obj:2" : [ "eve:8", "eve:9", "eve:10" ],
-    "obj:1" : [ "eve:3", "eve:4", "eve:5", "eve:20" ]
+    "obj:1" : [ "eve:3", "eve:4", "eve:5", "eve:22" ],
+    "obj:2" : [ "eve:9", "eve:10", "eve:11" ]
   },
   "bySpan" : {
-    "spn:10" : [ "eve:30", "eve:31" ],
-    "spn:9" : [ "eve:28", "eve:29" ],
-    "spn:8" : [ "eve:24", "eve:25" ],
-    "spn:7" : [ "eve:22", "eve:23" ],
-    "spn:6" : [ "eve:19", "eve:20", "eve:21" ],
-    "spn:5" : [ "eve:15", "eve:16", "eve:17" ],
-    "spn:4" : [ "eve:12", "eve:13" ],
-    "spn:3" : [ "eve:7", "eve:8", "eve:9", "eve:10", "eve:11", "eve:14", "eve:18", "eve:26", "eve:27", "eve:32", "eve:33", "eve:34", "eve:35", "eve:36", "eve:40" ],
-    "spn:2" : [ "eve:2", "eve:3", "eve:4", "eve:5", "eve:6" ],
+    "spn:10" : [ "eve:32" ],
+    "spn:9" : [ "eve:30" ],
+    "spn:8" : [ "eve:26" ],
+    "spn:7" : [ "eve:24" ],
+    "spn:6" : [ "eve:21" ],
+    "spn:5" : [ "eve:17" ],
+    "spn:4" : [ "eve:14" ],
+    "spn:3" : [ "eve:8" ],
+    "spn:2" : [ "eve:2" ],
     "spn:1" : [ "eve:1" ]
   }
 }

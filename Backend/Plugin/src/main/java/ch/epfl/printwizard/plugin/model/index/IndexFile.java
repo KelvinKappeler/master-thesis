@@ -45,16 +45,12 @@ public record IndexFile(
         /**
          * Adds an event to the index file.
          * @param event The event to be added
-         * @param shouldBeAddedInSpan Whether the event should be added in span
          */
-        public void addEvent(TraceEvent event, boolean shouldBeAddedInSpan) {
+        public void addEvent(TraceEvent event) {
             addEventByLine(event);
             addEventByLocal(event);
             addEventByObject(event);
-
-            if (shouldBeAddedInSpan) {
-                addEventBySpan(event);
-            }
+            addEventBySpan(event);
         }
 
         /**
@@ -123,7 +119,7 @@ public record IndexFile(
         }
 
         private void addEventBySpan(TraceEvent event) {
-            if (event.spanId() != null) {
+            if (event.spanId() != null && event instanceof CallEvent callEvent && !callEvent.external()) {
                 bySpan.computeIfAbsent(event.spanId(), k -> Collections.synchronizedList(new ArrayList<>())).add(event.eventId());
             }
         }

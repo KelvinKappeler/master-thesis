@@ -4,7 +4,6 @@ import ch.epfl.printwizard.plugin.model.trace.events.LoopKind;
 import ch.epfl.printwizard.plugin.utils.Ids;
 import ch.epfl.printwizard.plugin.model.trace.TraceFile;
 import ch.epfl.printwizard.plugin.utils.UserPackages;
-import com.sun.tools.javac.api.JavacTrees;
 import com.sun.tools.javac.code.*;
 import com.sun.tools.javac.tree.JCTree;
 import com.sun.tools.javac.tree.TreeMaker;
@@ -15,39 +14,30 @@ import com.sun.tools.javac.util.Names;
 import com.sun.tools.javac.model.JavacElements;
 
 import javax.tools.JavaFileObject;
-import java.awt.*;
 import java.util.ArrayList;
 
 /**
  * Represents the scanner for the PrintWizard instrumentation.
  */
 public class TracingTranslator extends TreeTranslator {
-
-    private final Context ctx;
+    
     private final JCTree.JCCompilationUnit cu;
-
     private final TreeMaker mk;
     private final Names names;
-    private final JavacTrees trees;
     private final JavacElements elements;
     private final Types types;
     private final Symtab symtab;
-
     private final TraceFile.Builder traceFileBuilder;
 
     private Symbol.MethodSymbol currentMethod;
 
     public TracingTranslator(Context ctx, JCTree.JCCompilationUnit cu) {
-        this.ctx = ctx;
         this.cu = cu;
-
         this.mk = TreeMaker.instance(ctx);
         this.names = Names.instance(ctx);
-        this.trees = JavacTrees.instance(ctx);
         this.elements = JavacElements.instance(ctx);
         this.types = Types.instance(ctx);
         this.symtab = Symtab.instance(ctx);
-
         this.traceFileBuilder = new TraceFile.Builder();
     }
 
@@ -156,8 +146,8 @@ public class TracingTranslator extends TreeTranslator {
                     JCTree.JCStatement first = origStmts.getFirst();
                     boolean firstIsCtorCall =
                         first instanceof JCTree.JCExpressionStatement es
-                        && es.expr instanceof JCTree.JCMethodInvocation mi
-                        && (mi.meth.toString().equals("super") || mi.meth.toString().equals("this"));
+                            && es.expr instanceof JCTree.JCMethodInvocation mi
+                            && (mi.meth.toString().equals("super") || mi.meth.toString().equals("this"));
                     if (firstIsCtorCall) {
                         superOrThisStmt = first;
                         rest = origStmts.tail;
@@ -172,6 +162,20 @@ public class TracingTranslator extends TreeTranslator {
                 }
 
                 List<JCTree.JCStatement> newStmts = List.of(superOrThisStmt, enterCall, newEventCall).appendList(rest);
+                
+                JCTree.JCLiteral nullLit = mk.Literal(TypeTag.BOT, null);
+                nullLit.type = symtab.botType;
+
+                JCTree.JCStatement implicitExitCall = mk.Exec(
+                    callStatic(
+                        "ch.epfl.printwizard.plugin.logging.TraceOut",
+                        "onReturn",
+                        List.of(nullLit, mk.Literal(getSourceId()), mk.Literal(endLine)),
+                        ep
+                    )
+                );
+
+                newStmts = newStmts.append(implicitExitCall);
 
                 jcMethodDecl.body = mk.Block(0, newStmts);
             } else {
