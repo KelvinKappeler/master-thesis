@@ -1,52 +1,18 @@
 {
   "byLine" : {
     "src:ch/epfl/printwizard/examples/Main.java" : {
-      "12" : [ "eve:35" ],
-      "13" : [ "eve:36", "eve:37", "eve:38" ],
-      "15" : [ "eve:39", "eve:40" ],
-      "16" : [ "eve:41" ],
-      "18" : [ "eve:42" ],
+      "11" : [ "eve:4" ],
       "5" : [ "eve:1" ],
-      "6" : [ "eve:7" ],
-      "7" : [ "eve:13" ],
-      "8" : [ "eve:16" ],
-      "20" : [ "eve:17" ],
-      "21" : [ "eve:18", "eve:19", "eve:20" ],
-      "10" : [ "eve:28", "eve:29", "eve:34" ]
-    },
-    "src:ch/epfl/printwizard/examples/Player.java" : {
-      "11" : [ "eve:6", "eve:12" ],
-      "13" : [ "eve:14", "eve:24", "eve:26", "eve:30", "eve:32" ],
-      "14" : [ "eve:15", "eve:25", "eve:27", "eve:31", "eve:33" ],
-      "17" : [ "eve:21" ],
-      "18" : [ "eve:22" ],
-      "8" : [ "eve:2", "eve:3", "eve:8", "eve:9" ],
-      "19" : [ "eve:23" ],
-      "9" : [ "eve:4", "eve:10" ],
-      "10" : [ "eve:5", "eve:11" ]
+      "18" : [ "eve:5" ],
+      "9" : [ "eve:2" ],
+      "10" : [ "eve:3" ]
     }
   },
   "byLocal" : {
-    "local:testArray@src:ch/epfl/printwizard/examples/Main.java:430#frm:1" : [ "eve:36", "eve:37", "eve:38", "eve:41" ],
-    "local:p2@src:ch/epfl/printwizard/examples/Main.java:161#frm:1" : [ "eve:13" ],
-    "local:currentHealthPointsP1@src:ch/epfl/printwizard/examples/Main.java:198#frm:1" : [ "eve:16" ],
-    "local:p1@src:ch/epfl/printwizard/examples/Main.java:120#frm:1" : [ "eve:7" ],
-    "local:testString@src:ch/epfl/printwizard/examples/Main.java:391#frm:1" : [ "eve:35" ]
+    "local:array@src:ch/epfl/printwizard/examples/Main.java:178#frm:1" : [ "eve:2", "eve:3", "eve:4" ]
   },
-  "byObject" : {
-    "obj:1" : [ "eve:3", "eve:4", "eve:5", "eve:22" ],
-    "obj:2" : [ "eve:9", "eve:10", "eve:11" ]
-  },
+  "byObject" : { },
   "bySpan" : {
-    "spn:10" : [ "eve:32" ],
-    "spn:9" : [ "eve:30" ],
-    "spn:8" : [ "eve:26" ],
-    "spn:7" : [ "eve:24" ],
-    "spn:6" : [ "eve:21" ],
-    "spn:5" : [ "eve:17" ],
-    "spn:4" : [ "eve:14" ],
-    "spn:3" : [ "eve:8" ],
-    "spn:2" : [ "eve:2" ],
     "spn:1" : [ "eve:1" ]
   }
 }

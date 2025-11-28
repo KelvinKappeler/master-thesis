@@ -101,28 +101,6 @@ public class TraceOut {
     }
 
     @SuppressWarnings("unused")
-    public static <T> T recordLocalEvent(String label, String varName, T value, String sourceId, int line) {
-        FrameCtx ctx = currentFrameCtx();
-        TraceLoc loc = new TraceLoc(sourceId, line);
-
-        Object storedValue = null;
-        String storedObjectId = null;
-
-        if (value == null || isSimpleValue(value)) {
-            storedValue = value;
-        }
-        else {
-            storedObjectId = getOrCreateObjectId(value);
-        }
-
-        addEvent(new LocalEvent(
-            Ids.nextEventId(), ctx.spanId(), ctx.frameId(), loc, ctx.methodId(), varName, storedValue, storedObjectId, label
-        ));
-
-        return value;
-    }
-
-    @SuppressWarnings("unused")
     public static <T> T recordArithmetic(String op, Object left, Object right, T result, String sourceId, int line) {
         FrameCtx ctx = currentFrameCtx();
         TraceLoc loc = new TraceLoc(sourceId, line);
@@ -145,25 +123,6 @@ public class TraceOut {
     }
 
     @SuppressWarnings("unused")
-    public static <T> T recordArrayStore(String label, String arrayName, int index, T value, String sourceId, int line) {
-        FrameCtx ctx = currentFrameCtx();
-        TraceLoc loc = new TraceLoc(sourceId, line);
-
-        Object storedValue = null;
-        String storedObjectId = null;
-
-        if (value == null || isSimpleValue(value)) {
-            storedValue = value;
-        } else {
-            storedObjectId = getOrCreateObjectId(value);
-        }
-
-        addEvent(new ArrayStoreEvent(Ids.nextEventId(), ctx.spanId(), ctx.frameId(), loc, arrayName, index, storedValue, storedObjectId, label));
-
-        return value;
-    }
-
-    @SuppressWarnings("unused")
     public static boolean recordComparison(String op, Object left, Object right, boolean result, String sourceId, int line) {
         FrameCtx ctx = currentFrameCtx();
         TraceLoc loc = new TraceLoc(sourceId, line);
@@ -180,13 +139,13 @@ public class TraceOut {
         FrameCtx ctx = currentFrameCtx();
         TraceLoc loc = new TraceLoc(sourceId, line);
 
+        String arrayObjectId = getOrCreateObjectId(arrayRef);
         int length = Array.getLength(arrayRef);
         for (int i = 0; i < length; i++) {
             Object value = Array.get(arrayRef, i);
 
             Object storedValue = null;
             String storedObjectId = null;
-
             if (value == null || isSimpleValue(value)) {
                 storedValue = value;
             } else {
@@ -194,7 +153,10 @@ public class TraceOut {
             }
 
             addEvent(new ArrayStoreEvent(
-                Ids.nextEventId(), ctx.spanId(), ctx.frameId(), loc, arrayName, i, storedValue, storedObjectId, label
+                Ids.nextEventId(), ctx.spanId(), ctx.frameId(), loc,
+                arrayName, arrayObjectId, i,
+                storedValue, storedObjectId,
+                label, null
             ));
         }
 
@@ -252,6 +214,126 @@ public class TraceOut {
             loc,
             objectId, fieldName, value
         ));
+
+        return value;
+    }
+
+    @SuppressWarnings("unused")
+    public static String beginArrayStore(String label, Object arrayRef, String arrayName, int index, String sourceId, int line) {
+        FrameCtx frame = currentFrameCtx();
+
+        String eventId = Ids.nextEventId();
+        TraceLoc loc = new TraceLoc(sourceId, line);
+
+        String arrayObjectId = getOrCreateObjectId(arrayRef);
+
+        ArrayStoreCtx ctx = new ArrayStoreCtx(
+            eventId, frame.spanId(), frame.frameId(), frame.methodId(),
+            loc, arrayName, arrayObjectId, index, label
+        );
+
+        CTX_STACK.get().push(ctx);
+
+        return eventId;
+    }
+
+    @SuppressWarnings("unused")
+    public static <T> T endArrayStore(String arrayEventId, T value) {
+        Deque<ExecCtx> stack = CTX_STACK.get();
+        ArrayStoreCtx found = null;
+
+        while (!stack.isEmpty()) {
+            ExecCtx ctx = stack.pop();
+            if (ctx instanceof ArrayStoreCtx ac && ac.getArrayEventId().equals(arrayEventId)) {
+                found = ac;
+                break;
+            }
+        }
+
+        if (found == null) {
+            throw new IllegalStateException("No ArrayStoreCtx for id " + arrayEventId);
+        }
+
+        Object storedValue = null;
+        String storedObjectId = null;
+        if (value == null || isSimpleValue(value)) {
+            storedValue = value;
+        } else {
+            storedObjectId = getOrCreateObjectId(value);
+        }
+
+        String rootEventId = null;
+        List<String> children = found.getChildEventIds();
+        if (!children.isEmpty()) {
+            rootEventId = children.getFirst();
+        }
+
+        ArrayStoreEvent ev = new ArrayStoreEvent(
+            found.getArrayEventId(), found.getSpanId(), found.getFrameId(),
+            found.getLocation(),
+            found.getArrayVarName(),
+            found.getArrayObjectId(),
+            found.getIndex(),
+            storedValue, storedObjectId,
+            found.getLabel(), rootEventId
+        );
+
+        addEvent(ev);
+
+        return value;
+    }
+
+    @SuppressWarnings("unused")
+    public static String beginLocal(String label, String varName, String sourceId, int line) {
+        FrameCtx frame = currentFrameCtx();
+
+        String eventId = Ids.nextEventId();
+        TraceLoc loc = new TraceLoc(sourceId, line);
+        LocalCtx ctx = new LocalCtx(eventId, frame.spanId(), frame.frameId(), frame.methodId(), loc, varName, label);
+
+        CTX_STACK.get().push(ctx);
+
+        return eventId;
+    }
+
+    @SuppressWarnings("unused")
+    public static <T> T endLocal(String localEventId, T value) {
+        Deque<ExecCtx> stack = CTX_STACK.get();
+        LocalCtx found = null;
+
+        while (!stack.isEmpty()) {
+            ExecCtx ctx = stack.pop();
+            if (ctx instanceof LocalCtx lc && lc.getLocalEventId().equals(localEventId)) {
+                found = lc;
+                break;
+            }
+        }
+
+        if (found == null) {
+            throw new IllegalStateException("No LocalCtx for id " + localEventId);
+        }
+
+        Object storedValue = null;
+        String storedObjectId = null;
+        if (value == null || isSimpleValue(value)) {
+            storedValue = value;
+        } else {
+            storedObjectId = getOrCreateObjectId(value);
+        }
+
+        String rootEventId = null;
+        if (!found.getChildEventIds().isEmpty()) {
+            rootEventId = found.getChildEventIds().getFirst();
+        }
+
+        LocalEvent ev = new LocalEvent(
+            found.getLocalEventId(), found.getSpanId(), found.getFrameId(),
+            found.getLocation(), found.getMethodId(), found.getVarName(),
+            storedValue, storedObjectId,
+            found.getLabel(), rootEventId
+        );
+
+        addEvent(ev);
 
         return value;
     }

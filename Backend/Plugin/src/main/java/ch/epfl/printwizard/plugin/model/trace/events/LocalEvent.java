@@ -14,6 +14,7 @@ import ch.epfl.printwizard.plugin.utils.Preconditions;
  * @param value the new value assigned to the local variable, if the local variable is of a primitive type, null or string
  * @param valueObjectId if the type of the local variable is an object, the ID of the object assigned to the local variable
  * @param label ID of the label associated with this event
+ * @param bodyEventId ID of the body event associated with this event, if any
  */
 public record LocalEvent(
     String eventId,
@@ -24,7 +25,8 @@ public record LocalEvent(
     String varName,
     Object value,
     String valueObjectId,
-    String label
+    String label,
+    String bodyEventId
 ) implements TraceEvent {
 
     public LocalEvent {
