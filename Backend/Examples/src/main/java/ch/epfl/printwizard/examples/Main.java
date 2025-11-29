@@ -3,12 +3,12 @@ package ch.epfl.printwizard.examples;
 public class Main {
 
     public static void main(String[] args) {
-        //int a = 3;
-        //int b = add(a, 5);
+        int a = 3;
+        int b = add(a, 5);
 
-        int[] array = new int[2];
-        array[0] = 1;
-        array[1] += 2;
+        //int[] array = new int[2];
+        //array[0] = 1;
+        //array[1] += 2;
         /*Player p1 = new Player(100, 20);
         Player p2 = new Player(17, 59);
         int currentHealthPointsP1 = p1.getHealthPoints();

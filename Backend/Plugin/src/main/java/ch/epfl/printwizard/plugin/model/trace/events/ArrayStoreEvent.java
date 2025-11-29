@@ -12,8 +12,7 @@ import ch.epfl.printwizard.plugin.utils.Preconditions;
  * @param arrayVarName the name of the array variable
  * @param arrayObjectId the ID of the array object
  * @param index the index in the array where the value is stored
- * @param value the value being stored in the array
- * @param valueObjectId the ID of the object representing the value being stored, if applicable
+ * @param value the value being stored into the array
  * @param label ID of the label associated with this event
  * @param bodyEventId ID of the body event associated with this event, if any
  */
@@ -25,8 +24,7 @@ public record ArrayStoreEvent(
     String arrayVarName,
     String arrayObjectId,
     int index,
-    Object value,
-    String valueObjectId,
+    EventValue value,
     String label,
     String bodyEventId
 ) implements TraceEvent {

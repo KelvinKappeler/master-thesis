@@ -15,15 +15,13 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
     @JsonSubTypes.Type(value = NewEvent.class, name = "NEW"),
     @JsonSubTypes.Type(value = FieldWriteEvent.class, name = "PUTFIELD"),
     @JsonSubTypes.Type(value = ReturnEvent.class, name = "RETURN"),
-    @JsonSubTypes.Type(value = ThrowEvent.class, name = "THROW"),
     @JsonSubTypes.Type(value = ArithmeticEvent.class, name = "ARITHMETIC"),
     @JsonSubTypes.Type(value = ConditionEvent.class, name = "CONDITION"),
     @JsonSubTypes.Type(value = ComparisonEvent.class, name = "COMPARISON"),
     @JsonSubTypes.Type(value = LoopEvent.class, name = "LOOP"),
     @JsonSubTypes.Type(value = LoopIterationEvent.class, name = "LOOP_ITERATION")
 })
-public sealed interface TraceEvent permits ArithmeticEvent, ArrayStoreEvent, CallEvent, ComparisonEvent, ConditionEvent, FieldReadEvent, FieldWriteEvent, LocalEvent, LoopEvent, LoopIterationEvent, NewEvent, ReturnEvent, ThrowEvent
-{
+public sealed interface TraceEvent permits ArithmeticEvent, ArrayStoreEvent, CallEvent, ComparisonEvent, ConditionEvent, FieldReadEvent, FieldWriteEvent, LocalEvent, LoopEvent, LoopIterationEvent, NewEvent, ReturnEvent {
 
     /**
      * Returns the unique identifier of the event.

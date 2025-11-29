@@ -1,38 +1,3 @@
 {
-  "objects" : {
-    "obj:1" : {
-      "objectId" : "obj:1",
-      "type" : "ARRAY",
-      "timeline" : [ {
-        "version" : 0,
-        "eventId" : "eve:3",
-        "fields" : { }
-      }, {
-        "version" : 1,
-        "eventId" : "eve:3",
-        "fields" : {
-          "[0]" : {
-            "type" : "java.lang.Integer",
-            "value" : 1,
-            "objectId" : null
-          }
-        }
-      }, {
-        "version" : 2,
-        "eventId" : "eve:4",
-        "fields" : {
-          "[0]" : {
-            "type" : "java.lang.Integer",
-            "value" : 1,
-            "objectId" : null
-          },
-          "[1]" : {
-            "type" : "java.lang.Integer",
-            "value" : 2,
-            "objectId" : null
-          }
-        }
-      } ]
-    }
-  }
+  "objects" : { }
 }

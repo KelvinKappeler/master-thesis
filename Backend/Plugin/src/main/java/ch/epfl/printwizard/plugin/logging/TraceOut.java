@@ -16,8 +16,6 @@ public class TraceOut {
     private static final ThreadLocal<Deque<FrameCtx>> FRAME_STACK = ThreadLocal.withInitial(ArrayDeque::new);
     private static final ThreadLocal<Deque<ExecCtx>> CTX_STACK = ThreadLocal.withInitial(ArrayDeque::new);
 
-    private static final Map<Object, String> OBJECT_IDS = Collections.synchronizedMap(new WeakHashMap<>());
-
     private TraceOut() {}
 
     @SuppressWarnings("unused")
@@ -30,14 +28,14 @@ public class TraceOut {
         String parentSpanId = FRAME_STACK.get().isEmpty() ? "null" : currentFrameCtx().spanId();
         String startEventId = Ids.nextEventId();
         TraceLoc loc = new TraceLoc(sourceId, line);
-        String thisRefObjectId = thisRef != null ? getOrCreateObjectId(thisRef) : null;
+        String thisRefObjectId = thisRef != null ? EventValue.getOrCreateObjectId(thisRef) : null;
         
         CallEvent callEvent = new CallEvent(
             startEventId, spanId, frameId,
             loc,
             callerMethodId, methodId,
             method, false, args,
-            null, null, new String[0]
+            EventValue.of(null), new String[0]
         );
         addEvent(callEvent);
 
@@ -60,22 +58,12 @@ public class TraceOut {
         String evId = Ids.nextEventId();
         TraceLoc loc = new TraceLoc(sourceId, line);
 
-        Object storedValue = null;
-        String storedObjectId = null;
-
-        if (ret == null || isSimpleValue(ret)) {
-            storedValue = ret;
-        }
-        else {
-            storedObjectId = getOrCreateObjectId(ret);
-        }
-
-        ReturnEvent returnEvent = new ReturnEvent(evId, frameCtx.spanId(), frameCtx.frameId(), loc, storedValue, storedObjectId);
+        ReturnEvent returnEvent = new ReturnEvent(evId, frameCtx.spanId(), frameCtx.frameId(), loc, EventValue.of(ret));
         addEvent(returnEvent);
         
         MethodCtx methodCtx = popMethodCtxForFrame(frameCtx.spanId(), frameCtx.frameId());
         if (methodCtx != null) {
-            patchCall(methodCtx.getCallEventId(), storedValue, storedObjectId, methodCtx.getBodyEventIds());
+            patchCall(methodCtx.getCallEventId(), EventValue.of(ret), methodCtx.getBodyEventIds());
         }
 
         patchSpanEnd(frameCtx.spanId(), evId, loc);
@@ -94,7 +82,7 @@ public class TraceOut {
             eventId, ctx.spanId(), ctx.frameId(),
             loc, callerMethodId, calleeMethodId,
             method, isExternal, args,
-            null, null, new String[0]
+            EventValue.of(null), new String[0]
         );
 
         addEvent(ev);
@@ -105,18 +93,8 @@ public class TraceOut {
         FrameCtx ctx = currentFrameCtx();
         TraceLoc loc = new TraceLoc(sourceId, line);
 
-        Object storedValue = null;
-        String storedObjectId = null;
-
-        if (result == null || isSimpleValue(result)) {
-            storedValue = result;
-        }
-        else {
-            storedObjectId = getOrCreateObjectId(result);
-        }
-
         addEvent(new ArithmeticEvent(
-            Ids.nextEventId(), ctx.spanId(), ctx.frameId(), loc, op, left, right, storedValue, storedObjectId
+            Ids.nextEventId(), ctx.spanId(), ctx.frameId(), loc, op, left, right, EventValue.of(result)
         ));
 
         return result;
@@ -139,23 +117,15 @@ public class TraceOut {
         FrameCtx ctx = currentFrameCtx();
         TraceLoc loc = new TraceLoc(sourceId, line);
 
-        String arrayObjectId = getOrCreateObjectId(arrayRef);
+        String arrayObjectId = EventValue.getOrCreateObjectId(arrayRef);
         int length = Array.getLength(arrayRef);
         for (int i = 0; i < length; i++) {
             Object value = Array.get(arrayRef, i);
 
-            Object storedValue = null;
-            String storedObjectId = null;
-            if (value == null || isSimpleValue(value)) {
-                storedValue = value;
-            } else {
-                storedObjectId = getOrCreateObjectId(value);
-            }
-
             addEvent(new ArrayStoreEvent(
                 Ids.nextEventId(), ctx.spanId(), ctx.frameId(), loc,
                 arrayName, arrayObjectId, i,
-                storedValue, storedObjectId,
+                EventValue.of(value),
                 label, null
             ));
         }
@@ -168,7 +138,7 @@ public class TraceOut {
         FrameCtx ctx = currentFrameCtx();
         TraceLoc loc = new TraceLoc(sourceId, line);
 
-        String objectId = getOrCreateObjectId(obj);
+        String objectId = EventValue.getOrCreateObjectId(obj);
 
         addEvent(new NewEvent(Ids.nextEventId(), ctx.spanId(), ctx.frameId(), loc, objectId, typeName));
 
@@ -180,23 +150,13 @@ public class TraceOut {
         FrameCtx ctx = currentFrameCtx();
         TraceLoc loc = new TraceLoc(sourceId, line);
 
-        String objectId = getOrCreateObjectId(target);
+        String objectId = EventValue.getOrCreateObjectId(target);
         String fieldType = resolveFieldType(target, fieldName, value);
-
-        Object storedValue = null;
-        String storedObjectId = null;
-
-        if (value == null || isSimpleValue(value)) {
-            storedValue = value;
-        }
-        else {
-            storedObjectId = getOrCreateObjectId(value);
-        }
 
         addEvent(new FieldWriteEvent(
             Ids.nextEventId(), ctx.spanId(), ctx.frameId(),
             loc,
-            objectId, fieldName, storedValue, storedObjectId, fieldType
+            objectId, fieldName, EventValue.of(value), fieldType
         ));
 
         return value;
@@ -206,7 +166,7 @@ public class TraceOut {
     public static <T> T recordFieldRead(Object target, String fieldName, T value, String sourceId, int line) {
         FrameCtx ctx = currentFrameCtx();
 
-        String objectId = getOrCreateObjectId(target);
+        String objectId = EventValue.getOrCreateObjectId(target);
         TraceLoc loc = new TraceLoc(sourceId, line);
 
         addEvent(new FieldReadEvent(
@@ -225,7 +185,7 @@ public class TraceOut {
         String eventId = Ids.nextEventId();
         TraceLoc loc = new TraceLoc(sourceId, line);
 
-        String arrayObjectId = getOrCreateObjectId(arrayRef);
+        String arrayObjectId = EventValue.getOrCreateObjectId(arrayRef);
 
         ArrayStoreCtx ctx = new ArrayStoreCtx(
             eventId, frame.spanId(), frame.frameId(), frame.methodId(),
@@ -254,14 +214,6 @@ public class TraceOut {
             throw new IllegalStateException("No ArrayStoreCtx for id " + arrayEventId);
         }
 
-        Object storedValue = null;
-        String storedObjectId = null;
-        if (value == null || isSimpleValue(value)) {
-            storedValue = value;
-        } else {
-            storedObjectId = getOrCreateObjectId(value);
-        }
-
         String rootEventId = null;
         List<String> children = found.getChildEventIds();
         if (!children.isEmpty()) {
@@ -274,7 +226,7 @@ public class TraceOut {
             found.getArrayVarName(),
             found.getArrayObjectId(),
             found.getIndex(),
-            storedValue, storedObjectId,
+            EventValue.of(value),
             found.getLabel(), rootEventId
         );
 
@@ -313,14 +265,6 @@ public class TraceOut {
             throw new IllegalStateException("No LocalCtx for id " + localEventId);
         }
 
-        Object storedValue = null;
-        String storedObjectId = null;
-        if (value == null || isSimpleValue(value)) {
-            storedValue = value;
-        } else {
-            storedObjectId = getOrCreateObjectId(value);
-        }
-
         String rootEventId = null;
         if (!found.getChildEventIds().isEmpty()) {
             rootEventId = found.getChildEventIds().getFirst();
@@ -329,7 +273,7 @@ public class TraceOut {
         LocalEvent ev = new LocalEvent(
             found.getLocalEventId(), found.getSpanId(), found.getFrameId(),
             found.getLocation(), found.getMethodId(), found.getVarName(),
-            storedValue, storedObjectId,
+            EventValue.of(value),
             found.getLabel(), rootEventId
         );
 
@@ -649,7 +593,7 @@ public class TraceOut {
         }
     }
 
-    private static void patchCall(String callEventId, Object retValue, String retValueObjectId, List<String> eventIds) {
+    private static void patchCall(String callEventId, EventValue returnValue, List<String> eventIds) {
         TraceFile.Builder traceFileBuilder = OutputManager.getTraceFileBuilder();
         List<TraceEvent> events = traceFileBuilder.getEvents();
 
@@ -662,7 +606,7 @@ public class TraceOut {
                     ce.eventId(), ce.spanId(), ce.frameId(),
                     ce.location(), ce.callerMethodId(), ce.calleeMethodId(),
                     ce.name(), ce.external(), ce.args(),
-                    retValue, retValueObjectId, eventIdArray
+                    returnValue, eventIdArray
                 );
                 
                 events.set(i, patched);
@@ -689,21 +633,6 @@ public class TraceOut {
         }
 
         return found;
-    }
-
-    private static String getOrCreateObjectId(Object obj) {
-        if (obj == null) return "null";
-        
-        return OBJECT_IDS.computeIfAbsent(obj, o -> Ids.nextObjectId());
-    }
-
-    private static boolean isSimpleValue(Object v) {
-        Class<?> c = v.getClass();
-        return c.isPrimitive()
-            || Number.class.isAssignableFrom(c)
-            || c == Boolean.class
-            || c == Character.class
-            || c == String.class;
     }
 
     private static String resolveFieldType(Object target, String fieldName, Object value) {

@@ -90,7 +90,7 @@ public record StateFile(
 
             Map<String, FieldState> newFields = new LinkedHashMap<>(last.fields());
 
-            FieldState fieldState = new FieldState(fw.fieldType(), fw.value(), fw.valueObjectId());
+            FieldState fieldState = new FieldState(fw.fieldType(), fw.value().value(), fw.value().valueObjectId());
             newFields.put(fw.fieldName(), fieldState);
 
             int nextVersion = last.version() + 1;
@@ -120,16 +120,14 @@ public record StateFile(
 
             String fieldName = "[" + ase.index() + "]";
 
-            Object value = ase.value();
-
             String fieldType;
-            if (value != null) {
-                fieldType = value.getClass().getTypeName();
+            if (ase.value().value() != null) {
+                fieldType = ase.value().value().getClass().getTypeName();
             } else {
                 fieldType = "java.lang.Object";
             }
 
-            FieldState fieldState = new FieldState(fieldType, value, ase.valueObjectId());
+            FieldState fieldState = new FieldState(fieldType, ase.value().value(), ase.value().valueObjectId());
             newFields.put(fieldName, fieldState);
 
             int nextVersion = last.version() + 1;

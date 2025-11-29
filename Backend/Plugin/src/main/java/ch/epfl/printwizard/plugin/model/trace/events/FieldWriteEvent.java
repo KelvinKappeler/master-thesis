@@ -11,8 +11,7 @@ import ch.epfl.printwizard.plugin.utils.Preconditions;
  * @param location the location in the source code where the event occurred
  * @param objectId the ID of the object whose field is being modified
  * @param fieldName the name of the field being modified
- * @param value the new value being assigned to the field
- * @param valueObjectId the ID of the object representing the new value, if applicable
+ * @param value the new value assigned to the field
  * @param fieldType the type of the field being modified
  */
 public record FieldWriteEvent(
@@ -22,8 +21,7 @@ public record FieldWriteEvent(
     TraceLoc location,
     String objectId,
     String fieldName,
-    Object value,
-    String valueObjectId,
+    EventValue value,
     String fieldType
 ) implements TraceEvent {
 
@@ -35,6 +33,7 @@ public record FieldWriteEvent(
         Preconditions.requireNonNull(objectId, "valueObjectId is null");
         Preconditions.requireNonNull(fieldName, "fieldName is null");
         Preconditions.requireNonNull(fieldType, "fieldType is null");
+        Preconditions.requireNonNull(value, "value is null");
         Preconditions.require(!eventId.isEmpty(), "eventId is empty");
         Preconditions.require(!spanId.isEmpty(), "spanId is empty");
         Preconditions.require(!frameId.isEmpty(), "frameId is empty");

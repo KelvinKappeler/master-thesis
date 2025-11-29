@@ -15,8 +15,7 @@ import ch.epfl.printwizard.plugin.utils.Preconditions;
  * @param name the name of the method being called
  * @param external whether the method is external to the traced code
  * @param args the arguments passed to the method
- * @param returnValue the value returned by the method
- * @param returnValueObjectId the identifier of the object representing the returned value, if applicable
+ * @param value the return value of the method call
  * @param bodyEventIds the list of event IDs that occurred within the body of the method call
  */
 public record CallEvent(
@@ -29,8 +28,7 @@ public record CallEvent(
     String name,
     boolean external,
     Arg[] args,
-    Object returnValue,
-    String returnValueObjectId,
+    EventValue value,
     String[] bodyEventIds
 ) implements TraceEvent {
 
@@ -43,6 +41,7 @@ public record CallEvent(
         Preconditions.requireNonNull(name, "name is null");
         Preconditions.requireNonNull(args, "args is null");
         Preconditions.requireNonNull(bodyEventIds, "bodyEventIds is null");
+        Preconditions.requireNonNull(value, "value is null");
         Preconditions.require(!eventId.isEmpty(), "eventId is empty");
         Preconditions.require(!spanId.isEmpty(), "spanId is empty");
         Preconditions.require(!frameId.isEmpty(), "frameId is empty");

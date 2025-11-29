@@ -11,8 +11,7 @@ import ch.epfl.printwizard.plugin.utils.Preconditions;
  * @param location the location in the source code where the event occurred
  * @param method the method in which the modification took place
  * @param varName the name of the local variable being modified
- * @param value the new value assigned to the local variable, if the local variable is of a primitive type, null or string
- * @param valueObjectId if the type of the local variable is an object, the ID of the object assigned to the local variable
+ * @param value the new value assigned to the local variable
  * @param label ID of the label associated with this event
  * @param bodyEventId ID of the body event associated with this event, if any
  */
@@ -23,8 +22,7 @@ public record LocalEvent(
     TraceLoc location,
     String method,
     String varName,
-    Object value,
-    String valueObjectId,
+    EventValue value,
     String label,
     String bodyEventId
 ) implements TraceEvent {
@@ -37,6 +35,7 @@ public record LocalEvent(
         Preconditions.requireNonNull(method, "field is null");
         Preconditions.requireNonNull(varName, "description is null");
         Preconditions.requireNonNull(label, "label is null");
+        Preconditions.requireNonNull(value, "value is null");
         Preconditions.require(!eventId.isEmpty(), "eventId is empty");
         Preconditions.require(!spanId.isEmpty(), "spanId is empty");
         Preconditions.require(!frameId.isEmpty(), "frameId is empty");
