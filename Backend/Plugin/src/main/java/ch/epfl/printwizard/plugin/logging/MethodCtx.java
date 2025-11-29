@@ -22,11 +22,9 @@ public class MethodCtx implements ExecCtx {
 
     @Override
     public boolean handleEvent(TraceEvent event) {
-        if (event.spanId().equals(spanId) && event.frameId().equals(frameId) && !event.eventId().equals(callEventId)) {
-            bodyEventIds.add(event.eventId());
-        }
+        bodyEventIds.add(event.eventId());
         
-        return false;
+        return true;
     }
 
     /**

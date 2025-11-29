@@ -1,48 +1,45 @@
 package ch.epfl.printwizard.plugin.logging;
 
 import ch.epfl.printwizard.plugin.model.trace.TraceLoc;
-import ch.epfl.printwizard.plugin.model.trace.events.CallEvent;
 import ch.epfl.printwizard.plugin.model.trace.events.TraceEvent;
 import ch.epfl.printwizard.plugin.utils.Preconditions;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 /**
- * Represents the context of a local variable.
+ * Represents the context of a comparison operation.
  */
-public class LocalCtx implements ExecCtx {
-    private final String localEventId;
+public class ComparisonCtx implements ExecCtx {
+
+    private final String comparisonEventId;
     private final String spanId;
     private final String frameId;
     private final String methodId;
     private final TraceLoc location;
-    private final String varName;
-    private final String label;
+    private final String operator;
 
-    private final List<String> childEventIds = new ArrayList<>();
+    private final List<String> leftEventIds = new ArrayList<>();
+    private final List<String> rightEventIds = new ArrayList<>();
 
-    public LocalCtx(String localEventId, String spanId, String frameId, String methodId, TraceLoc location, String varName, String label) {
-        Preconditions.requireNonNull(localEventId, "localEventId is null");
+    public ComparisonCtx(String comparisonEventId, String spanId, String frameId, String methodId, TraceLoc location, String operator) {
+        Preconditions.requireNonNull(comparisonEventId, "comparisonEventId is null");
         Preconditions.requireNonNull(spanId, "spanId is null");
         Preconditions.requireNonNull(frameId, "frameId is null");
         Preconditions.requireNonNull(methodId, "methodId is null");
         Preconditions.requireNonNull(location, "location is null");
-        Preconditions.requireNonNull(varName, "varName is null");
-        Preconditions.requireNonNull(label, "label is null");
+        Preconditions.requireNonNull(operator, "operator is null");
 
-        this.localEventId = localEventId;
+        this.comparisonEventId = comparisonEventId;
         this.spanId = spanId;
         this.frameId = frameId;
         this.methodId = methodId;
         this.location = location;
-        this.varName = varName;
-        this.label = label;
+        this.operator = operator;
     }
 
-    String getLocalEventId() {
-        return localEventId;
+    public String getComparisonEventId() {
+        return comparisonEventId;
     }
 
     public String getSpanId() {
@@ -61,22 +58,20 @@ public class LocalCtx implements ExecCtx {
         return location;
     }
 
-    public String getVarName() {
-        return varName;
+    public String getOperator() {
+        return operator;
     }
 
-    public String getLabel() {
-        return label;
+    public List<String> getLeftEventIds() {
+        return leftEventIds;
     }
 
-    public List<String> getChildEventIds() {
-        return childEventIds;
+    public List<String> getRightEventIds() {
+        return rightEventIds;
     }
 
     @Override
     public boolean handleEvent(TraceEvent e) {
-        childEventIds.add(e.eventId());
-
-        return true;
+        return false;
     }
 }

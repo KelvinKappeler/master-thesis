@@ -11,7 +11,9 @@ import ch.epfl.printwizard.plugin.utils.Preconditions;
  * @param location the location in the source code where the event occurred
  * @param operator the comparison operator used
  * @param left the left operand involved in the comparison
+ * @param leftEventId the event ID of the left operand
  * @param right the right operand involved in the comparison
+ * @param rightEventId the event ID of the right operand
  * @param result the result of the comparison
  */
 public record ComparisonEvent(
@@ -20,8 +22,10 @@ public record ComparisonEvent(
     String frameId,
     TraceLoc location,
     String operator,
-    Object left,
-    Object right,
+    EventValue left,
+    String leftEventId,
+    EventValue right,
+    String rightEventId,
     boolean result
 ) implements TraceEvent {
 
@@ -31,6 +35,8 @@ public record ComparisonEvent(
         Preconditions.requireNonNull(frameId, "frameId is null");
         Preconditions.requireNonNull(location, "location is null");
         Preconditions.requireNonNull(operator, "operator is null");
+        Preconditions.requireNonNull(left, "left is null");
+        Preconditions.requireNonNull(right, "right is null");
         Preconditions.require(!eventId.isEmpty(), "eventId is empty");
         Preconditions.require(!spanId.isEmpty(), "spanId is empty");
         Preconditions.require(!frameId.isEmpty(), "frameId is empty");

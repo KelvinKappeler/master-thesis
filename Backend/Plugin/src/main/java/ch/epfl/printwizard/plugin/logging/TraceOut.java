@@ -89,30 +89,6 @@ public class TraceOut {
     }
 
     @SuppressWarnings("unused")
-    public static <T> T recordArithmetic(String op, Object left, Object right, T result, String sourceId, int line) {
-        FrameCtx ctx = currentFrameCtx();
-        TraceLoc loc = new TraceLoc(sourceId, line);
-
-        addEvent(new ArithmeticEvent(
-            Ids.nextEventId(), ctx.spanId(), ctx.frameId(), loc, op, left, right, EventValue.of(result)
-        ));
-
-        return result;
-    }
-
-    @SuppressWarnings("unused")
-    public static boolean recordComparison(String op, Object left, Object right, boolean result, String sourceId, int line) {
-        FrameCtx ctx = currentFrameCtx();
-        TraceLoc loc = new TraceLoc(sourceId, line);
-
-        addEvent(new ComparisonEvent(
-            Ids.nextEventId(), ctx.spanId(), ctx.frameId(), loc, op, left, right, result
-        ));
-
-        return result;
-    }
-
-    @SuppressWarnings("unused")
     public static Object recordArrayInit(String label, String arrayName, Object arrayRef, String sourceId, int line) {
         FrameCtx ctx = currentFrameCtx();
         TraceLoc loc = new TraceLoc(sourceId, line);
@@ -233,6 +209,274 @@ public class TraceOut {
         addEvent(ev);
 
         return value;
+    }
+
+    @SuppressWarnings("unused")
+    public static String beginComparison(String op, String sourceId, int line) {
+        FrameCtx frame = currentFrameCtx();
+
+        String eventId = Ids.nextEventId();
+        TraceLoc loc = new TraceLoc(sourceId, line);
+
+        ComparisonCtx ctx = new ComparisonCtx(
+            eventId, frame.spanId(), frame.frameId(), frame.methodId(),
+            loc, op
+        );
+
+        CTX_STACK.get().push(ctx);
+
+        return eventId;
+    }
+
+    @SuppressWarnings("unused")
+    public static String beginComparisonLeft() {
+        ComparisonCtx ctx = findTopComparisonCtx();
+        if (ctx == null) {
+            throw new IllegalStateException("No active ComparisonCtx found");
+        }
+
+        CTX_STACK.get().push(new ComparisonPhaseCtx(ctx, ComparisonPhase.LEFT));
+        return ctx.getComparisonEventId();
+    }
+
+    @SuppressWarnings("unused")
+    public static <T> T endComparisonLeft(String comparisonEventId, T value) {
+        Deque<ExecCtx> stack = CTX_STACK.get();
+        if (!stack.isEmpty() && stack.peek() instanceof ComparisonPhaseCtx cpc && cpc.getPhase() == ComparisonPhase.LEFT) {
+            stack.pop();
+        }
+
+        return value;
+    }
+
+    @SuppressWarnings("unused")
+    public static String beginComparisonRight() {
+        ComparisonCtx ctx = findTopComparisonCtx();
+        if (ctx == null) {
+            throw new IllegalStateException("No active ComparisonCtx found");
+        }
+        CTX_STACK.get().push(new ComparisonPhaseCtx(ctx, ComparisonPhase.RIGHT));
+
+        return ctx.getComparisonEventId();
+    }
+
+    @SuppressWarnings("unused")
+    public static <T> T endComparisonRight(String comparisonEventId, T value) {
+        Deque<ExecCtx> stack = CTX_STACK.get();
+        if (!stack.isEmpty() && stack.peek() instanceof ComparisonPhaseCtx cpc &&
+                cpc.getPhase() == ComparisonPhase.RIGHT) {
+            stack.pop();
+        }
+
+        return value;
+    }
+
+    @SuppressWarnings("unused")
+    public static boolean endComparison(String comparisonEventId, Object left, Object right) {
+        Deque<ExecCtx> stack = CTX_STACK.get();
+
+        while (!stack.isEmpty() && stack.peek() instanceof ComparisonPhaseCtx) {
+            stack.pop();
+        }
+
+        ComparisonCtx found = null;
+        for (ExecCtx ctx : stack) {
+            if (ctx instanceof ComparisonCtx cc && cc.getComparisonEventId().equals(comparisonEventId)) {
+                found = cc;
+                break;
+            }
+        }
+
+        if (found == null) {
+            throw new IllegalStateException("No ComparisonCtx for id " + comparisonEventId);
+        }
+
+        stack.remove(found);
+
+        String leftEventId = found.getLeftEventIds().isEmpty() ? null : found.getLeftEventIds().getFirst();
+        String rightEventId = found.getRightEventIds().isEmpty() ? null : found.getRightEventIds().getFirst();
+
+        boolean result = computeComparison(found.getOperator(), left, right);
+
+        ComparisonEvent ev = new ComparisonEvent(
+            found.getComparisonEventId(), found.getSpanId(), found.getFrameId(),
+            found.getLocation(), found.getOperator(),
+            EventValue.of(left), leftEventId,
+            EventValue.of(right), rightEventId,
+            result
+        );
+
+        addEvent(ev);
+
+        return result;
+    }
+
+    private static ComparisonCtx findTopComparisonCtx() {
+        Deque<ExecCtx> stack = CTX_STACK.get();
+        for (ExecCtx ctx : stack) {
+            if (ctx instanceof ComparisonCtx cc) {
+                return cc;
+            }
+        }
+        return null;
+    }
+
+    private static boolean computeComparison(String op, Object left, Object right) {
+        if ("EQ".equals(op) || "NE".equals(op)) {
+            boolean eq;
+
+            if (left == null || right == null) {
+                eq = (left == right);
+            } else if (left instanceof Number lNum && right instanceof Number rNum) {
+                double lv = lNum.doubleValue();
+                double rv = rNum.doubleValue();
+                eq = Double.compare(lv, rv) == 0;
+            } else if (left instanceof Character lc && right instanceof Character rc) {
+                eq = lc.charValue() == rc.charValue();
+            } else if (left instanceof Boolean lb && right instanceof Boolean rb) {
+                eq = lb == rb;
+            } else {
+                eq = left.equals(right);
+            }
+
+            return "EQ".equals(op) == eq;
+        }
+
+        if (left == null || right == null) {
+            throw new IllegalStateException("Relational comparison with null");
+        }
+
+        double lv;
+        double rv;
+
+        if (left instanceof Character lc) {
+            lv = lc;
+        } else if (left instanceof Number ln) {
+            lv = ln.doubleValue();
+        } else {
+            throw new IllegalStateException("Unsupported left type for " + op + ": " + left.getClass());
+        }
+
+        if (right instanceof Character rc) {
+            rv = rc;
+        } else if (right instanceof Number rn) {
+            rv = rn.doubleValue();
+        } else {
+            throw new IllegalStateException("Unsupported right type for " + op + ": " + right.getClass());
+        }
+
+        return switch (op) {
+            case "LT" -> lv < rv;
+            case "LE" -> lv <= rv;
+            case "GT" -> lv > rv;
+            case "GE" -> lv >= rv;
+            default -> throw new IllegalStateException("Unknown comparison op: " + op);
+        };
+    }
+
+    @SuppressWarnings("unused")
+    public static String beginArithmetic(String op, String sourceId, int line) {
+        FrameCtx frame = currentFrameCtx();
+
+        String eventId = Ids.nextEventId();
+        TraceLoc loc = new TraceLoc(sourceId, line);
+
+        ArithmeticCtx ctx = new ArithmeticCtx(eventId, frame.spanId(), frame.frameId(), frame.methodId(), loc, op);
+
+        CTX_STACK.get().push(ctx);
+
+        return eventId;
+    }
+
+    @SuppressWarnings("unused")
+    public static String beginArithmeticLeft() {
+        ArithmeticCtx ctx = findTopArithmeticCtx();
+        if (ctx == null) {
+            throw new IllegalStateException("No active ArithmeticCtx found");
+        }
+
+        CTX_STACK.get().push(new ArithmeticPhaseCtx(ctx, ArithmeticPhase.LEFT));
+        return ctx.getArithmeticEventId();
+    }
+
+    @SuppressWarnings("unused")
+    public static <T> T endArithmeticLeft(String arithmeticEventId, T value) {
+        Deque<ExecCtx> stack = CTX_STACK.get();
+        if (!stack.isEmpty() && stack.peek() instanceof ArithmeticPhaseCtx apc && apc.getPhase() == ArithmeticPhase.LEFT) {
+            stack.pop();
+        }
+
+        return value;
+    }
+
+    @SuppressWarnings("unused")
+    public static String beginArithmeticRight() {
+        ArithmeticCtx ctx = findTopArithmeticCtx();
+        if (ctx == null) {
+            throw new IllegalStateException("No active ArithmeticCtx found");
+        }
+
+        CTX_STACK.get().push(new ArithmeticPhaseCtx(ctx, ArithmeticPhase.RIGHT));
+
+        return ctx.getArithmeticEventId();
+    }
+
+    @SuppressWarnings("unused")
+    public static <T> T endArithmeticRight(String arithmeticEventId, T value) {
+        Deque<ExecCtx> stack = CTX_STACK.get();
+        if (!stack.isEmpty() && stack.peek() instanceof ArithmeticPhaseCtx apc && apc.getPhase() == ArithmeticPhase.RIGHT) {
+            stack.pop();
+        }
+
+        return value;
+    }
+
+    @SuppressWarnings("unused")
+    public static <T> T endArithmetic(String arithmeticEventId, Object left, Object right, T result) {
+        Deque<ExecCtx> stack = CTX_STACK.get();
+
+        while (!stack.isEmpty() && stack.peek() instanceof ArithmeticPhaseCtx) {
+            stack.pop();
+        }
+
+        ArithmeticCtx found = null;
+        for (ExecCtx ctx : stack) {
+            if (ctx instanceof ArithmeticCtx ac && ac.getArithmeticEventId().equals(arithmeticEventId)) {
+                found = ac;
+                break;
+            }
+        }
+
+        if (found == null) {
+            throw new IllegalStateException("No ArithmeticCtx for id " + arithmeticEventId);
+        }
+
+        stack.remove(found);
+
+        String leftEventId = found.getLeftEventIds().isEmpty() ? null : found.getLeftEventIds().getFirst();
+        String rightEventId = found.getRightEventIds().isEmpty() ? null : found.getRightEventIds().getFirst();
+
+        ArithmeticEvent ev = new ArithmeticEvent(
+            found.getArithmeticEventId(), found.getSpanId(), found.getFrameId(),
+            found.getLocation(), found.getOperation(),
+            EventValue.of(left), leftEventId,
+            EventValue.of(right), rightEventId,
+            EventValue.of(result)
+        );
+
+        addEvent(ev);
+
+        return result;
+    }
+
+    private static ArithmeticCtx findTopArithmeticCtx() {
+        Deque<ExecCtx> stack = CTX_STACK.get();
+        for (ExecCtx ctx : stack) {
+            if (ctx instanceof ArithmeticCtx ac) {
+                return ac;
+            }
+        }
+        return null;
     }
 
     @SuppressWarnings("unused")

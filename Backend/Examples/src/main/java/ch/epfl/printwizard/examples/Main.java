@@ -3,8 +3,7 @@ package ch.epfl.printwizard.examples;
 public class Main {
 
     public static void main(String[] args) {
-        int a = 3;
-        int b = add(a, 5);
+        int c = 1 + 2 + 3;
 
         //int[] array = new int[2];
         //array[0] = 1;

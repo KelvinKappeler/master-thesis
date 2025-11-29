@@ -11,7 +11,9 @@ import ch.epfl.printwizard.plugin.utils.Preconditions;
  * @param location the location in the source code where the event occurred
  * @param operation the operation performed on the operands
  * @param left the left operand involved in the computation
+ * @param leftEventId the event ID of the left operand
  * @param right the right operand involved in the computation
+ * @param rightEventId the event ID of the right operand
  * @param value the result of the arithmetic operation
  */
 public record ArithmeticEvent(
@@ -20,8 +22,10 @@ public record ArithmeticEvent(
     String frameId,
     TraceLoc location,
     String operation,
-    Object left,
-    Object right,
+    EventValue left,
+    String leftEventId,
+    EventValue right,
+    String rightEventId,
     EventValue value
 ) implements TraceEvent {
 
@@ -32,6 +36,8 @@ public record ArithmeticEvent(
         Preconditions.requireNonNull(location, "location is null");
         Preconditions.requireNonNull(operation, "operation is null");
         Preconditions.requireNonNull(value, "value is null");
+        Preconditions.requireNonNull(left, "left is null");
+        Preconditions.requireNonNull(right, "right is null");
         Preconditions.require(!eventId.isEmpty(), "eventId is empty");
         Preconditions.require(!spanId.isEmpty(), "spanId is empty");
         Preconditions.require(!frameId.isEmpty(), "frameId is empty");

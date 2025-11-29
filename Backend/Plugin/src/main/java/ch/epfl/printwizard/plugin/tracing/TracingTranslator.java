@@ -557,35 +557,97 @@ public class TracingTranslator extends TreeTranslator {
         int line = cu.getLineMap().getLineNumber(jcBinary.pos);
 
         if (isArithmetic(jcBinary.getTag())) {
+            String op = jcBinary.getTag().toString();
+            String sourceId = getSourceId();
+
+            JCTree.JCMethodInvocation beginArith = callStatic(
+                "ch.epfl.printwizard.plugin.logging.TraceOut",
+                "beginArithmetic",
+                List.of(mk.Literal(op), mk.Literal(sourceId), mk.Literal(line)),
+                jcBinary.pos
+            );
+
+            JCTree.JCMethodInvocation beginLeft = callStatic(
+                "ch.epfl.printwizard.plugin.logging.TraceOut",
+                "beginArithmeticLeft",
+                List.nil(),
+                jcBinary.pos
+            );
+
+            JCTree.JCMethodInvocation endLeft = callStatic(
+                "ch.epfl.printwizard.plugin.logging.TraceOut",
+                "endArithmeticLeft",
+                List.of(beginLeft, jcBinary.lhs),
+                jcBinary.pos
+            );
+
+            JCTree.JCMethodInvocation beginRight = callStatic(
+                "ch.epfl.printwizard.plugin.logging.TraceOut",
+                "beginArithmeticRight",
+                List.nil(),
+                jcBinary.pos
+            );
+
+            JCTree.JCMethodInvocation endRight = callStatic(
+                "ch.epfl.printwizard.plugin.logging.TraceOut",
+                "endArithmeticRight",
+                List.of(beginRight, jcBinary.rhs),
+                jcBinary.pos
+            );
+
             result = callStatic(
                 "ch.epfl.printwizard.plugin.logging.TraceOut",
-                "recordArithmetic",
-                List.of(
-                    mk.Literal(jcBinary.getTag().toString()),
-                    jcBinary.lhs,
-                    jcBinary.rhs,
-                    (JCTree.JCExpression) result,
-                    mk.Literal(getSourceId()),
-                    mk.Literal(line)
-                ),
+                "endArithmetic",
+                List.of(beginArith, endLeft, endRight, (JCTree.JCExpression) result),
                 jcBinary.pos
             );
         }
 
         if (isComparison(jcBinary.getTag())) {
-            result = callStatic(
+            JCTree.JCMethodInvocation beginCmp = callStatic(
                 "ch.epfl.printwizard.plugin.logging.TraceOut",
-                "recordComparison",
-                List.of(
-                    mk.Literal(jcBinary.getTag().toString()),
-                    jcBinary.lhs,
-                    jcBinary.rhs,
-                    (JCTree.JCExpression) result,
-                    mk.Literal(getSourceId()),
-                    mk.Literal(line)
-                ),
+                "beginComparison",
+                List.of(mk.Literal(jcBinary.getTag().toString()), mk.Literal(getSourceId()), mk.Literal(line)),
                 jcBinary.pos
             );
+
+            JCTree.JCMethodInvocation beginLeft = callStatic(
+                "ch.epfl.printwizard.plugin.logging.TraceOut",
+                "beginComparisonLeft",
+                List.nil(),
+                jcBinary.pos
+            );
+
+            JCTree.JCMethodInvocation endLeft = callStatic(
+                "ch.epfl.printwizard.plugin.logging.TraceOut",
+                "endComparisonLeft",
+                List.of(beginLeft, jcBinary.lhs),
+                jcBinary.pos
+            );
+
+            JCTree.JCMethodInvocation beginRight = callStatic(
+                "ch.epfl.printwizard.plugin.logging.TraceOut",
+                "beginComparisonRight",
+                List.nil(),
+                jcBinary.pos
+            );
+
+            JCTree.JCMethodInvocation endRight = callStatic(
+                "ch.epfl.printwizard.plugin.logging.TraceOut",
+                "endComparisonRight",
+                List.of(beginRight, jcBinary.rhs),
+                jcBinary.pos
+            );
+
+            JCTree.JCMethodInvocation endCmp = callStatic(
+                "ch.epfl.printwizard.plugin.logging.TraceOut",
+                "endComparison",
+                List.of(beginCmp, endLeft, endRight),
+                jcBinary.pos
+            );
+            endCmp.type = symtab.booleanType;
+
+            result = endCmp;
         }
     }
 
