@@ -13,6 +13,7 @@ import ch.epfl.printwizard.plugin.utils.Preconditions;
  * @param fieldName the name of the field being modified
  * @param value the new value assigned to the field
  * @param fieldType the type of the field being modified
+ * @param bodyEventId ID of the body event associated with this field write event, if any
  */
 public record FieldWriteEvent(
     String eventId,
@@ -22,7 +23,8 @@ public record FieldWriteEvent(
     String objectId,
     String fieldName,
     EventValue value,
-    String fieldType
+    String fieldType,
+    String bodyEventId
 ) implements TraceEvent {
 
     public FieldWriteEvent {

@@ -1,13 +1,11 @@
 package ch.epfl.printwizard.plugin.logging;
 
 import ch.epfl.printwizard.plugin.model.trace.TraceLoc;
-import ch.epfl.printwizard.plugin.model.trace.events.CallEvent;
 import ch.epfl.printwizard.plugin.model.trace.events.TraceEvent;
 import ch.epfl.printwizard.plugin.utils.Preconditions;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 /**
  * Represents the context of a local variable.
@@ -41,7 +39,7 @@ public class LocalCtx implements ExecCtx {
         this.label = label;
     }
 
-    String getLocalEventId() {
+    public String getLocalEventId() {
         return localEventId;
     }
 

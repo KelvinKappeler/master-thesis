@@ -21,7 +21,7 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
     @JsonSubTypes.Type(value = LoopEvent.class, name = "LOOP"),
     @JsonSubTypes.Type(value = LoopIterationEvent.class, name = "LOOP_ITERATION")
 })
-public sealed interface TraceEvent permits ArithmeticEvent, ArrayStoreEvent, CallEvent, ComparisonEvent, ConditionEvent, FieldReadEvent, FieldWriteEvent, LocalEvent, LoopEvent, LoopIterationEvent, NewEvent, ReturnEvent {
+public sealed interface TraceEvent permits ArithmeticEvent, ArrayStoreEvent, CallEvent, ComparisonEvent, ConditionEvent, FieldWriteEvent, LocalEvent, LoopEvent, LoopIterationEvent, NewEvent, ReturnEvent {
 
     /**
      * Returns the unique identifier of the event.

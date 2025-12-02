@@ -50,26 +50,6 @@ public class TraceOut {
     }
 
     @SuppressWarnings("unused")
-    public static void onReturn(Object ret, String sourceId, int line) {
-        var frameStack = FRAME_STACK.get();
-        if (frameStack.isEmpty()) return;
-        var frameCtx = frameStack.pop();
-
-        String evId = Ids.nextEventId();
-        TraceLoc loc = new TraceLoc(sourceId, line);
-
-        ReturnEvent returnEvent = new ReturnEvent(evId, frameCtx.spanId(), frameCtx.frameId(), loc, EventValue.of(ret));
-        addEvent(returnEvent);
-        
-        MethodCtx methodCtx = popMethodCtxForFrame(frameCtx.spanId(), frameCtx.frameId());
-        if (methodCtx != null) {
-            patchCall(methodCtx.getCallEventId(), EventValue.of(ret), methodCtx.getBodyEventIds());
-        }
-
-        patchSpanEnd(frameCtx.spanId(), evId, loc);
-    }
-
-    @SuppressWarnings("unused")
     public static void recordCall(String owner, String method, Arg[] args, String returnType, boolean isExternal, String sourceId, int line) {
         FrameCtx ctx = currentFrameCtx();
         TraceLoc loc = new TraceLoc(sourceId, line);
@@ -119,39 +99,6 @@ public class TraceOut {
         addEvent(new NewEvent(Ids.nextEventId(), ctx.spanId(), ctx.frameId(), loc, objectId, typeName));
 
         return obj;
-    }
-
-    @SuppressWarnings("unused")
-    public static <T> T recordFieldWrite(Object target, String fieldName, T value, String sourceId, int line) {
-        FrameCtx ctx = currentFrameCtx();
-        TraceLoc loc = new TraceLoc(sourceId, line);
-
-        String objectId = EventValue.getOrCreateObjectId(target);
-        String fieldType = resolveFieldType(target, fieldName, value);
-
-        addEvent(new FieldWriteEvent(
-            Ids.nextEventId(), ctx.spanId(), ctx.frameId(),
-            loc,
-            objectId, fieldName, EventValue.of(value), fieldType
-        ));
-
-        return value;
-    }
-
-    @SuppressWarnings("unused")
-    public static <T> T recordFieldRead(Object target, String fieldName, T value, String sourceId, int line) {
-        FrameCtx ctx = currentFrameCtx();
-
-        String objectId = EventValue.getOrCreateObjectId(target);
-        TraceLoc loc = new TraceLoc(sourceId, line);
-
-        addEvent(new FieldReadEvent(
-            Ids.nextEventId(), ctx.spanId(), ctx.frameId(),
-            loc,
-            objectId, fieldName, value
-        ));
-
-        return value;
     }
 
     @SuppressWarnings("unused")
@@ -524,6 +471,130 @@ public class TraceOut {
         addEvent(ev);
 
         return value;
+    }
+
+    @SuppressWarnings("unused")
+    public static String beginFieldWrite(Object target, String fieldName, String sourceId, int line) {
+        FrameCtx frame = currentFrameCtx();
+        TraceLoc loc = new TraceLoc(sourceId, line);
+
+        String objectId = EventValue.getOrCreateObjectId(target);
+        String fieldType = resolveFieldType(target, fieldName, null);
+        String eventId = Ids.nextEventId();
+
+        FieldWriteCtx ctx = new FieldWriteCtx(
+            eventId, frame.spanId(), frame.frameId(), frame.methodId(),
+            loc, objectId,
+            fieldName, fieldType
+        );
+
+        CTX_STACK.get().push(ctx);
+
+        return eventId;
+    }
+
+    @SuppressWarnings("unused")
+    public static <T> T endFieldWrite(String fieldWriteEventId, T value) {
+        Deque<ExecCtx> stack = CTX_STACK.get();
+        FieldWriteCtx found = null;
+
+        while (!stack.isEmpty()) {
+            ExecCtx ctx = stack.pop();
+            if (ctx instanceof FieldWriteCtx fw && fw.getFieldWriteEventId().equals(fieldWriteEventId)) {
+                found = fw;
+                break;
+            }
+        }
+
+        if (found == null) {
+            throw new IllegalStateException("No FieldWriteCtx for id " + fieldWriteEventId);
+        }
+
+        String bodyEventId = null;
+        if (!found.getChildEventIds().isEmpty()) {
+            bodyEventId = found.getChildEventIds().getFirst();
+        }
+
+        FieldWriteEvent ev = new FieldWriteEvent(
+            found.getFieldWriteEventId(), found.getSpanId(), found.getFrameId(),
+            found.getLocation(), found.getObjectId(),
+            found.getFieldName(), EventValue.of(value), found.getFieldType(),
+            bodyEventId
+        );
+
+        addEvent(ev);
+
+        return value;
+    }
+
+    @SuppressWarnings("unused")
+    public static String beginReturn(String sourceId, int line) {
+        var frameStack = FRAME_STACK.get();
+        if (frameStack.isEmpty()) {
+            return null;
+        }
+
+        FrameCtx frameCtx = frameStack.peek();
+        String evId = Ids.nextEventId();
+        TraceLoc loc = new TraceLoc(sourceId, line);
+
+        ReturnCtx ctx = new ReturnCtx(
+            evId, frameCtx.spanId(), frameCtx.frameId(),
+            frameCtx.methodId(), loc
+        );
+
+        CTX_STACK.get().push(ctx);
+
+        return evId;
+    }
+
+    @SuppressWarnings("unused")
+    public static <T> T endReturn(String returnEventId, T ret) {
+        var frameStack = FRAME_STACK.get();
+        if (frameStack.isEmpty()) {
+            return ret;
+        }
+
+        FrameCtx frameCtx = frameStack.pop();
+
+        Deque<ExecCtx> stack = CTX_STACK.get();
+        ReturnCtx found = null;
+
+        while (!stack.isEmpty()) {
+            ExecCtx ctx = stack.pop();
+            if (ctx instanceof ReturnCtx rc && rc.getReturnEventId().equals(returnEventId)) {
+                found = rc;
+                break;
+            }
+        }
+
+        if (found == null) {
+            throw new IllegalStateException("No ReturnCtx for id " + returnEventId);
+        }
+
+        String bodyEventId = null;
+        if (!found.getChildEventIds().isEmpty()) {
+            bodyEventId = found.getChildEventIds().getFirst();
+        }
+
+        TraceLoc loc = found.getLocation();
+        EventValue value = EventValue.of(ret);
+
+        ReturnEvent returnEvent = new ReturnEvent(
+            found.getReturnEventId(), frameCtx.spanId(), frameCtx.frameId(),
+            loc, value, bodyEventId
+        );
+        
+        addEvent(returnEvent);
+
+        MethodCtx methodCtx = popMethodCtxForFrame(frameCtx.spanId(), frameCtx.frameId());
+        if (methodCtx != null) {
+            patchCall(methodCtx.getCallEventId(), value, methodCtx.getBodyEventIds());
+        }
+
+        patchSpanEnd(frameCtx.spanId(), found.getReturnEventId(), loc);
+
+        return ret;
     }
 
     @SuppressWarnings("unused")

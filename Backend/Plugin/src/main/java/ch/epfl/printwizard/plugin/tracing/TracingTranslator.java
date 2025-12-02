@@ -162,15 +162,22 @@ public class TracingTranslator extends TreeTranslator {
                 }
 
                 List<JCTree.JCStatement> newStmts = List.of(superOrThisStmt, enterCall, newEventCall).appendList(rest);
-                
+
                 JCTree.JCLiteral nullLit = mk.Literal(TypeTag.BOT, null);
                 nullLit.type = symtab.botType;
+
+                JCTree.JCMethodInvocation beginCall = callStatic(
+                    "ch.epfl.printwizard.plugin.logging.TraceOut",
+                    "beginReturn",
+                    List.of(mk.Literal(getSourceId()), mk.Literal(endLine)),
+                    ep
+                );
 
                 JCTree.JCStatement implicitExitCall = mk.Exec(
                     callStatic(
                         "ch.epfl.printwizard.plugin.logging.TraceOut",
-                        "onReturn",
-                        List.of(nullLit, mk.Literal(getSourceId()), mk.Literal(endLine)),
+                        "endReturn",
+                        List.of(beginCall, nullLit),
                         ep
                     )
                 );
@@ -187,11 +194,18 @@ public class TracingTranslator extends TreeTranslator {
                     JCTree.JCLiteral nullLit = mk.Literal(TypeTag.BOT, null);
                     nullLit.type = symtab.botType;
 
+                    JCTree.JCMethodInvocation beginCall = callStatic(
+                        "ch.epfl.printwizard.plugin.logging.TraceOut",
+                        "beginReturn",
+                        List.of(mk.Literal(getSourceId()), mk.Literal(endLine)),
+                        ep
+                    );
+
                     JCTree.JCStatement implicitExitCall = mk.Exec(
                         callStatic(
                             "ch.epfl.printwizard.plugin.logging.TraceOut",
-                            "onReturn",
-                            List.of(nullLit, mk.Literal(getSourceId()), mk.Literal(endLine)),
+                            "endReturn",
+                            List.of(beginCall, nullLit),
                             ep
                         )
                     );
@@ -214,17 +228,23 @@ public class TracingTranslator extends TreeTranslator {
 
         int line = cu.getLineMap().getLineNumber(jcReturn.pos);
         String sourceId = getSourceId();
-
-        // return;
+        
         if (trExpr == null) {
             JCTree.JCLiteral nullLit = mk.Literal(TypeTag.BOT, null);
             nullLit.type = symtab.botType;
 
+            JCTree.JCMethodInvocation beginCall = callStatic(
+                "ch.epfl.printwizard.plugin.logging.TraceOut",
+                "beginReturn",
+                List.of(mk.Literal(sourceId), mk.Literal(line)),
+                jcReturn.pos
+            );
+
             JCTree.JCStatement logStmt = mk.Exec(
                 callStatic(
                     "ch.epfl.printwizard.plugin.logging.TraceOut",
-                    "onReturn",
-                    List.of(nullLit, mk.Literal(sourceId), mk.Literal(line)),
+                    "endReturn",
+                    List.of(beginCall, nullLit),
                     jcReturn.pos
                 )
             );
@@ -234,42 +254,24 @@ public class TracingTranslator extends TreeTranslator {
 
             return;
         }
-
-        Type retType = currentMethod != null && currentMethod.getReturnType() != null
-            ? currentMethod.getReturnType()
-            : (trExpr.type != null ? trExpr.type : symtab.objectType);
-
-        String tmpNameStr = "__pw_ret_" + jcReturn.pos;
-        var tmpName = names.fromString(tmpNameStr);
-
-        JCTree.JCExpression typeTree = retType.isPrimitive() ? mk.TypeIdent(retType.getTag()) : mk.QualIdent(retType.tsym);
-
-        JCTree.JCVariableDecl tmpVar = mk.VarDef(mk.Modifiers(Flags.SYNTHETIC), tmpName, typeTree, trExpr);
-
-        Symbol.VarSymbol tmpSym = new Symbol.VarSymbol(
-            Flags.SYNTHETIC,
-            tmpName,
-            retType,
-            (currentMethod != null ? currentMethod : symtab.noSymbol)
-        );
-        tmpVar.sym = tmpSym;
-        tmpVar.type = retType;
-
-        JCTree.JCExpression tmpIdent = mk.Ident(tmpSym);
-        tmpIdent.type = retType;
-
-        JCTree.JCStatement logStmt = mk.Exec(
-            callStatic(
-                "ch.epfl.printwizard.plugin.logging.TraceOut",
-                "onReturn",
-                List.of(tmpIdent, mk.Literal(sourceId), mk.Literal(line)),
-                jcReturn.pos
-            )
+        
+        JCTree.JCMethodInvocation beginCall = callStatic(
+            "ch.epfl.printwizard.plugin.logging.TraceOut",
+            "beginReturn",
+            List.of(mk.Literal(sourceId), mk.Literal(line)),
+            jcReturn.pos
         );
 
-        JCTree.JCReturn newReturn = mk.Return(tmpIdent);
+        JCTree.JCMethodInvocation endCall = callStatic(
+            "ch.epfl.printwizard.plugin.logging.TraceOut",
+            "endReturn",
+            List.of(beginCall, trExpr),
+            jcReturn.pos
+        );
+        
+        endCall.type = trExpr.type;
 
-        this.result = mk.Block(0, List.of(tmpVar, logStmt, newReturn));
+        this.result = mk.Return(endCall);
     }
 
     @Override
@@ -738,23 +740,25 @@ public class TracingTranslator extends TreeTranslator {
         if (jcAssign.lhs instanceof JCTree.JCFieldAccess fieldAccess) {
             JCTree.JCExpression targetExpr = fieldAccess.selected;
             String fieldName = fieldAccess.name.toString();
-
+            
             JCTree.JCExpression translatedRhs = translate(jcAssign.rhs);
-
-            jcAssign.rhs = callStatic(
+            
+            JCTree.JCAssign assignExpr = mk.Assign(jcAssign.lhs, translatedRhs);
+            assignExpr.type = jcAssign.type;
+            
+            JCTree.JCMethodInvocation beginCall = callStatic(
                 "ch.epfl.printwizard.plugin.logging.TraceOut",
-                "recordFieldWrite",
-                List.of(
-                    targetExpr,
-                    mk.Literal(fieldName),
-                    translatedRhs,
-                    mk.Literal(sourceId),
-                    mk.Literal(line)
-                ),
+                "beginFieldWrite",
+                List.of(targetExpr, mk.Literal(fieldName), mk.Literal(sourceId), mk.Literal(line)),
                 jcAssign.pos
             );
-
-            super.visitAssign(jcAssign);
+            
+            this.result = callStatic(
+                "ch.epfl.printwizard.plugin.logging.TraceOut",
+                "endFieldWrite",
+                List.of(beginCall, assignExpr),
+                jcAssign.pos
+            );
 
             return;
         }
