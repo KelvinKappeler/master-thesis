@@ -1,5 +1,6 @@
 package ch.epfl.printwizard.plugin.tracing;
 
+import ch.epfl.printwizard.plugin.model.trace.events.ConditionKind;
 import ch.epfl.printwizard.plugin.model.trace.events.LoopKind;
 import ch.epfl.printwizard.plugin.utils.Ids;
 import ch.epfl.printwizard.plugin.model.trace.TraceFile;
@@ -385,7 +386,7 @@ public class TracingTranslator extends TreeTranslator {
         JCTree.JCMethodInvocation beginCondCall = callStatic(
             "ch.epfl.printwizard.plugin.logging.TraceOut",
             "beginCondition",
-            List.of(mk.Literal(sourceId), mk.Literal(line)),
+            List.of(mk.Literal(sourceId), mk.Literal(line), mk.Literal(ConditionKind.IF_STATEMENT.name())),
             jcIf.pos
         );
 
@@ -489,6 +490,41 @@ public class TracingTranslator extends TreeTranslator {
          * }
          */
         this.result = mk.Block(0, List.of(condEvtVar, condVar, newIf, endCondStmt));
+    }
+
+    @Override
+    public void visitConditional(JCTree.JCConditional jcConditional) {
+        JCTree.JCExpression condExpr = translate(jcConditional.cond);
+        JCTree.JCExpression thenExpr = translate(jcConditional.truepart);
+        JCTree.JCExpression elseExpr = translate(jcConditional.falsepart);
+
+        int line = cu.getLineMap().getLineNumber(jcConditional.pos);
+        String sourceId = getSourceId();
+
+        mk.at(jcConditional.pos);
+        
+        JCTree.JCExpression condThunk = makeBoolLambda(condExpr, jcConditional.pos);
+        JCTree.JCExpression thenThunk = makeLambda(thenExpr, jcConditional.pos);
+        JCTree.JCExpression elseThunk = makeLambda(elseExpr, jcConditional.pos);
+        
+        JCTree.JCMethodInvocation call = callStatic(
+            "ch.epfl.printwizard.plugin.logging.TraceOut",
+            "evalTernary",
+            List.of(
+                mk.Literal(sourceId), mk.Literal(line),
+                condThunk, thenThunk, elseThunk
+            ),
+            jcConditional.pos
+        );
+        call.type = symtab.objectType;
+        
+        JCTree.JCExpression targetTypeTree = jcConditional.type != null && !jcConditional.type.isPrimitive()
+            ? mk.QualIdent(jcConditional.type.tsym) : mk.TypeIdent(TypeTag.BOT);
+
+        JCTree.JCTypeCast cast = mk.TypeCast(targetTypeTree, call);
+        cast.type = jcConditional.type;
+
+        this.result = cast;
     }
 
     @Override
@@ -1337,5 +1373,65 @@ public class TracingTranslator extends TreeTranslator {
         }
 
         return !UserPackages.isUserPackage(ownerPkg);
+    }
+
+    private JCTree.JCExpression makeBoolLambda(JCTree.JCExpression condExpr, int pos) {
+        mk.at(pos);
+        
+        Symbol.ClassSymbol boolLambdaSym = elements.getTypeElement("ch.epfl.printwizard.plugin.logging.BoolLambda");
+
+        JCTree.JCExpression boolLambdaType = mk.QualIdent(boolLambdaSym);
+        boolLambdaType.type = boolLambdaSym.type;
+        
+        JCTree.JCMethodDecl getMethod = mk.MethodDef(
+            mk.Modifiers(Flags.PUBLIC), names.fromString("get"), mk.TypeIdent(TypeTag.BOOLEAN),
+            List.nil(), List.nil(), List.nil(),
+            mk.Block(0, List.of(mk.Return(condExpr))), null
+        );
+        
+        JCTree.JCClassDecl anonClass = mk.ClassDef(
+            mk.Modifiers(0), names.empty, List.nil(),
+            null, List.of(boolLambdaType), List.of(getMethod)
+        );
+
+        JCTree.JCNewClass newClass = mk.NewClass(
+            null, List.nil(), boolLambdaType, List.nil(), anonClass
+        );
+        newClass.type = boolLambdaSym.type;
+
+        return newClass;
+    }
+
+    private JCTree.JCExpression makeLambda(JCTree.JCExpression expr, int pos) {
+        mk.at(pos);
+        
+        Symbol.ClassSymbol lambdaSym = elements.getTypeElement("ch.epfl.printwizard.plugin.logging.Lambda");
+
+        JCTree.JCExpression lambdaType = mk.QualIdent(lambdaSym);
+        lambdaType.type = lambdaSym.type;
+        
+        JCTree.JCExpression objTypeTree = mk.QualIdent(symtab.objectType.tsym);
+        objTypeTree.type = symtab.objectType;
+        
+        JCTree.JCMethodDecl getMethod = mk.MethodDef(
+            mk.Modifiers(Flags.PUBLIC), names.fromString("get"), objTypeTree,
+            List.nil(), List.nil(), List.nil(),
+            mk.Block(0, List.of(mk.Return(expr))),
+            null
+        );
+        
+        JCTree.JCClassDecl anonClass = mk.ClassDef(
+            mk.Modifiers(0),
+            names.empty,
+            List.nil(),
+            null,
+            List.of(lambdaType),
+            List.of(getMethod)
+        );
+
+        JCTree.JCNewClass newClass = mk.NewClass(null, List.nil(), lambdaType, List.nil(), anonClass);
+        newClass.type = lambdaSym.type;
+
+        return newClass;
     }
 }

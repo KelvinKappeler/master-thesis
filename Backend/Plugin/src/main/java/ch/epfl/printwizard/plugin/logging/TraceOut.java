@@ -6,6 +6,8 @@ import ch.epfl.printwizard.plugin.utils.Ids;
 
 import java.lang.reflect.Array;
 import java.util.*;
+import java.util.function.BooleanSupplier;
+import java.util.function.Supplier;
 
 /**
  * Represents a list of static methods used by the program to log data during its execution.
@@ -598,12 +600,13 @@ public class TraceOut {
     }
 
     @SuppressWarnings("unused")
-    public static String beginCondition(String sourceId, int line) {
+    public static String beginCondition(String sourceId, int line, String conditionKind) {
         FrameCtx ctx = currentFrameCtx();
         String eventId = Ids.nextEventId();
         TraceLoc loc = new TraceLoc(sourceId, line);
 
-        addEvent(new ConditionEvent(eventId, ctx.spanId(), ctx.frameId(), loc, new String[0], new String[0], new String[0]));
+        ConditionKind kind = ConditionKind.valueOf(conditionKind);
+        addEvent(new ConditionEvent(eventId, ctx.spanId(), ctx.frameId(), loc, kind, new String[0], new String[0], new String[0]));
 
         ConditionCtx conditionCtx = new ConditionCtx(eventId);
         CTX_STACK.get().push(conditionCtx);
@@ -657,6 +660,33 @@ public class TraceOut {
     @SuppressWarnings("unused")
     public static void endElseBlock(String conditionEventId) {
         popPhase(ConditionPhase.ELSE_BLOCK);
+    }
+
+    @SuppressWarnings("unused")
+    public static Object evalTernary(String sourceId, int line, BoolLambda condLambda, Lambda thenLambda, Lambda elseLambda) {
+        String conditionEventId = beginCondition(sourceId, line, ConditionKind.TERNARY_EXPRESSION.name());
+
+        try {
+            boolean cond = condLambda.get();
+
+            if (cond) {
+                beginThenBlock(conditionEventId);
+                try {
+                    return thenLambda.get();
+                } finally {
+                    endThenBlock(conditionEventId);
+                }
+            } else {
+                beginElseBlock(conditionEventId);
+                try {
+                    return elseLambda.get();
+                } finally {
+                    endElseBlock(conditionEventId);
+                }
+            }
+        } finally {
+            endCondition(conditionEventId);
+        }
     }
 
     private static ConditionCtx findConditionCtx(String conditionEventId) {
@@ -897,7 +927,7 @@ public class TraceOut {
             TraceEvent e = events.get(i);
             if (e instanceof ConditionEvent ce && ce.eventId().equals(conditionEventId)) {
                 ConditionEvent patched = new ConditionEvent(
-                    ce.eventId(), ce.spanId(), ce.frameId(), ce.location(),
+                    ce.eventId(), ce.spanId(), ce.frameId(), ce.location(), ce.kind(),
                     condIds.toArray(String[]::new), thenIds.toArray(String[]::new), elseIds.toArray(String[]::new)
                 );
 
