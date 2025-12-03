@@ -662,33 +662,6 @@ public class TraceOut {
         popPhase(ConditionPhase.ELSE_BLOCK);
     }
 
-    @SuppressWarnings("unused")
-    public static Object evalTernary(String sourceId, int line, BoolLambda condLambda, Lambda thenLambda, Lambda elseLambda) {
-        String conditionEventId = beginCondition(sourceId, line, ConditionKind.TERNARY_EXPRESSION.name());
-
-        try {
-            boolean cond = condLambda.get();
-
-            if (cond) {
-                beginThenBlock(conditionEventId);
-                try {
-                    return thenLambda.get();
-                } finally {
-                    endThenBlock(conditionEventId);
-                }
-            } else {
-                beginElseBlock(conditionEventId);
-                try {
-                    return elseLambda.get();
-                } finally {
-                    endElseBlock(conditionEventId);
-                }
-            }
-        } finally {
-            endCondition(conditionEventId);
-        }
-    }
-
     private static ConditionCtx findConditionCtx(String conditionEventId) {
         Deque<ExecCtx> stack = CTX_STACK.get();
 

@@ -494,37 +494,7 @@ public class TracingTranslator extends TreeTranslator {
 
     @Override
     public void visitConditional(JCTree.JCConditional jcConditional) {
-        JCTree.JCExpression condExpr = translate(jcConditional.cond);
-        JCTree.JCExpression thenExpr = translate(jcConditional.truepart);
-        JCTree.JCExpression elseExpr = translate(jcConditional.falsepart);
-
-        int line = cu.getLineMap().getLineNumber(jcConditional.pos);
-        String sourceId = getSourceId();
-
-        mk.at(jcConditional.pos);
-        
-        JCTree.JCExpression condThunk = makeBoolLambda(condExpr, jcConditional.pos);
-        JCTree.JCExpression thenThunk = makeLambda(thenExpr, jcConditional.pos);
-        JCTree.JCExpression elseThunk = makeLambda(elseExpr, jcConditional.pos);
-        
-        JCTree.JCMethodInvocation call = callStatic(
-            "ch.epfl.printwizard.plugin.logging.TraceOut",
-            "evalTernary",
-            List.of(
-                mk.Literal(sourceId), mk.Literal(line),
-                condThunk, thenThunk, elseThunk
-            ),
-            jcConditional.pos
-        );
-        call.type = symtab.objectType;
-        
-        JCTree.JCExpression targetTypeTree = jcConditional.type != null && !jcConditional.type.isPrimitive()
-            ? mk.QualIdent(jcConditional.type.tsym) : mk.TypeIdent(TypeTag.BOT);
-
-        JCTree.JCTypeCast cast = mk.TypeCast(targetTypeTree, call);
-        cast.type = jcConditional.type;
-
-        this.result = cast;
+        super.visitConditional(jcConditional);
     }
 
     @Override
