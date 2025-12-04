@@ -40,6 +40,8 @@ public record StateFile(
                 handleArrayStore(ase);
             } else if (event instanceof LocalEvent le) {
                 handleLocal(le);
+            } else if (event instanceof CallEvent ce) {
+                // Do nothing
             }
         }
 

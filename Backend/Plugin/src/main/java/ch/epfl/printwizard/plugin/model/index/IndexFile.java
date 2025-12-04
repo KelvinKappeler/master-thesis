@@ -5,6 +5,7 @@ import ch.epfl.printwizard.plugin.utils.Preconditions;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.function.BiConsumer;
 
 /**
  * Represents an index file containing mappings of various elements by line, object, and span.
@@ -110,11 +111,38 @@ public record IndexFile(
         }
 
         private void addEventByObject(TraceEvent event) {
+            final BiConsumer<String, String> indexObject = (objectId, eventId) -> {
+                if (objectId == null) return;
+                
+                byObject.computeIfAbsent(objectId, k -> Collections.synchronizedList(new ArrayList<>())).add(eventId);
+            };
+
             if (event instanceof NewEvent ne) {
-                byObject.computeIfAbsent(ne.objectId(), k -> Collections.synchronizedList(new ArrayList<>())).add(ne.eventId());
+                indexObject.accept(ne.objectId(), ne.eventId());
             }
             else if (event instanceof FieldWriteEvent fwe) {
-                byObject.computeIfAbsent(fwe.objectId(), k -> Collections.synchronizedList(new ArrayList<>())).add(fwe.eventId());
+                indexObject.accept(fwe.objectId(), fwe.eventId());
+                
+                if (fwe.value() != null && fwe.value().valueObjectId() != null) {
+                    indexObject.accept(fwe.value().valueObjectId(), fwe.eventId());
+                }
+            }
+            else if (event instanceof ArrayStoreEvent ase) {
+                indexObject.accept(ase.arrayObjectId(), ase.eventId());
+                
+                if (ase.value() != null && ase.value().valueObjectId() != null) {
+                    indexObject.accept(ase.value().valueObjectId(), ase.eventId());
+                }
+            }
+            else if (event instanceof LocalEvent le) {
+                if (le.value() != null && le.value().valueObjectId() != null) {
+                    indexObject.accept(le.value().valueObjectId(), le.eventId());
+                }
+            }
+            else if (event instanceof ReturnEvent re) {
+                if (re.value() != null && re.value().valueObjectId() != null) {
+                    indexObject.accept(re.value().valueObjectId(), re.eventId());
+                }
             }
         }
 

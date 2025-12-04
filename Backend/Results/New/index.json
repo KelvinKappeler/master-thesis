@@ -1,29 +1,91 @@
 {
   "byLine" : {
-    "src:ch/epfl/printwizard/examples/Player.java" : {
-      "11" : [ "eve:7" ],
-      "8" : [ "eve:3", "eve:4" ],
-      "9" : [ "eve:5" ],
-      "10" : [ "eve:6" ]
-    },
-    "src:ch/epfl/printwizard/examples/Main.java" : {
-      "5" : [ "eve:1" ],
-      "6" : [ "eve:2" ],
-      "7" : [ "eve:8" ],
-      "8" : [ "eve:9" ],
-      "19" : [ "eve:10" ]
+    "src:ch/epfl/printwizard/examples/algo/Main.java" : {
+      "44" : [ "eve:70", "eve:69", "eve:97", "eve:96", "eve:159", "eve:158", "eve:186", "eve:185", "eve:229", "eve:228" ],
+      "22" : [ "eve:103", "eve:109", "eve:192", "eve:198", "eve:235" ],
+      "24" : [ "eve:102", "eve:107", "eve:108", "eve:191", "eve:196", "eve:197", "eve:234", "eve:239", "eve:240", "eve:241", "eve:242" ],
+      "26" : [ "eve:10", "eve:76", "eve:114", "eve:165", "eve:203" ],
+      "27" : [ "eve:11", "eve:77", "eve:115", "eve:166", "eve:204" ],
+      "28" : [ "eve:13", "eve:12", "eve:79", "eve:78", "eve:117", "eve:116", "eve:168", "eve:167", "eve:206", "eve:205" ],
+      "30" : [ "eve:15", "eve:16", "eve:20", "eve:17", "eve:21", "eve:25", "eve:22", "eve:26", "eve:30", "eve:27", "eve:31", "eve:35", "eve:32", "eve:36", "eve:40", "eve:37", "eve:41", "eve:49", "eve:42", "eve:50", "eve:58", "eve:51", "eve:59", "eve:63", "eve:60", "eve:64", "eve:14", "eve:81", "eve:82", "eve:90", "eve:83", "eve:91", "eve:80", "eve:119", "eve:120", "eve:128", "eve:121", "eve:129", "eve:133", "eve:130", "eve:134", "eve:138", "eve:135", "eve:139", "eve:147", "eve:140", "eve:148", "eve:152", "eve:149", "eve:153", "eve:118", "eve:170", "eve:171", "eve:179", "eve:172", "eve:180", "eve:169", "eve:208", "eve:209", "eve:213", "eve:210", "eve:214", "eve:222", "eve:215", "eve:223", "eve:207" ],
+      "31" : [ "eve:18", "eve:19", "eve:23", "eve:24", "eve:28", "eve:29", "eve:33", "eve:34", "eve:38", "eve:39", "eve:43", "eve:44", "eve:52", "eve:53", "eve:61", "eve:62", "eve:84", "eve:85", "eve:122", "eve:123", "eve:131", "eve:132", "eve:136", "eve:137", "eve:141", "eve:142", "eve:150", "eve:151", "eve:173", "eve:174", "eve:211", "eve:212", "eve:216", "eve:217" ],
+      "32" : [ "eve:45", "eve:54", "eve:86", "eve:124", "eve:143", "eve:175", "eve:218" ],
+      "10" : [ "eve:3", "eve:4" ],
+      "12" : [ "eve:5" ],
+      "34" : [ "eve:46", "eve:55", "eve:87", "eve:125", "eve:144", "eve:176", "eve:219" ],
+      "35" : [ "eve:47", "eve:56", "eve:88", "eve:126", "eve:145", "eve:177", "eve:220" ],
+      "36" : [ "eve:48", "eve:57", "eve:89", "eve:127", "eve:146", "eve:178", "eve:221" ],
+      "14" : [ "eve:243", "eve:244" ],
+      "15" : [ "eve:245" ],
+      "17" : [ "eve:6", "eve:72", "eve:99", "eve:104", "eve:110", "eve:161", "eve:188", "eve:193", "eve:199", "eve:231", "eve:236" ],
+      "18" : [ "eve:7", "eve:8", "eve:73", "eve:74", "eve:100", "eve:101", "eve:105", "eve:106", "eve:111", "eve:112", "eve:162", "eve:163", "eve:189", "eve:190", "eve:194", "eve:195", "eve:200", "eve:201", "eve:232", "eve:233", "eve:237", "eve:238" ],
+      "19" : [ "eve:9", "eve:75", "eve:113", "eve:164", "eve:202" ],
+      "7" : [ "eve:1" ],
+      "8" : [ "eve:2" ],
+      "40" : [ "eve:66", "eve:65", "eve:93", "eve:92", "eve:155", "eve:154", "eve:182", "eve:181", "eve:225", "eve:224" ],
+      "41" : [ "eve:67", "eve:94", "eve:156", "eve:183", "eve:226" ],
+      "42" : [ "eve:68", "eve:95", "eve:157", "eve:184", "eve:227" ],
+      "21" : [ "eve:71", "eve:98", "eve:160", "eve:187", "eve:230" ]
     }
   },
   "byLocal" : {
-    "local:array@src:ch/epfl/printwizard/examples/Main.java:163#frm:1" : [ "eve:8" ],
-    "local:p1@src:ch/epfl/printwizard/examples/Main.java:120#frm:1" : [ "eve:2" ],
-    "local:arrayWithoutInit@src:ch/epfl/printwizard/examples/Main.java:194#frm:1" : [ "eve:9" ]
+    "local:tmp@src:ch/epfl/printwizard/examples/algo/Main.java:1071#frm:15" : [ "eve:224" ],
+    "local:pivot@src:ch/epfl/printwizard/examples/algo/Main.java:754#frm:9" : [ "eve:115" ],
+    "local:i@src:ch/epfl/printwizard/examples/algo/Main.java:786#frm:15" : [ "eve:205", "eve:218" ],
+    "local:tmp@src:ch/epfl/printwizard/examples/algo/Main.java:1071#frm:11" : [ "eve:181" ],
+    "local:i@src:ch/epfl/printwizard/examples/algo/Main.java:786#frm:11" : [ "eve:167", "eve:175" ],
+    "local:pivot@src:ch/epfl/printwizard/examples/algo/Main.java:754#frm:5" : [ "eve:77" ],
+    "local:array@src:ch/epfl/printwizard/examples/algo/Main.java:713#frm:9" : [ "eve:126", "eve:127", "eve:145", "eve:146", "eve:156", "eve:157" ],
+    "local:pivot@src:ch/epfl/printwizard/examples/algo/Main.java:754#frm:3" : [ "eve:11" ],
+    "local:array@src:ch/epfl/printwizard/examples/algo/Main.java:713#frm:5" : [ "eve:88", "eve:89", "eve:94", "eve:95" ],
+    "local:array@src:ch/epfl/printwizard/examples/algo/Main.java:713#frm:3" : [ "eve:47", "eve:48", "eve:56", "eve:57", "eve:67", "eve:68" ],
+    "local:j@src:ch/epfl/printwizard/examples/algo/Main.java:819#frm:9" : [ "eve:119", "eve:128", "eve:133", "eve:138", "eve:147", "eve:152" ],
+    "local:pivotIndex@src:ch/epfl/printwizard/examples/algo/Main.java:497#frm:14" : [ "eve:202" ],
+    "local:pivotIndex@src:ch/epfl/printwizard/examples/algo/Main.java:497#frm:8" : [ "eve:113" ],
+    "local:j@src:ch/epfl/printwizard/examples/algo/Main.java:819#frm:5" : [ "eve:81", "eve:90" ],
+    "local:array@src:ch/epfl/printwizard/examples/algo/Main.java:713#frm:15" : [ "eve:220", "eve:221", "eve:226", "eve:227" ],
+    "local:j@src:ch/epfl/printwizard/examples/algo/Main.java:819#frm:3" : [ "eve:15", "eve:20", "eve:25", "eve:30", "eve:35", "eve:40", "eve:49", "eve:58", "eve:63" ],
+    "local:pivotIndex@src:ch/epfl/printwizard/examples/algo/Main.java:497#frm:4" : [ "eve:75" ],
+    "local:pivotIndex@src:ch/epfl/printwizard/examples/algo/Main.java:497#frm:2" : [ "eve:9" ],
+    "local:pivotIndex@src:ch/epfl/printwizard/examples/algo/Main.java:497#frm:10" : [ "eve:164" ],
+    "local:array@src:ch/epfl/printwizard/examples/algo/Main.java:713#frm:11" : [ "eve:177", "eve:178", "eve:183", "eve:184" ],
+    "local:pivot@src:ch/epfl/printwizard/examples/algo/Main.java:754#frm:15" : [ "eve:204" ],
+    "local:pivot@src:ch/epfl/printwizard/examples/algo/Main.java:754#frm:11" : [ "eve:166" ],
+    "local:i@src:ch/epfl/printwizard/examples/algo/Main.java:786#frm:9" : [ "eve:116", "eve:124", "eve:143" ],
+    "local:tmp@src:ch/epfl/printwizard/examples/algo/Main.java:1071#frm:9" : [ "eve:154" ],
+    "local:i@src:ch/epfl/printwizard/examples/algo/Main.java:786#frm:5" : [ "eve:78", "eve:86" ],
+    "local:tmp@src:ch/epfl/printwizard/examples/algo/Main.java:1071#frm:5" : [ "eve:92" ],
+    "local:i@src:ch/epfl/printwizard/examples/algo/Main.java:786#frm:3" : [ "eve:12", "eve:45", "eve:54" ],
+    "local:tmp@src:ch/epfl/printwizard/examples/algo/Main.java:1071#frm:3" : [ "eve:65" ],
+    "local:j@src:ch/epfl/printwizard/examples/algo/Main.java:819#frm:15" : [ "eve:208", "eve:213", "eve:222" ],
+    "local:j@src:ch/epfl/printwizard/examples/algo/Main.java:819#frm:11" : [ "eve:170", "eve:179" ],
+    "local:data@src:ch/epfl/printwizard/examples/algo/Main.java:150#frm:1" : [ "eve:2" ],
+    "local:tmp@src:ch/epfl/printwizard/examples/algo/Main.java:941#frm:9" : [ "eve:125", "eve:144" ],
+    "local:tmp@src:ch/epfl/printwizard/examples/algo/Main.java:941#frm:5" : [ "eve:87" ],
+    "local:tmp@src:ch/epfl/printwizard/examples/algo/Main.java:941#frm:15" : [ "eve:219" ],
+    "local:tmp@src:ch/epfl/printwizard/examples/algo/Main.java:941#frm:3" : [ "eve:46", "eve:55" ],
+    "local:tmp@src:ch/epfl/printwizard/examples/algo/Main.java:941#frm:11" : [ "eve:176" ]
   },
   "byObject" : {
-    "obj:2" : [ "eve:4", "eve:5", "eve:6" ]
+    "obj:2" : [ "eve:2", "eve:47", "eve:48", "eve:56", "eve:57", "eve:67", "eve:68", "eve:88", "eve:89", "eve:94", "eve:95", "eve:126", "eve:127", "eve:145", "eve:146", "eve:156", "eve:157", "eve:177", "eve:178", "eve:183", "eve:184", "eve:220", "eve:221", "eve:226", "eve:227" ]
   },
   "bySpan" : {
+    "spn:14" : [ "eve:199" ],
+    "spn:13" : [ "eve:193" ],
+    "spn:12" : [ "eve:188" ],
+    "spn:11" : [ "eve:165" ],
+    "spn:10" : [ "eve:161" ],
+    "spn:9" : [ "eve:114" ],
+    "spn:8" : [ "eve:110" ],
+    "spn:7" : [ "eve:104" ],
+    "spn:6" : [ "eve:99" ],
+    "spn:5" : [ "eve:76" ],
+    "spn:4" : [ "eve:72" ],
+    "spn:3" : [ "eve:10" ],
+    "spn:2" : [ "eve:6" ],
     "spn:1" : [ "eve:1" ],
-    "spn:2" : [ "eve:3" ]
+    "spn:17" : [ "eve:236" ],
+    "spn:16" : [ "eve:231" ],
+    "spn:15" : [ "eve:203" ]
   }
 }
