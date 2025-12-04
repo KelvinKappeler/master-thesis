@@ -1,3 +1,71 @@
 {
-  "objects" : { }
+  "objects" : {
+    "obj:4" : {
+      "objectId" : "obj:4",
+      "type" : "ch.epfl.printwizard.examples.Player[]",
+      "timeline" : [ {
+        "version" : 0,
+        "eventId" : "eve:9",
+        "fields" : {
+          "[0]" : {
+            "type" : "java.lang.Object",
+            "value" : null,
+            "objectId" : null
+          }
+        }
+      } ]
+    },
+    "obj:3" : {
+      "objectId" : "obj:3",
+      "type" : "ch.epfl.printwizard.examples.Player[]",
+      "timeline" : [ {
+        "version" : 0,
+        "eventId" : "eve:8",
+        "fields" : {
+          "[0]" : {
+            "type" : "ch.epfl.printwizard.examples.Player",
+            "value" : {
+              "healthPoints" : 100,
+              "manaPoints" : 20
+            },
+            "objectId" : "obj:2"
+          }
+        }
+      } ]
+    },
+    "obj:2" : {
+      "objectId" : "obj:2",
+      "type" : "ch.epfl.printwizard.examples.Player",
+      "timeline" : [ {
+        "version" : 0,
+        "eventId" : "eve:4",
+        "fields" : { }
+      }, {
+        "version" : 1,
+        "eventId" : "eve:5",
+        "fields" : {
+          "healthPoints" : {
+            "type" : "int",
+            "value" : 100,
+            "objectId" : null
+          }
+        }
+      }, {
+        "version" : 2,
+        "eventId" : "eve:6",
+        "fields" : {
+          "healthPoints" : {
+            "type" : "int",
+            "value" : 100,
+            "objectId" : null
+          },
+          "manaPoints" : {
+            "type" : "int",
+            "value" : 20,
+            "objectId" : null
+          }
+        }
+      } ]
+    }
+  }
 }

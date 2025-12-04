@@ -71,27 +71,6 @@ public class TraceOut {
     }
 
     @SuppressWarnings("unused")
-    public static Object recordArrayInit(String label, String arrayName, Object arrayRef, String sourceId, int line) {
-        FrameCtx ctx = currentFrameCtx();
-        TraceLoc loc = new TraceLoc(sourceId, line);
-
-        String arrayObjectId = EventValue.getOrCreateObjectId(arrayRef);
-        int length = Array.getLength(arrayRef);
-        for (int i = 0; i < length; i++) {
-            Object value = Array.get(arrayRef, i);
-
-            addEvent(new ArrayStoreEvent(
-                Ids.nextEventId(), ctx.spanId(), ctx.frameId(), loc,
-                arrayName, arrayObjectId, i,
-                EventValue.of(value),
-                label, null
-            ));
-        }
-
-        return arrayRef;
-    }
-
-    @SuppressWarnings("unused")
     public static <T> T recordNewObject(T obj, String typeName, String sourceId, int line) {
         FrameCtx ctx = currentFrameCtx();
         TraceLoc loc = new TraceLoc(sourceId, line);

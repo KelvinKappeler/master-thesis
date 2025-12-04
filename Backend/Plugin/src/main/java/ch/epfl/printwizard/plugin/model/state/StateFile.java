@@ -1,11 +1,9 @@
 package ch.epfl.printwizard.plugin.model.state;
 
-import ch.epfl.printwizard.plugin.model.trace.events.ArrayStoreEvent;
-import ch.epfl.printwizard.plugin.model.trace.events.FieldWriteEvent;
-import ch.epfl.printwizard.plugin.model.trace.events.NewEvent;
-import ch.epfl.printwizard.plugin.model.trace.events.TraceEvent;
+import ch.epfl.printwizard.plugin.model.trace.events.*;
 import ch.epfl.printwizard.plugin.utils.Preconditions;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -38,8 +36,10 @@ public record StateFile(
                 handleNew(ne);
             } else if (event instanceof FieldWriteEvent fw) {
                 handleFieldWrite(fw);
-            }else if (event instanceof ArrayStoreEvent ase) {
+            } else if (event instanceof ArrayStoreEvent ase) {
                 handleArrayStore(ase);
+            } else if (event instanceof LocalEvent le) {
+                handleLocal(le);
             }
         }
 
@@ -135,5 +135,59 @@ public record StateFile(
             timeline.add(new StateSnapshot(nextVersion, ase.eventId(), newFields));
         }
 
+        private void handleLocal(LocalEvent le) {
+            EventValue ev = le.value();
+            
+            String objectId = ev.valueObjectId();
+            if (objectId == null) {
+                return;
+            }
+
+            Object obj = EventValue.getObjectById(objectId);
+            if (obj == null) {
+                return;
+            }
+
+            Class<?> cls = obj.getClass();
+            if (!cls.isArray()) {
+                return;
+            }
+            
+            int nextVersion = 0;
+            if (objects.containsKey(objectId)) {
+                List<StateSnapshot> timeline = objects.get(objectId).timeline();
+                nextVersion = timeline.getLast().version() + 1;
+            }
+
+            int length = Array.getLength(obj);
+            Map<String, FieldState> initialFields = new LinkedHashMap<>();
+
+            for (int i = 0; i < length; i++) {
+                Object elem = Array.get(obj, i);
+                String fieldName = "[" + i + "]";
+
+                String fieldType = (elem != null) ? elem.getClass().getTypeName() : "java.lang.Object";
+                
+                String elemObjectId = null;
+                if (elem != null
+                    && !(elem instanceof Number)
+                    && !(elem instanceof Boolean)
+                    && !(elem instanceof Character)
+                    && !(elem instanceof String)) {
+                    
+                    elemObjectId = EventValue.getOrCreateObjectId(elem);
+                }
+
+                FieldState fieldState = new FieldState(fieldType, elem, elemObjectId);
+                initialFields.put(fieldName, fieldState);
+            }
+
+            List<StateSnapshot> timeline = new ArrayList<>();
+            timeline.add(new StateSnapshot(nextVersion, le.eventId(), initialFields));
+
+            String typeName = cls.getTypeName();
+            ObjectTimeline objectTimeline = new ObjectTimeline(objectId, typeName, timeline);
+            objects.put(objectId, objectTimeline);
+        }
     }
 }

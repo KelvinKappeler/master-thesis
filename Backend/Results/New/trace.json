@@ -2,27 +2,70 @@
   "spans" : [ {
     "spanId" : "spn:1",
     "parentSpanId" : "null",
-    "methodId" : "m:ch.epfl.printwizard.examples.rpg.main(String[])void",
+    "methodId" : "m:ch.epfl.printwizard.examples.main(String[])void",
     "startEventId" : "eve:1",
-    "endEventId" : "eve:3",
+    "endEventId" : "eve:10",
     "startLoc" : {
-      "sourceId" : "src:ch/epfl/printwizard/examples/rpg/Main.java",
+      "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
       "line" : 5
     },
     "endLoc" : {
-      "sourceId" : "src:ch/epfl/printwizard/examples/rpg/Main.java",
-      "line" : 18
+      "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
+      "line" : 19
+    }
+  }, {
+    "spanId" : "spn:2",
+    "parentSpanId" : "spn:1",
+    "methodId" : "m:ch.epfl.printwizard.examples.<init>(int,int)void",
+    "startEventId" : "eve:3",
+    "endEventId" : "eve:7",
+    "startLoc" : {
+      "sourceId" : "src:ch/epfl/printwizard/examples/Player.java",
+      "line" : 8
+    },
+    "endLoc" : {
+      "sourceId" : "src:ch/epfl/printwizard/examples/Player.java",
+      "line" : 11
     }
   } ],
   "frames" : [ {
     "frameId" : "frm:1",
     "spanId" : "spn:1",
-    "methodId" : "m:ch.epfl.printwizard.examples.rpg.main(String[])void",
+    "methodId" : "m:ch.epfl.printwizard.examples.main(String[])void",
     "thisRef" : null,
     "args" : [ {
       "name" : "args",
-      "value" : [ ],
+      "value" : {
+        "value" : null,
+        "valueObjectId" : "obj:1",
+        "javaTypeName" : "java.lang.String[]",
+        "kind" : "ARRAY"
+      },
       "type" : "String[]"
+    } ]
+  }, {
+    "frameId" : "frm:2",
+    "spanId" : "spn:2",
+    "methodId" : "m:ch.epfl.printwizard.examples.<init>(int,int)void",
+    "thisRef" : "obj:2",
+    "args" : [ {
+      "name" : "healthPoints",
+      "value" : {
+        "value" : 100,
+        "valueObjectId" : null,
+        "javaTypeName" : "java.lang.Integer",
+        "kind" : "PRIMITIVE"
+      },
+      "type" : "int"
+    }, {
+      "name" : "manaPoints",
+      "value" : {
+        "value" : 20,
+        "valueObjectId" : null,
+        "javaTypeName" : "java.lang.Integer",
+        "kind" : "PRIMITIVE"
+      },
+      "type" : "int"
     } ]
   } ],
   "events" : [ {
@@ -31,52 +74,205 @@
     "spanId" : "spn:1",
     "frameId" : "frm:1",
     "location" : {
-      "sourceId" : "src:ch/epfl/printwizard/examples/rpg/Main.java",
+      "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
       "line" : 5
     },
     "callerMethodId" : "null",
-    "calleeMethodId" : "m:ch.epfl.printwizard.examples.rpg.main(String[])void",
+    "calleeMethodId" : "m:ch.epfl.printwizard.examples.main(String[])void",
     "name" : "main",
     "external" : false,
     "args" : [ {
       "name" : "args",
-      "value" : [ ],
+      "value" : {
+        "value" : null,
+        "valueObjectId" : "obj:1",
+        "javaTypeName" : "java.lang.String[]",
+        "kind" : "ARRAY"
+      },
       "type" : "String[]"
     } ],
     "value" : {
       "value" : null,
-      "valueObjectId" : null
+      "valueObjectId" : null,
+      "javaTypeName" : "java.lang.Object",
+      "kind" : "NULL"
     },
-    "bodyEventIds" : [ "eve:2", "eve:3" ]
+    "bodyEventIds" : [ "eve:2", "eve:8", "eve:9", "eve:10" ]
+  }, {
+    "type" : "CALL",
+    "eventId" : "eve:3",
+    "spanId" : "spn:2",
+    "frameId" : "frm:2",
+    "location" : {
+      "sourceId" : "src:ch/epfl/printwizard/examples/Player.java",
+      "line" : 8
+    },
+    "callerMethodId" : "m:ch.epfl.printwizard.examples.main(String[])void",
+    "calleeMethodId" : "m:ch.epfl.printwizard.examples.<init>(int,int)void",
+    "name" : "<init>",
+    "external" : false,
+    "args" : [ {
+      "name" : "healthPoints",
+      "value" : {
+        "value" : 100,
+        "valueObjectId" : null,
+        "javaTypeName" : "java.lang.Integer",
+        "kind" : "PRIMITIVE"
+      },
+      "type" : "int"
+    }, {
+      "name" : "manaPoints",
+      "value" : {
+        "value" : 20,
+        "valueObjectId" : null,
+        "javaTypeName" : "java.lang.Integer",
+        "kind" : "PRIMITIVE"
+      },
+      "type" : "int"
+    } ],
+    "value" : {
+      "value" : null,
+      "valueObjectId" : null,
+      "javaTypeName" : "java.lang.Object",
+      "kind" : "NULL"
+    },
+    "bodyEventIds" : [ "eve:4", "eve:5", "eve:6", "eve:7" ]
+  }, {
+    "type" : "NEW",
+    "eventId" : "eve:4",
+    "spanId" : "spn:2",
+    "frameId" : "frm:2",
+    "location" : {
+      "sourceId" : "src:ch/epfl/printwizard/examples/Player.java",
+      "line" : 8
+    },
+    "objectId" : "obj:2",
+    "typeName" : "ch.epfl.printwizard.examples.Player"
+  }, {
+    "type" : "PUTFIELD",
+    "eventId" : "eve:5",
+    "spanId" : "spn:2",
+    "frameId" : "frm:2",
+    "location" : {
+      "sourceId" : "src:ch/epfl/printwizard/examples/Player.java",
+      "line" : 9
+    },
+    "objectId" : "obj:2",
+    "fieldName" : "healthPoints",
+    "value" : {
+      "value" : 100,
+      "valueObjectId" : null,
+      "javaTypeName" : "java.lang.Integer",
+      "kind" : "PRIMITIVE"
+    },
+    "fieldType" : "int",
+    "bodyEventId" : null
+  }, {
+    "type" : "PUTFIELD",
+    "eventId" : "eve:6",
+    "spanId" : "spn:2",
+    "frameId" : "frm:2",
+    "location" : {
+      "sourceId" : "src:ch/epfl/printwizard/examples/Player.java",
+      "line" : 10
+    },
+    "objectId" : "obj:2",
+    "fieldName" : "manaPoints",
+    "value" : {
+      "value" : 20,
+      "valueObjectId" : null,
+      "javaTypeName" : "java.lang.Integer",
+      "kind" : "PRIMITIVE"
+    },
+    "fieldType" : "int",
+    "bodyEventId" : null
+  }, {
+    "type" : "RETURN",
+    "eventId" : "eve:7",
+    "spanId" : "spn:2",
+    "frameId" : "frm:2",
+    "location" : {
+      "sourceId" : "src:ch/epfl/printwizard/examples/Player.java",
+      "line" : 11
+    },
+    "value" : {
+      "value" : null,
+      "valueObjectId" : null,
+      "javaTypeName" : "java.lang.Object",
+      "kind" : "NULL"
+    },
+    "bodyEventId" : null
   }, {
     "type" : "LOCAL",
     "eventId" : "eve:2",
     "spanId" : "spn:1",
     "frameId" : "frm:1",
     "location" : {
-      "sourceId" : "src:ch/epfl/printwizard/examples/rpg/Main.java",
+      "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
       "line" : 6
     },
-    "method" : "m:ch.epfl.printwizard.examples.rpg.main(String[])void",
-    "varName" : "i",
+    "method" : "m:ch.epfl.printwizard.examples.main(String[])void",
+    "varName" : "p1",
     "value" : {
-      "value" : 2,
-      "valueObjectId" : null
+      "value" : null,
+      "valueObjectId" : "obj:2",
+      "javaTypeName" : "ch.epfl.printwizard.examples.Player",
+      "kind" : "OBJECT"
     },
-    "label" : "local:i@src:ch/epfl/printwizard/examples/rpg/Main.java:121",
-    "bodyEventId" : null
+    "label" : "local:p1@src:ch/epfl/printwizard/examples/Main.java:120",
+    "bodyEventId" : "eve:3"
   }, {
-    "type" : "RETURN",
-    "eventId" : "eve:3",
+    "type" : "LOCAL",
+    "eventId" : "eve:8",
     "spanId" : "spn:1",
     "frameId" : "frm:1",
     "location" : {
-      "sourceId" : "src:ch/epfl/printwizard/examples/rpg/Main.java",
-      "line" : 18
+      "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
+      "line" : 7
+    },
+    "method" : "m:ch.epfl.printwizard.examples.main(String[])void",
+    "varName" : "array",
+    "value" : {
+      "value" : null,
+      "valueObjectId" : "obj:3",
+      "javaTypeName" : "ch.epfl.printwizard.examples.Player[]",
+      "kind" : "ARRAY"
+    },
+    "label" : "local:array@src:ch/epfl/printwizard/examples/Main.java:163",
+    "bodyEventId" : null
+  }, {
+    "type" : "LOCAL",
+    "eventId" : "eve:9",
+    "spanId" : "spn:1",
+    "frameId" : "frm:1",
+    "location" : {
+      "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
+      "line" : 8
+    },
+    "method" : "m:ch.epfl.printwizard.examples.main(String[])void",
+    "varName" : "arrayWithoutInit",
+    "value" : {
+      "value" : null,
+      "valueObjectId" : "obj:4",
+      "javaTypeName" : "ch.epfl.printwizard.examples.Player[]",
+      "kind" : "ARRAY"
+    },
+    "label" : "local:arrayWithoutInit@src:ch/epfl/printwizard/examples/Main.java:194",
+    "bodyEventId" : null
+  }, {
+    "type" : "RETURN",
+    "eventId" : "eve:10",
+    "spanId" : "spn:1",
+    "frameId" : "frm:1",
+    "location" : {
+      "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
+      "line" : 19
     },
     "value" : {
       "value" : null,
-      "valueObjectId" : null
+      "valueObjectId" : null,
+      "javaTypeName" : "java.lang.Object",
+      "kind" : "NULL"
     },
     "bodyEventId" : null
   } ]

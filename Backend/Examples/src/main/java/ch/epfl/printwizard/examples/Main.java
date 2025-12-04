@@ -3,7 +3,9 @@ package ch.epfl.printwizard.examples;
 public class Main {
 
     public static void main(String[] args) {
-        int c = 1 + 2 + 3;
+        Player p1 = new Player(100, 20);
+        Player[] array = {p1};
+        Player[] arrayWithoutInit = new Player[1];
 
         //int[] array = new int[2];
         //array[0] = 1;

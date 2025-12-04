@@ -877,26 +877,34 @@ public class TracingTranslator extends TreeTranslator {
 
         // ++i, i++, --i, i--
         if (tag == JCTree.Tag.PREINC || tag == JCTree.Tag.POSTINC || tag == JCTree.Tag.PREDEC || tag == JCTree.Tag.POSTDEC) {
-            
             if (argExpr instanceof JCTree.JCArrayAccess arrAccess) {
                 String arrayNameText = arrAccess.indexed.toString();
-
                 String label = arrayNameText;
-                if (arrAccess.indexed instanceof JCTree.JCIdent id && id.sym instanceof Symbol.VarSymbol varSym && varSym.owner instanceof Symbol.MethodSymbol) {
+
+                if (arrAccess.indexed instanceof JCTree.JCIdent id
+                    && id.sym instanceof Symbol.VarSymbol varSym
+                    && varSym.owner instanceof Symbol.MethodSymbol) {
                     label = makeLabel(varSym);
                 }
                 
-                result = callStatic(
+                JCTree.JCMethodInvocation beginCall = callStatic(
                     "ch.epfl.printwizard.plugin.logging.TraceOut",
-                    "recordArrayStore",
+                    "beginArrayStore",
                     List.of(
                         mk.Literal(label),
+                        arrAccess.indexed,
                         mk.Literal(arrayNameText),
                         arrAccess.index,
-                        translatedUnary,
                         mk.Literal(sourceId),
                         mk.Literal(line)
                     ),
+                    jcUnary.pos
+                );
+
+                result = callStatic(
+                    "ch.epfl.printwizard.plugin.logging.TraceOut",
+                    "endArrayStore",
+                    List.of(beginCall, translatedUnary),
                     jcUnary.pos
                 );
 
@@ -905,15 +913,35 @@ public class TracingTranslator extends TreeTranslator {
             
             String varText = argExpr.toString();
             String label = varText;
-            if (argExpr instanceof JCTree.JCIdent id && id.sym instanceof Symbol.VarSymbol varSym && varSym.owner instanceof Symbol.MethodSymbol) {
+            if (argExpr instanceof JCTree.JCIdent id
+                && id.sym instanceof Symbol.VarSymbol varSym
+                && varSym.owner instanceof Symbol.MethodSymbol) {
                 label = makeLabel(varSym);
             }
+            
+            JCTree.JCMethodInvocation beginCall = callStatic(
+                "ch.epfl.printwizard.plugin.logging.TraceOut",
+                "beginLocal",
+                List.of(
+                    mk.Literal(label),
+                    mk.Literal(varText),
+                    mk.Literal(sourceId),
+                    mk.Literal(line)
+                ),
+                jcUnary.pos
+            );
 
-            result = callRecordLocalEvent(label, varText, translatedUnary, sourceId, line, jcUnary.pos);
+            result = callStatic(
+                "ch.epfl.printwizard.plugin.logging.TraceOut",
+                "endLocal",
+                List.of(beginCall, translatedUnary),
+                jcUnary.pos
+            );
 
             return;
         }
         
+        // +arg, -arg
         if (tag == JCTree.Tag.NEG || tag == JCTree.Tag.POS) {
             JCTree.JCLiteral zeroLit;
 
@@ -927,17 +955,54 @@ public class TracingTranslator extends TreeTranslator {
             } else {
                 zeroLit = mk.Literal(0);
             }
+            
+            JCTree.JCMethodInvocation beginArith = callStatic(
+                "ch.epfl.printwizard.plugin.logging.TraceOut",
+                "beginArithmetic",
+                List.of(
+                    mk.Literal(tag.toString()),
+                    mk.Literal(sourceId),
+                    mk.Literal(line)
+                ),
+                jcUnary.pos
+            );
+
+            JCTree.JCMethodInvocation beginLeft = callStatic(
+                "ch.epfl.printwizard.plugin.logging.TraceOut",
+                "beginArithmeticLeft",
+                List.nil(),
+                jcUnary.pos
+            );
+
+            JCTree.JCMethodInvocation endLeft = callStatic(
+                "ch.epfl.printwizard.plugin.logging.TraceOut",
+                "endArithmeticLeft",
+                List.of(beginLeft, zeroLit),
+                jcUnary.pos
+            );
+
+            JCTree.JCMethodInvocation beginRight = callStatic(
+                "ch.epfl.printwizard.plugin.logging.TraceOut",
+                "beginArithmeticRight",
+                List.nil(),
+                jcUnary.pos
+            );
+
+            JCTree.JCMethodInvocation endRight = callStatic(
+                "ch.epfl.printwizard.plugin.logging.TraceOut",
+                "endArithmeticRight",
+                List.of(beginRight, argExpr),
+                jcUnary.pos
+            );
 
             result = callStatic(
                 "ch.epfl.printwizard.plugin.logging.TraceOut",
-                "recordArithmetic",
+                "endArithmetic",
                 List.of(
-                    mk.Literal(tag.toString()),
-                    zeroLit,
-                    argExpr,
-                    translatedUnary,
-                    mk.Literal(sourceId),
-                    mk.Literal(line)
+                    beginArith,
+                    endLeft,
+                    endRight,
+                    translatedUnary
                 ),
                 jcUnary.pos
             );
@@ -1185,15 +1250,6 @@ public class TracingTranslator extends TreeTranslator {
         return apply;
     }
 
-    private JCTree.JCMethodInvocation callRecordLocalEvent(String label, String varName, JCTree.JCExpression value, String source, int line, int pos) {
-        return callStatic(
-            "ch.epfl.printwizard.plugin.logging.TraceOut",
-            "recordLocalEvent",
-            List.of(mk.Literal(label), mk.Literal(varName), value, mk.Literal(source), mk.Literal(line)),
-            pos
-        );
-    }
-
     private JCTree.JCExpression makeArgArrayExpr(List<JCTree.JCVariableDecl> args, int pos) {
         mk.at(pos);
         String argFqn = "ch.epfl.printwizard.plugin.model.trace.Arg";
@@ -1209,9 +1265,9 @@ public class TracingTranslator extends TreeTranslator {
         for (JCTree.JCVariableDecl param : args) {
             String paramName = param.getName().toString();
             String paramTypeStr = param.vartype.toString();
-
+            
             JCTree.JCExpression paramIdent = mk.Ident(param.sym);
-
+            
             JCTree.JCMethodInvocation argCall = callStatic(
                 argFqn,
                 "of",
@@ -1221,9 +1277,8 @@ public class TracingTranslator extends TreeTranslator {
 
             argInits.add(argCall);
         }
-
+        
         JCTree.JCNewArray newArr = mk.NewArray(argTypeExpr, List.nil(), List.from(argInits));
-
         newArr.type = types.makeArrayType(argSym.type);
 
         return newArr;
@@ -1239,7 +1294,7 @@ public class TracingTranslator extends TreeTranslator {
         }
         JCTree.JCExpression argTypeExpr = mk.Ident(argSym);
 
-        java.util.List<JCTree.JCExpression> argInits = new java.util.ArrayList<>();
+        java.util.List<JCTree.JCExpression> argInits = new ArrayList<>();
 
         List<Symbol.VarSymbol> params = msym.getParameters();
         int i = 0;
@@ -1255,7 +1310,7 @@ public class TracingTranslator extends TreeTranslator {
                 paramName = "arg" + i;
                 paramTypeStr = (argExpr.type != null) ? argExpr.type.toString() : "java.lang.Object";
             }
-
+            
             JCTree.JCMethodInvocation argCall = callStatic(
                 argFqn,
                 "of",
@@ -1266,7 +1321,7 @@ public class TracingTranslator extends TreeTranslator {
             argInits.add(argCall);
             i++;
         }
-
+        
         JCTree.JCNewArray newArr = mk.NewArray(argTypeExpr, List.nil(), List.from(argInits));
         newArr.type = types.makeArrayType(argSym.type);
 
@@ -1343,65 +1398,5 @@ public class TracingTranslator extends TreeTranslator {
         }
 
         return !UserPackages.isUserPackage(ownerPkg);
-    }
-
-    private JCTree.JCExpression makeBoolLambda(JCTree.JCExpression condExpr, int pos) {
-        mk.at(pos);
-        
-        Symbol.ClassSymbol boolLambdaSym = elements.getTypeElement("ch.epfl.printwizard.plugin.logging.BoolLambda");
-
-        JCTree.JCExpression boolLambdaType = mk.QualIdent(boolLambdaSym);
-        boolLambdaType.type = boolLambdaSym.type;
-        
-        JCTree.JCMethodDecl getMethod = mk.MethodDef(
-            mk.Modifiers(Flags.PUBLIC), names.fromString("get"), mk.TypeIdent(TypeTag.BOOLEAN),
-            List.nil(), List.nil(), List.nil(),
-            mk.Block(0, List.of(mk.Return(condExpr))), null
-        );
-        
-        JCTree.JCClassDecl anonClass = mk.ClassDef(
-            mk.Modifiers(0), names.empty, List.nil(),
-            null, List.of(boolLambdaType), List.of(getMethod)
-        );
-
-        JCTree.JCNewClass newClass = mk.NewClass(
-            null, List.nil(), boolLambdaType, List.nil(), anonClass
-        );
-        newClass.type = boolLambdaSym.type;
-
-        return newClass;
-    }
-
-    private JCTree.JCExpression makeLambda(JCTree.JCExpression expr, int pos) {
-        mk.at(pos);
-        
-        Symbol.ClassSymbol lambdaSym = elements.getTypeElement("ch.epfl.printwizard.plugin.logging.Lambda");
-
-        JCTree.JCExpression lambdaType = mk.QualIdent(lambdaSym);
-        lambdaType.type = lambdaSym.type;
-        
-        JCTree.JCExpression objTypeTree = mk.QualIdent(symtab.objectType.tsym);
-        objTypeTree.type = symtab.objectType;
-        
-        JCTree.JCMethodDecl getMethod = mk.MethodDef(
-            mk.Modifiers(Flags.PUBLIC), names.fromString("get"), objTypeTree,
-            List.nil(), List.nil(), List.nil(),
-            mk.Block(0, List.of(mk.Return(expr))),
-            null
-        );
-        
-        JCTree.JCClassDecl anonClass = mk.ClassDef(
-            mk.Modifiers(0),
-            names.empty,
-            List.nil(),
-            null,
-            List.of(lambdaType),
-            List.of(getMethod)
-        );
-
-        JCTree.JCNewClass newClass = mk.NewClass(null, List.nil(), lambdaType, List.nil(), anonClass);
-        newClass.type = lambdaSym.type;
-
-        return newClass;
     }
 }
