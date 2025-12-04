@@ -1,11 +1,13 @@
 package ch.epfl.printwizard.examples;
 
 public class Main {
-
+    
     public static void main(String[] args) {
-        Player p1 = new Player(100, 20);
-        Player[] array = {p1};
-        Player[] arrayWithoutInit = new Player[1];
+        int i = 0;
+        
+        if (i == 0) {
+            System.out.println("Hello World!");
+        }
 
         //int[] array = new int[2];
         //array[0] = 1;

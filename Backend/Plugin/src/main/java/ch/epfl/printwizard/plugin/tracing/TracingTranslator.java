@@ -1342,7 +1342,9 @@ public class TracingTranslator extends TreeTranslator {
             || tag == JCTree.Tag.LT
             || tag == JCTree.Tag.LE
             || tag == JCTree.Tag.GT
-            || tag == JCTree.Tag.GE;
+            || tag == JCTree.Tag.GE
+            || tag == JCTree.Tag.AND
+            || tag == JCTree.Tag.OR;
     }
 
     private String makeLabel(Symbol.VarSymbol varSym) {

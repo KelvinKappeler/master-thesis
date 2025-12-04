@@ -2,1254 +2,1018 @@
   "objects" : {
     "obj:2" : {
       "objectId" : "obj:2",
-      "type" : "int[]",
+      "type" : "ch.epfl.printwizard.examples.rpg.Player",
       "timeline" : [ {
         "version" : 0,
-        "eventId" : "eve:2",
-        "fields" : {
-          "[0]" : {
-            "type" : "java.lang.Integer",
-            "value" : 42,
-            "objectId" : null
-          },
-          "[1]" : {
-            "type" : "java.lang.Integer",
-            "value" : 7,
-            "objectId" : null
-          },
-          "[2]" : {
-            "type" : "java.lang.Integer",
-            "value" : 13,
-            "objectId" : null
-          },
-          "[3]" : {
-            "type" : "java.lang.Integer",
-            "value" : 7,
-            "objectId" : null
-          },
-          "[4]" : {
-            "type" : "java.lang.Integer",
-            "value" : 100,
-            "objectId" : null
-          },
-          "[5]" : {
-            "type" : "java.lang.Integer",
-            "value" : -3,
-            "objectId" : null
-          },
-          "[6]" : {
-            "type" : "java.lang.Integer",
-            "value" : 0,
-            "objectId" : null
-          },
-          "[7]" : {
-            "type" : "java.lang.Integer",
-            "value" : 18,
-            "objectId" : null
-          },
-          "[8]" : {
-            "type" : "java.lang.Integer",
-            "value" : 5,
-            "objectId" : null
-          }
-        }
+        "eventId" : "eve:4",
+        "fields" : { }
       }, {
         "version" : 1,
-        "eventId" : "eve:47",
+        "eventId" : "eve:5",
         "fields" : {
-          "[0]" : {
-            "type" : "java.lang.Integer",
-            "value" : -3,
-            "objectId" : null
-          },
-          "[1]" : {
-            "type" : "java.lang.Integer",
-            "value" : 7,
-            "objectId" : null
-          },
-          "[2]" : {
-            "type" : "java.lang.Integer",
-            "value" : 13,
-            "objectId" : null
-          },
-          "[3]" : {
-            "type" : "java.lang.Integer",
-            "value" : 7,
-            "objectId" : null
-          },
-          "[4]" : {
-            "type" : "java.lang.Integer",
-            "value" : 100,
-            "objectId" : null
-          },
-          "[5]" : {
-            "type" : "java.lang.Integer",
-            "value" : -3,
-            "objectId" : null
-          },
-          "[6]" : {
-            "type" : "java.lang.Integer",
-            "value" : 0,
-            "objectId" : null
-          },
-          "[7]" : {
-            "type" : "java.lang.Integer",
-            "value" : 18,
-            "objectId" : null
-          },
-          "[8]" : {
-            "type" : "java.lang.Integer",
-            "value" : 5,
+          "name" : {
+            "type" : "java.lang.String",
+            "value" : "Name1",
             "objectId" : null
           }
         }
       }, {
         "version" : 2,
-        "eventId" : "eve:48",
+        "eventId" : "eve:6",
         "fields" : {
-          "[0]" : {
-            "type" : "java.lang.Integer",
-            "value" : -3,
+          "name" : {
+            "type" : "java.lang.String",
+            "value" : "Name1",
             "objectId" : null
           },
-          "[1]" : {
-            "type" : "java.lang.Integer",
-            "value" : 7,
-            "objectId" : null
-          },
-          "[2]" : {
-            "type" : "java.lang.Integer",
-            "value" : 13,
-            "objectId" : null
-          },
-          "[3]" : {
-            "type" : "java.lang.Integer",
-            "value" : 7,
-            "objectId" : null
-          },
-          "[4]" : {
-            "type" : "java.lang.Integer",
+          "healthPoints" : {
+            "type" : "int",
             "value" : 100,
-            "objectId" : null
-          },
-          "[5]" : {
-            "type" : "java.lang.Integer",
-            "value" : 42,
-            "objectId" : null
-          },
-          "[6]" : {
-            "type" : "java.lang.Integer",
-            "value" : 0,
-            "objectId" : null
-          },
-          "[7]" : {
-            "type" : "java.lang.Integer",
-            "value" : 18,
-            "objectId" : null
-          },
-          "[8]" : {
-            "type" : "java.lang.Integer",
-            "value" : 5,
             "objectId" : null
           }
         }
       }, {
         "version" : 3,
-        "eventId" : "eve:56",
+        "eventId" : "eve:7",
         "fields" : {
-          "[0]" : {
-            "type" : "java.lang.Integer",
-            "value" : -3,
+          "name" : {
+            "type" : "java.lang.String",
+            "value" : "Name1",
             "objectId" : null
           },
-          "[1]" : {
-            "type" : "java.lang.Integer",
-            "value" : 0,
-            "objectId" : null
-          },
-          "[2]" : {
-            "type" : "java.lang.Integer",
-            "value" : 13,
-            "objectId" : null
-          },
-          "[3]" : {
-            "type" : "java.lang.Integer",
-            "value" : 7,
-            "objectId" : null
-          },
-          "[4]" : {
-            "type" : "java.lang.Integer",
+          "healthPoints" : {
+            "type" : "int",
             "value" : 100,
             "objectId" : null
           },
-          "[5]" : {
-            "type" : "java.lang.Integer",
-            "value" : 42,
-            "objectId" : null
-          },
-          "[6]" : {
-            "type" : "java.lang.Integer",
-            "value" : 0,
-            "objectId" : null
-          },
-          "[7]" : {
-            "type" : "java.lang.Integer",
-            "value" : 18,
-            "objectId" : null
-          },
-          "[8]" : {
-            "type" : "java.lang.Integer",
-            "value" : 5,
+          "manaPoints" : {
+            "type" : "int",
+            "value" : 50,
             "objectId" : null
           }
         }
       }, {
         "version" : 4,
-        "eventId" : "eve:57",
+        "eventId" : "eve:8",
         "fields" : {
-          "[0]" : {
-            "type" : "java.lang.Integer",
-            "value" : -3,
+          "name" : {
+            "type" : "java.lang.String",
+            "value" : "Name1",
             "objectId" : null
           },
-          "[1]" : {
-            "type" : "java.lang.Integer",
-            "value" : 0,
-            "objectId" : null
-          },
-          "[2]" : {
-            "type" : "java.lang.Integer",
-            "value" : 13,
-            "objectId" : null
-          },
-          "[3]" : {
-            "type" : "java.lang.Integer",
-            "value" : 7,
-            "objectId" : null
-          },
-          "[4]" : {
-            "type" : "java.lang.Integer",
+          "healthPoints" : {
+            "type" : "int",
             "value" : 100,
             "objectId" : null
           },
-          "[5]" : {
-            "type" : "java.lang.Integer",
-            "value" : 42,
+          "manaPoints" : {
+            "type" : "int",
+            "value" : 50,
             "objectId" : null
           },
-          "[6]" : {
-            "type" : "java.lang.Integer",
-            "value" : 7,
-            "objectId" : null
-          },
-          "[7]" : {
-            "type" : "java.lang.Integer",
-            "value" : 18,
-            "objectId" : null
-          },
-          "[8]" : {
-            "type" : "java.lang.Integer",
-            "value" : 5,
+          "experiencePoints" : {
+            "type" : "float",
+            "value" : 10.3,
             "objectId" : null
           }
         }
       }, {
         "version" : 5,
-        "eventId" : "eve:67",
+        "eventId" : "eve:9",
         "fields" : {
-          "[0]" : {
-            "type" : "java.lang.Integer",
-            "value" : -3,
+          "name" : {
+            "type" : "java.lang.String",
+            "value" : "Name1",
             "objectId" : null
           },
-          "[1]" : {
-            "type" : "java.lang.Integer",
-            "value" : 0,
-            "objectId" : null
-          },
-          "[2]" : {
-            "type" : "java.lang.Integer",
-            "value" : 5,
-            "objectId" : null
-          },
-          "[3]" : {
-            "type" : "java.lang.Integer",
-            "value" : 7,
-            "objectId" : null
-          },
-          "[4]" : {
-            "type" : "java.lang.Integer",
+          "healthPoints" : {
+            "type" : "int",
             "value" : 100,
             "objectId" : null
           },
-          "[5]" : {
-            "type" : "java.lang.Integer",
-            "value" : 42,
+          "manaPoints" : {
+            "type" : "int",
+            "value" : 50,
             "objectId" : null
           },
-          "[6]" : {
-            "type" : "java.lang.Integer",
-            "value" : 7,
+          "experiencePoints" : {
+            "type" : "float",
+            "value" : 10.3,
             "objectId" : null
           },
-          "[7]" : {
-            "type" : "java.lang.Integer",
-            "value" : 18,
-            "objectId" : null
-          },
-          "[8]" : {
-            "type" : "java.lang.Integer",
-            "value" : 5,
+          "weapon" : {
+            "type" : "ch.epfl.printwizard.examples.rpg.Weapon",
+            "value" : null,
             "objectId" : null
           }
         }
       }, {
         "version" : 6,
-        "eventId" : "eve:68",
+        "eventId" : "eve:10",
         "fields" : {
-          "[0]" : {
-            "type" : "java.lang.Integer",
-            "value" : -3,
+          "name" : {
+            "type" : "java.lang.String",
+            "value" : "Name1",
             "objectId" : null
           },
-          "[1]" : {
-            "type" : "java.lang.Integer",
-            "value" : 0,
-            "objectId" : null
-          },
-          "[2]" : {
-            "type" : "java.lang.Integer",
-            "value" : 5,
-            "objectId" : null
-          },
-          "[3]" : {
-            "type" : "java.lang.Integer",
-            "value" : 7,
-            "objectId" : null
-          },
-          "[4]" : {
-            "type" : "java.lang.Integer",
+          "healthPoints" : {
+            "type" : "int",
             "value" : 100,
             "objectId" : null
           },
-          "[5]" : {
-            "type" : "java.lang.Integer",
-            "value" : 42,
+          "manaPoints" : {
+            "type" : "int",
+            "value" : 50,
             "objectId" : null
           },
-          "[6]" : {
-            "type" : "java.lang.Integer",
-            "value" : 7,
+          "experiencePoints" : {
+            "type" : "float",
+            "value" : 10.3,
             "objectId" : null
           },
-          "[7]" : {
-            "type" : "java.lang.Integer",
-            "value" : 18,
+          "weapon" : {
+            "type" : "ch.epfl.printwizard.examples.rpg.Weapon",
+            "value" : null,
             "objectId" : null
           },
-          "[8]" : {
-            "type" : "java.lang.Integer",
-            "value" : 13,
+          "isDead" : {
+            "type" : "boolean",
+            "value" : false,
             "objectId" : null
           }
         }
       }, {
         "version" : 7,
-        "eventId" : "eve:88",
+        "eventId" : "eve:30",
         "fields" : {
-          "[0]" : {
-            "type" : "java.lang.Integer",
-            "value" : -3,
+          "name" : {
+            "type" : "java.lang.String",
+            "value" : "Name1",
             "objectId" : null
           },
-          "[1]" : {
-            "type" : "java.lang.Integer",
-            "value" : 0,
-            "objectId" : null
-          },
-          "[2]" : {
-            "type" : "java.lang.Integer",
-            "value" : 5,
-            "objectId" : null
-          },
-          "[3]" : {
-            "type" : "java.lang.Integer",
-            "value" : 7,
-            "objectId" : null
-          },
-          "[4]" : {
-            "type" : "java.lang.Integer",
+          "healthPoints" : {
+            "type" : "int",
             "value" : 100,
             "objectId" : null
           },
-          "[5]" : {
-            "type" : "java.lang.Integer",
-            "value" : 42,
+          "manaPoints" : {
+            "type" : "int",
+            "value" : 50,
             "objectId" : null
           },
-          "[6]" : {
-            "type" : "java.lang.Integer",
-            "value" : 7,
+          "experiencePoints" : {
+            "type" : "float",
+            "value" : 10.3,
             "objectId" : null
           },
-          "[7]" : {
-            "type" : "java.lang.Integer",
-            "value" : 18,
+          "weapon" : {
+            "type" : "ch.epfl.printwizard.examples.rpg.Weapon",
+            "value" : null,
+            "objectId" : "obj:4"
+          },
+          "isDead" : {
+            "type" : "boolean",
+            "value" : false,
+            "objectId" : null
+          }
+        }
+      } ]
+    },
+    "obj:3" : {
+      "objectId" : "obj:3",
+      "type" : "ch.epfl.printwizard.examples.rpg.Player",
+      "timeline" : [ {
+        "version" : 0,
+        "eventId" : "eve:14",
+        "fields" : { }
+      }, {
+        "version" : 1,
+        "eventId" : "eve:15",
+        "fields" : {
+          "name" : {
+            "type" : "java.lang.String",
+            "value" : "Name2",
+            "objectId" : null
+          }
+        }
+      }, {
+        "version" : 2,
+        "eventId" : "eve:16",
+        "fields" : {
+          "name" : {
+            "type" : "java.lang.String",
+            "value" : "Name2",
             "objectId" : null
           },
-          "[8]" : {
-            "type" : "java.lang.Integer",
-            "value" : 13,
+          "healthPoints" : {
+            "type" : "int",
+            "value" : 100,
+            "objectId" : null
+          }
+        }
+      }, {
+        "version" : 3,
+        "eventId" : "eve:17",
+        "fields" : {
+          "name" : {
+            "type" : "java.lang.String",
+            "value" : "Name2",
+            "objectId" : null
+          },
+          "healthPoints" : {
+            "type" : "int",
+            "value" : 100,
+            "objectId" : null
+          },
+          "manaPoints" : {
+            "type" : "int",
+            "value" : 50,
+            "objectId" : null
+          }
+        }
+      }, {
+        "version" : 4,
+        "eventId" : "eve:18",
+        "fields" : {
+          "name" : {
+            "type" : "java.lang.String",
+            "value" : "Name2",
+            "objectId" : null
+          },
+          "healthPoints" : {
+            "type" : "int",
+            "value" : 100,
+            "objectId" : null
+          },
+          "manaPoints" : {
+            "type" : "int",
+            "value" : 50,
+            "objectId" : null
+          },
+          "experiencePoints" : {
+            "type" : "float",
+            "value" : 10.3,
+            "objectId" : null
+          }
+        }
+      }, {
+        "version" : 5,
+        "eventId" : "eve:19",
+        "fields" : {
+          "name" : {
+            "type" : "java.lang.String",
+            "value" : "Name2",
+            "objectId" : null
+          },
+          "healthPoints" : {
+            "type" : "int",
+            "value" : 100,
+            "objectId" : null
+          },
+          "manaPoints" : {
+            "type" : "int",
+            "value" : 50,
+            "objectId" : null
+          },
+          "experiencePoints" : {
+            "type" : "float",
+            "value" : 10.3,
+            "objectId" : null
+          },
+          "weapon" : {
+            "type" : "ch.epfl.printwizard.examples.rpg.Weapon",
+            "value" : null,
+            "objectId" : null
+          }
+        }
+      }, {
+        "version" : 6,
+        "eventId" : "eve:20",
+        "fields" : {
+          "name" : {
+            "type" : "java.lang.String",
+            "value" : "Name2",
+            "objectId" : null
+          },
+          "healthPoints" : {
+            "type" : "int",
+            "value" : 100,
+            "objectId" : null
+          },
+          "manaPoints" : {
+            "type" : "int",
+            "value" : 50,
+            "objectId" : null
+          },
+          "experiencePoints" : {
+            "type" : "float",
+            "value" : 10.3,
+            "objectId" : null
+          },
+          "weapon" : {
+            "type" : "ch.epfl.printwizard.examples.rpg.Weapon",
+            "value" : null,
+            "objectId" : null
+          },
+          "isDead" : {
+            "type" : "boolean",
+            "value" : false,
+            "objectId" : null
+          }
+        }
+      }, {
+        "version" : 7,
+        "eventId" : "eve:47",
+        "fields" : {
+          "name" : {
+            "type" : "java.lang.String",
+            "value" : "Name2",
+            "objectId" : null
+          },
+          "healthPoints" : {
+            "type" : "int",
+            "value" : 85,
+            "objectId" : null
+          },
+          "manaPoints" : {
+            "type" : "int",
+            "value" : 50,
+            "objectId" : null
+          },
+          "experiencePoints" : {
+            "type" : "float",
+            "value" : 10.3,
+            "objectId" : null
+          },
+          "weapon" : {
+            "type" : "ch.epfl.printwizard.examples.rpg.Weapon",
+            "value" : null,
+            "objectId" : null
+          },
+          "isDead" : {
+            "type" : "boolean",
+            "value" : false,
             "objectId" : null
           }
         }
       }, {
         "version" : 8,
-        "eventId" : "eve:89",
+        "eventId" : "eve:48",
         "fields" : {
-          "[0]" : {
-            "type" : "java.lang.Integer",
-            "value" : -3,
+          "name" : {
+            "type" : "java.lang.String",
+            "value" : "Name2",
             "objectId" : null
           },
-          "[1]" : {
-            "type" : "java.lang.Integer",
-            "value" : 0,
+          "healthPoints" : {
+            "type" : "int",
+            "value" : 85,
             "objectId" : null
           },
-          "[2]" : {
-            "type" : "java.lang.Integer",
-            "value" : 5,
+          "manaPoints" : {
+            "type" : "int",
+            "value" : 50,
             "objectId" : null
           },
-          "[3]" : {
-            "type" : "java.lang.Integer",
-            "value" : 7,
+          "experiencePoints" : {
+            "type" : "float",
+            "value" : 10.3,
             "objectId" : null
           },
-          "[4]" : {
-            "type" : "java.lang.Integer",
-            "value" : 100,
+          "weapon" : {
+            "type" : "ch.epfl.printwizard.examples.rpg.Weapon",
+            "value" : null,
             "objectId" : null
           },
-          "[5]" : {
-            "type" : "java.lang.Integer",
-            "value" : 42,
-            "objectId" : null
-          },
-          "[6]" : {
-            "type" : "java.lang.Integer",
-            "value" : 7,
-            "objectId" : null
-          },
-          "[7]" : {
-            "type" : "java.lang.Integer",
-            "value" : 18,
-            "objectId" : null
-          },
-          "[8]" : {
-            "type" : "java.lang.Integer",
-            "value" : 13,
+          "isDead" : {
+            "type" : "boolean",
+            "value" : false,
             "objectId" : null
           }
         }
       }, {
         "version" : 9,
-        "eventId" : "eve:94",
+        "eventId" : "eve:86",
         "fields" : {
-          "[0]" : {
-            "type" : "java.lang.Integer",
-            "value" : -3,
+          "name" : {
+            "type" : "java.lang.String",
+            "value" : "Name2",
             "objectId" : null
           },
-          "[1]" : {
-            "type" : "java.lang.Integer",
-            "value" : 0,
+          "healthPoints" : {
+            "type" : "int",
+            "value" : 70,
             "objectId" : null
           },
-          "[2]" : {
-            "type" : "java.lang.Integer",
-            "value" : 5,
+          "manaPoints" : {
+            "type" : "int",
+            "value" : 50,
             "objectId" : null
           },
-          "[3]" : {
-            "type" : "java.lang.Integer",
-            "value" : 7,
+          "experiencePoints" : {
+            "type" : "float",
+            "value" : 10.3,
             "objectId" : null
           },
-          "[4]" : {
-            "type" : "java.lang.Integer",
-            "value" : 100,
+          "weapon" : {
+            "type" : "ch.epfl.printwizard.examples.rpg.Weapon",
+            "value" : null,
             "objectId" : null
           },
-          "[5]" : {
-            "type" : "java.lang.Integer",
-            "value" : 42,
-            "objectId" : null
-          },
-          "[6]" : {
-            "type" : "java.lang.Integer",
-            "value" : 7,
-            "objectId" : null
-          },
-          "[7]" : {
-            "type" : "java.lang.Integer",
-            "value" : 18,
-            "objectId" : null
-          },
-          "[8]" : {
-            "type" : "java.lang.Integer",
-            "value" : 13,
+          "isDead" : {
+            "type" : "boolean",
+            "value" : false,
             "objectId" : null
           }
         }
       }, {
         "version" : 10,
-        "eventId" : "eve:95",
+        "eventId" : "eve:87",
         "fields" : {
-          "[0]" : {
-            "type" : "java.lang.Integer",
-            "value" : -3,
+          "name" : {
+            "type" : "java.lang.String",
+            "value" : "Name2",
             "objectId" : null
           },
-          "[1]" : {
-            "type" : "java.lang.Integer",
-            "value" : 0,
+          "healthPoints" : {
+            "type" : "int",
+            "value" : 70,
             "objectId" : null
           },
-          "[2]" : {
-            "type" : "java.lang.Integer",
-            "value" : 5,
+          "manaPoints" : {
+            "type" : "int",
+            "value" : 50,
             "objectId" : null
           },
-          "[3]" : {
-            "type" : "java.lang.Integer",
-            "value" : 7,
+          "experiencePoints" : {
+            "type" : "float",
+            "value" : 10.3,
             "objectId" : null
           },
-          "[4]" : {
-            "type" : "java.lang.Integer",
-            "value" : 100,
+          "weapon" : {
+            "type" : "ch.epfl.printwizard.examples.rpg.Weapon",
+            "value" : null,
             "objectId" : null
           },
-          "[5]" : {
-            "type" : "java.lang.Integer",
-            "value" : 42,
-            "objectId" : null
-          },
-          "[6]" : {
-            "type" : "java.lang.Integer",
-            "value" : 7,
-            "objectId" : null
-          },
-          "[7]" : {
-            "type" : "java.lang.Integer",
-            "value" : 18,
-            "objectId" : null
-          },
-          "[8]" : {
-            "type" : "java.lang.Integer",
-            "value" : 13,
+          "isDead" : {
+            "type" : "boolean",
+            "value" : false,
             "objectId" : null
           }
         }
       }, {
         "version" : 11,
-        "eventId" : "eve:126",
+        "eventId" : "eve:125",
         "fields" : {
-          "[0]" : {
-            "type" : "java.lang.Integer",
-            "value" : -3,
+          "name" : {
+            "type" : "java.lang.String",
+            "value" : "Name2",
             "objectId" : null
           },
-          "[1]" : {
-            "type" : "java.lang.Integer",
-            "value" : 0,
+          "healthPoints" : {
+            "type" : "int",
+            "value" : 55,
             "objectId" : null
           },
-          "[2]" : {
-            "type" : "java.lang.Integer",
-            "value" : 5,
+          "manaPoints" : {
+            "type" : "int",
+            "value" : 50,
             "objectId" : null
           },
-          "[3]" : {
-            "type" : "java.lang.Integer",
-            "value" : 7,
+          "experiencePoints" : {
+            "type" : "float",
+            "value" : 10.3,
             "objectId" : null
           },
-          "[4]" : {
-            "type" : "java.lang.Integer",
-            "value" : 100,
+          "weapon" : {
+            "type" : "ch.epfl.printwizard.examples.rpg.Weapon",
+            "value" : null,
             "objectId" : null
           },
-          "[5]" : {
-            "type" : "java.lang.Integer",
-            "value" : 42,
-            "objectId" : null
-          },
-          "[6]" : {
-            "type" : "java.lang.Integer",
-            "value" : 7,
-            "objectId" : null
-          },
-          "[7]" : {
-            "type" : "java.lang.Integer",
-            "value" : 18,
-            "objectId" : null
-          },
-          "[8]" : {
-            "type" : "java.lang.Integer",
-            "value" : 13,
+          "isDead" : {
+            "type" : "boolean",
+            "value" : false,
             "objectId" : null
           }
         }
       }, {
         "version" : 12,
-        "eventId" : "eve:127",
+        "eventId" : "eve:126",
         "fields" : {
-          "[0]" : {
-            "type" : "java.lang.Integer",
-            "value" : -3,
+          "name" : {
+            "type" : "java.lang.String",
+            "value" : "Name2",
             "objectId" : null
           },
-          "[1]" : {
-            "type" : "java.lang.Integer",
-            "value" : 0,
+          "healthPoints" : {
+            "type" : "int",
+            "value" : 55,
             "objectId" : null
           },
-          "[2]" : {
-            "type" : "java.lang.Integer",
-            "value" : 5,
+          "manaPoints" : {
+            "type" : "int",
+            "value" : 50,
             "objectId" : null
           },
-          "[3]" : {
-            "type" : "java.lang.Integer",
-            "value" : 7,
+          "experiencePoints" : {
+            "type" : "float",
+            "value" : 10.3,
             "objectId" : null
           },
-          "[4]" : {
-            "type" : "java.lang.Integer",
-            "value" : 100,
+          "weapon" : {
+            "type" : "ch.epfl.printwizard.examples.rpg.Weapon",
+            "value" : null,
             "objectId" : null
           },
-          "[5]" : {
-            "type" : "java.lang.Integer",
-            "value" : 42,
+          "isDead" : {
+            "type" : "boolean",
+            "value" : false,
             "objectId" : null
-          },
-          "[6]" : {
-            "type" : "java.lang.Integer",
-            "value" : 7,
-            "objectId" : null
-          },
-          "[7]" : {
-            "type" : "java.lang.Integer",
-            "value" : 18,
-            "objectId" : null
-          },
-          "[8]" : {
-            "type" : "java.lang.Integer",
-            "value" : 13,
+          }
+        }
+      } ]
+    },
+    "obj:4" : {
+      "objectId" : "obj:4",
+      "type" : "ch.epfl.printwizard.examples.rpg.Weapon",
+      "timeline" : [ {
+        "version" : 0,
+        "eventId" : "eve:24",
+        "fields" : { }
+      }, {
+        "version" : 1,
+        "eventId" : "eve:25",
+        "fields" : {
+          "name" : {
+            "type" : "java.lang.String",
+            "value" : "Sword",
             "objectId" : null
           }
         }
       }, {
-        "version" : 13,
+        "version" : 2,
+        "eventId" : "eve:26",
+        "fields" : {
+          "name" : {
+            "type" : "java.lang.String",
+            "value" : "Sword",
+            "objectId" : null
+          },
+          "damage" : {
+            "type" : "int",
+            "value" : 15,
+            "objectId" : null
+          }
+        }
+      }, {
+        "version" : 3,
+        "eventId" : "eve:27",
+        "fields" : {
+          "name" : {
+            "type" : "java.lang.String",
+            "value" : "Sword",
+            "objectId" : null
+          },
+          "damage" : {
+            "type" : "int",
+            "value" : 15,
+            "objectId" : null
+          },
+          "isRanged" : {
+            "type" : "boolean",
+            "value" : false,
+            "objectId" : null
+          }
+        }
+      } ]
+    },
+    "obj:5" : {
+      "objectId" : "obj:5",
+      "type" : "ch.epfl.printwizard.examples.rpg.BattleHistory",
+      "timeline" : [ {
+        "version" : 0,
+        "eventId" : "eve:61",
+        "fields" : { }
+      }, {
+        "version" : 1,
+        "eventId" : "eve:62",
+        "fields" : {
+          "attackerName" : {
+            "type" : "java.lang.String",
+            "value" : "Name1",
+            "objectId" : null
+          }
+        }
+      }, {
+        "version" : 2,
+        "eventId" : "eve:63",
+        "fields" : {
+          "attackerName" : {
+            "type" : "java.lang.String",
+            "value" : "Name1",
+            "objectId" : null
+          },
+          "defenderName" : {
+            "type" : "java.lang.String",
+            "value" : "Name2",
+            "objectId" : null
+          }
+        }
+      }, {
+        "version" : 3,
+        "eventId" : "eve:64",
+        "fields" : {
+          "attackerName" : {
+            "type" : "java.lang.String",
+            "value" : "Name1",
+            "objectId" : null
+          },
+          "defenderName" : {
+            "type" : "java.lang.String",
+            "value" : "Name2",
+            "objectId" : null
+          },
+          "damageDealt" : {
+            "type" : "int",
+            "value" : 15,
+            "objectId" : null
+          }
+        }
+      }, {
+        "version" : 4,
+        "eventId" : "eve:65",
+        "fields" : {
+          "attackerName" : {
+            "type" : "java.lang.String",
+            "value" : "Name1",
+            "objectId" : null
+          },
+          "defenderName" : {
+            "type" : "java.lang.String",
+            "value" : "Name2",
+            "objectId" : null
+          },
+          "damageDealt" : {
+            "type" : "int",
+            "value" : 15,
+            "objectId" : null
+          },
+          "defenderPreviousHealthPoints" : {
+            "type" : "int",
+            "value" : 100,
+            "objectId" : null
+          }
+        }
+      }, {
+        "version" : 5,
+        "eventId" : "eve:66",
+        "fields" : {
+          "attackerName" : {
+            "type" : "java.lang.String",
+            "value" : "Name1",
+            "objectId" : null
+          },
+          "defenderName" : {
+            "type" : "java.lang.String",
+            "value" : "Name2",
+            "objectId" : null
+          },
+          "damageDealt" : {
+            "type" : "int",
+            "value" : 15,
+            "objectId" : null
+          },
+          "defenderPreviousHealthPoints" : {
+            "type" : "int",
+            "value" : 100,
+            "objectId" : null
+          },
+          "defenderNewHealthPoints" : {
+            "type" : "int",
+            "value" : 85,
+            "objectId" : null
+          }
+        }
+      }, {
+        "version" : 6,
+        "eventId" : "eve:67",
+        "fields" : {
+          "attackerName" : {
+            "type" : "java.lang.String",
+            "value" : "Name1",
+            "objectId" : null
+          },
+          "defenderName" : {
+            "type" : "java.lang.String",
+            "value" : "Name2",
+            "objectId" : null
+          },
+          "damageDealt" : {
+            "type" : "int",
+            "value" : 15,
+            "objectId" : null
+          },
+          "defenderPreviousHealthPoints" : {
+            "type" : "int",
+            "value" : 100,
+            "objectId" : null
+          },
+          "defenderNewHealthPoints" : {
+            "type" : "int",
+            "value" : 85,
+            "objectId" : null
+          },
+          "isDefenderDead" : {
+            "type" : "boolean",
+            "value" : false,
+            "objectId" : null
+          }
+        }
+      } ]
+    },
+    "obj:6" : {
+      "objectId" : "obj:6",
+      "type" : "ch.epfl.printwizard.examples.rpg.BattleHistory",
+      "timeline" : [ {
+        "version" : 0,
+        "eventId" : "eve:100",
+        "fields" : { }
+      }, {
+        "version" : 1,
+        "eventId" : "eve:101",
+        "fields" : {
+          "attackerName" : {
+            "type" : "java.lang.String",
+            "value" : "Name1",
+            "objectId" : null
+          }
+        }
+      }, {
+        "version" : 2,
+        "eventId" : "eve:102",
+        "fields" : {
+          "attackerName" : {
+            "type" : "java.lang.String",
+            "value" : "Name1",
+            "objectId" : null
+          },
+          "defenderName" : {
+            "type" : "java.lang.String",
+            "value" : "Name2",
+            "objectId" : null
+          }
+        }
+      }, {
+        "version" : 3,
+        "eventId" : "eve:103",
+        "fields" : {
+          "attackerName" : {
+            "type" : "java.lang.String",
+            "value" : "Name1",
+            "objectId" : null
+          },
+          "defenderName" : {
+            "type" : "java.lang.String",
+            "value" : "Name2",
+            "objectId" : null
+          },
+          "damageDealt" : {
+            "type" : "int",
+            "value" : 15,
+            "objectId" : null
+          }
+        }
+      }, {
+        "version" : 4,
+        "eventId" : "eve:104",
+        "fields" : {
+          "attackerName" : {
+            "type" : "java.lang.String",
+            "value" : "Name1",
+            "objectId" : null
+          },
+          "defenderName" : {
+            "type" : "java.lang.String",
+            "value" : "Name2",
+            "objectId" : null
+          },
+          "damageDealt" : {
+            "type" : "int",
+            "value" : 15,
+            "objectId" : null
+          },
+          "defenderPreviousHealthPoints" : {
+            "type" : "int",
+            "value" : 85,
+            "objectId" : null
+          }
+        }
+      }, {
+        "version" : 5,
+        "eventId" : "eve:105",
+        "fields" : {
+          "attackerName" : {
+            "type" : "java.lang.String",
+            "value" : "Name1",
+            "objectId" : null
+          },
+          "defenderName" : {
+            "type" : "java.lang.String",
+            "value" : "Name2",
+            "objectId" : null
+          },
+          "damageDealt" : {
+            "type" : "int",
+            "value" : 15,
+            "objectId" : null
+          },
+          "defenderPreviousHealthPoints" : {
+            "type" : "int",
+            "value" : 85,
+            "objectId" : null
+          },
+          "defenderNewHealthPoints" : {
+            "type" : "int",
+            "value" : 70,
+            "objectId" : null
+          }
+        }
+      }, {
+        "version" : 6,
+        "eventId" : "eve:106",
+        "fields" : {
+          "attackerName" : {
+            "type" : "java.lang.String",
+            "value" : "Name1",
+            "objectId" : null
+          },
+          "defenderName" : {
+            "type" : "java.lang.String",
+            "value" : "Name2",
+            "objectId" : null
+          },
+          "damageDealt" : {
+            "type" : "int",
+            "value" : 15,
+            "objectId" : null
+          },
+          "defenderPreviousHealthPoints" : {
+            "type" : "int",
+            "value" : 85,
+            "objectId" : null
+          },
+          "defenderNewHealthPoints" : {
+            "type" : "int",
+            "value" : 70,
+            "objectId" : null
+          },
+          "isDefenderDead" : {
+            "type" : "boolean",
+            "value" : false,
+            "objectId" : null
+          }
+        }
+      } ]
+    },
+    "obj:7" : {
+      "objectId" : "obj:7",
+      "type" : "ch.epfl.printwizard.examples.rpg.BattleHistory",
+      "timeline" : [ {
+        "version" : 0,
+        "eventId" : "eve:139",
+        "fields" : { }
+      }, {
+        "version" : 1,
+        "eventId" : "eve:140",
+        "fields" : {
+          "attackerName" : {
+            "type" : "java.lang.String",
+            "value" : "Name1",
+            "objectId" : null
+          }
+        }
+      }, {
+        "version" : 2,
+        "eventId" : "eve:141",
+        "fields" : {
+          "attackerName" : {
+            "type" : "java.lang.String",
+            "value" : "Name1",
+            "objectId" : null
+          },
+          "defenderName" : {
+            "type" : "java.lang.String",
+            "value" : "Name2",
+            "objectId" : null
+          }
+        }
+      }, {
+        "version" : 3,
+        "eventId" : "eve:142",
+        "fields" : {
+          "attackerName" : {
+            "type" : "java.lang.String",
+            "value" : "Name1",
+            "objectId" : null
+          },
+          "defenderName" : {
+            "type" : "java.lang.String",
+            "value" : "Name2",
+            "objectId" : null
+          },
+          "damageDealt" : {
+            "type" : "int",
+            "value" : 15,
+            "objectId" : null
+          }
+        }
+      }, {
+        "version" : 4,
+        "eventId" : "eve:143",
+        "fields" : {
+          "attackerName" : {
+            "type" : "java.lang.String",
+            "value" : "Name1",
+            "objectId" : null
+          },
+          "defenderName" : {
+            "type" : "java.lang.String",
+            "value" : "Name2",
+            "objectId" : null
+          },
+          "damageDealt" : {
+            "type" : "int",
+            "value" : 15,
+            "objectId" : null
+          },
+          "defenderPreviousHealthPoints" : {
+            "type" : "int",
+            "value" : 70,
+            "objectId" : null
+          }
+        }
+      }, {
+        "version" : 5,
+        "eventId" : "eve:144",
+        "fields" : {
+          "attackerName" : {
+            "type" : "java.lang.String",
+            "value" : "Name1",
+            "objectId" : null
+          },
+          "defenderName" : {
+            "type" : "java.lang.String",
+            "value" : "Name2",
+            "objectId" : null
+          },
+          "damageDealt" : {
+            "type" : "int",
+            "value" : 15,
+            "objectId" : null
+          },
+          "defenderPreviousHealthPoints" : {
+            "type" : "int",
+            "value" : 70,
+            "objectId" : null
+          },
+          "defenderNewHealthPoints" : {
+            "type" : "int",
+            "value" : 55,
+            "objectId" : null
+          }
+        }
+      }, {
+        "version" : 6,
         "eventId" : "eve:145",
         "fields" : {
-          "[0]" : {
-            "type" : "java.lang.Integer",
-            "value" : -3,
+          "attackerName" : {
+            "type" : "java.lang.String",
+            "value" : "Name1",
             "objectId" : null
           },
-          "[1]" : {
-            "type" : "java.lang.Integer",
-            "value" : 0,
+          "defenderName" : {
+            "type" : "java.lang.String",
+            "value" : "Name2",
             "objectId" : null
           },
-          "[2]" : {
-            "type" : "java.lang.Integer",
-            "value" : 5,
+          "damageDealt" : {
+            "type" : "int",
+            "value" : 15,
             "objectId" : null
           },
-          "[3]" : {
-            "type" : "java.lang.Integer",
-            "value" : 7,
+          "defenderPreviousHealthPoints" : {
+            "type" : "int",
+            "value" : 70,
             "objectId" : null
           },
-          "[4]" : {
-            "type" : "java.lang.Integer",
-            "value" : 7,
+          "defenderNewHealthPoints" : {
+            "type" : "int",
+            "value" : 55,
             "objectId" : null
           },
-          "[5]" : {
-            "type" : "java.lang.Integer",
-            "value" : 42,
-            "objectId" : null
-          },
-          "[6]" : {
-            "type" : "java.lang.Integer",
-            "value" : 7,
-            "objectId" : null
-          },
-          "[7]" : {
-            "type" : "java.lang.Integer",
-            "value" : 18,
-            "objectId" : null
-          },
-          "[8]" : {
-            "type" : "java.lang.Integer",
-            "value" : 13,
-            "objectId" : null
-          }
-        }
-      }, {
-        "version" : 14,
-        "eventId" : "eve:146",
-        "fields" : {
-          "[0]" : {
-            "type" : "java.lang.Integer",
-            "value" : -3,
-            "objectId" : null
-          },
-          "[1]" : {
-            "type" : "java.lang.Integer",
-            "value" : 0,
-            "objectId" : null
-          },
-          "[2]" : {
-            "type" : "java.lang.Integer",
-            "value" : 5,
-            "objectId" : null
-          },
-          "[3]" : {
-            "type" : "java.lang.Integer",
-            "value" : 7,
-            "objectId" : null
-          },
-          "[4]" : {
-            "type" : "java.lang.Integer",
-            "value" : 7,
-            "objectId" : null
-          },
-          "[5]" : {
-            "type" : "java.lang.Integer",
-            "value" : 42,
-            "objectId" : null
-          },
-          "[6]" : {
-            "type" : "java.lang.Integer",
-            "value" : 100,
-            "objectId" : null
-          },
-          "[7]" : {
-            "type" : "java.lang.Integer",
-            "value" : 18,
-            "objectId" : null
-          },
-          "[8]" : {
-            "type" : "java.lang.Integer",
-            "value" : 13,
-            "objectId" : null
-          }
-        }
-      }, {
-        "version" : 15,
-        "eventId" : "eve:156",
-        "fields" : {
-          "[0]" : {
-            "type" : "java.lang.Integer",
-            "value" : -3,
-            "objectId" : null
-          },
-          "[1]" : {
-            "type" : "java.lang.Integer",
-            "value" : 0,
-            "objectId" : null
-          },
-          "[2]" : {
-            "type" : "java.lang.Integer",
-            "value" : 5,
-            "objectId" : null
-          },
-          "[3]" : {
-            "type" : "java.lang.Integer",
-            "value" : 7,
-            "objectId" : null
-          },
-          "[4]" : {
-            "type" : "java.lang.Integer",
-            "value" : 7,
-            "objectId" : null
-          },
-          "[5]" : {
-            "type" : "java.lang.Integer",
-            "value" : 13,
-            "objectId" : null
-          },
-          "[6]" : {
-            "type" : "java.lang.Integer",
-            "value" : 100,
-            "objectId" : null
-          },
-          "[7]" : {
-            "type" : "java.lang.Integer",
-            "value" : 18,
-            "objectId" : null
-          },
-          "[8]" : {
-            "type" : "java.lang.Integer",
-            "value" : 13,
-            "objectId" : null
-          }
-        }
-      }, {
-        "version" : 16,
-        "eventId" : "eve:157",
-        "fields" : {
-          "[0]" : {
-            "type" : "java.lang.Integer",
-            "value" : -3,
-            "objectId" : null
-          },
-          "[1]" : {
-            "type" : "java.lang.Integer",
-            "value" : 0,
-            "objectId" : null
-          },
-          "[2]" : {
-            "type" : "java.lang.Integer",
-            "value" : 5,
-            "objectId" : null
-          },
-          "[3]" : {
-            "type" : "java.lang.Integer",
-            "value" : 7,
-            "objectId" : null
-          },
-          "[4]" : {
-            "type" : "java.lang.Integer",
-            "value" : 7,
-            "objectId" : null
-          },
-          "[5]" : {
-            "type" : "java.lang.Integer",
-            "value" : 13,
-            "objectId" : null
-          },
-          "[6]" : {
-            "type" : "java.lang.Integer",
-            "value" : 100,
-            "objectId" : null
-          },
-          "[7]" : {
-            "type" : "java.lang.Integer",
-            "value" : 18,
-            "objectId" : null
-          },
-          "[8]" : {
-            "type" : "java.lang.Integer",
-            "value" : 42,
-            "objectId" : null
-          }
-        }
-      }, {
-        "version" : 17,
-        "eventId" : "eve:177",
-        "fields" : {
-          "[0]" : {
-            "type" : "java.lang.Integer",
-            "value" : -3,
-            "objectId" : null
-          },
-          "[1]" : {
-            "type" : "java.lang.Integer",
-            "value" : 0,
-            "objectId" : null
-          },
-          "[2]" : {
-            "type" : "java.lang.Integer",
-            "value" : 5,
-            "objectId" : null
-          },
-          "[3]" : {
-            "type" : "java.lang.Integer",
-            "value" : 7,
-            "objectId" : null
-          },
-          "[4]" : {
-            "type" : "java.lang.Integer",
-            "value" : 7,
-            "objectId" : null
-          },
-          "[5]" : {
-            "type" : "java.lang.Integer",
-            "value" : 13,
-            "objectId" : null
-          },
-          "[6]" : {
-            "type" : "java.lang.Integer",
-            "value" : 100,
-            "objectId" : null
-          },
-          "[7]" : {
-            "type" : "java.lang.Integer",
-            "value" : 18,
-            "objectId" : null
-          },
-          "[8]" : {
-            "type" : "java.lang.Integer",
-            "value" : 42,
-            "objectId" : null
-          }
-        }
-      }, {
-        "version" : 18,
-        "eventId" : "eve:178",
-        "fields" : {
-          "[0]" : {
-            "type" : "java.lang.Integer",
-            "value" : -3,
-            "objectId" : null
-          },
-          "[1]" : {
-            "type" : "java.lang.Integer",
-            "value" : 0,
-            "objectId" : null
-          },
-          "[2]" : {
-            "type" : "java.lang.Integer",
-            "value" : 5,
-            "objectId" : null
-          },
-          "[3]" : {
-            "type" : "java.lang.Integer",
-            "value" : 7,
-            "objectId" : null
-          },
-          "[4]" : {
-            "type" : "java.lang.Integer",
-            "value" : 7,
-            "objectId" : null
-          },
-          "[5]" : {
-            "type" : "java.lang.Integer",
-            "value" : 13,
-            "objectId" : null
-          },
-          "[6]" : {
-            "type" : "java.lang.Integer",
-            "value" : 100,
-            "objectId" : null
-          },
-          "[7]" : {
-            "type" : "java.lang.Integer",
-            "value" : 18,
-            "objectId" : null
-          },
-          "[8]" : {
-            "type" : "java.lang.Integer",
-            "value" : 42,
-            "objectId" : null
-          }
-        }
-      }, {
-        "version" : 19,
-        "eventId" : "eve:183",
-        "fields" : {
-          "[0]" : {
-            "type" : "java.lang.Integer",
-            "value" : -3,
-            "objectId" : null
-          },
-          "[1]" : {
-            "type" : "java.lang.Integer",
-            "value" : 0,
-            "objectId" : null
-          },
-          "[2]" : {
-            "type" : "java.lang.Integer",
-            "value" : 5,
-            "objectId" : null
-          },
-          "[3]" : {
-            "type" : "java.lang.Integer",
-            "value" : 7,
-            "objectId" : null
-          },
-          "[4]" : {
-            "type" : "java.lang.Integer",
-            "value" : 7,
-            "objectId" : null
-          },
-          "[5]" : {
-            "type" : "java.lang.Integer",
-            "value" : 13,
-            "objectId" : null
-          },
-          "[6]" : {
-            "type" : "java.lang.Integer",
-            "value" : 100,
-            "objectId" : null
-          },
-          "[7]" : {
-            "type" : "java.lang.Integer",
-            "value" : 18,
-            "objectId" : null
-          },
-          "[8]" : {
-            "type" : "java.lang.Integer",
-            "value" : 42,
-            "objectId" : null
-          }
-        }
-      }, {
-        "version" : 20,
-        "eventId" : "eve:184",
-        "fields" : {
-          "[0]" : {
-            "type" : "java.lang.Integer",
-            "value" : -3,
-            "objectId" : null
-          },
-          "[1]" : {
-            "type" : "java.lang.Integer",
-            "value" : 0,
-            "objectId" : null
-          },
-          "[2]" : {
-            "type" : "java.lang.Integer",
-            "value" : 5,
-            "objectId" : null
-          },
-          "[3]" : {
-            "type" : "java.lang.Integer",
-            "value" : 7,
-            "objectId" : null
-          },
-          "[4]" : {
-            "type" : "java.lang.Integer",
-            "value" : 7,
-            "objectId" : null
-          },
-          "[5]" : {
-            "type" : "java.lang.Integer",
-            "value" : 13,
-            "objectId" : null
-          },
-          "[6]" : {
-            "type" : "java.lang.Integer",
-            "value" : 100,
-            "objectId" : null
-          },
-          "[7]" : {
-            "type" : "java.lang.Integer",
-            "value" : 18,
-            "objectId" : null
-          },
-          "[8]" : {
-            "type" : "java.lang.Integer",
-            "value" : 42,
-            "objectId" : null
-          }
-        }
-      }, {
-        "version" : 21,
-        "eventId" : "eve:220",
-        "fields" : {
-          "[0]" : {
-            "type" : "java.lang.Integer",
-            "value" : -3,
-            "objectId" : null
-          },
-          "[1]" : {
-            "type" : "java.lang.Integer",
-            "value" : 0,
-            "objectId" : null
-          },
-          "[2]" : {
-            "type" : "java.lang.Integer",
-            "value" : 5,
-            "objectId" : null
-          },
-          "[3]" : {
-            "type" : "java.lang.Integer",
-            "value" : 7,
-            "objectId" : null
-          },
-          "[4]" : {
-            "type" : "java.lang.Integer",
-            "value" : 7,
-            "objectId" : null
-          },
-          "[5]" : {
-            "type" : "java.lang.Integer",
-            "value" : 13,
-            "objectId" : null
-          },
-          "[6]" : {
-            "type" : "java.lang.Integer",
-            "value" : 18,
-            "objectId" : null
-          },
-          "[7]" : {
-            "type" : "java.lang.Integer",
-            "value" : 18,
-            "objectId" : null
-          },
-          "[8]" : {
-            "type" : "java.lang.Integer",
-            "value" : 42,
-            "objectId" : null
-          }
-        }
-      }, {
-        "version" : 22,
-        "eventId" : "eve:221",
-        "fields" : {
-          "[0]" : {
-            "type" : "java.lang.Integer",
-            "value" : -3,
-            "objectId" : null
-          },
-          "[1]" : {
-            "type" : "java.lang.Integer",
-            "value" : 0,
-            "objectId" : null
-          },
-          "[2]" : {
-            "type" : "java.lang.Integer",
-            "value" : 5,
-            "objectId" : null
-          },
-          "[3]" : {
-            "type" : "java.lang.Integer",
-            "value" : 7,
-            "objectId" : null
-          },
-          "[4]" : {
-            "type" : "java.lang.Integer",
-            "value" : 7,
-            "objectId" : null
-          },
-          "[5]" : {
-            "type" : "java.lang.Integer",
-            "value" : 13,
-            "objectId" : null
-          },
-          "[6]" : {
-            "type" : "java.lang.Integer",
-            "value" : 18,
-            "objectId" : null
-          },
-          "[7]" : {
-            "type" : "java.lang.Integer",
-            "value" : 100,
-            "objectId" : null
-          },
-          "[8]" : {
-            "type" : "java.lang.Integer",
-            "value" : 42,
-            "objectId" : null
-          }
-        }
-      }, {
-        "version" : 23,
-        "eventId" : "eve:226",
-        "fields" : {
-          "[0]" : {
-            "type" : "java.lang.Integer",
-            "value" : -3,
-            "objectId" : null
-          },
-          "[1]" : {
-            "type" : "java.lang.Integer",
-            "value" : 0,
-            "objectId" : null
-          },
-          "[2]" : {
-            "type" : "java.lang.Integer",
-            "value" : 5,
-            "objectId" : null
-          },
-          "[3]" : {
-            "type" : "java.lang.Integer",
-            "value" : 7,
-            "objectId" : null
-          },
-          "[4]" : {
-            "type" : "java.lang.Integer",
-            "value" : 7,
-            "objectId" : null
-          },
-          "[5]" : {
-            "type" : "java.lang.Integer",
-            "value" : 13,
-            "objectId" : null
-          },
-          "[6]" : {
-            "type" : "java.lang.Integer",
-            "value" : 18,
-            "objectId" : null
-          },
-          "[7]" : {
-            "type" : "java.lang.Integer",
-            "value" : 42,
-            "objectId" : null
-          },
-          "[8]" : {
-            "type" : "java.lang.Integer",
-            "value" : 42,
-            "objectId" : null
-          }
-        }
-      }, {
-        "version" : 24,
-        "eventId" : "eve:227",
-        "fields" : {
-          "[0]" : {
-            "type" : "java.lang.Integer",
-            "value" : -3,
-            "objectId" : null
-          },
-          "[1]" : {
-            "type" : "java.lang.Integer",
-            "value" : 0,
-            "objectId" : null
-          },
-          "[2]" : {
-            "type" : "java.lang.Integer",
-            "value" : 5,
-            "objectId" : null
-          },
-          "[3]" : {
-            "type" : "java.lang.Integer",
-            "value" : 7,
-            "objectId" : null
-          },
-          "[4]" : {
-            "type" : "java.lang.Integer",
-            "value" : 7,
-            "objectId" : null
-          },
-          "[5]" : {
-            "type" : "java.lang.Integer",
-            "value" : 13,
-            "objectId" : null
-          },
-          "[6]" : {
-            "type" : "java.lang.Integer",
-            "value" : 18,
-            "objectId" : null
-          },
-          "[7]" : {
-            "type" : "java.lang.Integer",
-            "value" : 42,
-            "objectId" : null
-          },
-          "[8]" : {
-            "type" : "java.lang.Integer",
-            "value" : 100,
+          "isDefenderDead" : {
+            "type" : "boolean",
+            "value" : false,
             "objectId" : null
           }
         }

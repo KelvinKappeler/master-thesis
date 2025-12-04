@@ -266,10 +266,24 @@ public class TraceOut {
             } else {
                 eq = left.equals(right);
             }
-
+            
             return "EQ".equals(op) == eq;
         }
+        
+        if ("AND".equals(op) || "&&".equals(op) || "OR".equals(op) || "||".equals(op)) {
+            if (!(left instanceof Boolean lb) || !(right instanceof Boolean rb)) {
+                throw new IllegalStateException("Logical " + op + " with non-boolean operands: "
+                    + (left == null ? "null" : left.getClass()) + " and "
+                    + (right == null ? "null" : right.getClass()));
+            }
 
+            if ("AND".equals(op) || "&&".equals(op)) {
+                return lb && rb;
+            } else {
+                return lb || rb;
+            }
+        }
+        
         if (left == null || right == null) {
             throw new IllegalStateException("Relational comparison with null");
         }
