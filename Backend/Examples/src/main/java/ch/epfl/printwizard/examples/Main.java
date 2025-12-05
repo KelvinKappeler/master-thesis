@@ -3,9 +3,9 @@ package ch.epfl.printwizard.examples;
 public class Main {
     
     public static void main(String[] args) {
-        int i = 0;
-        
-        if (i == 0) {
+        boolean isTrue = false;
+
+        if (!isTrue) {
             System.out.println("Hello World!");
         }
 

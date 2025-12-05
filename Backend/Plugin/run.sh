@@ -13,13 +13,13 @@ JAVAC_EXPORTS=(
 )
 PLUGIN_JAR=Plugin/target/PrintWizardPlugin.jar
 LIB="Plugin/lib/*"
-CP="$PLUGIN_JAR:$LIB"
+CP="$PLUGIN_JAR;$LIB"
 
 echo "COMPILING..."
-find "$SRC_DIR" -name '*.java' -print0 | xargs -0 javac \
-  "${JAVAC_EXPORTS[@]}" -cp "$CP" -Xplugin:PrintWizardPlugin -d "$OUT_CLASSES"
-#mapfile -d '' sources < <(find "$SRC_DIR" -name '*.java' -print0)
-#javac "${JAVAC_EXPORTS[@]}" -cp "$CP" -Xplugin:PrintWizardPlugin -d "$OUT_CLASSES" "${sources[@]}"
+#find "$SRC_DIR" -name '*.java' -print0 | xargs -0 javac \
+#  "${JAVAC_EXPORTS[@]}" -cp "$CP" -Xplugin:PrintWizardPlugin -d "$OUT_CLASSES"
+mapfile -d '' sources < <(find "$SRC_DIR" -name '*.java' -print0)
+javac "${JAVAC_EXPORTS[@]}" -cp "$CP" -Xplugin:PrintWizardPlugin -d "$OUT_CLASSES" "${sources[@]}"
 
 echo "RUNNING..."
-java -cp "$OUT_CLASSES:$CP" ch.epfl.printwizard.examples.rpg.Main
+java -cp "$OUT_CLASSES;$CP" ch.epfl.printwizard.examples.Main
