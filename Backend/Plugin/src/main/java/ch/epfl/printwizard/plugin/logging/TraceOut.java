@@ -599,7 +599,7 @@ public class TraceOut {
         TraceLoc loc = new TraceLoc(sourceId, line);
 
         ConditionKind kind = ConditionKind.valueOf(conditionKind);
-        addEvent(new ConditionEvent(eventId, ctx.spanId(), ctx.frameId(), loc, kind, new String[0], new String[0], new String[0]));
+        addEvent(new ConditionEvent(eventId, ctx.spanId(), ctx.frameId(), loc, kind, new String[0], new String[0], new String[0], null));
 
         ConditionCtx conditionCtx = new ConditionCtx(eventId);
         CTX_STACK.get().push(conditionCtx);
@@ -619,8 +619,25 @@ public class TraceOut {
         if (!stack.isEmpty() && stack.peek() instanceof ConditionCtx c && Objects.equals(c.getConditionEventId(), conditionEventId)) {
             ConditionCtx condCtx = (ConditionCtx) stack.pop();
 
-            patchCondition(conditionEventId, condCtx.getConditionEventIds(), condCtx.getThenEventIds(), condCtx.getElseEventIds());
+            patchCondition(conditionEventId, condCtx);
         }
+    }
+
+    public static <T> T endCondition(String conditionEventId, T value) {
+        Deque<ExecCtx> stack = CTX_STACK.get();
+
+        if (!stack.isEmpty() && stack.peek() instanceof ConditionPhaseCtx) {
+            stack.pop();
+        }
+
+        if (!stack.isEmpty() && stack.peek() instanceof ConditionCtx c && Objects.equals(c.getConditionEventId(), conditionEventId)) {
+            ConditionCtx condCtx = (ConditionCtx) stack.pop();
+            condCtx.setValue(EventValue.of(value));
+
+            patchCondition(conditionEventId, condCtx);
+        }
+
+        return value;
     }
 
     @SuppressWarnings("unused")
@@ -885,16 +902,22 @@ public class TraceOut {
         }
     }
 
-    private static void patchCondition(String conditionEventId, List<String> condIds, List<String> thenIds, List<String> elseIds) {
+    private static void patchCondition(String conditionEventId, ConditionCtx condCtx) {
         TraceFile.Builder traceFileBuilder = OutputManager.getTraceFileBuilder();
         List<TraceEvent> events = traceFileBuilder.getEvents();
+
+        String[] condIds = condCtx.getConditionEventIds().toArray(String[]::new);
+        String[] thenIds = condCtx.getThenEventIds().toArray(String[]::new);
+        String[] elseIds = condCtx.getElseEventIds().toArray(String[]::new);
+        EventValue value = condCtx.getValue();
 
         for (int i = events.size() - 1; i >= 0; i--) {
             TraceEvent e = events.get(i);
             if (e instanceof ConditionEvent ce && ce.eventId().equals(conditionEventId)) {
                 ConditionEvent patched = new ConditionEvent(
                     ce.eventId(), ce.spanId(), ce.frameId(), ce.location(), ce.kind(),
-                    condIds.toArray(String[]::new), thenIds.toArray(String[]::new), elseIds.toArray(String[]::new)
+                    condIds, thenIds, elseIds,
+                    value
                 );
 
                 events.set(i, patched);

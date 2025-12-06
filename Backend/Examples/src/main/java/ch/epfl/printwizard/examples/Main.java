@@ -3,11 +3,8 @@ package ch.epfl.printwizard.examples;
 public class Main {
     
     public static void main(String[] args) {
-        boolean isTrue = false;
 
-        if (!isTrue) {
-            System.out.println("Hello World!");
-        }
+        int i = 1 < 3 ? 1 : 2;
 
         //int[] array = new int[2];
         //array[0] = 1;

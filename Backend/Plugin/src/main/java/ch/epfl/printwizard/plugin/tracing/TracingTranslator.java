@@ -225,6 +225,36 @@ public class TracingTranslator extends TreeTranslator {
 
     @Override
     public void visitReturn(JCTree.JCReturn jcReturn) {
+        if (jcReturn.expr instanceof JCTree.JCConditional jcConditional) {
+            Type resultType = (jcConditional.type != null) ? jcConditional.type : (currentMethod != null && currentMethod.getReturnType() != null ? currentMethod.getReturnType() : symtab.objectType);
+
+            TernaryInstrumentation ti = makeTernaryInstrumentation(jcConditional, resultType);
+
+            int line = cu.getLineMap().getLineNumber(jcReturn.pos);
+            String sourceId = getSourceId();
+
+            JCTree.JCMethodInvocation beginCall = callStatic(
+                "ch.epfl.printwizard.plugin.logging.TraceOut",
+                "beginReturn",
+                com.sun.tools.javac.util.List.of(mk.Literal(sourceId), mk.Literal(line)),
+                jcReturn.pos
+            );
+
+            JCTree.JCMethodInvocation endCall = callStatic(
+                "ch.epfl.printwizard.plugin.logging.TraceOut",
+                "endReturn",
+                com.sun.tools.javac.util.List.of(beginCall, ti.resultExpr),
+                jcReturn.pos
+            );
+            endCall.type = resultType;
+
+            JCTree.JCStatement retStmt = mk.Return(endCall);
+
+            this.result = mk.Block(0, ti.stmts.append(retStmt));
+
+            return;
+        }
+
         JCTree.JCExpression trExpr = jcReturn.expr == null ? null : translate(jcReturn.expr);
 
         int line = cu.getLineMap().getLineNumber(jcReturn.pos);
@@ -277,6 +307,23 @@ public class TracingTranslator extends TreeTranslator {
 
     @Override
     public void visitExec(JCTree.JCExpressionStatement jcExpressionStatement) {
+        if (jcExpressionStatement.expr instanceof JCTree.JCAssign jcAssign && jcAssign.rhs instanceof JCTree.JCConditional jcConditional) {
+
+            Type resultType = (jcConditional.type != null) ? jcConditional.type : (jcAssign.lhs.type != null ? jcAssign.lhs.type : symtab.objectType);
+
+            TernaryInstrumentation ti = makeTernaryInstrumentation(jcConditional, resultType);
+
+            JCTree.JCAssign newAssign = mk.Assign(jcAssign.lhs, ti.resultExpr);
+            newAssign.type = jcAssign.type;
+
+            JCTree.JCExpressionStatement assignStmt = mk.Exec(newAssign);
+
+            JCTree.JCStatement translatedAssign = translate(assignStmt);
+
+            this.result = mk.Block(0, ti.stmts.append(translatedAssign));
+            return;
+        }
+
         if (jcExpressionStatement.expr instanceof JCTree.JCMethodInvocation mi) {
             JCTree.JCMethodInvocation trMi = translate(mi);
 
@@ -493,11 +540,6 @@ public class TracingTranslator extends TreeTranslator {
     }
 
     @Override
-    public void visitConditional(JCTree.JCConditional jcConditional) {
-        super.visitConditional(jcConditional);
-    }
-
-    @Override
     public void visitWhileLoop(JCTree.JCWhileLoop jcWhileLoop) {
         JCTree.JCExpression condExpr = translate(jcWhileLoop.cond);
         JCTree.JCStatement bodyStmt = jcWhileLoop.body == null ? mk.Block(0, List.nil()) : translate(jcWhileLoop.body);
@@ -662,6 +704,21 @@ public class TracingTranslator extends TreeTranslator {
     // Example : int i = 3; int[] array = { 1, 2, 3 };
     @Override
     public void visitVarDef(JCTree.JCVariableDecl jcVariableDecl) {
+        if (jcVariableDecl.sym instanceof Symbol.VarSymbol varSym && varSym.owner instanceof Symbol.MethodSymbol && jcVariableDecl.init instanceof JCTree.JCConditional jcConditional) {
+
+            Type resultType = jcVariableDecl.sym.type != null ? jcVariableDecl.sym.type : (jcConditional.type != null ? jcConditional.type : symtab.objectType);
+
+            TernaryInstrumentation ti = makeTernaryInstrumentation(jcConditional, resultType);
+
+            JCTree.JCVariableDecl newVarDef = mk.VarDef(jcVariableDecl.mods, jcVariableDecl.name, jcVariableDecl.vartype, ti.resultExpr);
+            newVarDef.sym = jcVariableDecl.sym;
+            newVarDef.type = jcVariableDecl.type;
+
+            this.result = mk.Block(0, ti.stmts.append(newVarDef));
+
+            return;
+        }
+
         if (jcVariableDecl.sym instanceof Symbol.VarSymbol varSym && varSym.owner instanceof Symbol.MethodSymbol) {
 
             if (jcVariableDecl.init != null) {
@@ -1066,6 +1123,172 @@ public class TracingTranslator extends TreeTranslator {
         }
     }
 
+    private record TernaryInstrumentation(List<JCTree.JCStatement> stmts, JCTree.JCExpression resultExpr) { }
+
+    private TernaryInstrumentation makeTernaryInstrumentation(JCTree.JCConditional jcConditional, Type resultType) {
+        int line = cu.getLineMap().getLineNumber(jcConditional.pos);
+        String sourceId = getSourceId();
+
+        JCTree.JCExpression condExpr = translate(jcConditional.cond);
+        JCTree.JCExpression thenExpr = translate(jcConditional.truepart);
+        JCTree.JCExpression elseExpr = translate(jcConditional.falsepart);
+
+        if (resultType == null) {
+            resultType = symtab.objectType;
+        }
+
+        mk.at(jcConditional.pos);
+
+        String condEvtNameStr = "__pw_cond_evt_" + jcConditional.pos;
+        var condEvtName = names.fromString(condEvtNameStr);
+
+        JCTree.JCExpression stringTypeTree = mk.QualIdent(symtab.stringType.tsym);
+        stringTypeTree.type = symtab.stringType;
+
+        JCTree.JCMethodInvocation beginCondCall = callStatic(
+            "ch.epfl.printwizard.plugin.logging.TraceOut",
+            "beginCondition",
+            com.sun.tools.javac.util.List.of(
+                mk.Literal(sourceId),
+                mk.Literal(line),
+                mk.Literal(ConditionKind.TERNARY_EXPRESSION.name())
+            ),
+            jcConditional.pos
+        );
+
+        JCTree.JCVariableDecl condEvtVar = mk.VarDef(
+            mk.Modifiers(Flags.SYNTHETIC),
+            condEvtName,
+            stringTypeTree,
+            beginCondCall
+        );
+        Symbol.VarSymbol condEvtSym = new Symbol.VarSymbol(
+            Flags.SYNTHETIC,
+            condEvtName,
+            symtab.stringType,
+            (currentMethod != null ? currentMethod : symtab.noSymbol)
+        );
+        condEvtVar.sym = condEvtSym;
+        condEvtVar.type = symtab.stringType;
+
+        String condVarNameStr = "__pw_cond_" + jcConditional.pos;
+        var condVarName = names.fromString(condVarNameStr);
+
+        JCTree.JCExpression boolTypeTree = mk.TypeIdent(TypeTag.BOOLEAN);
+        boolTypeTree.type = symtab.booleanType;
+
+        JCTree.JCVariableDecl condVar = mk.VarDef(
+            mk.Modifiers(Flags.SYNTHETIC),
+            condVarName,
+            boolTypeTree,
+            condExpr
+        );
+        Symbol.VarSymbol condSym = new Symbol.VarSymbol(
+            Flags.SYNTHETIC,
+            condVarName,
+            symtab.booleanType,
+            (currentMethod != null ? currentMethod : symtab.noSymbol)
+        );
+        condVar.sym = condSym;
+        condVar.type = symtab.booleanType;
+
+        String resVarNameStr = "__pw_res_" + jcConditional.pos;
+        var resVarName = names.fromString(resVarNameStr);
+
+        JCTree.JCExpression resTypeTree;
+        if (resultType.isPrimitive()) {
+            resTypeTree = mk.TypeIdent(resultType.getTag());
+        } else {
+            resTypeTree = mk.QualIdent(resultType.tsym);
+        }
+        resTypeTree.type = resultType;
+
+        JCTree.JCVariableDecl resVar = mk.VarDef(
+            mk.Modifiers(Flags.SYNTHETIC),
+            resVarName,
+            resTypeTree,
+            null
+        );
+        Symbol.VarSymbol resSym = new Symbol.VarSymbol(
+            Flags.SYNTHETIC,
+            resVarName,
+            resultType,
+            (currentMethod != null ? currentMethod : symtab.noSymbol)
+        );
+        resVar.sym = resSym;
+        resVar.type = resultType;
+
+        JCTree.JCStatement beginThen = mk.Exec(
+            callStatic(
+                "ch.epfl.printwizard.plugin.logging.TraceOut",
+                "beginThenBlock",
+                com.sun.tools.javac.util.List.of(mk.Ident(condEvtSym)),
+                jcConditional.pos
+            )
+        );
+
+        JCTree.JCAssign assignThenExpr = mk.Assign(mk.Ident(resSym), thenExpr);
+        assignThenExpr.type = resultType;
+        JCTree.JCStatement assignThenStmt = mk.Exec(assignThenExpr);
+
+        JCTree.JCStatement endThen = mk.Exec(
+            callStatic(
+                "ch.epfl.printwizard.plugin.logging.TraceOut",
+                "endThenBlock",
+                com.sun.tools.javac.util.List.of(mk.Ident(condEvtSym)),
+                jcConditional.pos
+            )
+        );
+        JCTree.JCBlock thenBlock = mk.Block(0, com.sun.tools.javac.util.List.of(beginThen, assignThenStmt, endThen));
+
+        JCTree.JCStatement beginElse = mk.Exec(
+            callStatic(
+                "ch.epfl.printwizard.plugin.logging.TraceOut",
+                "beginElseBlock",
+                com.sun.tools.javac.util.List.of(mk.Ident(condEvtSym)),
+                jcConditional.pos
+            )
+        );
+
+        JCTree.JCAssign assignElseExpr = mk.Assign(mk.Ident(resSym), elseExpr);
+        assignElseExpr.type = resultType;
+        JCTree.JCStatement assignElseStmt = mk.Exec(assignElseExpr);
+
+        JCTree.JCStatement endElse = mk.Exec(
+            callStatic(
+                "ch.epfl.printwizard.plugin.logging.TraceOut",
+                "endElseBlock",
+                com.sun.tools.javac.util.List.of(mk.Ident(condEvtSym)),
+                jcConditional.pos
+            )
+        );
+        JCTree.JCBlock elseBlock = mk.Block(0, com.sun.tools.javac.util.List.of(beginElse, assignElseStmt, endElse));
+
+        JCTree.JCExpression condIdent = mk.Ident(condSym);
+        condIdent.type = symtab.booleanType;
+
+        JCTree.JCIf ternaryIf = mk.If(condIdent, thenBlock, elseBlock);
+
+        JCTree.JCMethodInvocation endCondCall = callStatic(
+            "ch.epfl.printwizard.plugin.logging.TraceOut",
+            "endCondition",
+            com.sun.tools.javac.util.List.of(mk.Ident(condEvtSym), mk.Ident(resSym)),
+            jcConditional.pos
+        );
+        endCondCall.type = resultType;
+
+        JCTree.JCAssign assignFinalExpr = mk.Assign(mk.Ident(resSym), endCondCall);
+        assignFinalExpr.type = resultType;
+        JCTree.JCStatement assignFinalStmt = mk.Exec(assignFinalExpr);
+
+        List<JCTree.JCStatement> stmts = List.of(condEvtVar, condVar, resVar, ternaryIf, assignFinalStmt);
+
+        JCTree.JCExpression resultExpr = mk.Ident(resSym);
+        resultExpr.type = resultType;
+
+        return new TernaryInstrumentation(stmts, resultExpr);
+    }
+
     private JCTree.JCBlock makeInstrumentedLoop(
         LoopKind kind,
         JCTree.JCExpression condExpr,
@@ -1287,8 +1510,10 @@ public class TracingTranslator extends TreeTranslator {
         Symbol.MethodSymbol msym = null;
         for (Symbol sym : ownerSym.members().getSymbolsByName(names.fromString(method))) {
             if (sym instanceof Symbol.MethodSymbol m) {
-                msym = m;
-                break;
+                if (m.type.getParameterTypes().size() == args.size()) {
+                    msym = m;
+                    break;
+                }
             }
         }
         if (msym == null) {

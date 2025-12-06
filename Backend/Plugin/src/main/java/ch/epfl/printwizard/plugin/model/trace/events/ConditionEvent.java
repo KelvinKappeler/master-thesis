@@ -13,6 +13,7 @@ import ch.epfl.printwizard.plugin.utils.Preconditions;
  * @param conditionEventIds the identifiers of any related condition events
  * @param thenEventIds the identifiers of events executed if the condition is true
  * @param elseEventIds the identifiers of events executed if the condition is false
+ * @param value the result of the condition evaluation, if kind is TERNARY_EXPRESSION
  */
 public record ConditionEvent(
     String eventId,
@@ -22,7 +23,8 @@ public record ConditionEvent(
     ConditionKind kind,
     String[] conditionEventIds,
     String[] thenEventIds,
-    String[] elseEventIds
+    String[] elseEventIds,
+    EventValue value
 ) implements TraceEvent { 
 
     public ConditionEvent {

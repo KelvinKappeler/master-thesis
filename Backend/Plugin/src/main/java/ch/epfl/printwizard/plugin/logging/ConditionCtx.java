@@ -1,5 +1,6 @@
 package ch.epfl.printwizard.plugin.logging;
 
+import ch.epfl.printwizard.plugin.model.trace.events.EventValue;
 import ch.epfl.printwizard.plugin.model.trace.events.TraceEvent;
 import ch.epfl.printwizard.plugin.utils.Preconditions;
 
@@ -15,6 +16,8 @@ public class ConditionCtx implements ExecCtx {
     private final List<String> conditionEventIds = new ArrayList<>();
     private final List<String> thenEventIds = new ArrayList<>();
     private final List<String> elseEventIds = new ArrayList<>();
+
+    private EventValue value;
 
     public ConditionCtx(String conditionEventId) {
         Preconditions.requireNonNull(conditionEventId, "conditionEventId is null");
@@ -44,6 +47,16 @@ public class ConditionCtx implements ExecCtx {
 
     public List<String> getElseEventIds() {
         return elseEventIds;
+    }
+
+    public EventValue getValue() {
+        return value;
+    }
+
+    public void setValue(EventValue value) {
+        Preconditions.requireNonNull(value, "value is null");
+
+        this.value = value;
     }
 
     @Override
