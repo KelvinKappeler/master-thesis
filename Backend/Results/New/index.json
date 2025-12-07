@@ -1,14 +1,21 @@
 {
   "byLine" : {
     "src:ch/epfl/printwizard/examples/Main.java" : {
+      "12" : [ "eve:9" ],
+      "14" : [ "eve:6" ],
+      "15" : [ "eve:8", "eve:7" ],
       "5" : [ "eve:1" ],
-      "7" : [ "eve:2", "eve:3" ],
-      "18" : [ "eve:4" ]
+      "7" : [ "eve:2" ],
+      "9" : [ "eve:3", "eve:4" ],
+      "10" : [ "eve:5" ]
     }
   },
-  "byLocal" : { },
+  "byLocal" : {
+    "local:i@src:ch/epfl/printwizard/examples/Main.java:128#spn:1" : [ "eve:2", "eve:5" ]
+  },
   "byObject" : { },
   "bySpan" : {
+    "spn:2" : [ "eve:6" ],
     "spn:1" : [ "eve:1" ]
   }
 }

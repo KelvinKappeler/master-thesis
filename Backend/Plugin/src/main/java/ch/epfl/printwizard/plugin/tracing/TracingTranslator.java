@@ -423,7 +423,6 @@ public class TracingTranslator extends TreeTranslator {
         int line = cu.getLineMap().getLineNumber(jcIf.pos);
         String sourceId = getSourceId();
 
-        // String __pw_cond_evt_<pos> = TraceOut.beginCondition(sourceId, line);
         String condEvtVarNameStr = "__pw_cond_evt_" + jcIf.pos;
         var condEvtVarName = names.fromString(condEvtVarNameStr);
 
@@ -447,46 +446,15 @@ public class TracingTranslator extends TreeTranslator {
         condEvtVar.sym = condEvtSym;
         condEvtVar.type = symtab.stringType;
 
-        // boolean __pw_cond_<pos> = <condition>;
-        String condVarNameStr = "__pw_cond_" + jcIf.pos;
-        var condVarName = names.fromString(condVarNameStr);
-
-        JCTree.JCExpression boolTypeTree = mk.TypeIdent(TypeTag.BOOLEAN);
-        boolTypeTree.type = symtab.booleanType;
-
-        JCTree.JCVariableDecl condVar = mk.VarDef(mk.Modifiers(Flags.SYNTHETIC), condVarName, boolTypeTree, condExpr);
-        Symbol.VarSymbol condSym = new Symbol.VarSymbol(
-            Flags.SYNTHETIC,
-            condVarName,
-            symtab.booleanType,
-            (currentMethod != null ? currentMethod : symtab.noSymbol)
-        );
-        condVar.sym = condSym;
-        condVar.type = symtab.booleanType;
-
-        // TraceOut.endCondition(__pw_cond_evt_<pos>);
         JCTree.JCStatement endCondStmt = mk.Exec(
             callStatic(
                 "ch.epfl.printwizard.plugin.logging.TraceOut",
                 "endCondition",
-                List.of(mk.Ident(condEvtSym)),   // ident AVEC sym
+                List.of(mk.Ident(condEvtSym)),
                 jcIf.pos
             )
         );
 
-        /*
-         * then/else
-         *
-         * if (__pw_cond_<pos>) {
-         *   TraceOut.beginThenBlock(__pw_cond_evt_<pos>);
-         *   <then>
-         *   TraceOut.endThenBlock(__pw_cond_evt_<pos>);
-         * } else {
-         *   TraceOut.beginElseBlock(__pw_cond_evt_<pos>);
-         *   <else>
-         *   TraceOut.endElseBlock(__pw_cond_evt_<pos>);
-         * }
-         */
         JCTree.JCStatement beginThen = mk.Exec(
             callStatic(
                 "ch.epfl.printwizard.plugin.logging.TraceOut",
@@ -495,6 +463,7 @@ public class TracingTranslator extends TreeTranslator {
                 jcIf.pos
             )
         );
+
         JCTree.JCStatement endThen = mk.Exec(
             callStatic(
                 "ch.epfl.printwizard.plugin.logging.TraceOut",
@@ -503,6 +472,7 @@ public class TracingTranslator extends TreeTranslator {
                 jcIf.pos
             )
         );
+
         JCTree.JCBlock tracedThen = mk.Block(0, List.of(beginThen, thenStmt, endThen));
 
         JCTree.JCStatement tracedElse = null;
@@ -526,17 +496,9 @@ public class TracingTranslator extends TreeTranslator {
             tracedElse = mk.Block(0, List.of(beginElse, elseStmt, endElse));
         }
 
-        JCTree.JCIf newIf = mk.If(mk.Ident(condSym), tracedThen, tracedElse);
+        JCTree.JCIf newIf = mk.If(condExpr, tracedThen, tracedElse);
 
-        /*
-         * {
-         *   String __pw_cond_evt = TraceOut.beginCondition(...);
-         *   boolean __pw_cond = ...;
-         *   if (__pw_cond) { ... } else { ... }
-         *   TraceOut.endCondition(__pw_cond_evt);
-         * }
-         */
-        this.result = mk.Block(0, List.of(condEvtVar, condVar, newIf, endCondStmt));
+        this.result = mk.Block(0, List.of(condEvtVar, newIf, endCondStmt));
     }
 
     @Override
@@ -1177,21 +1139,6 @@ public class TracingTranslator extends TreeTranslator {
         JCTree.JCExpression boolTypeTree = mk.TypeIdent(TypeTag.BOOLEAN);
         boolTypeTree.type = symtab.booleanType;
 
-        JCTree.JCVariableDecl condVar = mk.VarDef(
-            mk.Modifiers(Flags.SYNTHETIC),
-            condVarName,
-            boolTypeTree,
-            condExpr
-        );
-        Symbol.VarSymbol condSym = new Symbol.VarSymbol(
-            Flags.SYNTHETIC,
-            condVarName,
-            symtab.booleanType,
-            (currentMethod != null ? currentMethod : symtab.noSymbol)
-        );
-        condVar.sym = condSym;
-        condVar.type = symtab.booleanType;
-
         String resVarNameStr = "__pw_res_" + jcConditional.pos;
         var resVarName = names.fromString(resVarNameStr);
 
@@ -1264,10 +1211,7 @@ public class TracingTranslator extends TreeTranslator {
         );
         JCTree.JCBlock elseBlock = mk.Block(0, com.sun.tools.javac.util.List.of(beginElse, assignElseStmt, endElse));
 
-        JCTree.JCExpression condIdent = mk.Ident(condSym);
-        condIdent.type = symtab.booleanType;
-
-        JCTree.JCIf ternaryIf = mk.If(condIdent, thenBlock, elseBlock);
+        JCTree.JCIf ternaryIf = mk.If(condExpr, thenBlock, elseBlock);
 
         JCTree.JCMethodInvocation endCondCall = callStatic(
             "ch.epfl.printwizard.plugin.logging.TraceOut",
@@ -1281,7 +1225,7 @@ public class TracingTranslator extends TreeTranslator {
         assignFinalExpr.type = resultType;
         JCTree.JCStatement assignFinalStmt = mk.Exec(assignFinalExpr);
 
-        List<JCTree.JCStatement> stmts = List.of(condEvtVar, condVar, resVar, ternaryIf, assignFinalStmt);
+        List<JCTree.JCStatement> stmts = List.of(condEvtVar, resVar, ternaryIf, assignFinalStmt);
 
         JCTree.JCExpression resultExpr = mk.Ident(resSym);
         resultExpr.type = resultType;

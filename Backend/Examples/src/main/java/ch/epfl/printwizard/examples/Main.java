@@ -4,17 +4,11 @@ public class Main {
     
     public static void main(String[] args) {
 
-        int i = 1 < 3 ? 1 : 2;
+        int i = 0;
 
-        //int[] array = new int[2];
-        //array[0] = 1;
-        //array[1] += 2;
-        /*Player p1 = new Player(100, 20);
-        Player p2 = new Player(17, 59);
-        int currentHealthPointsP1 = p1.getHealthPoints();
-        p1.setHealthPoints(add(10, 15));
-        System.out.println("Player health points after damage: " + p1.getHealthPoints());
-        int z = Math.abs(32);*/
+        if (i < 3) {
+            i = add(i, 1);
+        }
     }
 
     private static int add(int a, int b) {
