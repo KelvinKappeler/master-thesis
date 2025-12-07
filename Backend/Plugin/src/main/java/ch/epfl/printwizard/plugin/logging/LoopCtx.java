@@ -13,11 +13,10 @@ import java.util.List;
  */
 public class LoopCtx implements ExecCtx {
 
-    private String loopEventId;
+    private final String loopEventId;
     private String spanId;
-    private String frameId;
     private TraceLoc location;
-    private LoopKind kind;
+    private final LoopKind kind;
 
     private int nextIterationIndex;
 
@@ -25,19 +24,16 @@ public class LoopCtx implements ExecCtx {
     private final List<String> iterationEventIds = new ArrayList<>();
     private final List<String> pendingConditionEvents = new ArrayList<>();
 
-    public LoopCtx(String loopEventId, String spanId, String frameId, TraceLoc location, LoopKind kind) {
+    public LoopCtx(String loopEventId, String spanId, TraceLoc location, LoopKind kind) {
         Preconditions.requireNonNull(loopEventId, "loopEventId is null");
         Preconditions.requireNonNull(spanId, "spanId is null");
-        Preconditions.requireNonNull(frameId, "frameId is null");
         Preconditions.requireNonNull(location, "location is null");
         Preconditions.requireNonNull(kind, "kind is null");
         Preconditions.require(!loopEventId.isEmpty(), "loopEventId is empty");
         Preconditions.require(!spanId.isEmpty(), "spanId is empty");
-        Preconditions.require(!frameId.isEmpty(), "frameId is empty");
 
         this.loopEventId = loopEventId;
         this.spanId = spanId;
-        this.frameId = frameId;
         this.location = location;
         this.kind = kind;
         this.nextIterationIndex = 0;
@@ -45,13 +41,6 @@ public class LoopCtx implements ExecCtx {
 
     public String getLoopEventId() {
         return loopEventId;
-    }
-
-    public void setLoopEventId(String loopEventId) {
-        Preconditions.requireNonNull(loopEventId, "loopEventId is null");
-        Preconditions.require(!loopEventId.isEmpty(), "loopEventId is empty");
-
-        this.loopEventId = loopEventId;
     }
 
     public String getSpanId() {
@@ -63,17 +52,6 @@ public class LoopCtx implements ExecCtx {
         Preconditions.require(!spanId.isEmpty(), "spanId is empty");
 
         this.spanId = spanId;
-    }
-
-    public String getFrameId() {
-        return frameId;
-    }
-
-    public void setFrameId(String frameId) {
-        Preconditions.requireNonNull(frameId, "frameId is null");
-        Preconditions.require(!frameId.isEmpty(), "frameId is empty");
-
-        this.frameId = frameId;
     }
 
     public TraceLoc getLocation() {
@@ -88,10 +66,6 @@ public class LoopCtx implements ExecCtx {
 
     public LoopKind getKind() {
         return kind;
-    }
-
-    public void setKind(LoopKind kind) {
-        this.kind = kind;
     }
 
     public int getNextIterationIndex() {

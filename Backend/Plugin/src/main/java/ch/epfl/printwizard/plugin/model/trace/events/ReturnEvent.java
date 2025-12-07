@@ -7,7 +7,6 @@ import ch.epfl.printwizard.plugin.utils.Preconditions;
  * A ReturnEvent represents the event of a method returning a value during the execution of a program.
  * @param eventId the unique identifier of the event
  * @param spanId the identifier of the span this event belongs to
- * @param frameId the identifier of the frame this event belongs to
  * @param location the location in the source code where the event occurred
  * @param value the value being returned by the method
  * @param bodyEventId ID of the body event associated with this return event, if any
@@ -15,7 +14,6 @@ import ch.epfl.printwizard.plugin.utils.Preconditions;
 public record ReturnEvent(
     String eventId,
     String spanId,
-    String frameId,
     TraceLoc location,
     EventValue value,
     String bodyEventId
@@ -24,12 +22,10 @@ public record ReturnEvent(
     public ReturnEvent {
         Preconditions.requireNonNull(eventId, "eventId is null");
         Preconditions.requireNonNull(spanId, "spanId is null");
-        Preconditions.requireNonNull(frameId, "frameId is null");
         Preconditions.requireNonNull(location, "location is null");
         Preconditions.requireNonNull(value, "value is null");
         Preconditions.require(!eventId.isEmpty(), "eventId is empty");
         Preconditions.require(!spanId.isEmpty(), "spanId is empty");
-        Preconditions.require(!frameId.isEmpty(), "frameId is empty");
     }
 
 }

@@ -10,17 +10,14 @@ import java.util.List;
 /**
  * Represents a trace file containing a list of spans, frames, and events.
  * @param spans the list of spans in the trace
- * @param frames the list of frames in the trace
  * @param events the list of events in the trace
  */
 public record TraceFile(
     List<TraceSpan> spans,
-    List<TraceFrame> frames,
     List<TraceEvent> events
 ) {
     public TraceFile {
         Preconditions.requireNonNull(spans, "spans is null");
-        Preconditions.requireNonNull(frames, "frames is null");
         Preconditions.requireNonNull(events, "events is null");
     }
 
@@ -29,7 +26,6 @@ public record TraceFile(
      */
     public static final class Builder {
         private final List<TraceSpan> spans = Collections.synchronizedList(new ArrayList<>());
-        private final List<TraceFrame> frames = Collections.synchronizedList(new ArrayList<>());
         private final List<TraceEvent> events = Collections.synchronizedList(new ArrayList<>());
 
         /**
@@ -47,15 +43,6 @@ public record TraceFile(
          */
         public List<TraceSpan> getSpans() {
             return spans;
-        }
-
-        /**
-         * Adds a trace frame to the list of frames in the builder.
-         * @param fr the trace frame to be added
-         */
-        public void addFrame(TraceFrame fr)
-        {
-            frames.add(fr);
         }
 
         /**
@@ -81,20 +68,16 @@ public record TraceFile(
          */
         public TraceFile build() {
             List<TraceSpan> spansSnapshot;
-            List<TraceFrame> framesSnapshot;
             List<TraceEvent> eventsSnapshot;
 
             synchronized (spans) {
                 spansSnapshot = List.copyOf(spans);
             }
-            synchronized (frames) {
-                framesSnapshot = List.copyOf(frames);
-            }
             synchronized (events) {
                 eventsSnapshot = List.copyOf(events);
             }
 
-            return new TraceFile(spansSnapshot, framesSnapshot, eventsSnapshot);
+            return new TraceFile(spansSnapshot, eventsSnapshot);
         }
     }
 }

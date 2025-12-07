@@ -13,19 +13,15 @@ public class ArithmeticCtx implements ExecCtx {
 
     private final String arithmeticEventId;
     private final String spanId;
-    private final String frameId;
-    private final String methodId;
     private final TraceLoc location;
     private final String operation;
 
     private final List<String> leftEventIds = new ArrayList<>();
     private final List<String> rightEventIds = new ArrayList<>();
 
-    public ArithmeticCtx(String arithmeticEventId, String spanId, String frameId, String methodId, TraceLoc location, String operation) {
+    public ArithmeticCtx(String arithmeticEventId, String spanId, TraceLoc location, String operation) {
         this.arithmeticEventId = arithmeticEventId;
         this.spanId = spanId;
-        this.frameId = frameId;
-        this.methodId = methodId;
         this.location = location;
         this.operation = operation;
     }
@@ -36,14 +32,6 @@ public class ArithmeticCtx implements ExecCtx {
 
     public String getSpanId() {
         return spanId;
-    }
-
-    public String getFrameId() {
-        return frameId;
-    }
-
-    public String getMethodId() {
-        return methodId;
     }
 
     public TraceLoc getLocation() {

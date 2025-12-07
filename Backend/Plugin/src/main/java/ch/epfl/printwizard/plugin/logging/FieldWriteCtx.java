@@ -13,8 +13,6 @@ public class FieldWriteCtx implements ExecCtx {
 
     private final String fieldWriteEventId;
     private final String spanId;
-    private final String frameId;
-    private final String methodId;
     private final TraceLoc location;
     private final String objectId;
     private final String fieldName;
@@ -23,14 +21,12 @@ public class FieldWriteCtx implements ExecCtx {
     private final List<String> childEventIds = new ArrayList<>();
 
     public FieldWriteCtx(
-        String eventId, String spanId, String frameId, String methodId,
+        String eventId, String spanId,
         TraceLoc location, String objectId,
         String fieldName, String fieldType
     ) {
         this.fieldWriteEventId = eventId;
         this.spanId = spanId;
-        this.frameId = frameId;
-        this.methodId = methodId;
         this.location = location;
         this.objectId = objectId;
         this.fieldName = fieldName;
@@ -43,14 +39,6 @@ public class FieldWriteCtx implements ExecCtx {
 
     public String getSpanId() {
         return spanId;
-    }
-
-    public String getFrameId() {
-        return frameId;
-    }
-
-    public String getMethodId() {
-        return methodId;
     }
 
     public TraceLoc getLocation() {

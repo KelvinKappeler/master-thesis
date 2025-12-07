@@ -93,18 +93,12 @@ public record IndexFile(
 
         private void addEventByLocal(TraceEvent event) {
             if (event instanceof LocalEvent le) {
-                String localVarId = le.label();
-                String frameId = le.frameId();
-
-                String key = localVarId + "#" + frameId;
+                String key = le.label() + "#" + le.spanId();
 
                 byLocal.computeIfAbsent(key, k -> Collections.synchronizedList(new ArrayList<>())).add(le.eventId());
             }
             else if (event instanceof ArrayStoreEvent ase) {
-                String localVarId = ase.label();
-                String frameId = ase.frameId();
-
-                String key = localVarId + "#" + frameId;
+                String key = ase.label() + "#" + ase.spanId();
 
                 byLocal.computeIfAbsent(key, k -> Collections.synchronizedList(new ArrayList<>())).add(ase.eventId());
             }

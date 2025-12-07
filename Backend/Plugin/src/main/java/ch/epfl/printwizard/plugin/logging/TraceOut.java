@@ -4,10 +4,7 @@ import ch.epfl.printwizard.plugin.model.trace.*;
 import ch.epfl.printwizard.plugin.model.trace.events.*;
 import ch.epfl.printwizard.plugin.utils.Ids;
 
-import java.lang.reflect.Array;
 import java.util.*;
-import java.util.function.BooleanSupplier;
-import java.util.function.Supplier;
 
 /**
  * Represents a list of static methods used by the program to log data during its execution.
@@ -15,7 +12,7 @@ import java.util.function.Supplier;
 @SuppressWarnings("unused")
 public class TraceOut {
 
-    private static final ThreadLocal<Deque<FrameCtx>> FRAME_STACK = ThreadLocal.withInitial(ArrayDeque::new);
+    private static final ThreadLocal<Deque<SpanCtx>> SPAN_STACK = ThreadLocal.withInitial(ArrayDeque::new);
     private static final ThreadLocal<Deque<ExecCtx>> CTX_STACK = ThreadLocal.withInitial(ArrayDeque::new);
 
     private TraceOut() {}
@@ -26,14 +23,14 @@ public class TraceOut {
         String spanId = Ids.nextSpanId();
         String[] argsTypes = Arrays.stream(args).map(Arg::type).toArray(String[]::new);
         String methodId = Ids.createNewMethodId(owner, method, argsTypes, returnType);
-        String callerMethodId = FRAME_STACK.get().isEmpty() ? "null" : currentFrameCtx().methodId();
-        String parentSpanId = FRAME_STACK.get().isEmpty() ? "null" : currentFrameCtx().spanId();
+        String callerMethodId = SPAN_STACK.get().isEmpty() ? "null" : currentFrameCtx().methodId();
+        String parentSpanId = SPAN_STACK.get().isEmpty() ? "null" : currentFrameCtx().spanId();
         String startEventId = Ids.nextEventId();
         TraceLoc loc = new TraceLoc(sourceId, line);
         String thisRefObjectId = thisRef != null ? EventValue.getOrCreateObjectId(thisRef) : null;
         
         CallEvent callEvent = new CallEvent(
-            startEventId, spanId, frameId,
+            startEventId, spanId,
             loc,
             callerMethodId, methodId,
             method, false, args,
@@ -42,18 +39,18 @@ public class TraceOut {
         addEvent(callEvent);
 
         OutputManager.getTraceFileBuilder().addSpan(new TraceSpan(
-            spanId, parentSpanId, methodId, startEventId, "end",
-            loc, new TraceLoc("source", 1))
-        );
-        OutputManager.getTraceFileBuilder().addFrame(new TraceFrame(frameId, spanId, methodId, thisRefObjectId, List.of(args)));
+            spanId, parentSpanId, methodId, thisRefObjectId, List.of(args),
+            startEventId, "end",
+            loc, new TraceLoc("source", 1)
+        ));
 
-        FRAME_STACK.get().push(new FrameCtx(spanId, frameId, methodId));
+        SPAN_STACK.get().push(new SpanCtx(spanId, methodId));
         CTX_STACK.get().push(new MethodCtx(startEventId, spanId, frameId));
     }
 
     @SuppressWarnings("unused")
     public static void recordCall(String owner, String method, Arg[] args, String returnType, boolean isExternal, String sourceId, int line) {
-        FrameCtx ctx = currentFrameCtx();
+        SpanCtx ctx = currentFrameCtx();
         TraceLoc loc = new TraceLoc(sourceId, line);
         String[] argTypes = Arrays.stream(args).map(Arg::type).toArray(String[]::new);
         String eventId = Ids.nextEventId();
@@ -61,7 +58,7 @@ public class TraceOut {
         String calleeMethodId = isExternal ? "-" : Ids.createNewMethodId(owner, method, argTypes, returnType);
 
         CallEvent ev = new CallEvent(
-            eventId, ctx.spanId(), ctx.frameId(),
+            eventId, ctx.spanId(),
             loc, callerMethodId, calleeMethodId,
             method, isExternal, args,
             EventValue.of(null), new String[0]
@@ -72,19 +69,19 @@ public class TraceOut {
 
     @SuppressWarnings("unused")
     public static <T> T recordNewObject(T obj, String typeName, String sourceId, int line) {
-        FrameCtx ctx = currentFrameCtx();
+        SpanCtx ctx = currentFrameCtx();
         TraceLoc loc = new TraceLoc(sourceId, line);
 
         String objectId = EventValue.getOrCreateObjectId(obj);
 
-        addEvent(new NewEvent(Ids.nextEventId(), ctx.spanId(), ctx.frameId(), loc, objectId, typeName));
+        addEvent(new NewEvent(Ids.nextEventId(), ctx.spanId(), loc, objectId, typeName));
 
         return obj;
     }
 
     @SuppressWarnings("unused")
     public static String beginArrayStore(String label, Object arrayRef, String arrayName, int index, String sourceId, int line) {
-        FrameCtx frame = currentFrameCtx();
+        SpanCtx frame = currentFrameCtx();
 
         String eventId = Ids.nextEventId();
         TraceLoc loc = new TraceLoc(sourceId, line);
@@ -92,7 +89,7 @@ public class TraceOut {
         String arrayObjectId = EventValue.getOrCreateObjectId(arrayRef);
 
         ArrayStoreCtx ctx = new ArrayStoreCtx(
-            eventId, frame.spanId(), frame.frameId(), frame.methodId(),
+            eventId, frame.spanId(), frame.methodId(),
             loc, arrayName, arrayObjectId, index, label
         );
 
@@ -125,7 +122,7 @@ public class TraceOut {
         }
 
         ArrayStoreEvent ev = new ArrayStoreEvent(
-            found.getArrayEventId(), found.getSpanId(), found.getFrameId(),
+            found.getArrayEventId(), found.getSpanId(),
             found.getLocation(),
             found.getArrayVarName(),
             found.getArrayObjectId(),
@@ -141,13 +138,13 @@ public class TraceOut {
 
     @SuppressWarnings("unused")
     public static String beginComparison(String op, String sourceId, int line) {
-        FrameCtx frame = currentFrameCtx();
+        SpanCtx frame = currentFrameCtx();
 
         String eventId = Ids.nextEventId();
         TraceLoc loc = new TraceLoc(sourceId, line);
 
         ComparisonCtx ctx = new ComparisonCtx(
-            eventId, frame.spanId(), frame.frameId(), frame.methodId(),
+            eventId, frame.spanId(), frame.methodId(),
             loc, op
         );
 
@@ -227,7 +224,7 @@ public class TraceOut {
         boolean result = computeComparison(found.getOperator(), left, right);
 
         ComparisonEvent ev = new ComparisonEvent(
-            found.getComparisonEventId(), found.getSpanId(), found.getFrameId(),
+            found.getComparisonEventId(), found.getSpanId(),
             found.getLocation(), found.getOperator(),
             EventValue.of(left), leftEventId,
             EventValue.of(right), rightEventId,
@@ -318,12 +315,12 @@ public class TraceOut {
 
     @SuppressWarnings("unused")
     public static String beginArithmetic(String op, String sourceId, int line) {
-        FrameCtx frame = currentFrameCtx();
+        SpanCtx frame = currentFrameCtx();
 
         String eventId = Ids.nextEventId();
         TraceLoc loc = new TraceLoc(sourceId, line);
 
-        ArithmeticCtx ctx = new ArithmeticCtx(eventId, frame.spanId(), frame.frameId(), frame.methodId(), loc, op);
+        ArithmeticCtx ctx = new ArithmeticCtx(eventId, frame.spanId(), loc, op);
 
         CTX_STACK.get().push(ctx);
 
@@ -399,7 +396,7 @@ public class TraceOut {
         String rightEventId = found.getRightEventIds().isEmpty() ? null : found.getRightEventIds().getFirst();
 
         ArithmeticEvent ev = new ArithmeticEvent(
-            found.getArithmeticEventId(), found.getSpanId(), found.getFrameId(),
+            found.getArithmeticEventId(), found.getSpanId(),
             found.getLocation(), found.getOperation(),
             EventValue.of(left), leftEventId,
             EventValue.of(right), rightEventId,
@@ -423,11 +420,11 @@ public class TraceOut {
 
     @SuppressWarnings("unused")
     public static String beginLocal(String label, String varName, String sourceId, int line) {
-        FrameCtx frame = currentFrameCtx();
+        SpanCtx frame = currentFrameCtx();
 
         String eventId = Ids.nextEventId();
         TraceLoc loc = new TraceLoc(sourceId, line);
-        LocalCtx ctx = new LocalCtx(eventId, frame.spanId(), frame.frameId(), frame.methodId(), loc, varName, label);
+        LocalCtx ctx = new LocalCtx(eventId, frame.spanId(), frame.methodId(), loc, varName, label);
 
         CTX_STACK.get().push(ctx);
 
@@ -457,7 +454,7 @@ public class TraceOut {
         }
 
         LocalEvent ev = new LocalEvent(
-            found.getLocalEventId(), found.getSpanId(), found.getFrameId(),
+            found.getLocalEventId(), found.getSpanId(),
             found.getLocation(), found.getMethodId(), found.getVarName(),
             EventValue.of(value),
             found.getLabel(), rootEventId
@@ -470,7 +467,7 @@ public class TraceOut {
 
     @SuppressWarnings("unused")
     public static String beginFieldWrite(Object target, String fieldName, String sourceId, int line) {
-        FrameCtx frame = currentFrameCtx();
+        SpanCtx frame = currentFrameCtx();
         TraceLoc loc = new TraceLoc(sourceId, line);
 
         String objectId = EventValue.getOrCreateObjectId(target);
@@ -478,7 +475,7 @@ public class TraceOut {
         String eventId = Ids.nextEventId();
 
         FieldWriteCtx ctx = new FieldWriteCtx(
-            eventId, frame.spanId(), frame.frameId(), frame.methodId(),
+            eventId, frame.spanId(),
             loc, objectId,
             fieldName, fieldType
         );
@@ -511,7 +508,7 @@ public class TraceOut {
         }
 
         FieldWriteEvent ev = new FieldWriteEvent(
-            found.getFieldWriteEventId(), found.getSpanId(), found.getFrameId(),
+            found.getFieldWriteEventId(), found.getSpanId(),
             found.getLocation(), found.getObjectId(),
             found.getFieldName(), EventValue.of(value), found.getFieldType(),
             bodyEventId
@@ -524,19 +521,16 @@ public class TraceOut {
 
     @SuppressWarnings("unused")
     public static String beginReturn(String sourceId, int line) {
-        var frameStack = FRAME_STACK.get();
+        var frameStack = SPAN_STACK.get();
         if (frameStack.isEmpty()) {
             return null;
         }
 
-        FrameCtx frameCtx = frameStack.peek();
+        SpanCtx spanCtx = frameStack.peek();
         String evId = Ids.nextEventId();
         TraceLoc loc = new TraceLoc(sourceId, line);
 
-        ReturnCtx ctx = new ReturnCtx(
-            evId, frameCtx.spanId(), frameCtx.frameId(),
-            frameCtx.methodId(), loc
-        );
+        ReturnCtx ctx = new ReturnCtx(evId, spanCtx.spanId(), loc);
 
         CTX_STACK.get().push(ctx);
 
@@ -545,12 +539,12 @@ public class TraceOut {
 
     @SuppressWarnings("unused")
     public static <T> T endReturn(String returnEventId, T ret) {
-        var frameStack = FRAME_STACK.get();
+        var frameStack = SPAN_STACK.get();
         if (frameStack.isEmpty()) {
             return ret;
         }
 
-        FrameCtx frameCtx = frameStack.pop();
+        SpanCtx spanCtx = frameStack.pop();
 
         Deque<ExecCtx> stack = CTX_STACK.get();
         ReturnCtx found = null;
@@ -576,30 +570,30 @@ public class TraceOut {
         EventValue value = EventValue.of(ret);
 
         ReturnEvent returnEvent = new ReturnEvent(
-            found.getReturnEventId(), frameCtx.spanId(), frameCtx.frameId(),
+            found.getReturnEventId(), spanCtx.spanId(),
             loc, value, bodyEventId
         );
         
         addEvent(returnEvent);
 
-        MethodCtx methodCtx = popMethodCtxForFrame(frameCtx.spanId(), frameCtx.frameId());
+        MethodCtx methodCtx = popMethodCtxForSpan(spanCtx.spanId());
         if (methodCtx != null) {
             patchCall(methodCtx.getCallEventId(), value, methodCtx.getBodyEventIds());
         }
 
-        patchSpanEnd(frameCtx.spanId(), found.getReturnEventId(), loc);
+        patchSpanEnd(spanCtx.spanId(), found.getReturnEventId(), loc);
 
         return ret;
     }
 
     @SuppressWarnings("unused")
     public static String beginCondition(String sourceId, int line, String conditionKind) {
-        FrameCtx ctx = currentFrameCtx();
+        SpanCtx ctx = currentFrameCtx();
         String eventId = Ids.nextEventId();
         TraceLoc loc = new TraceLoc(sourceId, line);
 
         ConditionKind kind = ConditionKind.valueOf(conditionKind);
-        addEvent(new ConditionEvent(eventId, ctx.spanId(), ctx.frameId(), loc, kind, new String[0], new String[0], new String[0], null));
+        addEvent(new ConditionEvent(eventId, ctx.spanId(), loc, kind, new String[0], new String[0], new String[0], null));
 
         ConditionCtx conditionCtx = new ConditionCtx(eventId);
         CTX_STACK.get().push(conditionCtx);
@@ -694,12 +688,12 @@ public class TraceOut {
 
     @SuppressWarnings("unused")
     public static String beginLoop(String sourceId, int line, String kindName) {
-        FrameCtx frame = currentFrameCtx();
+        SpanCtx frame = currentFrameCtx();
         String loopEventId = Ids.nextEventId();
         TraceLoc loc = new TraceLoc(sourceId, line);
         LoopKind loopKind = LoopKind.valueOf(kindName);
 
-        CTX_STACK.get().push(new LoopCtx(loopEventId, frame.spanId(), frame.frameId(), loc, loopKind));
+        CTX_STACK.get().push(new LoopCtx(loopEventId, frame.spanId(), loc, loopKind));
 
         return loopEventId;
     }
@@ -716,7 +710,7 @@ public class TraceOut {
                 String[] iterationEventIds = loopCtx.getIterationEventIds().toArray(String[]::new);
 
                 LoopEvent loopEvent = new LoopEvent(
-                    loopCtx.getLoopEventId(), loopCtx.getSpanId(), loopCtx.getFrameId(),
+                    loopCtx.getLoopEventId(), loopCtx.getSpanId(),
                     loopCtx.getLocation(), loopCtx.getKind(),
                     initEventIds, iterationEventIds
                 );
@@ -814,7 +808,7 @@ public class TraceOut {
         String[] updateIds = iterCtx.getUpdateEventIds().toArray(String[]::new);
 
         LoopIterationEvent iterEvent = new LoopIterationEvent(
-            iterCtx.getIterationEventId(), loopCtx.getSpanId(), loopCtx.getFrameId(),
+            iterCtx.getIterationEventId(), loopCtx.getSpanId(),
             loopCtx.getLocation(), iterCtx.getIterationIndex(),
             condIds, bodyIds, updateIds
         );
@@ -887,8 +881,8 @@ public class TraceOut {
         OutputManager.getStateFileBuilder().onEvent(event);
     }
 
-    private static FrameCtx currentFrameCtx() {
-        return FRAME_STACK.get().peek();
+    private static SpanCtx currentFrameCtx() {
+        return SPAN_STACK.get().peek();
     }
 
     private static void patchSpanEnd(String spanId, String endEventId, TraceLoc endLoc) {
@@ -896,7 +890,11 @@ public class TraceOut {
         for (int i = traceFileBuilder.getSpans().size() - 1; i >= 0; i--) {
             TraceSpan s = traceFileBuilder.getSpans().get(i);
             if (s.spanId().equals(spanId) && s.endEventId().equals("end")) {
-                traceFileBuilder.getSpans().set(i, new TraceSpan(s.spanId(), s.parentSpanId(), s.methodId(), s.startEventId(), endEventId, s.startLoc(), endLoc));
+                traceFileBuilder.getSpans().set(i, new TraceSpan(
+                    s.spanId(), s.parentSpanId(), s.methodId(),
+                    s.thisRef(), s.args(),
+                    s.startEventId(), endEventId, s.startLoc(), endLoc
+                ));
                 return;
             }
         }
@@ -915,7 +913,7 @@ public class TraceOut {
             TraceEvent e = events.get(i);
             if (e instanceof ConditionEvent ce && ce.eventId().equals(conditionEventId)) {
                 ConditionEvent patched = new ConditionEvent(
-                    ce.eventId(), ce.spanId(), ce.frameId(), ce.location(), ce.kind(),
+                    ce.eventId(), ce.spanId(), ce.location(), ce.kind(),
                     condIds, thenIds, elseIds,
                     value
                 );
@@ -937,7 +935,7 @@ public class TraceOut {
             TraceEvent e = events.get(i);
             if (e instanceof CallEvent ce && ce.eventId().equals(callEventId)) {
                 CallEvent patched = new CallEvent(
-                    ce.eventId(), ce.spanId(), ce.frameId(),
+                    ce.eventId(), ce.spanId(),
                     ce.location(), ce.callerMethodId(), ce.calleeMethodId(),
                     ce.name(), ce.external(), ce.args(),
                     returnValue, eventIdArray
@@ -950,12 +948,12 @@ public class TraceOut {
         }
     }
     
-    private static MethodCtx popMethodCtxForFrame(String spanId, String frameId) {
+    private static MethodCtx popMethodCtxForSpan(String spanId) {
         Deque<ExecCtx> stack = CTX_STACK.get();
         MethodCtx found = null;
 
         for (ExecCtx ctx : stack) {
-            if (ctx instanceof MethodCtx mc && mc.getSpanId().equals(spanId) && mc.getFrameId().equals(frameId)) {
+            if (ctx instanceof MethodCtx mc && mc.getSpanId().equals(spanId)) {
                 found = mc;
                 
                 break;

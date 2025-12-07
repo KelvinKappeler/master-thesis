@@ -36,12 +36,6 @@ public sealed interface TraceEvent permits ArithmeticEvent, ArrayStoreEvent, Cal
     String spanId();
 
     /**
-     * Returns the frame ID associated with the event.
-     * @return the frame ID
-     */
-    String frameId();
-
-    /**
      * Returns the location of the event in the source code.
      * @return the trace location
      */

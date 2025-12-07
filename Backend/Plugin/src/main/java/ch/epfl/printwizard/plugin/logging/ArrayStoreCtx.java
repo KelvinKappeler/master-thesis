@@ -15,7 +15,6 @@ public class ArrayStoreCtx implements ExecCtx {
 
     private final String arrayEventId;
     private final String spanId;
-    private final String frameId;
     private final String methodId;
     private final TraceLoc location;
     private final String arrayVarName;
@@ -25,10 +24,9 @@ public class ArrayStoreCtx implements ExecCtx {
 
     private final List<String> childEventIds = new ArrayList<>();
 
-    public ArrayStoreCtx(String arrayEventId, String spanId, String frameId, String methodId, TraceLoc location, String arrayVarName, String arrayObjectId, int index, String label) {
+    public ArrayStoreCtx(String arrayEventId, String spanId, String methodId, TraceLoc location, String arrayVarName, String arrayObjectId, int index, String label) {
         this.arrayEventId = arrayEventId;
         this.spanId = spanId;
-        this.frameId = frameId;
         this.methodId = methodId;
         this.location = location;
         this.arrayVarName = arrayVarName;
@@ -44,7 +42,7 @@ public class ArrayStoreCtx implements ExecCtx {
             return false;
         }
 
-        if (Objects.equals(e.spanId(), spanId) && Objects.equals(e.frameId(), frameId)) {
+        if (Objects.equals(e.spanId(), spanId)) {
             childEventIds.add(e.eventId());
         }
 
@@ -61,10 +59,6 @@ public class ArrayStoreCtx implements ExecCtx {
 
     public String getSpanId() {
         return spanId;
-    }
-
-    public String getFrameId() {
-        return frameId;
     }
 
     public String getMethodId() {

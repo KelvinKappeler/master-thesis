@@ -1,9 +1,6 @@
 package ch.epfl.printwizard.plugin.logging;
 
-import ch.epfl.printwizard.plugin.model.trace.events.CallEvent;
 import ch.epfl.printwizard.plugin.model.trace.events.TraceEvent;
-
-import java.util.Objects;
 
 /**
  * Represents the context of a comparison phase.
