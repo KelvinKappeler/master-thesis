@@ -2,7 +2,7 @@
   "spans" : [ {
     "spanId" : "spn:1",
     "parentSpanId" : "null",
-    "methodId" : "m:ch.epfl.printwizard.examples.main(String[])void",
+    "methodId" : "m:ch.epfl.printwizard.examples.Main.main(String[])void",
     "thisRef" : null,
     "args" : [ {
       "name" : "args",
@@ -15,19 +15,19 @@
       "type" : "String[]"
     } ],
     "startEventId" : "eve:1",
-    "endEventId" : "eve:18",
+    "endEventId" : "eve:24",
     "startLoc" : {
       "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
       "line" : 5
     },
     "endLoc" : {
       "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
-      "line" : 17
+      "line" : 19
     }
   }, {
     "spanId" : "spn:2",
     "parentSpanId" : "spn:1",
-    "methodId" : "m:ch.epfl.printwizard.examples.add(int,int)int",
+    "methodId" : "m:ch.epfl.printwizard.examples.Main.add(int,int)int",
     "thisRef" : null,
     "args" : [ {
       "name" : "a",
@@ -52,16 +52,16 @@
     "endEventId" : "eve:5",
     "startLoc" : {
       "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
-      "line" : 19
+      "line" : 21
     },
     "endLoc" : {
       "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
-      "line" : 20
+      "line" : 22
     }
   }, {
     "spanId" : "spn:3",
     "parentSpanId" : "spn:1",
-    "methodId" : "m:ch.epfl.printwizard.examples.add(int,int)int",
+    "methodId" : "m:ch.epfl.printwizard.examples.Main.add(int,int)int",
     "thisRef" : null,
     "args" : [ {
       "name" : "a",
@@ -86,11 +86,45 @@
     "endEventId" : "eve:8",
     "startLoc" : {
       "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
-      "line" : 19
+      "line" : 21
     },
     "endLoc" : {
       "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
-      "line" : 20
+      "line" : 22
+    }
+  }, {
+    "spanId" : "spn:4",
+    "parentSpanId" : "spn:1",
+    "methodId" : "m:ch.epfl.printwizard.examples.Player.<init>(int,int)void",
+    "thisRef" : "obj:2",
+    "args" : [ {
+      "name" : "healthPoints",
+      "value" : {
+        "value" : 10,
+        "valueObjectId" : null,
+        "javaTypeName" : "java.lang.Integer",
+        "kind" : "PRIMITIVE"
+      },
+      "type" : "int"
+    }, {
+      "name" : "manaPoints",
+      "value" : {
+        "value" : 100,
+        "valueObjectId" : null,
+        "javaTypeName" : "java.lang.Integer",
+        "kind" : "PRIMITIVE"
+      },
+      "type" : "int"
+    } ],
+    "startEventId" : "eve:19",
+    "endEventId" : "eve:23",
+    "startLoc" : {
+      "sourceId" : "src:ch/epfl/printwizard/examples/Player.java",
+      "line" : 8
+    },
+    "endLoc" : {
+      "sourceId" : "src:ch/epfl/printwizard/examples/Player.java",
+      "line" : 11
     }
   } ],
   "events" : [ {
@@ -102,7 +136,7 @@
       "line" : 5
     },
     "callerMethodId" : "null",
-    "calleeMethodId" : "m:ch.epfl.printwizard.examples.main(String[])void",
+    "calleeMethodId" : "m:ch.epfl.printwizard.examples.Main.main(String[])void",
     "name" : "main",
     "external" : false,
     "args" : [ {
@@ -121,17 +155,17 @@
       "javaTypeName" : "java.lang.Object",
       "kind" : "NULL"
     },
-    "bodyEventIds" : [ "eve:2", "eve:10", "eve:11", "eve:16", "eve:14", "eve:17", "eve:18" ]
+    "bodyEventIds" : [ "eve:2", "eve:10", "eve:11", "eve:16", "eve:14", "eve:17", "eve:18", "eve:24" ]
   }, {
     "type" : "CALL",
     "eventId" : "eve:4",
     "spanId" : "spn:2",
     "location" : {
       "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
-      "line" : 19
+      "line" : 21
     },
-    "callerMethodId" : "m:ch.epfl.printwizard.examples.main(String[])void",
-    "calleeMethodId" : "m:ch.epfl.printwizard.examples.add(int,int)int",
+    "callerMethodId" : "m:ch.epfl.printwizard.examples.Main.main(String[])void",
+    "calleeMethodId" : "m:ch.epfl.printwizard.examples.Main.add(int,int)int",
     "name" : "add",
     "external" : false,
     "args" : [ {
@@ -166,9 +200,9 @@
     "spanId" : "spn:2",
     "location" : {
       "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
-      "line" : 20
+      "line" : 22
     },
-    "operation" : "PLUS",
+    "operator" : "PLUS",
     "left" : {
       "value" : 3,
       "valueObjectId" : null,
@@ -195,7 +229,7 @@
     "spanId" : "spn:2",
     "location" : {
       "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
-      "line" : 20
+      "line" : 22
     },
     "value" : {
       "value" : 7,
@@ -210,10 +244,10 @@
     "spanId" : "spn:3",
     "location" : {
       "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
-      "line" : 19
+      "line" : 21
     },
-    "callerMethodId" : "m:ch.epfl.printwizard.examples.main(String[])void",
-    "calleeMethodId" : "m:ch.epfl.printwizard.examples.add(int,int)int",
+    "callerMethodId" : "m:ch.epfl.printwizard.examples.Main.main(String[])void",
+    "calleeMethodId" : "m:ch.epfl.printwizard.examples.Main.add(int,int)int",
     "name" : "add",
     "external" : false,
     "args" : [ {
@@ -248,9 +282,9 @@
     "spanId" : "spn:3",
     "location" : {
       "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
-      "line" : 20
+      "line" : 22
     },
-    "operation" : "PLUS",
+    "operator" : "PLUS",
     "left" : {
       "value" : 3,
       "valueObjectId" : null,
@@ -277,7 +311,7 @@
     "spanId" : "spn:3",
     "location" : {
       "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
-      "line" : 20
+      "line" : 22
     },
     "value" : {
       "value" : 7,
@@ -294,7 +328,7 @@
       "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
       "line" : 7
     },
-    "operation" : "DIV",
+    "operator" : "DIV",
     "left" : {
       "value" : 7,
       "valueObjectId" : null,
@@ -323,7 +357,7 @@
       "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
       "line" : 7
     },
-    "method" : "m:ch.epfl.printwizard.examples.main(String[])void",
+    "method" : "m:ch.epfl.printwizard.examples.Main.main(String[])void",
     "varName" : "i",
     "value" : {
       "value" : 3,
@@ -341,7 +375,7 @@
       "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
       "line" : 9
     },
-    "method" : "m:ch.epfl.printwizard.examples.main(String[])void",
+    "method" : "m:ch.epfl.printwizard.examples.Main.main(String[])void",
     "varName" : "j",
     "value" : {
       "value" : 0,
@@ -396,7 +430,7 @@
       "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
       "line" : 13
     },
-    "method" : "m:ch.epfl.printwizard.examples.main(String[])void",
+    "method" : "m:ch.epfl.printwizard.examples.Main.main(String[])void",
     "varName" : "j",
     "value" : {
       "value" : 10,
@@ -414,7 +448,7 @@
       "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
       "line" : 16
     },
-    "operation" : "PLUS",
+    "operator" : "PLUS",
     "left" : {
       "value" : 3,
       "valueObjectId" : null,
@@ -443,7 +477,7 @@
       "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
       "line" : 16
     },
-    "operation" : "PLUS",
+    "operator" : "PLUS",
     "left" : {
       "value" : 3,
       "valueObjectId" : null,
@@ -472,7 +506,7 @@
       "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
       "line" : 16
     },
-    "operation" : "PLUS",
+    "operator" : "PLUS",
     "left" : {
       "value" : "Result: ",
       "valueObjectId" : null,
@@ -501,7 +535,7 @@
       "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
       "line" : 16
     },
-    "callerMethodId" : "m:ch.epfl.printwizard.examples.main(String[])void",
+    "callerMethodId" : "m:ch.epfl.printwizard.examples.Main.main(String[])void",
     "calleeMethodId" : "-",
     "name" : "println",
     "external" : true,
@@ -523,12 +557,129 @@
     },
     "bodyEventIds" : [ ]
   }, {
+    "type" : "CALL",
+    "eventId" : "eve:19",
+    "spanId" : "spn:4",
+    "location" : {
+      "sourceId" : "src:ch/epfl/printwizard/examples/Player.java",
+      "line" : 8
+    },
+    "callerMethodId" : "m:ch.epfl.printwizard.examples.Main.main(String[])void",
+    "calleeMethodId" : "m:ch.epfl.printwizard.examples.Player.<init>(int,int)void",
+    "name" : "<init>",
+    "external" : false,
+    "args" : [ {
+      "name" : "healthPoints",
+      "value" : {
+        "value" : 10,
+        "valueObjectId" : null,
+        "javaTypeName" : "java.lang.Integer",
+        "kind" : "PRIMITIVE"
+      },
+      "type" : "int"
+    }, {
+      "name" : "manaPoints",
+      "value" : {
+        "value" : 100,
+        "valueObjectId" : null,
+        "javaTypeName" : "java.lang.Integer",
+        "kind" : "PRIMITIVE"
+      },
+      "type" : "int"
+    } ],
+    "value" : {
+      "value" : null,
+      "valueObjectId" : null,
+      "javaTypeName" : "java.lang.Object",
+      "kind" : "NULL"
+    },
+    "bodyEventIds" : [ "eve:20", "eve:21", "eve:22", "eve:23" ]
+  }, {
+    "type" : "NEW",
+    "eventId" : "eve:20",
+    "spanId" : "spn:4",
+    "location" : {
+      "sourceId" : "src:ch/epfl/printwizard/examples/Player.java",
+      "line" : 8
+    },
+    "objectId" : "obj:2",
+    "typeName" : "ch.epfl.printwizard.examples.Player"
+  }, {
+    "type" : "PUTFIELD",
+    "eventId" : "eve:21",
+    "spanId" : "spn:4",
+    "location" : {
+      "sourceId" : "src:ch/epfl/printwizard/examples/Player.java",
+      "line" : 9
+    },
+    "objectId" : "obj:2",
+    "fieldName" : "healthPoints",
+    "value" : {
+      "value" : 10,
+      "valueObjectId" : null,
+      "javaTypeName" : "java.lang.Integer",
+      "kind" : "PRIMITIVE"
+    },
+    "fieldType" : "int",
+    "bodyEventId" : null
+  }, {
+    "type" : "PUTFIELD",
+    "eventId" : "eve:22",
+    "spanId" : "spn:4",
+    "location" : {
+      "sourceId" : "src:ch/epfl/printwizard/examples/Player.java",
+      "line" : 10
+    },
+    "objectId" : "obj:2",
+    "fieldName" : "manaPoints",
+    "value" : {
+      "value" : 100,
+      "valueObjectId" : null,
+      "javaTypeName" : "java.lang.Integer",
+      "kind" : "PRIMITIVE"
+    },
+    "fieldType" : "int",
+    "bodyEventId" : null
+  }, {
     "type" : "RETURN",
+    "eventId" : "eve:23",
+    "spanId" : "spn:4",
+    "location" : {
+      "sourceId" : "src:ch/epfl/printwizard/examples/Player.java",
+      "line" : 11
+    },
+    "value" : {
+      "value" : null,
+      "valueObjectId" : null,
+      "javaTypeName" : "java.lang.Object",
+      "kind" : "NULL"
+    },
+    "bodyEventId" : null
+  }, {
+    "type" : "LOCAL",
     "eventId" : "eve:18",
     "spanId" : "spn:1",
     "location" : {
       "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
-      "line" : 17
+      "line" : 18
+    },
+    "method" : "m:ch.epfl.printwizard.examples.Main.main(String[])void",
+    "varName" : "player",
+    "value" : {
+      "value" : null,
+      "valueObjectId" : "obj:2",
+      "javaTypeName" : "ch.epfl.printwizard.examples.Player",
+      "kind" : "OBJECT"
+    },
+    "label" : "local:player@src:ch/epfl/printwizard/examples/Main.java:342",
+    "bodyEventId" : "eve:19"
+  }, {
+    "type" : "RETURN",
+    "eventId" : "eve:24",
+    "spanId" : "spn:1",
+    "location" : {
+      "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
+      "line" : 19
     },
     "value" : {
       "value" : null,

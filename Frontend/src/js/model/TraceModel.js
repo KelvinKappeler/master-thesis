@@ -9,6 +9,7 @@ export class TraceModel {
 
         this.eventsById = new Map();
         this.spansById = new Map();
+
         this.methodsById = new Map();
         this.classesById = new Map();
 
@@ -19,23 +20,11 @@ export class TraceModel {
     }
 
     /**
-     * Returns all events for a given span.
-     * @param spanId {string} - The ID of the span.
-     * @returns {TraceEvent[]} - An array of events for the given span.
-     */
-    getEventsFromSpan(spanId) {
-        let eventIds = this.mainData.index.bySpan.get(spanId);
-        if (!Array.isArray(eventIds) || eventIds.length === 0) return [];
-
-        return eventIds.map(id => this.eventsById.get(id)).filter(Boolean);
-    }
-
-    /**
      * Returns the AST (StructureNode) for a given event.
      * @param {string} eventId - The ID of the event.
      * @returns {StructureNode} The AST for the given event.
      */
-    getAstFromEvent(eventId) {
+    getStructureFromEvent(eventId) {
         const ev = this.eventsById.get(eventId);
         if (!ev) return null;
 

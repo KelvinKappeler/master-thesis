@@ -84,7 +84,7 @@ export class ArithmeticTraceEvent extends TraceEvent {
 /**
  * Represents an event where a value is stored in an array.
  */
-export class ArrayStoreEvent extends TraceEvent {
+export class ArrayStoreTraceEvent extends TraceEvent {
     constructor (eventId, spanId, location, arrayVarName, arrayObjectId, index, value, label, bodyEventId) {
         super(eventId, spanId, location);
 
@@ -131,7 +131,7 @@ export class ComparisonTraceEvent extends TraceEvent {
 /**
  * Represents an event where a field of an object is written to.
  */
-export class FieldWriteEvent extends TraceEvent {
+export class FieldWriteTraceEvent extends TraceEvent {
     constructor(eventId, spanId, location, objectId, fieldName, value, fieldType, bodyEventId) {
         super(eventId, spanId, location);
 
@@ -146,7 +146,7 @@ export class FieldWriteEvent extends TraceEvent {
 /**
  * Represents an event where a loop is executed.
  */
-export class LoopEvent extends TraceEvent {
+export class LoopTraceEvent extends TraceEvent {
     constructor(eventId, spanId, location, loopKind, initEventIds, iterationsEventIds) {
         super(eventId, spanId, location);
 
@@ -159,7 +159,7 @@ export class LoopEvent extends TraceEvent {
 /**
  * Represents an event for a single iteration of a loop.
  */
-export class LoopIterationEvent extends TraceEvent {
+export class LoopIterationTraceEvent extends TraceEvent {
     constructor(eventId, spanId, location, iterationIndex, conditionEventIds, bodyEventIds, updateEventIds) {
         super(eventId, spanId, location);
 
@@ -173,7 +173,7 @@ export class LoopIterationEvent extends TraceEvent {
 /**
  * Represents an event where a new object is created.
  */
-export class NewEvent extends TraceEvent {
+export class NewTraceEvent extends TraceEvent {
     constructor(eventId, spanId, location, objectId, typeName) {
         super(eventId, spanId, location);
 

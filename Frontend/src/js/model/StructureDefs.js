@@ -132,3 +132,17 @@ export class IfNode extends StructureNode {
         return this;
     }
 }
+
+/**
+ * Represents a for-loop in the code.
+ */
+export class ForNode extends StructureNode {
+    constructor(structureId, code, startPosition, endPosition, initialization, condition, update, body) {
+        super(structureId, code, startPosition, endPosition);
+
+        this.initialization = initialization;
+        this.condition = condition;
+        this.update = update;
+        this.body = body;
+    }
+}

@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Represents the context of a return operation.
+ * Represents the context of a return operator.
  */
 public class ReturnCtx implements ExecCtx {
 

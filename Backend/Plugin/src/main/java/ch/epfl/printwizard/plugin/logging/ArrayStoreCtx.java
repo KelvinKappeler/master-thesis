@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- * Represents the context of an array store operation in the execution trace.
+ * Represents the context of an array store operator in the execution trace.
  */
 public class ArrayStoreCtx implements ExecCtx {
 

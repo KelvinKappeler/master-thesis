@@ -14,6 +14,8 @@ public class Main {
         }
         
         System.out.println("Result: " + (i + j));
+        
+        Player player = new Player(10, 100);
     }
 
     private static int add(int a, int b) {

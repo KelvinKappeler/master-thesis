@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Represents the context of a comparison operation.
+ * Represents the context of a comparison operator.
  */
 public class ComparisonCtx implements ExecCtx {
 

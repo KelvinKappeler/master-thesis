@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Represents the context of an arithmetic operation.
+ * Represents the context of an arithmetic operator.
  */
 public class ArithmeticCtx implements ExecCtx {
 

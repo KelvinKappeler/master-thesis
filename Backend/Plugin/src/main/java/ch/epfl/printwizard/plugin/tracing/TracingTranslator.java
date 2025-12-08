@@ -69,7 +69,7 @@ public class TracingTranslator extends TreeTranslator {
         this.currentMethod = jcMethodDecl.sym;
 
         int startLine = cu.getLineMap().getLineNumber(jcMethodDecl.pos);
-        String owner = cu.packge != null ? cu.packge.toString() : "";
+        String owner = cu.packge != null ? cu.packge + "." + jcMethodDecl.sym.owner.getSimpleName().toString() : jcMethodDecl.sym.owner.getSimpleName().toString();
         String returnType = (jcMethodDecl.getReturnType() != null) ? jcMethodDecl.getReturnType().toString() : "void";
 
         boolean isStatic = jcMethodDecl.sym != null && jcMethodDecl.sym.isStatic();

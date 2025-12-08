@@ -8,11 +8,11 @@ export class Breadcrumb extends PWElement {
     /**
      * Creates a new breadcrumb list
      */
-    constructor(TraceViewModel) {
+    constructor(traceModel) {
         super(document.createElement('ul'));
         this.element.classList.add('breadcrumb');
 
-        this.vm = TraceViewModel;
+        this.traceModel = traceModel;
     }
 
     render() {
@@ -38,10 +38,11 @@ export class Breadcrumb extends PWElement {
         switch (type.name) {
             case "span": {
                 const segments = [];
-                const method = this.vm.getCurrentMethod();
+                /*const method = this.vm.getCurrentMethod();
                 const clazz = this.vm.getClass(method.classId);
 
-                segments.push({ label: `${clazz.name}:${method.name}` });
+                segments.push({ label: `${clazz.name}:${method.name}` });*/
+                segments.push({ label: "TEST:TEST" });
 
                 return segments;
             }

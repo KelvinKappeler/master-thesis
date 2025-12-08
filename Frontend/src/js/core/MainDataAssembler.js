@@ -1,18 +1,18 @@
 import {Preconditions} from "../utils/Preconditions.js";
 import {Class, Enum, Interface, Method, ProgramTrace, Record, Source, Variable} from "../model/ProgramDefs.js";
-import {BlockNode, CodePosition, ExprStmtNode, IfNode, ReturnNode} from "../model/StructureDefs.js";
+import {BlockNode, CodePosition, ExprStmtNode, ForNode, IfNode, ReturnNode} from "../model/StructureDefs.js";
 import {ExprCode} from "../model/ExprDefs.js";
 import {Index} from "../model/IndexDefs.js";
 import {Argument, Span, TraceData, TraceLocation} from "../model/TraceDefs.js";
 import {
-    ArithmeticTraceEvent,
-    CallTraceEvent,
-    ConditionTraceEvent, EventValue,
-    LocalTraceEvent,
+    ArithmeticTraceEvent, ArrayStoreTraceEvent,
+    CallTraceEvent, ComparisonTraceEvent,
+    ConditionTraceEvent, EventValue, FieldWriteTraceEvent,
+    LocalTraceEvent, LoopIterationTraceEvent, LoopTraceEvent, NewTraceEvent,
     ReturnTraceEvent
 } from "../model/EventDefs.js";
 import {MainData} from "./MainData.js";
-import e from "express";
+import {FieldState, ObjectTimeline, State, StateSnapshot} from "../model/StateDefs.js";
 
 /**
  * This class is used to assemble a MainData object from JSON data.
@@ -163,7 +163,7 @@ export class MainDataAssembler {
     static #assembleMethodStructure(structureJson) {
         if (structureJson === null) return null;
 
-        let id = structureJson.id;
+        let id = structureJson.structureId;
         let startPosition = this.#assemblePosition(structureJson.startPosition);
         let endPosition = this.#assemblePosition(structureJson.endPosition);
 
@@ -182,6 +182,14 @@ export class MainDataAssembler {
             case "IF":
                 return new IfNode(id, structureJson.code, startPosition, endPosition, structureJson.condition,
                     this.#assembleMethodStructure(structureJson.thenBranch), this.#assembleMethodStructure(structureJson.elseBranch));
+
+            case "FOR":
+                return new ForNode(id, structureJson.code, startPosition, endPosition,
+                    this.#assembleMethodStructureExpression(structureJson.initialization),
+                    this.#assembleMethodStructureExpression(structureJson.condition),
+                    this.#assembleMethodStructureExpression(structureJson.update),
+                    this.#assembleMethodStructure(structureJson.body)
+                );
 
             default:
                 throw new Error(`Unknown structure kind: ${structureJson.kind}`);
@@ -216,6 +224,26 @@ export class MainDataAssembler {
         }
     }
 
+    static #assembleStateData(stateFile) {
+        let objects = new Map();
+        for (const [objectId, objectState] of Object.entries(stateFile.objects)) {
+            let timeline = [];
+            for (const objectTimeline of objectState.timeline) {
+
+                let fields = new Map();
+                for (const [fieldName, fieldState] of Object.entries(objectTimeline.fields)) {
+                    fields[fieldName] = new FieldState(fieldState.type, fieldState.value, fieldState.objectId);
+                }
+
+                timeline.push(new StateSnapshot(objectTimeline.version, objectTimeline.eventId, fields));
+            }
+
+            objects.set(objectId, new ObjectTimeline(objectState.objectId, objectState.type, timeline));
+        }
+
+        return new State(objects);
+    }
+
     static #assembleTraceData(traceJson) {
         let spans = this.#assembleSpans(traceJson.spans);
         let events = this.#assembleEvents(traceJson.events);
@@ -238,7 +266,9 @@ export class MainDataAssembler {
                 span.startEventId,
                 span.endEventId,
                 this.#assembleTraceLocation(span.startLoc),
-                this.#assembleTraceLocation(span.endLoc)
+                this.#assembleTraceLocation(span.endLoc),
+                span.thisRef,
+                span.args.map(arg => new Argument(arg.name, arg.value, arg.type))
             ));
         }
 
@@ -256,6 +286,10 @@ export class MainDataAssembler {
     }
 
     static #assembleEventValue(eventValueJson) {
+        if (eventValueJson === null || eventValueJson === undefined) {
+            return new EventValue(null, null, null, "NULL");
+        }
+
         return new EventValue(
             eventValueJson.value,
             eventValueJson.valueObjectId,
@@ -273,7 +307,7 @@ export class MainDataAssembler {
         switch (eventJson.type) {
             case "CALL":
                 return new CallTraceEvent(
-                    eventId, spanId, frameId, location,
+                    eventId, spanId, location,
                     eventJson.callerMethodId,
                     eventJson.calleeMethodId,
                     eventJson.name,
@@ -285,7 +319,7 @@ export class MainDataAssembler {
 
             case "LOCAL":
                 return new LocalTraceEvent(
-                    eventId, spanId, frameId, location,
+                    eventId, spanId, location,
                     eventJson.method,
                     eventJson.varName,
                     eventJson.value,
@@ -295,14 +329,14 @@ export class MainDataAssembler {
 
             case "RETURN":
                 return new ReturnTraceEvent(
-                    eventId, spanId, frameId, location,
+                    eventId, spanId, location,
                     this.#assembleEventValue(eventJson.value),
                     eventJson.bodyEventId
                 );
 
             case "ARITHMETIC":
                 return new ArithmeticTraceEvent(
-                    eventId, spanId, frameId, location,
+                    eventId, spanId, location,
                     eventJson.operator,
                     this.#assembleEventValue(eventJson.left),
                     eventJson.leftEventId,
@@ -313,13 +347,69 @@ export class MainDataAssembler {
 
             case "CONDITION":
                 return new ConditionTraceEvent(
-                    eventId, spanId, frameId, location,
+                    eventId, spanId, location,
                     eventJson.kind,
                     eventJson.conditionEventIds,
                     eventJson.thenEventIds,
                     eventJson.elseEventIds,
                     this.#assembleEventValue(eventJson.value)
                 );
+
+            case "COMPARISON":
+                return new ComparisonTraceEvent(
+                    eventId, spanId, location,
+                    eventJson.operator,
+                    this.#assembleEventValue(eventJson.left),
+                    eventJson.leftEventId,
+                    this.#assembleEventValue(eventJson.right),
+                    eventJson.rightEventId,
+                    this.#assembleEventValue(eventJson.result)
+                )
+
+            case "ARRAYSTORE":
+                return new ArrayStoreTraceEvent(
+                    eventId, spanId, location,
+                    eventJson.arrayVarName,
+                    eventJson.arrayObjectId,
+                    eventJson.index,
+                    this.#assembleEventValue(eventJson.value),
+                    eventJson.label,
+                    eventJson.bodyEventId
+                )
+
+            case "PUTFIELD":
+                return new FieldWriteTraceEvent(
+                    eventId, spanId, location,
+                    eventJson.objectId,
+                    eventJson.fieldName,
+                    this.#assembleEventValue(eventJson.value),
+                    eventJson.fieldType,
+                    eventJson.bodyEventId
+                )
+
+            case "LOOP":
+                return new LoopTraceEvent(
+                    eventId, spanId, location,
+                    eventJson.loopKind,
+                    eventJson.initEventIds,
+                    eventJson.iterationsEventIds
+                )
+
+            case "LOOP_ITERATION":
+                return new LoopIterationTraceEvent(
+                    eventId, spanId, location,
+                    eventJson.iterationIndex,
+                    eventJson.conditionEventIds,
+                    eventJson.bodyEventIds,
+                    eventJson.updateEventIds
+                )
+
+            case "NEW":
+                return new NewTraceEvent(
+                    eventId, spanId, location,
+                    eventJson.objectId,
+                    eventJson.typeName
+                )
 
             default:
                 throw new Error(`Unknown event type: ${eventJson.eventType}`);

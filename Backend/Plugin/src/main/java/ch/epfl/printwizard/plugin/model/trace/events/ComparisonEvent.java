@@ -4,7 +4,7 @@ import ch.epfl.printwizard.plugin.model.trace.TraceLoc;
 import ch.epfl.printwizard.plugin.utils.Preconditions;
 
 /**
- * A ComparisonEvent represents an event where a comparison operation is performed.
+ * A ComparisonEvent represents an event where a comparison operator is performed.
  * @param eventId the unique identifier of the event
  * @param spanId the identifier of the span this event belongs to
  * @param location the location in the source code where the event occurred

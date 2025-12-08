@@ -1,0 +1,3237 @@
+{
+  "sources" : [ {
+    "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
+    "path" : "Examples/src/main/java/ch/epfl/printwizard/examples/Main.java",
+    "language" : "java",
+    "lines" : 24
+  }, {
+    "sourceId" : "src:ch/epfl/printwizard/examples/Player.java",
+    "path" : "Examples/src/main/java/ch/epfl/printwizard/examples/Player.java",
+    "language" : "java",
+    "lines" : 29
+  }, {
+    "sourceId" : "src:ch/epfl/printwizard/examples/algo/Main.java",
+    "path" : "Examples/src/main/java/ch/epfl/printwizard/examples/algo/Main.java",
+    "language" : "java",
+    "lines" : 46
+  }, {
+    "sourceId" : "src:ch/epfl/printwizard/examples/rpg/BattleHistory.java",
+    "path" : "Examples/src/main/java/ch/epfl/printwizard/examples/rpg/BattleHistory.java",
+    "language" : "java",
+    "lines" : 44
+  }, {
+    "sourceId" : "src:ch/epfl/printwizard/examples/rpg/Main.java",
+    "path" : "Examples/src/main/java/ch/epfl/printwizard/examples/rpg/Main.java",
+    "language" : "java",
+    "lines" : 18
+  }, {
+    "sourceId" : "src:ch/epfl/printwizard/examples/rpg/Player.java",
+    "path" : "Examples/src/main/java/ch/epfl/printwizard/examples/rpg/Player.java",
+    "language" : "java",
+    "lines" : 96
+  }, {
+    "sourceId" : "src:ch/epfl/printwizard/examples/rpg/Weapon.java",
+    "path" : "Examples/src/main/java/ch/epfl/printwizard/examples/rpg/Weapon.java",
+    "language" : "java",
+    "lines" : 26
+  } ],
+  "classes" : [ {
+    "id" : "cls:ch.epfl.printwizard.examples.Main",
+    "name" : "Main",
+    "packageName" : "ch.epfl.printwizard.examples",
+    "sourceId" : "src:ch/epfl/printwizard/examples/Main.java"
+  }, {
+    "id" : "cls:ch.epfl.printwizard.examples.Player",
+    "name" : "Player",
+    "packageName" : "ch.epfl.printwizard.examples",
+    "sourceId" : "src:ch/epfl/printwizard/examples/Player.java"
+  }, {
+    "id" : "cls:ch.epfl.printwizard.examples.algo.Main",
+    "name" : "Main",
+    "packageName" : "ch.epfl.printwizard.examples.algo",
+    "sourceId" : "src:ch/epfl/printwizard/examples/algo/Main.java"
+  }, {
+    "id" : "cls:ch.epfl.printwizard.examples.rpg.BattleHistory",
+    "name" : "BattleHistory",
+    "packageName" : "ch.epfl.printwizard.examples.rpg",
+    "sourceId" : "src:ch/epfl/printwizard/examples/rpg/BattleHistory.java"
+  }, {
+    "id" : "cls:ch.epfl.printwizard.examples.rpg.Main",
+    "name" : "Main",
+    "packageName" : "ch.epfl.printwizard.examples.rpg",
+    "sourceId" : "src:ch/epfl/printwizard/examples/rpg/Main.java"
+  }, {
+    "id" : "cls:ch.epfl.printwizard.examples.rpg.Player",
+    "name" : "Player",
+    "packageName" : "ch.epfl.printwizard.examples.rpg",
+    "sourceId" : "src:ch/epfl/printwizard/examples/rpg/Player.java"
+  }, {
+    "id" : "cls:ch.epfl.printwizard.examples.rpg.Weapon",
+    "name" : "Weapon",
+    "packageName" : "ch.epfl.printwizard.examples.rpg",
+    "sourceId" : "src:ch/epfl/printwizard/examples/rpg/Weapon.java"
+  } ],
+  "interfaces" : [ ],
+  "records" : [ ],
+  "enums" : [ ],
+  "methods" : [ {
+    "methodId" : "m:ch.epfl.printwizard.examples.Main.add(int,int)int",
+    "classId" : "cls:ch.epfl.printwizard.examples.Main",
+    "name" : "add",
+    "returnType" : "int",
+    "startLine" : 21,
+    "endLine" : 23,
+    "parameters" : [ {
+      "index" : 0,
+      "name" : "a",
+      "typeId" : "t:int"
+    }, {
+      "index" : 1,
+      "name" : "b",
+      "typeId" : "t:int"
+    } ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "code" : null,
+      "startPosition" : {
+        "line" : 21,
+        "column" : 42
+      },
+      "endPosition" : {
+        "line" : 23,
+        "column" : 5
+      },
+      "structures" : [ {
+        "structureId" : "return:1",
+        "kind" : "RETURN",
+        "code" : "return a + b;",
+        "startPosition" : {
+          "line" : 22,
+          "column" : 9
+        },
+        "endPosition" : {
+          "line" : 22,
+          "column" : 21
+        },
+        "value" : {
+          "code" : "a + b",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 22,
+            "column" : 9
+          },
+          "endPosition" : {
+            "line" : 22,
+            "column" : 21
+          }
+        }
+      } ]
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:ch.epfl.printwizard.examples.Main.main(String[])void",
+    "classId" : "cls:ch.epfl.printwizard.examples.Main",
+    "name" : "main",
+    "returnType" : "void",
+    "startLine" : 5,
+    "endLine" : 19,
+    "parameters" : [ {
+      "index" : 0,
+      "name" : "args",
+      "typeId" : "t:String[]"
+    } ],
+    "structure" : {
+      "structureId" : "block:3",
+      "kind" : "BLOCK",
+      "code" : null,
+      "startPosition" : {
+        "line" : 5,
+        "column" : 44
+      },
+      "endPosition" : {
+        "line" : 19,
+        "column" : 5
+      },
+      "structures" : [ {
+        "structureId" : "expr_stmt:1",
+        "kind" : "EXPR_STMT",
+        "code" : null,
+        "startPosition" : {
+          "line" : 7,
+          "column" : 9
+        },
+        "endPosition" : {
+          "line" : 7,
+          "column" : 30
+        },
+        "expr" : {
+          "code" : "int i = add(3, 4) / 2",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 7,
+            "column" : 9
+          },
+          "endPosition" : {
+            "line" : 7,
+            "column" : 30
+          }
+        }
+      }, {
+        "structureId" : "expr_stmt:2",
+        "kind" : "EXPR_STMT",
+        "code" : null,
+        "startPosition" : {
+          "line" : 9,
+          "column" : 9
+        },
+        "endPosition" : {
+          "line" : 9,
+          "column" : 18
+        },
+        "expr" : {
+          "code" : "int j = 0",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 9,
+            "column" : 9
+          },
+          "endPosition" : {
+            "line" : 9,
+            "column" : 18
+          }
+        }
+      }, {
+        "structureId" : "if:1",
+        "kind" : "IF",
+        "code" : "if (i < 3)",
+        "startPosition" : {
+          "line" : 10,
+          "column" : 9
+        },
+        "endPosition" : {
+          "line" : 14,
+          "column" : 9
+        },
+        "condition" : {
+          "code" : "i < 3",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 10,
+            "column" : 9
+          },
+          "endPosition" : {
+            "line" : 14,
+            "column" : 9
+          }
+        },
+        "thenBranch" : {
+          "structureId" : "block:1",
+          "kind" : "BLOCK",
+          "code" : null,
+          "startPosition" : {
+            "line" : 10,
+            "column" : 20
+          },
+          "endPosition" : {
+            "line" : 12,
+            "column" : 9
+          },
+          "structures" : [ {
+            "structureId" : "expr_stmt:3",
+            "kind" : "EXPR_STMT",
+            "code" : null,
+            "startPosition" : {
+              "line" : 11,
+              "column" : 13
+            },
+            "endPosition" : {
+              "line" : 11,
+              "column" : 20
+            },
+            "expr" : {
+              "code" : "j += 30",
+              "kind" : "ALL",
+              "startPosition" : {
+                "line" : 11,
+                "column" : 13
+              },
+              "endPosition" : {
+                "line" : 11,
+                "column" : 20
+              }
+            }
+          } ]
+        },
+        "elseBranch" : {
+          "structureId" : "block:2",
+          "kind" : "BLOCK",
+          "code" : null,
+          "startPosition" : {
+            "line" : 12,
+            "column" : 16
+          },
+          "endPosition" : {
+            "line" : 14,
+            "column" : 9
+          },
+          "structures" : [ {
+            "structureId" : "expr_stmt:4",
+            "kind" : "EXPR_STMT",
+            "code" : null,
+            "startPosition" : {
+              "line" : 13,
+              "column" : 13
+            },
+            "endPosition" : {
+              "line" : 13,
+              "column" : 20
+            },
+            "expr" : {
+              "code" : "j += 10",
+              "kind" : "ALL",
+              "startPosition" : {
+                "line" : 13,
+                "column" : 13
+              },
+              "endPosition" : {
+                "line" : 13,
+                "column" : 20
+              }
+            }
+          } ]
+        }
+      }, {
+        "structureId" : "expr_stmt:5",
+        "kind" : "EXPR_STMT",
+        "code" : null,
+        "startPosition" : {
+          "line" : 16,
+          "column" : 9
+        },
+        "endPosition" : {
+          "line" : 16,
+          "column" : 49
+        },
+        "expr" : {
+          "code" : "System.out.println(\"Result: \" + (i + j))",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 16,
+            "column" : 9
+          },
+          "endPosition" : {
+            "line" : 16,
+            "column" : 49
+          }
+        }
+      }, {
+        "structureId" : "expr_stmt:6",
+        "kind" : "EXPR_STMT",
+        "code" : null,
+        "startPosition" : {
+          "line" : 18,
+          "column" : 9
+        },
+        "endPosition" : {
+          "line" : 18,
+          "column" : 44
+        },
+        "expr" : {
+          "code" : "Player player = new Player(10, 100)",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 18,
+            "column" : 9
+          },
+          "endPosition" : {
+            "line" : 18,
+            "column" : 44
+          }
+        }
+      } ]
+    },
+    "localVars" : [ {
+      "index" : 1,
+      "name" : "i",
+      "typeId" : "int"
+    }, {
+      "index" : 2,
+      "name" : "j",
+      "typeId" : "int"
+    }, {
+      "index" : 3,
+      "name" : "player",
+      "typeId" : "Player"
+    } ]
+  }, {
+    "methodId" : "m:ch.epfl.printwizard.examples.Player.Player(int,int)<init>",
+    "classId" : "cls:ch.epfl.printwizard.examples.Player",
+    "name" : "Player",
+    "returnType" : "<init>",
+    "startLine" : 8,
+    "endLine" : 11,
+    "parameters" : [ {
+      "index" : 0,
+      "name" : "healthPoints",
+      "typeId" : "t:int"
+    }, {
+      "index" : 1,
+      "name" : "manaPoints",
+      "typeId" : "t:int"
+    } ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "code" : null,
+      "startPosition" : {
+        "line" : 8,
+        "column" : 53
+      },
+      "endPosition" : {
+        "line" : 11,
+        "column" : 5
+      },
+      "structures" : [ {
+        "structureId" : "expr_stmt:1",
+        "kind" : "EXPR_STMT",
+        "code" : null,
+        "startPosition" : {
+          "line" : 9,
+          "column" : 9
+        },
+        "endPosition" : {
+          "line" : 9,
+          "column" : 41
+        },
+        "expr" : {
+          "code" : "this.healthPoints = healthPoints",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 9,
+            "column" : 9
+          },
+          "endPosition" : {
+            "line" : 9,
+            "column" : 41
+          }
+        }
+      }, {
+        "structureId" : "expr_stmt:2",
+        "kind" : "EXPR_STMT",
+        "code" : null,
+        "startPosition" : {
+          "line" : 10,
+          "column" : 9
+        },
+        "endPosition" : {
+          "line" : 10,
+          "column" : 37
+        },
+        "expr" : {
+          "code" : "this.manaPoints = manaPoints",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 10,
+            "column" : 9
+          },
+          "endPosition" : {
+            "line" : 10,
+            "column" : 37
+          }
+        }
+      } ]
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:ch.epfl.printwizard.examples.Player.getHealthPoints()int",
+    "classId" : "cls:ch.epfl.printwizard.examples.Player",
+    "name" : "getHealthPoints",
+    "returnType" : "int",
+    "startLine" : 13,
+    "endLine" : 15,
+    "parameters" : [ ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "code" : null,
+      "startPosition" : {
+        "line" : 13,
+        "column" : 34
+      },
+      "endPosition" : {
+        "line" : 15,
+        "column" : 5
+      },
+      "structures" : [ {
+        "structureId" : "return:1",
+        "kind" : "RETURN",
+        "code" : "return healthPoints;",
+        "startPosition" : {
+          "line" : 14,
+          "column" : 9
+        },
+        "endPosition" : {
+          "line" : 14,
+          "column" : 28
+        },
+        "value" : {
+          "code" : "healthPoints",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 14,
+            "column" : 9
+          },
+          "endPosition" : {
+            "line" : 14,
+            "column" : 28
+          }
+        }
+      } ]
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:ch.epfl.printwizard.examples.Player.getManaPoints()int",
+    "classId" : "cls:ch.epfl.printwizard.examples.Player",
+    "name" : "getManaPoints",
+    "returnType" : "int",
+    "startLine" : 21,
+    "endLine" : 23,
+    "parameters" : [ ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "code" : null,
+      "startPosition" : {
+        "line" : 21,
+        "column" : 32
+      },
+      "endPosition" : {
+        "line" : 23,
+        "column" : 5
+      },
+      "structures" : [ {
+        "structureId" : "return:1",
+        "kind" : "RETURN",
+        "code" : "return manaPoints;",
+        "startPosition" : {
+          "line" : 22,
+          "column" : 9
+        },
+        "endPosition" : {
+          "line" : 22,
+          "column" : 26
+        },
+        "value" : {
+          "code" : "manaPoints",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 22,
+            "column" : 9
+          },
+          "endPosition" : {
+            "line" : 22,
+            "column" : 26
+          }
+        }
+      } ]
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:ch.epfl.printwizard.examples.Player.setHealthPoints(int)void",
+    "classId" : "cls:ch.epfl.printwizard.examples.Player",
+    "name" : "setHealthPoints",
+    "returnType" : "void",
+    "startLine" : 17,
+    "endLine" : 19,
+    "parameters" : [ {
+      "index" : 0,
+      "name" : "healthPoints",
+      "typeId" : "t:int"
+    } ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "code" : null,
+      "startPosition" : {
+        "line" : 17,
+        "column" : 51
+      },
+      "endPosition" : {
+        "line" : 19,
+        "column" : 5
+      },
+      "structures" : [ {
+        "structureId" : "expr_stmt:1",
+        "kind" : "EXPR_STMT",
+        "code" : null,
+        "startPosition" : {
+          "line" : 18,
+          "column" : 9
+        },
+        "endPosition" : {
+          "line" : 18,
+          "column" : 41
+        },
+        "expr" : {
+          "code" : "this.healthPoints = healthPoints",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 18,
+            "column" : 9
+          },
+          "endPosition" : {
+            "line" : 18,
+            "column" : 41
+          }
+        }
+      } ]
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:ch.epfl.printwizard.examples.Player.setManaPoints(int)void",
+    "classId" : "cls:ch.epfl.printwizard.examples.Player",
+    "name" : "setManaPoints",
+    "returnType" : "void",
+    "startLine" : 25,
+    "endLine" : 27,
+    "parameters" : [ {
+      "index" : 0,
+      "name" : "manaPoints",
+      "typeId" : "t:int"
+    } ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "code" : null,
+      "startPosition" : {
+        "line" : 25,
+        "column" : 47
+      },
+      "endPosition" : {
+        "line" : 27,
+        "column" : 5
+      },
+      "structures" : [ {
+        "structureId" : "expr_stmt:1",
+        "kind" : "EXPR_STMT",
+        "code" : null,
+        "startPosition" : {
+          "line" : 26,
+          "column" : 9
+        },
+        "endPosition" : {
+          "line" : 26,
+          "column" : 37
+        },
+        "expr" : {
+          "code" : "this.manaPoints = manaPoints",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 26,
+            "column" : 9
+          },
+          "endPosition" : {
+            "line" : 26,
+            "column" : 37
+          }
+        }
+      } ]
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:ch.epfl.printwizard.examples.algo.Main.main(String[])void",
+    "classId" : "cls:ch.epfl.printwizard.examples.algo.Main",
+    "name" : "main",
+    "returnType" : "void",
+    "startLine" : 7,
+    "endLine" : 15,
+    "parameters" : [ {
+      "index" : 0,
+      "name" : "args",
+      "typeId" : "t:String[]"
+    } ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "code" : null,
+      "startPosition" : {
+        "line" : 7,
+        "column" : 44
+      },
+      "endPosition" : {
+        "line" : 15,
+        "column" : 5
+      },
+      "structures" : [ {
+        "structureId" : "expr_stmt:1",
+        "kind" : "EXPR_STMT",
+        "code" : null,
+        "startPosition" : {
+          "line" : 8,
+          "column" : 9
+        },
+        "endPosition" : {
+          "line" : 8,
+          "column" : 55
+        },
+        "expr" : {
+          "code" : "int[] data = { 42, 7, 13, 7, 100, -3, 0, 18, 5 }",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 8,
+            "column" : 9
+          },
+          "endPosition" : {
+            "line" : 8,
+            "column" : 55
+          }
+        }
+      }, {
+        "structureId" : "expr_stmt:2",
+        "kind" : "EXPR_STMT",
+        "code" : null,
+        "startPosition" : {
+          "line" : 10,
+          "column" : 9
+        },
+        "endPosition" : {
+          "line" : 10,
+          "column" : 65
+        },
+        "expr" : {
+          "code" : "System.out.println(\"Initial : \" + Arrays.toString(data))",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 10,
+            "column" : 9
+          },
+          "endPosition" : {
+            "line" : 10,
+            "column" : 65
+          }
+        }
+      }, {
+        "structureId" : "expr_stmt:3",
+        "kind" : "EXPR_STMT",
+        "code" : null,
+        "startPosition" : {
+          "line" : 12,
+          "column" : 9
+        },
+        "endPosition" : {
+          "line" : 12,
+          "column" : 44
+        },
+        "expr" : {
+          "code" : "quickSort(data, 0, data.length - 1)",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 12,
+            "column" : 9
+          },
+          "endPosition" : {
+            "line" : 12,
+            "column" : 44
+          }
+        }
+      }, {
+        "structureId" : "expr_stmt:4",
+        "kind" : "EXPR_STMT",
+        "code" : null,
+        "startPosition" : {
+          "line" : 14,
+          "column" : 9
+        },
+        "endPosition" : {
+          "line" : 14,
+          "column" : 64
+        },
+        "expr" : {
+          "code" : "System.out.println(\"Sorted : \" + Arrays.toString(data))",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 14,
+            "column" : 9
+          },
+          "endPosition" : {
+            "line" : 14,
+            "column" : 64
+          }
+        }
+      } ]
+    },
+    "localVars" : [ {
+      "index" : 1,
+      "name" : "data",
+      "typeId" : "int[]"
+    } ]
+  }, {
+    "methodId" : "m:ch.epfl.printwizard.examples.algo.Main.partition(int[],int,int)int",
+    "classId" : "cls:ch.epfl.printwizard.examples.algo.Main",
+    "name" : "partition",
+    "returnType" : "int",
+    "startLine" : 26,
+    "endLine" : 45,
+    "parameters" : [ {
+      "index" : 0,
+      "name" : "array",
+      "typeId" : "t:int[]"
+    }, {
+      "index" : 1,
+      "name" : "begin",
+      "typeId" : "t:int"
+    }, {
+      "index" : 2,
+      "name" : "end",
+      "typeId" : "t:int"
+    } ],
+    "structure" : {
+      "structureId" : "block:3",
+      "kind" : "BLOCK",
+      "code" : null,
+      "startPosition" : {
+        "line" : 26,
+        "column" : 67
+      },
+      "endPosition" : {
+        "line" : 45,
+        "column" : 5
+      },
+      "structures" : [ {
+        "structureId" : "expr_stmt:1",
+        "kind" : "EXPR_STMT",
+        "code" : null,
+        "startPosition" : {
+          "line" : 27,
+          "column" : 9
+        },
+        "endPosition" : {
+          "line" : 27,
+          "column" : 31
+        },
+        "expr" : {
+          "code" : "int pivot = array[end]",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 27,
+            "column" : 9
+          },
+          "endPosition" : {
+            "line" : 27,
+            "column" : 31
+          }
+        }
+      }, {
+        "structureId" : "expr_stmt:2",
+        "kind" : "EXPR_STMT",
+        "code" : null,
+        "startPosition" : {
+          "line" : 28,
+          "column" : 9
+        },
+        "endPosition" : {
+          "line" : 28,
+          "column" : 26
+        },
+        "expr" : {
+          "code" : "int i = begin - 1",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 28,
+            "column" : 9
+          },
+          "endPosition" : {
+            "line" : 28,
+            "column" : 26
+          }
+        }
+      }, {
+        "structureId" : "for:1",
+        "kind" : "FOR",
+        "code" : "for (int j = begin; j < end; j++) {\n    if (array[j] <= pivot) {\n        i++;\n        int tmp = array[i];\n        array[i] = array[j];\n        array[j] = tmp;\n    }\n}",
+        "startPosition" : {
+          "line" : 30,
+          "column" : 9
+        },
+        "endPosition" : {
+          "line" : 38,
+          "column" : 9
+        },
+        "initialization" : {
+          "code" : "[int j = begin]",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 30,
+            "column" : 9
+          },
+          "endPosition" : {
+            "line" : 38,
+            "column" : 9
+          }
+        },
+        "condition" : {
+          "code" : "Optional[j < end]",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 30,
+            "column" : 9
+          },
+          "endPosition" : {
+            "line" : 38,
+            "column" : 9
+          }
+        },
+        "update" : {
+          "code" : "[j++]",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 30,
+            "column" : 9
+          },
+          "endPosition" : {
+            "line" : 38,
+            "column" : 9
+          }
+        },
+        "body" : {
+          "structureId" : "block:2",
+          "kind" : "BLOCK",
+          "code" : null,
+          "startPosition" : {
+            "line" : 30,
+            "column" : 43
+          },
+          "endPosition" : {
+            "line" : 38,
+            "column" : 9
+          },
+          "structures" : [ {
+            "structureId" : "if:1",
+            "kind" : "IF",
+            "code" : "if (array[j] <= pivot)",
+            "startPosition" : {
+              "line" : 31,
+              "column" : 13
+            },
+            "endPosition" : {
+              "line" : 37,
+              "column" : 13
+            },
+            "condition" : {
+              "code" : "array[j] <= pivot",
+              "kind" : "ALL",
+              "startPosition" : {
+                "line" : 31,
+                "column" : 13
+              },
+              "endPosition" : {
+                "line" : 37,
+                "column" : 13
+              }
+            },
+            "thenBranch" : {
+              "structureId" : "block:1",
+              "kind" : "BLOCK",
+              "code" : null,
+              "startPosition" : {
+                "line" : 31,
+                "column" : 36
+              },
+              "endPosition" : {
+                "line" : 37,
+                "column" : 13
+              },
+              "structures" : [ {
+                "structureId" : "expr_stmt:3",
+                "kind" : "EXPR_STMT",
+                "code" : null,
+                "startPosition" : {
+                  "line" : 32,
+                  "column" : 17
+                },
+                "endPosition" : {
+                  "line" : 32,
+                  "column" : 20
+                },
+                "expr" : {
+                  "code" : "i++",
+                  "kind" : "ALL",
+                  "startPosition" : {
+                    "line" : 32,
+                    "column" : 17
+                  },
+                  "endPosition" : {
+                    "line" : 32,
+                    "column" : 20
+                  }
+                }
+              }, {
+                "structureId" : "expr_stmt:4",
+                "kind" : "EXPR_STMT",
+                "code" : null,
+                "startPosition" : {
+                  "line" : 34,
+                  "column" : 17
+                },
+                "endPosition" : {
+                  "line" : 34,
+                  "column" : 35
+                },
+                "expr" : {
+                  "code" : "int tmp = array[i]",
+                  "kind" : "ALL",
+                  "startPosition" : {
+                    "line" : 34,
+                    "column" : 17
+                  },
+                  "endPosition" : {
+                    "line" : 34,
+                    "column" : 35
+                  }
+                }
+              }, {
+                "structureId" : "expr_stmt:5",
+                "kind" : "EXPR_STMT",
+                "code" : null,
+                "startPosition" : {
+                  "line" : 35,
+                  "column" : 17
+                },
+                "endPosition" : {
+                  "line" : 35,
+                  "column" : 36
+                },
+                "expr" : {
+                  "code" : "array[i] = array[j]",
+                  "kind" : "ALL",
+                  "startPosition" : {
+                    "line" : 35,
+                    "column" : 17
+                  },
+                  "endPosition" : {
+                    "line" : 35,
+                    "column" : 36
+                  }
+                }
+              }, {
+                "structureId" : "expr_stmt:6",
+                "kind" : "EXPR_STMT",
+                "code" : null,
+                "startPosition" : {
+                  "line" : 36,
+                  "column" : 17
+                },
+                "endPosition" : {
+                  "line" : 36,
+                  "column" : 31
+                },
+                "expr" : {
+                  "code" : "array[j] = tmp",
+                  "kind" : "ALL",
+                  "startPosition" : {
+                    "line" : 36,
+                    "column" : 17
+                  },
+                  "endPosition" : {
+                    "line" : 36,
+                    "column" : 31
+                  }
+                }
+              } ]
+            },
+            "elseBranch" : null
+          } ]
+        }
+      }, {
+        "structureId" : "expr_stmt:7",
+        "kind" : "EXPR_STMT",
+        "code" : null,
+        "startPosition" : {
+          "line" : 40,
+          "column" : 9
+        },
+        "endPosition" : {
+          "line" : 40,
+          "column" : 31
+        },
+        "expr" : {
+          "code" : "int tmp = array[i + 1]",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 40,
+            "column" : 9
+          },
+          "endPosition" : {
+            "line" : 40,
+            "column" : 31
+          }
+        }
+      }, {
+        "structureId" : "expr_stmt:8",
+        "kind" : "EXPR_STMT",
+        "code" : null,
+        "startPosition" : {
+          "line" : 41,
+          "column" : 9
+        },
+        "endPosition" : {
+          "line" : 41,
+          "column" : 34
+        },
+        "expr" : {
+          "code" : "array[i + 1] = array[end]",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 41,
+            "column" : 9
+          },
+          "endPosition" : {
+            "line" : 41,
+            "column" : 34
+          }
+        }
+      }, {
+        "structureId" : "expr_stmt:9",
+        "kind" : "EXPR_STMT",
+        "code" : null,
+        "startPosition" : {
+          "line" : 42,
+          "column" : 9
+        },
+        "endPosition" : {
+          "line" : 42,
+          "column" : 25
+        },
+        "expr" : {
+          "code" : "array[end] = tmp",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 42,
+            "column" : 9
+          },
+          "endPosition" : {
+            "line" : 42,
+            "column" : 25
+          }
+        }
+      }, {
+        "structureId" : "return:1",
+        "kind" : "RETURN",
+        "code" : "return i + 1;",
+        "startPosition" : {
+          "line" : 44,
+          "column" : 9
+        },
+        "endPosition" : {
+          "line" : 44,
+          "column" : 21
+        },
+        "value" : {
+          "code" : "i + 1",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 44,
+            "column" : 9
+          },
+          "endPosition" : {
+            "line" : 44,
+            "column" : 21
+          }
+        }
+      } ]
+    },
+    "localVars" : [ {
+      "index" : 3,
+      "name" : "pivot",
+      "typeId" : "int"
+    }, {
+      "index" : 4,
+      "name" : "i",
+      "typeId" : "int"
+    }, {
+      "index" : 5,
+      "name" : "tmp",
+      "typeId" : "int"
+    }, {
+      "index" : 6,
+      "name" : "tmp",
+      "typeId" : "int"
+    } ]
+  }, {
+    "methodId" : "m:ch.epfl.printwizard.examples.algo.Main.quickSort(int[],int,int)void",
+    "classId" : "cls:ch.epfl.printwizard.examples.algo.Main",
+    "name" : "quickSort",
+    "returnType" : "void",
+    "startLine" : 17,
+    "endLine" : 24,
+    "parameters" : [ {
+      "index" : 0,
+      "name" : "array",
+      "typeId" : "t:int[]"
+    }, {
+      "index" : 1,
+      "name" : "begin",
+      "typeId" : "t:int"
+    }, {
+      "index" : 2,
+      "name" : "end",
+      "typeId" : "t:int"
+    } ],
+    "structure" : {
+      "structureId" : "block:2",
+      "kind" : "BLOCK",
+      "code" : null,
+      "startPosition" : {
+        "line" : 17,
+        "column" : 67
+      },
+      "endPosition" : {
+        "line" : 24,
+        "column" : 5
+      },
+      "structures" : [ {
+        "structureId" : "if:1",
+        "kind" : "IF",
+        "code" : "if (begin < end)",
+        "startPosition" : {
+          "line" : 18,
+          "column" : 9
+        },
+        "endPosition" : {
+          "line" : 23,
+          "column" : 9
+        },
+        "condition" : {
+          "code" : "begin < end",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 18,
+            "column" : 9
+          },
+          "endPosition" : {
+            "line" : 23,
+            "column" : 9
+          }
+        },
+        "thenBranch" : {
+          "structureId" : "block:1",
+          "kind" : "BLOCK",
+          "code" : null,
+          "startPosition" : {
+            "line" : 18,
+            "column" : 26
+          },
+          "endPosition" : {
+            "line" : 23,
+            "column" : 9
+          },
+          "structures" : [ {
+            "structureId" : "expr_stmt:1",
+            "kind" : "EXPR_STMT",
+            "code" : null,
+            "startPosition" : {
+              "line" : 19,
+              "column" : 13
+            },
+            "endPosition" : {
+              "line" : 19,
+              "column" : 58
+            },
+            "expr" : {
+              "code" : "int pivotIndex = partition(array, begin, end)",
+              "kind" : "ALL",
+              "startPosition" : {
+                "line" : 19,
+                "column" : 13
+              },
+              "endPosition" : {
+                "line" : 19,
+                "column" : 58
+              }
+            }
+          }, {
+            "structureId" : "expr_stmt:2",
+            "kind" : "EXPR_STMT",
+            "code" : null,
+            "startPosition" : {
+              "line" : 21,
+              "column" : 13
+            },
+            "endPosition" : {
+              "line" : 21,
+              "column" : 52
+            },
+            "expr" : {
+              "code" : "quickSort(array, begin, pivotIndex - 1)",
+              "kind" : "ALL",
+              "startPosition" : {
+                "line" : 21,
+                "column" : 13
+              },
+              "endPosition" : {
+                "line" : 21,
+                "column" : 52
+              }
+            }
+          }, {
+            "structureId" : "expr_stmt:3",
+            "kind" : "EXPR_STMT",
+            "code" : null,
+            "startPosition" : {
+              "line" : 22,
+              "column" : 13
+            },
+            "endPosition" : {
+              "line" : 22,
+              "column" : 50
+            },
+            "expr" : {
+              "code" : "quickSort(array, pivotIndex + 1, end)",
+              "kind" : "ALL",
+              "startPosition" : {
+                "line" : 22,
+                "column" : 13
+              },
+              "endPosition" : {
+                "line" : 22,
+                "column" : 50
+              }
+            }
+          } ]
+        },
+        "elseBranch" : null
+      } ]
+    },
+    "localVars" : [ {
+      "index" : 3,
+      "name" : "pivotIndex",
+      "typeId" : "int"
+    } ]
+  }, {
+    "methodId" : "m:ch.epfl.printwizard.examples.rpg.BattleHistory.BattleHistory(String,String,int,int,int,boolean)<init>",
+    "classId" : "cls:ch.epfl.printwizard.examples.rpg.BattleHistory",
+    "name" : "BattleHistory",
+    "returnType" : "<init>",
+    "startLine" : 12,
+    "endLine" : 19,
+    "parameters" : [ {
+      "index" : 0,
+      "name" : "attackerName",
+      "typeId" : "t:String"
+    }, {
+      "index" : 1,
+      "name" : "defenderName",
+      "typeId" : "t:String"
+    }, {
+      "index" : 2,
+      "name" : "damageDealt",
+      "typeId" : "t:int"
+    }, {
+      "index" : 3,
+      "name" : "defenderPreviousHealthPoints",
+      "typeId" : "t:int"
+    }, {
+      "index" : 4,
+      "name" : "defenderNewHealthPoints",
+      "typeId" : "t:int"
+    }, {
+      "index" : 5,
+      "name" : "isDefenderDead",
+      "typeId" : "t:boolean"
+    } ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "code" : null,
+      "startPosition" : {
+        "line" : 12,
+        "column" : 172
+      },
+      "endPosition" : {
+        "line" : 19,
+        "column" : 5
+      },
+      "structures" : [ {
+        "structureId" : "expr_stmt:1",
+        "kind" : "EXPR_STMT",
+        "code" : null,
+        "startPosition" : {
+          "line" : 13,
+          "column" : 9
+        },
+        "endPosition" : {
+          "line" : 13,
+          "column" : 41
+        },
+        "expr" : {
+          "code" : "this.attackerName = attackerName",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 13,
+            "column" : 9
+          },
+          "endPosition" : {
+            "line" : 13,
+            "column" : 41
+          }
+        }
+      }, {
+        "structureId" : "expr_stmt:2",
+        "kind" : "EXPR_STMT",
+        "code" : null,
+        "startPosition" : {
+          "line" : 14,
+          "column" : 9
+        },
+        "endPosition" : {
+          "line" : 14,
+          "column" : 41
+        },
+        "expr" : {
+          "code" : "this.defenderName = defenderName",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 14,
+            "column" : 9
+          },
+          "endPosition" : {
+            "line" : 14,
+            "column" : 41
+          }
+        }
+      }, {
+        "structureId" : "expr_stmt:3",
+        "kind" : "EXPR_STMT",
+        "code" : null,
+        "startPosition" : {
+          "line" : 15,
+          "column" : 9
+        },
+        "endPosition" : {
+          "line" : 15,
+          "column" : 39
+        },
+        "expr" : {
+          "code" : "this.damageDealt = damageDealt",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 15,
+            "column" : 9
+          },
+          "endPosition" : {
+            "line" : 15,
+            "column" : 39
+          }
+        }
+      }, {
+        "structureId" : "expr_stmt:4",
+        "kind" : "EXPR_STMT",
+        "code" : null,
+        "startPosition" : {
+          "line" : 16,
+          "column" : 9
+        },
+        "endPosition" : {
+          "line" : 16,
+          "column" : 73
+        },
+        "expr" : {
+          "code" : "this.defenderPreviousHealthPoints = defenderPreviousHealthPoints",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 16,
+            "column" : 9
+          },
+          "endPosition" : {
+            "line" : 16,
+            "column" : 73
+          }
+        }
+      }, {
+        "structureId" : "expr_stmt:5",
+        "kind" : "EXPR_STMT",
+        "code" : null,
+        "startPosition" : {
+          "line" : 17,
+          "column" : 9
+        },
+        "endPosition" : {
+          "line" : 17,
+          "column" : 63
+        },
+        "expr" : {
+          "code" : "this.defenderNewHealthPoints = defenderNewHealthPoints",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 17,
+            "column" : 9
+          },
+          "endPosition" : {
+            "line" : 17,
+            "column" : 63
+          }
+        }
+      }, {
+        "structureId" : "expr_stmt:6",
+        "kind" : "EXPR_STMT",
+        "code" : null,
+        "startPosition" : {
+          "line" : 18,
+          "column" : 9
+        },
+        "endPosition" : {
+          "line" : 18,
+          "column" : 45
+        },
+        "expr" : {
+          "code" : "this.isDefenderDead = isDefenderDead",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 18,
+            "column" : 9
+          },
+          "endPosition" : {
+            "line" : 18,
+            "column" : 45
+          }
+        }
+      } ]
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:ch.epfl.printwizard.examples.rpg.BattleHistory.getAttackerName()String",
+    "classId" : "cls:ch.epfl.printwizard.examples.rpg.BattleHistory",
+    "name" : "getAttackerName",
+    "returnType" : "String",
+    "startLine" : 21,
+    "endLine" : 23,
+    "parameters" : [ ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "code" : null,
+      "startPosition" : {
+        "line" : 21,
+        "column" : 37
+      },
+      "endPosition" : {
+        "line" : 23,
+        "column" : 5
+      },
+      "structures" : [ {
+        "structureId" : "return:1",
+        "kind" : "RETURN",
+        "code" : "return attackerName;",
+        "startPosition" : {
+          "line" : 22,
+          "column" : 9
+        },
+        "endPosition" : {
+          "line" : 22,
+          "column" : 28
+        },
+        "value" : {
+          "code" : "attackerName",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 22,
+            "column" : 9
+          },
+          "endPosition" : {
+            "line" : 22,
+            "column" : 28
+          }
+        }
+      } ]
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:ch.epfl.printwizard.examples.rpg.BattleHistory.getDamageDealt()int",
+    "classId" : "cls:ch.epfl.printwizard.examples.rpg.BattleHistory",
+    "name" : "getDamageDealt",
+    "returnType" : "int",
+    "startLine" : 29,
+    "endLine" : 31,
+    "parameters" : [ ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "code" : null,
+      "startPosition" : {
+        "line" : 29,
+        "column" : 33
+      },
+      "endPosition" : {
+        "line" : 31,
+        "column" : 5
+      },
+      "structures" : [ {
+        "structureId" : "return:1",
+        "kind" : "RETURN",
+        "code" : "return damageDealt;",
+        "startPosition" : {
+          "line" : 30,
+          "column" : 9
+        },
+        "endPosition" : {
+          "line" : 30,
+          "column" : 27
+        },
+        "value" : {
+          "code" : "damageDealt",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 30,
+            "column" : 9
+          },
+          "endPosition" : {
+            "line" : 30,
+            "column" : 27
+          }
+        }
+      } ]
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:ch.epfl.printwizard.examples.rpg.BattleHistory.getDefenderName()String",
+    "classId" : "cls:ch.epfl.printwizard.examples.rpg.BattleHistory",
+    "name" : "getDefenderName",
+    "returnType" : "String",
+    "startLine" : 25,
+    "endLine" : 27,
+    "parameters" : [ ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "code" : null,
+      "startPosition" : {
+        "line" : 25,
+        "column" : 37
+      },
+      "endPosition" : {
+        "line" : 27,
+        "column" : 5
+      },
+      "structures" : [ {
+        "structureId" : "return:1",
+        "kind" : "RETURN",
+        "code" : "return defenderName;",
+        "startPosition" : {
+          "line" : 26,
+          "column" : 9
+        },
+        "endPosition" : {
+          "line" : 26,
+          "column" : 28
+        },
+        "value" : {
+          "code" : "defenderName",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 26,
+            "column" : 9
+          },
+          "endPosition" : {
+            "line" : 26,
+            "column" : 28
+          }
+        }
+      } ]
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:ch.epfl.printwizard.examples.rpg.BattleHistory.getDefenderNewHealthPoints()int",
+    "classId" : "cls:ch.epfl.printwizard.examples.rpg.BattleHistory",
+    "name" : "getDefenderNewHealthPoints",
+    "returnType" : "int",
+    "startLine" : 37,
+    "endLine" : 39,
+    "parameters" : [ ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "code" : null,
+      "startPosition" : {
+        "line" : 37,
+        "column" : 45
+      },
+      "endPosition" : {
+        "line" : 39,
+        "column" : 5
+      },
+      "structures" : [ {
+        "structureId" : "return:1",
+        "kind" : "RETURN",
+        "code" : "return defenderNewHealthPoints;",
+        "startPosition" : {
+          "line" : 38,
+          "column" : 9
+        },
+        "endPosition" : {
+          "line" : 38,
+          "column" : 39
+        },
+        "value" : {
+          "code" : "defenderNewHealthPoints",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 38,
+            "column" : 9
+          },
+          "endPosition" : {
+            "line" : 38,
+            "column" : 39
+          }
+        }
+      } ]
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:ch.epfl.printwizard.examples.rpg.BattleHistory.getDefenderPreviousHealthPoints()int",
+    "classId" : "cls:ch.epfl.printwizard.examples.rpg.BattleHistory",
+    "name" : "getDefenderPreviousHealthPoints",
+    "returnType" : "int",
+    "startLine" : 33,
+    "endLine" : 35,
+    "parameters" : [ ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "code" : null,
+      "startPosition" : {
+        "line" : 33,
+        "column" : 50
+      },
+      "endPosition" : {
+        "line" : 35,
+        "column" : 5
+      },
+      "structures" : [ {
+        "structureId" : "return:1",
+        "kind" : "RETURN",
+        "code" : "return defenderPreviousHealthPoints;",
+        "startPosition" : {
+          "line" : 34,
+          "column" : 9
+        },
+        "endPosition" : {
+          "line" : 34,
+          "column" : 44
+        },
+        "value" : {
+          "code" : "defenderPreviousHealthPoints",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 34,
+            "column" : 9
+          },
+          "endPosition" : {
+            "line" : 34,
+            "column" : 44
+          }
+        }
+      } ]
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:ch.epfl.printwizard.examples.rpg.BattleHistory.isDefenderDead()boolean",
+    "classId" : "cls:ch.epfl.printwizard.examples.rpg.BattleHistory",
+    "name" : "isDefenderDead",
+    "returnType" : "boolean",
+    "startLine" : 41,
+    "endLine" : 43,
+    "parameters" : [ ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "code" : null,
+      "startPosition" : {
+        "line" : 41,
+        "column" : 37
+      },
+      "endPosition" : {
+        "line" : 43,
+        "column" : 5
+      },
+      "structures" : [ {
+        "structureId" : "return:1",
+        "kind" : "RETURN",
+        "code" : "return isDefenderDead;",
+        "startPosition" : {
+          "line" : 42,
+          "column" : 9
+        },
+        "endPosition" : {
+          "line" : 42,
+          "column" : 30
+        },
+        "value" : {
+          "code" : "isDefenderDead",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 42,
+            "column" : 9
+          },
+          "endPosition" : {
+            "line" : 42,
+            "column" : 30
+          }
+        }
+      } ]
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:ch.epfl.printwizard.examples.rpg.Main.main(String[])void",
+    "classId" : "cls:ch.epfl.printwizard.examples.rpg.Main",
+    "name" : "main",
+    "returnType" : "void",
+    "startLine" : 5,
+    "endLine" : 17,
+    "parameters" : [ {
+      "index" : 0,
+      "name" : "args",
+      "typeId" : "t:String[]"
+    } ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "code" : null,
+      "startPosition" : {
+        "line" : 5,
+        "column" : 44
+      },
+      "endPosition" : {
+        "line" : 17,
+        "column" : 5
+      },
+      "structures" : [ {
+        "structureId" : "expr_stmt:1",
+        "kind" : "EXPR_STMT",
+        "code" : null,
+        "startPosition" : {
+          "line" : 6,
+          "column" : 9
+        },
+        "endPosition" : {
+          "line" : 6,
+          "column" : 47
+        },
+        "expr" : {
+          "code" : "Player p1 = new Player(\"Name1\", 10.3f)",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 6,
+            "column" : 9
+          },
+          "endPosition" : {
+            "line" : 6,
+            "column" : 47
+          }
+        }
+      }, {
+        "structureId" : "expr_stmt:2",
+        "kind" : "EXPR_STMT",
+        "code" : null,
+        "startPosition" : {
+          "line" : 7,
+          "column" : 9
+        },
+        "endPosition" : {
+          "line" : 7,
+          "column" : 47
+        },
+        "expr" : {
+          "code" : "Player p2 = new Player(\"Name2\", 10.3f)",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 7,
+            "column" : 9
+          },
+          "endPosition" : {
+            "line" : 7,
+            "column" : 47
+          }
+        }
+      }, {
+        "structureId" : "expr_stmt:3",
+        "kind" : "EXPR_STMT",
+        "code" : null,
+        "startPosition" : {
+          "line" : 9,
+          "column" : 9
+        },
+        "endPosition" : {
+          "line" : 9,
+          "column" : 51
+        },
+        "expr" : {
+          "code" : "Weapon w1 = new Weapon(\"Sword\", 15, false)",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 9,
+            "column" : 9
+          },
+          "endPosition" : {
+            "line" : 9,
+            "column" : 51
+          }
+        }
+      }, {
+        "structureId" : "expr_stmt:4",
+        "kind" : "EXPR_STMT",
+        "code" : null,
+        "startPosition" : {
+          "line" : 10,
+          "column" : 9
+        },
+        "endPosition" : {
+          "line" : 10,
+          "column" : 25
+        },
+        "expr" : {
+          "code" : "p1.setWeapon(w1)",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 10,
+            "column" : 9
+          },
+          "endPosition" : {
+            "line" : 10,
+            "column" : 25
+          }
+        }
+      }, {
+        "structureId" : "expr_stmt:5",
+        "kind" : "EXPR_STMT",
+        "code" : null,
+        "startPosition" : {
+          "line" : 12,
+          "column" : 9
+        },
+        "endPosition" : {
+          "line" : 12,
+          "column" : 22
+        },
+        "expr" : {
+          "code" : "p1.attack(p2)",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 12,
+            "column" : 9
+          },
+          "endPosition" : {
+            "line" : 12,
+            "column" : 22
+          }
+        }
+      }, {
+        "structureId" : "expr_stmt:6",
+        "kind" : "EXPR_STMT",
+        "code" : null,
+        "startPosition" : {
+          "line" : 13,
+          "column" : 9
+        },
+        "endPosition" : {
+          "line" : 13,
+          "column" : 22
+        },
+        "expr" : {
+          "code" : "p1.attack(p2)",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 13,
+            "column" : 9
+          },
+          "endPosition" : {
+            "line" : 13,
+            "column" : 22
+          }
+        }
+      }, {
+        "structureId" : "expr_stmt:7",
+        "kind" : "EXPR_STMT",
+        "code" : null,
+        "startPosition" : {
+          "line" : 14,
+          "column" : 9
+        },
+        "endPosition" : {
+          "line" : 14,
+          "column" : 22
+        },
+        "expr" : {
+          "code" : "p1.attack(p2)",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 14,
+            "column" : 9
+          },
+          "endPosition" : {
+            "line" : 14,
+            "column" : 22
+          }
+        }
+      }, {
+        "structureId" : "expr_stmt:8",
+        "kind" : "EXPR_STMT",
+        "code" : null,
+        "startPosition" : {
+          "line" : 16,
+          "column" : 9
+        },
+        "endPosition" : {
+          "line" : 16,
+          "column" : 65
+        },
+        "expr" : {
+          "code" : "System.out.println(Player.getBattleHistory().getFirst())",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 16,
+            "column" : 9
+          },
+          "endPosition" : {
+            "line" : 16,
+            "column" : 65
+          }
+        }
+      } ]
+    },
+    "localVars" : [ {
+      "index" : 1,
+      "name" : "p1",
+      "typeId" : "Player"
+    }, {
+      "index" : 2,
+      "name" : "p2",
+      "typeId" : "Player"
+    }, {
+      "index" : 3,
+      "name" : "w1",
+      "typeId" : "Weapon"
+    } ]
+  }, {
+    "methodId" : "m:ch.epfl.printwizard.examples.rpg.Player.Player(String,float)<init>",
+    "classId" : "cls:ch.epfl.printwizard.examples.rpg.Player",
+    "name" : "Player",
+    "returnType" : "<init>",
+    "startLine" : 23,
+    "endLine" : 33,
+    "parameters" : [ {
+      "index" : 0,
+      "name" : "name",
+      "typeId" : "t:String"
+    }, {
+      "index" : 1,
+      "name" : "experiencePoints",
+      "typeId" : "t:float"
+    } ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "code" : null,
+      "startPosition" : {
+        "line" : 23,
+        "column" : 56
+      },
+      "endPosition" : {
+        "line" : 33,
+        "column" : 5
+      },
+      "structures" : [ {
+        "structureId" : "expr_stmt:1",
+        "kind" : "EXPR_STMT",
+        "code" : null,
+        "startPosition" : {
+          "line" : 24,
+          "column" : 9
+        },
+        "endPosition" : {
+          "line" : 24,
+          "column" : 44
+        },
+        "expr" : {
+          "code" : "maxHealthPoints = MAX_HEALTH_POINTS",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 24,
+            "column" : 9
+          },
+          "endPosition" : {
+            "line" : 24,
+            "column" : 44
+          }
+        }
+      }, {
+        "structureId" : "expr_stmt:2",
+        "kind" : "EXPR_STMT",
+        "code" : null,
+        "startPosition" : {
+          "line" : 25,
+          "column" : 9
+        },
+        "endPosition" : {
+          "line" : 25,
+          "column" : 40
+        },
+        "expr" : {
+          "code" : "maxManaPoints = MAX_MANA_POINTS",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 25,
+            "column" : 9
+          },
+          "endPosition" : {
+            "line" : 25,
+            "column" : 40
+          }
+        }
+      }, {
+        "structureId" : "expr_stmt:3",
+        "kind" : "EXPR_STMT",
+        "code" : null,
+        "startPosition" : {
+          "line" : 27,
+          "column" : 9
+        },
+        "endPosition" : {
+          "line" : 27,
+          "column" : 25
+        },
+        "expr" : {
+          "code" : "this.name = name",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 27,
+            "column" : 9
+          },
+          "endPosition" : {
+            "line" : 27,
+            "column" : 25
+          }
+        }
+      }, {
+        "structureId" : "expr_stmt:4",
+        "kind" : "EXPR_STMT",
+        "code" : null,
+        "startPosition" : {
+          "line" : 28,
+          "column" : 9
+        },
+        "endPosition" : {
+          "line" : 28,
+          "column" : 44
+        },
+        "expr" : {
+          "code" : "this.healthPoints = maxHealthPoints",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 28,
+            "column" : 9
+          },
+          "endPosition" : {
+            "line" : 28,
+            "column" : 44
+          }
+        }
+      }, {
+        "structureId" : "expr_stmt:5",
+        "kind" : "EXPR_STMT",
+        "code" : null,
+        "startPosition" : {
+          "line" : 29,
+          "column" : 9
+        },
+        "endPosition" : {
+          "line" : 29,
+          "column" : 40
+        },
+        "expr" : {
+          "code" : "this.manaPoints = maxManaPoints",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 29,
+            "column" : 9
+          },
+          "endPosition" : {
+            "line" : 29,
+            "column" : 40
+          }
+        }
+      }, {
+        "structureId" : "expr_stmt:6",
+        "kind" : "EXPR_STMT",
+        "code" : null,
+        "startPosition" : {
+          "line" : 30,
+          "column" : 9
+        },
+        "endPosition" : {
+          "line" : 30,
+          "column" : 49
+        },
+        "expr" : {
+          "code" : "this.experiencePoints = experiencePoints",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 30,
+            "column" : 9
+          },
+          "endPosition" : {
+            "line" : 30,
+            "column" : 49
+          }
+        }
+      }, {
+        "structureId" : "expr_stmt:7",
+        "kind" : "EXPR_STMT",
+        "code" : null,
+        "startPosition" : {
+          "line" : 31,
+          "column" : 9
+        },
+        "endPosition" : {
+          "line" : 31,
+          "column" : 27
+        },
+        "expr" : {
+          "code" : "this.weapon = null",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 31,
+            "column" : 9
+          },
+          "endPosition" : {
+            "line" : 31,
+            "column" : 27
+          }
+        }
+      }, {
+        "structureId" : "expr_stmt:8",
+        "kind" : "EXPR_STMT",
+        "code" : null,
+        "startPosition" : {
+          "line" : 32,
+          "column" : 9
+        },
+        "endPosition" : {
+          "line" : 32,
+          "column" : 28
+        },
+        "expr" : {
+          "code" : "this.isDead = false",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 32,
+            "column" : 9
+          },
+          "endPosition" : {
+            "line" : 32,
+            "column" : 28
+          }
+        }
+      } ]
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:ch.epfl.printwizard.examples.rpg.Player.addExperiencePoints(float)void",
+    "classId" : "cls:ch.epfl.printwizard.examples.rpg.Player",
+    "name" : "addExperiencePoints",
+    "returnType" : "void",
+    "startLine" : 64,
+    "endLine" : 66,
+    "parameters" : [ {
+      "index" : 0,
+      "name" : "experiencePoints",
+      "typeId" : "t:float"
+    } ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "code" : null,
+      "startPosition" : {
+        "line" : 64,
+        "column" : 61
+      },
+      "endPosition" : {
+        "line" : 66,
+        "column" : 5
+      },
+      "structures" : [ {
+        "structureId" : "expr_stmt:1",
+        "kind" : "EXPR_STMT",
+        "code" : null,
+        "startPosition" : {
+          "line" : 65,
+          "column" : 9
+        },
+        "endPosition" : {
+          "line" : 65,
+          "column" : 50
+        },
+        "expr" : {
+          "code" : "this.experiencePoints += experiencePoints",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 65,
+            "column" : 9
+          },
+          "endPosition" : {
+            "line" : 65,
+            "column" : 50
+          }
+        }
+      } ]
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:ch.epfl.printwizard.examples.rpg.Player.attack(Player)void",
+    "classId" : "cls:ch.epfl.printwizard.examples.rpg.Player",
+    "name" : "attack",
+    "returnType" : "void",
+    "startLine" : 80,
+    "endLine" : 91,
+    "parameters" : [ {
+      "index" : 0,
+      "name" : "target",
+      "typeId" : "t:Player"
+    } ],
+    "structure" : {
+      "structureId" : "block:2",
+      "kind" : "BLOCK",
+      "code" : null,
+      "startPosition" : {
+        "line" : 80,
+        "column" : 39
+      },
+      "endPosition" : {
+        "line" : 91,
+        "column" : 5
+      },
+      "structures" : [ {
+        "structureId" : "if:1",
+        "kind" : "IF",
+        "code" : "if (weapon != null)",
+        "startPosition" : {
+          "line" : 81,
+          "column" : 9
+        },
+        "endPosition" : {
+          "line" : 90,
+          "column" : 9
+        },
+        "condition" : {
+          "code" : "weapon != null",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 81,
+            "column" : 9
+          },
+          "endPosition" : {
+            "line" : 90,
+            "column" : 9
+          }
+        },
+        "thenBranch" : {
+          "structureId" : "block:1",
+          "kind" : "BLOCK",
+          "code" : null,
+          "startPosition" : {
+            "line" : 81,
+            "column" : 29
+          },
+          "endPosition" : {
+            "line" : 90,
+            "column" : 9
+          },
+          "structures" : [ {
+            "structureId" : "expr_stmt:1",
+            "kind" : "EXPR_STMT",
+            "code" : null,
+            "startPosition" : {
+              "line" : 82,
+              "column" : 13
+            },
+            "endPosition" : {
+              "line" : 82,
+              "column" : 62
+            },
+            "expr" : {
+              "code" : "int targetHealthPoints = target.getHealthPoints()",
+              "kind" : "ALL",
+              "startPosition" : {
+                "line" : 82,
+                "column" : 13
+              },
+              "endPosition" : {
+                "line" : 82,
+                "column" : 62
+              }
+            }
+          }, {
+            "structureId" : "expr_stmt:2",
+            "kind" : "EXPR_STMT",
+            "code" : null,
+            "startPosition" : {
+              "line" : 83,
+              "column" : 13
+            },
+            "endPosition" : {
+              "line" : 83,
+              "column" : 44
+            },
+            "expr" : {
+              "code" : "target.hurt(weapon.getDamage())",
+              "kind" : "ALL",
+              "startPosition" : {
+                "line" : 83,
+                "column" : 13
+              },
+              "endPosition" : {
+                "line" : 83,
+                "column" : 44
+              }
+            }
+          }, {
+            "structureId" : "expr_stmt:3",
+            "kind" : "EXPR_STMT",
+            "code" : null,
+            "startPosition" : {
+              "line" : 85,
+              "column" : 13
+            },
+            "endPosition" : {
+              "line" : 89,
+              "column" : 34
+            },
+            "expr" : {
+              "code" : "battleHistory.add(new BattleHistory(this.name, target.getName(), weapon.getDamage(), targetHealthPoints, target.getHealthPoints(), target.isDead()))",
+              "kind" : "ALL",
+              "startPosition" : {
+                "line" : 85,
+                "column" : 13
+              },
+              "endPosition" : {
+                "line" : 89,
+                "column" : 34
+              }
+            }
+          } ]
+        },
+        "elseBranch" : null
+      } ]
+    },
+    "localVars" : [ {
+      "index" : 1,
+      "name" : "targetHealthPoints",
+      "typeId" : "int"
+    } ]
+  }, {
+    "methodId" : "m:ch.epfl.printwizard.examples.rpg.Player.getBattleHistory()List<BattleHistory>",
+    "classId" : "cls:ch.epfl.printwizard.examples.rpg.Player",
+    "name" : "getBattleHistory",
+    "returnType" : "List<BattleHistory>",
+    "startLine" : 93,
+    "endLine" : 95,
+    "parameters" : [ ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "code" : null,
+      "startPosition" : {
+        "line" : 93,
+        "column" : 58
+      },
+      "endPosition" : {
+        "line" : 95,
+        "column" : 5
+      },
+      "structures" : [ {
+        "structureId" : "return:1",
+        "kind" : "RETURN",
+        "code" : "return battleHistory;",
+        "startPosition" : {
+          "line" : 94,
+          "column" : 9
+        },
+        "endPosition" : {
+          "line" : 94,
+          "column" : 29
+        },
+        "value" : {
+          "code" : "battleHistory",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 94,
+            "column" : 9
+          },
+          "endPosition" : {
+            "line" : 94,
+            "column" : 29
+          }
+        }
+      } ]
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:ch.epfl.printwizard.examples.rpg.Player.getExperiencePoints()float",
+    "classId" : "cls:ch.epfl.printwizard.examples.rpg.Player",
+    "name" : "getExperiencePoints",
+    "returnType" : "float",
+    "startLine" : 47,
+    "endLine" : 49,
+    "parameters" : [ ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "code" : null,
+      "startPosition" : {
+        "line" : 47,
+        "column" : 40
+      },
+      "endPosition" : {
+        "line" : 49,
+        "column" : 5
+      },
+      "structures" : [ {
+        "structureId" : "return:1",
+        "kind" : "RETURN",
+        "code" : "return experiencePoints;",
+        "startPosition" : {
+          "line" : 48,
+          "column" : 9
+        },
+        "endPosition" : {
+          "line" : 48,
+          "column" : 32
+        },
+        "value" : {
+          "code" : "experiencePoints",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 48,
+            "column" : 9
+          },
+          "endPosition" : {
+            "line" : 48,
+            "column" : 32
+          }
+        }
+      } ]
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:ch.epfl.printwizard.examples.rpg.Player.getHealthPoints()int",
+    "classId" : "cls:ch.epfl.printwizard.examples.rpg.Player",
+    "name" : "getHealthPoints",
+    "returnType" : "int",
+    "startLine" : 39,
+    "endLine" : 41,
+    "parameters" : [ ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "code" : null,
+      "startPosition" : {
+        "line" : 39,
+        "column" : 34
+      },
+      "endPosition" : {
+        "line" : 41,
+        "column" : 5
+      },
+      "structures" : [ {
+        "structureId" : "return:1",
+        "kind" : "RETURN",
+        "code" : "return healthPoints;",
+        "startPosition" : {
+          "line" : 40,
+          "column" : 9
+        },
+        "endPosition" : {
+          "line" : 40,
+          "column" : 28
+        },
+        "value" : {
+          "code" : "healthPoints",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 40,
+            "column" : 9
+          },
+          "endPosition" : {
+            "line" : 40,
+            "column" : 28
+          }
+        }
+      } ]
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:ch.epfl.printwizard.examples.rpg.Player.getManaPoints()int",
+    "classId" : "cls:ch.epfl.printwizard.examples.rpg.Player",
+    "name" : "getManaPoints",
+    "returnType" : "int",
+    "startLine" : 43,
+    "endLine" : 45,
+    "parameters" : [ ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "code" : null,
+      "startPosition" : {
+        "line" : 43,
+        "column" : 32
+      },
+      "endPosition" : {
+        "line" : 45,
+        "column" : 5
+      },
+      "structures" : [ {
+        "structureId" : "return:1",
+        "kind" : "RETURN",
+        "code" : "return manaPoints;",
+        "startPosition" : {
+          "line" : 44,
+          "column" : 9
+        },
+        "endPosition" : {
+          "line" : 44,
+          "column" : 26
+        },
+        "value" : {
+          "code" : "manaPoints",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 44,
+            "column" : 9
+          },
+          "endPosition" : {
+            "line" : 44,
+            "column" : 26
+          }
+        }
+      } ]
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:ch.epfl.printwizard.examples.rpg.Player.getName()String",
+    "classId" : "cls:ch.epfl.printwizard.examples.rpg.Player",
+    "name" : "getName",
+    "returnType" : "String",
+    "startLine" : 35,
+    "endLine" : 37,
+    "parameters" : [ ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "code" : null,
+      "startPosition" : {
+        "line" : 35,
+        "column" : 29
+      },
+      "endPosition" : {
+        "line" : 37,
+        "column" : 5
+      },
+      "structures" : [ {
+        "structureId" : "return:1",
+        "kind" : "RETURN",
+        "code" : "return name;",
+        "startPosition" : {
+          "line" : 36,
+          "column" : 9
+        },
+        "endPosition" : {
+          "line" : 36,
+          "column" : 20
+        },
+        "value" : {
+          "code" : "name",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 36,
+            "column" : 9
+          },
+          "endPosition" : {
+            "line" : 36,
+            "column" : 20
+          }
+        }
+      } ]
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:ch.epfl.printwizard.examples.rpg.Player.getWeapon()Weapon",
+    "classId" : "cls:ch.epfl.printwizard.examples.rpg.Player",
+    "name" : "getWeapon",
+    "returnType" : "Weapon",
+    "startLine" : 51,
+    "endLine" : 53,
+    "parameters" : [ ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "code" : null,
+      "startPosition" : {
+        "line" : 51,
+        "column" : 31
+      },
+      "endPosition" : {
+        "line" : 53,
+        "column" : 5
+      },
+      "structures" : [ {
+        "structureId" : "return:1",
+        "kind" : "RETURN",
+        "code" : "return weapon;",
+        "startPosition" : {
+          "line" : 52,
+          "column" : 9
+        },
+        "endPosition" : {
+          "line" : 52,
+          "column" : 22
+        },
+        "value" : {
+          "code" : "weapon",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 52,
+            "column" : 9
+          },
+          "endPosition" : {
+            "line" : 52,
+            "column" : 22
+          }
+        }
+      } ]
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:ch.epfl.printwizard.examples.rpg.Player.hurt(int)void",
+    "classId" : "cls:ch.epfl.printwizard.examples.rpg.Player",
+    "name" : "hurt",
+    "returnType" : "void",
+    "startLine" : 72,
+    "endLine" : 74,
+    "parameters" : [ {
+      "index" : 0,
+      "name" : "damage",
+      "typeId" : "t:int"
+    } ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "code" : null,
+      "startPosition" : {
+        "line" : 72,
+        "column" : 34
+      },
+      "endPosition" : {
+        "line" : 74,
+        "column" : 5
+      },
+      "structures" : [ {
+        "structureId" : "expr_stmt:1",
+        "kind" : "EXPR_STMT",
+        "code" : null,
+        "startPosition" : {
+          "line" : 73,
+          "column" : 9
+        },
+        "endPosition" : {
+          "line" : 73,
+          "column" : 52
+        },
+        "expr" : {
+          "code" : "setHealthPoints(getHealthPoints() - damage)",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 73,
+            "column" : 9
+          },
+          "endPosition" : {
+            "line" : 73,
+            "column" : 52
+          }
+        }
+      } ]
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:ch.epfl.printwizard.examples.rpg.Player.isDead()boolean",
+    "classId" : "cls:ch.epfl.printwizard.examples.rpg.Player",
+    "name" : "isDead",
+    "returnType" : "boolean",
+    "startLine" : 76,
+    "endLine" : 78,
+    "parameters" : [ ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "code" : null,
+      "startPosition" : {
+        "line" : 76,
+        "column" : 29
+      },
+      "endPosition" : {
+        "line" : 78,
+        "column" : 5
+      },
+      "structures" : [ {
+        "structureId" : "return:1",
+        "kind" : "RETURN",
+        "code" : "return isDead;",
+        "startPosition" : {
+          "line" : 77,
+          "column" : 9
+        },
+        "endPosition" : {
+          "line" : 77,
+          "column" : 22
+        },
+        "value" : {
+          "code" : "isDead",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 77,
+            "column" : 9
+          },
+          "endPosition" : {
+            "line" : 77,
+            "column" : 22
+          }
+        }
+      } ]
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:ch.epfl.printwizard.examples.rpg.Player.setHealthPoints(int)void",
+    "classId" : "cls:ch.epfl.printwizard.examples.rpg.Player",
+    "name" : "setHealthPoints",
+    "returnType" : "void",
+    "startLine" : 55,
+    "endLine" : 58,
+    "parameters" : [ {
+      "index" : 0,
+      "name" : "healthPoints",
+      "typeId" : "t:int"
+    } ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "code" : null,
+      "startPosition" : {
+        "line" : 55,
+        "column" : 51
+      },
+      "endPosition" : {
+        "line" : 58,
+        "column" : 5
+      },
+      "structures" : [ {
+        "structureId" : "expr_stmt:1",
+        "kind" : "EXPR_STMT",
+        "code" : null,
+        "startPosition" : {
+          "line" : 56,
+          "column" : 9
+        },
+        "endPosition" : {
+          "line" : 56,
+          "column" : 73
+        },
+        "expr" : {
+          "code" : "this.healthPoints = Math.clamp(healthPoints, 0, maxHealthPoints)",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 56,
+            "column" : 9
+          },
+          "endPosition" : {
+            "line" : 56,
+            "column" : 73
+          }
+        }
+      }, {
+        "structureId" : "expr_stmt:2",
+        "kind" : "EXPR_STMT",
+        "code" : null,
+        "startPosition" : {
+          "line" : 57,
+          "column" : 9
+        },
+        "endPosition" : {
+          "line" : 57,
+          "column" : 40
+        },
+        "expr" : {
+          "code" : "this.isDead = healthPoints <= 0",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 57,
+            "column" : 9
+          },
+          "endPosition" : {
+            "line" : 57,
+            "column" : 40
+          }
+        }
+      } ]
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:ch.epfl.printwizard.examples.rpg.Player.setManaPoints(int)void",
+    "classId" : "cls:ch.epfl.printwizard.examples.rpg.Player",
+    "name" : "setManaPoints",
+    "returnType" : "void",
+    "startLine" : 60,
+    "endLine" : 62,
+    "parameters" : [ {
+      "index" : 0,
+      "name" : "manaPoints",
+      "typeId" : "t:int"
+    } ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "code" : null,
+      "startPosition" : {
+        "line" : 60,
+        "column" : 47
+      },
+      "endPosition" : {
+        "line" : 62,
+        "column" : 5
+      },
+      "structures" : [ {
+        "structureId" : "expr_stmt:1",
+        "kind" : "EXPR_STMT",
+        "code" : null,
+        "startPosition" : {
+          "line" : 61,
+          "column" : 9
+        },
+        "endPosition" : {
+          "line" : 61,
+          "column" : 67
+        },
+        "expr" : {
+          "code" : "this.manaPoints = Math.clamp(manaPoints, 0, maxManaPoints)",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 61,
+            "column" : 9
+          },
+          "endPosition" : {
+            "line" : 61,
+            "column" : 67
+          }
+        }
+      } ]
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:ch.epfl.printwizard.examples.rpg.Player.setWeapon(Weapon)void",
+    "classId" : "cls:ch.epfl.printwizard.examples.rpg.Player",
+    "name" : "setWeapon",
+    "returnType" : "void",
+    "startLine" : 68,
+    "endLine" : 70,
+    "parameters" : [ {
+      "index" : 0,
+      "name" : "weapon",
+      "typeId" : "t:Weapon"
+    } ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "code" : null,
+      "startPosition" : {
+        "line" : 68,
+        "column" : 42
+      },
+      "endPosition" : {
+        "line" : 70,
+        "column" : 5
+      },
+      "structures" : [ {
+        "structureId" : "expr_stmt:1",
+        "kind" : "EXPR_STMT",
+        "code" : null,
+        "startPosition" : {
+          "line" : 69,
+          "column" : 9
+        },
+        "endPosition" : {
+          "line" : 69,
+          "column" : 29
+        },
+        "expr" : {
+          "code" : "this.weapon = weapon",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 69,
+            "column" : 9
+          },
+          "endPosition" : {
+            "line" : 69,
+            "column" : 29
+          }
+        }
+      } ]
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:ch.epfl.printwizard.examples.rpg.Weapon.Weapon(String,int,boolean)<init>",
+    "classId" : "cls:ch.epfl.printwizard.examples.rpg.Weapon",
+    "name" : "Weapon",
+    "returnType" : "<init>",
+    "startLine" : 9,
+    "endLine" : 13,
+    "parameters" : [ {
+      "index" : 0,
+      "name" : "name",
+      "typeId" : "t:String"
+    }, {
+      "index" : 1,
+      "name" : "damage",
+      "typeId" : "t:int"
+    }, {
+      "index" : 2,
+      "name" : "isRanged",
+      "typeId" : "t:boolean"
+    } ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "code" : null,
+      "startPosition" : {
+        "line" : 9,
+        "column" : 62
+      },
+      "endPosition" : {
+        "line" : 13,
+        "column" : 5
+      },
+      "structures" : [ {
+        "structureId" : "expr_stmt:1",
+        "kind" : "EXPR_STMT",
+        "code" : null,
+        "startPosition" : {
+          "line" : 10,
+          "column" : 9
+        },
+        "endPosition" : {
+          "line" : 10,
+          "column" : 25
+        },
+        "expr" : {
+          "code" : "this.name = name",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 10,
+            "column" : 9
+          },
+          "endPosition" : {
+            "line" : 10,
+            "column" : 25
+          }
+        }
+      }, {
+        "structureId" : "expr_stmt:2",
+        "kind" : "EXPR_STMT",
+        "code" : null,
+        "startPosition" : {
+          "line" : 11,
+          "column" : 9
+        },
+        "endPosition" : {
+          "line" : 11,
+          "column" : 29
+        },
+        "expr" : {
+          "code" : "this.damage = damage",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 11,
+            "column" : 9
+          },
+          "endPosition" : {
+            "line" : 11,
+            "column" : 29
+          }
+        }
+      }, {
+        "structureId" : "expr_stmt:3",
+        "kind" : "EXPR_STMT",
+        "code" : null,
+        "startPosition" : {
+          "line" : 12,
+          "column" : 9
+        },
+        "endPosition" : {
+          "line" : 12,
+          "column" : 33
+        },
+        "expr" : {
+          "code" : "this.isRanged = isRanged",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 12,
+            "column" : 9
+          },
+          "endPosition" : {
+            "line" : 12,
+            "column" : 33
+          }
+        }
+      } ]
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:ch.epfl.printwizard.examples.rpg.Weapon.getDamage()int",
+    "classId" : "cls:ch.epfl.printwizard.examples.rpg.Weapon",
+    "name" : "getDamage",
+    "returnType" : "int",
+    "startLine" : 19,
+    "endLine" : 21,
+    "parameters" : [ ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "code" : null,
+      "startPosition" : {
+        "line" : 19,
+        "column" : 28
+      },
+      "endPosition" : {
+        "line" : 21,
+        "column" : 5
+      },
+      "structures" : [ {
+        "structureId" : "return:1",
+        "kind" : "RETURN",
+        "code" : "return damage;",
+        "startPosition" : {
+          "line" : 20,
+          "column" : 9
+        },
+        "endPosition" : {
+          "line" : 20,
+          "column" : 22
+        },
+        "value" : {
+          "code" : "damage",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 20,
+            "column" : 9
+          },
+          "endPosition" : {
+            "line" : 20,
+            "column" : 22
+          }
+        }
+      } ]
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:ch.epfl.printwizard.examples.rpg.Weapon.getName()String",
+    "classId" : "cls:ch.epfl.printwizard.examples.rpg.Weapon",
+    "name" : "getName",
+    "returnType" : "String",
+    "startLine" : 15,
+    "endLine" : 17,
+    "parameters" : [ ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "code" : null,
+      "startPosition" : {
+        "line" : 15,
+        "column" : 29
+      },
+      "endPosition" : {
+        "line" : 17,
+        "column" : 5
+      },
+      "structures" : [ {
+        "structureId" : "return:1",
+        "kind" : "RETURN",
+        "code" : "return name;",
+        "startPosition" : {
+          "line" : 16,
+          "column" : 9
+        },
+        "endPosition" : {
+          "line" : 16,
+          "column" : 20
+        },
+        "value" : {
+          "code" : "name",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 16,
+            "column" : 9
+          },
+          "endPosition" : {
+            "line" : 16,
+            "column" : 20
+          }
+        }
+      } ]
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:ch.epfl.printwizard.examples.rpg.Weapon.isRanged()boolean",
+    "classId" : "cls:ch.epfl.printwizard.examples.rpg.Weapon",
+    "name" : "isRanged",
+    "returnType" : "boolean",
+    "startLine" : 23,
+    "endLine" : 25,
+    "parameters" : [ ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "code" : null,
+      "startPosition" : {
+        "line" : 23,
+        "column" : 31
+      },
+      "endPosition" : {
+        "line" : 25,
+        "column" : 5
+      },
+      "structures" : [ {
+        "structureId" : "return:1",
+        "kind" : "RETURN",
+        "code" : "return isRanged;",
+        "startPosition" : {
+          "line" : 24,
+          "column" : 9
+        },
+        "endPosition" : {
+          "line" : 24,
+          "column" : 24
+        },
+        "value" : {
+          "code" : "isRanged",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 24,
+            "column" : 9
+          },
+          "endPosition" : {
+            "line" : 24,
+            "column" : 24
+          }
+        }
+      } ]
+    },
+    "localVars" : [ ]
+  } ]
+}

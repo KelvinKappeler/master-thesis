@@ -1,23 +1,34 @@
 {
   "byLine" : {
+    "src:ch/epfl/printwizard/examples/Player.java" : {
+      "11" : [ "eve:23" ],
+      "8" : [ "eve:19", "eve:20" ],
+      "9" : [ "eve:21" ],
+      "10" : [ "eve:22" ]
+    },
     "src:ch/epfl/printwizard/examples/Main.java" : {
+      "22" : [ "eve:6", "eve:5", "eve:9", "eve:8" ],
       "13" : [ "eve:13" ],
       "5" : [ "eve:1" ],
       "16" : [ "eve:15", "eve:16", "eve:14", "eve:17" ],
-      "17" : [ "eve:18" ],
       "7" : [ "eve:3", "eve:2" ],
-      "19" : [ "eve:4", "eve:7" ],
+      "18" : [ "eve:18" ],
+      "19" : [ "eve:24" ],
       "9" : [ "eve:10" ],
-      "20" : [ "eve:6", "eve:5", "eve:9", "eve:8" ],
+      "21" : [ "eve:4", "eve:7" ],
       "10" : [ "eve:11", "eve:12" ]
     }
   },
   "byLocal" : {
-    "local:i@src:ch/epfl/printwizard/examples/Main.java:122#spn:1" : [ "eve:2" ],
-    "local:j@src:ch/epfl/printwizard/examples/Main.java:162#spn:1" : [ "eve:10", "eve:13" ]
+    "local:player@src:ch/epfl/printwizard/examples/Main.java:342#spn:1" : [ "eve:18" ],
+    "local:j@src:ch/epfl/printwizard/examples/Main.java:162#spn:1" : [ "eve:10", "eve:13" ],
+    "local:i@src:ch/epfl/printwizard/examples/Main.java:122#spn:1" : [ "eve:2" ]
   },
-  "byObject" : { },
+  "byObject" : {
+    "obj:2" : [ "eve:20", "eve:21", "eve:22", "eve:18" ]
+  },
   "bySpan" : {
+    "spn:4" : [ "eve:19" ],
     "spn:3" : [ "eve:7" ],
     "spn:2" : [ "eve:4" ],
     "spn:1" : [ "eve:1" ]

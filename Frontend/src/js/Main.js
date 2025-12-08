@@ -1,4 +1,4 @@
 import { PrintWizard } from "./core/PrintWizard.js";
 
 export const pw = new PrintWizard();
-pw.loadData('../../Backend/Results/manifest.json');
+pw.loadData('../../Backend/Results/New/manifest.json');

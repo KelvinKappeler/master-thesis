@@ -65,12 +65,12 @@ public record JavaMethodExtractor(Source source, BaseTypeInfo typeInfo) implemen
         List<String> paramTypes = new ArrayList<>();
         int pIndex = 0;
         for (Parameter p : c.getParameters()) {
-            paramTypes.add(ch.epfl.printwizard.parser.java.TypeIdUtils.canonical(p.getType()));
+            paramTypes.add(/*ch.epfl.printwizard.parser.java.TypeIdUtils.canonical(*/p.getType().toString()/*)*/);
             params.add(new ParameterInfo(pIndex++, p.getNameAsString(), "t:" + p.getType().toString()));
         }
 
         // Method ID "m:Class.method(Args)"
-        String classInternal = typeInfo.getPackageName().replace('.', '/') + "/" + typeInfo.getName();
+        String classInternal = typeInfo.getPackageName() + "." + typeInfo.getName();
         String methodId = IdGenerator.methodId(classInternal, name, String.join(",", paramTypes), returnType);
 
         // Lines

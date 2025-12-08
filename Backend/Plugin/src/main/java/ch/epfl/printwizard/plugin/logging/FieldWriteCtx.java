@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Represents the context of a field write operation.
+ * Represents the context of a field write operator.
  */
 public class FieldWriteCtx implements ExecCtx {
 
