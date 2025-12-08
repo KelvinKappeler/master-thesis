@@ -1,21 +1,25 @@
 {
   "byLine" : {
     "src:ch/epfl/printwizard/examples/Main.java" : {
-      "12" : [ "eve:9" ],
-      "14" : [ "eve:6" ],
-      "15" : [ "eve:8", "eve:7" ],
+      "13" : [ "eve:13" ],
       "5" : [ "eve:1" ],
-      "7" : [ "eve:2" ],
-      "9" : [ "eve:3", "eve:4" ],
-      "10" : [ "eve:5" ]
+      "16" : [ "eve:15", "eve:16", "eve:14", "eve:17" ],
+      "17" : [ "eve:18" ],
+      "7" : [ "eve:3", "eve:2" ],
+      "19" : [ "eve:4", "eve:7" ],
+      "9" : [ "eve:10" ],
+      "20" : [ "eve:6", "eve:5", "eve:9", "eve:8" ],
+      "10" : [ "eve:11", "eve:12" ]
     }
   },
   "byLocal" : {
-    "local:i@src:ch/epfl/printwizard/examples/Main.java:128#spn:1" : [ "eve:2", "eve:5" ]
+    "local:i@src:ch/epfl/printwizard/examples/Main.java:122#spn:1" : [ "eve:2" ],
+    "local:j@src:ch/epfl/printwizard/examples/Main.java:162#spn:1" : [ "eve:10", "eve:13" ]
   },
   "byObject" : { },
   "bySpan" : {
-    "spn:2" : [ "eve:6" ],
+    "spn:3" : [ "eve:7" ],
+    "spn:2" : [ "eve:4" ],
     "spn:1" : [ "eve:1" ]
   }
 }

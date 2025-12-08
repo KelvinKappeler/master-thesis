@@ -3,15 +3,16 @@ import {Class, Enum, Interface, Method, ProgramTrace, Record, Source, Variable} 
 import {BlockNode, CodePosition, ExprStmtNode, IfNode, ReturnNode} from "../model/StructureDefs.js";
 import {ExprCode} from "../model/ExprDefs.js";
 import {Index} from "../model/IndexDefs.js";
-import {Argument, Frame, Span, TraceData, TraceLocation} from "../model/TraceDefs.js";
+import {Argument, Span, TraceData, TraceLocation} from "../model/TraceDefs.js";
 import {
     ArithmeticTraceEvent,
     CallTraceEvent,
-    ConditionTraceEvent,
+    ConditionTraceEvent, EventValue,
     LocalTraceEvent,
     ReturnTraceEvent
 } from "../model/EventDefs.js";
 import {MainData} from "./MainData.js";
+import e from "express";
 
 /**
  * This class is used to assemble a MainData object from JSON data.
@@ -26,13 +27,14 @@ export class MainDataAssembler {
     static async assemble(jsonData) {
         Preconditions.requireNonNull(jsonData, "jsonData is null");
 
-        const [programFile, traceFile, indexFile] = await jsonData.getAllData();
+        const [programFile, traceFile, indexFile, stateFile] = await jsonData.getAllData();
 
         let program = this.#assembleProgramTrace(programFile);
         let index = this.#assembleIndex(indexFile);
         let traceData = this.#assembleTraceData(traceFile);
+        let stateData = this.#assembleStateData(stateFile);
 
-        return new MainData(program, traceData, index);
+        return new MainData(program, traceData, index, stateData);
     }
 
     static #assembleIndex(indexJson) {
@@ -45,6 +47,11 @@ export class MainDataAssembler {
             indexByLine.set(source, lineMap);
         }
 
+        let indexByLocal = new Map();
+        for (const [localId, events] of Object.entries(indexJson.byLocal)) {
+            indexByLocal.set(localId, events);
+        }
+
         let indexByObject = new Map();
         for (const [objectId, spans] of Object.entries(indexJson.byObject)) {
             indexByObject.set(objectId, spans);
@@ -55,7 +62,7 @@ export class MainDataAssembler {
             indexBySpan.set(spanId, objects);
         }
 
-        return new Index(indexByLine, indexByObject, indexBySpan);
+        return new Index(indexByLine, indexByLocal, indexByObject, indexBySpan);
     }
 
     static #assembleProgramTrace(programJson) {
@@ -211,10 +218,9 @@ export class MainDataAssembler {
 
     static #assembleTraceData(traceJson) {
         let spans = this.#assembleSpans(traceJson.spans);
-        let frames = this.#assembleFrames(traceJson.frames);
         let events = this.#assembleEvents(traceJson.events);
 
-        return new TraceData(spans, frames, events);
+        return new TraceData(spans, events);
     }
 
     static #assembleTraceLocation(locationJson) {
@@ -239,20 +245,6 @@ export class MainDataAssembler {
         return spans;
     }
 
-    static #assembleFrames(framesJson) {
-        let frames = [];
-
-        for (const frame of framesJson) {
-            let args = [];
-            for (const arg of frame.args) {
-                args.push(new Argument(arg.name, arg.value));
-            }
-            frames.push(new Frame(frame.frameId, frame.spanId, frame.methodId, frame.thisRef, args));
-        }
-
-        return frames;
-    }
-
     static #assembleEvents(eventsJson) {
         let events = [];
 
@@ -261,6 +253,15 @@ export class MainDataAssembler {
         }
 
         return events;
+    }
+
+    static #assembleEventValue(eventValueJson) {
+        return new EventValue(
+            eventValueJson.value,
+            eventValueJson.valueObjectId,
+            eventValueJson.javaTypeName,
+            eventValueJson.kind
+        );
     }
 
     static #assembleEvent(eventJson) {
@@ -272,51 +273,53 @@ export class MainDataAssembler {
         switch (eventJson.type) {
             case "CALL":
                 return new CallTraceEvent(
-                    eventId,
-                    spanId,
-                    frameId,
-                    location,
+                    eventId, spanId, frameId, location,
                     eventJson.callerMethodId,
                     eventJson.calleeMethodId,
-                    eventJson.name
+                    eventJson.name,
+                    eventJson.external,
+                    eventJson.args,
+                    this.#assembleEventValue(eventJson.value),
+                    eventJson.bodyEventIds
                 );
 
             case "LOCAL":
                 return new LocalTraceEvent(
-                    eventId,
-                    spanId,
-                    frameId,
-                    location,
-                    eventJson.owner,
+                    eventId, spanId, frameId, location,
                     eventJson.method,
-                    eventJson.index,
-                    eventJson.value
+                    eventJson.varName,
+                    eventJson.value,
+                    eventJson.label,
+                    eventJson.bodyEventId
                 );
 
             case "RETURN":
                 return new ReturnTraceEvent(
-                    eventId,
-                    spanId,
-                    frameId,
-                    location,
-                    eventJson.returnValue
+                    eventId, spanId, frameId, location,
+                    this.#assembleEventValue(eventJson.value),
+                    eventJson.bodyEventId
                 );
 
             case "ARITHMETIC":
                 return new ArithmeticTraceEvent(
-                    eventId,
-                    spanId,
-                    frameId,
-                    location,
-                    eventJson.operation,
-                    eventJson.type,
-                    eventJson.left,
-                    eventJson.right,
-                    eventJson.result,
+                    eventId, spanId, frameId, location,
+                    eventJson.operator,
+                    this.#assembleEventValue(eventJson.left),
+                    eventJson.leftEventId,
+                    this.#assembleEventValue(eventJson.right),
+                    eventJson.rightEventId,
+                    this.#assembleEventValue(eventJson.value)
                 )
 
             case "CONDITION":
-                return new ConditionTraceEvent(eventId, spanId, frameId, location, eventJson.left, eventJson.right, eventJson.result, eventJson.childrenEventIds);
+                return new ConditionTraceEvent(
+                    eventId, spanId, frameId, location,
+                    eventJson.kind,
+                    eventJson.conditionEventIds,
+                    eventJson.thenEventIds,
+                    eventJson.elseEventIds,
+                    this.#assembleEventValue(eventJson.value)
+                );
 
             default:
                 throw new Error(`Unknown event type: ${eventJson.eventType}`);

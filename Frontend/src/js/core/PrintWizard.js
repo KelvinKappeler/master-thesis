@@ -5,13 +5,16 @@ import {TraceModel} from "../model/TraceModel.js";
 import {TraceViewModel} from "../view/TraceViewModel.js";
 import {TraceContainer} from "../view/TraceContainer.js";
 import {TraceView} from "../view/TraceView.js";
+import {SearchInspector} from "../../../oldsrc/js/inspectors/SearchInspector.js";
+import {ObjectInspector} from "../../../oldsrc/js/inspectors/ObjectInspector.js";
+import {Breadcrumb} from "../elements/Breadcrumb.js";
 
 /**
  * This class is responsible to manage PrintWizard
  */
 export class PrintWizard {
     constructor() {
-        /*this.breadcrumb = new Breadcrumb();
+        this.breadcrumb = new Breadcrumb();
         this.breadcrumb.attachTo(document.querySelector('.breadcrumb'));
         this.jsonData = undefined;
         this.objectInspector = new ObjectInspector();
@@ -19,7 +22,7 @@ export class PrintWizard {
         this.searchInspector = new SearchInspector();
         this.searchInspector.attachTo(document.querySelector('#inspector'));
         this.trace = undefined;
-        this.parser = undefined;*/
+        this.parser = undefined;
     }
 
     /**
@@ -45,7 +48,7 @@ export class PrintWizard {
             traceView.render();
         });
 
-        /*this.jsonData.getAllData().then(data => {
+        this.jsonData.getAllData().then(data => {
             const finalTreeTrace = translateToTreeFormat(data[2], data[0], data[1]).inlineLoops();
             console.log(finalTreeTrace);
 
@@ -61,7 +64,7 @@ export class PrintWizard {
             this.objectInspector.clear();
 
             this.searchInspector.clearResult();
-        });*/
+        });
     }
 
     /*
