@@ -36,7 +36,7 @@ export class TraceView {
         this.container.clear();
         //this.breadcrumb.render();
         const mainEvents = this.#getEvents();
-        this.#renderEvents(mainEvents, null);
+        this.#renderEvents(mainEvents, null, null);
     }
 
     #getEvents() {
@@ -55,7 +55,7 @@ export class TraceView {
             return `${event.varName} ← ${this.#getShowValue(event.value)}`;
         }
         else if (event instanceof ArithmeticTraceEvent) {
-            return `${this.#getShowValue(event.left)} ${event.operation} ${this.#getShowValue(event.right)} = ${this.#getShowValue(event.value)}`;
+            return `${this.#getShowValue(event.left)} ${this.#getOperator(event.operator)} ${this.#getShowValue(event.right)} = ${this.#getShowValue(event.value)}`;
         }
         else if (event instanceof ConditionTraceEvent) {
             return event.result ? "true" : "false";
@@ -64,7 +64,7 @@ export class TraceView {
             return `return ${this.#getShowValue(event.value)}`;
         }
         else if (event instanceof ComparisonTraceEvent) {
-            return `${this.#getShowValue(event.left)} ${event.operation} ${this.#getShowValue(event.right)} = ${this.#getShowValue(event.result)}`;
+            return `${this.#getShowValue(event.left)} ${this.#getOperator(event.operator)} ${this.#getShowValue(event.right)} = ${this.#getShowValue(event.result)}`;
         }
         else if (event instanceof NewTraceEvent) {
             return `new ${event.className}()`;
@@ -86,7 +86,7 @@ export class TraceView {
         }
     }
 
-    #manageInnerEvents(event, parentBlock) {
+    #manageInnerEvents(event, parentBlock, location) {
         const childIds = [];
 
         if (event instanceof CallTraceEvent) {
@@ -124,29 +124,26 @@ export class TraceView {
 
         const children = childIds.map(id => this.traceModel.getEvent(id)).filter(Boolean);
 
-        this.#renderEvents(children, parentBlock);
+        this.#renderEvents(children, parentBlock, location);
     }
 
-    #renderEvents(events, parentBlock) {
+    #renderEvents(events, parentBlock, location) {
         if (!Array.isArray(events) || events.length === 0) return;
 
-        let currentBlock = null;
-        let currentLine = null;
-        let currentLineContentKey = null;
+        let currentBlock = parentBlock;
+        let currentLocation = location;
 
         for (const ev of events) {
             const line = ev.location?.line ?? "-";
             const lineContent = this.#getLineContent(ev);
-            const contentKey = `${line}:${lineContent}`;
 
-            if (currentLine !== line || currentLineContentKey !== contentKey) {
+            if (parentBlock === null || !ev.location?.equals(currentLocation)) {
                 const headerFrag = TraceSpan.wrapLineColors(lineContent);
                 currentBlock = new TraceBlock(this.container, parentBlock, line, headerFrag, true, true);
-                currentLine = line;
-                currentLineContentKey = contentKey;
+                currentLocation = ev.location;
             }
 
-            this.#manageInnerEvents(ev, currentBlock);
+            this.#manageInnerEvents(ev, currentBlock, currentLocation);
 
             if (ev instanceof CallTraceEvent) {
                 continue;
@@ -174,6 +171,28 @@ export class TraceView {
         }
         else {
             return value.valueObjectId;
+        }
+    }
+
+    #getOperator(operator) {
+        switch (operator) {
+            case "PLUS": return "+";
+            case "SUB": return "-";
+            case "MUL": return "*";
+            case "DIV": return "/";
+            case "MOD": return "%";
+
+            case "EQ": return "==";
+            case "NE": return "!=";
+            case "LT": return "<";
+            case "LE": return "<=";
+            case "GT": return ">";
+            case "GE": return ">=";
+
+            case "AND": return "&&";
+            case "OR": return "||";
+
+            default: return operator;
         }
     }
 }
