@@ -1,16 +1,16 @@
 import {TraceContainer} from "./TraceContainer.js";
 import {
     ArithmeticTraceEvent,
-    CallTraceEvent,
-    ConditionTraceEvent,
-    LocalTraceEvent,
-    ReturnTraceEvent,
     ArrayStoreTraceEvent,
-    FieldWriteTraceEvent,
-    LoopTraceEvent,
-    LoopIterationTraceEvent,
+    CallTraceEvent,
     ComparisonTraceEvent,
-    NewTraceEvent
+    ConditionTraceEvent,
+    FieldWriteTraceEvent,
+    LocalTraceEvent,
+    LoopIterationTraceEvent,
+    LoopTraceEvent,
+    NewTraceEvent,
+    ReturnTraceEvent
 } from "../model/EventDefs.js";
 import {TraceBlock} from "./TraceBlock.js";
 import {TraceSpan} from "./TraceSpan.js";
@@ -48,27 +48,38 @@ export class TraceView {
 
     #getEventLine(event) {
         if (event instanceof CallTraceEvent) {
-            /*const callee = this.traceViewModel.getMethod(event.calleeMethodId);
-            if (callee === undefined) {
-                return event.name;
-            }*/
-
-            return "CALL";
+            // This is handled in #renderEvents by creating a new block
+            throw new Error("CallTraceEvent should not be rendered as a line directly.");
         }
         else if (event instanceof LocalTraceEvent) {
-            return event.varName + " ← " + event.value.value;
+            return `${event.varName} ← ${this.#getShowValue(event.value)}`;
         }
         else if (event instanceof ArithmeticTraceEvent) {
-            return `${event.left} ${event.operation} ${event.right} = ${event.result}`;
+            return `${this.#getShowValue(event.left)} ${event.operation} ${this.#getShowValue(event.right)} = ${this.#getShowValue(event.value)}`;
         }
         else if (event instanceof ConditionTraceEvent) {
             return event.result ? "true" : "false";
         }
         else if (event instanceof ReturnTraceEvent) {
-            return "RETURN " + event.value;
+            return `return ${this.#getShowValue(event.value)}`;
         }
         else if (event instanceof ComparisonTraceEvent) {
-            return `${event.left} ${event.operation} ${event.right} = ${event.result}`;
+            return `${this.#getShowValue(event.left)} ${event.operation} ${this.#getShowValue(event.right)} = ${this.#getShowValue(event.result)}`;
+        }
+        else if (event instanceof NewTraceEvent) {
+            return `new ${event.className}()`;
+        }
+        else if (event instanceof ArrayStoreTraceEvent) {
+            return `array[${event.index}] = ${event.value}`;
+        }
+        else if (event instanceof FieldWriteTraceEvent) {
+            return `object.${event.fieldName} = ${event.value}`;
+        }
+        else if (event instanceof LoopTraceEvent) {
+            return `LOOP`;
+        }
+        else if (event instanceof LoopIterationTraceEvent) {
+            return `LOOP ITERATION`;
         }
         else {
             throw new Error("Event type not implemented : " + event.constructor.name);
@@ -124,14 +135,8 @@ export class TraceView {
         let currentLineContentKey = null;
 
         for (const ev of events) {
-            const structure = this.traceModel.getStructureFromEvent(ev.eventId);
-            if (!structure) {
-                this.#manageInnerEvents(ev, parentBlock);
-                continue;
-            }
-
             const line = ev.location?.line ?? "-";
-            const lineContent = structure?.getLineContent() ?? "?";
+            const lineContent = this.#getLineContent(ev);
             const contentKey = `${line}:${lineContent}`;
 
             if (currentLine !== line || currentLineContentKey !== contentKey) {
@@ -141,8 +146,34 @@ export class TraceView {
                 currentLineContentKey = contentKey;
             }
 
-            currentBlock.addLine(line, this.#getEventLine(ev));
             this.#manageInnerEvents(ev, currentBlock);
+
+            if (ev instanceof CallTraceEvent) {
+                continue;
+            }
+
+            currentBlock.addLine(line, this.#getEventLine(ev));
+        }
+    }
+
+    #getLineContent(event) {
+        if (event instanceof CallTraceEvent) {
+            return event.name + "(" + event.args.map(arg => arg.name + ":" + this.#getShowValue(arg.value)).join(", ") + ")";
+        }
+        else {
+            const structure = this.traceModel.getStructureFromEvent(event.eventId);
+
+            return structure?.getLineContent() ?? "?";
+        }
+    }
+
+    #getShowValue(value) {
+        if (value.kind === "NULL") return "null";
+        else if (value.value !== null) {
+            return value.value;
+        }
+        else {
+            return value.valueObjectId;
         }
     }
 }

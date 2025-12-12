@@ -118,7 +118,7 @@ public class TraceOut {
         String rootEventId = null;
         List<String> children = found.getChildEventIds();
         if (!children.isEmpty()) {
-            rootEventId = children.getFirst();
+            rootEventId = children.getLast();
         }
 
         ArrayStoreEvent ev = new ArrayStoreEvent(
@@ -218,8 +218,8 @@ public class TraceOut {
 
         stack.remove(found);
 
-        String leftEventId = found.getLeftEventIds().isEmpty() ? null : found.getLeftEventIds().getFirst();
-        String rightEventId = found.getRightEventIds().isEmpty() ? null : found.getRightEventIds().getFirst();
+        String leftEventId = found.getLeftEventIds().isEmpty() ? null : found.getLeftEventIds().getLast();
+        String rightEventId = found.getRightEventIds().isEmpty() ? null : found.getRightEventIds().getLast();
 
         boolean result = computeComparison(found.getOperator(), left, right);
 
@@ -392,8 +392,8 @@ public class TraceOut {
 
         stack.remove(found);
 
-        String leftEventId = found.getLeftEventIds().isEmpty() ? null : found.getLeftEventIds().getFirst();
-        String rightEventId = found.getRightEventIds().isEmpty() ? null : found.getRightEventIds().getFirst();
+        String leftEventId = found.getLeftEventIds().isEmpty() ? null : found.getLeftEventIds().getLast();
+        String rightEventId = found.getRightEventIds().isEmpty() ? null : found.getRightEventIds().getLast();
 
         ArithmeticEvent ev = new ArithmeticEvent(
             found.getArithmeticEventId(), found.getSpanId(),
@@ -450,7 +450,7 @@ public class TraceOut {
 
         String rootEventId = null;
         if (!found.getChildEventIds().isEmpty()) {
-            rootEventId = found.getChildEventIds().getFirst();
+            rootEventId = found.getChildEventIds().getLast();
         }
 
         LocalEvent ev = new LocalEvent(
@@ -504,7 +504,7 @@ public class TraceOut {
 
         String bodyEventId = null;
         if (!found.getChildEventIds().isEmpty()) {
-            bodyEventId = found.getChildEventIds().getFirst();
+            bodyEventId = found.getChildEventIds().getLast();
         }
 
         FieldWriteEvent ev = new FieldWriteEvent(
@@ -563,7 +563,7 @@ public class TraceOut {
 
         String bodyEventId = null;
         if (!found.getChildEventIds().isEmpty()) {
-            bodyEventId = found.getChildEventIds().getFirst();
+            bodyEventId = found.getChildEventIds().getLast();
         }
 
         TraceLoc loc = found.getLocation();

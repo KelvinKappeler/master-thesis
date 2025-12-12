@@ -366,7 +366,7 @@
       "kind" : "PRIMITIVE"
     },
     "label" : "local:i@src:ch/epfl/printwizard/examples/Main.java:122",
-    "bodyEventId" : "eve:7"
+    "bodyEventId" : "eve:3"
   }, {
     "type" : "LOCAL",
     "eventId" : "eve:10",
