@@ -51,11 +51,9 @@ export class TraceView {
         const documentFragment = document.createDocumentFragment();
 
         if (event instanceof CallTraceEvent) {
-            // This is handled in #renderEvents by creating a new block
-            throw new Error("CallTraceEvent should not be rendered as a line directly.");
+            documentFragment.append(this.#getHeaderBlockDocumentFragment(event));
         }
-
-        if (event instanceof LocalTraceEvent) {
+        else if (event instanceof LocalTraceEvent) {
             documentFragment.append(`${event.varName} ← `);
             documentFragment.append(this.#getShowValue(event.value, true));
         }
@@ -154,17 +152,26 @@ export class TraceView {
             const lineNumber = ev.location?.line ?? "-";
 
             if (parentBlock === null || !ev.location?.equals(currentLocation)) {
-                let canBeCollapsed = true;
-                if (ev instanceof CallTraceEvent && (ev.external || ev.bodyEventIds.length === 0)) canBeCollapsed = false;
+                if (ev instanceof CallTraceEvent && (ev.external || ev.bodyEventIds.length === 0)) {
+                    // don't create a block for external calls or calls without body
+                }
+                else {
+                    let isDefaultCollapsed = true;
+                    if (ev instanceof CallTraceEvent && ev.name === "main") isDefaultCollapsed = false;
 
-                const headerFrag = this.#getHeaderBlockDocumentFragment(ev);
-                currentBlock = new TraceBlock(this.container, parentBlock, lineNumber, headerFrag, canBeCollapsed, true);
-                currentLocation = ev.location;
+                    const headerFrag = this.#getHeaderBlockDocumentFragment(ev);
+                    currentBlock = new TraceBlock(this.container, parentBlock, lineNumber, headerFrag, true, isDefaultCollapsed);
+                    currentLocation = ev.location;
+                }
             }
 
             this.#manageInnerEvents(ev, currentBlock, currentLocation);
 
-            if (ev instanceof CallTraceEvent || ev instanceof ConditionTraceEvent) {
+            if (ev instanceof ConditionTraceEvent) {
+                continue;
+            }
+
+            if (ev instanceof CallTraceEvent && ev.bodyEventIds.length !== 0) {
                 continue;
             }
 
@@ -175,7 +182,11 @@ export class TraceView {
     #getHeaderBlockDocumentFragment(event) {
         const documentFragment = document.createDocumentFragment();
         if (event instanceof CallTraceEvent) {
-            console.log(event);
+
+            if (event.external) {
+                documentFragment.append("[EXT] ");
+            }
+
             documentFragment.append(TraceSpan.createSpan(TraceSpanType.FunctionName, event.name));
             this.#appendHighlighted(documentFragment, "(");
             event.args.forEach((arg, i) => {
@@ -204,12 +215,15 @@ export class TraceView {
         const documentFragment = document.createDocumentFragment();
 
         if (value === null || value.kind === "NULL") {
-            documentFragment.append("null");
+            const traceSpanType = isReturnValue ? TraceSpanType.ReturnValuePrimitive : TraceSpanType.ArgsValuePrimitive;
+            documentFragment.append(TraceSpan.createSpan(traceSpanType, "null"));
         }
         else if (value.value !== null) {
             const traceSpanType = isReturnValue ? TraceSpanType.ReturnValuePrimitive : TraceSpanType.ArgsValuePrimitive;
             const isString = value.type.includes("String") || value.type.includes("string");
-            const lineContent = isString ? value.type + ":\"" + value.value + "\"" : value.type + ":" + value.value;
+            const lineContent = isString ? "\"" + value.value + "\"" : value.value;
+            documentFragment.append(TraceSpan.createSpan(TraceSpanType.Type, value.type));
+            documentFragment.append(":");
             documentFragment.append(TraceSpan.createSpan(traceSpanType, lineContent));
         }
         else {

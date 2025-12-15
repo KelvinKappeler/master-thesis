@@ -71,6 +71,10 @@
     color: #4a76c6;
 }
 
+.type {
+    color: #9c9c41;
+}
+
 .returnValue {
     border: 1px solid #af4b4b;
 }

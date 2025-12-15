@@ -11,6 +11,7 @@ import com.sun.tools.javac.tree.TreeMaker;
 import com.sun.tools.javac.tree.TreeTranslator;
 import com.sun.tools.javac.util.Context;
 import com.sun.tools.javac.util.List;
+import com.sun.tools.javac.util.Name;
 import com.sun.tools.javac.util.Names;
 import com.sun.tools.javac.model.JavacElements;
 
@@ -569,8 +570,14 @@ public class TracingTranslator extends TreeTranslator {
         int line = cu.getLineMap().getLineNumber(jcBinary.pos);
 
         if (isArithmetic(jcBinary.getTag())) {
-            String op = jcBinary.getTag().toString();
             String sourceId = getSourceId();
+            String op = jcBinary.getTag().toString();
+
+            mk.at(jcBinary.pos);
+
+            Name evtName = names.fromString("__pw_arith_evt_" + jcBinary.pos);
+            JCTree.JCExpression stringTypeTree = mk.QualIdent(symtab.stringType.tsym);
+            stringTypeTree.type = symtab.stringType;
 
             JCTree.JCMethodInvocation beginArith = callStatic(
                 "ch.epfl.printwizard.plugin.logging.TraceOut",
@@ -578,6 +585,17 @@ public class TracingTranslator extends TreeTranslator {
                 List.of(mk.Literal(op), mk.Literal(sourceId), mk.Literal(line)),
                 jcBinary.pos
             );
+
+            JCTree.JCVariableDecl evtDecl = mk.VarDef(mk.Modifiers(Flags.SYNTHETIC), evtName, stringTypeTree, beginArith);
+            Symbol.VarSymbol evtSym = new Symbol.VarSymbol(Flags.SYNTHETIC, evtName, symtab.stringType, (currentMethod != null ? currentMethod : symtab.noSymbol));
+            evtDecl.sym = evtSym; evtDecl.type = symtab.stringType;
+
+            JCTree.JCExpression trLhs = jcBinary.lhs;
+            Type lType = (trLhs.type != null) ? trLhs.type : symtab.objectType;
+            Name lName = names.fromString("__pw_arith_l_" + jcBinary.pos);
+
+            JCTree.JCExpression lTypeTree = lType.isPrimitive() ? mk.TypeIdent(lType.getTag()) : mk.QualIdent(lType.tsym);
+            lTypeTree.type = lType;
 
             JCTree.JCMethodInvocation beginLeft = callStatic(
                 "ch.epfl.printwizard.plugin.logging.TraceOut",
@@ -589,9 +607,21 @@ public class TracingTranslator extends TreeTranslator {
             JCTree.JCMethodInvocation endLeft = callStatic(
                 "ch.epfl.printwizard.plugin.logging.TraceOut",
                 "endArithmeticLeft",
-                List.of(beginLeft, jcBinary.lhs),
+                List.of(beginLeft, trLhs),
                 jcBinary.pos
             );
+            endLeft.type = lType;
+
+            JCTree.JCVariableDecl lDecl = mk.VarDef(mk.Modifiers(Flags.SYNTHETIC), lName, lTypeTree, endLeft);
+            Symbol.VarSymbol lSym = new Symbol.VarSymbol(Flags.SYNTHETIC, lName, lType, (currentMethod != null ? currentMethod : symtab.noSymbol));
+            lDecl.sym = lSym; lDecl.type = lType;
+
+            JCTree.JCExpression trRhs = jcBinary.rhs;
+            Type rType = (trRhs.type != null) ? trRhs.type : symtab.objectType;
+            Name rName = names.fromString("__pw_arith_r_" + jcBinary.pos);
+
+            JCTree.JCExpression rTypeTree = rType.isPrimitive() ? mk.TypeIdent(rType.getTag()) : mk.QualIdent(rType.tsym);
+            rTypeTree.type = rType;
 
             JCTree.JCMethodInvocation beginRight = callStatic(
                 "ch.epfl.printwizard.plugin.logging.TraceOut",
@@ -603,16 +633,32 @@ public class TracingTranslator extends TreeTranslator {
             JCTree.JCMethodInvocation endRight = callStatic(
                 "ch.epfl.printwizard.plugin.logging.TraceOut",
                 "endArithmeticRight",
-                List.of(beginRight, jcBinary.rhs),
+                List.of(beginRight, trRhs),
                 jcBinary.pos
             );
+            endRight.type = rType;
 
-            result = callStatic(
+            JCTree.JCVariableDecl rDecl = mk.VarDef(mk.Modifiers(Flags.SYNTHETIC), rName, rTypeTree, endRight);
+            Symbol.VarSymbol rSym = new Symbol.VarSymbol(Flags.SYNTHETIC, rName, rType, (currentMethod != null ? currentMethod : symtab.noSymbol));
+            rDecl.sym = rSym; rDecl.type = rType;
+
+            JCTree.JCExpression lId = mk.Ident(lSym); lId.type = lType;
+            JCTree.JCExpression rId = mk.Ident(rSym); rId.type = rType;
+            jcBinary.lhs = lId;
+            jcBinary.rhs = rId;
+
+            JCTree.JCMethodInvocation endArith = callStatic(
                 "ch.epfl.printwizard.plugin.logging.TraceOut",
                 "endArithmetic",
-                List.of(beginArith, endLeft, endRight, (JCTree.JCExpression) result),
+                List.of(mk.Ident(evtSym), lId, rId, jcBinary),
                 jcBinary.pos
             );
+            endArith.type = jcBinary.type;
+
+            JCTree.LetExpr let = mk.LetExpr(List.of(evtDecl, lDecl, rDecl), endArith);
+            let.type = jcBinary.type;
+
+            result = let;
         }
 
         if (isComparison(jcBinary.getTag())) {

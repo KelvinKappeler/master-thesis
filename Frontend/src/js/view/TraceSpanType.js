@@ -12,6 +12,7 @@ export class TraceSpanType {
     static ArgsValuePrimitive = new TraceSpanType("argsValuePrimitive");
     static Keywords = new TraceSpanType("keywords");
     static String = new TraceSpanType("string");
+    static Type = new TraceSpanType("type");
     static None = new TraceSpanType("none");
 
     constructor(name) {
