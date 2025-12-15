@@ -38,7 +38,6 @@ public record CallEvent(
         Preconditions.requireNonNull(name, "name is null");
         Preconditions.requireNonNull(args, "args is null");
         Preconditions.requireNonNull(bodyEventIds, "bodyEventIds is null");
-        Preconditions.requireNonNull(value, "value is null");
         Preconditions.require(!eventId.isEmpty(), "eventId is empty");
         Preconditions.require(!spanId.isEmpty(), "spanId is empty");
         Preconditions.require(!calleeMethodId.isEmpty(), "calleeMethodId is empty");

@@ -69,7 +69,7 @@ export class TraceBlock {
             triangle.attachTo(this._header.triangle);
             this._triangle = triangle;
         } else {
-            this._header.triangle.textContent = " ";
+            this._header.triangle.textContent = "\u00A0";
             this._triangle = null;
         }
     }

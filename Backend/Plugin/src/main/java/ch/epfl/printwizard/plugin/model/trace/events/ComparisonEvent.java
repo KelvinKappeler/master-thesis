@@ -24,7 +24,7 @@ public record ComparisonEvent(
     String leftEventId,
     EventValue right,
     String rightEventId,
-    boolean result
+    EventValue result
 ) implements TraceEvent {
 
     public ComparisonEvent {

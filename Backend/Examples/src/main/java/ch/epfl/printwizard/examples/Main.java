@@ -4,6 +4,8 @@ public class Main {
     
     public static void main(String[] args) {
 
+        String testStr = "Hello World!";
+        print(testStr);
         int i = add(3, 4) / 2;
         
         int j = 0;
@@ -20,5 +22,9 @@ public class Main {
 
     private static int add(int a, int b) {
         return a + b;
+    }
+
+    private static void print(String str) {
+        System.out.println(str);
     }
 }

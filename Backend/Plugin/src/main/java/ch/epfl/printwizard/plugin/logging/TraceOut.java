@@ -36,7 +36,7 @@ public class TraceOut {
             method, false, args,
             EventValue.of(null), new String[0]
         );
-        addEvent(callEvent);
+        addEvent(callEvent, true);
 
         OutputManager.getTraceFileBuilder().addSpan(new TraceSpan(
             spanId, parentSpanId, methodId, thisRefObjectId, List.of(args),
@@ -56,15 +56,16 @@ public class TraceOut {
         String eventId = Ids.nextEventId();
         String callerMethodId = ctx.methodId();
         String calleeMethodId = isExternal ? "-" : Ids.createNewMethodId(owner, method, argTypes, returnType);
+        boolean isVoid = "void".equals(returnType);
 
         CallEvent ev = new CallEvent(
             eventId, ctx.spanId(),
             loc, callerMethodId, calleeMethodId,
             method, isExternal, args,
-            EventValue.of(null), new String[0]
+            isVoid ? null : EventValue.of(null), new String[0]
         );
 
-        addEvent(ev);
+        addEvent(ev, true);
     }
 
     @SuppressWarnings("unused")
@@ -74,7 +75,7 @@ public class TraceOut {
 
         String objectId = EventValue.getOrCreateObjectId(obj);
 
-        addEvent(new NewEvent(Ids.nextEventId(), ctx.spanId(), loc, objectId, typeName));
+        addEvent(new NewEvent(Ids.nextEventId(), ctx.spanId(), loc, objectId, typeName), true);
 
         return obj;
     }
@@ -131,7 +132,7 @@ public class TraceOut {
             found.getLabel(), rootEventId
         );
 
-        addEvent(ev);
+        addEvent(ev, true);
 
         return value;
     }
@@ -228,10 +229,10 @@ public class TraceOut {
             found.getLocation(), found.getOperator(),
             EventValue.of(left), leftEventId,
             EventValue.of(right), rightEventId,
-            result
+            new EventValue(result, null, "boolean", ValueKind.PRIMITIVE)
         );
 
-        addEvent(ev);
+        addEvent(ev, true);
 
         return result;
     }
@@ -403,7 +404,7 @@ public class TraceOut {
             EventValue.of(result)
         );
 
-        addEvent(ev);
+        addEvent(ev, true);
 
         return result;
     }
@@ -460,7 +461,7 @@ public class TraceOut {
             found.getLabel(), rootEventId
         );
 
-        addEvent(ev);
+        addEvent(ev, true);
 
         return value;
     }
@@ -514,7 +515,7 @@ public class TraceOut {
             bodyEventId
         );
 
-        addEvent(ev);
+        addEvent(ev, true);
 
         return value;
     }
@@ -538,7 +539,7 @@ public class TraceOut {
     }
 
     @SuppressWarnings("unused")
-    public static <T> T endReturn(String returnEventId, T ret) {
+    public static <T> T endReturn(String returnEventId, T ret, boolean isVoid) {
         var frameStack = SPAN_STACK.get();
         if (frameStack.isEmpty()) {
             return ret;
@@ -567,16 +568,12 @@ public class TraceOut {
         }
 
         TraceLoc loc = found.getLocation();
-        EventValue value = EventValue.of(ret);
+        EventValue value = isVoid ? null : EventValue.of(ret);
 
-        ReturnEvent returnEvent = new ReturnEvent(
-            found.getReturnEventId(), spanCtx.spanId(),
-            loc, value, bodyEventId
-        );
-        
-        addEvent(returnEvent);
+        addEvent(new ReturnEvent(found.getReturnEventId(), spanCtx.spanId(), loc, value, bodyEventId), !isVoid);
 
         MethodCtx methodCtx = popMethodCtxForSpan(spanCtx.spanId());
+
         if (methodCtx != null) {
             patchCall(methodCtx.getCallEventId(), value, methodCtx.getBodyEventIds());
         }
@@ -593,7 +590,7 @@ public class TraceOut {
         TraceLoc loc = new TraceLoc(sourceId, line);
 
         ConditionKind kind = ConditionKind.valueOf(conditionKind);
-        addEvent(new ConditionEvent(eventId, ctx.spanId(), loc, kind, new String[0], new String[0], new String[0], null));
+        addEvent(new ConditionEvent(eventId, ctx.spanId(), loc, kind, new String[0], new String[0], new String[0], null), true);
 
         ConditionCtx conditionCtx = new ConditionCtx(eventId);
         CTX_STACK.get().push(conditionCtx);
@@ -715,7 +712,7 @@ public class TraceOut {
                     initEventIds, iterationEventIds
                 );
 
-                addEvent(loopEvent);
+                addEvent(loopEvent, true);
 
                 break;
             }
@@ -813,7 +810,7 @@ public class TraceOut {
             condIds, bodyIds, updateIds
         );
 
-        addEvent(iterEvent);
+        addEvent(iterEvent, true);
         loopCtx.getIterationEventIds().add(iterCtx.getIterationEventId());
     }
 
@@ -865,9 +862,11 @@ public class TraceOut {
         return null;
     }
 
-    private static void addEvent(TraceEvent event)
+    private static void addEvent(TraceEvent event, boolean shouldAddInFile)
     {
-        OutputManager.getTraceFileBuilder().addEvent(event);
+        if (shouldAddInFile) {
+            OutputManager.getTraceFileBuilder().addEvent(event);
+        }
 
         Deque<ExecCtx> stack = CTX_STACK.get();
 
@@ -877,8 +876,10 @@ public class TraceOut {
             }
         }
 
-        OutputManager.getIndexFileBuilder().addEvent(event);
-        OutputManager.getStateFileBuilder().onEvent(event);
+        if (shouldAddInFile) {
+            OutputManager.getIndexFileBuilder().addEvent(event);
+            OutputManager.getStateFileBuilder().onEvent(event);
+        }
     }
 
     private static SpanCtx currentFrameCtx() {

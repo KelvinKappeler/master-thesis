@@ -2,10 +2,10 @@
  * Represents the definition of a value in an event.
  */
 export class EventValue {
-    constructor(value, valueObjectId, javaTypeName, kind) {
+    constructor(value, valueObjectId, type, kind) {
         this.value = value;
         this.valueObjectId = valueObjectId;
-        this.javaTypeName = javaTypeName;
+        this.type = type;
         this.kind = kind;
     }
 }
@@ -69,10 +69,10 @@ export class ReturnTraceEvent extends TraceEvent {
  * Represents an event where an arithmetic operation is performed.
  */
 export class ArithmeticTraceEvent extends TraceEvent {
-    constructor(eventId, spanId, location, operation, left, leftEventId, right, rightEventId, value) {
+    constructor(eventId, spanId, location, operator, left, leftEventId, right, rightEventId, value) {
         super(eventId, spanId, location);
 
-        this.operation = operation;
+        this.operator = operator;
         this.left = left;
         this.leftEventId = leftEventId;
         this.right = right;

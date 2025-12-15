@@ -11,8 +11,19 @@ import java.util.WeakHashMap;
  * @param value the value, if the type is primitive, null or string
  * @param valueObjectId the ID of the object, if the type is an object
  */
-public record EventValue(Object value, String valueObjectId, String javaTypeName, ValueKind kind) {
+public record EventValue(Object value, String valueObjectId, String type, ValueKind kind) {
     private static final Map<Object, String> OBJECT_IDS = Collections.synchronizedMap(new WeakHashMap<>());
+
+    private static final Map<Class<?>, Class<?>> WRAPPER_TO_PRIMITIVE = Map.of(
+        Integer.class, int.class,
+        Long.class, long.class,
+        Boolean.class, boolean.class,
+        Character.class, char.class,
+        Byte.class, byte.class,
+        Short.class, short.class,
+        Float.class, float.class,
+        Double.class, double.class
+    );
 
     /**
      * Creates an event value from a value.
@@ -38,7 +49,8 @@ public record EventValue(Object value, String valueObjectId, String javaTypeName
         }
         
         if (c.isPrimitive() || Number.class.isAssignableFrom(c) || c == Boolean.class || c == Character.class || c == String.class) {
-            return new EventValue(value, null, c.getTypeName(), ValueKind.PRIMITIVE);
+            Class<?> prim = WRAPPER_TO_PRIMITIVE.getOrDefault(c, c);
+            return new EventValue(value, null, prim.getTypeName(), ValueKind.PRIMITIVE);
         }
         
         String objectId = getOrCreateObjectId(value);

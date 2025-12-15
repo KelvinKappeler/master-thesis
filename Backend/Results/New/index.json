@@ -1,36 +1,40 @@
 {
   "byLine" : {
     "src:ch/epfl/printwizard/examples/Main.java" : {
-      "22" : [ "eve:6", "eve:5", "eve:9", "eve:8" ],
-      "13" : [ "eve:13" ],
+      "11" : [ "eve:14" ],
+      "23" : [ "eve:8", "eve:11" ],
+      "12" : [ "eve:15", "eve:16" ],
+      "24" : [ "eve:10", "eve:9", "eve:13", "eve:12" ],
+      "15" : [ "eve:17" ],
+      "27" : [ "eve:3" ],
+      "28" : [ "eve:4" ],
+      "18" : [ "eve:19", "eve:20", "eve:18", "eve:21" ],
       "5" : [ "eve:1" ],
-      "16" : [ "eve:15", "eve:16", "eve:14", "eve:17" ],
-      "7" : [ "eve:3", "eve:2" ],
-      "18" : [ "eve:18" ],
-      "19" : [ "eve:24" ],
-      "9" : [ "eve:10" ],
-      "21" : [ "eve:4", "eve:7" ],
-      "10" : [ "eve:11", "eve:12" ]
+      "7" : [ "eve:2" ],
+      "9" : [ "eve:7", "eve:6" ],
+      "20" : [ "eve:22" ]
     },
     "src:ch/epfl/printwizard/examples/Player.java" : {
-      "11" : [ "eve:23" ],
-      "8" : [ "eve:19", "eve:20" ],
-      "9" : [ "eve:21" ],
-      "10" : [ "eve:22" ]
+      "11" : [ "eve:27" ],
+      "8" : [ "eve:23", "eve:24" ],
+      "9" : [ "eve:25" ],
+      "10" : [ "eve:26" ]
     }
   },
   "byLocal" : {
-    "local:player@src:ch/epfl/printwizard/examples/Main.java:342#spn:1" : [ "eve:18" ],
-    "local:i@src:ch/epfl/printwizard/examples/Main.java:122#spn:1" : [ "eve:2" ],
-    "local:j@src:ch/epfl/printwizard/examples/Main.java:162#spn:1" : [ "eve:10", "eve:13" ]
+    "local:j@src:ch/epfl/printwizard/examples/Main.java:237#spn:1" : [ "eve:14", "eve:17" ],
+    "local:testStr@src:ch/epfl/printwizard/examples/Main.java:131#spn:1" : [ "eve:2" ],
+    "local:player@src:ch/epfl/printwizard/examples/Main.java:426#spn:1" : [ "eve:22" ],
+    "local:i@src:ch/epfl/printwizard/examples/Main.java:195#spn:1" : [ "eve:6" ]
   },
   "byObject" : {
-    "obj:2" : [ "eve:20", "eve:21", "eve:22", "eve:18" ]
+    "obj:2" : [ "eve:24", "eve:25", "eve:26", "eve:22" ]
   },
   "bySpan" : {
-    "spn:4" : [ "eve:19" ],
     "spn:1" : [ "eve:1" ],
-    "spn:2" : [ "eve:4" ],
-    "spn:3" : [ "eve:7" ]
+    "spn:2" : [ "eve:3" ],
+    "spn:3" : [ "eve:8" ],
+    "spn:4" : [ "eve:11" ],
+    "spn:5" : [ "eve:23" ]
   }
 }

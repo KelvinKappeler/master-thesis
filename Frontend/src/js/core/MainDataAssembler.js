@@ -287,13 +287,13 @@ export class MainDataAssembler {
 
     static #assembleEventValue(eventValueJson) {
         if (eventValueJson === null || eventValueJson === undefined) {
-            return new EventValue(null, null, null, "NULL");
+            return null;
         }
 
         return new EventValue(
             eventValueJson.value,
             eventValueJson.valueObjectId,
-            eventValueJson.javaTypeName,
+            eventValueJson.type,
             eventValueJson.kind
         );
     }

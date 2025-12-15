@@ -23,7 +23,6 @@ public record ReturnEvent(
         Preconditions.requireNonNull(eventId, "eventId is null");
         Preconditions.requireNonNull(spanId, "spanId is null");
         Preconditions.requireNonNull(location, "location is null");
-        Preconditions.requireNonNull(value, "value is null");
         Preconditions.require(!eventId.isEmpty(), "eventId is empty");
         Preconditions.require(!spanId.isEmpty(), "spanId is empty");
     }

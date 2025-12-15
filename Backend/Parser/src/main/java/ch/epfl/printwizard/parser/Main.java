@@ -33,6 +33,6 @@ public final class Main {
                 model.enums().size(),
                 model.methods().size());
 
-        ProgramFileWriter.write(model, Path.of("Results/program.json"));
+        ProgramFileWriter.write(model, Path.of("Results/New/program.json"));
     }
 }

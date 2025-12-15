@@ -14,6 +14,7 @@ import {
 } from "../model/EventDefs.js";
 import {TraceBlock} from "./TraceBlock.js";
 import {TraceSpan} from "./TraceSpan.js";
+import {TraceSpanType} from "./TraceSpanType.js";
 
 /**
  * Represents the view for the trace part of the application.
@@ -47,43 +48,59 @@ export class TraceView {
     }
 
     #getEventLine(event) {
+        const documentFragment = document.createDocumentFragment();
+
         if (event instanceof CallTraceEvent) {
             // This is handled in #renderEvents by creating a new block
             throw new Error("CallTraceEvent should not be rendered as a line directly.");
         }
-        else if (event instanceof LocalTraceEvent) {
-            return `${event.varName} ← ${this.#getShowValue(event.value)}`;
+
+        if (event instanceof LocalTraceEvent) {
+            documentFragment.append(`${event.varName} ← `);
+            documentFragment.append(this.#getShowValue(event.value, true));
         }
         else if (event instanceof ArithmeticTraceEvent) {
-            return `${this.#getShowValue(event.left)} ${this.#getOperator(event.operator)} ${this.#getShowValue(event.right)} = ${this.#getShowValue(event.value)}`;
+            documentFragment.append(this.#getShowValue(event.left), " ");
+            documentFragment.append(this.#getOperator(event.operator), " ");
+            documentFragment.append(this.#getShowValue(event.right), " → ");
+            documentFragment.append(this.#getShowValue(event.value, true));
         }
         else if (event instanceof ConditionTraceEvent) {
-            return event.result ? "true" : "false";
+            documentFragment.append("IF");
         }
         else if (event instanceof ReturnTraceEvent) {
-            return `return ${this.#getShowValue(event.value)}`;
+            this.#appendHighlighted(documentFragment, "return ");
+            documentFragment.append(this.#getShowValue(event.value));
         }
         else if (event instanceof ComparisonTraceEvent) {
-            return `${this.#getShowValue(event.left)} ${this.#getOperator(event.operator)} ${this.#getShowValue(event.right)} = ${this.#getShowValue(event.result)}`;
+            documentFragment.append(this.#getShowValue(event.left), " ");
+            documentFragment.append(this.#getOperator(event.operator), " ");
+            documentFragment.append(this.#getShowValue(event.right), " → ");
+            documentFragment.append(this.#getShowValue(event.result, true));
         }
         else if (event instanceof NewTraceEvent) {
-            return `new ${event.className}()`;
+            this.#appendHighlighted(documentFragment, "new ");
+            documentFragment.append(event.className);
         }
         else if (event instanceof ArrayStoreTraceEvent) {
-            return `array[${event.index}] = ${event.value}`;
+            documentFragment.append(`${event.arrayVarName}[${event.index}] ← `);
+            documentFragment.append(this.#getShowValue(event.value, true));
         }
         else if (event instanceof FieldWriteTraceEvent) {
-            return `object.${event.fieldName} = ${event.value}`;
+            documentFragment.append('object.${event.fieldName} = ');
+            documentFragment.append(this.#getShowValue(event.value, true));
         }
         else if (event instanceof LoopTraceEvent) {
-            return `LOOP`;
+            documentFragment.append("LOOP");
         }
         else if (event instanceof LoopIterationTraceEvent) {
-            return `LOOP ITERATION`;
+            documentFragment.append("LOOP ITERATION");
         }
         else {
             throw new Error("Event type not implemented : " + event.constructor.name);
         }
+
+        return documentFragment;
     }
 
     #manageInnerEvents(event, parentBlock, location) {
@@ -134,44 +151,78 @@ export class TraceView {
         let currentLocation = location;
 
         for (const ev of events) {
-            const line = ev.location?.line ?? "-";
-            const lineContent = this.#getLineContent(ev);
+            const lineNumber = ev.location?.line ?? "-";
 
             if (parentBlock === null || !ev.location?.equals(currentLocation)) {
-                const headerFrag = TraceSpan.wrapLineColors(lineContent);
-                currentBlock = new TraceBlock(this.container, parentBlock, line, headerFrag, true, true);
+                let canBeCollapsed = true;
+                if (ev instanceof CallTraceEvent && (ev.external || ev.bodyEventIds.length === 0)) canBeCollapsed = false;
+
+                const headerFrag = this.#getHeaderBlockDocumentFragment(ev);
+                currentBlock = new TraceBlock(this.container, parentBlock, lineNumber, headerFrag, canBeCollapsed, true);
                 currentLocation = ev.location;
             }
 
             this.#manageInnerEvents(ev, currentBlock, currentLocation);
 
-            if (ev instanceof CallTraceEvent) {
+            if (ev instanceof CallTraceEvent || ev instanceof ConditionTraceEvent) {
                 continue;
             }
 
-            currentBlock.addLine(line, this.#getEventLine(ev));
+            currentBlock.addLine(lineNumber, this.#getEventLine(ev));
         }
     }
 
-    #getLineContent(event) {
+    #getHeaderBlockDocumentFragment(event) {
+        const documentFragment = document.createDocumentFragment();
         if (event instanceof CallTraceEvent) {
-            return event.name + "(" + event.args.map(arg => arg.name + ":" + this.#getShowValue(arg.value)).join(", ") + ")";
+            console.log(event);
+            documentFragment.append(TraceSpan.createSpan(TraceSpanType.FunctionName, event.name));
+            this.#appendHighlighted(documentFragment, "(");
+            event.args.forEach((arg, i) => {
+                if (i > 0) documentFragment.append(TraceSpan.wrapLineColors(", "));
+                documentFragment.append(arg.name, " ");
+                documentFragment.append(this.#getShowValue(arg.value));
+            });
+            this.#appendHighlighted(documentFragment, ")");
+
+            if (event.value !== null) {
+                documentFragment.append(" → ");
+                documentFragment.append(this.#getShowValue(event.value, true));
+            }
+
         }
         else {
             const structure = this.traceModel.getStructureFromEvent(event.eventId);
-
-            return structure?.getLineContent() ?? "?";
+            const contentLine = structure?.getLineContent() ?? "?";
+            documentFragment.append(TraceSpan.wrapLineColors(contentLine));
         }
+
+        return documentFragment;
     }
 
-    #getShowValue(value) {
-        if (value.kind === "NULL") return "null";
+    #getShowValue(value, isReturnValue = false) {
+        const documentFragment = document.createDocumentFragment();
+
+        if (value === null || value.kind === "NULL") {
+            documentFragment.append("null");
+        }
         else if (value.value !== null) {
-            return value.value;
+            const traceSpanType = isReturnValue ? TraceSpanType.ReturnValuePrimitive : TraceSpanType.ArgsValuePrimitive;
+            const isString = value.type.includes("String") || value.type.includes("string");
+            const lineContent = isString ? value.type + ":\"" + value.value + "\"" : value.type + ":" + value.value;
+            documentFragment.append(TraceSpan.createSpan(traceSpanType, lineContent));
         }
         else {
-            return value.valueObjectId;
+            const traceSpanType = isReturnValue ? TraceSpanType.ReturnValue : TraceSpanType.ArgsValue;
+            const lineContent = value.type + ":" + value.valueObjectId.replace(":", "");
+            documentFragment.append(TraceSpan.createSpan(traceSpanType, lineContent));
         }
+
+        return documentFragment;
+    }
+
+    #appendHighlighted(documentFragment, str) {
+        documentFragment.append(TraceSpan.wrapLineColors(str));
     }
 
     #getOperator(operator) {

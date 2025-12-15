@@ -178,7 +178,7 @@ public class TracingTranslator extends TreeTranslator {
                     callStatic(
                         "ch.epfl.printwizard.plugin.logging.TraceOut",
                         "endReturn",
-                        List.of(beginCall, nullLit),
+                        List.of(beginCall, nullLit, mk.Literal(false)),
                         ep
                     )
                 );
@@ -206,7 +206,7 @@ public class TracingTranslator extends TreeTranslator {
                         callStatic(
                             "ch.epfl.printwizard.plugin.logging.TraceOut",
                             "endReturn",
-                            List.of(beginCall, nullLit),
+                            List.of(beginCall, nullLit, mk.Literal(true)),
                             ep
                         )
                     );
@@ -243,7 +243,7 @@ public class TracingTranslator extends TreeTranslator {
             JCTree.JCMethodInvocation endCall = callStatic(
                 "ch.epfl.printwizard.plugin.logging.TraceOut",
                 "endReturn",
-                com.sun.tools.javac.util.List.of(beginCall, ti.resultExpr),
+                com.sun.tools.javac.util.List.of(beginCall, ti.resultExpr, mk.Literal(false)),
                 jcReturn.pos
             );
             endCall.type = resultType;
@@ -275,7 +275,7 @@ public class TracingTranslator extends TreeTranslator {
                 callStatic(
                     "ch.epfl.printwizard.plugin.logging.TraceOut",
                     "endReturn",
-                    List.of(beginCall, nullLit),
+                    List.of(beginCall, nullLit, mk.Literal(false)),
                     jcReturn.pos
                 )
             );
@@ -296,7 +296,7 @@ public class TracingTranslator extends TreeTranslator {
         JCTree.JCMethodInvocation endCall = callStatic(
             "ch.epfl.printwizard.plugin.logging.TraceOut",
             "endReturn",
-            List.of(beginCall, trExpr),
+            List.of(beginCall, trExpr, mk.Literal(false)),
             jcReturn.pos
         );
 
