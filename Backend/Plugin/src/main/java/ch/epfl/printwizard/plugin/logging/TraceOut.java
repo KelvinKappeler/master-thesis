@@ -599,21 +599,6 @@ public class TraceOut {
         return eventId;
     }
 
-    @SuppressWarnings("unused")
-    public static void endCondition(String conditionEventId) {
-        Deque<ExecCtx> stack = CTX_STACK.get();
-
-        if (!stack.isEmpty() && stack.peek() instanceof ConditionPhaseCtx) {
-            stack.pop();
-        }
-
-        if (!stack.isEmpty() && stack.peek() instanceof ConditionCtx c && Objects.equals(c.getConditionEventId(), conditionEventId)) {
-            ConditionCtx condCtx = (ConditionCtx) stack.pop();
-
-            patchCondition(conditionEventId, condCtx);
-        }
-    }
-
     public static <T> T endCondition(String conditionEventId, T value) {
         Deque<ExecCtx> stack = CTX_STACK.get();
 

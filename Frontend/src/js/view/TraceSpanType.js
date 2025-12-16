@@ -13,6 +13,8 @@ export class TraceSpanType {
     static Keywords = new TraceSpanType("keywords");
     static String = new TraceSpanType("string");
     static Type = new TraceSpanType("type");
+    static True = new TraceSpanType("true");
+    static False = new TraceSpanType("false");
     static None = new TraceSpanType("none");
 
     constructor(name) {

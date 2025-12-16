@@ -22,9 +22,10 @@ export class StructureNode {
     /**
      * Visits the structure node for a specific line.
      * @param line {number} The line number to visit.
+     * @param isExpression {boolean} Whether to consider expressions within the structure.
      * @returns {StructureNode} The structure node for the line.
      */
-    visitForLine(line) {
+    visitForLine(line, isExpression) {
         if (line >= this.startPosition.line && line <= this.endPosition.line) {
             return this;
         }
@@ -60,11 +61,11 @@ export class BlockNode extends StructureNode {
         this.structures = structures;
     }
 
-    visitForLine(line) {
+    visitForLine(line, isExpression) {
         if (!this.containsLine(line)) return null;
 
         for (let structure of this.structures) {
-            const result = structure.visitForLine(line);
+            const result = structure.visitForLine(line, isExpression);
             if (result) return result;
         }
     }
@@ -80,7 +81,7 @@ export class ExprStmtNode extends StructureNode {
         this.expr = expr;
     }
 
-    visitForLine(line) {
+    visitForLine(line, isExpression) {
         if (!this.containsLine(line)) return null;
 
         return this;
@@ -101,7 +102,7 @@ export class ReturnNode extends StructureNode {
         this.value = value;
     }
 
-    visitForLine(line) {
+    visitForLine(line, isExpression) {
         if (!this.containsLine(line)) return null;
 
         return this;
@@ -120,13 +121,17 @@ export class IfNode extends StructureNode {
         this.elseBranch = elseBranch;
     }
 
-    visitForLine(line) {
+    visitForLine(line, isExpression) {
         if (!this.containsLine(line)) return null;
 
-        const resultThen = this.thenBranch.visitForLine(line);
+        if (isExpression && this.condition.containsLine(line)) {
+            return this.condition;
+        }
+
+        const resultThen = this.thenBranch.visitForLine(line, isExpression);
         if (resultThen) return resultThen;
 
-        const resultElse = this.elseBranch?.visitForLine(line);
+        const resultElse = this.elseBranch?.visitForLine(line, isExpression);
         if (resultElse) return resultElse;
 
         return this;
@@ -146,3 +151,16 @@ export class ForNode extends StructureNode {
         this.body = body;
     }
 }
+
+/**
+ * Represents a while-loop in the code.
+ */
+export class WhileNode extends StructureNode {
+    constructor(structureId, code, startPosition, endPosition, condition, body) {
+        super(structureId, code, startPosition, endPosition);
+
+        this.condition = condition;
+        this.body = body;
+    }
+}
+

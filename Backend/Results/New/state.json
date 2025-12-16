@@ -5,11 +5,11 @@
       "type" : "ch.epfl.printwizard.examples.Player",
       "timeline" : [ {
         "version" : 0,
-        "eventId" : "eve:20",
+        "eventId" : "eve:52",
         "fields" : { }
       }, {
         "version" : 1,
-        "eventId" : "eve:21",
+        "eventId" : "eve:53",
         "fields" : {
           "healthPoints" : {
             "type" : "int",
@@ -19,7 +19,7 @@
         }
       }, {
         "version" : 2,
-        "eventId" : "eve:22",
+        "eventId" : "eve:54",
         "fields" : {
           "healthPoints" : {
             "type" : "int",

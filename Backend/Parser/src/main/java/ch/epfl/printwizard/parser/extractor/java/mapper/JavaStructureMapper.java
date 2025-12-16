@@ -6,6 +6,7 @@ import ch.epfl.printwizard.shared.model.program.structures.*;
 import ch.epfl.printwizard.shared.model.program.structures.expr.ExprCode;
 import ch.epfl.printwizard.shared.model.program.structures.expr.ExprNode;
 import com.github.javaparser.ast.Node;
+import com.github.javaparser.ast.expr.Expression;
 import com.github.javaparser.ast.expr.VariableDeclarationExpr;
 import com.github.javaparser.ast.stmt.*;
 
@@ -62,9 +63,13 @@ public final class JavaStructureMapper {
             }
             
             case IfStmt n -> {
-                var cond = new ExprCode(n.getCondition().toString(), start, end);
+                var cond = new ExprCode(n.getCondition().toString(), lineStart(n.getCondition()), lineEnd(n.getCondition()));
                 var thenNode = mapStmt(n.getThenStmt());
-                var elseNode = n.getElseStmt().map(this::mapStmt).orElse(null);
+                
+                StructureNode elseNode = null;
+                if (n.getElseStmt().isPresent()) {
+                    elseNode = mapStmt(n.getElseStmt().get());
+                }
 
                 var content = "if (" + n.getCondition() + ")";
                 Optional<Node> parent = n.getParentNode();
@@ -83,6 +88,14 @@ public final class JavaStructureMapper {
                 var content = n.toString();
 
                 yield new ForNode(nextId(StructureKind.FOR.getPrefixId()), content, start, end, init, compare, update, body);
+            }
+            
+            case WhileStmt n -> {
+                var cond = new ExprCode(n.getCondition().toString(), start, end);
+                var body = mapStmt(n.getBody());
+                var content = n.toString();
+                
+                yield new WhileNode(nextId(StructureKind.WHILE.getPrefixId()), content, start, end, cond, body);
             }
 
             case ReturnStmt n -> {
@@ -130,11 +143,25 @@ public final class JavaStructureMapper {
 
         return new ProgramPosition(startLine, startColumn);
     }
+    
+    private ProgramPosition lineStart(Expression expression) {
+        int startLine = expression.getRange().map(r -> r.begin.line).orElse(0);
+        int startColumn = expression.getRange().map(r -> r.begin.column).orElse(0);
+        
+        return new ProgramPosition(startLine, startColumn);
+    }
 
     private ProgramPosition lineEnd(Statement s) {
         int endLine = s.getRange().map(r -> r.end.line).orElse(0);
         int endColumn = s.getRange().map(r -> r.end.column).orElse(0);
 
+        return new ProgramPosition(endLine, endColumn);
+    }
+    
+    private ProgramPosition lineEnd(Expression expression) {
+        int endLine = expression.getRange().map(r -> r.end.line).orElse(0);
+        int endColumn = expression.getRange().map(r -> r.end.column).orElse(0);
+        
         return new ProgramPosition(endLine, endColumn);
     }
 }

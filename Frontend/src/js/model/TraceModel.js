@@ -22,9 +22,10 @@ export class TraceModel {
     /**
      * Returns the AST (StructureNode) for a given event.
      * @param {string} eventId - The ID of the event.
+     * @param {boolean} isExpression - Whether to look for an expression node.
      * @returns {StructureNode} The AST for the given event.
      */
-    getStructureFromEvent(eventId) {
+    getStructureFromEvent(eventId, isExpression = false) {
         const ev = this.eventsById.get(eventId);
         if (!ev) return null;
 
@@ -34,7 +35,7 @@ export class TraceModel {
         const method = this.methodsById.get(span.methodId);
         if (!method) return null;
 
-        return method.structures.visitForLine(ev.location.line);
+        return method.structures.visitForLine(ev.location.line, isExpression);
     }
 
     /**

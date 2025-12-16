@@ -75,6 +75,14 @@
     color: #9c9c41;
 }
 
+.true {
+    color: green;
+}
+
+.false {
+    color: red;
+}
+
 .returnValue {
     border: 1px solid #af4b4b;
 }

@@ -423,7 +423,7 @@ public class TracingTranslator extends TreeTranslator {
 
         int line = cu.getLineMap().getLineNumber(jcIf.pos);
         String sourceId = getSourceId();
-
+        
         String condEvtVarNameStr = "__pw_cond_evt_" + jcIf.pos;
         var condEvtVarName = names.fromString(condEvtVarNameStr);
 
@@ -446,16 +446,23 @@ public class TracingTranslator extends TreeTranslator {
         );
         condEvtVar.sym = condEvtSym;
         condEvtVar.type = symtab.stringType;
+        
+        String condVarNameStr = "__pw_cond_" + jcIf.pos;
+        var condVarName = names.fromString(condVarNameStr);
 
-        JCTree.JCStatement endCondStmt = mk.Exec(
-            callStatic(
-                "ch.epfl.printwizard.plugin.logging.TraceOut",
-                "endCondition",
-                List.of(mk.Ident(condEvtSym)),
-                jcIf.pos
-            )
+        JCTree.JCExpression boolTypeTree = mk.TypeIdent(TypeTag.BOOLEAN);
+        boolTypeTree.type = symtab.booleanType;
+
+        JCTree.JCVariableDecl condVar = mk.VarDef(mk.Modifiers(Flags.SYNTHETIC), condVarName, boolTypeTree, condExpr);
+        Symbol.VarSymbol condSym = new Symbol.VarSymbol(
+            Flags.SYNTHETIC,
+            condVarName,
+            symtab.booleanType,
+            (currentMethod != null ? currentMethod : symtab.noSymbol)
         );
-
+        condVar.sym = condSym;
+        condVar.type = symtab.booleanType;
+        
         JCTree.JCStatement beginThen = mk.Exec(
             callStatic(
                 "ch.epfl.printwizard.plugin.logging.TraceOut",
@@ -496,10 +503,22 @@ public class TracingTranslator extends TreeTranslator {
             );
             tracedElse = mk.Block(0, List.of(beginElse, elseStmt, endElse));
         }
+        
+        JCTree.JCExpression condIdent = mk.Ident(condSym);
+        condIdent.type = symtab.booleanType;
 
-        JCTree.JCIf newIf = mk.If(condExpr, tracedThen, tracedElse);
-
-        this.result = mk.Block(0, List.of(condEvtVar, newIf, endCondStmt));
+        JCTree.JCIf newIf = mk.If(condIdent, tracedThen, tracedElse);
+        
+        JCTree.JCStatement endCondStmt = mk.Exec(
+            callStatic(
+                "ch.epfl.printwizard.plugin.logging.TraceOut",
+                "endCondition",
+                List.of(mk.Ident(condEvtSym), mk.Ident(condSym)),
+                jcIf.pos
+            )
+        );
+        
+        this.result = mk.Block(0, List.of(condEvtVar, condVar, newIf, endCondStmt));
     }
 
     @Override
