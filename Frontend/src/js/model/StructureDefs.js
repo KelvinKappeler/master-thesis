@@ -150,6 +150,21 @@ export class ForNode extends StructureNode {
         this.update = update;
         this.body = body;
     }
+
+    visitForLine(line, isExpression) {
+        if (!this.containsLine(line)) return null;
+
+        if (isExpression) {
+            if (this.initialization?.containsLine?.(line)) return this.initialization;
+            if (this.condition?.containsLine?.(line)) return this.condition;
+            if (this.update?.containsLine?.(line)) return this.update;
+        }
+
+        const resultBody = this.body?.visitForLine?.(line, isExpression);
+        if (resultBody) return resultBody;
+
+        return this;
+    }
 }
 
 /**
@@ -161,6 +176,19 @@ export class WhileNode extends StructureNode {
 
         this.condition = condition;
         this.body = body;
+    }
+
+    visitForLine(line, isExpression) {
+        if (!this.containsLine(line)) return null;
+
+        if (isExpression && this.condition.containsLine(line)) {
+            return this.condition;
+        }
+
+        const resultBody = this.body.visitForLine(line, isExpression);
+        if (resultBody) return resultBody;
+
+        return this;
     }
 }
 

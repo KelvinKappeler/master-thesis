@@ -5,8 +5,7 @@ export class TraceSpanType {
     static Parenthesis = new TraceSpanType("parenthesis");
     static ReturnValue = new TraceSpanType("returnValue");
     static ReturnValuePrimitive = new TraceSpanType("returnValuePrimitive");
-    static LoopHeaderAssignment = new TraceSpanType("loopHeaderAssignment");
-    static LoopHeaderCondition = new TraceSpanType("loopHeaderCondition");
+    static Annotation = new TraceSpanType("annotation");
     static FunctionName = new TraceSpanType("functionName");
     static ArgsValue = new TraceSpanType("argsValue");
     static ArgsValuePrimitive = new TraceSpanType("argsValuePrimitive");

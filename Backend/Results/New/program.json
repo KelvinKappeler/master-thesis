@@ -488,7 +488,7 @@
       }, {
         "structureId" : "for:1",
         "kind" : "FOR",
-        "code" : "for (int k = 0; k < 3; k++) {\n    j += 1;\n}",
+        "code" : "for (int k = 0; k < 3; k++)",
         "startPosition" : {
           "line" : 24,
           "column" : 9
@@ -498,39 +498,39 @@
           "column" : 9
         },
         "initialization" : {
-          "code" : "[int k = 0]",
+          "code" : "int k = 0",
           "kind" : "ALL",
           "startPosition" : {
             "line" : 24,
-            "column" : 9
+            "column" : 14
           },
           "endPosition" : {
-            "line" : 26,
-            "column" : 9
+            "line" : 24,
+            "column" : 22
           }
         },
         "condition" : {
-          "code" : "Optional[k < 3]",
+          "code" : "k < 3",
           "kind" : "ALL",
           "startPosition" : {
             "line" : 24,
-            "column" : 9
+            "column" : 25
           },
           "endPosition" : {
-            "line" : 26,
-            "column" : 9
+            "line" : 24,
+            "column" : 29
           }
         },
         "update" : {
-          "code" : "[k++]",
+          "code" : "k++",
           "kind" : "ALL",
           "startPosition" : {
             "line" : 24,
-            "column" : 9
+            "column" : 32
           },
           "endPosition" : {
-            "line" : 26,
-            "column" : 9
+            "line" : 24,
+            "column" : 34
           }
         },
         "body" : {
@@ -598,7 +598,7 @@
       }, {
         "structureId" : "while:1",
         "kind" : "WHILE",
-        "code" : "while (i < 3) {\n    i += 1;\n}",
+        "code" : "while (i < 3)",
         "startPosition" : {
           "line" : 29,
           "column" : 9
@@ -721,6 +721,10 @@
       "typeId" : "int"
     }, {
       "index" : 4,
+      "name" : "k",
+      "typeId" : "int"
+    }, {
+      "index" : 5,
       "name" : "player",
       "typeId" : "Player"
     } ]
@@ -1260,7 +1264,7 @@
       }, {
         "structureId" : "for:1",
         "kind" : "FOR",
-        "code" : "for (int j = begin; j < end; j++) {\n    if (array[j] <= pivot) {\n        i++;\n        int tmp = array[i];\n        array[i] = array[j];\n        array[j] = tmp;\n    }\n}",
+        "code" : "for (int j = begin; j < end; j++)",
         "startPosition" : {
           "line" : 30,
           "column" : 9
@@ -1270,39 +1274,39 @@
           "column" : 9
         },
         "initialization" : {
-          "code" : "[int j = begin]",
+          "code" : "int j = begin",
           "kind" : "ALL",
           "startPosition" : {
             "line" : 30,
-            "column" : 9
+            "column" : 14
           },
           "endPosition" : {
-            "line" : 38,
-            "column" : 9
+            "line" : 30,
+            "column" : 26
           }
         },
         "condition" : {
-          "code" : "Optional[j < end]",
+          "code" : "j < end",
           "kind" : "ALL",
           "startPosition" : {
             "line" : 30,
-            "column" : 9
+            "column" : 29
           },
           "endPosition" : {
-            "line" : 38,
-            "column" : 9
+            "line" : 30,
+            "column" : 35
           }
         },
         "update" : {
-          "code" : "[j++]",
+          "code" : "j++",
           "kind" : "ALL",
           "startPosition" : {
             "line" : 30,
-            "column" : 9
+            "column" : 38
           },
           "endPosition" : {
-            "line" : 38,
-            "column" : 9
+            "line" : 30,
+            "column" : 40
           }
         },
         "body" : {
@@ -1562,10 +1566,14 @@
       "typeId" : "int"
     }, {
       "index" : 5,
-      "name" : "tmp",
+      "name" : "j",
       "typeId" : "int"
     }, {
       "index" : 6,
+      "name" : "tmp",
+      "typeId" : "int"
+    }, {
+      "index" : 7,
       "name" : "tmp",
       "typeId" : "int"
     } ]

@@ -796,7 +796,6 @@ public class TraceOut {
         );
 
         addEvent(iterEvent, true);
-        loopCtx.getIterationEventIds().add(iterCtx.getIterationEventId());
     }
 
     @SuppressWarnings("unused")

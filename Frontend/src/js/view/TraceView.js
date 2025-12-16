@@ -135,6 +135,56 @@ export class TraceView {
 
             return;
         }
+        else if (event instanceof LoopTraceEvent) {
+            const lineNumber = event.location?.line ?? "-";
+
+            const initIds = Array.isArray(event.initEventIds) ? event.initEventIds : [];
+            const initEvents = initIds.map(id => this.traceModel.getEvent(id)).filter(Boolean);
+
+            if (initEvents.length > 0) {
+                const initBlock = new TraceBlock(this.container, parentBlock, lineNumber, this.#createSectionHeader("init"), true, true);
+                this.#renderEvents(initEvents, initBlock, event.location ?? null);
+            }
+
+            const iterIds = Array.isArray(event.iterationsEventIds) ? event.iterationsEventIds : [];
+            const iterEvents = iterIds.map(id => this.traceModel.getEvent(id)).filter(Boolean);
+
+            if (iterEvents.length > 0) {
+                this.#renderEvents(iterEvents, parentBlock, event.location ?? null);
+            }
+
+            return;
+        }
+        else if (event instanceof LoopIterationTraceEvent) {
+            const lineNumber = event.location?.line ?? "-";
+            const condIds = Array.isArray(event.conditionEventIds) ? event.conditionEventIds : [];
+            const condEvents = condIds.map(id => this.traceModel.getEvent(id)).filter(Boolean);
+            const condResult = this.#inferBooleanFromEvents(condEvents);
+
+            const conditionBlock = new TraceBlock(this.container, parentBlock, lineNumber, this.#createSectionHeader("condition", condResult), true, true);
+
+            if (condEvents.length > 0) {
+                this.#renderEvents(condEvents, conditionBlock, event.location ?? null);
+            } else {
+                conditionBlock.addLine(lineNumber, TraceSpan.wrapLineColors("∅"));
+            }
+
+            const bodyIds = Array.isArray(event.bodyEventIds) ? event.bodyEventIds : [];
+            const bodyEvents = bodyIds.map(id => this.traceModel.getEvent(id)).filter(Boolean);
+            if (bodyEvents.length > 0) {
+                this.#renderEvents(bodyEvents, parentBlock, event.location ?? null);
+            }
+
+            const updIds = Array.isArray(event.updateEventIds) ? event.updateEventIds : [];
+            const updEvents = updIds.map(id => this.traceModel.getEvent(id)).filter(Boolean);
+
+            if (updEvents.length > 0) {
+                const updateBlock = new TraceBlock(this.container, parentBlock, lineNumber, this.#createSectionHeader("update"), true, true);
+                this.#renderEvents(updEvents, updateBlock, event.location ?? null);
+            }
+
+            return;
+        }
 
         const childIds = [];
 
@@ -185,7 +235,9 @@ export class TraceView {
         for (const ev of events) {
             const lineNumber = ev.location?.line ?? "-";
 
-            if (parentBlock === null || !ev.location?.equals(currentLocation)) {
+            const mustSplit = (ev instanceof LoopIterationTraceEvent);
+
+            if (parentBlock === null || mustSplit || !ev.location?.equals(currentLocation)) {
                 if (ev instanceof CallTraceEvent && (ev.external || ev.bodyEventIds.length === 0)) {
                     // don't create a block for external calls or calls without body
                 }
@@ -201,7 +253,7 @@ export class TraceView {
 
             this.#manageInnerEvents(ev, currentBlock, currentLocation, parentBlock);
 
-            if (ev instanceof ConditionTraceEvent) {
+            if (ev instanceof ConditionTraceEvent || ev instanceof LoopTraceEvent || ev instanceof LoopIterationTraceEvent) {
                 continue;
             }
 
@@ -218,7 +270,8 @@ export class TraceView {
 
         if (event instanceof CallTraceEvent) {
             if (event.external) {
-                documentFragment.append("[EXT] ");
+                documentFragment.append(TraceSpan.createSpan(TraceSpanType.Annotation, "[EXT]"));
+                documentFragment.append(" ");
             }
 
             documentFragment.append(TraceSpan.createSpan(TraceSpanType.FunctionName, event.name));
@@ -245,6 +298,19 @@ export class TraceView {
             const result = event.value.value;
             const traceSpanType = result === true ? TraceSpanType.True : TraceSpanType.False;
             documentFragment.append(TraceSpan.createSpan(traceSpanType, result ? "true" : "false"));
+        }
+        else if (event instanceof LoopTraceEvent) {
+            const structure = this.traceModel.getStructureFromEvent(event.eventId);
+            const contentLine = structure?.getLineContent() ?? "?";
+            documentFragment.append(TraceSpan.wrapLineColors(contentLine));
+
+            documentFragment.append(" ↦ ");
+            documentFragment.append(event.iterationsEventIds.length + " iteration(s)");
+        }
+        else if (event instanceof LoopIterationTraceEvent) {
+            documentFragment.append(TraceSpan.createSpan(TraceSpanType.Annotation, `[${event.iterationIndex}]`));
+            documentFragment.append(" ");
+            documentFragment.append(TraceSpan.wrapLineColors("iteration"));
         }
         else {
             const structure = this.traceModel.getStructureFromEvent(event.eventId);
@@ -308,6 +374,28 @@ export class TraceView {
 
         return frag;
     }
+
+    #createSectionHeader(title, resultBool = null) {
+        const frag = document.createDocumentFragment();
+        frag.append(TraceSpan.wrapLineColors(title));
+
+        if (resultBool !== null) {
+            frag.append(TraceSpan.wrapLineColors(" ↦ "));
+            frag.append(TraceSpan.createSpan(resultBool ? TraceSpanType.True : TraceSpanType.False, resultBool ? "true" : "false"));
+        }
+        return frag;
+    }
+
+    #inferBooleanFromEvents(events) {
+        for (let i = events.length - 1; i >= 0; i--) {
+            const ev = events[i];
+            if (ev instanceof ComparisonTraceEvent && ev.result?.value != null) {
+                return ev.result.value === true;
+            }
+        }
+        return null;
+    }
+
 
     #appendHighlighted(documentFragment, str) {
         documentFragment.append(TraceSpan.wrapLineColors(str));
