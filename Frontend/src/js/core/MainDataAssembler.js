@@ -405,6 +405,7 @@ export class MainDataAssembler {
                 return new LoopIterationTraceEvent(
                     eventId, spanId, location,
                     eventJson.iterationIndex,
+                    this.#assembleEventValue(eventJson.value),
                     eventJson.conditionEventIds,
                     eventJson.bodyEventIds,
                     eventJson.updateEventIds

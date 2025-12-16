@@ -159,7 +159,7 @@ export class TraceView {
             const lineNumber = event.location?.line ?? "-";
             const condIds = Array.isArray(event.conditionEventIds) ? event.conditionEventIds : [];
             const condEvents = condIds.map(id => this.traceModel.getEvent(id)).filter(Boolean);
-            const condResult = this.#inferBooleanFromEvents(condEvents);
+            const condResult = event.value.value;
 
             const conditionBlock = new TraceBlock(this.container, parentBlock, lineNumber, this.#createSectionHeader("condition", condResult), true, true);
 
@@ -305,12 +305,17 @@ export class TraceView {
             documentFragment.append(TraceSpan.wrapLineColors(contentLine));
 
             documentFragment.append(" ↦ ");
-            documentFragment.append(event.iterationsEventIds.length + " iteration(s)");
+            documentFragment.append(event.iterationsEventIds.length - 1 + " iteration(s)");
         }
         else if (event instanceof LoopIterationTraceEvent) {
             documentFragment.append(TraceSpan.createSpan(TraceSpanType.Annotation, `[${event.iterationIndex}]`));
             documentFragment.append(" ");
             documentFragment.append(TraceSpan.wrapLineColors("iteration"));
+
+            documentFragment.append(" ↦ ");
+            const result = event.value.value;
+            const traceSpanType = result === true ? TraceSpanType.True : TraceSpanType.False;
+            documentFragment.append(TraceSpan.createSpan(traceSpanType, result ? "true" : "false"));
         }
         else {
             const structure = this.traceModel.getStructureFromEvent(event.eventId);
@@ -384,16 +389,6 @@ export class TraceView {
             frag.append(TraceSpan.createSpan(resultBool ? TraceSpanType.True : TraceSpanType.False, resultBool ? "true" : "false"));
         }
         return frag;
-    }
-
-    #inferBooleanFromEvents(events) {
-        for (let i = events.length - 1; i >= 0; i--) {
-            const ev = events[i];
-            if (ev instanceof ComparisonTraceEvent && ev.result?.value != null) {
-                return ev.result.value === true;
-            }
-        }
-        return null;
     }
 
 
