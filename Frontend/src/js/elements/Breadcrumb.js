@@ -4,51 +4,50 @@ import {PWElement} from "./PWElement.js";
  * This class is used to manage a breadcrumb list, to show the current filter
  */
 export class Breadcrumb extends PWElement {
-
-    /**
-     * Creates a new breadcrumb list
-     */
     constructor(traceModel) {
-        super(document.createElement('ul'));
-        this.element.classList.add('breadcrumb');
-
+        super(document.createElement("ul"));
+        this.element.classList.add("breadcrumb");
         this.traceModel = traceModel;
+        this.state = { eventId: null, location: null };
+    }
+
+    setContext(ctx) {
+        this.state.eventId = ctx.eventId ?? null;
+        this.state.location = ctx.location ?? null;
+        this.render();
+    }
+
+    clear() {
+        this.setContext({ eventId: null, location: null });
     }
 
     render() {
-        const filterType = this.vm.filterType;
-        const filterId = this.vm.filterId;
-        const segments = this.#computeSegments(filterType, filterId);
+        const segments = this.#computeSegments(this.state.eventId, this.state.location);
         this.#renderSegments(segments);
     }
 
     #renderSegments(segments) {
         this.element.innerHTML = "";
-
         for (const seg of segments) {
             const li = document.createElement("li");
-
             li.textContent = seg.label;
-
             this.element.append(li);
         }
     }
 
-    #computeSegments(type, id) {
-        switch (type.name) {
-            case "span": {
-                const segments = [];
-                /*const method = this.vm.getCurrentMethod();
-                const clazz = this.vm.getClass(method.classId);
+    #computeSegments(eventId, location) {
+        if (!location) return [{ label: "" }];
 
-                segments.push({ label: `${clazz.name}:${method.name}` });*/
-                segments.push({ label: "TEST:TEST" });
+        const segments = [];
 
-                return segments;
-            }
+        const ev = this.traceModel.getEvent(eventId);
+        const span = ev ? this.traceModel.getSpan(ev.spanId) : null;
+        const method = span ? this.traceModel.getMethod(span.methodId) : null;
+        const clazz = method ? this.traceModel.getClass(method.classId) : null;
 
-            default:
-                return [{ label: `${type.name}:${id}` }];
-        }
+        if (clazz && method) segments.push({ label: `${clazz.name}.${method.name}:${location.line}` });
+        else if (method) segments.push({ label: `${method.name}()` });
+
+        return segments;
     }
 }

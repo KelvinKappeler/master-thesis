@@ -9,14 +9,16 @@ import {BaseTriangle} from "../elements/BaseTriangle.js";
  * @param {string|Node} headerContent - The content of the header.
  * @param {boolean} canBeCollapsed - Whether the block can be collapsed.
  * @param {boolean} isDefaultCollapsed - Whether the block is collapsed by default.
+ * @param {(traceEvent: any|null) => void} onHover - Callback for hover events.
  */
 export class TraceBlock {
-    constructor(container, parent = null, headerLineNumber, headerContent, canBeCollapsed = true, isDefaultCollapsed = true) {
+    constructor(container, parent = null, headerLineNumber, headerContent, canBeCollapsed = true, isDefaultCollapsed = true, onHover = null) {
         Preconditions.requireNonNull(container);
 
         this.container = container;
         this.parent = parent;
         this.depth = parent ? parent.depth + 1 : 0;
+        this.onHover = onHover;
 
         const parents = parent ? parent._childrenRoots : {
             lineNumber : container.lineNumbersArea,
@@ -78,8 +80,9 @@ export class TraceBlock {
      * Adds a line to the block.
      * @param {number} lineNumber - The line number of the line.
      * @param {string|Node} content - The content of the line.
+     * @param {any|null} traceEvent - The trace event associated with the line.
      */
-    addLine(lineNumber, content) {
+    addLine(lineNumber, content, traceEvent = null) {
         const ln = document.createElement("div");
         ln.textContent = String(lineNumber);
 
@@ -96,6 +99,10 @@ export class TraceBlock {
             ct.append(content);
         } else {
             ct.textContent = String(content ?? "");
+        }
+
+        if (traceEvent) {
+            ct.addEventListener("mouseenter", () => this.onHover?.(traceEvent));
         }
 
         this._childrenRoots.lineNumber.append(ln);
@@ -121,5 +128,11 @@ export class TraceBlock {
         if (this._triangle) {
             this._triangle.expand();
         }
+    }
+
+    bindHeaderHover(traceEvent) {
+        if (!this._header?.content) return;
+
+        this._header.content.addEventListener("mouseenter", () => this.onHover?.(traceEvent));
     }
 }

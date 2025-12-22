@@ -9,6 +9,24 @@ main {
     height: calc(100vh - 56px);
 }
 
+#splitter {
+    width: 8px;
+    cursor: col-resize;
+    background-color: #2a2b2f;
+    border-left: 1px solid #555;
+    border-right: 1px solid #555;
+}
+
+#splitter:hover {
+    background-color: #3a3b40;
+}
+
+main.resizing {
+    user-select: none;
+    cursor: col-resize;
+}
+
+
 button {
     font-family: monospace;
 }

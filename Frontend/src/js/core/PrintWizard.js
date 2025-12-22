@@ -40,6 +40,8 @@ export class PrintWizard {
             traceView.render();
         });
 
+        this.#initSplitter();
+
         /*this.jsonData.getAllData().then(data => {
             const finalTreeTrace = translateToTreeFormat(data[2], data[0], data[1]).inlineLoops();
             console.log(finalTreeTrace);
@@ -76,4 +78,43 @@ export class PrintWizard {
         let activeButton = document.querySelector(`button[onclick="pw.openInspectorTab('${inspectorName}')"]`);
         activeButton.classList.add("active");
     */}
+
+    #initSplitter() {
+        const main = document.querySelector("main");
+        const trace = document.querySelector(".trace");
+        const inspector = document.querySelector("#inspector");
+        const splitter = document.querySelector("#splitter");
+
+        if (!main || !trace || !inspector || !splitter) return;
+
+        let dragging = false;
+
+        const onMouseMove = (e) => {
+            if (!dragging) return;
+
+            const rect = main.getBoundingClientRect();
+
+            let newTraceWidth = e.clientX - rect.left;
+
+            trace.style.flex = `0 0 ${newTraceWidth}px`;
+            inspector.style.flex = `1 1 auto`;
+        };
+
+        const stopDragging = () => {
+            if (!dragging) return;
+            dragging = false;
+            main.classList.remove("resizing");
+            window.removeEventListener("mousemove", onMouseMove);
+            window.removeEventListener("mouseup", stopDragging);
+        };
+
+        splitter.addEventListener("mousedown", (e) => {
+            e.preventDefault();
+            dragging = true;
+            main.classList.add("resizing");
+            window.addEventListener("mousemove", onMouseMove);
+            window.addEventListener("mouseup", stopDragging);
+        });
+    }
+
 }

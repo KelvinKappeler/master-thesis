@@ -15,6 +15,7 @@ import {
 import {TraceBlock} from "./TraceBlock.js";
 import {TraceSpan} from "./TraceSpan.js";
 import {TraceSpanType} from "./TraceSpanType.js";
+import {Breadcrumb} from "../elements/Breadcrumb.js";
 
 /**
  * Represents the view for the trace part of the application.
@@ -25,9 +26,8 @@ export class TraceView {
     constructor(traceModel, traceContainer) {
         this.traceModel = traceModel;
         this.container = traceContainer;
-
-        //this.breadcrumb = new Breadcrumb(traceViewModel);
-        //this.breadcrumb.attachTo(document.querySelector('.breadcrumb'));
+        this.breadcrumb = new Breadcrumb(traceModel);
+        this.breadcrumb.attachTo(document.querySelector(".breadcrumb"));
     }
 
     /**
@@ -160,7 +160,8 @@ export class TraceView {
                     if (ev instanceof CallTraceEvent && ev.name === "main") isDefaultCollapsed = false;
 
                     const headerFrag = this.#getHeaderBlockDocumentFragment(ev);
-                    currentBlock = new TraceBlock(this.container, parentBlock, lineNumber, headerFrag, true, isDefaultCollapsed);
+                    currentBlock = new TraceBlock(this.container, parentBlock, lineNumber, headerFrag, true, isDefaultCollapsed, this.#onHover);
+                    currentBlock.bindHeaderHover(ev);
                     currentLocation = ev.location;
                 }
             }
@@ -175,7 +176,7 @@ export class TraceView {
                 continue;
             }
 
-            currentBlock.addLine(lineNumber, this.#getEventLine(ev));
+            currentBlock.addLine(lineNumber, this.#getEventLine(ev), ev);
         }
     }
 
@@ -260,4 +261,12 @@ export class TraceView {
             default: return operator;
         }
     }
+
+    #onHover = (event) => {
+        if (!event || !event.location) {
+            this.breadcrumb.clear();
+            return;
+        }
+        this.breadcrumb.setContext({ eventId: event.eventId, location: event.location });
+    };
 }
