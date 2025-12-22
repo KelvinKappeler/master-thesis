@@ -6,6 +6,7 @@ import ch.epfl.printwizard.shared.model.program.structures.*;
 import ch.epfl.printwizard.shared.model.program.structures.expr.ExprCode;
 import ch.epfl.printwizard.shared.model.program.structures.expr.ExprNode;
 import com.github.javaparser.ast.Node;
+import com.github.javaparser.ast.expr.Expression;
 import com.github.javaparser.ast.expr.VariableDeclarationExpr;
 import com.github.javaparser.ast.stmt.*;
 
@@ -62,9 +63,13 @@ public final class JavaStructureMapper {
             }
             
             case IfStmt n -> {
-                var cond = new ExprCode(n.getCondition().toString(), start, end);
+                var cond = new ExprCode(n.getCondition().toString(), lineStart(n.getCondition()), lineEnd(n.getCondition()));
                 var thenNode = mapStmt(n.getThenStmt());
-                var elseNode = n.getElseStmt().map(this::mapStmt).orElse(null);
+                
+                StructureNode elseNode = null;
+                if (n.getElseStmt().isPresent()) {
+                    elseNode = mapStmt(n.getElseStmt().get());
+                }
 
                 var content = "if (" + n.getCondition() + ")";
                 Optional<Node> parent = n.getParentNode();
@@ -74,15 +79,40 @@ public final class JavaStructureMapper {
 
                 yield new IfNode(nextId(StructureKind.IF.getPrefixId()), content, start, end, cond, thenNode, elseNode);
             }
-            
-            case ForStmt n -> {
-                var init = new ExprCode(n.getInitialization().toString(), start, end);
-                var compare = new ExprCode(n.getCompare().toString(), start, end);
-                var update = new ExprCode(n.getUpdate().toString(), start, end);
-                var body = mapStmt(n.getBody());
-                var content = n.toString();
 
+            case ForStmt n -> {
+                var initExprs = n.getInitialization();
+                String initText = initExprs.stream().map(Expression::toString).reduce((a, b) -> a + ", " + b).orElse("");
+                ProgramPosition initStart = initExprs.isEmpty() ? start : lineStart(initExprs.get(0));
+                ProgramPosition initEnd = initExprs.isEmpty() ? start : lineEnd(initExprs.get(initExprs.size() - 1));
+                var init = new ExprCode(initText, initStart, initEnd);
+                
+                initExprs.forEach(this::registerLocalsFromExpression);
+                
+                var compareExprOpt = n.getCompare();
+                String compareText = compareExprOpt.map(Expression::toString).orElse("");
+                ProgramPosition compareStart = compareExprOpt.map(this::lineStart).orElse(start);
+                ProgramPosition compareEnd = compareExprOpt.map(this::lineEnd).orElse(end);
+                var compare = new ExprCode(compareText, compareStart, compareEnd);
+                
+                var updateExprs = n.getUpdate();
+                String updateText = updateExprs.stream().map(Expression::toString).reduce((a, b) -> a + ", " + b).orElse("");
+                ProgramPosition updateStart = updateExprs.isEmpty() ? end : lineStart(updateExprs.get(0));
+                ProgramPosition updateEnd = updateExprs.isEmpty() ? end : lineEnd(updateExprs.get(updateExprs.size() - 1));
+                var update = new ExprCode(updateText, updateStart, updateEnd);
+
+                var body = mapStmt(n.getBody());
+
+                var content = "for (" + initText + "; " + compareText + "; " + updateText + ")";
                 yield new ForNode(nextId(StructureKind.FOR.getPrefixId()), content, start, end, init, compare, update, body);
+            }
+
+            case WhileStmt n -> {
+                var cond = new ExprCode(n.getCondition().toString(), start, end);
+                var body = mapStmt(n.getBody());
+                var content = "while (" + n.getCondition() + ")";
+                
+                yield new WhileNode(nextId(StructureKind.WHILE.getPrefixId()), content, start, end, cond, body);
             }
 
             case ReturnStmt n -> {
@@ -96,6 +126,17 @@ public final class JavaStructureMapper {
 
             default -> throw new IllegalArgumentException("Unsupported statement resultType: " + s.getClass());
         };
+    }
+
+    private void registerLocalsFromExpression(Expression e) {
+        if (e instanceof VariableDeclarationExpr varExpr) {
+            varExpr.getVariables().forEach(v -> {
+                String name = v.getNameAsString();
+                String typeId = v.getType().toString();
+                LocalVar localVar = new LocalVar(nextLocalSlot++, name, typeId);
+                locals.add(localVar);
+            });
+        }
     }
 
     private ExprNode mapExpr(ExpressionStmt expr) {
@@ -130,11 +171,25 @@ public final class JavaStructureMapper {
 
         return new ProgramPosition(startLine, startColumn);
     }
+    
+    private ProgramPosition lineStart(Expression expression) {
+        int startLine = expression.getRange().map(r -> r.begin.line).orElse(0);
+        int startColumn = expression.getRange().map(r -> r.begin.column).orElse(0);
+        
+        return new ProgramPosition(startLine, startColumn);
+    }
 
     private ProgramPosition lineEnd(Statement s) {
         int endLine = s.getRange().map(r -> r.end.line).orElse(0);
         int endColumn = s.getRange().map(r -> r.end.column).orElse(0);
 
+        return new ProgramPosition(endLine, endColumn);
+    }
+    
+    private ProgramPosition lineEnd(Expression expression) {
+        int endLine = expression.getRange().map(r -> r.end.line).orElse(0);
+        int endColumn = expression.getRange().map(r -> r.end.column).orElse(0);
+        
         return new ProgramPosition(endLine, endColumn);
     }
 }

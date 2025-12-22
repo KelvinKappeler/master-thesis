@@ -599,21 +599,6 @@ public class TraceOut {
         return eventId;
     }
 
-    @SuppressWarnings("unused")
-    public static void endCondition(String conditionEventId) {
-        Deque<ExecCtx> stack = CTX_STACK.get();
-
-        if (!stack.isEmpty() && stack.peek() instanceof ConditionPhaseCtx) {
-            stack.pop();
-        }
-
-        if (!stack.isEmpty() && stack.peek() instanceof ConditionCtx c && Objects.equals(c.getConditionEventId(), conditionEventId)) {
-            ConditionCtx condCtx = (ConditionCtx) stack.pop();
-
-            patchCondition(conditionEventId, condCtx);
-        }
-    }
-
     public static <T> T endCondition(String conditionEventId, T value) {
         Deque<ExecCtx> stack = CTX_STACK.get();
 
@@ -764,7 +749,7 @@ public class TraceOut {
     }
 
     @SuppressWarnings("unused")
-    public static String beginLoopIteration(String loopEventId) {
+    public static String beginLoopIteration(String loopEventId, boolean conditionValue) {
         LoopCtx loopCtx = findLoopCtx(loopEventId);
 
         if (loopCtx == null) {
@@ -778,6 +763,7 @@ public class TraceOut {
 
         LoopIterationCtx iterCtx = new LoopIterationCtx(loopCtx, idx, iterEventId);
         iterCtx.getConditionEventIds().addAll(loopCtx.getPendingConditionEvents());
+        iterCtx.setConditionValue(EventValue.of(conditionValue));
 
         CTX_STACK.get().push(iterCtx);
         CTX_STACK.get().push(new LoopPhaseCtx(loopCtx, iterCtx, LoopPhase.BODY));
@@ -807,11 +793,10 @@ public class TraceOut {
         LoopIterationEvent iterEvent = new LoopIterationEvent(
             iterCtx.getIterationEventId(), loopCtx.getSpanId(),
             loopCtx.getLocation(), iterCtx.getIterationIndex(),
-            condIds, bodyIds, updateIds
+            iterCtx.getConditionValue(), condIds, bodyIds, updateIds
         );
 
         addEvent(iterEvent, true);
-        loopCtx.getIterationEventIds().add(iterCtx.getIterationEventId());
     }
 
     @SuppressWarnings("unused")

@@ -1,6 +1,7 @@
 package ch.epfl.printwizard.plugin.logging;
 
 import ch.epfl.printwizard.plugin.model.trace.TraceLoc;
+import ch.epfl.printwizard.plugin.model.trace.events.LoopIterationEvent;
 import ch.epfl.printwizard.plugin.model.trace.events.LoopKind;
 import ch.epfl.printwizard.plugin.model.trace.events.TraceEvent;
 import ch.epfl.printwizard.plugin.utils.Preconditions;
@@ -92,7 +93,12 @@ public class LoopCtx implements ExecCtx {
 
     @Override
     public boolean handleEvent(TraceEvent event) {
-
+        if (event instanceof LoopIterationEvent lie) {
+            iterationEventIds.add(lie.eventId());
+            
+            return true;
+        }
+        
         return false;
     }
 }

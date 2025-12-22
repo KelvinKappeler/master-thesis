@@ -423,7 +423,7 @@ public class TracingTranslator extends TreeTranslator {
 
         int line = cu.getLineMap().getLineNumber(jcIf.pos);
         String sourceId = getSourceId();
-
+        
         String condEvtVarNameStr = "__pw_cond_evt_" + jcIf.pos;
         var condEvtVarName = names.fromString(condEvtVarNameStr);
 
@@ -446,16 +446,23 @@ public class TracingTranslator extends TreeTranslator {
         );
         condEvtVar.sym = condEvtSym;
         condEvtVar.type = symtab.stringType;
+        
+        String condVarNameStr = "__pw_cond_" + jcIf.pos;
+        var condVarName = names.fromString(condVarNameStr);
 
-        JCTree.JCStatement endCondStmt = mk.Exec(
-            callStatic(
-                "ch.epfl.printwizard.plugin.logging.TraceOut",
-                "endCondition",
-                List.of(mk.Ident(condEvtSym)),
-                jcIf.pos
-            )
+        JCTree.JCExpression boolTypeTree = mk.TypeIdent(TypeTag.BOOLEAN);
+        boolTypeTree.type = symtab.booleanType;
+
+        JCTree.JCVariableDecl condVar = mk.VarDef(mk.Modifiers(Flags.SYNTHETIC), condVarName, boolTypeTree, condExpr);
+        Symbol.VarSymbol condSym = new Symbol.VarSymbol(
+            Flags.SYNTHETIC,
+            condVarName,
+            symtab.booleanType,
+            (currentMethod != null ? currentMethod : symtab.noSymbol)
         );
-
+        condVar.sym = condSym;
+        condVar.type = symtab.booleanType;
+        
         JCTree.JCStatement beginThen = mk.Exec(
             callStatic(
                 "ch.epfl.printwizard.plugin.logging.TraceOut",
@@ -496,10 +503,22 @@ public class TracingTranslator extends TreeTranslator {
             );
             tracedElse = mk.Block(0, List.of(beginElse, elseStmt, endElse));
         }
+        
+        JCTree.JCExpression condIdent = mk.Ident(condSym);
+        condIdent.type = symtab.booleanType;
 
-        JCTree.JCIf newIf = mk.If(condExpr, tracedThen, tracedElse);
-
-        this.result = mk.Block(0, List.of(condEvtVar, newIf, endCondStmt));
+        JCTree.JCIf newIf = mk.If(condIdent, tracedThen, tracedElse);
+        
+        JCTree.JCStatement endCondStmt = mk.Exec(
+            callStatic(
+                "ch.epfl.printwizard.plugin.logging.TraceOut",
+                "endCondition",
+                List.of(mk.Ident(condEvtSym), mk.Ident(condSym)),
+                jcIf.pos
+            )
+        );
+        
+        this.result = mk.Block(0, List.of(condEvtVar, condVar, newIf, endCondStmt));
     }
 
     @Override
@@ -1303,12 +1322,7 @@ public class TracingTranslator extends TreeTranslator {
             pos
         );
 
-        JCTree.JCVariableDecl loopEvtVar = mk.VarDef(
-            mk.Modifiers(Flags.SYNTHETIC),
-            loopEvtVarName,
-            stringTypeTree,
-            beginLoopCall
-        );
+        JCTree.JCVariableDecl loopEvtVar = mk.VarDef(mk.Modifiers(Flags.SYNTHETIC), loopEvtVarName, stringTypeTree, beginLoopCall);
         Symbol.VarSymbol loopEvtSym = new Symbol.VarSymbol(
             Flags.SYNTHETIC,
             loopEvtVarName,
@@ -1323,12 +1337,7 @@ public class TracingTranslator extends TreeTranslator {
 
         String continuedNameStr = "__pw_loop_continued_" + pos;
         var continuedName = names.fromString(continuedNameStr);
-        JCTree.JCVariableDecl continuedVar = mk.VarDef(
-            mk.Modifiers(Flags.SYNTHETIC),
-            continuedName,
-            boolTypeTree,
-            mk.Literal(true)
-        );
+        JCTree.JCVariableDecl continuedVar = mk.VarDef(mk.Modifiers(Flags.SYNTHETIC), continuedName, boolTypeTree, mk.Literal(true));
         Symbol.VarSymbol continuedSym = new Symbol.VarSymbol(
             Flags.SYNTHETIC,
             continuedName,
@@ -1338,46 +1347,40 @@ public class TracingTranslator extends TreeTranslator {
         continuedVar.sym = continuedSym;
         continuedVar.type = symtab.booleanType;
 
-        String hasRunNameStr = "__pw_loop_hasRun_" + pos;
-        var hasRunName = names.fromString(hasRunNameStr);
-        JCTree.JCVariableDecl hasRunVar = mk.VarDef(
-            mk.Modifiers(Flags.SYNTHETIC),
-            hasRunName,
-            boolTypeTree,
-            mk.Literal(false)
+
+        JCTree.JCStatement beginCondStmt = mk.Exec(
+            callStatic(
+                "ch.epfl.printwizard.plugin.logging.TraceOut",
+                "beginLoopCondition",
+                List.of(mk.Ident(loopEvtSym)),
+                pos
+            )
         );
-        Symbol.VarSymbol hasRunSym = new Symbol.VarSymbol(
-            Flags.SYNTHETIC,
-            hasRunName,
-            symtab.booleanType,
-            (currentMethod != null ? currentMethod : symtab.noSymbol)
+
+        JCTree.JCAssign assignContinued = mk.Assign(mk.Ident(continuedSym), condExpr);
+        assignContinued.type = symtab.booleanType;
+        JCTree.JCStatement continuedAssignStmt = mk.Exec(assignContinued);
+
+        JCTree.JCStatement endCondStmt = mk.Exec(
+            callStatic(
+                "ch.epfl.printwizard.plugin.logging.TraceOut",
+                "endLoopCondition",
+                List.of(mk.Ident(loopEvtSym)),
+                pos
+            )
         );
-        hasRunVar.sym = hasRunSym;
-        hasRunVar.type = symtab.booleanType;
-
-        mk.at(pos);
-        JCTree.JCExpression whileCond = mk.Ident(continuedSym);
-        whileCond.type = symtab.booleanType;
-
-        JCTree.JCExpression hasRunIdent = mk.Ident(hasRunSym);
-        hasRunIdent.type = symtab.booleanType;
-
+        
         String iterEvtVarNameStr = "__pw_iter_evt_" + pos;
         var iterEvtVarName = names.fromString(iterEvtVarNameStr);
 
         JCTree.JCMethodInvocation beginIterCall = callStatic(
             "ch.epfl.printwizard.plugin.logging.TraceOut",
             "beginLoopIteration",
-            List.of(mk.Ident(loopEvtSym)),
+            List.of(mk.Ident(loopEvtSym), mk.Ident(continuedSym)),
             pos
         );
 
-        JCTree.JCVariableDecl iterEvtVar = mk.VarDef(
-            mk.Modifiers(Flags.SYNTHETIC),
-            iterEvtVarName,
-            stringTypeTree,
-            beginIterCall
-        );
+        JCTree.JCVariableDecl iterEvtVar = mk.VarDef(mk.Modifiers(Flags.SYNTHETIC), iterEvtVarName, stringTypeTree, beginIterCall);
         Symbol.VarSymbol iterEvtSym = new Symbol.VarSymbol(
             Flags.SYNTHETIC,
             iterEvtVarName,
@@ -1395,7 +1398,7 @@ public class TracingTranslator extends TreeTranslator {
                 pos
             )
         );
-
+        
         List<JCTree.JCStatement> bodyStmts = List.of(bodyStmt);
         if (!updateStmts.isEmpty()) {
             JCTree.JCStatement beginUpdate = mk.Exec(
@@ -1421,39 +1424,20 @@ public class TracingTranslator extends TreeTranslator {
         JCTree.JCBlock finallyBlock = mk.Block(0, List.of(endIterStmt));
         JCTree.JCTry tryFinally = mk.Try(tryBlock, List.nil(), finallyBlock);
 
-        JCTree.JCBlock iterBlock = mk.Block(0, List.of(iterEvtVar, tryFinally));
-        JCTree.JCIf ifHasRun = mk.If(hasRunIdent, iterBlock, null);
+        JCTree.JCExpression continuedIdent = mk.Ident(continuedSym);
+        continuedIdent.type = symtab.booleanType;
 
-        JCTree.JCAssign assignHasRunTrue = mk.Assign(mk.Ident(hasRunSym), mk.Literal(true));
-        assignHasRunTrue.type = symtab.booleanType;
-        JCTree.JCStatement hasRunAssignStmt = mk.Exec(assignHasRunTrue);
+        JCTree.JCBlock runBlock = mk.Block(0, List.of(tryFinally));
 
-        JCTree.JCStatement beginCondStmt = mk.Exec(
-            callStatic(
-                "ch.epfl.printwizard.plugin.logging.TraceOut",
-                "beginLoopCondition",
-                List.of(mk.Ident(loopEvtSym)),
-                pos
-            )
-        );
+        JCTree.JCBlock stopBlock = mk.Block(0, List.of(endIterStmt));
 
-        JCTree.JCAssign assignContinued = mk.Assign(mk.Ident(continuedSym), condExpr);
-        assignContinued.type = symtab.booleanType;
-        JCTree.JCStatement continuedAssignStmt = mk.Exec(assignContinued);
+        JCTree.JCIf ifStopOrRun = mk.If(continuedIdent, runBlock, stopBlock);
+        
+        JCTree.JCExpression whileCond = mk.Ident(continuedSym);
+        whileCond.type = symtab.booleanType;
 
-        JCTree.JCStatement endCondStmt = mk.Exec(
-            callStatic(
-                "ch.epfl.printwizard.plugin.logging.TraceOut",
-                "endLoopCondition",
-                List.of(mk.Ident(loopEvtSym)),
-                pos
-            )
-        );
-
-        JCTree.JCBlock whileBody = mk.Block(0, List.of(ifHasRun, hasRunAssignStmt, beginCondStmt, continuedAssignStmt, endCondStmt));
-
-        JCTree.JCWhileLoop newWhileLoop = mk.WhileLoop(whileCond, whileBody);
-
+        JCTree.JCWhileLoop loop = mk.WhileLoop(whileCond, mk.Block(0, List.of(beginCondStmt, continuedAssignStmt, endCondStmt, iterEvtVar, ifStopOrRun)));
+        
         JCTree.JCStatement endLoopStmt = mk.Exec(
             callStatic(
                 "ch.epfl.printwizard.plugin.logging.TraceOut",
@@ -1486,7 +1470,7 @@ public class TracingTranslator extends TreeTranslator {
             stmts = stmts.append(beginInitStmt).appendList(initStmts).append(endInitStmt);
         }
 
-        stmts = stmts.append(continuedVar).append(hasRunVar).append(newWhileLoop).append(endLoopStmt);
+        stmts = stmts.append(continuedVar).append(loop).append(endLoopStmt);
 
         return mk.Block(0, stmts);
     }

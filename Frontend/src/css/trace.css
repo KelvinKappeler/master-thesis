@@ -74,6 +74,14 @@
     color: #9c9c41;
 }
 
+.true {
+    color: green;
+}
+
+.false {
+    color: red;
+}
+
 .returnValue {
     border: 1px solid #af4b4b;
 }
@@ -112,7 +120,6 @@
     color: #bd7c3e;
 }
 
-.loopIteration {
-    border: 1px solid #2e4a70;
-    margin-right: 5px;
+.annotation {
+    background-color: #2e4a70;
 }

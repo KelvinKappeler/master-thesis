@@ -160,13 +160,14 @@ export class LoopTraceEvent extends TraceEvent {
  * Represents an event for a single iteration of a loop.
  */
 export class LoopIterationTraceEvent extends TraceEvent {
-    constructor(eventId, spanId, location, iterationIndex, conditionEventIds, bodyEventIds, updateEventIds) {
+    constructor(eventId, spanId, location, iterationIndex, value, conditionEventIds, bodyEventIds, updateEventIds) {
         super(eventId, spanId, location);
 
         this.iterationIndex = iterationIndex;
         this.conditionEventIds = conditionEventIds;
         this.bodyEventIds = bodyEventIds;
         this.updateEventIds = updateEventIds;
+        this.value = value;
     }
 }
 

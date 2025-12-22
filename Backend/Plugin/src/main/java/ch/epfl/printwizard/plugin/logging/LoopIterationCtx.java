@@ -1,5 +1,6 @@
 package ch.epfl.printwizard.plugin.logging;
 
+import ch.epfl.printwizard.plugin.model.trace.events.EventValue;
 import ch.epfl.printwizard.plugin.model.trace.events.TraceEvent;
 import ch.epfl.printwizard.plugin.utils.Ids;
 import ch.epfl.printwizard.plugin.utils.Preconditions;
@@ -18,6 +19,8 @@ public class LoopIterationCtx implements ExecCtx {
     private final List<String> conditionEventIds = new ArrayList<>();
     private final List<String> bodyEventIds = new ArrayList<>();
     private final List<String> updateEventIds = new ArrayList<>();
+    
+    private EventValue conditionValue;
 
     public LoopIterationCtx(LoopCtx loopCtx, int iterationIndex, String iterationEventId) {
         Preconditions.requireNonNull(loopCtx, "loopCtx is null");
@@ -59,6 +62,16 @@ public class LoopIterationCtx implements ExecCtx {
         Preconditions.require(iterationIndex >= 0, "iterationIndex is negative");
 
         this.iterationIndex = iterationIndex;
+    }
+
+    public EventValue getConditionValue() {
+        return conditionValue;
+    }
+
+    public void setConditionValue(EventValue conditionValue) {
+        Preconditions.requireNonNull(conditionValue, "conditionValue is null");
+        
+        this.conditionValue = conditionValue;
     }
 
     public List<String> getConditionEventIds() {

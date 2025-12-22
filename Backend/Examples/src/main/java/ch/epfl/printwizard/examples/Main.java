@@ -11,8 +11,23 @@ public class Main {
         int j = 0;
         if (i < 3) {
             j += 30;
+        } else if (i > 3) {
+            j += 20;
         } else {
             j += 10;
+        }
+        
+        if (i == 3) {
+            j = 25;
+        }
+        
+        for (int k = 0; k < 3; k++) {
+            j += 1;
+        }
+        
+        i = 0;
+        while (i < 3) {
+            i += 1;
         }
         
         System.out.println("Result: " + (i + j));

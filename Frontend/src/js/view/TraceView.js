@@ -101,7 +101,91 @@ export class TraceView {
         return documentFragment;
     }
 
-    #manageInnerEvents(event, parentBlock, location) {
+    #manageInnerEvents(event, parentBlock, location, outerParentBlock) {
+        if (event instanceof ConditionTraceEvent) {
+            const lineNumber = event.location?.line ?? "-";
+
+            const conditionIds = Array.isArray(event.conditionEventIds) ? event.conditionEventIds : [];
+            const conditionEvents = conditionIds.map(id => this.traceModel.getEvent(id)).filter(Boolean);
+
+            const conditionBlock = new TraceBlock(this.container, parentBlock, lineNumber, this.#createConditionHeader(event), true, true);
+
+            if (conditionEvents.length > 0) {
+                this.#renderEvents(conditionEvents, conditionBlock, event.location ?? null);
+            } else {
+                conditionBlock.addLine(lineNumber, TraceSpan.wrapLineColors("∅"));
+            }
+
+            const thenIds = Array.isArray(event.thenEventIds) ? event.thenEventIds : [];
+            const thenEvents = thenIds.map(id => this.traceModel.getEvent(id)).filter(Boolean);
+
+            if (thenEvents.length > 0) {
+                this.#renderEvents(thenEvents, parentBlock, event.location ?? null);
+            }
+
+            const elseIds = Array.isArray(event.elseEventIds) ? event.elseEventIds : [];
+            const elseEvents = elseIds.map(id => this.traceModel.getEvent(id)).filter(Boolean);
+            if (elseEvents.length === 0) return;
+
+            if (elseEvents[0] instanceof ConditionTraceEvent) {
+                this.#renderEvents(elseEvents, outerParentBlock, location);
+            } else {
+                this.#renderElseBlock(elseEvents, outerParentBlock);
+            }
+
+            return;
+        }
+        else if (event instanceof LoopTraceEvent) {
+            const lineNumber = event.location?.line ?? "-";
+
+            const initIds = Array.isArray(event.initEventIds) ? event.initEventIds : [];
+            const initEvents = initIds.map(id => this.traceModel.getEvent(id)).filter(Boolean);
+
+            if (initEvents.length > 0) {
+                const initBlock = new TraceBlock(this.container, parentBlock, lineNumber, this.#createSectionHeader("init"), true, true);
+                this.#renderEvents(initEvents, initBlock, event.location ?? null);
+            }
+
+            const iterIds = Array.isArray(event.iterationsEventIds) ? event.iterationsEventIds : [];
+            const iterEvents = iterIds.map(id => this.traceModel.getEvent(id)).filter(Boolean);
+
+            if (iterEvents.length > 0) {
+                this.#renderEvents(iterEvents, parentBlock, event.location ?? null);
+            }
+
+            return;
+        }
+        else if (event instanceof LoopIterationTraceEvent) {
+            const lineNumber = event.location?.line ?? "-";
+            const condIds = Array.isArray(event.conditionEventIds) ? event.conditionEventIds : [];
+            const condEvents = condIds.map(id => this.traceModel.getEvent(id)).filter(Boolean);
+            const condResult = event.value.value;
+
+            const conditionBlock = new TraceBlock(this.container, parentBlock, lineNumber, this.#createSectionHeader("condition", condResult), true, true);
+
+            if (condEvents.length > 0) {
+                this.#renderEvents(condEvents, conditionBlock, event.location ?? null);
+            } else {
+                conditionBlock.addLine(lineNumber, TraceSpan.wrapLineColors("∅"));
+            }
+
+            const bodyIds = Array.isArray(event.bodyEventIds) ? event.bodyEventIds : [];
+            const bodyEvents = bodyIds.map(id => this.traceModel.getEvent(id)).filter(Boolean);
+            if (bodyEvents.length > 0) {
+                this.#renderEvents(bodyEvents, parentBlock, event.location ?? null);
+            }
+
+            const updIds = Array.isArray(event.updateEventIds) ? event.updateEventIds : [];
+            const updEvents = updIds.map(id => this.traceModel.getEvent(id)).filter(Boolean);
+
+            if (updEvents.length > 0) {
+                const updateBlock = new TraceBlock(this.container, parentBlock, lineNumber, this.#createSectionHeader("update"), true, true);
+                this.#renderEvents(updEvents, updateBlock, event.location ?? null);
+            }
+
+            return;
+        }
+
         const childIds = [];
 
         if (event instanceof CallTraceEvent) {
@@ -151,7 +235,9 @@ export class TraceView {
         for (const ev of events) {
             const lineNumber = ev.location?.line ?? "-";
 
-            if (parentBlock === null || !ev.location?.equals(currentLocation)) {
+            const mustSplit = (ev instanceof LoopIterationTraceEvent);
+
+            if (parentBlock === null || mustSplit || !ev.location?.equals(currentLocation)) {
                 if (ev instanceof CallTraceEvent && (ev.external || ev.bodyEventIds.length === 0)) {
                     // don't create a block for external calls or calls without body
                 }
@@ -166,9 +252,9 @@ export class TraceView {
                 }
             }
 
-            this.#manageInnerEvents(ev, currentBlock, currentLocation);
+            this.#manageInnerEvents(ev, currentBlock, currentLocation, parentBlock);
 
-            if (ev instanceof ConditionTraceEvent) {
+            if (ev instanceof ConditionTraceEvent || ev instanceof LoopTraceEvent || ev instanceof LoopIterationTraceEvent) {
                 continue;
             }
 
@@ -182,10 +268,11 @@ export class TraceView {
 
     #getHeaderBlockDocumentFragment(event) {
         const documentFragment = document.createDocumentFragment();
-        if (event instanceof CallTraceEvent) {
 
+        if (event instanceof CallTraceEvent) {
             if (event.external) {
-                documentFragment.append("[EXT] ");
+                documentFragment.append(TraceSpan.createSpan(TraceSpanType.Annotation, "[EXT]"));
+                documentFragment.append(" ");
             }
 
             documentFragment.append(TraceSpan.createSpan(TraceSpanType.FunctionName, event.name));
@@ -202,6 +289,34 @@ export class TraceView {
                 documentFragment.append(this.#getShowValue(event.value, true));
             }
 
+        }
+        else if (event instanceof ConditionTraceEvent) {
+            const structure = this.traceModel.getStructureFromEvent(event.eventId);
+            const contentLine = structure?.getLineContent() ?? "?";
+            documentFragment.append(TraceSpan.wrapLineColors(contentLine));
+            documentFragment.append(" ↦ ");
+
+            const result = event.value.value;
+            const traceSpanType = result === true ? TraceSpanType.True : TraceSpanType.False;
+            documentFragment.append(TraceSpan.createSpan(traceSpanType, result ? "true" : "false"));
+        }
+        else if (event instanceof LoopTraceEvent) {
+            const structure = this.traceModel.getStructureFromEvent(event.eventId);
+            const contentLine = structure?.getLineContent() ?? "?";
+            documentFragment.append(TraceSpan.wrapLineColors(contentLine));
+
+            documentFragment.append(" ↦ ");
+            documentFragment.append(event.iterationsEventIds.length - 1 + " iteration(s)");
+        }
+        else if (event instanceof LoopIterationTraceEvent) {
+            documentFragment.append(TraceSpan.createSpan(TraceSpanType.Annotation, `[${event.iterationIndex}]`));
+            documentFragment.append(" ");
+            documentFragment.append(TraceSpan.wrapLineColors("iteration"));
+
+            documentFragment.append(" ↦ ");
+            const result = event.value.value;
+            const traceSpanType = result === true ? TraceSpanType.True : TraceSpanType.False;
+            documentFragment.append(TraceSpan.createSpan(traceSpanType, result ? "true" : "false"));
         }
         else {
             const structure = this.traceModel.getStructureFromEvent(event.eventId);
@@ -235,6 +350,48 @@ export class TraceView {
 
         return documentFragment;
     }
+
+    #renderElseBlock(elseEvents, outerParentBlock) {
+        if (!elseEvents || elseEvents.length === 0) return;
+
+        const first = elseEvents[0];
+        const lineNumber = first.location?.line ?? "-";
+
+        const headerFrag = document.createDocumentFragment();
+        headerFrag.append(TraceSpan.wrapLineColors("else"));
+
+        const elseBlock = new TraceBlock(this.container, outerParentBlock, lineNumber, headerFrag, true, true);
+
+        this.#renderEvents(elseEvents, elseBlock, first.location);
+    }
+
+    #createConditionHeader(conditionEvent) {
+        const frag = document.createDocumentFragment();
+
+        const structure = this.traceModel.getStructureFromEvent(conditionEvent.eventId, true);
+        const contentLine = structure?.getLineContent() ?? "condition";
+
+        frag.append(TraceSpan.wrapLineColors("condition: "));
+        frag.append(TraceSpan.wrapLineColors(contentLine));
+        frag.append(TraceSpan.wrapLineColors(" ↦ "));
+
+        const result = conditionEvent.value?.value === true;
+        frag.append(TraceSpan.createSpan(result ? TraceSpanType.True : TraceSpanType.False, result ? "true" : "false"));
+
+        return frag;
+    }
+
+    #createSectionHeader(title, resultBool = null) {
+        const frag = document.createDocumentFragment();
+        frag.append(TraceSpan.wrapLineColors(title));
+
+        if (resultBool !== null) {
+            frag.append(TraceSpan.wrapLineColors(" ↦ "));
+            frag.append(TraceSpan.createSpan(resultBool ? TraceSpanType.True : TraceSpanType.False, resultBool ? "true" : "false"));
+        }
+        return frag;
+    }
+
 
     #appendHighlighted(documentFragment, str) {
         documentFragment.append(TraceSpan.wrapLineColors(str));

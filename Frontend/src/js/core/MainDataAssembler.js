@@ -1,6 +1,6 @@
 import {Preconditions} from "../utils/Preconditions.js";
 import {Class, Enum, Interface, Method, ProgramTrace, Record, Source, Variable} from "../model/ProgramDefs.js";
-import {BlockNode, CodePosition, ExprStmtNode, ForNode, IfNode, ReturnNode} from "../model/StructureDefs.js";
+import {BlockNode, CodePosition, ExprStmtNode, ForNode, IfNode, ReturnNode, WhileNode} from "../model/StructureDefs.js";
 import {ExprCode} from "../model/ExprDefs.js";
 import {Index} from "../model/IndexDefs.js";
 import {Argument, Span, TraceData, TraceLocation} from "../model/TraceDefs.js";
@@ -180,7 +180,7 @@ export class MainDataAssembler {
                 return new ReturnNode(id, structureJson.code, startPosition, endPosition, structureJson.value);
 
             case "IF":
-                return new IfNode(id, structureJson.code, startPosition, endPosition, structureJson.condition,
+                return new IfNode(id, structureJson.code, startPosition, endPosition, this.#assembleMethodStructureExpression(structureJson.condition),
                     this.#assembleMethodStructure(structureJson.thenBranch), this.#assembleMethodStructure(structureJson.elseBranch));
 
             case "FOR":
@@ -188,6 +188,12 @@ export class MainDataAssembler {
                     this.#assembleMethodStructureExpression(structureJson.initialization),
                     this.#assembleMethodStructureExpression(structureJson.condition),
                     this.#assembleMethodStructureExpression(structureJson.update),
+                    this.#assembleMethodStructure(structureJson.body)
+                );
+
+            case "WHILE":
+                return new WhileNode(id, structureJson.code, startPosition, endPosition,
+                    this.#assembleMethodStructureExpression(structureJson.condition),
                     this.#assembleMethodStructure(structureJson.body)
                 );
 
@@ -399,6 +405,7 @@ export class MainDataAssembler {
                 return new LoopIterationTraceEvent(
                     eventId, spanId, location,
                     eventJson.iterationIndex,
+                    this.#assembleEventValue(eventJson.value),
                     eventJson.conditionEventIds,
                     eventJson.bodyEventIds,
                     eventJson.updateEventIds
