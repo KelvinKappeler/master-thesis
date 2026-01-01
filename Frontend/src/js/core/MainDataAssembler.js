@@ -238,7 +238,7 @@ export class MainDataAssembler {
 
                 let fields = new Map();
                 for (const [fieldName, fieldState] of Object.entries(objectTimeline.fields)) {
-                    fields[fieldName] = new FieldState(fieldState.type, fieldState.value, fieldState.objectId);
+                    fields.set(fieldName, new FieldState(fieldState.type, fieldState.value, fieldState.objectId));
                 }
 
                 timeline.push(new StateSnapshot(objectTimeline.version, objectTimeline.eventId, fields));

@@ -13,10 +13,13 @@ export class TraceModel {
         this.methodsById = new Map();
         this.classesById = new Map();
 
+        this.objectsById = new Map();
+
         this.#createCacheEventsById();
         this.#createCacheSpansById();
         this.#createCacheMethodsById();
         this.#createCacheClassesById();
+        this.#createObjectsById();
     }
 
     /**
@@ -95,6 +98,12 @@ export class TraceModel {
     #createCacheSpansById() {
         for (const span of this.mainData.trace.spans || []) {
             this.spansById.set(span.id, span);
+        }
+    }
+
+    #createObjectsById() {
+        for (const obj of this.mainData.state.objects.values()) {
+            this.objectsById.set(obj.objectId, obj);
         }
     }
 }

@@ -4,6 +4,10 @@ public class Main {
     
     public static void main(String[] args) {
 
+
+        Player p = new Player(10, 100);
+        p.setHealthPoints(120);
+
         String testStr = "Hello World!";
         print(testStr);
         int i = add(3, 4) / 2;

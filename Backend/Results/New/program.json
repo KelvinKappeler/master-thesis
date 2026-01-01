@@ -3,7 +3,7 @@
     "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
     "path" : "Examples/src/main/java/ch/epfl/printwizard/examples/Main.java",
     "language" : "java",
-    "lines" : 45
+    "lines" : 49
   }, {
     "sourceId" : "src:ch/epfl/printwizard/examples/Player.java",
     "path" : "Examples/src/main/java/ch/epfl/printwizard/examples/Player.java",
@@ -89,8 +89,8 @@
     "classId" : "cls:ch.epfl.printwizard.examples.Main",
     "name" : "add",
     "returnType" : "int",
-    "startLine" : 38,
-    "endLine" : 40,
+    "startLine" : 42,
+    "endLine" : 44,
     "parameters" : [ {
       "index" : 0,
       "name" : "a",
@@ -105,11 +105,11 @@
       "kind" : "BLOCK",
       "code" : null,
       "startPosition" : {
-        "line" : 38,
+        "line" : 42,
         "column" : 42
       },
       "endPosition" : {
-        "line" : 40,
+        "line" : 44,
         "column" : 5
       },
       "structures" : [ {
@@ -117,22 +117,22 @@
         "kind" : "RETURN",
         "code" : "return a + b;",
         "startPosition" : {
-          "line" : 39,
+          "line" : 43,
           "column" : 9
         },
         "endPosition" : {
-          "line" : 39,
+          "line" : 43,
           "column" : 21
         },
         "value" : {
           "code" : "a + b",
           "kind" : "ALL",
           "startPosition" : {
-            "line" : 39,
+            "line" : 43,
             "column" : 9
           },
           "endPosition" : {
-            "line" : 39,
+            "line" : 43,
             "column" : 21
           }
         }
@@ -145,7 +145,7 @@
     "name" : "main",
     "returnType" : "void",
     "startLine" : 5,
-    "endLine" : 36,
+    "endLine" : 40,
     "parameters" : [ {
       "index" : 0,
       "name" : "args",
@@ -160,7 +160,7 @@
         "column" : 44
       },
       "endPosition" : {
-        "line" : 36,
+        "line" : 40,
         "column" : 5
       },
       "structures" : [ {
@@ -168,23 +168,23 @@
         "kind" : "EXPR_STMT",
         "code" : null,
         "startPosition" : {
-          "line" : 7,
+          "line" : 8,
           "column" : 9
         },
         "endPosition" : {
-          "line" : 7,
-          "column" : 40
+          "line" : 8,
+          "column" : 39
         },
         "expr" : {
-          "code" : "String testStr = \"Hello World!\"",
+          "code" : "Player p = new Player(10, 100)",
           "kind" : "ALL",
           "startPosition" : {
-            "line" : 7,
+            "line" : 8,
             "column" : 9
           },
           "endPosition" : {
-            "line" : 7,
-            "column" : 40
+            "line" : 8,
+            "column" : 39
           }
         }
       }, {
@@ -192,23 +192,23 @@
         "kind" : "EXPR_STMT",
         "code" : null,
         "startPosition" : {
-          "line" : 8,
+          "line" : 9,
           "column" : 9
         },
         "endPosition" : {
-          "line" : 8,
-          "column" : 23
+          "line" : 9,
+          "column" : 31
         },
         "expr" : {
-          "code" : "print(testStr)",
+          "code" : "p.setHealthPoints(120)",
           "kind" : "ALL",
           "startPosition" : {
-            "line" : 8,
+            "line" : 9,
             "column" : 9
           },
           "endPosition" : {
-            "line" : 8,
-            "column" : 23
+            "line" : 9,
+            "column" : 31
           }
         }
       }, {
@@ -216,23 +216,23 @@
         "kind" : "EXPR_STMT",
         "code" : null,
         "startPosition" : {
-          "line" : 9,
+          "line" : 11,
           "column" : 9
         },
         "endPosition" : {
-          "line" : 9,
-          "column" : 30
+          "line" : 11,
+          "column" : 40
         },
         "expr" : {
-          "code" : "int i = add(3, 4) / 2",
+          "code" : "String testStr = \"Hello World!\"",
           "kind" : "ALL",
           "startPosition" : {
-            "line" : 9,
+            "line" : 11,
             "column" : 9
           },
           "endPosition" : {
-            "line" : 9,
-            "column" : 30
+            "line" : 11,
+            "column" : 40
           }
         }
       }, {
@@ -240,22 +240,70 @@
         "kind" : "EXPR_STMT",
         "code" : null,
         "startPosition" : {
-          "line" : 11,
+          "line" : 12,
           "column" : 9
         },
         "endPosition" : {
-          "line" : 11,
+          "line" : 12,
+          "column" : 23
+        },
+        "expr" : {
+          "code" : "print(testStr)",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 12,
+            "column" : 9
+          },
+          "endPosition" : {
+            "line" : 12,
+            "column" : 23
+          }
+        }
+      }, {
+        "structureId" : "expr_stmt:5",
+        "kind" : "EXPR_STMT",
+        "code" : null,
+        "startPosition" : {
+          "line" : 13,
+          "column" : 9
+        },
+        "endPosition" : {
+          "line" : 13,
+          "column" : 30
+        },
+        "expr" : {
+          "code" : "int i = add(3, 4) / 2",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 13,
+            "column" : 9
+          },
+          "endPosition" : {
+            "line" : 13,
+            "column" : 30
+          }
+        }
+      }, {
+        "structureId" : "expr_stmt:6",
+        "kind" : "EXPR_STMT",
+        "code" : null,
+        "startPosition" : {
+          "line" : 15,
+          "column" : 9
+        },
+        "endPosition" : {
+          "line" : 15,
           "column" : 18
         },
         "expr" : {
           "code" : "int j = 0",
           "kind" : "ALL",
           "startPosition" : {
-            "line" : 11,
+            "line" : 15,
             "column" : 9
           },
           "endPosition" : {
-            "line" : 11,
+            "line" : 15,
             "column" : 18
           }
         }
@@ -264,22 +312,22 @@
         "kind" : "IF",
         "code" : "if (i < 3)",
         "startPosition" : {
-          "line" : 12,
+          "line" : 16,
           "column" : 9
         },
         "endPosition" : {
-          "line" : 18,
+          "line" : 22,
           "column" : 9
         },
         "condition" : {
           "code" : "i < 3",
           "kind" : "ALL",
           "startPosition" : {
-            "line" : 12,
+            "line" : 16,
             "column" : 13
           },
           "endPosition" : {
-            "line" : 12,
+            "line" : 16,
             "column" : 17
           }
         },
@@ -288,34 +336,34 @@
           "kind" : "BLOCK",
           "code" : null,
           "startPosition" : {
-            "line" : 12,
+            "line" : 16,
             "column" : 20
           },
           "endPosition" : {
-            "line" : 14,
+            "line" : 18,
             "column" : 9
           },
           "structures" : [ {
-            "structureId" : "expr_stmt:5",
+            "structureId" : "expr_stmt:7",
             "kind" : "EXPR_STMT",
             "code" : null,
             "startPosition" : {
-              "line" : 13,
+              "line" : 17,
               "column" : 13
             },
             "endPosition" : {
-              "line" : 13,
+              "line" : 17,
               "column" : 20
             },
             "expr" : {
               "code" : "j += 30",
               "kind" : "ALL",
               "startPosition" : {
-                "line" : 13,
+                "line" : 17,
                 "column" : 13
               },
               "endPosition" : {
-                "line" : 13,
+                "line" : 17,
                 "column" : 20
               }
             }
@@ -326,22 +374,22 @@
           "kind" : "IF",
           "code" : "else if (i > 3)",
           "startPosition" : {
-            "line" : 14,
+            "line" : 18,
             "column" : 16
           },
           "endPosition" : {
-            "line" : 18,
+            "line" : 22,
             "column" : 9
           },
           "condition" : {
             "code" : "i > 3",
             "kind" : "ALL",
             "startPosition" : {
-              "line" : 14,
+              "line" : 18,
               "column" : 20
             },
             "endPosition" : {
-              "line" : 14,
+              "line" : 18,
               "column" : 24
             }
           },
@@ -350,34 +398,34 @@
             "kind" : "BLOCK",
             "code" : null,
             "startPosition" : {
-              "line" : 14,
+              "line" : 18,
               "column" : 27
             },
             "endPosition" : {
-              "line" : 16,
+              "line" : 20,
               "column" : 9
             },
             "structures" : [ {
-              "structureId" : "expr_stmt:6",
+              "structureId" : "expr_stmt:8",
               "kind" : "EXPR_STMT",
               "code" : null,
               "startPosition" : {
-                "line" : 15,
+                "line" : 19,
                 "column" : 13
               },
               "endPosition" : {
-                "line" : 15,
+                "line" : 19,
                 "column" : 20
               },
               "expr" : {
                 "code" : "j += 20",
                 "kind" : "ALL",
                 "startPosition" : {
-                  "line" : 15,
+                  "line" : 19,
                   "column" : 13
                 },
                 "endPosition" : {
-                  "line" : 15,
+                  "line" : 19,
                   "column" : 20
                 }
               }
@@ -388,34 +436,34 @@
             "kind" : "BLOCK",
             "code" : null,
             "startPosition" : {
-              "line" : 16,
+              "line" : 20,
               "column" : 16
             },
             "endPosition" : {
-              "line" : 18,
+              "line" : 22,
               "column" : 9
             },
             "structures" : [ {
-              "structureId" : "expr_stmt:7",
+              "structureId" : "expr_stmt:9",
               "kind" : "EXPR_STMT",
               "code" : null,
               "startPosition" : {
-                "line" : 17,
+                "line" : 21,
                 "column" : 13
               },
               "endPosition" : {
-                "line" : 17,
+                "line" : 21,
                 "column" : 20
               },
               "expr" : {
                 "code" : "j += 10",
                 "kind" : "ALL",
                 "startPosition" : {
-                  "line" : 17,
+                  "line" : 21,
                   "column" : 13
                 },
                 "endPosition" : {
-                  "line" : 17,
+                  "line" : 21,
                   "column" : 20
                 }
               }
@@ -427,22 +475,22 @@
         "kind" : "IF",
         "code" : "if (i == 3)",
         "startPosition" : {
-          "line" : 20,
+          "line" : 24,
           "column" : 9
         },
         "endPosition" : {
-          "line" : 22,
+          "line" : 26,
           "column" : 9
         },
         "condition" : {
           "code" : "i == 3",
           "kind" : "ALL",
           "startPosition" : {
-            "line" : 20,
+            "line" : 24,
             "column" : 13
           },
           "endPosition" : {
-            "line" : 20,
+            "line" : 24,
             "column" : 18
           }
         },
@@ -451,34 +499,34 @@
           "kind" : "BLOCK",
           "code" : null,
           "startPosition" : {
-            "line" : 20,
+            "line" : 24,
             "column" : 21
           },
           "endPosition" : {
-            "line" : 22,
+            "line" : 26,
             "column" : 9
           },
           "structures" : [ {
-            "structureId" : "expr_stmt:8",
+            "structureId" : "expr_stmt:10",
             "kind" : "EXPR_STMT",
             "code" : null,
             "startPosition" : {
-              "line" : 21,
+              "line" : 25,
               "column" : 13
             },
             "endPosition" : {
-              "line" : 21,
+              "line" : 25,
               "column" : 19
             },
             "expr" : {
               "code" : "j = 25",
               "kind" : "ALL",
               "startPosition" : {
-                "line" : 21,
+                "line" : 25,
                 "column" : 13
               },
               "endPosition" : {
-                "line" : 21,
+                "line" : 25,
                 "column" : 19
               }
             }
@@ -490,22 +538,22 @@
         "kind" : "FOR",
         "code" : "for (int k = 0; k < 3; k++)",
         "startPosition" : {
-          "line" : 24,
+          "line" : 28,
           "column" : 9
         },
         "endPosition" : {
-          "line" : 26,
+          "line" : 30,
           "column" : 9
         },
         "initialization" : {
           "code" : "int k = 0",
           "kind" : "ALL",
           "startPosition" : {
-            "line" : 24,
+            "line" : 28,
             "column" : 14
           },
           "endPosition" : {
-            "line" : 24,
+            "line" : 28,
             "column" : 22
           }
         },
@@ -513,11 +561,11 @@
           "code" : "k < 3",
           "kind" : "ALL",
           "startPosition" : {
-            "line" : 24,
+            "line" : 28,
             "column" : 25
           },
           "endPosition" : {
-            "line" : 24,
+            "line" : 28,
             "column" : 29
           }
         },
@@ -525,11 +573,11 @@
           "code" : "k++",
           "kind" : "ALL",
           "startPosition" : {
-            "line" : 24,
+            "line" : 28,
             "column" : 32
           },
           "endPosition" : {
-            "line" : 24,
+            "line" : 28,
             "column" : 34
           }
         },
@@ -538,97 +586,11 @@
           "kind" : "BLOCK",
           "code" : null,
           "startPosition" : {
-            "line" : 24,
+            "line" : 28,
             "column" : 37
           },
           "endPosition" : {
-            "line" : 26,
-            "column" : 9
-          },
-          "structures" : [ {
-            "structureId" : "expr_stmt:9",
-            "kind" : "EXPR_STMT",
-            "code" : null,
-            "startPosition" : {
-              "line" : 25,
-              "column" : 13
-            },
-            "endPosition" : {
-              "line" : 25,
-              "column" : 19
-            },
-            "expr" : {
-              "code" : "j += 1",
-              "kind" : "ALL",
-              "startPosition" : {
-                "line" : 25,
-                "column" : 13
-              },
-              "endPosition" : {
-                "line" : 25,
-                "column" : 19
-              }
-            }
-          } ]
-        }
-      }, {
-        "structureId" : "expr_stmt:10",
-        "kind" : "EXPR_STMT",
-        "code" : null,
-        "startPosition" : {
-          "line" : 28,
-          "column" : 9
-        },
-        "endPosition" : {
-          "line" : 28,
-          "column" : 14
-        },
-        "expr" : {
-          "code" : "i = 0",
-          "kind" : "ALL",
-          "startPosition" : {
-            "line" : 28,
-            "column" : 9
-          },
-          "endPosition" : {
-            "line" : 28,
-            "column" : 14
-          }
-        }
-      }, {
-        "structureId" : "while:1",
-        "kind" : "WHILE",
-        "code" : "while (i < 3)",
-        "startPosition" : {
-          "line" : 29,
-          "column" : 9
-        },
-        "endPosition" : {
-          "line" : 31,
-          "column" : 9
-        },
-        "condition" : {
-          "code" : "i < 3",
-          "kind" : "ALL",
-          "startPosition" : {
-            "line" : 29,
-            "column" : 9
-          },
-          "endPosition" : {
-            "line" : 31,
-            "column" : 9
-          }
-        },
-        "body" : {
-          "structureId" : "block:6",
-          "kind" : "BLOCK",
-          "code" : null,
-          "startPosition" : {
-            "line" : 29,
-            "column" : 23
-          },
-          "endPosition" : {
-            "line" : 31,
+            "line" : 30,
             "column" : 9
           },
           "structures" : [ {
@@ -636,22 +598,22 @@
             "kind" : "EXPR_STMT",
             "code" : null,
             "startPosition" : {
-              "line" : 30,
+              "line" : 29,
               "column" : 13
             },
             "endPosition" : {
-              "line" : 30,
+              "line" : 29,
               "column" : 19
             },
             "expr" : {
-              "code" : "i += 1",
+              "code" : "j += 1",
               "kind" : "ALL",
               "startPosition" : {
-                "line" : 30,
+                "line" : 29,
                 "column" : 13
               },
               "endPosition" : {
-                "line" : 30,
+                "line" : 29,
                 "column" : 19
               }
             }
@@ -662,46 +624,132 @@
         "kind" : "EXPR_STMT",
         "code" : null,
         "startPosition" : {
+          "line" : 32,
+          "column" : 9
+        },
+        "endPosition" : {
+          "line" : 32,
+          "column" : 14
+        },
+        "expr" : {
+          "code" : "i = 0",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 32,
+            "column" : 9
+          },
+          "endPosition" : {
+            "line" : 32,
+            "column" : 14
+          }
+        }
+      }, {
+        "structureId" : "while:1",
+        "kind" : "WHILE",
+        "code" : "while (i < 3)",
+        "startPosition" : {
           "line" : 33,
           "column" : 9
         },
         "endPosition" : {
-          "line" : 33,
+          "line" : 35,
+          "column" : 9
+        },
+        "condition" : {
+          "code" : "i < 3",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 33,
+            "column" : 9
+          },
+          "endPosition" : {
+            "line" : 35,
+            "column" : 9
+          }
+        },
+        "body" : {
+          "structureId" : "block:6",
+          "kind" : "BLOCK",
+          "code" : null,
+          "startPosition" : {
+            "line" : 33,
+            "column" : 23
+          },
+          "endPosition" : {
+            "line" : 35,
+            "column" : 9
+          },
+          "structures" : [ {
+            "structureId" : "expr_stmt:13",
+            "kind" : "EXPR_STMT",
+            "code" : null,
+            "startPosition" : {
+              "line" : 34,
+              "column" : 13
+            },
+            "endPosition" : {
+              "line" : 34,
+              "column" : 19
+            },
+            "expr" : {
+              "code" : "i += 1",
+              "kind" : "ALL",
+              "startPosition" : {
+                "line" : 34,
+                "column" : 13
+              },
+              "endPosition" : {
+                "line" : 34,
+                "column" : 19
+              }
+            }
+          } ]
+        }
+      }, {
+        "structureId" : "expr_stmt:14",
+        "kind" : "EXPR_STMT",
+        "code" : null,
+        "startPosition" : {
+          "line" : 37,
+          "column" : 9
+        },
+        "endPosition" : {
+          "line" : 37,
           "column" : 49
         },
         "expr" : {
           "code" : "System.out.println(\"Result: \" + (i + j))",
           "kind" : "ALL",
           "startPosition" : {
-            "line" : 33,
+            "line" : 37,
             "column" : 9
           },
           "endPosition" : {
-            "line" : 33,
+            "line" : 37,
             "column" : 49
           }
         }
       }, {
-        "structureId" : "expr_stmt:13",
+        "structureId" : "expr_stmt:15",
         "kind" : "EXPR_STMT",
         "code" : null,
         "startPosition" : {
-          "line" : 35,
+          "line" : 39,
           "column" : 9
         },
         "endPosition" : {
-          "line" : 35,
+          "line" : 39,
           "column" : 44
         },
         "expr" : {
           "code" : "Player player = new Player(10, 100)",
           "kind" : "ALL",
           "startPosition" : {
-            "line" : 35,
+            "line" : 39,
             "column" : 9
           },
           "endPosition" : {
-            "line" : 35,
+            "line" : 39,
             "column" : 44
           }
         }
@@ -709,22 +757,26 @@
     },
     "localVars" : [ {
       "index" : 1,
+      "name" : "p",
+      "typeId" : "Player"
+    }, {
+      "index" : 2,
       "name" : "testStr",
       "typeId" : "String"
     }, {
-      "index" : 2,
+      "index" : 3,
       "name" : "i",
       "typeId" : "int"
     }, {
-      "index" : 3,
+      "index" : 4,
       "name" : "j",
       "typeId" : "int"
     }, {
-      "index" : 4,
+      "index" : 5,
       "name" : "k",
       "typeId" : "int"
     }, {
-      "index" : 5,
+      "index" : 6,
       "name" : "player",
       "typeId" : "Player"
     } ]
@@ -733,8 +785,8 @@
     "classId" : "cls:ch.epfl.printwizard.examples.Main",
     "name" : "print",
     "returnType" : "void",
-    "startLine" : 42,
-    "endLine" : 44,
+    "startLine" : 46,
+    "endLine" : 48,
     "parameters" : [ {
       "index" : 0,
       "name" : "str",
@@ -745,11 +797,11 @@
       "kind" : "BLOCK",
       "code" : null,
       "startPosition" : {
-        "line" : 42,
+        "line" : 46,
         "column" : 43
       },
       "endPosition" : {
-        "line" : 44,
+        "line" : 48,
         "column" : 5
       },
       "structures" : [ {
@@ -757,22 +809,22 @@
         "kind" : "EXPR_STMT",
         "code" : null,
         "startPosition" : {
-          "line" : 43,
+          "line" : 47,
           "column" : 9
         },
         "endPosition" : {
-          "line" : 43,
+          "line" : 47,
           "column" : 32
         },
         "expr" : {
           "code" : "System.out.println(str)",
           "kind" : "ALL",
           "startPosition" : {
-            "line" : 43,
+            "line" : 47,
             "column" : 9
           },
           "endPosition" : {
-            "line" : 43,
+            "line" : 47,
             "column" : 32
           }
         }

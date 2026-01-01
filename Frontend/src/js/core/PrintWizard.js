@@ -4,6 +4,7 @@ import {MainDataAssembler} from "./MainDataAssembler.js";
 import {TraceModel} from "../model/TraceModel.js";
 import {TraceContainer} from "../view/TraceContainer.js";
 import {TraceView} from "../view/TraceView.js";
+import {ObjectInspector} from "../elements/ObjectInspector.js";
 
 /**
  * This class is responsible to manage PrintWizard
@@ -11,6 +12,8 @@ import {TraceView} from "../view/TraceView.js";
 export class PrintWizard {
     constructor() {
         this.jsonData = undefined;
+        this.objectInspector = null;
+
         /*this.objectInspector = new ObjectInspector();
         this.objectInspector.attachTo(document.querySelector('#inspector'));
         this.searchInspector = new SearchInspector();
@@ -37,28 +40,31 @@ export class PrintWizard {
 
             const traceView = new TraceView(trace, traceContainer);
 
+            this.objectInspector = new ObjectInspector(trace);
+            this.objectInspector.attachTo(document.querySelector('#inspector'));
+            this.openInspectorTab("objectInspector");
+
+            window.addEventListener("pw:inspect-object", (e) => {
+                const objectId = e?.detail?.objectId;
+                const eventId = e?.detail?.eventId;
+
+                this.objectInspector.add(objectId, eventId);
+            });
+            window.addEventListener("pw:reveal-event", (e) => {
+                const eventId = e?.detail?.eventId;
+                traceView.revealEvent(eventId);
+            });
+            window.addEventListener("pw:preview-event", (e) => {
+                const eventId = e?.detail?.eventId;
+                const on = !!e?.detail?.on;
+                traceView.previewEvent(eventId, on);
+            });
+
+
             traceView.render();
         });
 
         this.#initSplitter();
-
-        /*this.jsonData.getAllData().then(data => {
-            const finalTreeTrace = translateToTreeFormat(data[2], data[0], data[1]).inlineLoops();
-            console.log(finalTreeTrace);
-
-            this.trace = new TraceModel(finalTreeTrace);
-            this.trace.show();
-            this.parser = new Parser(this.trace);
-
-            this.breadcrumb.clear();
-            this.breadcrumb.add(data[0].sourceFile.fileName);
-            this.breadcrumb.add(finalTreeTrace.name + "()");
-
-            this.openInspectorTab('objectInspector');
-            this.objectInspector.clear();
-
-            this.searchInspector.clearResult();
-        });
     }
 
     openInspectorTab(inspectorName) {
@@ -68,16 +74,14 @@ export class PrintWizard {
         }
         document.getElementById(inspectorName).style.display = "block";
 
-        // Remove active class from all buttons
         let buttons = document.getElementsByClassName("tab_button");
         for (let i = 0; i < buttons.length; i++) {
             buttons[i].classList.remove("active");
         }
 
-        // Add active class to the clicked button
         let activeButton = document.querySelector(`button[onclick="pw.openInspectorTab('${inspectorName}')"]`);
         activeButton.classList.add("active");
-    */}
+    }
 
     #initSplitter() {
         const main = document.querySelector("main");

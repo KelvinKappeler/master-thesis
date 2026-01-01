@@ -4,7 +4,7 @@ import {
     ArrayStoreTraceEvent,
     CallTraceEvent,
     ComparisonTraceEvent,
-    ConditionTraceEvent,
+    ConditionTraceEvent, EventValue,
     FieldWriteTraceEvent,
     LocalTraceEvent,
     LoopIterationTraceEvent,
@@ -28,6 +28,11 @@ export class TraceView {
         this.container = traceContainer;
         this.breadcrumb = new Breadcrumb(traceModel);
         this.breadcrumb.attachTo(document.querySelector(".breadcrumb"));
+
+        this.eventNodeById = new Map();
+        this.eventBlockById = new Map();
+        this.lastHighlightedEventId = null;
+        this.lastHighlightedBlocks = [];
     }
 
     /**
@@ -35,12 +40,92 @@ export class TraceView {
      */
     render() {
         this.container.clear();
+        this.eventNodeById.clear();
+        this.eventBlockById.clear();
+        this.lastHighlightedEventId = null;
+        this.lastHighlightedBlocks = [];
+
         //this.breadcrumb.render();
         const mainEvents = this.#getEvents();
+
+        const first = Array.isArray(mainEvents) ? mainEvents[0] : null;
+        if (first?.location) {
+            this.breadcrumb.setContext({ eventId: first.eventId, location: first.location });
+        } else {
+            this.breadcrumb.clear();
+        }
+
         this.#renderEvents(mainEvents, null, null);
     }
 
-    #getEvents() {
+    /**
+     * Reveals the event with the given eventId in the trace.
+     * @param {string} eventId
+     */
+    revealEvent(eventId) {
+        if (!eventId) return;
+
+        const node = this.eventNodeById.get(eventId);
+        const block = this.eventBlockById.get(eventId);
+
+        if (block) {
+            let b = block;
+            while (b) {
+                b.expand();
+                b = b.parent;
+            }
+        }
+
+        if (node) {
+            this.#setHighlightedEvent(eventId, true);
+            node.scrollIntoView({ behavior: "smooth", block: "center" });
+        }
+    }
+
+    /**
+     * Highlights the event with the given eventId in the trace.
+     * @param eventId {string} The eventId of the event to highlight.
+     * @param on {boolean} Whether to highlight the event or not.
+     */
+    previewEvent(eventId, on) {
+        if (!eventId) return;
+        this.#setHighlightedEvent(eventId, on);
+    }
+
+    #setHighlightedEvent(eventId, on) {
+        const node = this.eventNodeById.get(eventId);
+        const block = this.eventBlockById.get(eventId);
+
+        for (const b of this.lastHighlightedBlocks) {
+            b?.setHeaderHighlighted?.(false);
+        }
+        this.lastHighlightedBlocks = [];
+
+        if (!node) return;
+
+        if (on && this.lastHighlightedEventId && this.lastHighlightedEventId !== eventId) {
+            const prev = this.eventNodeById.get(this.lastHighlightedEventId);
+            if (prev) prev.style.backgroundColor = "";
+        }
+
+        const isHidden = !!node.closest?.(".hidden");
+
+        if (isHidden && block) {
+            let b = block;
+            while (b) {
+                b.setHeaderHighlighted?.(on);
+                this.lastHighlightedBlocks.push(b);
+                b = b.parent;
+            }
+        } else {
+            node.style.backgroundColor = on ? "rgba(147,74,172,0.5)" : "";
+        }
+
+        if (on) this.lastHighlightedEventId = eventId;
+        else if (this.lastHighlightedEventId === eventId) this.lastHighlightedEventId = null;
+    }
+
+        #getEvents() {
         const eventIds = this.traceModel?.mainData?.index?.bySpan.get("spn:1");
         const event = this.traceModel.getEvent(eventIds[0]);
 
@@ -55,26 +140,26 @@ export class TraceView {
         }
         else if (event instanceof LocalTraceEvent) {
             documentFragment.append(`${event.varName} ← `);
-            documentFragment.append(this.#getShowValue(event.value, true));
+            documentFragment.append(this.#getShowValue(event.value, true, event.eventId));
         }
         else if (event instanceof ArithmeticTraceEvent) {
-            documentFragment.append(this.#getShowValue(event.left), " ");
+            documentFragment.append(this.#getShowValue(event.left, false, event.eventId), " ");
             documentFragment.append(this.#getOperator(event.operator), " ");
-            documentFragment.append(this.#getShowValue(event.right), " → ");
-            documentFragment.append(this.#getShowValue(event.value, true));
+            documentFragment.append(this.#getShowValue(event.right, false, event.eventId), " → ");
+            documentFragment.append(this.#getShowValue(event.value, true, event.eventId));
         }
         else if (event instanceof ConditionTraceEvent) {
             documentFragment.append("IF");
         }
         else if (event instanceof ReturnTraceEvent) {
             this.#appendHighlighted(documentFragment, "return ");
-            documentFragment.append(this.#getShowValue(event.value));
+            documentFragment.append(this.#getShowValue(event.value, false, event.eventId));
         }
         else if (event instanceof ComparisonTraceEvent) {
-            documentFragment.append(this.#getShowValue(event.left), " ");
+            documentFragment.append(this.#getShowValue(event.left, false, event.eventId), " ");
             documentFragment.append(this.#getOperator(event.operator), " ");
-            documentFragment.append(this.#getShowValue(event.right), " → ");
-            documentFragment.append(this.#getShowValue(event.result, true));
+            documentFragment.append(this.#getShowValue(event.right, false, event.eventId), " → ");
+            documentFragment.append(this.#getShowValue(event.result, true, event.eventId));
         }
         else if (event instanceof NewTraceEvent) {
             this.#appendHighlighted(documentFragment, "new ");
@@ -82,11 +167,14 @@ export class TraceView {
         }
         else if (event instanceof ArrayStoreTraceEvent) {
             documentFragment.append(`${event.arrayVarName}[${event.index}] ← `);
-            documentFragment.append(this.#getShowValue(event.value, true));
+            documentFragment.append(this.#getShowValue(event.value, true, event.eventId));
         }
         else if (event instanceof FieldWriteTraceEvent) {
-            documentFragment.append('object.${event.fieldName} = ');
-            documentFragment.append(this.#getShowValue(event.value, true));
+            documentFragment.append(`object.${event.fieldName} = `);
+            documentFragment.append(this.#getShowValue(event.value, true, event.eventId));
+            const objectType = this.traceModel.objectsById.get(event.objectId).type;
+            const value = new EventValue(null, event.objectId, objectType, null);
+            documentFragment.append(" → ", this.#getShowValue(value, true, event.eventId));
         }
         else if (event instanceof LoopTraceEvent) {
             documentFragment.append("LOOP");
@@ -262,7 +350,10 @@ export class TraceView {
                 continue;
             }
 
-            currentBlock.addLine(lineNumber, this.#getEventLine(ev), ev);
+            const lineEl = currentBlock.addLine(lineNumber, this.#getEventLine(ev), ev);
+            lineEl.dataset.eventId = String(ev.eventId);
+            this.eventNodeById.set(ev.eventId, lineEl);
+            this.eventBlockById.set(ev.eventId, currentBlock);
         }
     }
 
@@ -280,13 +371,13 @@ export class TraceView {
             event.args.forEach((arg, i) => {
                 if (i > 0) documentFragment.append(TraceSpan.wrapLineColors(", "));
                 documentFragment.append(arg.name, " ");
-                documentFragment.append(this.#getShowValue(arg.value));
+                documentFragment.append(this.#getShowValue(arg.value, false, event.eventId));
             });
             this.#appendHighlighted(documentFragment, ")");
 
             if (event.value !== null) {
                 documentFragment.append(" → ");
-                documentFragment.append(this.#getShowValue(event.value, true));
+                documentFragment.append(this.#getShowValue(event.value, true, event.eventId));
             }
 
         }
@@ -327,7 +418,7 @@ export class TraceView {
         return documentFragment;
     }
 
-    #getShowValue(value, isReturnValue = false) {
+    #getShowValue(value, isReturnValue = false, contextEventId = null) {
         const documentFragment = document.createDocumentFragment();
 
         if (value === null || value.kind === "NULL") {
@@ -344,8 +435,22 @@ export class TraceView {
         }
         else {
             const traceSpanType = isReturnValue ? TraceSpanType.ReturnValue : TraceSpanType.ArgsValue;
-            const lineContent = value.type + ":" + value.valueObjectId.replace(":", "");
-            documentFragment.append(TraceSpan.createSpan(traceSpanType, lineContent));
+            const objectId = value.valueObjectId;
+
+            const lineContent = value.type + ":" + (objectId ? objectId.replace(":", "") : "?");
+            const span = TraceSpan.createSpan(traceSpanType, lineContent);
+
+            if (objectId) {
+                span.style.cursor = "pointer";
+                span.title = `Inspect ${objectId}`;
+                span.addEventListener("click", (e) => {
+                    e.preventDefault?.();
+                    e.stopPropagation?.();
+                    window.dispatchEvent(new CustomEvent("pw:inspect-object", { detail: { objectId, eventId: contextEventId } }));
+                });
+            }
+
+            documentFragment.append(span);
         }
 
         return documentFragment;

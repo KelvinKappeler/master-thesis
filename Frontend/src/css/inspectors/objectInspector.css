@@ -4,7 +4,6 @@
     display: block;
     padding: 5px;
     border: #4c4b4b solid 1px;
-    min-width: 400px;
 }
 
 .objectTitle {
@@ -14,6 +13,9 @@
     background-color: #3a3d41;
     margin: 10px;
     padding: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
 .fieldsDiv {
@@ -29,18 +31,18 @@
     border: #9a4604 solid 1px;
 }
 
-.closeButton {
-    cursor: pointer;
-    float: right;
+.inspectorIconButton {
+    margin-left: auto;
     color: #858585;
+    cursor: pointer;
+    font-size: 26px;
     padding-left: 5px;
     padding-right: 5px;
-    font-size: 26px;
+    line-height: 1;
 }
 
-.closeButton:hover {
-    background-color: #b32f2f;
-    cursor: pointer;
+.inspectorIconButton:hover {
+    color: #4383a1;
 }
 
 .triangleObjectInspector {

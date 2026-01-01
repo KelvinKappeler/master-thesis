@@ -77,6 +77,16 @@ export class TraceBlock {
     }
 
     /**
+     * Sets the header highlighted state.
+     * @param on - Whether the header should be highlighted.
+     * @param color - The color to use for highlighting.
+     */
+    setHeaderHighlighted(on, color = "rgba(147,74,172,0.5)") {
+        if (!this._header?.content) return;
+        this._header.content.style.backgroundColor = on ? color : "";
+    }
+
+    /**
      * Adds a line to the block.
      * @param {number} lineNumber - The line number of the line.
      * @param {string|Node} content - The content of the line.
