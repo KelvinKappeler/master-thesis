@@ -96,7 +96,6 @@ export class TraceBlock {
         const ln = document.createElement("div");
         ln.textContent = String(lineNumber);
 
-        // Add a placeholder triangle
         const triangle = document.createElement("div");
         triangle.textContent = "\u00A0";
 

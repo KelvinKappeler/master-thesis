@@ -31,6 +31,48 @@
     border: #9a4604 solid 1px;
 }
 
+.fieldHeader {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.fieldFilterInput {
+    width: 100%;
+    box-sizing: border-box;
+
+    margin: 6px 0 10px 0;
+    padding: 8px 10px;
+
+    font: inherit;
+    font-size: 12px;
+    line-height: 1.2;
+
+    color: rgba(255, 255, 255, 0.92);
+    background: rgba(255, 255, 255, 0.06);
+
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 6px;
+
+    outline: none;
+    transition: border-color 120ms ease, background-color 120ms ease, box-shadow 120ms ease;
+}
+
+.fieldFilterInput::placeholder {
+    color: rgba(255, 255, 255, 0.45);
+}
+
+.fieldFilterInput:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.20);
+}
+
+.fieldFilterInput:focus {
+    background: rgba(255, 255, 255, 0.10);
+    border-color: rgba(120, 180, 255, 0.75);
+    box-shadow: 0 0 0 3px rgba(120, 180, 255, 0.20);
+}
+
 .inspectorIconButton {
     margin-left: auto;
     color: #858585;
@@ -69,7 +111,6 @@
     color: #4383a1;
     cursor: pointer;
 }
-
 
 .fieldState {
     padding-top: 5px;

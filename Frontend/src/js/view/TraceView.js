@@ -170,11 +170,11 @@ export class TraceView {
             documentFragment.append(this.#getShowValue(event.value, true, event.eventId));
         }
         else if (event instanceof FieldWriteTraceEvent) {
-            documentFragment.append(`object.${event.fieldName} = `);
-            documentFragment.append(this.#getShowValue(event.value, true, event.eventId));
             const objectType = this.traceModel.objectsById.get(event.objectId).type;
             const value = new EventValue(null, event.objectId, objectType, null);
-            documentFragment.append(" → ", this.#getShowValue(value, true, event.eventId));
+            documentFragment.append(this.#getShowValue(value, true, event.eventId));
+            documentFragment.append(`.${event.fieldName} = `);
+            documentFragment.append(this.#getShowValue(event.value, true, event.eventId));
         }
         else if (event instanceof LoopTraceEvent) {
             documentFragment.append("LOOP");

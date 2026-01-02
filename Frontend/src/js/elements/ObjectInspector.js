@@ -1,5 +1,6 @@
 import {PWElement} from "./PWElement.js";
 import {BaseTriangle} from "./BaseTriangle.js";
+import {TextFilterBox} from "./TextFilterBox.js";
 
 /**
  * Represents the object inspector.
@@ -12,6 +13,7 @@ export class ObjectInspector extends PWElement {
         super(element);
 
         this.traceModel = traceModel;
+        this._statesDivByFieldState = new WeakMap();
 
         this.checkIfEmpty();
     }
@@ -39,7 +41,8 @@ export class ObjectInspector extends PWElement {
         titleDiv.appendChild(
             document.createTextNode(`
                 ${timeline.type.split(".").pop()}:
-                ${timeline.objectId.replace(":", "")}`
+                ${timeline.objectId.replace(":", "")} 
+                (v${snapshot.version})`
             )
         );
 
@@ -53,7 +56,6 @@ export class ObjectInspector extends PWElement {
         });
         titleDiv.appendChild(closeIcon);
 
-
         mainDiv.appendChild(titleDiv);
 
         if (snapshot.fields.size === 0) {
@@ -66,19 +68,39 @@ export class ObjectInspector extends PWElement {
                 fieldDiv.classList.add("fieldDiv");
 
                 const statesDiv = this.#createFieldTimelineDiv(timeline, fieldName, snapshot.version);
+                this._statesDivByFieldState.set(fieldState, statesDiv);
 
                 const fieldTriangle = new BaseTriangle([statesDiv], true);
                 fieldTriangle.element.classList.add("triangleFields");
-                fieldTriangle.attachTo(fieldDiv);
+
+                const headerDiv = document.createElement("div");
+                headerDiv.classList.add("fieldHeader");
+
+                fieldTriangle.attachTo(headerDiv);
 
                 const label = document.createElement("span");
                 label.appendChild(document.createTextNode(`${fieldState.type} ${fieldName}: `));
-                fieldDiv.appendChild(label);
+                headerDiv.appendChild(label);
 
-                fieldDiv.appendChild(this.#renderFieldValue(fieldState));
+                headerDiv.appendChild(this.#renderFieldValue(fieldState));
 
+                const filterBox = new TextFilterBox({
+                    placeholder: "Filter (10, v1, v>=3, >=100)",
+                    className: "fieldFilterInput",
+                    debounceMs: 80
+                });
+
+                filterBox.onChange((q) => {
+                    this.#applyFieldTimelineFilter(fieldState, q);
+                });
+
+                filterBox.attachTo(statesDiv, false);
+
+                fieldDiv.appendChild(headerDiv);
                 fieldDiv.appendChild(statesDiv);
                 fieldsDiv.appendChild(fieldDiv);
+
+                this.#applyFieldTimelineFilter(fieldState, "");
             }
         }
 
@@ -144,8 +166,6 @@ export class ObjectInspector extends PWElement {
 
         const tl = Array.isArray(objectTimeline.timeline) ? objectTimeline.timeline : [];
 
-        let lastRenderedKey = null;
-
         for (const snap of tl) {
             const fields = snap.fields ?? {};
             const fieldState = fields.get(fieldName);
@@ -154,21 +174,13 @@ export class ObjectInspector extends PWElement {
             const row = document.createElement("div");
             row.classList.add("fieldState");
 
+            row.dataset.version = String(snap.version);
+            row.dataset.valueText = this.#getComparableFieldValueText(fieldState);
+
             if (snap.version === currentVersion) {
                 row.classList.add("currentState");
                 row.append(document.createTextNode("▶ "));
             }
-
-            const renderKey = JSON.stringify({
-                type: fieldState.type,
-                value: fieldState.value ?? null,
-                objectId: fieldState.objectId ?? null
-            });
-
-            if (renderKey === lastRenderedKey && snap.version !== currentVersion) {
-                continue;
-            }
-            lastRenderedKey = renderKey;
 
             row.appendChild(this.#renderFieldValue(fieldState));
             row.append(document.createTextNode(` | v${snap.version} | `));
@@ -190,7 +202,6 @@ export class ObjectInspector extends PWElement {
                 window.dispatchEvent(new CustomEvent("pw:preview-event", { detail: { eventId: targetEventId, on: false } }));
             });
 
-
             row.appendChild(btn);
             row.appendChild(document.createElement("br"));
 
@@ -199,4 +210,76 @@ export class ObjectInspector extends PWElement {
 
         return mainDiv;
     }
+
+    #getComparableFieldValueText(fieldState) {
+        if (fieldState?.value !== null && fieldState?.value !== undefined) return String(fieldState.value);
+        if (fieldState?.objectId) return String(fieldState.objectId);
+        return "null";
+    }
+
+    #applyFieldTimelineFilter(fieldState, rawQuery) {
+        const q = (rawQuery ?? "").trim().toLowerCase();
+        const predicate = this.#buildFieldTimelinePredicate(q);
+
+        const statesDiv = this._statesDivByFieldState.get(fieldState);
+        if (!statesDiv) return;
+
+        const rows = Array.from(statesDiv.children);
+        for (const row of rows) {
+            if (!(row instanceof HTMLElement)) continue;
+            if (!row.classList.contains("fieldState")) continue;
+
+            const ok = predicate(row);
+            row.style.display = ok ? "" : "none";
+        }
+    }
+
+    #buildFieldTimelinePredicate(q) {
+        if (!q) return () => true;
+
+        const cmp = (op, a, b) => {
+            switch (op) {
+                case "<": return a < b;
+                case "<=": return a <= b;
+                case ">": return a > b;
+                case ">=": return a >= b;
+                case "=": return a === b;
+                case "==": return a === b;
+                case "!=": return a !== b;
+                default: return false;
+            }
+        };
+
+        const vMatch = q.match(/^v\s*(<=|>=|!=|==|=|<|>)?\s*(\d+)$/i);
+        if (vMatch) {
+            const op = vMatch[1] ?? "=";
+            const wanted = Number(vMatch[2]);
+
+            return (row) => {
+                const ver = Number(row.dataset.version);
+                if (Number.isNaN(ver)) return false;
+                return cmp(op, ver, wanted);
+            };
+        }
+
+        const numMatch = q.match(/^(<=|>=|!=|==|=|<|>)\s*(-?\d+(?:\.\d+)?)$/);
+        if (numMatch) {
+            const op = numMatch[1];
+            const wanted = Number(numMatch[2]);
+
+            return (row) => {
+                const valueText = (row.dataset.valueText ?? "").trim();
+                const valueNum = Number(valueText);
+                if (Number.isNaN(valueNum)) return false;
+                return cmp(op, valueNum, wanted);
+            };
+        }
+
+        return (row) => {
+            const valueText = (row.dataset.valueText ?? "").toLowerCase();
+            const versionText = `v${row.dataset.version ?? ""}`.toLowerCase();
+            return valueText.includes(q) || versionText.includes(q);
+        };
+    }
+
 }
