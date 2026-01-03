@@ -352,6 +352,15 @@ export class TraceView {
 
             const lineEl = currentBlock.addLine(lineNumber, this.#getEventLine(ev), ev);
             lineEl.dataset.eventId = String(ev.eventId);
+
+            lineEl.style.cursor = "pointer";
+            lineEl.title = "Inspect span";
+            lineEl.addEventListener("click", (e) => {
+                e.preventDefault?.();
+                e.stopPropagation?.();
+                window.dispatchEvent(new CustomEvent("pw:inspect-span-from-event", { detail: { eventId: ev.eventId } }));
+            });
+
             this.eventNodeById.set(ev.eventId, lineEl);
             this.eventBlockById.set(ev.eventId, currentBlock);
         }

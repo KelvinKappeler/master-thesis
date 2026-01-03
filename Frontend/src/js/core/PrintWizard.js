@@ -5,6 +5,7 @@ import {TraceModel} from "../model/TraceModel.js";
 import {TraceContainer} from "../view/TraceContainer.js";
 import {TraceView} from "../view/TraceView.js";
 import {ObjectInspector} from "../elements/ObjectInspector.js";
+import {SpanInspector} from "../elements/SpanInspector.js";
 
 /**
  * This class is responsible to manage PrintWizard
@@ -44,11 +45,26 @@ export class PrintWizard {
             this.objectInspector.attachTo(document.querySelector('#inspector'));
             this.openInspectorTab("objectInspector");
 
+            this.spanInspector = new SpanInspector(trace);
+            this.spanInspector.attachTo(document.querySelector('#inspector'));
+
             window.addEventListener("pw:inspect-object", (e) => {
                 const objectId = e?.detail?.objectId;
                 const eventId = e?.detail?.eventId;
 
                 this.objectInspector.add(objectId, eventId);
+            });
+            window.addEventListener("pw:inspect-span", (e) => {
+                const spanId = e?.detail?.spanId;
+                if (!spanId) return;
+                this.openInspectorTab("spanInspector");
+                this.spanInspector.select(spanId);
+            });
+            window.addEventListener("pw:inspect-span-from-event", (e) => {
+                const eventId = e?.detail?.eventId;
+                if (!eventId) return;
+                this.openInspectorTab("spanInspector");
+                this.spanInspector.selectFromEvent(eventId);
             });
             window.addEventListener("pw:reveal-event", (e) => {
                 const eventId = e?.detail?.eventId;

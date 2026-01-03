@@ -37,6 +37,31 @@
     gap: 8px;
 }
 
+.fieldFilterRow {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 6px 0 10px 0;
+}
+
+.fieldFilterRow .fieldFilterInput {
+    margin: 0;
+}
+
+.onlyChangesToggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    white-space: nowrap;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.78);
+    user-select: none;
+}
+
+.onlyChangesCheckbox {
+    accent-color: rgba(120, 180, 255, 0.95);
+}
+
 .fieldFilterInput {
     width: 100%;
     box-sizing: border-box;

@@ -1,0 +1,194 @@
+#spanInspector.inspectorContent {
+    padding: 0;
+    overflow: hidden;
+    height: 100%;
+}
+
+.spanInspectorRoot {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-height: 0;
+}
+
+.spanInspectorHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 10px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    flex: 0 0 auto;
+}
+
+.spanInspectorTitle {
+    font-weight: 600;
+}
+
+.spanInspectorColumns {
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    gap: 10px;
+    padding: 10px;
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow: hidden;
+}
+
+.spanInspectorLeft,
+.spanInspectorRight {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+}
+
+.spanInspectorList {
+    overflow: auto;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 6px;
+    min-height: 0;
+}
+
+.spanInspectorEmptyList {
+    padding: 10px;
+    opacity: 0.75;
+}
+
+.spanInspectorRow {
+    padding: 8px 10px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    cursor: pointer;
+}
+
+.spanInspectorRow:hover {
+    background: rgba(147,74,172,0.10);
+}
+
+.spanInspectorRow.selected {
+    background: rgba(147,74,172,0.22);
+}
+
+.spanInspectorRowLabel {
+    font-weight: 600;
+    font-size: 0.95em;
+}
+
+.spanInspectorRowMeta {
+    opacity: 0.75;
+    font-size: 0.85em;
+    margin-top: 2px;
+}
+
+.spanInspectorDetails {
+    overflow: auto;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 6px;
+    padding: 10px;
+    height: 100%;
+    min-height: 0;
+}
+
+.spanInspectorDetailsHead {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    align-items: flex-start;
+    margin-bottom: 10px;
+}
+
+.spanInspectorDetailsTitle {
+    font-weight: 700;
+}
+
+.spanInspectorActions {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+
+.spanInspectorButton {
+    padding: 6px 8px;
+    border-radius: 6px;
+    border: 1px solid rgba(255,255,255,0.12);
+    background: transparent;
+    color: inherit;
+    cursor: pointer;
+}
+
+.spanInspectorButton:hover {
+    background: rgba(255,255,255,0.06);
+}
+
+.spanInspectorKV {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 10px;
+    padding: 4px 0;
+}
+
+.spanInspectorKey {
+    opacity: 0.75;
+}
+
+.spanInspectorVal {
+    word-break: break-word;
+}
+
+.spanInspectorSectionTitle {
+    margin-top: 10px;
+    font-weight: 600;
+}
+
+.spanInspectorArgLine {
+    padding: 2px 0;
+    word-break: break-word;
+}
+
+.spanInspectorError {
+    padding: 10px;
+    border: 1px solid rgba(255, 80, 80, 0.35);
+    background: rgba(255, 80, 80, 0.08);
+    border-radius: 6px;
+}
+
+.spanInspectorHint,
+.spanInspectorMuted {
+    opacity: 0.75;
+}
+
+.spanInspectorFilterInput {
+    width: 100%;
+    box-sizing: border-box;
+
+    margin: 6px 0 10px 0;
+    padding: 8px 10px;
+
+    font: inherit;
+    font-size: 12px;
+    line-height: 1.2;
+
+    color: rgba(255, 255, 255, 0.92);
+    background: rgba(255, 255, 255, 0.06);
+
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 6px;
+
+    outline: none;
+    transition: border-color 120ms ease, background-color 120ms ease, box-shadow 120ms ease;
+}
+
+.spanInspectorFilterInput::placeholder {
+    color: rgba(255, 255, 255, 0.45);
+}
+
+.spanInspectorFilterInput:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.20);
+}
+
+.spanInspectorFilterInput:focus {
+    background: rgba(255, 255, 255, 0.10);
+    border-color: rgba(120, 180, 255, 0.75);
+    box-shadow: 0 0 0 3px rgba(120, 180, 255, 0.20);
+}

@@ -77,6 +77,14 @@ export class TraceModel {
         return this.spansById.get(id);
     }
 
+    /**
+     * Returns an iterator over all spans.
+     * @returns {MapIterator<any>} - An iterator over all spans.
+     */
+    getSpans() {
+        return this.spansById.values();
+    }
+
     #createCacheEventsById() {
         for (const ev of this.mainData.trace.events || []) {
             this.eventsById.set(ev.eventId, ev);

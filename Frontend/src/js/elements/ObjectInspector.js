@@ -15,6 +15,9 @@ export class ObjectInspector extends PWElement {
         this.traceModel = traceModel;
         this._statesDivByFieldState = new WeakMap();
 
+        this._filterQueryByFieldState = new WeakMap();
+        this._onlyChangesByFieldState = new WeakMap();
+
         this.checkIfEmpty();
     }
 
@@ -84,23 +87,51 @@ export class ObjectInspector extends PWElement {
 
                 headerDiv.appendChild(this.#renderFieldValue(fieldState));
 
+                const filterRow = document.createElement("div");
+                filterRow.classList.add("fieldFilterRow");
+
                 const filterBox = new TextFilterBox({
                     placeholder: "Filter (10, v1, v>=3, >=100)",
                     className: "fieldFilterInput",
                     debounceMs: 80
                 });
 
+                const onlyChangesLabel = document.createElement("label");
+                onlyChangesLabel.classList.add("onlyChangesToggle");
+
+                const onlyChangesCheckbox = document.createElement("input");
+                onlyChangesCheckbox.type = "checkbox";
+                onlyChangesCheckbox.classList.add("onlyChangesCheckbox");
+
+                const onlyChangesText = document.createElement("span");
+                onlyChangesText.textContent = "Only changes";
+
+                onlyChangesLabel.appendChild(onlyChangesCheckbox);
+                onlyChangesLabel.appendChild(onlyChangesText);
+
+                filterRow.appendChild(filterBox.element);
+                filterRow.appendChild(onlyChangesLabel);
+
+                this._filterQueryByFieldState.set(fieldState, "");
+                this._onlyChangesByFieldState.set(fieldState, false);
+
                 filterBox.onChange((q) => {
-                    this.#applyFieldTimelineFilter(fieldState, q);
+                    this._filterQueryByFieldState.set(fieldState, q ?? "");
+                    this.#applyFieldTimelineFilter(fieldState);
                 });
 
-                filterBox.attachTo(statesDiv, false);
+                onlyChangesCheckbox.addEventListener("change", () => {
+                    this._onlyChangesByFieldState.set(fieldState, Boolean(onlyChangesCheckbox.checked));
+                    this.#applyFieldTimelineFilter(fieldState);
+                });
+
+                statesDiv.prepend(filterRow);
 
                 fieldDiv.appendChild(headerDiv);
                 fieldDiv.appendChild(statesDiv);
                 fieldsDiv.appendChild(fieldDiv);
 
-                this.#applyFieldTimelineFilter(fieldState, "");
+                this.#applyFieldTimelineFilter(fieldState);
             }
         }
 
@@ -166,6 +197,9 @@ export class ObjectInspector extends PWElement {
 
         const tl = Array.isArray(objectTimeline.timeline) ? objectTimeline.timeline : [];
 
+        let previousValueText = null;
+        let isFirst = true;
+
         for (const snap of tl) {
             const fields = snap.fields ?? {};
             const fieldState = fields.get(fieldName);
@@ -176,6 +210,12 @@ export class ObjectInspector extends PWElement {
 
             row.dataset.version = String(snap.version);
             row.dataset.valueText = this.#getComparableFieldValueText(fieldState);
+
+            const currentValueText = row.dataset.valueText ?? "";
+            const changed = isFirst || currentValueText !== (previousValueText ?? "");
+            row.dataset.changed = changed ? "1" : "0";
+            previousValueText = currentValueText;
+            isFirst = false;
 
             if (snap.version === currentVersion) {
                 row.classList.add("currentState");
@@ -217,7 +257,10 @@ export class ObjectInspector extends PWElement {
         return "null";
     }
 
-    #applyFieldTimelineFilter(fieldState, rawQuery) {
+    #applyFieldTimelineFilter(fieldState) {
+        const rawQuery = this._filterQueryByFieldState.get(fieldState) ?? "";
+        const onlyChanges = Boolean(this._onlyChangesByFieldState.get(fieldState));
+
         const q = (rawQuery ?? "").trim().toLowerCase();
         const predicate = this.#buildFieldTimelinePredicate(q);
 
@@ -229,8 +272,9 @@ export class ObjectInspector extends PWElement {
             if (!(row instanceof HTMLElement)) continue;
             if (!row.classList.contains("fieldState")) continue;
 
-            const ok = predicate(row);
-            row.style.display = ok ? "" : "none";
+            const okQuery = predicate(row);
+            const okChanges = !onlyChanges || row.dataset.changed === "1";
+            row.style.display = (okQuery && okChanges) ? "" : "none";
         }
     }
 
