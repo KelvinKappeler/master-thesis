@@ -3,7 +3,7 @@
     "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
     "path" : "Examples/src/main/java/ch/epfl/printwizard/examples/Main.java",
     "language" : "java",
-    "lines" : 49
+    "lines" : 23
   }, {
     "sourceId" : "src:ch/epfl/printwizard/examples/Player.java",
     "path" : "Examples/src/main/java/ch/epfl/printwizard/examples/Player.java",
@@ -19,6 +19,11 @@
     "path" : "Examples/src/main/java/ch/epfl/printwizard/examples/mastermind/Mastermind.java",
     "language" : "java",
     "lines" : 199
+  }, {
+    "sourceId" : "src:ch/epfl/printwizard/examples/report/Main.java",
+    "path" : "Examples/src/main/java/ch/epfl/printwizard/examples/report/Main.java",
+    "language" : "java",
+    "lines" : 221
   }, {
     "sourceId" : "src:ch/epfl/printwizard/examples/rpg/BattleHistory.java",
     "path" : "Examples/src/main/java/ch/epfl/printwizard/examples/rpg/BattleHistory.java",
@@ -61,6 +66,31 @@
     "packageName" : "ch.epfl.printwizard.examples.mastermind",
     "sourceId" : "src:ch/epfl/printwizard/examples/mastermind/Mastermind.java"
   }, {
+    "id" : "cls:ch.epfl.printwizard.examples.report.Main",
+    "name" : "Main",
+    "packageName" : "ch.epfl.printwizard.examples.report",
+    "sourceId" : "src:ch/epfl/printwizard/examples/report/Main.java"
+  }, {
+    "id" : "cls:ch.epfl.printwizard.examples.report.Main.Effect",
+    "name" : "Effect",
+    "packageName" : "ch.epfl.printwizard.examples.report",
+    "sourceId" : "src:ch/epfl/printwizard/examples/report/Main.java"
+  }, {
+    "id" : "cls:ch.epfl.printwizard.examples.report.Main.Player",
+    "name" : "Player",
+    "packageName" : "ch.epfl.printwizard.examples.report",
+    "sourceId" : "src:ch/epfl/printwizard/examples/report/Main.java"
+  }, {
+    "id" : "cls:ch.epfl.printwizard.examples.report.Main.Simulation",
+    "name" : "Simulation",
+    "packageName" : "ch.epfl.printwizard.examples.report",
+    "sourceId" : "src:ch/epfl/printwizard/examples/report/Main.java"
+  }, {
+    "id" : "cls:ch.epfl.printwizard.examples.report.Main.Status",
+    "name" : "Status",
+    "packageName" : "ch.epfl.printwizard.examples.report",
+    "sourceId" : "src:ch/epfl/printwizard/examples/report/Main.java"
+  }, {
     "id" : "cls:ch.epfl.printwizard.examples.rpg.BattleHistory",
     "name" : "BattleHistory",
     "packageName" : "ch.epfl.printwizard.examples.rpg",
@@ -83,14 +113,24 @@
   } ],
   "interfaces" : [ ],
   "records" : [ ],
-  "enums" : [ ],
+  "enums" : [ {
+    "id" : "type:ch.epfl.printwizard.examples.report.Main.DamageSource",
+    "name" : "DamageSource",
+    "packageName" : "ch.epfl.printwizard.examples.report",
+    "sourceId" : "src:ch/epfl/printwizard/examples/report/Main.java"
+  }, {
+    "id" : "type:ch.epfl.printwizard.examples.report.Main.Effect.Type",
+    "name" : "Type",
+    "packageName" : "ch.epfl.printwizard.examples.report",
+    "sourceId" : "src:ch/epfl/printwizard/examples/report/Main.java"
+  } ],
   "methods" : [ {
     "methodId" : "m:ch.epfl.printwizard.examples.Main.add(int,int)int",
     "classId" : "cls:ch.epfl.printwizard.examples.Main",
     "name" : "add",
     "returnType" : "int",
-    "startLine" : 42,
-    "endLine" : 44,
+    "startLine" : 16,
+    "endLine" : 18,
     "parameters" : [ {
       "index" : 0,
       "name" : "a",
@@ -105,11 +145,11 @@
       "kind" : "BLOCK",
       "code" : null,
       "startPosition" : {
-        "line" : 42,
+        "line" : 16,
         "column" : 42
       },
       "endPosition" : {
-        "line" : 44,
+        "line" : 18,
         "column" : 5
       },
       "structures" : [ {
@@ -117,22 +157,22 @@
         "kind" : "RETURN",
         "code" : "return a + b;",
         "startPosition" : {
-          "line" : 43,
+          "line" : 17,
           "column" : 9
         },
         "endPosition" : {
-          "line" : 43,
+          "line" : 17,
           "column" : 21
         },
         "value" : {
           "code" : "a + b",
           "kind" : "ALL",
           "startPosition" : {
-            "line" : 43,
+            "line" : 17,
             "column" : 9
           },
           "endPosition" : {
-            "line" : 43,
+            "line" : 17,
             "column" : 21
           }
         }
@@ -145,14 +185,14 @@
     "name" : "main",
     "returnType" : "void",
     "startLine" : 5,
-    "endLine" : 40,
+    "endLine" : 14,
     "parameters" : [ {
       "index" : 0,
       "name" : "args",
       "typeId" : "t:String[]"
     } ],
     "structure" : {
-      "structureId" : "block:7",
+      "structureId" : "block:2",
       "kind" : "BLOCK",
       "code" : null,
       "startPosition" : {
@@ -160,7 +200,7 @@
         "column" : 44
       },
       "endPosition" : {
-        "line" : 40,
+        "line" : 14,
         "column" : 5
       },
       "structures" : [ {
@@ -168,23 +208,23 @@
         "kind" : "EXPR_STMT",
         "code" : null,
         "startPosition" : {
-          "line" : 8,
+          "line" : 6,
           "column" : 9
         },
         "endPosition" : {
-          "line" : 8,
-          "column" : 39
+          "line" : 6,
+          "column" : 30
         },
         "expr" : {
-          "code" : "Player p = new Player(10, 100)",
+          "code" : "int i = add(3, 4) / 2",
           "kind" : "ALL",
           "startPosition" : {
-            "line" : 8,
+            "line" : 6,
             "column" : 9
           },
           "endPosition" : {
-            "line" : 8,
-            "column" : 39
+            "line" : 6,
+            "column" : 30
           }
         }
       }, {
@@ -192,23 +232,23 @@
         "kind" : "EXPR_STMT",
         "code" : null,
         "startPosition" : {
-          "line" : 9,
+          "line" : 8,
           "column" : 9
         },
         "endPosition" : {
-          "line" : 9,
-          "column" : 31
+          "line" : 8,
+          "column" : 43
         },
         "expr" : {
-          "code" : "p.setHealthPoints(120)",
+          "code" : "Player player = new Player(50, 70)",
           "kind" : "ALL",
           "startPosition" : {
-            "line" : 9,
+            "line" : 8,
             "column" : 9
           },
           "endPosition" : {
-            "line" : 9,
-            "column" : 31
+            "line" : 8,
+            "column" : 43
           }
         }
       }, {
@@ -216,577 +256,133 @@
         "kind" : "EXPR_STMT",
         "code" : null,
         "startPosition" : {
-          "line" : 11,
+          "line" : 9,
           "column" : 9
         },
         "endPosition" : {
-          "line" : 11,
-          "column" : 40
+          "line" : 9,
+          "column" : 35
         },
         "expr" : {
-          "code" : "String testStr = \"Hello World!\"",
+          "code" : "player.setHealthPoints(32)",
           "kind" : "ALL",
           "startPosition" : {
-            "line" : 11,
+            "line" : 9,
             "column" : 9
           },
           "endPosition" : {
-            "line" : 11,
-            "column" : 40
+            "line" : 9,
+            "column" : 35
           }
         }
-      }, {
-        "structureId" : "expr_stmt:4",
-        "kind" : "EXPR_STMT",
-        "code" : null,
-        "startPosition" : {
-          "line" : 12,
-          "column" : 9
-        },
-        "endPosition" : {
-          "line" : 12,
-          "column" : 23
-        },
-        "expr" : {
-          "code" : "print(testStr)",
-          "kind" : "ALL",
-          "startPosition" : {
-            "line" : 12,
-            "column" : 9
-          },
-          "endPosition" : {
-            "line" : 12,
-            "column" : 23
-          }
-        }
-      }, {
-        "structureId" : "expr_stmt:5",
-        "kind" : "EXPR_STMT",
-        "code" : null,
-        "startPosition" : {
-          "line" : 13,
-          "column" : 9
-        },
-        "endPosition" : {
-          "line" : 13,
-          "column" : 30
-        },
-        "expr" : {
-          "code" : "int i = add(3, 4) / 2",
-          "kind" : "ALL",
-          "startPosition" : {
-            "line" : 13,
-            "column" : 9
-          },
-          "endPosition" : {
-            "line" : 13,
-            "column" : 30
-          }
-        }
-      }, {
-        "structureId" : "expr_stmt:6",
-        "kind" : "EXPR_STMT",
-        "code" : null,
-        "startPosition" : {
-          "line" : 15,
-          "column" : 9
-        },
-        "endPosition" : {
-          "line" : 15,
-          "column" : 18
-        },
-        "expr" : {
-          "code" : "int j = 0",
-          "kind" : "ALL",
-          "startPosition" : {
-            "line" : 15,
-            "column" : 9
-          },
-          "endPosition" : {
-            "line" : 15,
-            "column" : 18
-          }
-        }
-      }, {
-        "structureId" : "if:2",
-        "kind" : "IF",
-        "code" : "if (i < 3)",
-        "startPosition" : {
-          "line" : 16,
-          "column" : 9
-        },
-        "endPosition" : {
-          "line" : 22,
-          "column" : 9
-        },
-        "condition" : {
-          "code" : "i < 3",
-          "kind" : "ALL",
-          "startPosition" : {
-            "line" : 16,
-            "column" : 13
-          },
-          "endPosition" : {
-            "line" : 16,
-            "column" : 17
-          }
-        },
-        "thenBranch" : {
-          "structureId" : "block:1",
-          "kind" : "BLOCK",
-          "code" : null,
-          "startPosition" : {
-            "line" : 16,
-            "column" : 20
-          },
-          "endPosition" : {
-            "line" : 18,
-            "column" : 9
-          },
-          "structures" : [ {
-            "structureId" : "expr_stmt:7",
-            "kind" : "EXPR_STMT",
-            "code" : null,
-            "startPosition" : {
-              "line" : 17,
-              "column" : 13
-            },
-            "endPosition" : {
-              "line" : 17,
-              "column" : 20
-            },
-            "expr" : {
-              "code" : "j += 30",
-              "kind" : "ALL",
-              "startPosition" : {
-                "line" : 17,
-                "column" : 13
-              },
-              "endPosition" : {
-                "line" : 17,
-                "column" : 20
-              }
-            }
-          } ]
-        },
-        "elseBranch" : {
-          "structureId" : "if:1",
-          "kind" : "IF",
-          "code" : "else if (i > 3)",
-          "startPosition" : {
-            "line" : 18,
-            "column" : 16
-          },
-          "endPosition" : {
-            "line" : 22,
-            "column" : 9
-          },
-          "condition" : {
-            "code" : "i > 3",
-            "kind" : "ALL",
-            "startPosition" : {
-              "line" : 18,
-              "column" : 20
-            },
-            "endPosition" : {
-              "line" : 18,
-              "column" : 24
-            }
-          },
-          "thenBranch" : {
-            "structureId" : "block:2",
-            "kind" : "BLOCK",
-            "code" : null,
-            "startPosition" : {
-              "line" : 18,
-              "column" : 27
-            },
-            "endPosition" : {
-              "line" : 20,
-              "column" : 9
-            },
-            "structures" : [ {
-              "structureId" : "expr_stmt:8",
-              "kind" : "EXPR_STMT",
-              "code" : null,
-              "startPosition" : {
-                "line" : 19,
-                "column" : 13
-              },
-              "endPosition" : {
-                "line" : 19,
-                "column" : 20
-              },
-              "expr" : {
-                "code" : "j += 20",
-                "kind" : "ALL",
-                "startPosition" : {
-                  "line" : 19,
-                  "column" : 13
-                },
-                "endPosition" : {
-                  "line" : 19,
-                  "column" : 20
-                }
-              }
-            } ]
-          },
-          "elseBranch" : {
-            "structureId" : "block:3",
-            "kind" : "BLOCK",
-            "code" : null,
-            "startPosition" : {
-              "line" : 20,
-              "column" : 16
-            },
-            "endPosition" : {
-              "line" : 22,
-              "column" : 9
-            },
-            "structures" : [ {
-              "structureId" : "expr_stmt:9",
-              "kind" : "EXPR_STMT",
-              "code" : null,
-              "startPosition" : {
-                "line" : 21,
-                "column" : 13
-              },
-              "endPosition" : {
-                "line" : 21,
-                "column" : 20
-              },
-              "expr" : {
-                "code" : "j += 10",
-                "kind" : "ALL",
-                "startPosition" : {
-                  "line" : 21,
-                  "column" : 13
-                },
-                "endPosition" : {
-                  "line" : 21,
-                  "column" : 20
-                }
-              }
-            } ]
-          }
-        }
-      }, {
-        "structureId" : "if:3",
-        "kind" : "IF",
-        "code" : "if (i == 3)",
-        "startPosition" : {
-          "line" : 24,
-          "column" : 9
-        },
-        "endPosition" : {
-          "line" : 26,
-          "column" : 9
-        },
-        "condition" : {
-          "code" : "i == 3",
-          "kind" : "ALL",
-          "startPosition" : {
-            "line" : 24,
-            "column" : 13
-          },
-          "endPosition" : {
-            "line" : 24,
-            "column" : 18
-          }
-        },
-        "thenBranch" : {
-          "structureId" : "block:4",
-          "kind" : "BLOCK",
-          "code" : null,
-          "startPosition" : {
-            "line" : 24,
-            "column" : 21
-          },
-          "endPosition" : {
-            "line" : 26,
-            "column" : 9
-          },
-          "structures" : [ {
-            "structureId" : "expr_stmt:10",
-            "kind" : "EXPR_STMT",
-            "code" : null,
-            "startPosition" : {
-              "line" : 25,
-              "column" : 13
-            },
-            "endPosition" : {
-              "line" : 25,
-              "column" : 19
-            },
-            "expr" : {
-              "code" : "j = 25",
-              "kind" : "ALL",
-              "startPosition" : {
-                "line" : 25,
-                "column" : 13
-              },
-              "endPosition" : {
-                "line" : 25,
-                "column" : 19
-              }
-            }
-          } ]
-        },
-        "elseBranch" : null
       }, {
         "structureId" : "for:1",
         "kind" : "FOR",
-        "code" : "for (int k = 0; k < 3; k++)",
+        "code" : "for (int j = 0; j < 5; j++)",
         "startPosition" : {
-          "line" : 28,
+          "line" : 11,
           "column" : 9
         },
         "endPosition" : {
-          "line" : 30,
+          "line" : 13,
           "column" : 9
         },
         "initialization" : {
-          "code" : "int k = 0",
+          "code" : "int j = 0",
           "kind" : "ALL",
           "startPosition" : {
-            "line" : 28,
+            "line" : 11,
             "column" : 14
           },
           "endPosition" : {
-            "line" : 28,
+            "line" : 11,
             "column" : 22
           }
         },
         "condition" : {
-          "code" : "k < 3",
+          "code" : "j < 5",
           "kind" : "ALL",
           "startPosition" : {
-            "line" : 28,
+            "line" : 11,
             "column" : 25
           },
           "endPosition" : {
-            "line" : 28,
+            "line" : 11,
             "column" : 29
           }
         },
         "update" : {
-          "code" : "k++",
+          "code" : "j++",
           "kind" : "ALL",
           "startPosition" : {
-            "line" : 28,
+            "line" : 11,
             "column" : 32
           },
           "endPosition" : {
-            "line" : 28,
+            "line" : 11,
             "column" : 34
           }
         },
         "body" : {
-          "structureId" : "block:5",
+          "structureId" : "block:1",
           "kind" : "BLOCK",
           "code" : null,
           "startPosition" : {
-            "line" : 28,
+            "line" : 11,
             "column" : 37
           },
           "endPosition" : {
-            "line" : 30,
+            "line" : 13,
             "column" : 9
           },
           "structures" : [ {
-            "structureId" : "expr_stmt:11",
+            "structureId" : "expr_stmt:4",
             "kind" : "EXPR_STMT",
             "code" : null,
             "startPosition" : {
-              "line" : 29,
+              "line" : 12,
               "column" : 13
             },
             "endPosition" : {
-              "line" : 29,
-              "column" : 19
+              "line" : 12,
+              "column" : 26
             },
             "expr" : {
-              "code" : "j += 1",
+              "code" : "i = add(i, j)",
               "kind" : "ALL",
               "startPosition" : {
-                "line" : 29,
+                "line" : 12,
                 "column" : 13
               },
               "endPosition" : {
-                "line" : 29,
-                "column" : 19
+                "line" : 12,
+                "column" : 26
               }
             }
           } ]
-        }
-      }, {
-        "structureId" : "expr_stmt:12",
-        "kind" : "EXPR_STMT",
-        "code" : null,
-        "startPosition" : {
-          "line" : 32,
-          "column" : 9
-        },
-        "endPosition" : {
-          "line" : 32,
-          "column" : 14
-        },
-        "expr" : {
-          "code" : "i = 0",
-          "kind" : "ALL",
-          "startPosition" : {
-            "line" : 32,
-            "column" : 9
-          },
-          "endPosition" : {
-            "line" : 32,
-            "column" : 14
-          }
-        }
-      }, {
-        "structureId" : "while:1",
-        "kind" : "WHILE",
-        "code" : "while (i < 3)",
-        "startPosition" : {
-          "line" : 33,
-          "column" : 9
-        },
-        "endPosition" : {
-          "line" : 35,
-          "column" : 9
-        },
-        "condition" : {
-          "code" : "i < 3",
-          "kind" : "ALL",
-          "startPosition" : {
-            "line" : 33,
-            "column" : 9
-          },
-          "endPosition" : {
-            "line" : 35,
-            "column" : 9
-          }
-        },
-        "body" : {
-          "structureId" : "block:6",
-          "kind" : "BLOCK",
-          "code" : null,
-          "startPosition" : {
-            "line" : 33,
-            "column" : 23
-          },
-          "endPosition" : {
-            "line" : 35,
-            "column" : 9
-          },
-          "structures" : [ {
-            "structureId" : "expr_stmt:13",
-            "kind" : "EXPR_STMT",
-            "code" : null,
-            "startPosition" : {
-              "line" : 34,
-              "column" : 13
-            },
-            "endPosition" : {
-              "line" : 34,
-              "column" : 19
-            },
-            "expr" : {
-              "code" : "i += 1",
-              "kind" : "ALL",
-              "startPosition" : {
-                "line" : 34,
-                "column" : 13
-              },
-              "endPosition" : {
-                "line" : 34,
-                "column" : 19
-              }
-            }
-          } ]
-        }
-      }, {
-        "structureId" : "expr_stmt:14",
-        "kind" : "EXPR_STMT",
-        "code" : null,
-        "startPosition" : {
-          "line" : 37,
-          "column" : 9
-        },
-        "endPosition" : {
-          "line" : 37,
-          "column" : 49
-        },
-        "expr" : {
-          "code" : "System.out.println(\"Result: \" + (i + j))",
-          "kind" : "ALL",
-          "startPosition" : {
-            "line" : 37,
-            "column" : 9
-          },
-          "endPosition" : {
-            "line" : 37,
-            "column" : 49
-          }
-        }
-      }, {
-        "structureId" : "expr_stmt:15",
-        "kind" : "EXPR_STMT",
-        "code" : null,
-        "startPosition" : {
-          "line" : 39,
-          "column" : 9
-        },
-        "endPosition" : {
-          "line" : 39,
-          "column" : 44
-        },
-        "expr" : {
-          "code" : "Player player = new Player(10, 100)",
-          "kind" : "ALL",
-          "startPosition" : {
-            "line" : 39,
-            "column" : 9
-          },
-          "endPosition" : {
-            "line" : 39,
-            "column" : 44
-          }
         }
       } ]
     },
     "localVars" : [ {
       "index" : 1,
-      "name" : "p",
-      "typeId" : "Player"
-    }, {
-      "index" : 2,
-      "name" : "testStr",
-      "typeId" : "String"
-    }, {
-      "index" : 3,
       "name" : "i",
       "typeId" : "int"
     }, {
-      "index" : 4,
-      "name" : "j",
-      "typeId" : "int"
-    }, {
-      "index" : 5,
-      "name" : "k",
-      "typeId" : "int"
-    }, {
-      "index" : 6,
+      "index" : 2,
       "name" : "player",
       "typeId" : "Player"
+    }, {
+      "index" : 3,
+      "name" : "j",
+      "typeId" : "int"
     } ]
   }, {
     "methodId" : "m:ch.epfl.printwizard.examples.Main.print(String)void",
     "classId" : "cls:ch.epfl.printwizard.examples.Main",
     "name" : "print",
     "returnType" : "void",
-    "startLine" : 46,
-    "endLine" : 48,
+    "startLine" : 20,
+    "endLine" : 22,
     "parameters" : [ {
       "index" : 0,
       "name" : "str",
@@ -797,11 +393,11 @@
       "kind" : "BLOCK",
       "code" : null,
       "startPosition" : {
-        "line" : 46,
+        "line" : 20,
         "column" : 43
       },
       "endPosition" : {
-        "line" : 48,
+        "line" : 22,
         "column" : 5
       },
       "structures" : [ {
@@ -809,22 +405,22 @@
         "kind" : "EXPR_STMT",
         "code" : null,
         "startPosition" : {
-          "line" : 47,
+          "line" : 21,
           "column" : 9
         },
         "endPosition" : {
-          "line" : 47,
+          "line" : 21,
           "column" : 32
         },
         "expr" : {
           "code" : "System.out.println(str)",
           "kind" : "ALL",
           "startPosition" : {
-            "line" : 47,
+            "line" : 21,
             "column" : 9
           },
           "endPosition" : {
-            "line" : 47,
+            "line" : 21,
             "column" : 32
           }
         }
@@ -1779,6 +1375,6353 @@
       "name" : "pivotIndex",
       "typeId" : "int"
     } ]
+  }, {
+    "methodId" : "m:ch.epfl.printwizard.examples.report.Effect.Effect(Type,int)<init>",
+    "classId" : "cls:ch.epfl.printwizard.examples.report.Main.Effect",
+    "name" : "Effect",
+    "returnType" : "<init>",
+    "startLine" : 205,
+    "endLine" : 208,
+    "parameters" : [ {
+      "index" : 0,
+      "name" : "type",
+      "typeId" : "t:Type"
+    }, {
+      "index" : 1,
+      "name" : "amount",
+      "typeId" : "t:int"
+    } ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "code" : null,
+      "startPosition" : {
+        "line" : 205,
+        "column" : 47
+      },
+      "endPosition" : {
+        "line" : 208,
+        "column" : 9
+      },
+      "structures" : [ {
+        "structureId" : "expr_stmt:1",
+        "kind" : "EXPR_STMT",
+        "code" : null,
+        "startPosition" : {
+          "line" : 206,
+          "column" : 13
+        },
+        "endPosition" : {
+          "line" : 206,
+          "column" : 29
+        },
+        "expr" : {
+          "code" : "this.type = type",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 206,
+            "column" : 13
+          },
+          "endPosition" : {
+            "line" : 206,
+            "column" : 29
+          }
+        }
+      }, {
+        "structureId" : "expr_stmt:2",
+        "kind" : "EXPR_STMT",
+        "code" : null,
+        "startPosition" : {
+          "line" : 207,
+          "column" : 13
+        },
+        "endPosition" : {
+          "line" : 207,
+          "column" : 33
+        },
+        "expr" : {
+          "code" : "this.amount = amount",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 207,
+            "column" : 13
+          },
+          "endPosition" : {
+            "line" : 207,
+            "column" : 33
+          }
+        }
+      } ]
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:ch.epfl.printwizard.examples.report.Effect.heal(int)Effect",
+    "classId" : "cls:ch.epfl.printwizard.examples.report.Main.Effect",
+    "name" : "heal",
+    "returnType" : "Effect",
+    "startLine" : 211,
+    "endLine" : 211,
+    "parameters" : [ {
+      "index" : 0,
+      "name" : "hp",
+      "typeId" : "t:int"
+    } ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "code" : null,
+      "startPosition" : {
+        "line" : 211,
+        "column" : 36
+      },
+      "endPosition" : {
+        "line" : 211,
+        "column" : 72
+      },
+      "structures" : [ {
+        "structureId" : "return:1",
+        "kind" : "RETURN",
+        "code" : "return new Effect(Type.HEAL, hp);",
+        "startPosition" : {
+          "line" : 211,
+          "column" : 38
+        },
+        "endPosition" : {
+          "line" : 211,
+          "column" : 70
+        },
+        "value" : {
+          "code" : "new Effect(Type.HEAL, hp)",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 211,
+            "column" : 38
+          },
+          "endPosition" : {
+            "line" : 211,
+            "column" : 70
+          }
+        }
+      } ]
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:ch.epfl.printwizard.examples.report.Effect.hit(int)Effect",
+    "classId" : "cls:ch.epfl.printwizard.examples.report.Main.Effect",
+    "name" : "hit",
+    "returnType" : "Effect",
+    "startLine" : 210,
+    "endLine" : 210,
+    "parameters" : [ {
+      "index" : 0,
+      "name" : "dmg",
+      "typeId" : "t:int"
+    } ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "code" : null,
+      "startPosition" : {
+        "line" : 210,
+        "column" : 36
+      },
+      "endPosition" : {
+        "line" : 210,
+        "column" : 72
+      },
+      "structures" : [ {
+        "structureId" : "return:1",
+        "kind" : "RETURN",
+        "code" : "return new Effect(Type.HIT, dmg);",
+        "startPosition" : {
+          "line" : 210,
+          "column" : 38
+        },
+        "endPosition" : {
+          "line" : 210,
+          "column" : 70
+        },
+        "value" : {
+          "code" : "new Effect(Type.HIT, dmg)",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 210,
+            "column" : 38
+          },
+          "endPosition" : {
+            "line" : 210,
+            "column" : 70
+          }
+        }
+      } ]
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:ch.epfl.printwizard.examples.report.Effect.regen(int)Effect",
+    "classId" : "cls:ch.epfl.printwizard.examples.report.Main.Effect",
+    "name" : "regen",
+    "returnType" : "Effect",
+    "startLine" : 214,
+    "endLine" : 214,
+    "parameters" : [ {
+      "index" : 0,
+      "name" : "perTurn",
+      "typeId" : "t:int"
+    } ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "code" : null,
+      "startPosition" : {
+        "line" : 214,
+        "column" : 42
+      },
+      "endPosition" : {
+        "line" : 214,
+        "column" : 84
+      },
+      "structures" : [ {
+        "structureId" : "return:1",
+        "kind" : "RETURN",
+        "code" : "return new Effect(Type.REGEN, perTurn);",
+        "startPosition" : {
+          "line" : 214,
+          "column" : 44
+        },
+        "endPosition" : {
+          "line" : 214,
+          "column" : 82
+        },
+        "value" : {
+          "code" : "new Effect(Type.REGEN, perTurn)",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 214,
+            "column" : 44
+          },
+          "endPosition" : {
+            "line" : 214,
+            "column" : 82
+          }
+        }
+      } ]
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:ch.epfl.printwizard.examples.report.Effect.shield(int)Effect",
+    "classId" : "cls:ch.epfl.printwizard.examples.report.Main.Effect",
+    "name" : "shield",
+    "returnType" : "Effect",
+    "startLine" : 212,
+    "endLine" : 212,
+    "parameters" : [ {
+      "index" : 0,
+      "name" : "s",
+      "typeId" : "t:int"
+    } ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "code" : null,
+      "startPosition" : {
+        "line" : 212,
+        "column" : 37
+      },
+      "endPosition" : {
+        "line" : 212,
+        "column" : 74
+      },
+      "structures" : [ {
+        "structureId" : "return:1",
+        "kind" : "RETURN",
+        "code" : "return new Effect(Type.SHIELD, s);",
+        "startPosition" : {
+          "line" : 212,
+          "column" : 39
+        },
+        "endPosition" : {
+          "line" : 212,
+          "column" : 72
+        },
+        "value" : {
+          "code" : "new Effect(Type.SHIELD, s)",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 212,
+            "column" : 39
+          },
+          "endPosition" : {
+            "line" : 212,
+            "column" : 72
+          }
+        }
+      } ]
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:ch.epfl.printwizard.examples.report.Effect.toString()String",
+    "classId" : "cls:ch.epfl.printwizard.examples.report.Main.Effect",
+    "name" : "toString",
+    "returnType" : "String",
+    "startLine" : 216,
+    "endLine" : 219,
+    "parameters" : [ ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "code" : null,
+      "startPosition" : {
+        "line" : 217,
+        "column" : 34
+      },
+      "endPosition" : {
+        "line" : 219,
+        "column" : 9
+      },
+      "structures" : [ {
+        "structureId" : "return:1",
+        "kind" : "RETURN",
+        "code" : "return \"Effect{\" + type + \", amount=\" + amount + \"}\";",
+        "startPosition" : {
+          "line" : 218,
+          "column" : 13
+        },
+        "endPosition" : {
+          "line" : 218,
+          "column" : 65
+        },
+        "value" : {
+          "code" : "\"Effect{\" + type + \", amount=\" + amount + \"}\"",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 218,
+            "column" : 13
+          },
+          "endPosition" : {
+            "line" : 218,
+            "column" : 65
+          }
+        }
+      } ]
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:ch.epfl.printwizard.examples.report.Effect.vulnerability(int)Effect",
+    "classId" : "cls:ch.epfl.printwizard.examples.report.Main.Effect",
+    "name" : "vulnerability",
+    "returnType" : "Effect",
+    "startLine" : 213,
+    "endLine" : 213,
+    "parameters" : [ {
+      "index" : 0,
+      "name" : "stacks",
+      "typeId" : "t:int"
+    } ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "code" : null,
+      "startPosition" : {
+        "line" : 213,
+        "column" : 49
+      },
+      "endPosition" : {
+        "line" : 213,
+        "column" : 98
+      },
+      "structures" : [ {
+        "structureId" : "return:1",
+        "kind" : "RETURN",
+        "code" : "return new Effect(Type.VULNERABILITY, stacks);",
+        "startPosition" : {
+          "line" : 213,
+          "column" : 51
+        },
+        "endPosition" : {
+          "line" : 213,
+          "column" : 96
+        },
+        "value" : {
+          "code" : "new Effect(Type.VULNERABILITY, stacks)",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 213,
+            "column" : 51
+          },
+          "endPosition" : {
+            "line" : 213,
+            "column" : 96
+          }
+        }
+      } ]
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:ch.epfl.printwizard.examples.report.Main.Effect(Type,int)<init>",
+    "classId" : "cls:ch.epfl.printwizard.examples.report.Main",
+    "name" : "Effect",
+    "returnType" : "<init>",
+    "startLine" : 205,
+    "endLine" : 208,
+    "parameters" : [ {
+      "index" : 0,
+      "name" : "type",
+      "typeId" : "t:Type"
+    }, {
+      "index" : 1,
+      "name" : "amount",
+      "typeId" : "t:int"
+    } ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "code" : null,
+      "startPosition" : {
+        "line" : 205,
+        "column" : 47
+      },
+      "endPosition" : {
+        "line" : 208,
+        "column" : 9
+      },
+      "structures" : [ {
+        "structureId" : "expr_stmt:1",
+        "kind" : "EXPR_STMT",
+        "code" : null,
+        "startPosition" : {
+          "line" : 206,
+          "column" : 13
+        },
+        "endPosition" : {
+          "line" : 206,
+          "column" : 29
+        },
+        "expr" : {
+          "code" : "this.type = type",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 206,
+            "column" : 13
+          },
+          "endPosition" : {
+            "line" : 206,
+            "column" : 29
+          }
+        }
+      }, {
+        "structureId" : "expr_stmt:2",
+        "kind" : "EXPR_STMT",
+        "code" : null,
+        "startPosition" : {
+          "line" : 207,
+          "column" : 13
+        },
+        "endPosition" : {
+          "line" : 207,
+          "column" : 33
+        },
+        "expr" : {
+          "code" : "this.amount = amount",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 207,
+            "column" : 13
+          },
+          "endPosition" : {
+            "line" : 207,
+            "column" : 33
+          }
+        }
+      } ]
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:ch.epfl.printwizard.examples.report.Main.Player(String,int)<init>",
+    "classId" : "cls:ch.epfl.printwizard.examples.report.Main",
+    "name" : "Player",
+    "returnType" : "<init>",
+    "startLine" : 120,
+    "endLine" : 124,
+    "parameters" : [ {
+      "index" : 0,
+      "name" : "name",
+      "typeId" : "t:String"
+    }, {
+      "index" : 1,
+      "name" : "health",
+      "typeId" : "t:int"
+    } ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "code" : null,
+      "startPosition" : {
+        "line" : 120,
+        "column" : 41
+      },
+      "endPosition" : {
+        "line" : 124,
+        "column" : 9
+      },
+      "structures" : [ {
+        "structureId" : "expr_stmt:1",
+        "kind" : "EXPR_STMT",
+        "code" : null,
+        "startPosition" : {
+          "line" : 121,
+          "column" : 13
+        },
+        "endPosition" : {
+          "line" : 121,
+          "column" : 29
+        },
+        "expr" : {
+          "code" : "this.name = name",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 121,
+            "column" : 13
+          },
+          "endPosition" : {
+            "line" : 121,
+            "column" : 29
+          }
+        }
+      }, {
+        "structureId" : "expr_stmt:2",
+        "kind" : "EXPR_STMT",
+        "code" : null,
+        "startPosition" : {
+          "line" : 122,
+          "column" : 13
+        },
+        "endPosition" : {
+          "line" : 122,
+          "column" : 33
+        },
+        "expr" : {
+          "code" : "this.health = health",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 122,
+            "column" : 13
+          },
+          "endPosition" : {
+            "line" : 122,
+            "column" : 33
+          }
+        }
+      }, {
+        "structureId" : "expr_stmt:3",
+        "kind" : "EXPR_STMT",
+        "code" : null,
+        "startPosition" : {
+          "line" : 123,
+          "column" : 13
+        },
+        "endPosition" : {
+          "line" : 123,
+          "column" : 39
+        },
+        "expr" : {
+          "code" : "this.status = new Status()",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 123,
+            "column" : 13
+          },
+          "endPosition" : {
+            "line" : 123,
+            "column" : 39
+          }
+        }
+      } ]
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:ch.epfl.printwizard.examples.report.Main.Simulation(long)<init>",
+    "classId" : "cls:ch.epfl.printwizard.examples.report.Main",
+    "name" : "Simulation",
+    "returnType" : "<init>",
+    "startLine" : 31,
+    "endLine" : 33,
+    "parameters" : [ {
+      "index" : 0,
+      "name" : "seed",
+      "typeId" : "t:long"
+    } ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "code" : null,
+      "startPosition" : {
+        "line" : 31,
+        "column" : 31
+      },
+      "endPosition" : {
+        "line" : 33,
+        "column" : 9
+      },
+      "structures" : [ {
+        "structureId" : "expr_stmt:1",
+        "kind" : "EXPR_STMT",
+        "code" : null,
+        "startPosition" : {
+          "line" : 32,
+          "column" : 13
+        },
+        "endPosition" : {
+          "line" : 32,
+          "column" : 40
+        },
+        "expr" : {
+          "code" : "this.rng = new Random(seed)",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 32,
+            "column" : 13
+          },
+          "endPosition" : {
+            "line" : 32,
+            "column" : 40
+          }
+        }
+      } ]
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:ch.epfl.printwizard.examples.report.Main.absorbWithShield(int)int",
+    "classId" : "cls:ch.epfl.printwizard.examples.report.Main",
+    "name" : "absorbWithShield",
+    "returnType" : "int",
+    "startLine" : 187,
+    "endLine" : 196,
+    "parameters" : [ {
+      "index" : 0,
+      "name" : "incomingDamage",
+      "typeId" : "t:int"
+    } ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "code" : null,
+      "startPosition" : {
+        "line" : 187,
+        "column" : 50
+      },
+      "endPosition" : {
+        "line" : 196,
+        "column" : 9
+      },
+      "structures" : [ {
+        "structureId" : "expr_stmt:1",
+        "kind" : "EXPR_STMT",
+        "code" : null,
+        "startPosition" : {
+          "line" : 188,
+          "column" : 13
+        },
+        "endPosition" : {
+          "line" : 188,
+          "column" : 42
+        },
+        "expr" : {
+          "code" : "wasShieldUsedThisCall = false",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 188,
+            "column" : 13
+          },
+          "endPosition" : {
+            "line" : 188,
+            "column" : 42
+          }
+        }
+      }, {
+        "structureId" : "if:1",
+        "kind" : "IF",
+        "code" : "if (incomingDamage <= 0)",
+        "startPosition" : {
+          "line" : 189,
+          "column" : 13
+        },
+        "endPosition" : {
+          "line" : 189,
+          "column" : 46
+        },
+        "condition" : {
+          "code" : "incomingDamage <= 0",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 189,
+            "column" : 17
+          },
+          "endPosition" : {
+            "line" : 189,
+            "column" : 35
+          }
+        },
+        "thenBranch" : {
+          "structureId" : "return:1",
+          "kind" : "RETURN",
+          "code" : "return 0;",
+          "startPosition" : {
+            "line" : 189,
+            "column" : 38
+          },
+          "endPosition" : {
+            "line" : 189,
+            "column" : 46
+          },
+          "value" : {
+            "code" : "0",
+            "kind" : "ALL",
+            "startPosition" : {
+              "line" : 189,
+              "column" : 38
+            },
+            "endPosition" : {
+              "line" : 189,
+              "column" : 46
+            }
+          }
+        },
+        "elseBranch" : null
+      }, {
+        "structureId" : "if:2",
+        "kind" : "IF",
+        "code" : "if (shield <= 0)",
+        "startPosition" : {
+          "line" : 190,
+          "column" : 13
+        },
+        "endPosition" : {
+          "line" : 190,
+          "column" : 38
+        },
+        "condition" : {
+          "code" : "shield <= 0",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 190,
+            "column" : 17
+          },
+          "endPosition" : {
+            "line" : 190,
+            "column" : 27
+          }
+        },
+        "thenBranch" : {
+          "structureId" : "return:2",
+          "kind" : "RETURN",
+          "code" : "return 0;",
+          "startPosition" : {
+            "line" : 190,
+            "column" : 30
+          },
+          "endPosition" : {
+            "line" : 190,
+            "column" : 38
+          },
+          "value" : {
+            "code" : "0",
+            "kind" : "ALL",
+            "startPosition" : {
+              "line" : 190,
+              "column" : 30
+            },
+            "endPosition" : {
+              "line" : 190,
+              "column" : 38
+            }
+          }
+        },
+        "elseBranch" : null
+      }, {
+        "structureId" : "expr_stmt:2",
+        "kind" : "EXPR_STMT",
+        "code" : null,
+        "startPosition" : {
+          "line" : 192,
+          "column" : 13
+        },
+        "endPosition" : {
+          "line" : 192,
+          "column" : 41
+        },
+        "expr" : {
+          "code" : "wasShieldUsedThisCall = true",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 192,
+            "column" : 13
+          },
+          "endPosition" : {
+            "line" : 192,
+            "column" : 41
+          }
+        }
+      }, {
+        "structureId" : "expr_stmt:3",
+        "kind" : "EXPR_STMT",
+        "code" : null,
+        "startPosition" : {
+          "line" : 193,
+          "column" : 13
+        },
+        "endPosition" : {
+          "line" : 193,
+          "column" : 60
+        },
+        "expr" : {
+          "code" : "int absorbed = Math.min(shield, incomingDamage)",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 193,
+            "column" : 13
+          },
+          "endPosition" : {
+            "line" : 193,
+            "column" : 60
+          }
+        }
+      }, {
+        "structureId" : "expr_stmt:4",
+        "kind" : "EXPR_STMT",
+        "code" : null,
+        "startPosition" : {
+          "line" : 194,
+          "column" : 13
+        },
+        "endPosition" : {
+          "line" : 194,
+          "column" : 31
+        },
+        "expr" : {
+          "code" : "shield -= absorbed",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 194,
+            "column" : 13
+          },
+          "endPosition" : {
+            "line" : 194,
+            "column" : 31
+          }
+        }
+      }, {
+        "structureId" : "return:3",
+        "kind" : "RETURN",
+        "code" : "return absorbed;",
+        "startPosition" : {
+          "line" : 195,
+          "column" : 13
+        },
+        "endPosition" : {
+          "line" : 195,
+          "column" : 28
+        },
+        "value" : {
+          "code" : "absorbed",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 195,
+            "column" : 13
+          },
+          "endPosition" : {
+            "line" : 195,
+            "column" : 28
+          }
+        }
+      } ]
+    },
+    "localVars" : [ {
+      "index" : 1,
+      "name" : "absorbed",
+      "typeId" : "int"
+    } ]
+  }, {
+    "methodId" : "m:ch.epfl.printwizard.examples.report.Main.addShield(int)void",
+    "classId" : "cls:ch.epfl.printwizard.examples.report.Main",
+    "name" : "addShield",
+    "returnType" : "void",
+    "startLine" : 169,
+    "endLine" : 171,
+    "parameters" : [ {
+      "index" : 0,
+      "name" : "amount",
+      "typeId" : "t:int"
+    } ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "code" : null,
+      "startPosition" : {
+        "line" : 169,
+        "column" : 36
+      },
+      "endPosition" : {
+        "line" : 171,
+        "column" : 9
+      },
+      "structures" : [ {
+        "structureId" : "expr_stmt:1",
+        "kind" : "EXPR_STMT",
+        "code" : null,
+        "startPosition" : {
+          "line" : 170,
+          "column" : 13
+        },
+        "endPosition" : {
+          "line" : 170,
+          "column" : 42
+        },
+        "expr" : {
+          "code" : "shield += Math.max(0, amount)",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 170,
+            "column" : 13
+          },
+          "endPosition" : {
+            "line" : 170,
+            "column" : 42
+          }
+        }
+      } ]
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:ch.epfl.printwizard.examples.report.Main.addVulnerability(int)void",
+    "classId" : "cls:ch.epfl.printwizard.examples.report.Main",
+    "name" : "addVulnerability",
+    "returnType" : "void",
+    "startLine" : 173,
+    "endLine" : 175,
+    "parameters" : [ {
+      "index" : 0,
+      "name" : "stacks",
+      "typeId" : "t:int"
+    } ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "code" : null,
+      "startPosition" : {
+        "line" : 173,
+        "column" : 43
+      },
+      "endPosition" : {
+        "line" : 175,
+        "column" : 9
+      },
+      "structures" : [ {
+        "structureId" : "expr_stmt:1",
+        "kind" : "EXPR_STMT",
+        "code" : null,
+        "startPosition" : {
+          "line" : 174,
+          "column" : 13
+        },
+        "endPosition" : {
+          "line" : 174,
+          "column" : 55
+        },
+        "expr" : {
+          "code" : "vulnerabilityStacks += Math.max(0, stacks)",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 174,
+            "column" : 13
+          },
+          "endPosition" : {
+            "line" : 174,
+            "column" : 55
+          }
+        }
+      } ]
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:ch.epfl.printwizard.examples.report.Main.applyDamage(int,DamageSource)void",
+    "classId" : "cls:ch.epfl.printwizard.examples.report.Main",
+    "name" : "applyDamage",
+    "returnType" : "void",
+    "startLine" : 136,
+    "endLine" : 150,
+    "parameters" : [ {
+      "index" : 0,
+      "name" : "damage",
+      "typeId" : "t:int"
+    }, {
+      "index" : 1,
+      "name" : "source",
+      "typeId" : "t:DamageSource"
+    } ],
+    "structure" : {
+      "structureId" : "block:3",
+      "kind" : "BLOCK",
+      "code" : null,
+      "startPosition" : {
+        "line" : 136,
+        "column" : 59
+      },
+      "endPosition" : {
+        "line" : 150,
+        "column" : 9
+      },
+      "structures" : [ {
+        "structureId" : "expr_stmt:1",
+        "kind" : "EXPR_STMT",
+        "code" : null,
+        "startPosition" : {
+          "line" : 137,
+          "column" : 13
+        },
+        "endPosition" : {
+          "line" : 137,
+          "column" : 47
+        },
+        "expr" : {
+          "code" : "int incoming = Math.max(0, damage)",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 137,
+            "column" : 13
+          },
+          "endPosition" : {
+            "line" : 137,
+            "column" : 47
+          }
+        }
+      }, {
+        "structureId" : "expr_stmt:2",
+        "kind" : "EXPR_STMT",
+        "code" : null,
+        "startPosition" : {
+          "line" : 139,
+          "column" : 13
+        },
+        "endPosition" : {
+          "line" : 139,
+          "column" : 61
+        },
+        "expr" : {
+          "code" : "int absorbed = status.absorbWithShield(incoming)",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 139,
+            "column" : 13
+          },
+          "endPosition" : {
+            "line" : 139,
+            "column" : 61
+          }
+        }
+      }, {
+        "structureId" : "expr_stmt:3",
+        "kind" : "EXPR_STMT",
+        "code" : null,
+        "startPosition" : {
+          "line" : 140,
+          "column" : 13
+        },
+        "endPosition" : {
+          "line" : 140,
+          "column" : 48
+        },
+        "expr" : {
+          "code" : "int remaining = incoming - absorbed",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 140,
+            "column" : 13
+          },
+          "endPosition" : {
+            "line" : 140,
+            "column" : 48
+          }
+        }
+      }, {
+        "structureId" : "if:1",
+        "kind" : "IF",
+        "code" : "if (status.wasShieldUsedThisCall && source == DamageSource.ENEMY)",
+        "startPosition" : {
+          "line" : 145,
+          "column" : 13
+        },
+        "endPosition" : {
+          "line" : 149,
+          "column" : 13
+        },
+        "condition" : {
+          "code" : "status.wasShieldUsedThisCall && source == DamageSource.ENEMY",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 145,
+            "column" : 17
+          },
+          "endPosition" : {
+            "line" : 145,
+            "column" : 76
+          }
+        },
+        "thenBranch" : {
+          "structureId" : "block:1",
+          "kind" : "BLOCK",
+          "code" : null,
+          "startPosition" : {
+            "line" : 145,
+            "column" : 79
+          },
+          "endPosition" : {
+            "line" : 147,
+            "column" : 13
+          },
+          "structures" : [ {
+            "structureId" : "expr_stmt:4",
+            "kind" : "EXPR_STMT",
+            "code" : null,
+            "startPosition" : {
+              "line" : 146,
+              "column" : 17
+            },
+            "endPosition" : {
+              "line" : 146,
+              "column" : 49
+            },
+            "expr" : {
+              "code" : "health -= (remaining + absorbed)",
+              "kind" : "ALL",
+              "startPosition" : {
+                "line" : 146,
+                "column" : 17
+              },
+              "endPosition" : {
+                "line" : 146,
+                "column" : 49
+              }
+            }
+          } ]
+        },
+        "elseBranch" : {
+          "structureId" : "block:2",
+          "kind" : "BLOCK",
+          "code" : null,
+          "startPosition" : {
+            "line" : 147,
+            "column" : 20
+          },
+          "endPosition" : {
+            "line" : 149,
+            "column" : 13
+          },
+          "structures" : [ {
+            "structureId" : "expr_stmt:5",
+            "kind" : "EXPR_STMT",
+            "code" : null,
+            "startPosition" : {
+              "line" : 148,
+              "column" : 17
+            },
+            "endPosition" : {
+              "line" : 148,
+              "column" : 36
+            },
+            "expr" : {
+              "code" : "health -= remaining",
+              "kind" : "ALL",
+              "startPosition" : {
+                "line" : 148,
+                "column" : 17
+              },
+              "endPosition" : {
+                "line" : 148,
+                "column" : 36
+              }
+            }
+          } ]
+        }
+      } ]
+    },
+    "localVars" : [ {
+      "index" : 2,
+      "name" : "incoming",
+      "typeId" : "int"
+    }, {
+      "index" : 3,
+      "name" : "absorbed",
+      "typeId" : "int"
+    }, {
+      "index" : 4,
+      "name" : "remaining",
+      "typeId" : "int"
+    } ]
+  }, {
+    "methodId" : "m:ch.epfl.printwizard.examples.report.Main.applyEffect(Player,Effect,int)void",
+    "classId" : "cls:ch.epfl.printwizard.examples.report.Main",
+    "name" : "applyEffect",
+    "returnType" : "void",
+    "startLine" : 52,
+    "endLine" : 62,
+    "parameters" : [ {
+      "index" : 0,
+      "name" : "player",
+      "typeId" : "t:Player"
+    }, {
+      "index" : 1,
+      "name" : "effect",
+      "typeId" : "t:Effect"
+    }, {
+      "index" : 2,
+      "name" : "turn",
+      "typeId" : "t:int"
+    } ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "code" : null,
+      "startPosition" : {
+        "line" : 52,
+        "column" : 66
+      },
+      "endPosition" : {
+        "line" : 62,
+        "column" : 9
+      },
+      "structures" : [ {
+        "structureId" : "expr_stmt:1",
+        "kind" : "EXPR_STMT",
+        "code" : null,
+        "startPosition" : {
+          "line" : 53,
+          "column" : 13
+        },
+        "endPosition" : {
+          "line" : 53,
+          "column" : 37
+        },
+        "expr" : {
+          "code" : "tickStatus(player, turn)",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 53,
+            "column" : 13
+          },
+          "endPosition" : {
+            "line" : 53,
+            "column" : 37
+          }
+        }
+      }, {
+        "structureId" : "if:5",
+        "kind" : "IF",
+        "code" : "if (effect.type == Effect.Type.HIT)",
+        "startPosition" : {
+          "line" : 55,
+          "column" : 13
+        },
+        "endPosition" : {
+          "line" : 59,
+          "column" : 90
+        },
+        "condition" : {
+          "code" : "effect.type == Effect.Type.HIT",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 55,
+            "column" : 17
+          },
+          "endPosition" : {
+            "line" : 55,
+            "column" : 46
+          }
+        },
+        "thenBranch" : {
+          "structureId" : "expr_stmt:2",
+          "kind" : "EXPR_STMT",
+          "code" : null,
+          "startPosition" : {
+            "line" : 55,
+            "column" : 49
+          },
+          "endPosition" : {
+            "line" : 55,
+            "column" : 87
+          },
+          "expr" : {
+            "code" : "handleHit(player, effect.amount, turn)",
+            "kind" : "ALL",
+            "startPosition" : {
+              "line" : 55,
+              "column" : 49
+            },
+            "endPosition" : {
+              "line" : 55,
+              "column" : 87
+            }
+          }
+        },
+        "elseBranch" : {
+          "structureId" : "if:4",
+          "kind" : "IF",
+          "code" : "else if (effect.type == Effect.Type.HEAL)",
+          "startPosition" : {
+            "line" : 56,
+            "column" : 18
+          },
+          "endPosition" : {
+            "line" : 59,
+            "column" : 90
+          },
+          "condition" : {
+            "code" : "effect.type == Effect.Type.HEAL",
+            "kind" : "ALL",
+            "startPosition" : {
+              "line" : 56,
+              "column" : 22
+            },
+            "endPosition" : {
+              "line" : 56,
+              "column" : 52
+            }
+          },
+          "thenBranch" : {
+            "structureId" : "expr_stmt:3",
+            "kind" : "EXPR_STMT",
+            "code" : null,
+            "startPosition" : {
+              "line" : 56,
+              "column" : 55
+            },
+            "endPosition" : {
+              "line" : 56,
+              "column" : 88
+            },
+            "expr" : {
+              "code" : "handleHeal(player, effect.amount)",
+              "kind" : "ALL",
+              "startPosition" : {
+                "line" : 56,
+                "column" : 55
+              },
+              "endPosition" : {
+                "line" : 56,
+                "column" : 88
+              }
+            }
+          },
+          "elseBranch" : {
+            "structureId" : "if:3",
+            "kind" : "IF",
+            "code" : "else if (effect.type == Effect.Type.SHIELD)",
+            "startPosition" : {
+              "line" : 57,
+              "column" : 18
+            },
+            "endPosition" : {
+              "line" : 59,
+              "column" : 90
+            },
+            "condition" : {
+              "code" : "effect.type == Effect.Type.SHIELD",
+              "kind" : "ALL",
+              "startPosition" : {
+                "line" : 57,
+                "column" : 22
+              },
+              "endPosition" : {
+                "line" : 57,
+                "column" : 54
+              }
+            },
+            "thenBranch" : {
+              "structureId" : "expr_stmt:4",
+              "kind" : "EXPR_STMT",
+              "code" : null,
+              "startPosition" : {
+                "line" : 57,
+                "column" : 57
+              },
+              "endPosition" : {
+                "line" : 57,
+                "column" : 92
+              },
+              "expr" : {
+                "code" : "handleShield(player, effect.amount)",
+                "kind" : "ALL",
+                "startPosition" : {
+                  "line" : 57,
+                  "column" : 57
+                },
+                "endPosition" : {
+                  "line" : 57,
+                  "column" : 92
+                }
+              }
+            },
+            "elseBranch" : {
+              "structureId" : "if:2",
+              "kind" : "IF",
+              "code" : "else if (effect.type == Effect.Type.VULNERABILITY)",
+              "startPosition" : {
+                "line" : 58,
+                "column" : 18
+              },
+              "endPosition" : {
+                "line" : 59,
+                "column" : 90
+              },
+              "condition" : {
+                "code" : "effect.type == Effect.Type.VULNERABILITY",
+                "kind" : "ALL",
+                "startPosition" : {
+                  "line" : 58,
+                  "column" : 22
+                },
+                "endPosition" : {
+                  "line" : 58,
+                  "column" : 61
+                }
+              },
+              "thenBranch" : {
+                "structureId" : "expr_stmt:5",
+                "kind" : "EXPR_STMT",
+                "code" : null,
+                "startPosition" : {
+                  "line" : 58,
+                  "column" : 64
+                },
+                "endPosition" : {
+                  "line" : 58,
+                  "column" : 106
+                },
+                "expr" : {
+                  "code" : "handleVulnerability(player, effect.amount)",
+                  "kind" : "ALL",
+                  "startPosition" : {
+                    "line" : 58,
+                    "column" : 64
+                  },
+                  "endPosition" : {
+                    "line" : 58,
+                    "column" : 106
+                  }
+                }
+              },
+              "elseBranch" : {
+                "structureId" : "if:1",
+                "kind" : "IF",
+                "code" : "else if (effect.type == Effect.Type.REGEN)",
+                "startPosition" : {
+                  "line" : 59,
+                  "column" : 18
+                },
+                "endPosition" : {
+                  "line" : 59,
+                  "column" : 90
+                },
+                "condition" : {
+                  "code" : "effect.type == Effect.Type.REGEN",
+                  "kind" : "ALL",
+                  "startPosition" : {
+                    "line" : 59,
+                    "column" : 22
+                  },
+                  "endPosition" : {
+                    "line" : 59,
+                    "column" : 53
+                  }
+                },
+                "thenBranch" : {
+                  "structureId" : "expr_stmt:6",
+                  "kind" : "EXPR_STMT",
+                  "code" : null,
+                  "startPosition" : {
+                    "line" : 59,
+                    "column" : 56
+                  },
+                  "endPosition" : {
+                    "line" : 59,
+                    "column" : 90
+                  },
+                  "expr" : {
+                    "code" : "handleRegen(player, effect.amount)",
+                    "kind" : "ALL",
+                    "startPosition" : {
+                      "line" : 59,
+                      "column" : 56
+                    },
+                    "endPosition" : {
+                      "line" : 59,
+                      "column" : 90
+                    }
+                  }
+                },
+                "elseBranch" : null
+              }
+            }
+          }
+        }
+      }, {
+        "structureId" : "expr_stmt:7",
+        "kind" : "EXPR_STMT",
+        "code" : null,
+        "startPosition" : {
+          "line" : 61,
+          "column" : 13
+        },
+        "endPosition" : {
+          "line" : 61,
+          "column" : 32
+        },
+        "expr" : {
+          "code" : "clampHealth(player)",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 61,
+            "column" : 13
+          },
+          "endPosition" : {
+            "line" : 61,
+            "column" : 32
+          }
+        }
+      } ]
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:ch.epfl.printwizard.examples.report.Main.clampHealth(Player)void",
+    "classId" : "cls:ch.epfl.printwizard.examples.report.Main",
+    "name" : "clampHealth",
+    "returnType" : "void",
+    "startLine" : 106,
+    "endLine" : 110,
+    "parameters" : [ {
+      "index" : 0,
+      "name" : "player",
+      "typeId" : "t:Player"
+    } ],
+    "structure" : {
+      "structureId" : "block:2",
+      "kind" : "BLOCK",
+      "code" : null,
+      "startPosition" : {
+        "line" : 106,
+        "column" : 49
+      },
+      "endPosition" : {
+        "line" : 110,
+        "column" : 9
+      },
+      "structures" : [ {
+        "structureId" : "if:1",
+        "kind" : "IF",
+        "code" : "if (player.health < 0)",
+        "startPosition" : {
+          "line" : 107,
+          "column" : 13
+        },
+        "endPosition" : {
+          "line" : 109,
+          "column" : 13
+        },
+        "condition" : {
+          "code" : "player.health < 0",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 107,
+            "column" : 17
+          },
+          "endPosition" : {
+            "line" : 107,
+            "column" : 33
+          }
+        },
+        "thenBranch" : {
+          "structureId" : "block:1",
+          "kind" : "BLOCK",
+          "code" : null,
+          "startPosition" : {
+            "line" : 107,
+            "column" : 36
+          },
+          "endPosition" : {
+            "line" : 109,
+            "column" : 13
+          },
+          "structures" : [ {
+            "structureId" : "expr_stmt:1",
+            "kind" : "EXPR_STMT",
+            "code" : null,
+            "startPosition" : {
+              "line" : 108,
+              "column" : 17
+            },
+            "endPosition" : {
+              "line" : 108,
+              "column" : 34
+            },
+            "expr" : {
+              "code" : "player.health = 0",
+              "kind" : "ALL",
+              "startPosition" : {
+                "line" : 108,
+                "column" : 17
+              },
+              "endPosition" : {
+                "line" : 108,
+                "column" : 34
+              }
+            }
+          } ]
+        },
+        "elseBranch" : null
+      } ]
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:ch.epfl.printwizard.examples.report.Main.debugString()String",
+    "classId" : "cls:ch.epfl.printwizard.examples.report.Main",
+    "name" : "debugString",
+    "returnType" : "String",
+    "startLine" : 152,
+    "endLine" : 159,
+    "parameters" : [ ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "code" : null,
+      "startPosition" : {
+        "line" : 152,
+        "column" : 30
+      },
+      "endPosition" : {
+        "line" : 159,
+        "column" : 9
+      },
+      "structures" : [ {
+        "structureId" : "return:1",
+        "kind" : "RETURN",
+        "code" : "return \"Player{name=\" + name + \", health=\" + health + \", shield=\" + status.shield + \", vuln=\" + status.vulnerabilityStacks + \", regen=\" + status.regenPerTurn + \"}\";",
+        "startPosition" : {
+          "line" : 153,
+          "column" : 13
+        },
+        "endPosition" : {
+          "line" : 158,
+          "column" : 22
+        },
+        "value" : {
+          "code" : "\"Player{name=\" + name + \", health=\" + health + \", shield=\" + status.shield + \", vuln=\" + status.vulnerabilityStacks + \", regen=\" + status.regenPerTurn + \"}\"",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 153,
+            "column" : 13
+          },
+          "endPosition" : {
+            "line" : 158,
+            "column" : 22
+          }
+        }
+      } ]
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:ch.epfl.printwizard.examples.report.Main.decayShield()void",
+    "classId" : "cls:ch.epfl.printwizard.examples.report.Main",
+    "name" : "decayShield",
+    "returnType" : "void",
+    "startLine" : 177,
+    "endLine" : 179,
+    "parameters" : [ ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "code" : null,
+      "startPosition" : {
+        "line" : 177,
+        "column" : 28
+      },
+      "endPosition" : {
+        "line" : 179,
+        "column" : 9
+      },
+      "structures" : [ {
+        "structureId" : "if:1",
+        "kind" : "IF",
+        "code" : "if (shield > 0)",
+        "startPosition" : {
+          "line" : 178,
+          "column" : 13
+        },
+        "endPosition" : {
+          "line" : 178,
+          "column" : 40
+        },
+        "condition" : {
+          "code" : "shield > 0",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 178,
+            "column" : 17
+          },
+          "endPosition" : {
+            "line" : 178,
+            "column" : 26
+          }
+        },
+        "thenBranch" : {
+          "structureId" : "expr_stmt:1",
+          "kind" : "EXPR_STMT",
+          "code" : null,
+          "startPosition" : {
+            "line" : 178,
+            "column" : 29
+          },
+          "endPosition" : {
+            "line" : 178,
+            "column" : 40
+          },
+          "expr" : {
+            "code" : "shield -= 1",
+            "kind" : "ALL",
+            "startPosition" : {
+              "line" : 178,
+              "column" : 29
+            },
+            "endPosition" : {
+              "line" : 178,
+              "column" : 40
+            }
+          }
+        },
+        "elseBranch" : null
+      } ]
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:ch.epfl.printwizard.examples.report.Main.decayVulnerability()void",
+    "classId" : "cls:ch.epfl.printwizard.examples.report.Main",
+    "name" : "decayVulnerability",
+    "returnType" : "void",
+    "startLine" : 181,
+    "endLine" : 185,
+    "parameters" : [ ],
+    "structure" : {
+      "structureId" : "block:2",
+      "kind" : "BLOCK",
+      "code" : null,
+      "startPosition" : {
+        "line" : 181,
+        "column" : 35
+      },
+      "endPosition" : {
+        "line" : 185,
+        "column" : 9
+      },
+      "structures" : [ {
+        "structureId" : "if:1",
+        "kind" : "IF",
+        "code" : "if (vulnerabilityStacks > 0 && (vulnerabilityStacks % 2 == 0))",
+        "startPosition" : {
+          "line" : 182,
+          "column" : 13
+        },
+        "endPosition" : {
+          "line" : 184,
+          "column" : 13
+        },
+        "condition" : {
+          "code" : "vulnerabilityStacks > 0 && (vulnerabilityStacks % 2 == 0)",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 182,
+            "column" : 17
+          },
+          "endPosition" : {
+            "line" : 182,
+            "column" : 73
+          }
+        },
+        "thenBranch" : {
+          "structureId" : "block:1",
+          "kind" : "BLOCK",
+          "code" : null,
+          "startPosition" : {
+            "line" : 182,
+            "column" : 76
+          },
+          "endPosition" : {
+            "line" : 184,
+            "column" : 13
+          },
+          "structures" : [ {
+            "structureId" : "expr_stmt:1",
+            "kind" : "EXPR_STMT",
+            "code" : null,
+            "startPosition" : {
+              "line" : 183,
+              "column" : 17
+            },
+            "endPosition" : {
+              "line" : 183,
+              "column" : 41
+            },
+            "expr" : {
+              "code" : "vulnerabilityStacks -= 1",
+              "kind" : "ALL",
+              "startPosition" : {
+                "line" : 183,
+                "column" : 17
+              },
+              "endPosition" : {
+                "line" : 183,
+                "column" : 41
+              }
+            }
+          } ]
+        },
+        "elseBranch" : null
+      } ]
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:ch.epfl.printwizard.examples.report.Main.generateEffects(int)List<Effect>",
+    "classId" : "cls:ch.epfl.printwizard.examples.report.Main",
+    "name" : "generateEffects",
+    "returnType" : "List<Effect>",
+    "startLine" : 35,
+    "endLine" : 41,
+    "parameters" : [ {
+      "index" : 0,
+      "name" : "n",
+      "typeId" : "t:int"
+    } ],
+    "structure" : {
+      "structureId" : "block:2",
+      "kind" : "BLOCK",
+      "code" : null,
+      "startPosition" : {
+        "line" : 35,
+        "column" : 45
+      },
+      "endPosition" : {
+        "line" : 41,
+        "column" : 9
+      },
+      "structures" : [ {
+        "structureId" : "expr_stmt:1",
+        "kind" : "EXPR_STMT",
+        "code" : null,
+        "startPosition" : {
+          "line" : 36,
+          "column" : 13
+        },
+        "endPosition" : {
+          "line" : 36,
+          "column" : 50
+        },
+        "expr" : {
+          "code" : "List<Effect> out = new ArrayList<>(n)",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 36,
+            "column" : 13
+          },
+          "endPosition" : {
+            "line" : 36,
+            "column" : 50
+          }
+        }
+      }, {
+        "structureId" : "for:1",
+        "kind" : "FOR",
+        "code" : "for (int i = 0; i < n; i++)",
+        "startPosition" : {
+          "line" : 37,
+          "column" : 13
+        },
+        "endPosition" : {
+          "line" : 39,
+          "column" : 13
+        },
+        "initialization" : {
+          "code" : "int i = 0",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 37,
+            "column" : 18
+          },
+          "endPosition" : {
+            "line" : 37,
+            "column" : 26
+          }
+        },
+        "condition" : {
+          "code" : "i < n",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 37,
+            "column" : 29
+          },
+          "endPosition" : {
+            "line" : 37,
+            "column" : 33
+          }
+        },
+        "update" : {
+          "code" : "i++",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 37,
+            "column" : 36
+          },
+          "endPosition" : {
+            "line" : 37,
+            "column" : 38
+          }
+        },
+        "body" : {
+          "structureId" : "block:1",
+          "kind" : "BLOCK",
+          "code" : null,
+          "startPosition" : {
+            "line" : 37,
+            "column" : 41
+          },
+          "endPosition" : {
+            "line" : 39,
+            "column" : 13
+          },
+          "structures" : [ {
+            "structureId" : "expr_stmt:2",
+            "kind" : "EXPR_STMT",
+            "code" : null,
+            "startPosition" : {
+              "line" : 38,
+              "column" : 17
+            },
+            "endPosition" : {
+              "line" : 38,
+              "column" : 40
+            },
+            "expr" : {
+              "code" : "out.add(randomEffect())",
+              "kind" : "ALL",
+              "startPosition" : {
+                "line" : 38,
+                "column" : 17
+              },
+              "endPosition" : {
+                "line" : 38,
+                "column" : 40
+              }
+            }
+          } ]
+        }
+      }, {
+        "structureId" : "return:1",
+        "kind" : "RETURN",
+        "code" : "return out;",
+        "startPosition" : {
+          "line" : 40,
+          "column" : 13
+        },
+        "endPosition" : {
+          "line" : 40,
+          "column" : 23
+        },
+        "value" : {
+          "code" : "out",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 40,
+            "column" : 13
+          },
+          "endPosition" : {
+            "line" : 40,
+            "column" : 23
+          }
+        }
+      } ]
+    },
+    "localVars" : [ {
+      "index" : 1,
+      "name" : "out",
+      "typeId" : "List<Effect>"
+    }, {
+      "index" : 2,
+      "name" : "i",
+      "typeId" : "int"
+    } ]
+  }, {
+    "methodId" : "m:ch.epfl.printwizard.examples.report.Main.getHealth()int",
+    "classId" : "cls:ch.epfl.printwizard.examples.report.Main",
+    "name" : "getHealth",
+    "returnType" : "int",
+    "startLine" : 126,
+    "endLine" : 128,
+    "parameters" : [ ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "code" : null,
+      "startPosition" : {
+        "line" : 126,
+        "column" : 25
+      },
+      "endPosition" : {
+        "line" : 128,
+        "column" : 9
+      },
+      "structures" : [ {
+        "structureId" : "return:1",
+        "kind" : "RETURN",
+        "code" : "return health;",
+        "startPosition" : {
+          "line" : 127,
+          "column" : 13
+        },
+        "endPosition" : {
+          "line" : 127,
+          "column" : 26
+        },
+        "value" : {
+          "code" : "health",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 127,
+            "column" : 13
+          },
+          "endPosition" : {
+            "line" : 127,
+            "column" : 26
+          }
+        }
+      } ]
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:ch.epfl.printwizard.examples.report.Main.handleHeal(Player,int)void",
+    "classId" : "cls:ch.epfl.printwizard.examples.report.Main",
+    "name" : "handleHeal",
+    "returnType" : "void",
+    "startLine" : 90,
+    "endLine" : 92,
+    "parameters" : [ {
+      "index" : 0,
+      "name" : "player",
+      "typeId" : "t:Player"
+    }, {
+      "index" : 1,
+      "name" : "amount",
+      "typeId" : "t:int"
+    } ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "code" : null,
+      "startPosition" : {
+        "line" : 90,
+        "column" : 60
+      },
+      "endPosition" : {
+        "line" : 92,
+        "column" : 9
+      },
+      "structures" : [ {
+        "structureId" : "expr_stmt:1",
+        "kind" : "EXPR_STMT",
+        "code" : null,
+        "startPosition" : {
+          "line" : 91,
+          "column" : 13
+        },
+        "endPosition" : {
+          "line" : 91,
+          "column" : 32
+        },
+        "expr" : {
+          "code" : "player.heal(amount)",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 91,
+            "column" : 13
+          },
+          "endPosition" : {
+            "line" : 91,
+            "column" : 32
+          }
+        }
+      } ]
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:ch.epfl.printwizard.examples.report.Main.handleHit(Player,int,int)void",
+    "classId" : "cls:ch.epfl.printwizard.examples.report.Main",
+    "name" : "handleHit",
+    "returnType" : "void",
+    "startLine" : 76,
+    "endLine" : 88,
+    "parameters" : [ {
+      "index" : 0,
+      "name" : "player",
+      "typeId" : "t:Player"
+    }, {
+      "index" : 1,
+      "name" : "rawDamage",
+      "typeId" : "t:int"
+    }, {
+      "index" : 2,
+      "name" : "turn",
+      "typeId" : "t:int"
+    } ],
+    "structure" : {
+      "structureId" : "block:2",
+      "kind" : "BLOCK",
+      "code" : null,
+      "startPosition" : {
+        "line" : 76,
+        "column" : 72
+      },
+      "endPosition" : {
+        "line" : 88,
+        "column" : 9
+      },
+      "structures" : [ {
+        "structureId" : "expr_stmt:1",
+        "kind" : "EXPR_STMT",
+        "code" : null,
+        "startPosition" : {
+          "line" : 77,
+          "column" : 13
+        },
+        "endPosition" : {
+          "line" : 77,
+          "column" : 67
+        },
+        "expr" : {
+          "code" : "int multiplier = 1 + player.status.vulnerabilityStacks",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 77,
+            "column" : 13
+          },
+          "endPosition" : {
+            "line" : 77,
+            "column" : 67
+          }
+        }
+      }, {
+        "structureId" : "expr_stmt:2",
+        "kind" : "EXPR_STMT",
+        "code" : null,
+        "startPosition" : {
+          "line" : 78,
+          "column" : 13
+        },
+        "endPosition" : {
+          "line" : 78,
+          "column" : 54
+        },
+        "expr" : {
+          "code" : "int scaledDamage = rawDamage * multiplier",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 78,
+            "column" : 13
+          },
+          "endPosition" : {
+            "line" : 78,
+            "column" : 54
+          }
+        }
+      }, {
+        "structureId" : "expr_stmt:3",
+        "kind" : "EXPR_STMT",
+        "code" : null,
+        "startPosition" : {
+          "line" : 80,
+          "column" : 13
+        },
+        "endPosition" : {
+          "line" : 80,
+          "column" : 51
+        },
+        "expr" : {
+          "code" : "boolean crit = (rng.nextInt(100) < 10)",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 80,
+            "column" : 13
+          },
+          "endPosition" : {
+            "line" : 80,
+            "column" : 51
+          }
+        }
+      }, {
+        "structureId" : "expr_stmt:4",
+        "kind" : "EXPR_STMT",
+        "code" : null,
+        "startPosition" : {
+          "line" : 81,
+          "column" : 13
+        },
+        "endPosition" : {
+          "line" : 81,
+          "column" : 71
+        },
+        "expr" : {
+          "code" : "int finalDamage = crit ? (scaledDamage + 5) : scaledDamage",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 81,
+            "column" : 13
+          },
+          "endPosition" : {
+            "line" : 81,
+            "column" : 71
+          }
+        }
+      }, {
+        "structureId" : "expr_stmt:5",
+        "kind" : "EXPR_STMT",
+        "code" : null,
+        "startPosition" : {
+          "line" : 83,
+          "column" : 13
+        },
+        "endPosition" : {
+          "line" : 83,
+          "column" : 64
+        },
+        "expr" : {
+          "code" : "player.applyDamage(finalDamage, DamageSource.ENEMY)",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 83,
+            "column" : 13
+          },
+          "endPosition" : {
+            "line" : 83,
+            "column" : 64
+          }
+        }
+      }, {
+        "structureId" : "if:1",
+        "kind" : "IF",
+        "code" : "if (turn % 41 == 0 && rng.nextInt(100) < 20)",
+        "startPosition" : {
+          "line" : 85,
+          "column" : 13
+        },
+        "endPosition" : {
+          "line" : 87,
+          "column" : 13
+        },
+        "condition" : {
+          "code" : "turn % 41 == 0 && rng.nextInt(100) < 20",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 85,
+            "column" : 17
+          },
+          "endPosition" : {
+            "line" : 85,
+            "column" : 55
+          }
+        },
+        "thenBranch" : {
+          "structureId" : "block:1",
+          "kind" : "BLOCK",
+          "code" : null,
+          "startPosition" : {
+            "line" : 85,
+            "column" : 58
+          },
+          "endPosition" : {
+            "line" : 87,
+            "column" : 13
+          },
+          "structures" : [ {
+            "structureId" : "expr_stmt:6",
+            "kind" : "EXPR_STMT",
+            "code" : null,
+            "startPosition" : {
+              "line" : 86,
+              "column" : 17
+            },
+            "endPosition" : {
+              "line" : 86,
+              "column" : 57
+            },
+            "expr" : {
+              "code" : "player.applyDamage(7, DamageSource.TRAP)",
+              "kind" : "ALL",
+              "startPosition" : {
+                "line" : 86,
+                "column" : 17
+              },
+              "endPosition" : {
+                "line" : 86,
+                "column" : 57
+              }
+            }
+          } ]
+        },
+        "elseBranch" : null
+      } ]
+    },
+    "localVars" : [ {
+      "index" : 3,
+      "name" : "multiplier",
+      "typeId" : "int"
+    }, {
+      "index" : 4,
+      "name" : "scaledDamage",
+      "typeId" : "int"
+    }, {
+      "index" : 5,
+      "name" : "crit",
+      "typeId" : "boolean"
+    }, {
+      "index" : 6,
+      "name" : "finalDamage",
+      "typeId" : "int"
+    } ]
+  }, {
+    "methodId" : "m:ch.epfl.printwizard.examples.report.Main.handleRegen(Player,int)void",
+    "classId" : "cls:ch.epfl.printwizard.examples.report.Main",
+    "name" : "handleRegen",
+    "returnType" : "void",
+    "startLine" : 102,
+    "endLine" : 104,
+    "parameters" : [ {
+      "index" : 0,
+      "name" : "player",
+      "typeId" : "t:Player"
+    }, {
+      "index" : 1,
+      "name" : "perTurn",
+      "typeId" : "t:int"
+    } ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "code" : null,
+      "startPosition" : {
+        "line" : 102,
+        "column" : 62
+      },
+      "endPosition" : {
+        "line" : 104,
+        "column" : 9
+      },
+      "structures" : [ {
+        "structureId" : "expr_stmt:1",
+        "kind" : "EXPR_STMT",
+        "code" : null,
+        "startPosition" : {
+          "line" : 103,
+          "column" : 13
+        },
+        "endPosition" : {
+          "line" : 103,
+          "column" : 87
+        },
+        "expr" : {
+          "code" : "player.status.regenPerTurn = Math.max(player.status.regenPerTurn, perTurn)",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 103,
+            "column" : 13
+          },
+          "endPosition" : {
+            "line" : 103,
+            "column" : 87
+          }
+        }
+      } ]
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:ch.epfl.printwizard.examples.report.Main.handleShield(Player,int)void",
+    "classId" : "cls:ch.epfl.printwizard.examples.report.Main",
+    "name" : "handleShield",
+    "returnType" : "void",
+    "startLine" : 94,
+    "endLine" : 96,
+    "parameters" : [ {
+      "index" : 0,
+      "name" : "player",
+      "typeId" : "t:Player"
+    }, {
+      "index" : 1,
+      "name" : "amount",
+      "typeId" : "t:int"
+    } ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "code" : null,
+      "startPosition" : {
+        "line" : 94,
+        "column" : 62
+      },
+      "endPosition" : {
+        "line" : 96,
+        "column" : 9
+      },
+      "structures" : [ {
+        "structureId" : "expr_stmt:1",
+        "kind" : "EXPR_STMT",
+        "code" : null,
+        "startPosition" : {
+          "line" : 95,
+          "column" : 13
+        },
+        "endPosition" : {
+          "line" : 95,
+          "column" : 44
+        },
+        "expr" : {
+          "code" : "player.status.addShield(amount)",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 95,
+            "column" : 13
+          },
+          "endPosition" : {
+            "line" : 95,
+            "column" : 44
+          }
+        }
+      } ]
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:ch.epfl.printwizard.examples.report.Main.handleVulnerability(Player,int)void",
+    "classId" : "cls:ch.epfl.printwizard.examples.report.Main",
+    "name" : "handleVulnerability",
+    "returnType" : "void",
+    "startLine" : 98,
+    "endLine" : 100,
+    "parameters" : [ {
+      "index" : 0,
+      "name" : "player",
+      "typeId" : "t:Player"
+    }, {
+      "index" : 1,
+      "name" : "stacks",
+      "typeId" : "t:int"
+    } ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "code" : null,
+      "startPosition" : {
+        "line" : 98,
+        "column" : 69
+      },
+      "endPosition" : {
+        "line" : 100,
+        "column" : 9
+      },
+      "structures" : [ {
+        "structureId" : "expr_stmt:1",
+        "kind" : "EXPR_STMT",
+        "code" : null,
+        "startPosition" : {
+          "line" : 99,
+          "column" : 13
+        },
+        "endPosition" : {
+          "line" : 99,
+          "column" : 51
+        },
+        "expr" : {
+          "code" : "player.status.addVulnerability(stacks)",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 99,
+            "column" : 13
+          },
+          "endPosition" : {
+            "line" : 99,
+            "column" : 51
+          }
+        }
+      } ]
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:ch.epfl.printwizard.examples.report.Main.heal(int)Effect",
+    "classId" : "cls:ch.epfl.printwizard.examples.report.Main",
+    "name" : "heal",
+    "returnType" : "Effect",
+    "startLine" : 211,
+    "endLine" : 211,
+    "parameters" : [ {
+      "index" : 0,
+      "name" : "hp",
+      "typeId" : "t:int"
+    } ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "code" : null,
+      "startPosition" : {
+        "line" : 211,
+        "column" : 36
+      },
+      "endPosition" : {
+        "line" : 211,
+        "column" : 72
+      },
+      "structures" : [ {
+        "structureId" : "return:1",
+        "kind" : "RETURN",
+        "code" : "return new Effect(Type.HEAL, hp);",
+        "startPosition" : {
+          "line" : 211,
+          "column" : 38
+        },
+        "endPosition" : {
+          "line" : 211,
+          "column" : 70
+        },
+        "value" : {
+          "code" : "new Effect(Type.HEAL, hp)",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 211,
+            "column" : 38
+          },
+          "endPosition" : {
+            "line" : 211,
+            "column" : 70
+          }
+        }
+      } ]
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:ch.epfl.printwizard.examples.report.Main.heal(int)int",
+    "classId" : "cls:ch.epfl.printwizard.examples.report.Main",
+    "name" : "heal",
+    "returnType" : "int",
+    "startLine" : 130,
+    "endLine" : 134,
+    "parameters" : [ {
+      "index" : 0,
+      "name" : "amount",
+      "typeId" : "t:int"
+    } ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "code" : null,
+      "startPosition" : {
+        "line" : 130,
+        "column" : 30
+      },
+      "endPosition" : {
+        "line" : 134,
+        "column" : 9
+      },
+      "structures" : [ {
+        "structureId" : "expr_stmt:1",
+        "kind" : "EXPR_STMT",
+        "code" : null,
+        "startPosition" : {
+          "line" : 131,
+          "column" : 13
+        },
+        "endPosition" : {
+          "line" : 131,
+          "column" : 32
+        },
+        "expr" : {
+          "code" : "int before = health",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 131,
+            "column" : 13
+          },
+          "endPosition" : {
+            "line" : 131,
+            "column" : 32
+          }
+        }
+      }, {
+        "structureId" : "expr_stmt:2",
+        "kind" : "EXPR_STMT",
+        "code" : null,
+        "startPosition" : {
+          "line" : 132,
+          "column" : 13
+        },
+        "endPosition" : {
+          "line" : 132,
+          "column" : 50
+        },
+        "expr" : {
+          "code" : "health = health + Math.max(0, amount)",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 132,
+            "column" : 13
+          },
+          "endPosition" : {
+            "line" : 132,
+            "column" : 50
+          }
+        }
+      }, {
+        "structureId" : "return:1",
+        "kind" : "RETURN",
+        "code" : "return health - before;",
+        "startPosition" : {
+          "line" : 133,
+          "column" : 13
+        },
+        "endPosition" : {
+          "line" : 133,
+          "column" : 35
+        },
+        "value" : {
+          "code" : "health - before",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 133,
+            "column" : 13
+          },
+          "endPosition" : {
+            "line" : 133,
+            "column" : 35
+          }
+        }
+      } ]
+    },
+    "localVars" : [ {
+      "index" : 1,
+      "name" : "before",
+      "typeId" : "int"
+    } ]
+  }, {
+    "methodId" : "m:ch.epfl.printwizard.examples.report.Main.hit(int)Effect",
+    "classId" : "cls:ch.epfl.printwizard.examples.report.Main",
+    "name" : "hit",
+    "returnType" : "Effect",
+    "startLine" : 210,
+    "endLine" : 210,
+    "parameters" : [ {
+      "index" : 0,
+      "name" : "dmg",
+      "typeId" : "t:int"
+    } ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "code" : null,
+      "startPosition" : {
+        "line" : 210,
+        "column" : 36
+      },
+      "endPosition" : {
+        "line" : 210,
+        "column" : 72
+      },
+      "structures" : [ {
+        "structureId" : "return:1",
+        "kind" : "RETURN",
+        "code" : "return new Effect(Type.HIT, dmg);",
+        "startPosition" : {
+          "line" : 210,
+          "column" : 38
+        },
+        "endPosition" : {
+          "line" : 210,
+          "column" : 70
+        },
+        "value" : {
+          "code" : "new Effect(Type.HIT, dmg)",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 210,
+            "column" : 38
+          },
+          "endPosition" : {
+            "line" : 210,
+            "column" : 70
+          }
+        }
+      } ]
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:ch.epfl.printwizard.examples.report.Main.main(String[])void",
+    "classId" : "cls:ch.epfl.printwizard.examples.report.Main",
+    "name" : "main",
+    "returnType" : "void",
+    "startLine" : 7,
+    "endLine" : 26,
+    "parameters" : [ {
+      "index" : 0,
+      "name" : "args",
+      "typeId" : "t:String[]"
+    } ],
+    "structure" : {
+      "structureId" : "block:2",
+      "kind" : "BLOCK",
+      "code" : null,
+      "startPosition" : {
+        "line" : 7,
+        "column" : 44
+      },
+      "endPosition" : {
+        "line" : 26,
+        "column" : 5
+      },
+      "structures" : [ {
+        "structureId" : "expr_stmt:1",
+        "kind" : "EXPR_STMT",
+        "code" : null,
+        "startPosition" : {
+          "line" : 8,
+          "column" : 9
+        },
+        "endPosition" : {
+          "line" : 8,
+          "column" : 31
+        },
+        "expr" : {
+          "code" : "long seed = 123456789L",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 8,
+            "column" : 9
+          },
+          "endPosition" : {
+            "line" : 8,
+            "column" : 31
+          }
+        }
+      }, {
+        "structureId" : "expr_stmt:2",
+        "kind" : "EXPR_STMT",
+        "code" : null,
+        "startPosition" : {
+          "line" : 9,
+          "column" : 9
+        },
+        "endPosition" : {
+          "line" : 9,
+          "column" : 46
+        },
+        "expr" : {
+          "code" : "Simulation sim = new Simulation(seed)",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 9,
+            "column" : 9
+          },
+          "endPosition" : {
+            "line" : 9,
+            "column" : 46
+          }
+        }
+      }, {
+        "structureId" : "expr_stmt:3",
+        "kind" : "EXPR_STMT",
+        "code" : null,
+        "startPosition" : {
+          "line" : 11,
+          "column" : 9
+        },
+        "endPosition" : {
+          "line" : 11,
+          "column" : 53
+        },
+        "expr" : {
+          "code" : "Player player = new Player(\"PlayerName\", 50)",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 11,
+            "column" : 9
+          },
+          "endPosition" : {
+            "line" : 11,
+            "column" : 53
+          }
+        }
+      }, {
+        "structureId" : "expr_stmt:4",
+        "kind" : "EXPR_STMT",
+        "code" : null,
+        "startPosition" : {
+          "line" : 12,
+          "column" : 9
+        },
+        "endPosition" : {
+          "line" : 12,
+          "column" : 56
+        },
+        "expr" : {
+          "code" : "List<Effect> effects = sim.generateEffects(300)",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 12,
+            "column" : 9
+          },
+          "endPosition" : {
+            "line" : 12,
+            "column" : 56
+          }
+        }
+      }, {
+        "structureId" : "expr_stmt:5",
+        "kind" : "EXPR_STMT",
+        "code" : null,
+        "startPosition" : {
+          "line" : 14,
+          "column" : 9
+        },
+        "endPosition" : {
+          "line" : 14,
+          "column" : 41
+        },
+        "expr" : {
+          "code" : "effects.set(120, Effect.hit(12))",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 14,
+            "column" : 9
+          },
+          "endPosition" : {
+            "line" : 14,
+            "column" : 41
+          }
+        }
+      }, {
+        "structureId" : "expr_stmt:6",
+        "kind" : "EXPR_STMT",
+        "code" : null,
+        "startPosition" : {
+          "line" : 15,
+          "column" : 9
+        },
+        "endPosition" : {
+          "line" : 15,
+          "column" : 43
+        },
+        "expr" : {
+          "code" : "effects.set(121, Effect.shield(8))",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 15,
+            "column" : 9
+          },
+          "endPosition" : {
+            "line" : 15,
+            "column" : 43
+          }
+        }
+      }, {
+        "structureId" : "expr_stmt:7",
+        "kind" : "EXPR_STMT",
+        "code" : null,
+        "startPosition" : {
+          "line" : 16,
+          "column" : 9
+        },
+        "endPosition" : {
+          "line" : 16,
+          "column" : 50
+        },
+        "expr" : {
+          "code" : "effects.set(122, Effect.vulnerability(2))",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 16,
+            "column" : 9
+          },
+          "endPosition" : {
+            "line" : 16,
+            "column" : 50
+          }
+        }
+      }, {
+        "structureId" : "expr_stmt:8",
+        "kind" : "EXPR_STMT",
+        "code" : null,
+        "startPosition" : {
+          "line" : 17,
+          "column" : 9
+        },
+        "endPosition" : {
+          "line" : 17,
+          "column" : 41
+        },
+        "expr" : {
+          "code" : "effects.set(123, Effect.hit(25))",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 17,
+            "column" : 9
+          },
+          "endPosition" : {
+            "line" : 17,
+            "column" : 41
+          }
+        }
+      }, {
+        "structureId" : "for:1",
+        "kind" : "FOR",
+        "code" : "for (int turn = 0; turn < effects.size(); turn++)",
+        "startPosition" : {
+          "line" : 19,
+          "column" : 9
+        },
+        "endPosition" : {
+          "line" : 23,
+          "column" : 9
+        },
+        "initialization" : {
+          "code" : "int turn = 0",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 19,
+            "column" : 14
+          },
+          "endPosition" : {
+            "line" : 19,
+            "column" : 25
+          }
+        },
+        "condition" : {
+          "code" : "turn < effects.size()",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 19,
+            "column" : 28
+          },
+          "endPosition" : {
+            "line" : 19,
+            "column" : 48
+          }
+        },
+        "update" : {
+          "code" : "turn++",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 19,
+            "column" : 51
+          },
+          "endPosition" : {
+            "line" : 19,
+            "column" : 56
+          }
+        },
+        "body" : {
+          "structureId" : "block:1",
+          "kind" : "BLOCK",
+          "code" : null,
+          "startPosition" : {
+            "line" : 19,
+            "column" : 59
+          },
+          "endPosition" : {
+            "line" : 23,
+            "column" : 9
+          },
+          "structures" : [ {
+            "structureId" : "expr_stmt:9",
+            "kind" : "EXPR_STMT",
+            "code" : null,
+            "startPosition" : {
+              "line" : 20,
+              "column" : 13
+            },
+            "endPosition" : {
+              "line" : 20,
+              "column" : 41
+            },
+            "expr" : {
+              "code" : "Effect e = effects.get(turn)",
+              "kind" : "ALL",
+              "startPosition" : {
+                "line" : 20,
+                "column" : 13
+              },
+              "endPosition" : {
+                "line" : 20,
+                "column" : 41
+              }
+            }
+          }, {
+            "structureId" : "expr_stmt:10",
+            "kind" : "EXPR_STMT",
+            "code" : null,
+            "startPosition" : {
+              "line" : 22,
+              "column" : 13
+            },
+            "endPosition" : {
+              "line" : 22,
+              "column" : 45
+            },
+            "expr" : {
+              "code" : "sim.applyEffect(player, e, turn)",
+              "kind" : "ALL",
+              "startPosition" : {
+                "line" : 22,
+                "column" : 13
+              },
+              "endPosition" : {
+                "line" : 22,
+                "column" : 45
+              }
+            }
+          } ]
+        }
+      }, {
+        "structureId" : "expr_stmt:11",
+        "kind" : "EXPR_STMT",
+        "code" : null,
+        "startPosition" : {
+          "line" : 25,
+          "column" : 9
+        },
+        "endPosition" : {
+          "line" : 25,
+          "column" : 63
+        },
+        "expr" : {
+          "code" : "System.out.println(\"\\nFinal: \" + player.debugString())",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 25,
+            "column" : 9
+          },
+          "endPosition" : {
+            "line" : 25,
+            "column" : 63
+          }
+        }
+      } ]
+    },
+    "localVars" : [ {
+      "index" : 1,
+      "name" : "seed",
+      "typeId" : "long"
+    }, {
+      "index" : 2,
+      "name" : "sim",
+      "typeId" : "Simulation"
+    }, {
+      "index" : 3,
+      "name" : "player",
+      "typeId" : "Player"
+    }, {
+      "index" : 4,
+      "name" : "effects",
+      "typeId" : "List<Effect>"
+    }, {
+      "index" : 5,
+      "name" : "turn",
+      "typeId" : "int"
+    }, {
+      "index" : 6,
+      "name" : "e",
+      "typeId" : "Effect"
+    } ]
+  }, {
+    "methodId" : "m:ch.epfl.printwizard.examples.report.Main.randomEffect()Effect",
+    "classId" : "cls:ch.epfl.printwizard.examples.report.Main",
+    "name" : "randomEffect",
+    "returnType" : "Effect",
+    "startLine" : 43,
+    "endLine" : 50,
+    "parameters" : [ ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "code" : null,
+      "startPosition" : {
+        "line" : 43,
+        "column" : 39
+      },
+      "endPosition" : {
+        "line" : 50,
+        "column" : 9
+      },
+      "structures" : [ {
+        "structureId" : "expr_stmt:1",
+        "kind" : "EXPR_STMT",
+        "code" : null,
+        "startPosition" : {
+          "line" : 44,
+          "column" : 13
+        },
+        "endPosition" : {
+          "line" : 44,
+          "column" : 40
+        },
+        "expr" : {
+          "code" : "int roll = rng.nextInt(100)",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 44,
+            "column" : 13
+          },
+          "endPosition" : {
+            "line" : 44,
+            "column" : 40
+          }
+        }
+      }, {
+        "structureId" : "if:1",
+        "kind" : "IF",
+        "code" : "if (roll < 55)",
+        "startPosition" : {
+          "line" : 45,
+          "column" : 13
+        },
+        "endPosition" : {
+          "line" : 45,
+          "column" : 66
+        },
+        "condition" : {
+          "code" : "roll < 55",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 45,
+            "column" : 17
+          },
+          "endPosition" : {
+            "line" : 45,
+            "column" : 25
+          }
+        },
+        "thenBranch" : {
+          "structureId" : "return:1",
+          "kind" : "RETURN",
+          "code" : "return Effect.hit(1 + rng.nextInt(10));",
+          "startPosition" : {
+            "line" : 45,
+            "column" : 28
+          },
+          "endPosition" : {
+            "line" : 45,
+            "column" : 66
+          },
+          "value" : {
+            "code" : "Effect.hit(1 + rng.nextInt(10))",
+            "kind" : "ALL",
+            "startPosition" : {
+              "line" : 45,
+              "column" : 28
+            },
+            "endPosition" : {
+              "line" : 45,
+              "column" : 66
+            }
+          }
+        },
+        "elseBranch" : null
+      }, {
+        "structureId" : "if:2",
+        "kind" : "IF",
+        "code" : "if (roll < 70)",
+        "startPosition" : {
+          "line" : 46,
+          "column" : 13
+        },
+        "endPosition" : {
+          "line" : 46,
+          "column" : 66
+        },
+        "condition" : {
+          "code" : "roll < 70",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 46,
+            "column" : 17
+          },
+          "endPosition" : {
+            "line" : 46,
+            "column" : 25
+          }
+        },
+        "thenBranch" : {
+          "structureId" : "return:2",
+          "kind" : "RETURN",
+          "code" : "return Effect.heal(1 + rng.nextInt(6));",
+          "startPosition" : {
+            "line" : 46,
+            "column" : 28
+          },
+          "endPosition" : {
+            "line" : 46,
+            "column" : 66
+          },
+          "value" : {
+            "code" : "Effect.heal(1 + rng.nextInt(6))",
+            "kind" : "ALL",
+            "startPosition" : {
+              "line" : 46,
+              "column" : 28
+            },
+            "endPosition" : {
+              "line" : 46,
+              "column" : 66
+            }
+          }
+        },
+        "elseBranch" : null
+      }, {
+        "structureId" : "if:3",
+        "kind" : "IF",
+        "code" : "if (roll < 85)",
+        "startPosition" : {
+          "line" : 47,
+          "column" : 13
+        },
+        "endPosition" : {
+          "line" : 47,
+          "column" : 68
+        },
+        "condition" : {
+          "code" : "roll < 85",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 47,
+            "column" : 17
+          },
+          "endPosition" : {
+            "line" : 47,
+            "column" : 25
+          }
+        },
+        "thenBranch" : {
+          "structureId" : "return:3",
+          "kind" : "RETURN",
+          "code" : "return Effect.shield(1 + rng.nextInt(8));",
+          "startPosition" : {
+            "line" : 47,
+            "column" : 28
+          },
+          "endPosition" : {
+            "line" : 47,
+            "column" : 68
+          },
+          "value" : {
+            "code" : "Effect.shield(1 + rng.nextInt(8))",
+            "kind" : "ALL",
+            "startPosition" : {
+              "line" : 47,
+              "column" : 28
+            },
+            "endPosition" : {
+              "line" : 47,
+              "column" : 68
+            }
+          }
+        },
+        "elseBranch" : null
+      }, {
+        "structureId" : "if:4",
+        "kind" : "IF",
+        "code" : "if (roll < 95)",
+        "startPosition" : {
+          "line" : 48,
+          "column" : 13
+        },
+        "endPosition" : {
+          "line" : 48,
+          "column" : 75
+        },
+        "condition" : {
+          "code" : "roll < 95",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 48,
+            "column" : 17
+          },
+          "endPosition" : {
+            "line" : 48,
+            "column" : 25
+          }
+        },
+        "thenBranch" : {
+          "structureId" : "return:4",
+          "kind" : "RETURN",
+          "code" : "return Effect.vulnerability(1 + rng.nextInt(2));",
+          "startPosition" : {
+            "line" : 48,
+            "column" : 28
+          },
+          "endPosition" : {
+            "line" : 48,
+            "column" : 75
+          },
+          "value" : {
+            "code" : "Effect.vulnerability(1 + rng.nextInt(2))",
+            "kind" : "ALL",
+            "startPosition" : {
+              "line" : 48,
+              "column" : 28
+            },
+            "endPosition" : {
+              "line" : 48,
+              "column" : 75
+            }
+          }
+        },
+        "elseBranch" : null
+      }, {
+        "structureId" : "return:5",
+        "kind" : "RETURN",
+        "code" : "return Effect.regen(1 + rng.nextInt(3));",
+        "startPosition" : {
+          "line" : 49,
+          "column" : 13
+        },
+        "endPosition" : {
+          "line" : 49,
+          "column" : 52
+        },
+        "value" : {
+          "code" : "Effect.regen(1 + rng.nextInt(3))",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 49,
+            "column" : 13
+          },
+          "endPosition" : {
+            "line" : 49,
+            "column" : 52
+          }
+        }
+      } ]
+    },
+    "localVars" : [ {
+      "index" : 0,
+      "name" : "roll",
+      "typeId" : "int"
+    } ]
+  }, {
+    "methodId" : "m:ch.epfl.printwizard.examples.report.Main.regen(int)Effect",
+    "classId" : "cls:ch.epfl.printwizard.examples.report.Main",
+    "name" : "regen",
+    "returnType" : "Effect",
+    "startLine" : 214,
+    "endLine" : 214,
+    "parameters" : [ {
+      "index" : 0,
+      "name" : "perTurn",
+      "typeId" : "t:int"
+    } ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "code" : null,
+      "startPosition" : {
+        "line" : 214,
+        "column" : 42
+      },
+      "endPosition" : {
+        "line" : 214,
+        "column" : 84
+      },
+      "structures" : [ {
+        "structureId" : "return:1",
+        "kind" : "RETURN",
+        "code" : "return new Effect(Type.REGEN, perTurn);",
+        "startPosition" : {
+          "line" : 214,
+          "column" : 44
+        },
+        "endPosition" : {
+          "line" : 214,
+          "column" : 82
+        },
+        "value" : {
+          "code" : "new Effect(Type.REGEN, perTurn)",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 214,
+            "column" : 44
+          },
+          "endPosition" : {
+            "line" : 214,
+            "column" : 82
+          }
+        }
+      } ]
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:ch.epfl.printwizard.examples.report.Main.shield(int)Effect",
+    "classId" : "cls:ch.epfl.printwizard.examples.report.Main",
+    "name" : "shield",
+    "returnType" : "Effect",
+    "startLine" : 212,
+    "endLine" : 212,
+    "parameters" : [ {
+      "index" : 0,
+      "name" : "s",
+      "typeId" : "t:int"
+    } ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "code" : null,
+      "startPosition" : {
+        "line" : 212,
+        "column" : 37
+      },
+      "endPosition" : {
+        "line" : 212,
+        "column" : 74
+      },
+      "structures" : [ {
+        "structureId" : "return:1",
+        "kind" : "RETURN",
+        "code" : "return new Effect(Type.SHIELD, s);",
+        "startPosition" : {
+          "line" : 212,
+          "column" : 39
+        },
+        "endPosition" : {
+          "line" : 212,
+          "column" : 72
+        },
+        "value" : {
+          "code" : "new Effect(Type.SHIELD, s)",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 212,
+            "column" : 39
+          },
+          "endPosition" : {
+            "line" : 212,
+            "column" : 72
+          }
+        }
+      } ]
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:ch.epfl.printwizard.examples.report.Main.tickStatus(Player,int)void",
+    "classId" : "cls:ch.epfl.printwizard.examples.report.Main",
+    "name" : "tickStatus",
+    "returnType" : "void",
+    "startLine" : 64,
+    "endLine" : 74,
+    "parameters" : [ {
+      "index" : 0,
+      "name" : "player",
+      "typeId" : "t:Player"
+    }, {
+      "index" : 1,
+      "name" : "turn",
+      "typeId" : "t:int"
+    } ],
+    "structure" : {
+      "structureId" : "block:3",
+      "kind" : "BLOCK",
+      "code" : null,
+      "startPosition" : {
+        "line" : 64,
+        "column" : 58
+      },
+      "endPosition" : {
+        "line" : 74,
+        "column" : 9
+      },
+      "structures" : [ {
+        "structureId" : "expr_stmt:1",
+        "kind" : "EXPR_STMT",
+        "code" : null,
+        "startPosition" : {
+          "line" : 65,
+          "column" : 13
+        },
+        "endPosition" : {
+          "line" : 65,
+          "column" : 40
+        },
+        "expr" : {
+          "code" : "player.status.decayShield()",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 65,
+            "column" : 13
+          },
+          "endPosition" : {
+            "line" : 65,
+            "column" : 40
+          }
+        }
+      }, {
+        "structureId" : "expr_stmt:2",
+        "kind" : "EXPR_STMT",
+        "code" : null,
+        "startPosition" : {
+          "line" : 66,
+          "column" : 13
+        },
+        "endPosition" : {
+          "line" : 66,
+          "column" : 47
+        },
+        "expr" : {
+          "code" : "player.status.decayVulnerability()",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 66,
+            "column" : 13
+          },
+          "endPosition" : {
+            "line" : 66,
+            "column" : 47
+          }
+        }
+      }, {
+        "structureId" : "if:2",
+        "kind" : "IF",
+        "code" : "if (player.status.regenPerTurn > 0)",
+        "startPosition" : {
+          "line" : 68,
+          "column" : 13
+        },
+        "endPosition" : {
+          "line" : 73,
+          "column" : 13
+        },
+        "condition" : {
+          "code" : "player.status.regenPerTurn > 0",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 68,
+            "column" : 17
+          },
+          "endPosition" : {
+            "line" : 68,
+            "column" : 46
+          }
+        },
+        "thenBranch" : {
+          "structureId" : "block:2",
+          "kind" : "BLOCK",
+          "code" : null,
+          "startPosition" : {
+            "line" : 68,
+            "column" : 49
+          },
+          "endPosition" : {
+            "line" : 73,
+            "column" : 13
+          },
+          "structures" : [ {
+            "structureId" : "expr_stmt:3",
+            "kind" : "EXPR_STMT",
+            "code" : null,
+            "startPosition" : {
+              "line" : 69,
+              "column" : 17
+            },
+            "endPosition" : {
+              "line" : 69,
+              "column" : 56
+            },
+            "expr" : {
+              "code" : "player.heal(player.status.regenPerTurn)",
+              "kind" : "ALL",
+              "startPosition" : {
+                "line" : 69,
+                "column" : 17
+              },
+              "endPosition" : {
+                "line" : 69,
+                "column" : 56
+              }
+            }
+          }, {
+            "structureId" : "if:1",
+            "kind" : "IF",
+            "code" : "if (turn % 17 == 0)",
+            "startPosition" : {
+              "line" : 70,
+              "column" : 17
+            },
+            "endPosition" : {
+              "line" : 72,
+              "column" : 17
+            },
+            "condition" : {
+              "code" : "turn % 17 == 0",
+              "kind" : "ALL",
+              "startPosition" : {
+                "line" : 70,
+                "column" : 21
+              },
+              "endPosition" : {
+                "line" : 70,
+                "column" : 34
+              }
+            },
+            "thenBranch" : {
+              "structureId" : "block:1",
+              "kind" : "BLOCK",
+              "code" : null,
+              "startPosition" : {
+                "line" : 70,
+                "column" : 37
+              },
+              "endPosition" : {
+                "line" : 72,
+                "column" : 17
+              },
+              "structures" : [ {
+                "structureId" : "expr_stmt:4",
+                "kind" : "EXPR_STMT",
+                "code" : null,
+                "startPosition" : {
+                  "line" : 71,
+                  "column" : 21
+                },
+                "endPosition" : {
+                  "line" : 71,
+                  "column" : 51
+                },
+                "expr" : {
+                  "code" : "player.status.regenPerTurn = 0",
+                  "kind" : "ALL",
+                  "startPosition" : {
+                    "line" : 71,
+                    "column" : 21
+                  },
+                  "endPosition" : {
+                    "line" : 71,
+                    "column" : 51
+                  }
+                }
+              } ]
+            },
+            "elseBranch" : null
+          } ]
+        },
+        "elseBranch" : null
+      } ]
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:ch.epfl.printwizard.examples.report.Main.toString()String",
+    "classId" : "cls:ch.epfl.printwizard.examples.report.Main",
+    "name" : "toString",
+    "returnType" : "String",
+    "startLine" : 216,
+    "endLine" : 219,
+    "parameters" : [ ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "code" : null,
+      "startPosition" : {
+        "line" : 217,
+        "column" : 34
+      },
+      "endPosition" : {
+        "line" : 219,
+        "column" : 9
+      },
+      "structures" : [ {
+        "structureId" : "return:1",
+        "kind" : "RETURN",
+        "code" : "return \"Effect{\" + type + \", amount=\" + amount + \"}\";",
+        "startPosition" : {
+          "line" : 218,
+          "column" : 13
+        },
+        "endPosition" : {
+          "line" : 218,
+          "column" : 65
+        },
+        "value" : {
+          "code" : "\"Effect{\" + type + \", amount=\" + amount + \"}\"",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 218,
+            "column" : 13
+          },
+          "endPosition" : {
+            "line" : 218,
+            "column" : 65
+          }
+        }
+      } ]
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:ch.epfl.printwizard.examples.report.Main.vulnerability(int)Effect",
+    "classId" : "cls:ch.epfl.printwizard.examples.report.Main",
+    "name" : "vulnerability",
+    "returnType" : "Effect",
+    "startLine" : 213,
+    "endLine" : 213,
+    "parameters" : [ {
+      "index" : 0,
+      "name" : "stacks",
+      "typeId" : "t:int"
+    } ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "code" : null,
+      "startPosition" : {
+        "line" : 213,
+        "column" : 49
+      },
+      "endPosition" : {
+        "line" : 213,
+        "column" : 98
+      },
+      "structures" : [ {
+        "structureId" : "return:1",
+        "kind" : "RETURN",
+        "code" : "return new Effect(Type.VULNERABILITY, stacks);",
+        "startPosition" : {
+          "line" : 213,
+          "column" : 51
+        },
+        "endPosition" : {
+          "line" : 213,
+          "column" : 96
+        },
+        "value" : {
+          "code" : "new Effect(Type.VULNERABILITY, stacks)",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 213,
+            "column" : 51
+          },
+          "endPosition" : {
+            "line" : 213,
+            "column" : 96
+          }
+        }
+      } ]
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:ch.epfl.printwizard.examples.report.Player.Player(String,int)<init>",
+    "classId" : "cls:ch.epfl.printwizard.examples.report.Main.Player",
+    "name" : "Player",
+    "returnType" : "<init>",
+    "startLine" : 120,
+    "endLine" : 124,
+    "parameters" : [ {
+      "index" : 0,
+      "name" : "name",
+      "typeId" : "t:String"
+    }, {
+      "index" : 1,
+      "name" : "health",
+      "typeId" : "t:int"
+    } ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "code" : null,
+      "startPosition" : {
+        "line" : 120,
+        "column" : 41
+      },
+      "endPosition" : {
+        "line" : 124,
+        "column" : 9
+      },
+      "structures" : [ {
+        "structureId" : "expr_stmt:1",
+        "kind" : "EXPR_STMT",
+        "code" : null,
+        "startPosition" : {
+          "line" : 121,
+          "column" : 13
+        },
+        "endPosition" : {
+          "line" : 121,
+          "column" : 29
+        },
+        "expr" : {
+          "code" : "this.name = name",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 121,
+            "column" : 13
+          },
+          "endPosition" : {
+            "line" : 121,
+            "column" : 29
+          }
+        }
+      }, {
+        "structureId" : "expr_stmt:2",
+        "kind" : "EXPR_STMT",
+        "code" : null,
+        "startPosition" : {
+          "line" : 122,
+          "column" : 13
+        },
+        "endPosition" : {
+          "line" : 122,
+          "column" : 33
+        },
+        "expr" : {
+          "code" : "this.health = health",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 122,
+            "column" : 13
+          },
+          "endPosition" : {
+            "line" : 122,
+            "column" : 33
+          }
+        }
+      }, {
+        "structureId" : "expr_stmt:3",
+        "kind" : "EXPR_STMT",
+        "code" : null,
+        "startPosition" : {
+          "line" : 123,
+          "column" : 13
+        },
+        "endPosition" : {
+          "line" : 123,
+          "column" : 39
+        },
+        "expr" : {
+          "code" : "this.status = new Status()",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 123,
+            "column" : 13
+          },
+          "endPosition" : {
+            "line" : 123,
+            "column" : 39
+          }
+        }
+      } ]
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:ch.epfl.printwizard.examples.report.Player.applyDamage(int,DamageSource)void",
+    "classId" : "cls:ch.epfl.printwizard.examples.report.Main.Player",
+    "name" : "applyDamage",
+    "returnType" : "void",
+    "startLine" : 136,
+    "endLine" : 150,
+    "parameters" : [ {
+      "index" : 0,
+      "name" : "damage",
+      "typeId" : "t:int"
+    }, {
+      "index" : 1,
+      "name" : "source",
+      "typeId" : "t:DamageSource"
+    } ],
+    "structure" : {
+      "structureId" : "block:3",
+      "kind" : "BLOCK",
+      "code" : null,
+      "startPosition" : {
+        "line" : 136,
+        "column" : 59
+      },
+      "endPosition" : {
+        "line" : 150,
+        "column" : 9
+      },
+      "structures" : [ {
+        "structureId" : "expr_stmt:1",
+        "kind" : "EXPR_STMT",
+        "code" : null,
+        "startPosition" : {
+          "line" : 137,
+          "column" : 13
+        },
+        "endPosition" : {
+          "line" : 137,
+          "column" : 47
+        },
+        "expr" : {
+          "code" : "int incoming = Math.max(0, damage)",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 137,
+            "column" : 13
+          },
+          "endPosition" : {
+            "line" : 137,
+            "column" : 47
+          }
+        }
+      }, {
+        "structureId" : "expr_stmt:2",
+        "kind" : "EXPR_STMT",
+        "code" : null,
+        "startPosition" : {
+          "line" : 139,
+          "column" : 13
+        },
+        "endPosition" : {
+          "line" : 139,
+          "column" : 61
+        },
+        "expr" : {
+          "code" : "int absorbed = status.absorbWithShield(incoming)",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 139,
+            "column" : 13
+          },
+          "endPosition" : {
+            "line" : 139,
+            "column" : 61
+          }
+        }
+      }, {
+        "structureId" : "expr_stmt:3",
+        "kind" : "EXPR_STMT",
+        "code" : null,
+        "startPosition" : {
+          "line" : 140,
+          "column" : 13
+        },
+        "endPosition" : {
+          "line" : 140,
+          "column" : 48
+        },
+        "expr" : {
+          "code" : "int remaining = incoming - absorbed",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 140,
+            "column" : 13
+          },
+          "endPosition" : {
+            "line" : 140,
+            "column" : 48
+          }
+        }
+      }, {
+        "structureId" : "if:1",
+        "kind" : "IF",
+        "code" : "if (status.wasShieldUsedThisCall && source == DamageSource.ENEMY)",
+        "startPosition" : {
+          "line" : 145,
+          "column" : 13
+        },
+        "endPosition" : {
+          "line" : 149,
+          "column" : 13
+        },
+        "condition" : {
+          "code" : "status.wasShieldUsedThisCall && source == DamageSource.ENEMY",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 145,
+            "column" : 17
+          },
+          "endPosition" : {
+            "line" : 145,
+            "column" : 76
+          }
+        },
+        "thenBranch" : {
+          "structureId" : "block:1",
+          "kind" : "BLOCK",
+          "code" : null,
+          "startPosition" : {
+            "line" : 145,
+            "column" : 79
+          },
+          "endPosition" : {
+            "line" : 147,
+            "column" : 13
+          },
+          "structures" : [ {
+            "structureId" : "expr_stmt:4",
+            "kind" : "EXPR_STMT",
+            "code" : null,
+            "startPosition" : {
+              "line" : 146,
+              "column" : 17
+            },
+            "endPosition" : {
+              "line" : 146,
+              "column" : 49
+            },
+            "expr" : {
+              "code" : "health -= (remaining + absorbed)",
+              "kind" : "ALL",
+              "startPosition" : {
+                "line" : 146,
+                "column" : 17
+              },
+              "endPosition" : {
+                "line" : 146,
+                "column" : 49
+              }
+            }
+          } ]
+        },
+        "elseBranch" : {
+          "structureId" : "block:2",
+          "kind" : "BLOCK",
+          "code" : null,
+          "startPosition" : {
+            "line" : 147,
+            "column" : 20
+          },
+          "endPosition" : {
+            "line" : 149,
+            "column" : 13
+          },
+          "structures" : [ {
+            "structureId" : "expr_stmt:5",
+            "kind" : "EXPR_STMT",
+            "code" : null,
+            "startPosition" : {
+              "line" : 148,
+              "column" : 17
+            },
+            "endPosition" : {
+              "line" : 148,
+              "column" : 36
+            },
+            "expr" : {
+              "code" : "health -= remaining",
+              "kind" : "ALL",
+              "startPosition" : {
+                "line" : 148,
+                "column" : 17
+              },
+              "endPosition" : {
+                "line" : 148,
+                "column" : 36
+              }
+            }
+          } ]
+        }
+      } ]
+    },
+    "localVars" : [ {
+      "index" : 2,
+      "name" : "incoming",
+      "typeId" : "int"
+    }, {
+      "index" : 3,
+      "name" : "absorbed",
+      "typeId" : "int"
+    }, {
+      "index" : 4,
+      "name" : "remaining",
+      "typeId" : "int"
+    } ]
+  }, {
+    "methodId" : "m:ch.epfl.printwizard.examples.report.Player.debugString()String",
+    "classId" : "cls:ch.epfl.printwizard.examples.report.Main.Player",
+    "name" : "debugString",
+    "returnType" : "String",
+    "startLine" : 152,
+    "endLine" : 159,
+    "parameters" : [ ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "code" : null,
+      "startPosition" : {
+        "line" : 152,
+        "column" : 30
+      },
+      "endPosition" : {
+        "line" : 159,
+        "column" : 9
+      },
+      "structures" : [ {
+        "structureId" : "return:1",
+        "kind" : "RETURN",
+        "code" : "return \"Player{name=\" + name + \", health=\" + health + \", shield=\" + status.shield + \", vuln=\" + status.vulnerabilityStacks + \", regen=\" + status.regenPerTurn + \"}\";",
+        "startPosition" : {
+          "line" : 153,
+          "column" : 13
+        },
+        "endPosition" : {
+          "line" : 158,
+          "column" : 22
+        },
+        "value" : {
+          "code" : "\"Player{name=\" + name + \", health=\" + health + \", shield=\" + status.shield + \", vuln=\" + status.vulnerabilityStacks + \", regen=\" + status.regenPerTurn + \"}\"",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 153,
+            "column" : 13
+          },
+          "endPosition" : {
+            "line" : 158,
+            "column" : 22
+          }
+        }
+      } ]
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:ch.epfl.printwizard.examples.report.Player.getHealth()int",
+    "classId" : "cls:ch.epfl.printwizard.examples.report.Main.Player",
+    "name" : "getHealth",
+    "returnType" : "int",
+    "startLine" : 126,
+    "endLine" : 128,
+    "parameters" : [ ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "code" : null,
+      "startPosition" : {
+        "line" : 126,
+        "column" : 25
+      },
+      "endPosition" : {
+        "line" : 128,
+        "column" : 9
+      },
+      "structures" : [ {
+        "structureId" : "return:1",
+        "kind" : "RETURN",
+        "code" : "return health;",
+        "startPosition" : {
+          "line" : 127,
+          "column" : 13
+        },
+        "endPosition" : {
+          "line" : 127,
+          "column" : 26
+        },
+        "value" : {
+          "code" : "health",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 127,
+            "column" : 13
+          },
+          "endPosition" : {
+            "line" : 127,
+            "column" : 26
+          }
+        }
+      } ]
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:ch.epfl.printwizard.examples.report.Player.heal(int)int",
+    "classId" : "cls:ch.epfl.printwizard.examples.report.Main.Player",
+    "name" : "heal",
+    "returnType" : "int",
+    "startLine" : 130,
+    "endLine" : 134,
+    "parameters" : [ {
+      "index" : 0,
+      "name" : "amount",
+      "typeId" : "t:int"
+    } ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "code" : null,
+      "startPosition" : {
+        "line" : 130,
+        "column" : 30
+      },
+      "endPosition" : {
+        "line" : 134,
+        "column" : 9
+      },
+      "structures" : [ {
+        "structureId" : "expr_stmt:1",
+        "kind" : "EXPR_STMT",
+        "code" : null,
+        "startPosition" : {
+          "line" : 131,
+          "column" : 13
+        },
+        "endPosition" : {
+          "line" : 131,
+          "column" : 32
+        },
+        "expr" : {
+          "code" : "int before = health",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 131,
+            "column" : 13
+          },
+          "endPosition" : {
+            "line" : 131,
+            "column" : 32
+          }
+        }
+      }, {
+        "structureId" : "expr_stmt:2",
+        "kind" : "EXPR_STMT",
+        "code" : null,
+        "startPosition" : {
+          "line" : 132,
+          "column" : 13
+        },
+        "endPosition" : {
+          "line" : 132,
+          "column" : 50
+        },
+        "expr" : {
+          "code" : "health = health + Math.max(0, amount)",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 132,
+            "column" : 13
+          },
+          "endPosition" : {
+            "line" : 132,
+            "column" : 50
+          }
+        }
+      }, {
+        "structureId" : "return:1",
+        "kind" : "RETURN",
+        "code" : "return health - before;",
+        "startPosition" : {
+          "line" : 133,
+          "column" : 13
+        },
+        "endPosition" : {
+          "line" : 133,
+          "column" : 35
+        },
+        "value" : {
+          "code" : "health - before",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 133,
+            "column" : 13
+          },
+          "endPosition" : {
+            "line" : 133,
+            "column" : 35
+          }
+        }
+      } ]
+    },
+    "localVars" : [ {
+      "index" : 1,
+      "name" : "before",
+      "typeId" : "int"
+    } ]
+  }, {
+    "methodId" : "m:ch.epfl.printwizard.examples.report.Simulation.Simulation(long)<init>",
+    "classId" : "cls:ch.epfl.printwizard.examples.report.Main.Simulation",
+    "name" : "Simulation",
+    "returnType" : "<init>",
+    "startLine" : 31,
+    "endLine" : 33,
+    "parameters" : [ {
+      "index" : 0,
+      "name" : "seed",
+      "typeId" : "t:long"
+    } ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "code" : null,
+      "startPosition" : {
+        "line" : 31,
+        "column" : 31
+      },
+      "endPosition" : {
+        "line" : 33,
+        "column" : 9
+      },
+      "structures" : [ {
+        "structureId" : "expr_stmt:1",
+        "kind" : "EXPR_STMT",
+        "code" : null,
+        "startPosition" : {
+          "line" : 32,
+          "column" : 13
+        },
+        "endPosition" : {
+          "line" : 32,
+          "column" : 40
+        },
+        "expr" : {
+          "code" : "this.rng = new Random(seed)",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 32,
+            "column" : 13
+          },
+          "endPosition" : {
+            "line" : 32,
+            "column" : 40
+          }
+        }
+      } ]
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:ch.epfl.printwizard.examples.report.Simulation.applyEffect(Player,Effect,int)void",
+    "classId" : "cls:ch.epfl.printwizard.examples.report.Main.Simulation",
+    "name" : "applyEffect",
+    "returnType" : "void",
+    "startLine" : 52,
+    "endLine" : 62,
+    "parameters" : [ {
+      "index" : 0,
+      "name" : "player",
+      "typeId" : "t:Player"
+    }, {
+      "index" : 1,
+      "name" : "effect",
+      "typeId" : "t:Effect"
+    }, {
+      "index" : 2,
+      "name" : "turn",
+      "typeId" : "t:int"
+    } ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "code" : null,
+      "startPosition" : {
+        "line" : 52,
+        "column" : 66
+      },
+      "endPosition" : {
+        "line" : 62,
+        "column" : 9
+      },
+      "structures" : [ {
+        "structureId" : "expr_stmt:1",
+        "kind" : "EXPR_STMT",
+        "code" : null,
+        "startPosition" : {
+          "line" : 53,
+          "column" : 13
+        },
+        "endPosition" : {
+          "line" : 53,
+          "column" : 37
+        },
+        "expr" : {
+          "code" : "tickStatus(player, turn)",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 53,
+            "column" : 13
+          },
+          "endPosition" : {
+            "line" : 53,
+            "column" : 37
+          }
+        }
+      }, {
+        "structureId" : "if:5",
+        "kind" : "IF",
+        "code" : "if (effect.type == Effect.Type.HIT)",
+        "startPosition" : {
+          "line" : 55,
+          "column" : 13
+        },
+        "endPosition" : {
+          "line" : 59,
+          "column" : 90
+        },
+        "condition" : {
+          "code" : "effect.type == Effect.Type.HIT",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 55,
+            "column" : 17
+          },
+          "endPosition" : {
+            "line" : 55,
+            "column" : 46
+          }
+        },
+        "thenBranch" : {
+          "structureId" : "expr_stmt:2",
+          "kind" : "EXPR_STMT",
+          "code" : null,
+          "startPosition" : {
+            "line" : 55,
+            "column" : 49
+          },
+          "endPosition" : {
+            "line" : 55,
+            "column" : 87
+          },
+          "expr" : {
+            "code" : "handleHit(player, effect.amount, turn)",
+            "kind" : "ALL",
+            "startPosition" : {
+              "line" : 55,
+              "column" : 49
+            },
+            "endPosition" : {
+              "line" : 55,
+              "column" : 87
+            }
+          }
+        },
+        "elseBranch" : {
+          "structureId" : "if:4",
+          "kind" : "IF",
+          "code" : "else if (effect.type == Effect.Type.HEAL)",
+          "startPosition" : {
+            "line" : 56,
+            "column" : 18
+          },
+          "endPosition" : {
+            "line" : 59,
+            "column" : 90
+          },
+          "condition" : {
+            "code" : "effect.type == Effect.Type.HEAL",
+            "kind" : "ALL",
+            "startPosition" : {
+              "line" : 56,
+              "column" : 22
+            },
+            "endPosition" : {
+              "line" : 56,
+              "column" : 52
+            }
+          },
+          "thenBranch" : {
+            "structureId" : "expr_stmt:3",
+            "kind" : "EXPR_STMT",
+            "code" : null,
+            "startPosition" : {
+              "line" : 56,
+              "column" : 55
+            },
+            "endPosition" : {
+              "line" : 56,
+              "column" : 88
+            },
+            "expr" : {
+              "code" : "handleHeal(player, effect.amount)",
+              "kind" : "ALL",
+              "startPosition" : {
+                "line" : 56,
+                "column" : 55
+              },
+              "endPosition" : {
+                "line" : 56,
+                "column" : 88
+              }
+            }
+          },
+          "elseBranch" : {
+            "structureId" : "if:3",
+            "kind" : "IF",
+            "code" : "else if (effect.type == Effect.Type.SHIELD)",
+            "startPosition" : {
+              "line" : 57,
+              "column" : 18
+            },
+            "endPosition" : {
+              "line" : 59,
+              "column" : 90
+            },
+            "condition" : {
+              "code" : "effect.type == Effect.Type.SHIELD",
+              "kind" : "ALL",
+              "startPosition" : {
+                "line" : 57,
+                "column" : 22
+              },
+              "endPosition" : {
+                "line" : 57,
+                "column" : 54
+              }
+            },
+            "thenBranch" : {
+              "structureId" : "expr_stmt:4",
+              "kind" : "EXPR_STMT",
+              "code" : null,
+              "startPosition" : {
+                "line" : 57,
+                "column" : 57
+              },
+              "endPosition" : {
+                "line" : 57,
+                "column" : 92
+              },
+              "expr" : {
+                "code" : "handleShield(player, effect.amount)",
+                "kind" : "ALL",
+                "startPosition" : {
+                  "line" : 57,
+                  "column" : 57
+                },
+                "endPosition" : {
+                  "line" : 57,
+                  "column" : 92
+                }
+              }
+            },
+            "elseBranch" : {
+              "structureId" : "if:2",
+              "kind" : "IF",
+              "code" : "else if (effect.type == Effect.Type.VULNERABILITY)",
+              "startPosition" : {
+                "line" : 58,
+                "column" : 18
+              },
+              "endPosition" : {
+                "line" : 59,
+                "column" : 90
+              },
+              "condition" : {
+                "code" : "effect.type == Effect.Type.VULNERABILITY",
+                "kind" : "ALL",
+                "startPosition" : {
+                  "line" : 58,
+                  "column" : 22
+                },
+                "endPosition" : {
+                  "line" : 58,
+                  "column" : 61
+                }
+              },
+              "thenBranch" : {
+                "structureId" : "expr_stmt:5",
+                "kind" : "EXPR_STMT",
+                "code" : null,
+                "startPosition" : {
+                  "line" : 58,
+                  "column" : 64
+                },
+                "endPosition" : {
+                  "line" : 58,
+                  "column" : 106
+                },
+                "expr" : {
+                  "code" : "handleVulnerability(player, effect.amount)",
+                  "kind" : "ALL",
+                  "startPosition" : {
+                    "line" : 58,
+                    "column" : 64
+                  },
+                  "endPosition" : {
+                    "line" : 58,
+                    "column" : 106
+                  }
+                }
+              },
+              "elseBranch" : {
+                "structureId" : "if:1",
+                "kind" : "IF",
+                "code" : "else if (effect.type == Effect.Type.REGEN)",
+                "startPosition" : {
+                  "line" : 59,
+                  "column" : 18
+                },
+                "endPosition" : {
+                  "line" : 59,
+                  "column" : 90
+                },
+                "condition" : {
+                  "code" : "effect.type == Effect.Type.REGEN",
+                  "kind" : "ALL",
+                  "startPosition" : {
+                    "line" : 59,
+                    "column" : 22
+                  },
+                  "endPosition" : {
+                    "line" : 59,
+                    "column" : 53
+                  }
+                },
+                "thenBranch" : {
+                  "structureId" : "expr_stmt:6",
+                  "kind" : "EXPR_STMT",
+                  "code" : null,
+                  "startPosition" : {
+                    "line" : 59,
+                    "column" : 56
+                  },
+                  "endPosition" : {
+                    "line" : 59,
+                    "column" : 90
+                  },
+                  "expr" : {
+                    "code" : "handleRegen(player, effect.amount)",
+                    "kind" : "ALL",
+                    "startPosition" : {
+                      "line" : 59,
+                      "column" : 56
+                    },
+                    "endPosition" : {
+                      "line" : 59,
+                      "column" : 90
+                    }
+                  }
+                },
+                "elseBranch" : null
+              }
+            }
+          }
+        }
+      }, {
+        "structureId" : "expr_stmt:7",
+        "kind" : "EXPR_STMT",
+        "code" : null,
+        "startPosition" : {
+          "line" : 61,
+          "column" : 13
+        },
+        "endPosition" : {
+          "line" : 61,
+          "column" : 32
+        },
+        "expr" : {
+          "code" : "clampHealth(player)",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 61,
+            "column" : 13
+          },
+          "endPosition" : {
+            "line" : 61,
+            "column" : 32
+          }
+        }
+      } ]
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:ch.epfl.printwizard.examples.report.Simulation.clampHealth(Player)void",
+    "classId" : "cls:ch.epfl.printwizard.examples.report.Main.Simulation",
+    "name" : "clampHealth",
+    "returnType" : "void",
+    "startLine" : 106,
+    "endLine" : 110,
+    "parameters" : [ {
+      "index" : 0,
+      "name" : "player",
+      "typeId" : "t:Player"
+    } ],
+    "structure" : {
+      "structureId" : "block:2",
+      "kind" : "BLOCK",
+      "code" : null,
+      "startPosition" : {
+        "line" : 106,
+        "column" : 49
+      },
+      "endPosition" : {
+        "line" : 110,
+        "column" : 9
+      },
+      "structures" : [ {
+        "structureId" : "if:1",
+        "kind" : "IF",
+        "code" : "if (player.health < 0)",
+        "startPosition" : {
+          "line" : 107,
+          "column" : 13
+        },
+        "endPosition" : {
+          "line" : 109,
+          "column" : 13
+        },
+        "condition" : {
+          "code" : "player.health < 0",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 107,
+            "column" : 17
+          },
+          "endPosition" : {
+            "line" : 107,
+            "column" : 33
+          }
+        },
+        "thenBranch" : {
+          "structureId" : "block:1",
+          "kind" : "BLOCK",
+          "code" : null,
+          "startPosition" : {
+            "line" : 107,
+            "column" : 36
+          },
+          "endPosition" : {
+            "line" : 109,
+            "column" : 13
+          },
+          "structures" : [ {
+            "structureId" : "expr_stmt:1",
+            "kind" : "EXPR_STMT",
+            "code" : null,
+            "startPosition" : {
+              "line" : 108,
+              "column" : 17
+            },
+            "endPosition" : {
+              "line" : 108,
+              "column" : 34
+            },
+            "expr" : {
+              "code" : "player.health = 0",
+              "kind" : "ALL",
+              "startPosition" : {
+                "line" : 108,
+                "column" : 17
+              },
+              "endPosition" : {
+                "line" : 108,
+                "column" : 34
+              }
+            }
+          } ]
+        },
+        "elseBranch" : null
+      } ]
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:ch.epfl.printwizard.examples.report.Simulation.generateEffects(int)List<Effect>",
+    "classId" : "cls:ch.epfl.printwizard.examples.report.Main.Simulation",
+    "name" : "generateEffects",
+    "returnType" : "List<Effect>",
+    "startLine" : 35,
+    "endLine" : 41,
+    "parameters" : [ {
+      "index" : 0,
+      "name" : "n",
+      "typeId" : "t:int"
+    } ],
+    "structure" : {
+      "structureId" : "block:2",
+      "kind" : "BLOCK",
+      "code" : null,
+      "startPosition" : {
+        "line" : 35,
+        "column" : 45
+      },
+      "endPosition" : {
+        "line" : 41,
+        "column" : 9
+      },
+      "structures" : [ {
+        "structureId" : "expr_stmt:1",
+        "kind" : "EXPR_STMT",
+        "code" : null,
+        "startPosition" : {
+          "line" : 36,
+          "column" : 13
+        },
+        "endPosition" : {
+          "line" : 36,
+          "column" : 50
+        },
+        "expr" : {
+          "code" : "List<Effect> out = new ArrayList<>(n)",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 36,
+            "column" : 13
+          },
+          "endPosition" : {
+            "line" : 36,
+            "column" : 50
+          }
+        }
+      }, {
+        "structureId" : "for:1",
+        "kind" : "FOR",
+        "code" : "for (int i = 0; i < n; i++)",
+        "startPosition" : {
+          "line" : 37,
+          "column" : 13
+        },
+        "endPosition" : {
+          "line" : 39,
+          "column" : 13
+        },
+        "initialization" : {
+          "code" : "int i = 0",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 37,
+            "column" : 18
+          },
+          "endPosition" : {
+            "line" : 37,
+            "column" : 26
+          }
+        },
+        "condition" : {
+          "code" : "i < n",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 37,
+            "column" : 29
+          },
+          "endPosition" : {
+            "line" : 37,
+            "column" : 33
+          }
+        },
+        "update" : {
+          "code" : "i++",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 37,
+            "column" : 36
+          },
+          "endPosition" : {
+            "line" : 37,
+            "column" : 38
+          }
+        },
+        "body" : {
+          "structureId" : "block:1",
+          "kind" : "BLOCK",
+          "code" : null,
+          "startPosition" : {
+            "line" : 37,
+            "column" : 41
+          },
+          "endPosition" : {
+            "line" : 39,
+            "column" : 13
+          },
+          "structures" : [ {
+            "structureId" : "expr_stmt:2",
+            "kind" : "EXPR_STMT",
+            "code" : null,
+            "startPosition" : {
+              "line" : 38,
+              "column" : 17
+            },
+            "endPosition" : {
+              "line" : 38,
+              "column" : 40
+            },
+            "expr" : {
+              "code" : "out.add(randomEffect())",
+              "kind" : "ALL",
+              "startPosition" : {
+                "line" : 38,
+                "column" : 17
+              },
+              "endPosition" : {
+                "line" : 38,
+                "column" : 40
+              }
+            }
+          } ]
+        }
+      }, {
+        "structureId" : "return:1",
+        "kind" : "RETURN",
+        "code" : "return out;",
+        "startPosition" : {
+          "line" : 40,
+          "column" : 13
+        },
+        "endPosition" : {
+          "line" : 40,
+          "column" : 23
+        },
+        "value" : {
+          "code" : "out",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 40,
+            "column" : 13
+          },
+          "endPosition" : {
+            "line" : 40,
+            "column" : 23
+          }
+        }
+      } ]
+    },
+    "localVars" : [ {
+      "index" : 1,
+      "name" : "out",
+      "typeId" : "List<Effect>"
+    }, {
+      "index" : 2,
+      "name" : "i",
+      "typeId" : "int"
+    } ]
+  }, {
+    "methodId" : "m:ch.epfl.printwizard.examples.report.Simulation.handleHeal(Player,int)void",
+    "classId" : "cls:ch.epfl.printwizard.examples.report.Main.Simulation",
+    "name" : "handleHeal",
+    "returnType" : "void",
+    "startLine" : 90,
+    "endLine" : 92,
+    "parameters" : [ {
+      "index" : 0,
+      "name" : "player",
+      "typeId" : "t:Player"
+    }, {
+      "index" : 1,
+      "name" : "amount",
+      "typeId" : "t:int"
+    } ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "code" : null,
+      "startPosition" : {
+        "line" : 90,
+        "column" : 60
+      },
+      "endPosition" : {
+        "line" : 92,
+        "column" : 9
+      },
+      "structures" : [ {
+        "structureId" : "expr_stmt:1",
+        "kind" : "EXPR_STMT",
+        "code" : null,
+        "startPosition" : {
+          "line" : 91,
+          "column" : 13
+        },
+        "endPosition" : {
+          "line" : 91,
+          "column" : 32
+        },
+        "expr" : {
+          "code" : "player.heal(amount)",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 91,
+            "column" : 13
+          },
+          "endPosition" : {
+            "line" : 91,
+            "column" : 32
+          }
+        }
+      } ]
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:ch.epfl.printwizard.examples.report.Simulation.handleHit(Player,int,int)void",
+    "classId" : "cls:ch.epfl.printwizard.examples.report.Main.Simulation",
+    "name" : "handleHit",
+    "returnType" : "void",
+    "startLine" : 76,
+    "endLine" : 88,
+    "parameters" : [ {
+      "index" : 0,
+      "name" : "player",
+      "typeId" : "t:Player"
+    }, {
+      "index" : 1,
+      "name" : "rawDamage",
+      "typeId" : "t:int"
+    }, {
+      "index" : 2,
+      "name" : "turn",
+      "typeId" : "t:int"
+    } ],
+    "structure" : {
+      "structureId" : "block:2",
+      "kind" : "BLOCK",
+      "code" : null,
+      "startPosition" : {
+        "line" : 76,
+        "column" : 72
+      },
+      "endPosition" : {
+        "line" : 88,
+        "column" : 9
+      },
+      "structures" : [ {
+        "structureId" : "expr_stmt:1",
+        "kind" : "EXPR_STMT",
+        "code" : null,
+        "startPosition" : {
+          "line" : 77,
+          "column" : 13
+        },
+        "endPosition" : {
+          "line" : 77,
+          "column" : 67
+        },
+        "expr" : {
+          "code" : "int multiplier = 1 + player.status.vulnerabilityStacks",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 77,
+            "column" : 13
+          },
+          "endPosition" : {
+            "line" : 77,
+            "column" : 67
+          }
+        }
+      }, {
+        "structureId" : "expr_stmt:2",
+        "kind" : "EXPR_STMT",
+        "code" : null,
+        "startPosition" : {
+          "line" : 78,
+          "column" : 13
+        },
+        "endPosition" : {
+          "line" : 78,
+          "column" : 54
+        },
+        "expr" : {
+          "code" : "int scaledDamage = rawDamage * multiplier",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 78,
+            "column" : 13
+          },
+          "endPosition" : {
+            "line" : 78,
+            "column" : 54
+          }
+        }
+      }, {
+        "structureId" : "expr_stmt:3",
+        "kind" : "EXPR_STMT",
+        "code" : null,
+        "startPosition" : {
+          "line" : 80,
+          "column" : 13
+        },
+        "endPosition" : {
+          "line" : 80,
+          "column" : 51
+        },
+        "expr" : {
+          "code" : "boolean crit = (rng.nextInt(100) < 10)",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 80,
+            "column" : 13
+          },
+          "endPosition" : {
+            "line" : 80,
+            "column" : 51
+          }
+        }
+      }, {
+        "structureId" : "expr_stmt:4",
+        "kind" : "EXPR_STMT",
+        "code" : null,
+        "startPosition" : {
+          "line" : 81,
+          "column" : 13
+        },
+        "endPosition" : {
+          "line" : 81,
+          "column" : 71
+        },
+        "expr" : {
+          "code" : "int finalDamage = crit ? (scaledDamage + 5) : scaledDamage",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 81,
+            "column" : 13
+          },
+          "endPosition" : {
+            "line" : 81,
+            "column" : 71
+          }
+        }
+      }, {
+        "structureId" : "expr_stmt:5",
+        "kind" : "EXPR_STMT",
+        "code" : null,
+        "startPosition" : {
+          "line" : 83,
+          "column" : 13
+        },
+        "endPosition" : {
+          "line" : 83,
+          "column" : 64
+        },
+        "expr" : {
+          "code" : "player.applyDamage(finalDamage, DamageSource.ENEMY)",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 83,
+            "column" : 13
+          },
+          "endPosition" : {
+            "line" : 83,
+            "column" : 64
+          }
+        }
+      }, {
+        "structureId" : "if:1",
+        "kind" : "IF",
+        "code" : "if (turn % 41 == 0 && rng.nextInt(100) < 20)",
+        "startPosition" : {
+          "line" : 85,
+          "column" : 13
+        },
+        "endPosition" : {
+          "line" : 87,
+          "column" : 13
+        },
+        "condition" : {
+          "code" : "turn % 41 == 0 && rng.nextInt(100) < 20",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 85,
+            "column" : 17
+          },
+          "endPosition" : {
+            "line" : 85,
+            "column" : 55
+          }
+        },
+        "thenBranch" : {
+          "structureId" : "block:1",
+          "kind" : "BLOCK",
+          "code" : null,
+          "startPosition" : {
+            "line" : 85,
+            "column" : 58
+          },
+          "endPosition" : {
+            "line" : 87,
+            "column" : 13
+          },
+          "structures" : [ {
+            "structureId" : "expr_stmt:6",
+            "kind" : "EXPR_STMT",
+            "code" : null,
+            "startPosition" : {
+              "line" : 86,
+              "column" : 17
+            },
+            "endPosition" : {
+              "line" : 86,
+              "column" : 57
+            },
+            "expr" : {
+              "code" : "player.applyDamage(7, DamageSource.TRAP)",
+              "kind" : "ALL",
+              "startPosition" : {
+                "line" : 86,
+                "column" : 17
+              },
+              "endPosition" : {
+                "line" : 86,
+                "column" : 57
+              }
+            }
+          } ]
+        },
+        "elseBranch" : null
+      } ]
+    },
+    "localVars" : [ {
+      "index" : 3,
+      "name" : "multiplier",
+      "typeId" : "int"
+    }, {
+      "index" : 4,
+      "name" : "scaledDamage",
+      "typeId" : "int"
+    }, {
+      "index" : 5,
+      "name" : "crit",
+      "typeId" : "boolean"
+    }, {
+      "index" : 6,
+      "name" : "finalDamage",
+      "typeId" : "int"
+    } ]
+  }, {
+    "methodId" : "m:ch.epfl.printwizard.examples.report.Simulation.handleRegen(Player,int)void",
+    "classId" : "cls:ch.epfl.printwizard.examples.report.Main.Simulation",
+    "name" : "handleRegen",
+    "returnType" : "void",
+    "startLine" : 102,
+    "endLine" : 104,
+    "parameters" : [ {
+      "index" : 0,
+      "name" : "player",
+      "typeId" : "t:Player"
+    }, {
+      "index" : 1,
+      "name" : "perTurn",
+      "typeId" : "t:int"
+    } ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "code" : null,
+      "startPosition" : {
+        "line" : 102,
+        "column" : 62
+      },
+      "endPosition" : {
+        "line" : 104,
+        "column" : 9
+      },
+      "structures" : [ {
+        "structureId" : "expr_stmt:1",
+        "kind" : "EXPR_STMT",
+        "code" : null,
+        "startPosition" : {
+          "line" : 103,
+          "column" : 13
+        },
+        "endPosition" : {
+          "line" : 103,
+          "column" : 87
+        },
+        "expr" : {
+          "code" : "player.status.regenPerTurn = Math.max(player.status.regenPerTurn, perTurn)",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 103,
+            "column" : 13
+          },
+          "endPosition" : {
+            "line" : 103,
+            "column" : 87
+          }
+        }
+      } ]
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:ch.epfl.printwizard.examples.report.Simulation.handleShield(Player,int)void",
+    "classId" : "cls:ch.epfl.printwizard.examples.report.Main.Simulation",
+    "name" : "handleShield",
+    "returnType" : "void",
+    "startLine" : 94,
+    "endLine" : 96,
+    "parameters" : [ {
+      "index" : 0,
+      "name" : "player",
+      "typeId" : "t:Player"
+    }, {
+      "index" : 1,
+      "name" : "amount",
+      "typeId" : "t:int"
+    } ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "code" : null,
+      "startPosition" : {
+        "line" : 94,
+        "column" : 62
+      },
+      "endPosition" : {
+        "line" : 96,
+        "column" : 9
+      },
+      "structures" : [ {
+        "structureId" : "expr_stmt:1",
+        "kind" : "EXPR_STMT",
+        "code" : null,
+        "startPosition" : {
+          "line" : 95,
+          "column" : 13
+        },
+        "endPosition" : {
+          "line" : 95,
+          "column" : 44
+        },
+        "expr" : {
+          "code" : "player.status.addShield(amount)",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 95,
+            "column" : 13
+          },
+          "endPosition" : {
+            "line" : 95,
+            "column" : 44
+          }
+        }
+      } ]
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:ch.epfl.printwizard.examples.report.Simulation.handleVulnerability(Player,int)void",
+    "classId" : "cls:ch.epfl.printwizard.examples.report.Main.Simulation",
+    "name" : "handleVulnerability",
+    "returnType" : "void",
+    "startLine" : 98,
+    "endLine" : 100,
+    "parameters" : [ {
+      "index" : 0,
+      "name" : "player",
+      "typeId" : "t:Player"
+    }, {
+      "index" : 1,
+      "name" : "stacks",
+      "typeId" : "t:int"
+    } ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "code" : null,
+      "startPosition" : {
+        "line" : 98,
+        "column" : 69
+      },
+      "endPosition" : {
+        "line" : 100,
+        "column" : 9
+      },
+      "structures" : [ {
+        "structureId" : "expr_stmt:1",
+        "kind" : "EXPR_STMT",
+        "code" : null,
+        "startPosition" : {
+          "line" : 99,
+          "column" : 13
+        },
+        "endPosition" : {
+          "line" : 99,
+          "column" : 51
+        },
+        "expr" : {
+          "code" : "player.status.addVulnerability(stacks)",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 99,
+            "column" : 13
+          },
+          "endPosition" : {
+            "line" : 99,
+            "column" : 51
+          }
+        }
+      } ]
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:ch.epfl.printwizard.examples.report.Simulation.randomEffect()Effect",
+    "classId" : "cls:ch.epfl.printwizard.examples.report.Main.Simulation",
+    "name" : "randomEffect",
+    "returnType" : "Effect",
+    "startLine" : 43,
+    "endLine" : 50,
+    "parameters" : [ ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "code" : null,
+      "startPosition" : {
+        "line" : 43,
+        "column" : 39
+      },
+      "endPosition" : {
+        "line" : 50,
+        "column" : 9
+      },
+      "structures" : [ {
+        "structureId" : "expr_stmt:1",
+        "kind" : "EXPR_STMT",
+        "code" : null,
+        "startPosition" : {
+          "line" : 44,
+          "column" : 13
+        },
+        "endPosition" : {
+          "line" : 44,
+          "column" : 40
+        },
+        "expr" : {
+          "code" : "int roll = rng.nextInt(100)",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 44,
+            "column" : 13
+          },
+          "endPosition" : {
+            "line" : 44,
+            "column" : 40
+          }
+        }
+      }, {
+        "structureId" : "if:1",
+        "kind" : "IF",
+        "code" : "if (roll < 55)",
+        "startPosition" : {
+          "line" : 45,
+          "column" : 13
+        },
+        "endPosition" : {
+          "line" : 45,
+          "column" : 66
+        },
+        "condition" : {
+          "code" : "roll < 55",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 45,
+            "column" : 17
+          },
+          "endPosition" : {
+            "line" : 45,
+            "column" : 25
+          }
+        },
+        "thenBranch" : {
+          "structureId" : "return:1",
+          "kind" : "RETURN",
+          "code" : "return Effect.hit(1 + rng.nextInt(10));",
+          "startPosition" : {
+            "line" : 45,
+            "column" : 28
+          },
+          "endPosition" : {
+            "line" : 45,
+            "column" : 66
+          },
+          "value" : {
+            "code" : "Effect.hit(1 + rng.nextInt(10))",
+            "kind" : "ALL",
+            "startPosition" : {
+              "line" : 45,
+              "column" : 28
+            },
+            "endPosition" : {
+              "line" : 45,
+              "column" : 66
+            }
+          }
+        },
+        "elseBranch" : null
+      }, {
+        "structureId" : "if:2",
+        "kind" : "IF",
+        "code" : "if (roll < 70)",
+        "startPosition" : {
+          "line" : 46,
+          "column" : 13
+        },
+        "endPosition" : {
+          "line" : 46,
+          "column" : 66
+        },
+        "condition" : {
+          "code" : "roll < 70",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 46,
+            "column" : 17
+          },
+          "endPosition" : {
+            "line" : 46,
+            "column" : 25
+          }
+        },
+        "thenBranch" : {
+          "structureId" : "return:2",
+          "kind" : "RETURN",
+          "code" : "return Effect.heal(1 + rng.nextInt(6));",
+          "startPosition" : {
+            "line" : 46,
+            "column" : 28
+          },
+          "endPosition" : {
+            "line" : 46,
+            "column" : 66
+          },
+          "value" : {
+            "code" : "Effect.heal(1 + rng.nextInt(6))",
+            "kind" : "ALL",
+            "startPosition" : {
+              "line" : 46,
+              "column" : 28
+            },
+            "endPosition" : {
+              "line" : 46,
+              "column" : 66
+            }
+          }
+        },
+        "elseBranch" : null
+      }, {
+        "structureId" : "if:3",
+        "kind" : "IF",
+        "code" : "if (roll < 85)",
+        "startPosition" : {
+          "line" : 47,
+          "column" : 13
+        },
+        "endPosition" : {
+          "line" : 47,
+          "column" : 68
+        },
+        "condition" : {
+          "code" : "roll < 85",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 47,
+            "column" : 17
+          },
+          "endPosition" : {
+            "line" : 47,
+            "column" : 25
+          }
+        },
+        "thenBranch" : {
+          "structureId" : "return:3",
+          "kind" : "RETURN",
+          "code" : "return Effect.shield(1 + rng.nextInt(8));",
+          "startPosition" : {
+            "line" : 47,
+            "column" : 28
+          },
+          "endPosition" : {
+            "line" : 47,
+            "column" : 68
+          },
+          "value" : {
+            "code" : "Effect.shield(1 + rng.nextInt(8))",
+            "kind" : "ALL",
+            "startPosition" : {
+              "line" : 47,
+              "column" : 28
+            },
+            "endPosition" : {
+              "line" : 47,
+              "column" : 68
+            }
+          }
+        },
+        "elseBranch" : null
+      }, {
+        "structureId" : "if:4",
+        "kind" : "IF",
+        "code" : "if (roll < 95)",
+        "startPosition" : {
+          "line" : 48,
+          "column" : 13
+        },
+        "endPosition" : {
+          "line" : 48,
+          "column" : 75
+        },
+        "condition" : {
+          "code" : "roll < 95",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 48,
+            "column" : 17
+          },
+          "endPosition" : {
+            "line" : 48,
+            "column" : 25
+          }
+        },
+        "thenBranch" : {
+          "structureId" : "return:4",
+          "kind" : "RETURN",
+          "code" : "return Effect.vulnerability(1 + rng.nextInt(2));",
+          "startPosition" : {
+            "line" : 48,
+            "column" : 28
+          },
+          "endPosition" : {
+            "line" : 48,
+            "column" : 75
+          },
+          "value" : {
+            "code" : "Effect.vulnerability(1 + rng.nextInt(2))",
+            "kind" : "ALL",
+            "startPosition" : {
+              "line" : 48,
+              "column" : 28
+            },
+            "endPosition" : {
+              "line" : 48,
+              "column" : 75
+            }
+          }
+        },
+        "elseBranch" : null
+      }, {
+        "structureId" : "return:5",
+        "kind" : "RETURN",
+        "code" : "return Effect.regen(1 + rng.nextInt(3));",
+        "startPosition" : {
+          "line" : 49,
+          "column" : 13
+        },
+        "endPosition" : {
+          "line" : 49,
+          "column" : 52
+        },
+        "value" : {
+          "code" : "Effect.regen(1 + rng.nextInt(3))",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 49,
+            "column" : 13
+          },
+          "endPosition" : {
+            "line" : 49,
+            "column" : 52
+          }
+        }
+      } ]
+    },
+    "localVars" : [ {
+      "index" : 0,
+      "name" : "roll",
+      "typeId" : "int"
+    } ]
+  }, {
+    "methodId" : "m:ch.epfl.printwizard.examples.report.Simulation.tickStatus(Player,int)void",
+    "classId" : "cls:ch.epfl.printwizard.examples.report.Main.Simulation",
+    "name" : "tickStatus",
+    "returnType" : "void",
+    "startLine" : 64,
+    "endLine" : 74,
+    "parameters" : [ {
+      "index" : 0,
+      "name" : "player",
+      "typeId" : "t:Player"
+    }, {
+      "index" : 1,
+      "name" : "turn",
+      "typeId" : "t:int"
+    } ],
+    "structure" : {
+      "structureId" : "block:3",
+      "kind" : "BLOCK",
+      "code" : null,
+      "startPosition" : {
+        "line" : 64,
+        "column" : 58
+      },
+      "endPosition" : {
+        "line" : 74,
+        "column" : 9
+      },
+      "structures" : [ {
+        "structureId" : "expr_stmt:1",
+        "kind" : "EXPR_STMT",
+        "code" : null,
+        "startPosition" : {
+          "line" : 65,
+          "column" : 13
+        },
+        "endPosition" : {
+          "line" : 65,
+          "column" : 40
+        },
+        "expr" : {
+          "code" : "player.status.decayShield()",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 65,
+            "column" : 13
+          },
+          "endPosition" : {
+            "line" : 65,
+            "column" : 40
+          }
+        }
+      }, {
+        "structureId" : "expr_stmt:2",
+        "kind" : "EXPR_STMT",
+        "code" : null,
+        "startPosition" : {
+          "line" : 66,
+          "column" : 13
+        },
+        "endPosition" : {
+          "line" : 66,
+          "column" : 47
+        },
+        "expr" : {
+          "code" : "player.status.decayVulnerability()",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 66,
+            "column" : 13
+          },
+          "endPosition" : {
+            "line" : 66,
+            "column" : 47
+          }
+        }
+      }, {
+        "structureId" : "if:2",
+        "kind" : "IF",
+        "code" : "if (player.status.regenPerTurn > 0)",
+        "startPosition" : {
+          "line" : 68,
+          "column" : 13
+        },
+        "endPosition" : {
+          "line" : 73,
+          "column" : 13
+        },
+        "condition" : {
+          "code" : "player.status.regenPerTurn > 0",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 68,
+            "column" : 17
+          },
+          "endPosition" : {
+            "line" : 68,
+            "column" : 46
+          }
+        },
+        "thenBranch" : {
+          "structureId" : "block:2",
+          "kind" : "BLOCK",
+          "code" : null,
+          "startPosition" : {
+            "line" : 68,
+            "column" : 49
+          },
+          "endPosition" : {
+            "line" : 73,
+            "column" : 13
+          },
+          "structures" : [ {
+            "structureId" : "expr_stmt:3",
+            "kind" : "EXPR_STMT",
+            "code" : null,
+            "startPosition" : {
+              "line" : 69,
+              "column" : 17
+            },
+            "endPosition" : {
+              "line" : 69,
+              "column" : 56
+            },
+            "expr" : {
+              "code" : "player.heal(player.status.regenPerTurn)",
+              "kind" : "ALL",
+              "startPosition" : {
+                "line" : 69,
+                "column" : 17
+              },
+              "endPosition" : {
+                "line" : 69,
+                "column" : 56
+              }
+            }
+          }, {
+            "structureId" : "if:1",
+            "kind" : "IF",
+            "code" : "if (turn % 17 == 0)",
+            "startPosition" : {
+              "line" : 70,
+              "column" : 17
+            },
+            "endPosition" : {
+              "line" : 72,
+              "column" : 17
+            },
+            "condition" : {
+              "code" : "turn % 17 == 0",
+              "kind" : "ALL",
+              "startPosition" : {
+                "line" : 70,
+                "column" : 21
+              },
+              "endPosition" : {
+                "line" : 70,
+                "column" : 34
+              }
+            },
+            "thenBranch" : {
+              "structureId" : "block:1",
+              "kind" : "BLOCK",
+              "code" : null,
+              "startPosition" : {
+                "line" : 70,
+                "column" : 37
+              },
+              "endPosition" : {
+                "line" : 72,
+                "column" : 17
+              },
+              "structures" : [ {
+                "structureId" : "expr_stmt:4",
+                "kind" : "EXPR_STMT",
+                "code" : null,
+                "startPosition" : {
+                  "line" : 71,
+                  "column" : 21
+                },
+                "endPosition" : {
+                  "line" : 71,
+                  "column" : 51
+                },
+                "expr" : {
+                  "code" : "player.status.regenPerTurn = 0",
+                  "kind" : "ALL",
+                  "startPosition" : {
+                    "line" : 71,
+                    "column" : 21
+                  },
+                  "endPosition" : {
+                    "line" : 71,
+                    "column" : 51
+                  }
+                }
+              } ]
+            },
+            "elseBranch" : null
+          } ]
+        },
+        "elseBranch" : null
+      } ]
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:ch.epfl.printwizard.examples.report.Status.absorbWithShield(int)int",
+    "classId" : "cls:ch.epfl.printwizard.examples.report.Main.Status",
+    "name" : "absorbWithShield",
+    "returnType" : "int",
+    "startLine" : 187,
+    "endLine" : 196,
+    "parameters" : [ {
+      "index" : 0,
+      "name" : "incomingDamage",
+      "typeId" : "t:int"
+    } ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "code" : null,
+      "startPosition" : {
+        "line" : 187,
+        "column" : 50
+      },
+      "endPosition" : {
+        "line" : 196,
+        "column" : 9
+      },
+      "structures" : [ {
+        "structureId" : "expr_stmt:1",
+        "kind" : "EXPR_STMT",
+        "code" : null,
+        "startPosition" : {
+          "line" : 188,
+          "column" : 13
+        },
+        "endPosition" : {
+          "line" : 188,
+          "column" : 42
+        },
+        "expr" : {
+          "code" : "wasShieldUsedThisCall = false",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 188,
+            "column" : 13
+          },
+          "endPosition" : {
+            "line" : 188,
+            "column" : 42
+          }
+        }
+      }, {
+        "structureId" : "if:1",
+        "kind" : "IF",
+        "code" : "if (incomingDamage <= 0)",
+        "startPosition" : {
+          "line" : 189,
+          "column" : 13
+        },
+        "endPosition" : {
+          "line" : 189,
+          "column" : 46
+        },
+        "condition" : {
+          "code" : "incomingDamage <= 0",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 189,
+            "column" : 17
+          },
+          "endPosition" : {
+            "line" : 189,
+            "column" : 35
+          }
+        },
+        "thenBranch" : {
+          "structureId" : "return:1",
+          "kind" : "RETURN",
+          "code" : "return 0;",
+          "startPosition" : {
+            "line" : 189,
+            "column" : 38
+          },
+          "endPosition" : {
+            "line" : 189,
+            "column" : 46
+          },
+          "value" : {
+            "code" : "0",
+            "kind" : "ALL",
+            "startPosition" : {
+              "line" : 189,
+              "column" : 38
+            },
+            "endPosition" : {
+              "line" : 189,
+              "column" : 46
+            }
+          }
+        },
+        "elseBranch" : null
+      }, {
+        "structureId" : "if:2",
+        "kind" : "IF",
+        "code" : "if (shield <= 0)",
+        "startPosition" : {
+          "line" : 190,
+          "column" : 13
+        },
+        "endPosition" : {
+          "line" : 190,
+          "column" : 38
+        },
+        "condition" : {
+          "code" : "shield <= 0",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 190,
+            "column" : 17
+          },
+          "endPosition" : {
+            "line" : 190,
+            "column" : 27
+          }
+        },
+        "thenBranch" : {
+          "structureId" : "return:2",
+          "kind" : "RETURN",
+          "code" : "return 0;",
+          "startPosition" : {
+            "line" : 190,
+            "column" : 30
+          },
+          "endPosition" : {
+            "line" : 190,
+            "column" : 38
+          },
+          "value" : {
+            "code" : "0",
+            "kind" : "ALL",
+            "startPosition" : {
+              "line" : 190,
+              "column" : 30
+            },
+            "endPosition" : {
+              "line" : 190,
+              "column" : 38
+            }
+          }
+        },
+        "elseBranch" : null
+      }, {
+        "structureId" : "expr_stmt:2",
+        "kind" : "EXPR_STMT",
+        "code" : null,
+        "startPosition" : {
+          "line" : 192,
+          "column" : 13
+        },
+        "endPosition" : {
+          "line" : 192,
+          "column" : 41
+        },
+        "expr" : {
+          "code" : "wasShieldUsedThisCall = true",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 192,
+            "column" : 13
+          },
+          "endPosition" : {
+            "line" : 192,
+            "column" : 41
+          }
+        }
+      }, {
+        "structureId" : "expr_stmt:3",
+        "kind" : "EXPR_STMT",
+        "code" : null,
+        "startPosition" : {
+          "line" : 193,
+          "column" : 13
+        },
+        "endPosition" : {
+          "line" : 193,
+          "column" : 60
+        },
+        "expr" : {
+          "code" : "int absorbed = Math.min(shield, incomingDamage)",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 193,
+            "column" : 13
+          },
+          "endPosition" : {
+            "line" : 193,
+            "column" : 60
+          }
+        }
+      }, {
+        "structureId" : "expr_stmt:4",
+        "kind" : "EXPR_STMT",
+        "code" : null,
+        "startPosition" : {
+          "line" : 194,
+          "column" : 13
+        },
+        "endPosition" : {
+          "line" : 194,
+          "column" : 31
+        },
+        "expr" : {
+          "code" : "shield -= absorbed",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 194,
+            "column" : 13
+          },
+          "endPosition" : {
+            "line" : 194,
+            "column" : 31
+          }
+        }
+      }, {
+        "structureId" : "return:3",
+        "kind" : "RETURN",
+        "code" : "return absorbed;",
+        "startPosition" : {
+          "line" : 195,
+          "column" : 13
+        },
+        "endPosition" : {
+          "line" : 195,
+          "column" : 28
+        },
+        "value" : {
+          "code" : "absorbed",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 195,
+            "column" : 13
+          },
+          "endPosition" : {
+            "line" : 195,
+            "column" : 28
+          }
+        }
+      } ]
+    },
+    "localVars" : [ {
+      "index" : 1,
+      "name" : "absorbed",
+      "typeId" : "int"
+    } ]
+  }, {
+    "methodId" : "m:ch.epfl.printwizard.examples.report.Status.addShield(int)void",
+    "classId" : "cls:ch.epfl.printwizard.examples.report.Main.Status",
+    "name" : "addShield",
+    "returnType" : "void",
+    "startLine" : 169,
+    "endLine" : 171,
+    "parameters" : [ {
+      "index" : 0,
+      "name" : "amount",
+      "typeId" : "t:int"
+    } ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "code" : null,
+      "startPosition" : {
+        "line" : 169,
+        "column" : 36
+      },
+      "endPosition" : {
+        "line" : 171,
+        "column" : 9
+      },
+      "structures" : [ {
+        "structureId" : "expr_stmt:1",
+        "kind" : "EXPR_STMT",
+        "code" : null,
+        "startPosition" : {
+          "line" : 170,
+          "column" : 13
+        },
+        "endPosition" : {
+          "line" : 170,
+          "column" : 42
+        },
+        "expr" : {
+          "code" : "shield += Math.max(0, amount)",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 170,
+            "column" : 13
+          },
+          "endPosition" : {
+            "line" : 170,
+            "column" : 42
+          }
+        }
+      } ]
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:ch.epfl.printwizard.examples.report.Status.addVulnerability(int)void",
+    "classId" : "cls:ch.epfl.printwizard.examples.report.Main.Status",
+    "name" : "addVulnerability",
+    "returnType" : "void",
+    "startLine" : 173,
+    "endLine" : 175,
+    "parameters" : [ {
+      "index" : 0,
+      "name" : "stacks",
+      "typeId" : "t:int"
+    } ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "code" : null,
+      "startPosition" : {
+        "line" : 173,
+        "column" : 43
+      },
+      "endPosition" : {
+        "line" : 175,
+        "column" : 9
+      },
+      "structures" : [ {
+        "structureId" : "expr_stmt:1",
+        "kind" : "EXPR_STMT",
+        "code" : null,
+        "startPosition" : {
+          "line" : 174,
+          "column" : 13
+        },
+        "endPosition" : {
+          "line" : 174,
+          "column" : 55
+        },
+        "expr" : {
+          "code" : "vulnerabilityStacks += Math.max(0, stacks)",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 174,
+            "column" : 13
+          },
+          "endPosition" : {
+            "line" : 174,
+            "column" : 55
+          }
+        }
+      } ]
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:ch.epfl.printwizard.examples.report.Status.decayShield()void",
+    "classId" : "cls:ch.epfl.printwizard.examples.report.Main.Status",
+    "name" : "decayShield",
+    "returnType" : "void",
+    "startLine" : 177,
+    "endLine" : 179,
+    "parameters" : [ ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "code" : null,
+      "startPosition" : {
+        "line" : 177,
+        "column" : 28
+      },
+      "endPosition" : {
+        "line" : 179,
+        "column" : 9
+      },
+      "structures" : [ {
+        "structureId" : "if:1",
+        "kind" : "IF",
+        "code" : "if (shield > 0)",
+        "startPosition" : {
+          "line" : 178,
+          "column" : 13
+        },
+        "endPosition" : {
+          "line" : 178,
+          "column" : 40
+        },
+        "condition" : {
+          "code" : "shield > 0",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 178,
+            "column" : 17
+          },
+          "endPosition" : {
+            "line" : 178,
+            "column" : 26
+          }
+        },
+        "thenBranch" : {
+          "structureId" : "expr_stmt:1",
+          "kind" : "EXPR_STMT",
+          "code" : null,
+          "startPosition" : {
+            "line" : 178,
+            "column" : 29
+          },
+          "endPosition" : {
+            "line" : 178,
+            "column" : 40
+          },
+          "expr" : {
+            "code" : "shield -= 1",
+            "kind" : "ALL",
+            "startPosition" : {
+              "line" : 178,
+              "column" : 29
+            },
+            "endPosition" : {
+              "line" : 178,
+              "column" : 40
+            }
+          }
+        },
+        "elseBranch" : null
+      } ]
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:ch.epfl.printwizard.examples.report.Status.decayVulnerability()void",
+    "classId" : "cls:ch.epfl.printwizard.examples.report.Main.Status",
+    "name" : "decayVulnerability",
+    "returnType" : "void",
+    "startLine" : 181,
+    "endLine" : 185,
+    "parameters" : [ ],
+    "structure" : {
+      "structureId" : "block:2",
+      "kind" : "BLOCK",
+      "code" : null,
+      "startPosition" : {
+        "line" : 181,
+        "column" : 35
+      },
+      "endPosition" : {
+        "line" : 185,
+        "column" : 9
+      },
+      "structures" : [ {
+        "structureId" : "if:1",
+        "kind" : "IF",
+        "code" : "if (vulnerabilityStacks > 0 && (vulnerabilityStacks % 2 == 0))",
+        "startPosition" : {
+          "line" : 182,
+          "column" : 13
+        },
+        "endPosition" : {
+          "line" : 184,
+          "column" : 13
+        },
+        "condition" : {
+          "code" : "vulnerabilityStacks > 0 && (vulnerabilityStacks % 2 == 0)",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 182,
+            "column" : 17
+          },
+          "endPosition" : {
+            "line" : 182,
+            "column" : 73
+          }
+        },
+        "thenBranch" : {
+          "structureId" : "block:1",
+          "kind" : "BLOCK",
+          "code" : null,
+          "startPosition" : {
+            "line" : 182,
+            "column" : 76
+          },
+          "endPosition" : {
+            "line" : 184,
+            "column" : 13
+          },
+          "structures" : [ {
+            "structureId" : "expr_stmt:1",
+            "kind" : "EXPR_STMT",
+            "code" : null,
+            "startPosition" : {
+              "line" : 183,
+              "column" : 17
+            },
+            "endPosition" : {
+              "line" : 183,
+              "column" : 41
+            },
+            "expr" : {
+              "code" : "vulnerabilityStacks -= 1",
+              "kind" : "ALL",
+              "startPosition" : {
+                "line" : 183,
+                "column" : 17
+              },
+              "endPosition" : {
+                "line" : 183,
+                "column" : 41
+              }
+            }
+          } ]
+        },
+        "elseBranch" : null
+      } ]
+    },
+    "localVars" : [ ]
   }, {
     "methodId" : "m:ch.epfl.printwizard.examples.rpg.BattleHistory.BattleHistory(String,String,int,int,int,boolean)<init>",
     "classId" : "cls:ch.epfl.printwizard.examples.rpg.BattleHistory",

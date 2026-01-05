@@ -5,79 +5,45 @@
       "type" : "ch.epfl.printwizard.examples.Player",
       "timeline" : [ {
         "version" : 0,
-        "eventId" : "eve:4",
+        "eventId" : "eve:9",
         "fields" : { }
       }, {
         "version" : 1,
-        "eventId" : "eve:5",
+        "eventId" : "eve:10",
         "fields" : {
           "healthPoints" : {
             "type" : "int",
-            "value" : 10,
+            "value" : 50,
             "objectId" : null
           }
         }
       }, {
         "version" : 2,
-        "eventId" : "eve:6",
+        "eventId" : "eve:11",
         "fields" : {
           "healthPoints" : {
             "type" : "int",
-            "value" : 10,
+            "value" : 50,
             "objectId" : null
           },
           "manaPoints" : {
             "type" : "int",
-            "value" : 100,
+            "value" : 70,
             "objectId" : null
           }
         }
       }, {
         "version" : 3,
-        "eventId" : "eve:9",
+        "eventId" : "eve:14",
         "fields" : {
           "healthPoints" : {
             "type" : "int",
-            "value" : 120,
+            "value" : 32,
             "objectId" : null
           },
           "manaPoints" : {
             "type" : "int",
-            "value" : 100,
-            "objectId" : null
-          }
-        }
-      } ]
-    },
-    "obj:3" : {
-      "objectId" : "obj:3",
-      "type" : "ch.epfl.printwizard.examples.Player",
-      "timeline" : [ {
-        "version" : 0,
-        "eventId" : "eve:63",
-        "fields" : { }
-      }, {
-        "version" : 1,
-        "eventId" : "eve:64",
-        "fields" : {
-          "healthPoints" : {
-            "type" : "int",
-            "value" : 10,
-            "objectId" : null
-          }
-        }
-      }, {
-        "version" : 2,
-        "eventId" : "eve:65",
-        "fields" : {
-          "healthPoints" : {
-            "type" : "int",
-            "value" : 10,
-            "objectId" : null
-          },
-          "manaPoints" : {
-            "type" : "int",
-            "value" : 100,
+            "value" : 70,
             "objectId" : null
           }
         }

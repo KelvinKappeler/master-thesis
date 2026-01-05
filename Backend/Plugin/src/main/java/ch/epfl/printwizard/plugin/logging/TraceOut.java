@@ -549,7 +549,7 @@ public class TraceOut {
 
         Deque<ExecCtx> stack = CTX_STACK.get();
         ReturnCtx found = null;
-
+        
         while (!stack.isEmpty()) {
             ExecCtx ctx = stack.pop();
             if (ctx instanceof ReturnCtx rc && rc.getReturnEventId().equals(returnEventId)) {
@@ -779,21 +779,29 @@ public class TraceOut {
             stack.pop();
         }
 
-        if (stack.isEmpty() || !(stack.peek() instanceof LoopIterationCtx iterCtx) || !Objects.equals(iterCtx.getIterationEventId(), iterationEventId)) {
-            throw new IllegalStateException("Invalid loop iteration end");
+        LoopIterationCtx found = null;
+        while (!stack.isEmpty()) {
+            ExecCtx ctx = stack.pop();
+            if (ctx instanceof LoopIterationCtx iterCtx && Objects.equals(iterCtx.getIterationEventId(), iterationEventId)) {
+                found = iterCtx;
+                break;
+            }
         }
 
-        iterCtx = (LoopIterationCtx) stack.pop();
-        LoopCtx loopCtx = iterCtx.getLoopCtx();
+        if (found == null) {
+            throw new IllegalStateException("Invalid loop iteration end: No LoopIterationCtx for id " + iterationEventId);
+        }
 
-        String[] condIds = iterCtx.getConditionEventIds().toArray(String[]::new);
-        String[] bodyIds = iterCtx.getBodyEventIds().toArray(String[]::new);
-        String[] updateIds = iterCtx.getUpdateEventIds().toArray(String[]::new);
+        LoopCtx loopCtx = found.getLoopCtx();
+
+        String[] condIds = found.getConditionEventIds().toArray(String[]::new);
+        String[] bodyIds = found.getBodyEventIds().toArray(String[]::new);
+        String[] updateIds = found.getUpdateEventIds().toArray(String[]::new);
 
         LoopIterationEvent iterEvent = new LoopIterationEvent(
-            iterCtx.getIterationEventId(), loopCtx.getSpanId(),
-            loopCtx.getLocation(), iterCtx.getIterationIndex(),
-            iterCtx.getConditionValue(), condIds, bodyIds, updateIds
+            found.getIterationEventId(), loopCtx.getSpanId(),
+            loopCtx.getLocation(), found.getIterationIndex(),
+            found.getConditionValue(), condIds, bodyIds, updateIds
         );
 
         addEvent(iterEvent, true);
