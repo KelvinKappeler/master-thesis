@@ -26,7 +26,7 @@ export class ObjectInspector extends PWElement {
      */
     add(objectId, eventId) {
         const timeline = this.traceModel.objectsById.get(objectId);
-        const snapshot = timeline.timeline.find(s => s.eventId === eventId);
+        const snapshot = this.#findSnapshotAtOrBeforeEventId(timeline.timeline, eventId) ?? timeline.timeline[0];
 
         const mainDiv = document.createElement("div");
         mainDiv.classList.add("objectInspectorPanel");
@@ -61,17 +61,31 @@ export class ObjectInspector extends PWElement {
 
         mainDiv.appendChild(titleDiv);
 
-        if (snapshot.fields.size === 0) {
+        const tl = Array.isArray(timeline.timeline) ? timeline.timeline : [];
+        const allFieldNames = new Set();
+        for (const snap of tl) {
+            const fields = snap?.fields;
+            if (!fields || typeof fields[Symbol.iterator] !== "function") continue;
+            for (const [fieldName] of fields) allFieldNames.add(fieldName);
+        }
+
+        if (allFieldNames.size === 0) {
             const emptyField = document.createElement("div");
             emptyField.textContent = "No fields";
             fieldsDiv.appendChild(emptyField);
         } else {
-            for (const [fieldName, fieldState] of snapshot.fields) {
+            const currentFields = snapshot?.fields;
+            const sortedFieldNames = Array.from(allFieldNames).sort((a, b) => String(a).localeCompare(String(b)));
+
+            for (const fieldName of sortedFieldNames) {
+                const fieldState = currentFields?.get(fieldName);
+                const fieldKey = { objectId, fieldName };
+
                 const fieldDiv = document.createElement("div");
                 fieldDiv.classList.add("fieldDiv");
 
                 const statesDiv = this.#createFieldTimelineDiv(timeline, fieldName, snapshot.version);
-                this._statesDivByFieldState.set(fieldState, statesDiv);
+                this._statesDivByFieldState.set(fieldKey, statesDiv);
 
                 const fieldTriangle = new BaseTriangle([statesDiv], true);
                 fieldTriangle.element.classList.add("triangleFields");
@@ -82,10 +96,16 @@ export class ObjectInspector extends PWElement {
                 fieldTriangle.attachTo(headerDiv);
 
                 const label = document.createElement("span");
-                label.appendChild(document.createTextNode(`${fieldState.type} ${fieldName}: `));
+                label.appendChild(document.createTextNode(`${fieldState?.type ?? ""} ${fieldName}: `));
                 headerDiv.appendChild(label);
 
-                headerDiv.appendChild(this.#renderFieldValue(fieldState));
+                if (fieldState) {
+                    headerDiv.appendChild(this.#renderFieldValue(fieldState));
+                } else {
+                    const missing = document.createElement("span");
+                    missing.textContent = "(absent)";
+                    headerDiv.appendChild(missing);
+                }
 
                 const filterRow = document.createElement("div");
                 filterRow.classList.add("fieldFilterRow");
@@ -112,17 +132,17 @@ export class ObjectInspector extends PWElement {
                 filterRow.appendChild(filterBox.element);
                 filterRow.appendChild(onlyChangesLabel);
 
-                this._filterQueryByFieldState.set(fieldState, "");
-                this._onlyChangesByFieldState.set(fieldState, false);
+                this._filterQueryByFieldState.set(fieldKey, "");
+                this._onlyChangesByFieldState.set(fieldKey, false);
 
                 filterBox.onChange((q) => {
-                    this._filterQueryByFieldState.set(fieldState, q ?? "");
-                    this.#applyFieldTimelineFilter(fieldState);
+                    this._filterQueryByFieldState.set(fieldKey, q ?? "");
+                    this.#applyFieldTimelineFilter(fieldKey);
                 });
 
                 onlyChangesCheckbox.addEventListener("change", () => {
-                    this._onlyChangesByFieldState.set(fieldState, Boolean(onlyChangesCheckbox.checked));
-                    this.#applyFieldTimelineFilter(fieldState);
+                    this._onlyChangesByFieldState.set(fieldKey, Boolean(onlyChangesCheckbox.checked));
+                    this.#applyFieldTimelineFilter(fieldKey);
                 });
 
                 statesDiv.prepend(filterRow);
@@ -131,7 +151,7 @@ export class ObjectInspector extends PWElement {
                 fieldDiv.appendChild(statesDiv);
                 fieldsDiv.appendChild(fieldDiv);
 
-                this.#applyFieldTimelineFilter(fieldState);
+                this.#applyFieldTimelineFilter(fieldKey);
             }
         }
 
@@ -324,6 +344,37 @@ export class ObjectInspector extends PWElement {
             const versionText = `v${row.dataset.version ?? ""}`.toLowerCase();
             return valueText.includes(q) || versionText.includes(q);
         };
+    }
+
+    #parseEventIdIndex(eventId) {
+        const s = String(eventId ?? "");
+        if (s.length < 5) return null;
+
+        const numPart = s.substring(4);
+        const n = Number(numPart);
+        return Number.isFinite(n) ? n : null;
+    }
+
+    #findSnapshotAtOrBeforeEventId(timelineArray, targetEventId) {
+        const exact = timelineArray.find(s => s?.eventId === targetEventId);
+        if (exact) return exact;
+
+        const targetIndex = this.#parseEventIdIndex(targetEventId);
+        if (targetIndex === null) return null;
+
+        let best = null;
+        let bestIndex = -Infinity;
+
+        for (const s of timelineArray) {
+            const idx = this.#parseEventIdIndex(s?.eventId);
+            if (idx === null) continue;
+
+            if (idx <= targetIndex && idx > bestIndex) {
+                best = s;
+                bestIndex = idx;
+            }
+        }
+        return best;
     }
 
 }

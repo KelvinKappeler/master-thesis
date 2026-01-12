@@ -2488,10 +2488,10 @@
             },
             "endPosition" : {
               "line" : 146,
-              "column" : 49
+              "column" : 54
             },
             "expr" : {
-              "code" : "health -= (remaining + absorbed)",
+              "code" : "this.health -= (remaining + absorbed)",
               "kind" : "ALL",
               "startPosition" : {
                 "line" : 146,
@@ -2499,7 +2499,7 @@
               },
               "endPosition" : {
                 "line" : 146,
-                "column" : 49
+                "column" : 54
               }
             }
           } ]
@@ -2526,10 +2526,10 @@
             },
             "endPosition" : {
               "line" : 148,
-              "column" : 36
+              "column" : 41
             },
             "expr" : {
-              "code" : "health -= remaining",
+              "code" : "this.health -= remaining",
               "kind" : "ALL",
               "startPosition" : {
                 "line" : 148,
@@ -2537,7 +2537,7 @@
               },
               "endPosition" : {
                 "line" : 148,
-                "column" : 36
+                "column" : 41
               }
             }
           } ]
@@ -3941,10 +3941,10 @@
         },
         "endPosition" : {
           "line" : 131,
-          "column" : 32
+          "column" : 37
         },
         "expr" : {
-          "code" : "int before = health",
+          "code" : "int before = this.health",
           "kind" : "ALL",
           "startPosition" : {
             "line" : 131,
@@ -3952,7 +3952,7 @@
           },
           "endPosition" : {
             "line" : 131,
-            "column" : 32
+            "column" : 37
           }
         }
       }, {
@@ -3965,10 +3965,10 @@
         },
         "endPosition" : {
           "line" : 132,
-          "column" : 50
+          "column" : 60
         },
         "expr" : {
-          "code" : "health = health + Math.max(0, amount)",
+          "code" : "this.health = this.health + Math.max(0, amount)",
           "kind" : "ALL",
           "startPosition" : {
             "line" : 132,
@@ -3976,23 +3976,23 @@
           },
           "endPosition" : {
             "line" : 132,
-            "column" : 50
+            "column" : 60
           }
         }
       }, {
         "structureId" : "return:1",
         "kind" : "RETURN",
-        "code" : "return health - before;",
+        "code" : "return this.health - before;",
         "startPosition" : {
           "line" : 133,
           "column" : 13
         },
         "endPosition" : {
           "line" : 133,
-          "column" : 35
+          "column" : 40
         },
         "value" : {
-          "code" : "health - before",
+          "code" : "this.health - before",
           "kind" : "ALL",
           "startPosition" : {
             "line" : 133,
@@ -4000,7 +4000,7 @@
           },
           "endPosition" : {
             "line" : 133,
-            "column" : 35
+            "column" : 40
           }
         }
       } ]
@@ -4146,7 +4146,7 @@
           "column" : 53
         },
         "expr" : {
-          "code" : "Player player = new Player(\"PlayerName\", 50)",
+          "code" : "Player player = new Player(\"PlayerName\", 65)",
           "kind" : "ALL",
           "startPosition" : {
             "line" : 11,
@@ -4179,102 +4179,6 @@
           "endPosition" : {
             "line" : 12,
             "column" : 56
-          }
-        }
-      }, {
-        "structureId" : "expr_stmt:5",
-        "kind" : "EXPR_STMT",
-        "code" : null,
-        "startPosition" : {
-          "line" : 14,
-          "column" : 9
-        },
-        "endPosition" : {
-          "line" : 14,
-          "column" : 41
-        },
-        "expr" : {
-          "code" : "effects.set(120, Effect.hit(12))",
-          "kind" : "ALL",
-          "startPosition" : {
-            "line" : 14,
-            "column" : 9
-          },
-          "endPosition" : {
-            "line" : 14,
-            "column" : 41
-          }
-        }
-      }, {
-        "structureId" : "expr_stmt:6",
-        "kind" : "EXPR_STMT",
-        "code" : null,
-        "startPosition" : {
-          "line" : 15,
-          "column" : 9
-        },
-        "endPosition" : {
-          "line" : 15,
-          "column" : 43
-        },
-        "expr" : {
-          "code" : "effects.set(121, Effect.shield(8))",
-          "kind" : "ALL",
-          "startPosition" : {
-            "line" : 15,
-            "column" : 9
-          },
-          "endPosition" : {
-            "line" : 15,
-            "column" : 43
-          }
-        }
-      }, {
-        "structureId" : "expr_stmt:7",
-        "kind" : "EXPR_STMT",
-        "code" : null,
-        "startPosition" : {
-          "line" : 16,
-          "column" : 9
-        },
-        "endPosition" : {
-          "line" : 16,
-          "column" : 50
-        },
-        "expr" : {
-          "code" : "effects.set(122, Effect.vulnerability(2))",
-          "kind" : "ALL",
-          "startPosition" : {
-            "line" : 16,
-            "column" : 9
-          },
-          "endPosition" : {
-            "line" : 16,
-            "column" : 50
-          }
-        }
-      }, {
-        "structureId" : "expr_stmt:8",
-        "kind" : "EXPR_STMT",
-        "code" : null,
-        "startPosition" : {
-          "line" : 17,
-          "column" : 9
-        },
-        "endPosition" : {
-          "line" : 17,
-          "column" : 41
-        },
-        "expr" : {
-          "code" : "effects.set(123, Effect.hit(25))",
-          "kind" : "ALL",
-          "startPosition" : {
-            "line" : 17,
-            "column" : 9
-          },
-          "endPosition" : {
-            "line" : 17,
-            "column" : 41
           }
         }
       }, {
@@ -4338,7 +4242,7 @@
             "column" : 9
           },
           "structures" : [ {
-            "structureId" : "expr_stmt:9",
+            "structureId" : "expr_stmt:5",
             "kind" : "EXPR_STMT",
             "code" : null,
             "startPosition" : {
@@ -4362,7 +4266,7 @@
               }
             }
           }, {
-            "structureId" : "expr_stmt:10",
+            "structureId" : "expr_stmt:6",
             "kind" : "EXPR_STMT",
             "code" : null,
             "startPosition" : {
@@ -4388,7 +4292,7 @@
           } ]
         }
       }, {
-        "structureId" : "expr_stmt:11",
+        "structureId" : "expr_stmt:7",
         "kind" : "EXPR_STMT",
         "code" : null,
         "startPosition" : {
@@ -4397,10 +4301,10 @@
         },
         "endPosition" : {
           "line" : 25,
-          "column" : 63
+          "column" : 61
         },
         "expr" : {
-          "code" : "System.out.println(\"\\nFinal: \" + player.debugString())",
+          "code" : "System.out.println(\"Final: \" + player.debugString())",
           "kind" : "ALL",
           "startPosition" : {
             "line" : 25,
@@ -4408,7 +4312,7 @@
           },
           "endPosition" : {
             "line" : 25,
-            "column" : 63
+            "column" : 61
           }
         }
       } ]
@@ -5367,10 +5271,10 @@
             },
             "endPosition" : {
               "line" : 146,
-              "column" : 49
+              "column" : 54
             },
             "expr" : {
-              "code" : "health -= (remaining + absorbed)",
+              "code" : "this.health -= (remaining + absorbed)",
               "kind" : "ALL",
               "startPosition" : {
                 "line" : 146,
@@ -5378,7 +5282,7 @@
               },
               "endPosition" : {
                 "line" : 146,
-                "column" : 49
+                "column" : 54
               }
             }
           } ]
@@ -5405,10 +5309,10 @@
             },
             "endPosition" : {
               "line" : 148,
-              "column" : 36
+              "column" : 41
             },
             "expr" : {
-              "code" : "health -= remaining",
+              "code" : "this.health -= remaining",
               "kind" : "ALL",
               "startPosition" : {
                 "line" : 148,
@@ -5416,7 +5320,7 @@
               },
               "endPosition" : {
                 "line" : 148,
-                "column" : 36
+                "column" : 41
               }
             }
           } ]
@@ -5564,10 +5468,10 @@
         },
         "endPosition" : {
           "line" : 131,
-          "column" : 32
+          "column" : 37
         },
         "expr" : {
-          "code" : "int before = health",
+          "code" : "int before = this.health",
           "kind" : "ALL",
           "startPosition" : {
             "line" : 131,
@@ -5575,7 +5479,7 @@
           },
           "endPosition" : {
             "line" : 131,
-            "column" : 32
+            "column" : 37
           }
         }
       }, {
@@ -5588,10 +5492,10 @@
         },
         "endPosition" : {
           "line" : 132,
-          "column" : 50
+          "column" : 60
         },
         "expr" : {
-          "code" : "health = health + Math.max(0, amount)",
+          "code" : "this.health = this.health + Math.max(0, amount)",
           "kind" : "ALL",
           "startPosition" : {
             "line" : 132,
@@ -5599,23 +5503,23 @@
           },
           "endPosition" : {
             "line" : 132,
-            "column" : 50
+            "column" : 60
           }
         }
       }, {
         "structureId" : "return:1",
         "kind" : "RETURN",
-        "code" : "return health - before;",
+        "code" : "return this.health - before;",
         "startPosition" : {
           "line" : 133,
           "column" : 13
         },
         "endPosition" : {
           "line" : 133,
-          "column" : 35
+          "column" : 40
         },
         "value" : {
-          "code" : "health - before",
+          "code" : "this.health - before",
           "kind" : "ALL",
           "startPosition" : {
             "line" : 133,
@@ -5623,7 +5527,7 @@
           },
           "endPosition" : {
             "line" : 133,
-            "column" : 35
+            "column" : 40
           }
         }
       } ]

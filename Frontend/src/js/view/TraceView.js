@@ -396,7 +396,7 @@ export class TraceView {
             documentFragment.append(TraceSpan.wrapLineColors(contentLine));
             documentFragment.append(" ↦ ");
 
-            const result = event.value.value;
+            let result = event.value?.value;
             const traceSpanType = result === true ? TraceSpanType.True : TraceSpanType.False;
             documentFragment.append(TraceSpan.createSpan(traceSpanType, result ? "true" : "false"));
         }

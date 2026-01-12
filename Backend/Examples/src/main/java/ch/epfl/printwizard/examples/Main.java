@@ -3,14 +3,21 @@ package ch.epfl.printwizard.examples;
 public class Main {
     
     public static void main(String[] args) {
-        int i = add(3, 4) / 2;
-        
-        Player player = new Player(50, 70);
-        player.setHealthPoints(32);
-        
-        for (int j = 0; j < 5; j++) {
-            i = add(i, j);
+        int i = 3;
+        int b = 4;
+
+        if (i > addWithLog(1, 1) || b < addWithLog(2, 2)) {
+            System.out.println("OK1");
         }
+
+        if (b < addWithLog(2, 7) && b < addWithLog(2, 5)) {
+            System.out.println("OK2");
+        }
+    }
+
+    private static int addWithLog(int a, int b) {
+        System.out.println("Adding " + a + " and " + b);
+        return a + b;
     }
 
     private static int add(int a, int b) {

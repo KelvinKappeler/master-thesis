@@ -8,13 +8,13 @@ public final class Main {
         long seed = 123456789L;
         Simulation sim = new Simulation(seed);
 
-        Player player = new Player("PlayerName", 50);
+        Player player = new Player("PlayerName", 65);
         List<Effect> effects = sim.generateEffects(300);
         
-        effects.set(120, Effect.hit(12));
-        effects.set(121, Effect.shield(8));
-        effects.set(122, Effect.vulnerability(2));
-        effects.set(123, Effect.hit(25));
+        //effects.set(120, Effect.hit(12));
+        //effects.set(121, Effect.shield(8));
+        //effects.set(122, Effect.vulnerability(2));
+        //effects.set(123, Effect.hit(25));
         
         for (int turn = 0; turn < effects.size(); turn++) {
             Effect e = effects.get(turn);
@@ -22,7 +22,7 @@ public final class Main {
             sim.applyEffect(player, e, turn);
         }
 
-        System.out.println("\nFinal: " + player.debugString());
+        System.out.println("Final: " + player.debugString());
     }
 
     private static class Simulation {
@@ -128,9 +128,9 @@ public final class Main {
         }
 
         int heal(int amount) {
-            int before = health;
-            health = health + Math.max(0, amount);
-            return health - before;
+            int before = this.health;
+            this.health = this.health + Math.max(0, amount);
+            return this.health - before;
         }
         
         void applyDamage(int damage, DamageSource source) {
@@ -143,9 +143,9 @@ public final class Main {
             // BUG: in this branch we subtract (remaining + absorbed) == incoming
             // even though absorbed was already handled by shield reduction.
             if (status.wasShieldUsedThisCall && source == DamageSource.ENEMY) {
-                health -= (remaining + absorbed);
+                this.health -= (remaining + absorbed);
             } else {
-                health -= remaining;
+                this.health -= remaining;
             }
         }
 

@@ -32,6 +32,7 @@ public class TracingTranslator extends TreeTranslator {
     private final TraceFile.Builder traceFileBuilder;
 
     private Symbol.MethodSymbol currentMethod;
+    private JCTree.JCExpression currentThisExpr;
 
     public TracingTranslator(Context ctx, JCTree.JCCompilationUnit cu) {
         this.cu = cu;
@@ -68,6 +69,7 @@ public class TracingTranslator extends TreeTranslator {
     public void visitMethodDef(JCTree.JCMethodDecl jcMethodDecl) {
         Symbol.MethodSymbol previousMethod = this.currentMethod;
         this.currentMethod = jcMethodDecl.sym;
+        JCTree.JCExpression previousThisExpr = this.currentThisExpr;
 
         int startLine = cu.getLineMap().getLineNumber(jcMethodDecl.pos);
         String owner = cu.packge != null ? cu.packge + "." + jcMethodDecl.sym.owner.getSimpleName().toString() : jcMethodDecl.sym.owner.getSimpleName().toString();
@@ -94,6 +96,7 @@ public class TracingTranslator extends TreeTranslator {
             nullLit.type = symtab.botType;
             thisArgExpr = nullLit;
         }
+        this.currentThisExpr = thisArgExpr;
 
         JCTree.JCExpression argsArrayExpr = makeArgArrayExpr(jcMethodDecl.getParameters(), jcMethodDecl.pos);
 
@@ -222,6 +225,7 @@ public class TracingTranslator extends TreeTranslator {
         super.visitMethodDef(jcMethodDecl);
 
         this.currentMethod = previousMethod;
+        this.currentThisExpr = previousThisExpr;
     }
 
     @Override
@@ -588,6 +592,115 @@ public class TracingTranslator extends TreeTranslator {
 
         int line = cu.getLineMap().getLineNumber(jcBinary.pos);
 
+        if (jcBinary.getTag() == JCTree.Tag.AND || jcBinary.getTag() == JCTree.Tag.OR) {
+            String sourceId = getSourceId();
+
+            String opStr = (jcBinary.getTag() == JCTree.Tag.AND) ? "&&" : "||";
+
+            mk.at(jcBinary.pos);
+
+            Name evtName = names.fromString("__pw_cmp_evt_" + jcBinary.pos);
+            JCTree.JCExpression stringTypeTree = mk.QualIdent(symtab.stringType.tsym);
+            stringTypeTree.type = symtab.stringType;
+
+            JCTree.JCMethodInvocation beginCmp = callStatic(
+                "ch.epfl.printwizard.plugin.logging.TraceOut",
+                "beginComparison",
+                List.of(mk.Literal(opStr), mk.Literal(sourceId), mk.Literal(line)),
+                jcBinary.pos
+            );
+
+            JCTree.JCVariableDecl evtDecl = mk.VarDef(mk.Modifiers(Flags.SYNTHETIC), evtName, stringTypeTree, beginCmp);
+            Symbol.VarSymbol evtSym = new Symbol.VarSymbol(
+                Flags.SYNTHETIC, evtName, symtab.stringType,
+                (currentMethod != null ? currentMethod : symtab.noSymbol)
+            );
+            evtDecl.sym = evtSym;
+            evtDecl.type = symtab.stringType;
+
+            Name lName = names.fromString("__pw_cmp_l_" + jcBinary.pos);
+            JCTree.JCExpression boolTypeTree = mk.TypeIdent(TypeTag.BOOLEAN);
+            boolTypeTree.type = symtab.booleanType;
+
+            JCTree.JCMethodInvocation beginLeft = callStatic(
+                "ch.epfl.printwizard.plugin.logging.TraceOut",
+                "beginComparisonLeft",
+                List.nil(),
+                jcBinary.pos
+            );
+
+            JCTree.JCMethodInvocation endLeft = callStatic(
+                "ch.epfl.printwizard.plugin.logging.TraceOut",
+                "endComparisonLeft",
+                List.of(beginLeft, jcBinary.lhs),
+                jcBinary.pos
+            );
+            endLeft.type = symtab.booleanType;
+
+            JCTree.JCVariableDecl lDecl = mk.VarDef(mk.Modifiers(Flags.SYNTHETIC), lName, boolTypeTree, endLeft);
+            Symbol.VarSymbol lSym = new Symbol.VarSymbol(
+                Flags.SYNTHETIC, lName, symtab.booleanType,
+                (currentMethod != null ? currentMethod : symtab.noSymbol)
+            );
+            lDecl.sym = lSym;
+            lDecl.type = symtab.booleanType;
+
+            JCTree.JCExpression lId = mk.Ident(lSym);
+            lId.type = symtab.booleanType;
+
+            JCTree.JCMethodInvocation beginRight = callStatic(
+                "ch.epfl.printwizard.plugin.logging.TraceOut",
+                "beginComparisonRight",
+                List.nil(),
+                jcBinary.pos
+            );
+
+            JCTree.JCMethodInvocation endRightEval = callStatic(
+                "ch.epfl.printwizard.plugin.logging.TraceOut",
+                "endComparisonRight",
+                List.of(beginRight, jcBinary.rhs),
+                jcBinary.pos
+            );
+            endRightEval.type = symtab.booleanType;
+
+            JCTree.JCExpression rhsWhenShortCircuited = mk.Literal(jcBinary.getTag() == JCTree.Tag.OR);
+            rhsWhenShortCircuited.type = symtab.booleanType;
+
+            JCTree.JCExpression rhsExpr =
+                (jcBinary.getTag() == JCTree.Tag.AND)
+                    ? mk.Conditional(lId, endRightEval, rhsWhenShortCircuited)
+                    : mk.Conditional(lId, rhsWhenShortCircuited, endRightEval);
+
+            rhsExpr.type = symtab.booleanType;
+
+            Name rName = names.fromString("__pw_cmp_r_" + jcBinary.pos);
+            JCTree.JCVariableDecl rDecl = mk.VarDef(mk.Modifiers(Flags.SYNTHETIC), rName, boolTypeTree, rhsExpr);
+            Symbol.VarSymbol rSym = new Symbol.VarSymbol(
+                Flags.SYNTHETIC, rName, symtab.booleanType,
+                (currentMethod != null ? currentMethod : symtab.noSymbol)
+            );
+            rDecl.sym = rSym;
+            rDecl.type = symtab.booleanType;
+
+            JCTree.JCExpression rId = mk.Ident(rSym);
+            rId.type = symtab.booleanType;
+
+            JCTree.JCMethodInvocation endCmp = callStatic(
+                "ch.epfl.printwizard.plugin.logging.TraceOut",
+                "endComparison",
+                List.of(mk.Ident(evtSym), lId, rId),
+                jcBinary.pos
+            );
+            endCmp.type = symtab.booleanType;
+
+            JCTree.LetExpr let = mk.LetExpr(List.of(evtDecl, lDecl, rDecl), endCmp);
+            let.type = symtab.booleanType;
+
+            result = let;
+
+            return;
+        }
+
         if (isArithmetic(jcBinary.getTag())) {
             String sourceId = getSourceId();
             String op = jcBinary.getTag().toString();
@@ -881,6 +994,42 @@ public class TracingTranslator extends TreeTranslator {
             return;
         }
 
+        // 4) implicit field = rhs;  (e.g., health = 12;)
+        if (jcAssign.lhs instanceof JCTree.JCIdent id && id.sym instanceof Symbol.VarSymbol varSym && varSym.owner instanceof Symbol.ClassSymbol clsSym) {
+
+            String fieldName = id.getName().toString();
+            JCTree.JCExpression targetExpr;
+
+            if (varSym.isStatic()) {
+                targetExpr = mk.Ident(clsSym);
+                targetExpr.type = clsSym.type;
+            } else {
+                targetExpr = (currentThisExpr != null) ? currentThisExpr : mk.Literal(TypeTag.BOT, null);
+                if (targetExpr.type == null) targetExpr.type = symtab.botType;
+            }
+
+            JCTree.JCExpression translatedRhs = translate(jcAssign.rhs);
+
+            JCTree.JCAssign assignExpr = mk.Assign(jcAssign.lhs, translatedRhs);
+            assignExpr.type = jcAssign.type;
+
+            JCTree.JCMethodInvocation beginCall = callStatic(
+                "ch.epfl.printwizard.plugin.logging.TraceOut",
+                "beginFieldWrite",
+                List.of(targetExpr, mk.Literal(fieldName), mk.Literal(sourceId), mk.Literal(line)),
+                jcAssign.pos
+            );
+
+            this.result = callStatic(
+                "ch.epfl.printwizard.plugin.logging.TraceOut",
+                "endFieldWrite",
+                List.of(beginCall, assignExpr),
+                jcAssign.pos
+            );
+
+            return;
+        }
+
         super.visitAssign(jcAssign);
     }
 
@@ -926,7 +1075,31 @@ public class TracingTranslator extends TreeTranslator {
             return;
         }
 
-        // 2) localVar op= rhs
+        // 2) obj.field op= rhs
+        if (jcAssignOp.lhs instanceof JCTree.JCFieldAccess fieldAccess) {
+            JCTree.JCAssignOp trAssignOp = (JCTree.JCAssignOp) result;
+
+            JCTree.JCExpression targetExpr = ((JCTree.JCFieldAccess) trAssignOp.lhs).selected;
+            String fieldName = fieldAccess.name.toString();
+
+            JCTree.JCMethodInvocation beginCall = callStatic(
+                "ch.epfl.printwizard.plugin.logging.TraceOut",
+                "beginFieldWrite",
+                List.of(targetExpr, mk.Literal(fieldName), mk.Literal(sourceId), mk.Literal(line)),
+                jcAssignOp.pos
+            );
+
+            result = callStatic(
+                "ch.epfl.printwizard.plugin.logging.TraceOut",
+                "endFieldWrite",
+                List.of(beginCall, assigned),
+                jcAssignOp.pos
+            );
+
+            return;
+        }
+
+        // 3) localVar op= rhs
         if (jcAssignOp.lhs instanceof JCTree.JCIdent id && id.sym instanceof Symbol.VarSymbol varSym && varSym.owner instanceof Symbol.MethodSymbol) {
 
             String lhsText = id.toString();
@@ -942,6 +1115,37 @@ public class TracingTranslator extends TreeTranslator {
             result = callStatic(
                 "ch.epfl.printwizard.plugin.logging.TraceOut",
                 "endLocal",
+                List.of(beginCall, assigned),
+                jcAssignOp.pos
+            );
+
+            return;
+        }
+
+        // 4) implicit field op= rhs  (e.g., health += 12;)
+        if (jcAssignOp.lhs instanceof JCTree.JCIdent id && id.sym instanceof Symbol.VarSymbol varSym && varSym.owner instanceof Symbol.ClassSymbol clsSym) {
+
+            String fieldName = id.getName().toString();
+            JCTree.JCExpression targetExpr;
+
+            if (varSym.isStatic()) {
+                targetExpr = mk.Ident(clsSym);
+                targetExpr.type = clsSym.type;
+            } else {
+                targetExpr = (currentThisExpr != null) ? currentThisExpr : mk.Literal(TypeTag.BOT, null);
+                if (targetExpr.type == null) targetExpr.type = symtab.botType;
+            }
+
+            JCTree.JCMethodInvocation beginCall = callStatic(
+                "ch.epfl.printwizard.plugin.logging.TraceOut",
+                "beginFieldWrite",
+                List.of(targetExpr, mk.Literal(fieldName), mk.Literal(sourceId), mk.Literal(line)),
+                jcAssignOp.pos
+            );
+
+            result = callStatic(
+                "ch.epfl.printwizard.plugin.logging.TraceOut",
+                "endFieldWrite",
                 List.of(beginCall, assigned),
                 jcAssignOp.pos
             );
@@ -966,8 +1170,8 @@ public class TracingTranslator extends TreeTranslator {
                 String label = arrayNameText;
 
                 if (arrAccess.indexed instanceof JCTree.JCIdent id
-                    && id.sym instanceof Symbol.VarSymbol varSym
-                    && varSym.owner instanceof Symbol.MethodSymbol) {
+                        && id.sym instanceof Symbol.VarSymbol varSym
+                        && varSym.owner instanceof Symbol.MethodSymbol) {
                     label = makeLabel(varSym);
                 }
 
@@ -995,23 +1199,70 @@ public class TracingTranslator extends TreeTranslator {
                 return;
             }
 
+            // obj.field++ / this.field++
+            if (argExpr instanceof JCTree.JCFieldAccess fa && fa.sym instanceof Symbol.VarSymbol) {
+                JCTree.JCExpression targetExpr = fa.selected;
+                String fieldName = fa.name.toString();
+
+                JCTree.JCMethodInvocation beginCall = callStatic(
+                    "ch.epfl.printwizard.plugin.logging.TraceOut",
+                    "beginFieldWrite",
+                    List.of(targetExpr, mk.Literal(fieldName), mk.Literal(sourceId), mk.Literal(line)),
+                    jcUnary.pos
+                );
+
+                result = callStatic(
+                    "ch.epfl.printwizard.plugin.logging.TraceOut",
+                    "endFieldWrite",
+                    List.of(beginCall, translatedUnary),
+                    jcUnary.pos
+                );
+
+                return;
+            }
+
+            // implicit field++ (e.g., health++;)
+            if (argExpr instanceof JCTree.JCIdent id && id.sym instanceof Symbol.VarSymbol varSym && varSym.owner instanceof Symbol.ClassSymbol clsSym) {
+                String fieldName = id.getName().toString();
+                JCTree.JCExpression targetExpr;
+
+                if (varSym.isStatic()) {
+                    targetExpr = mk.Ident(clsSym);
+                    targetExpr.type = clsSym.type;
+                } else {
+                    targetExpr = (currentThisExpr != null) ? currentThisExpr : mk.Literal(TypeTag.BOT, null);
+                    if (targetExpr.type == null) targetExpr.type = symtab.botType;
+                }
+
+                JCTree.JCMethodInvocation beginCall = callStatic(
+                    "ch.epfl.printwizard.plugin.logging.TraceOut",
+                    "beginFieldWrite",
+                    List.of(targetExpr, mk.Literal(fieldName), mk.Literal(sourceId), mk.Literal(line)),
+                    jcUnary.pos
+                );
+
+                result = callStatic(
+                    "ch.epfl.printwizard.plugin.logging.TraceOut",
+                    "endFieldWrite",
+                    List.of(beginCall, translatedUnary),
+                    jcUnary.pos
+                );
+
+                return;
+            }
+
             String varText = argExpr.toString();
             String label = varText;
             if (argExpr instanceof JCTree.JCIdent id
-                && id.sym instanceof Symbol.VarSymbol varSym
-                && varSym.owner instanceof Symbol.MethodSymbol) {
+                    && id.sym instanceof Symbol.VarSymbol varSym
+                    && varSym.owner instanceof Symbol.MethodSymbol) {
                 label = makeLabel(varSym);
             }
 
             JCTree.JCMethodInvocation beginCall = callStatic(
                 "ch.epfl.printwizard.plugin.logging.TraceOut",
                 "beginLocal",
-                List.of(
-                    mk.Literal(label),
-                    mk.Literal(varText),
-                    mk.Literal(sourceId),
-                    mk.Literal(line)
-                ),
+                List.of(mk.Literal(label), mk.Literal(varText), mk.Literal(sourceId), mk.Literal(line)),
                 jcUnary.pos
             );
 
