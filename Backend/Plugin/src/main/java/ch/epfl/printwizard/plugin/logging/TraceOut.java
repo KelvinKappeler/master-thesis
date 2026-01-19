@@ -229,7 +229,7 @@ public class TraceOut {
             found.getLocation(), found.getOperator(),
             EventValue.of(left), leftEventId,
             EventValue.of(right), rightEventId,
-            new EventValue(result, null, "boolean", ValueKind.PRIMITIVE)
+            EventValue.of(result)
         );
 
         addEvent(ev, true);
@@ -925,18 +925,26 @@ public class TraceOut {
 
         String[] eventIdArray = eventIds.toArray(String[]::new);
 
+        EventValue patchedReturnValue = returnValue;
+        if (returnValue != null && returnValue.valueObjectId() != null) {
+            Integer v = OutputManager.getStateFileBuilder().getCurrentVersionForObject(returnValue.valueObjectId());
+            if (v != null) {
+                patchedReturnValue = returnValue.withObjectVersion(v);
+            }
+        }
+
         for (int i = events.size() - 1; i >= 0; i--) {
             TraceEvent e = events.get(i);
             if (e instanceof CallEvent ce && ce.eventId().equals(callEventId)) {
                 CallEvent patched = new CallEvent(
-                    ce.eventId(), ce.spanId(),
-                    ce.location(), ce.callerMethodId(), ce.calleeMethodId(),
-                    ce.name(), ce.external(), ce.args(),
-                    returnValue, eventIdArray
+                        ce.eventId(), ce.spanId(),
+                        ce.location(), ce.callerMethodId(), ce.calleeMethodId(),
+                        ce.name(), ce.external(), ce.args(),
+                        patchedReturnValue, eventIdArray
                 );
-                
+
                 events.set(i, patched);
-                
+
                 return;
             }
         }

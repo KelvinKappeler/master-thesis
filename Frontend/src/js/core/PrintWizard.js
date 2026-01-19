@@ -51,8 +51,9 @@ export class PrintWizard {
             window.addEventListener("pw:inspect-object", (e) => {
                 const objectId = e?.detail?.objectId;
                 const eventId = e?.detail?.eventId;
+                const objectVersion = e?.detail?.objectVersion ?? null;
 
-                this.objectInspector.add(objectId, eventId);
+                this.objectInspector.add(objectId, eventId, objectVersion);
             });
             window.addEventListener("pw:inspect-span", (e) => {
                 const spanId = e?.detail?.spanId;

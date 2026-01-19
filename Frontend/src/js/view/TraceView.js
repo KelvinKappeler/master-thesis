@@ -455,7 +455,9 @@ export class TraceView {
                 span.addEventListener("click", (e) => {
                     e.preventDefault?.();
                     e.stopPropagation?.();
-                    window.dispatchEvent(new CustomEvent("pw:inspect-object", { detail: { objectId, eventId: contextEventId } }));
+                    window.dispatchEvent(new CustomEvent("pw:inspect-object", {
+                        detail: {objectId, eventId: contextEventId, objectVersion: value.objectVersion ?? null}
+                    }))
                 });
             }
 

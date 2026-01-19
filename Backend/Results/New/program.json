@@ -3,7 +3,7 @@
     "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
     "path" : "Examples/src/main/java/ch/epfl/printwizard/examples/Main.java",
     "language" : "java",
-    "lines" : 23
+    "lines" : 21
   }, {
     "sourceId" : "src:ch/epfl/printwizard/examples/Player.java",
     "path" : "Examples/src/main/java/ch/epfl/printwizard/examples/Player.java",
@@ -129,8 +129,8 @@
     "classId" : "cls:ch.epfl.printwizard.examples.Main",
     "name" : "add",
     "returnType" : "int",
-    "startLine" : 16,
-    "endLine" : 18,
+    "startLine" : 14,
+    "endLine" : 16,
     "parameters" : [ {
       "index" : 0,
       "name" : "a",
@@ -145,11 +145,11 @@
       "kind" : "BLOCK",
       "code" : null,
       "startPosition" : {
-        "line" : 16,
+        "line" : 14,
         "column" : 42
       },
       "endPosition" : {
-        "line" : 18,
+        "line" : 16,
         "column" : 5
       },
       "structures" : [ {
@@ -157,22 +157,101 @@
         "kind" : "RETURN",
         "code" : "return a + b;",
         "startPosition" : {
-          "line" : 17,
+          "line" : 15,
           "column" : 9
         },
         "endPosition" : {
-          "line" : 17,
+          "line" : 15,
           "column" : 21
         },
         "value" : {
           "code" : "a + b",
           "kind" : "ALL",
           "startPosition" : {
-            "line" : 17,
+            "line" : 15,
             "column" : 9
           },
           "endPosition" : {
-            "line" : 17,
+            "line" : 15,
+            "column" : 21
+          }
+        }
+      } ]
+    },
+    "localVars" : [ ]
+  }, {
+    "methodId" : "m:ch.epfl.printwizard.examples.Main.addWithLog(int,int)int",
+    "classId" : "cls:ch.epfl.printwizard.examples.Main",
+    "name" : "addWithLog",
+    "returnType" : "int",
+    "startLine" : 9,
+    "endLine" : 12,
+    "parameters" : [ {
+      "index" : 0,
+      "name" : "a",
+      "typeId" : "t:int"
+    }, {
+      "index" : 1,
+      "name" : "b",
+      "typeId" : "t:int"
+    } ],
+    "structure" : {
+      "structureId" : "block:1",
+      "kind" : "BLOCK",
+      "code" : null,
+      "startPosition" : {
+        "line" : 9,
+        "column" : 49
+      },
+      "endPosition" : {
+        "line" : 12,
+        "column" : 5
+      },
+      "structures" : [ {
+        "structureId" : "expr_stmt:1",
+        "kind" : "EXPR_STMT",
+        "code" : null,
+        "startPosition" : {
+          "line" : 10,
+          "column" : 9
+        },
+        "endPosition" : {
+          "line" : 10,
+          "column" : 56
+        },
+        "expr" : {
+          "code" : "System.out.println(\"Adding \" + a + \" and \" + b)",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 10,
+            "column" : 9
+          },
+          "endPosition" : {
+            "line" : 10,
+            "column" : 56
+          }
+        }
+      }, {
+        "structureId" : "return:1",
+        "kind" : "RETURN",
+        "code" : "return a + b;",
+        "startPosition" : {
+          "line" : 11,
+          "column" : 9
+        },
+        "endPosition" : {
+          "line" : 11,
+          "column" : 21
+        },
+        "value" : {
+          "code" : "a + b",
+          "kind" : "ALL",
+          "startPosition" : {
+            "line" : 11,
+            "column" : 9
+          },
+          "endPosition" : {
+            "line" : 11,
             "column" : 21
           }
         }
@@ -185,14 +264,14 @@
     "name" : "main",
     "returnType" : "void",
     "startLine" : 5,
-    "endLine" : 14,
+    "endLine" : 7,
     "parameters" : [ {
       "index" : 0,
       "name" : "args",
       "typeId" : "t:String[]"
     } ],
     "structure" : {
-      "structureId" : "block:2",
+      "structureId" : "block:1",
       "kind" : "BLOCK",
       "code" : null,
       "startPosition" : {
@@ -200,7 +279,7 @@
         "column" : 44
       },
       "endPosition" : {
-        "line" : 14,
+        "line" : 7,
         "column" : 5
       },
       "structures" : [ {
@@ -213,10 +292,10 @@
         },
         "endPosition" : {
           "line" : 6,
-          "column" : 30
+          "column" : 38
         },
         "expr" : {
-          "code" : "int i = add(3, 4) / 2",
+          "code" : "Player p = new Player(10, 30)",
           "kind" : "ALL",
           "startPosition" : {
             "line" : 6,
@@ -224,165 +303,23 @@
           },
           "endPosition" : {
             "line" : 6,
-            "column" : 30
+            "column" : 38
           }
-        }
-      }, {
-        "structureId" : "expr_stmt:2",
-        "kind" : "EXPR_STMT",
-        "code" : null,
-        "startPosition" : {
-          "line" : 8,
-          "column" : 9
-        },
-        "endPosition" : {
-          "line" : 8,
-          "column" : 43
-        },
-        "expr" : {
-          "code" : "Player player = new Player(50, 70)",
-          "kind" : "ALL",
-          "startPosition" : {
-            "line" : 8,
-            "column" : 9
-          },
-          "endPosition" : {
-            "line" : 8,
-            "column" : 43
-          }
-        }
-      }, {
-        "structureId" : "expr_stmt:3",
-        "kind" : "EXPR_STMT",
-        "code" : null,
-        "startPosition" : {
-          "line" : 9,
-          "column" : 9
-        },
-        "endPosition" : {
-          "line" : 9,
-          "column" : 35
-        },
-        "expr" : {
-          "code" : "player.setHealthPoints(32)",
-          "kind" : "ALL",
-          "startPosition" : {
-            "line" : 9,
-            "column" : 9
-          },
-          "endPosition" : {
-            "line" : 9,
-            "column" : 35
-          }
-        }
-      }, {
-        "structureId" : "for:1",
-        "kind" : "FOR",
-        "code" : "for (int j = 0; j < 5; j++)",
-        "startPosition" : {
-          "line" : 11,
-          "column" : 9
-        },
-        "endPosition" : {
-          "line" : 13,
-          "column" : 9
-        },
-        "initialization" : {
-          "code" : "int j = 0",
-          "kind" : "ALL",
-          "startPosition" : {
-            "line" : 11,
-            "column" : 14
-          },
-          "endPosition" : {
-            "line" : 11,
-            "column" : 22
-          }
-        },
-        "condition" : {
-          "code" : "j < 5",
-          "kind" : "ALL",
-          "startPosition" : {
-            "line" : 11,
-            "column" : 25
-          },
-          "endPosition" : {
-            "line" : 11,
-            "column" : 29
-          }
-        },
-        "update" : {
-          "code" : "j++",
-          "kind" : "ALL",
-          "startPosition" : {
-            "line" : 11,
-            "column" : 32
-          },
-          "endPosition" : {
-            "line" : 11,
-            "column" : 34
-          }
-        },
-        "body" : {
-          "structureId" : "block:1",
-          "kind" : "BLOCK",
-          "code" : null,
-          "startPosition" : {
-            "line" : 11,
-            "column" : 37
-          },
-          "endPosition" : {
-            "line" : 13,
-            "column" : 9
-          },
-          "structures" : [ {
-            "structureId" : "expr_stmt:4",
-            "kind" : "EXPR_STMT",
-            "code" : null,
-            "startPosition" : {
-              "line" : 12,
-              "column" : 13
-            },
-            "endPosition" : {
-              "line" : 12,
-              "column" : 26
-            },
-            "expr" : {
-              "code" : "i = add(i, j)",
-              "kind" : "ALL",
-              "startPosition" : {
-                "line" : 12,
-                "column" : 13
-              },
-              "endPosition" : {
-                "line" : 12,
-                "column" : 26
-              }
-            }
-          } ]
         }
       } ]
     },
     "localVars" : [ {
       "index" : 1,
-      "name" : "i",
-      "typeId" : "int"
-    }, {
-      "index" : 2,
-      "name" : "player",
+      "name" : "p",
       "typeId" : "Player"
-    }, {
-      "index" : 3,
-      "name" : "j",
-      "typeId" : "int"
     } ]
   }, {
     "methodId" : "m:ch.epfl.printwizard.examples.Main.print(String)void",
     "classId" : "cls:ch.epfl.printwizard.examples.Main",
     "name" : "print",
     "returnType" : "void",
-    "startLine" : 20,
-    "endLine" : 22,
+    "startLine" : 18,
+    "endLine" : 20,
     "parameters" : [ {
       "index" : 0,
       "name" : "str",
@@ -393,11 +330,11 @@
       "kind" : "BLOCK",
       "code" : null,
       "startPosition" : {
-        "line" : 20,
+        "line" : 18,
         "column" : 43
       },
       "endPosition" : {
-        "line" : 22,
+        "line" : 20,
         "column" : 5
       },
       "structures" : [ {
@@ -405,22 +342,22 @@
         "kind" : "EXPR_STMT",
         "code" : null,
         "startPosition" : {
-          "line" : 21,
+          "line" : 19,
           "column" : 9
         },
         "endPosition" : {
-          "line" : 21,
+          "line" : 19,
           "column" : 32
         },
         "expr" : {
           "code" : "System.out.println(str)",
           "kind" : "ALL",
           "startPosition" : {
-            "line" : 21,
+            "line" : 19,
             "column" : 9
           },
           "endPosition" : {
-            "line" : 21,
+            "line" : 19,
             "column" : 32
           }
         }

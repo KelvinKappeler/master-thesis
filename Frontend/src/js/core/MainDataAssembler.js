@@ -300,7 +300,8 @@ export class MainDataAssembler {
             eventValueJson.value,
             eventValueJson.valueObjectId,
             eventValueJson.type,
-            eventValueJson.kind
+            eventValueJson.kind,
+            eventValueJson.objectVersion
         );
     }
 

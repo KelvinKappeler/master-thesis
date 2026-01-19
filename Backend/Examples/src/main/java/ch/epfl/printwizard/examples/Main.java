@@ -3,21 +3,7 @@ package ch.epfl.printwizard.examples;
 public class Main {
     
     public static void main(String[] args) {
-
-        int z = 0;
-        do {
-            z++;
-        } while (z < 5);
-        int i = 3;
-        int b = 4;
-
-        if (i > addWithLog(1, 1) || b < addWithLog(2, 2)) {
-            System.out.println("OK1");
-        }
-
-        if (b < addWithLog(2, 7) && b < addWithLog(2, 5)) {
-            System.out.println("OK2");
-        }
+        Player p = new Player(10, 30);
     }
 
     private static int addWithLog(int a, int b) {

@@ -10,121 +10,56 @@
         "value" : null,
         "valueObjectId" : "obj:1",
         "type" : "java.lang.String[]",
-        "kind" : "ARRAY"
+        "kind" : "ARRAY",
+        "objectVersion" : null
       },
       "type" : "String[]"
     } ],
     "startEventId" : "eve:1",
-    "endEventId" : "eve:52",
+    "endEventId" : "eve:7",
     "startLoc" : {
       "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
       "line" : 5
     },
     "endLoc" : {
       "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
-      "line" : 21
+      "line" : 7
     }
   }, {
     "spanId" : "spn:2",
     "parentSpanId" : "spn:1",
-    "methodId" : "m:ch.epfl.printwizard.examples.Main.addWithLog(int,int)int",
-    "thisRef" : null,
+    "methodId" : "m:ch.epfl.printwizard.examples.Player.<init>(int,int)void",
+    "thisRef" : "obj:2",
     "args" : [ {
-      "name" : "a",
+      "name" : "healthPoints",
       "value" : {
-        "value" : 1,
+        "value" : 10,
         "valueObjectId" : null,
         "type" : "int",
-        "kind" : "PRIMITIVE"
+        "kind" : "PRIMITIVE",
+        "objectVersion" : null
       },
       "type" : "int"
     }, {
-      "name" : "b",
+      "name" : "manaPoints",
       "value" : {
-        "value" : 1,
+        "value" : 30,
         "valueObjectId" : null,
         "type" : "int",
-        "kind" : "PRIMITIVE"
+        "kind" : "PRIMITIVE",
+        "objectVersion" : null
       },
       "type" : "int"
     } ],
-    "startEventId" : "eve:25",
-    "endEventId" : "eve:30",
+    "startEventId" : "eve:3",
+    "endEventId" : "eve:6",
     "startLoc" : {
-      "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
-      "line" : 23
+      "sourceId" : "src:ch/epfl/printwizard/examples/Player.java",
+      "line" : 8
     },
     "endLoc" : {
-      "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
-      "line" : 25
-    }
-  }, {
-    "spanId" : "spn:3",
-    "parentSpanId" : "spn:1",
-    "methodId" : "m:ch.epfl.printwizard.examples.Main.addWithLog(int,int)int",
-    "thisRef" : null,
-    "args" : [ {
-      "name" : "a",
-      "value" : {
-        "value" : 2,
-        "valueObjectId" : null,
-        "type" : "int",
-        "kind" : "PRIMITIVE"
-      },
-      "type" : "int"
-    }, {
-      "name" : "b",
-      "value" : {
-        "value" : 7,
-        "valueObjectId" : null,
-        "type" : "int",
-        "kind" : "PRIMITIVE"
-      },
-      "type" : "int"
-    } ],
-    "startEventId" : "eve:36",
-    "endEventId" : "eve:41",
-    "startLoc" : {
-      "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
-      "line" : 23
-    },
-    "endLoc" : {
-      "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
-      "line" : 25
-    }
-  }, {
-    "spanId" : "spn:4",
-    "parentSpanId" : "spn:1",
-    "methodId" : "m:ch.epfl.printwizard.examples.Main.addWithLog(int,int)int",
-    "thisRef" : null,
-    "args" : [ {
-      "name" : "a",
-      "value" : {
-        "value" : 2,
-        "valueObjectId" : null,
-        "type" : "int",
-        "kind" : "PRIMITIVE"
-      },
-      "type" : "int"
-    }, {
-      "name" : "b",
-      "value" : {
-        "value" : 5,
-        "valueObjectId" : null,
-        "type" : "int",
-        "kind" : "PRIMITIVE"
-      },
-      "type" : "int"
-    } ],
-    "startEventId" : "eve:44",
-    "endEventId" : "eve:49",
-    "startLoc" : {
-      "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
-      "line" : 23
-    },
-    "endLoc" : {
-      "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
-      "line" : 25
+      "sourceId" : "src:ch/epfl/printwizard/examples/Player.java",
+      "line" : 11
     }
   } ],
   "events" : [ {
@@ -145,1227 +80,126 @@
         "value" : null,
         "valueObjectId" : "obj:1",
         "type" : "java.lang.String[]",
-        "kind" : "ARRAY"
+        "kind" : "ARRAY",
+        "objectVersion" : null
       },
       "type" : "String[]"
     } ],
     "value" : null,
-    "bodyEventIds" : [ "eve:2", "eve:3", "eve:20", "eve:21", "eve:22", "eve:33", "eve:52" ]
+    "bodyEventIds" : [ "eve:2", "eve:7" ]
+  }, {
+    "type" : "CALL",
+    "eventId" : "eve:3",
+    "spanId" : "spn:2",
+    "location" : {
+      "sourceId" : "src:ch/epfl/printwizard/examples/Player.java",
+      "line" : 8
+    },
+    "callerMethodId" : "m:ch.epfl.printwizard.examples.Main.main(String[])void",
+    "calleeMethodId" : "m:ch.epfl.printwizard.examples.Player.<init>(int,int)void",
+    "name" : "<init>",
+    "external" : false,
+    "args" : [ {
+      "name" : "healthPoints",
+      "value" : {
+        "value" : 10,
+        "valueObjectId" : null,
+        "type" : "int",
+        "kind" : "PRIMITIVE",
+        "objectVersion" : null
+      },
+      "type" : "int"
+    }, {
+      "name" : "manaPoints",
+      "value" : {
+        "value" : 30,
+        "valueObjectId" : null,
+        "type" : "int",
+        "kind" : "PRIMITIVE",
+        "objectVersion" : null
+      },
+      "type" : "int"
+    } ],
+    "value" : {
+      "value" : null,
+      "valueObjectId" : "obj:2",
+      "type" : "ch.epfl.printwizard.examples.Player",
+      "kind" : "OBJECT",
+      "objectVersion" : 2
+    },
+    "bodyEventIds" : [ "eve:4", "eve:5", "eve:6" ]
+  }, {
+    "type" : "PUTFIELD",
+    "eventId" : "eve:4",
+    "spanId" : "spn:2",
+    "location" : {
+      "sourceId" : "src:ch/epfl/printwizard/examples/Player.java",
+      "line" : 9
+    },
+    "objectId" : "obj:2",
+    "fieldName" : "healthPoints",
+    "value" : {
+      "value" : 10,
+      "valueObjectId" : null,
+      "type" : "int",
+      "kind" : "PRIMITIVE",
+      "objectVersion" : null
+    },
+    "fieldType" : "int",
+    "bodyEventId" : null
+  }, {
+    "type" : "PUTFIELD",
+    "eventId" : "eve:5",
+    "spanId" : "spn:2",
+    "location" : {
+      "sourceId" : "src:ch/epfl/printwizard/examples/Player.java",
+      "line" : 10
+    },
+    "objectId" : "obj:2",
+    "fieldName" : "manaPoints",
+    "value" : {
+      "value" : 30,
+      "valueObjectId" : null,
+      "type" : "int",
+      "kind" : "PRIMITIVE",
+      "objectVersion" : null
+    },
+    "fieldType" : "int",
+    "bodyEventId" : null
+  }, {
+    "type" : "RETURN",
+    "eventId" : "eve:6",
+    "spanId" : "spn:2",
+    "location" : {
+      "sourceId" : "src:ch/epfl/printwizard/examples/Player.java",
+      "line" : 11
+    },
+    "value" : {
+      "value" : null,
+      "valueObjectId" : "obj:2",
+      "type" : "ch.epfl.printwizard.examples.Player",
+      "kind" : "OBJECT",
+      "objectVersion" : null
+    },
+    "bodyEventId" : null
   }, {
     "type" : "LOCAL",
     "eventId" : "eve:2",
     "spanId" : "spn:1",
     "location" : {
       "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
-      "line" : 7
+      "line" : 6
     },
     "method" : "m:ch.epfl.printwizard.examples.Main.main(String[])void",
-    "varName" : "z",
+    "varName" : "p",
     "value" : {
-      "value" : 0,
-      "valueObjectId" : null,
-      "type" : "int",
-      "kind" : "PRIMITIVE"
-    },
-    "label" : "local:z@src:ch/epfl/printwizard/examples/Main.java:128",
-    "bodyEventId" : null
-  }, {
-    "type" : "LOCAL",
-    "eventId" : "eve:5",
-    "spanId" : "spn:1",
-    "location" : {
-      "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
-      "line" : 9
-    },
-    "method" : "m:ch.epfl.printwizard.examples.Main.main(String[])void",
-    "varName" : "z",
-    "value" : {
-      "value" : 0,
-      "valueObjectId" : null,
-      "type" : "int",
-      "kind" : "PRIMITIVE"
-    },
-    "label" : "local:z@src:ch/epfl/printwizard/examples/Main.java:128",
-    "bodyEventId" : null
-  }, {
-    "type" : "LOOP_ITERATION",
-    "eventId" : "eve:4",
-    "spanId" : "spn:1",
-    "location" : {
-      "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
-      "line" : 8
-    },
-    "iterationIndex" : 0,
-    "value" : {
-      "value" : true,
-      "valueObjectId" : null,
-      "type" : "boolean",
-      "kind" : "PRIMITIVE"
-    },
-    "conditionEventIds" : [ ],
-    "bodyEventIds" : [ "eve:5" ],
-    "updateEventIds" : [ ]
-  }, {
-    "type" : "COMPARISON",
-    "eventId" : "eve:6",
-    "spanId" : "spn:1",
-    "location" : {
-      "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
-      "line" : 10
-    },
-    "operator" : "LT",
-    "left" : {
-      "value" : 1,
-      "valueObjectId" : null,
-      "type" : "int",
-      "kind" : "PRIMITIVE"
-    },
-    "leftEventId" : null,
-    "right" : {
-      "value" : 5,
-      "valueObjectId" : null,
-      "type" : "int",
-      "kind" : "PRIMITIVE"
-    },
-    "rightEventId" : null,
-    "result" : {
-      "value" : true,
-      "valueObjectId" : null,
-      "type" : "boolean",
-      "kind" : "PRIMITIVE"
-    }
-  }, {
-    "type" : "LOCAL",
-    "eventId" : "eve:8",
-    "spanId" : "spn:1",
-    "location" : {
-      "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
-      "line" : 9
-    },
-    "method" : "m:ch.epfl.printwizard.examples.Main.main(String[])void",
-    "varName" : "z",
-    "value" : {
-      "value" : 1,
-      "valueObjectId" : null,
-      "type" : "int",
-      "kind" : "PRIMITIVE"
-    },
-    "label" : "local:z@src:ch/epfl/printwizard/examples/Main.java:128",
-    "bodyEventId" : null
-  }, {
-    "type" : "LOOP_ITERATION",
-    "eventId" : "eve:7",
-    "spanId" : "spn:1",
-    "location" : {
-      "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
-      "line" : 8
-    },
-    "iterationIndex" : 1,
-    "value" : {
-      "value" : true,
-      "valueObjectId" : null,
-      "type" : "boolean",
-      "kind" : "PRIMITIVE"
-    },
-    "conditionEventIds" : [ "eve:6" ],
-    "bodyEventIds" : [ "eve:8" ],
-    "updateEventIds" : [ ]
-  }, {
-    "type" : "COMPARISON",
-    "eventId" : "eve:9",
-    "spanId" : "spn:1",
-    "location" : {
-      "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
-      "line" : 10
-    },
-    "operator" : "LT",
-    "left" : {
-      "value" : 2,
-      "valueObjectId" : null,
-      "type" : "int",
-      "kind" : "PRIMITIVE"
-    },
-    "leftEventId" : null,
-    "right" : {
-      "value" : 5,
-      "valueObjectId" : null,
-      "type" : "int",
-      "kind" : "PRIMITIVE"
-    },
-    "rightEventId" : null,
-    "result" : {
-      "value" : true,
-      "valueObjectId" : null,
-      "type" : "boolean",
-      "kind" : "PRIMITIVE"
-    }
-  }, {
-    "type" : "LOCAL",
-    "eventId" : "eve:11",
-    "spanId" : "spn:1",
-    "location" : {
-      "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
-      "line" : 9
-    },
-    "method" : "m:ch.epfl.printwizard.examples.Main.main(String[])void",
-    "varName" : "z",
-    "value" : {
-      "value" : 2,
-      "valueObjectId" : null,
-      "type" : "int",
-      "kind" : "PRIMITIVE"
-    },
-    "label" : "local:z@src:ch/epfl/printwizard/examples/Main.java:128",
-    "bodyEventId" : null
-  }, {
-    "type" : "LOOP_ITERATION",
-    "eventId" : "eve:10",
-    "spanId" : "spn:1",
-    "location" : {
-      "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
-      "line" : 8
-    },
-    "iterationIndex" : 2,
-    "value" : {
-      "value" : true,
-      "valueObjectId" : null,
-      "type" : "boolean",
-      "kind" : "PRIMITIVE"
-    },
-    "conditionEventIds" : [ "eve:9" ],
-    "bodyEventIds" : [ "eve:11" ],
-    "updateEventIds" : [ ]
-  }, {
-    "type" : "COMPARISON",
-    "eventId" : "eve:12",
-    "spanId" : "spn:1",
-    "location" : {
-      "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
-      "line" : 10
-    },
-    "operator" : "LT",
-    "left" : {
-      "value" : 3,
-      "valueObjectId" : null,
-      "type" : "int",
-      "kind" : "PRIMITIVE"
-    },
-    "leftEventId" : null,
-    "right" : {
-      "value" : 5,
-      "valueObjectId" : null,
-      "type" : "int",
-      "kind" : "PRIMITIVE"
-    },
-    "rightEventId" : null,
-    "result" : {
-      "value" : true,
-      "valueObjectId" : null,
-      "type" : "boolean",
-      "kind" : "PRIMITIVE"
-    }
-  }, {
-    "type" : "LOCAL",
-    "eventId" : "eve:14",
-    "spanId" : "spn:1",
-    "location" : {
-      "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
-      "line" : 9
-    },
-    "method" : "m:ch.epfl.printwizard.examples.Main.main(String[])void",
-    "varName" : "z",
-    "value" : {
-      "value" : 3,
-      "valueObjectId" : null,
-      "type" : "int",
-      "kind" : "PRIMITIVE"
-    },
-    "label" : "local:z@src:ch/epfl/printwizard/examples/Main.java:128",
-    "bodyEventId" : null
-  }, {
-    "type" : "LOOP_ITERATION",
-    "eventId" : "eve:13",
-    "spanId" : "spn:1",
-    "location" : {
-      "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
-      "line" : 8
-    },
-    "iterationIndex" : 3,
-    "value" : {
-      "value" : true,
-      "valueObjectId" : null,
-      "type" : "boolean",
-      "kind" : "PRIMITIVE"
-    },
-    "conditionEventIds" : [ "eve:12" ],
-    "bodyEventIds" : [ "eve:14" ],
-    "updateEventIds" : [ ]
-  }, {
-    "type" : "COMPARISON",
-    "eventId" : "eve:15",
-    "spanId" : "spn:1",
-    "location" : {
-      "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
-      "line" : 10
-    },
-    "operator" : "LT",
-    "left" : {
-      "value" : 4,
-      "valueObjectId" : null,
-      "type" : "int",
-      "kind" : "PRIMITIVE"
-    },
-    "leftEventId" : null,
-    "right" : {
-      "value" : 5,
-      "valueObjectId" : null,
-      "type" : "int",
-      "kind" : "PRIMITIVE"
-    },
-    "rightEventId" : null,
-    "result" : {
-      "value" : true,
-      "valueObjectId" : null,
-      "type" : "boolean",
-      "kind" : "PRIMITIVE"
-    }
-  }, {
-    "type" : "LOCAL",
-    "eventId" : "eve:17",
-    "spanId" : "spn:1",
-    "location" : {
-      "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
-      "line" : 9
-    },
-    "method" : "m:ch.epfl.printwizard.examples.Main.main(String[])void",
-    "varName" : "z",
-    "value" : {
-      "value" : 4,
-      "valueObjectId" : null,
-      "type" : "int",
-      "kind" : "PRIMITIVE"
-    },
-    "label" : "local:z@src:ch/epfl/printwizard/examples/Main.java:128",
-    "bodyEventId" : null
-  }, {
-    "type" : "LOOP_ITERATION",
-    "eventId" : "eve:16",
-    "spanId" : "spn:1",
-    "location" : {
-      "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
-      "line" : 8
-    },
-    "iterationIndex" : 4,
-    "value" : {
-      "value" : true,
-      "valueObjectId" : null,
-      "type" : "boolean",
-      "kind" : "PRIMITIVE"
-    },
-    "conditionEventIds" : [ "eve:15" ],
-    "bodyEventIds" : [ "eve:17" ],
-    "updateEventIds" : [ ]
-  }, {
-    "type" : "COMPARISON",
-    "eventId" : "eve:18",
-    "spanId" : "spn:1",
-    "location" : {
-      "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
-      "line" : 10
-    },
-    "operator" : "LT",
-    "left" : {
-      "value" : 5,
-      "valueObjectId" : null,
-      "type" : "int",
-      "kind" : "PRIMITIVE"
-    },
-    "leftEventId" : null,
-    "right" : {
-      "value" : 5,
-      "valueObjectId" : null,
-      "type" : "int",
-      "kind" : "PRIMITIVE"
-    },
-    "rightEventId" : null,
-    "result" : {
-      "value" : false,
-      "valueObjectId" : null,
-      "type" : "boolean",
-      "kind" : "PRIMITIVE"
-    }
-  }, {
-    "type" : "LOOP_ITERATION",
-    "eventId" : "eve:19",
-    "spanId" : "spn:1",
-    "location" : {
-      "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
-      "line" : 8
-    },
-    "iterationIndex" : 5,
-    "value" : {
-      "value" : false,
-      "valueObjectId" : null,
-      "type" : "boolean",
-      "kind" : "PRIMITIVE"
-    },
-    "conditionEventIds" : [ "eve:18" ],
-    "bodyEventIds" : [ ],
-    "updateEventIds" : [ ]
-  }, {
-    "type" : "LOOP",
-    "eventId" : "eve:3",
-    "spanId" : "spn:1",
-    "location" : {
-      "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
-      "line" : 8
-    },
-    "loopKind" : "DO_WHILE",
-    "initEventIds" : [ ],
-    "iterationsEventIds" : [ "eve:4", "eve:7", "eve:10", "eve:13", "eve:16", "eve:19" ]
-  }, {
-    "type" : "LOCAL",
-    "eventId" : "eve:20",
-    "spanId" : "spn:1",
-    "location" : {
-      "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
-      "line" : 11
-    },
-    "method" : "m:ch.epfl.printwizard.examples.Main.main(String[])void",
-    "varName" : "i",
-    "value" : {
-      "value" : 3,
-      "valueObjectId" : null,
-      "type" : "int",
-      "kind" : "PRIMITIVE"
-    },
-    "label" : "local:i@src:ch/epfl/printwizard/examples/Main.java:206",
-    "bodyEventId" : null
-  }, {
-    "type" : "LOCAL",
-    "eventId" : "eve:21",
-    "spanId" : "spn:1",
-    "location" : {
-      "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
-      "line" : 12
-    },
-    "method" : "m:ch.epfl.printwizard.examples.Main.main(String[])void",
-    "varName" : "b",
-    "value" : {
-      "value" : 4,
-      "valueObjectId" : null,
-      "type" : "int",
-      "kind" : "PRIMITIVE"
-    },
-    "label" : "local:b@src:ch/epfl/printwizard/examples/Main.java:226",
-    "bodyEventId" : null
-  }, {
-    "type" : "CONDITION",
-    "eventId" : "eve:22",
-    "spanId" : "spn:1",
-    "location" : {
-      "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
-      "line" : 14
-    },
-    "kind" : "IF_STATEMENT",
-    "conditionEventIds" : [ "eve:23" ],
-    "thenEventIds" : [ "eve:32" ],
-    "elseEventIds" : [ ],
-    "value" : {
-      "value" : true,
-      "valueObjectId" : null,
-      "type" : "boolean",
-      "kind" : "PRIMITIVE"
-    }
-  }, {
-    "type" : "CALL",
-    "eventId" : "eve:25",
-    "spanId" : "spn:2",
-    "location" : {
-      "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
-      "line" : 23
-    },
-    "callerMethodId" : "m:ch.epfl.printwizard.examples.Main.main(String[])void",
-    "calleeMethodId" : "m:ch.epfl.printwizard.examples.Main.addWithLog(int,int)int",
-    "name" : "addWithLog",
-    "external" : false,
-    "args" : [ {
-      "name" : "a",
-      "value" : {
-        "value" : 1,
-        "valueObjectId" : null,
-        "type" : "int",
-        "kind" : "PRIMITIVE"
-      },
-      "type" : "int"
-    }, {
-      "name" : "b",
-      "value" : {
-        "value" : 1,
-        "valueObjectId" : null,
-        "type" : "int",
-        "kind" : "PRIMITIVE"
-      },
-      "type" : "int"
-    } ],
-    "value" : {
-      "value" : 2,
-      "valueObjectId" : null,
-      "type" : "int",
-      "kind" : "PRIMITIVE"
-    },
-    "bodyEventIds" : [ "eve:26", "eve:29", "eve:30" ]
-  }, {
-    "type" : "ARITHMETIC",
-    "eventId" : "eve:28",
-    "spanId" : "spn:2",
-    "location" : {
-      "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
-      "line" : 24
-    },
-    "operator" : "PLUS",
-    "left" : {
-      "value" : "Adding ",
-      "valueObjectId" : null,
-      "type" : "java.lang.String",
-      "kind" : "PRIMITIVE"
-    },
-    "leftEventId" : null,
-    "right" : {
-      "value" : 1,
-      "valueObjectId" : null,
-      "type" : "int",
-      "kind" : "PRIMITIVE"
-    },
-    "rightEventId" : null,
-    "value" : {
-      "value" : "Adding 1",
-      "valueObjectId" : null,
-      "type" : "java.lang.String",
-      "kind" : "PRIMITIVE"
-    }
-  }, {
-    "type" : "ARITHMETIC",
-    "eventId" : "eve:27",
-    "spanId" : "spn:2",
-    "location" : {
-      "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
-      "line" : 24
-    },
-    "operator" : "PLUS",
-    "left" : {
-      "value" : "Adding 1",
-      "valueObjectId" : null,
-      "type" : "java.lang.String",
-      "kind" : "PRIMITIVE"
-    },
-    "leftEventId" : "eve:28",
-    "right" : {
-      "value" : " and ",
-      "valueObjectId" : null,
-      "type" : "java.lang.String",
-      "kind" : "PRIMITIVE"
-    },
-    "rightEventId" : null,
-    "value" : {
-      "value" : "Adding 1 and ",
-      "valueObjectId" : null,
-      "type" : "java.lang.String",
-      "kind" : "PRIMITIVE"
-    }
-  }, {
-    "type" : "ARITHMETIC",
-    "eventId" : "eve:26",
-    "spanId" : "spn:2",
-    "location" : {
-      "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
-      "line" : 24
-    },
-    "operator" : "PLUS",
-    "left" : {
-      "value" : "Adding 1 and ",
-      "valueObjectId" : null,
-      "type" : "java.lang.String",
-      "kind" : "PRIMITIVE"
-    },
-    "leftEventId" : "eve:27",
-    "right" : {
-      "value" : 1,
-      "valueObjectId" : null,
-      "type" : "int",
-      "kind" : "PRIMITIVE"
-    },
-    "rightEventId" : null,
-    "value" : {
-      "value" : "Adding 1 and 1",
-      "valueObjectId" : null,
-      "type" : "java.lang.String",
-      "kind" : "PRIMITIVE"
-    }
-  }, {
-    "type" : "CALL",
-    "eventId" : "eve:29",
-    "spanId" : "spn:2",
-    "location" : {
-      "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
-      "line" : 24
-    },
-    "callerMethodId" : "m:ch.epfl.printwizard.examples.Main.addWithLog(int,int)int",
-    "calleeMethodId" : "-",
-    "name" : "println",
-    "external" : true,
-    "args" : [ {
-      "name" : "arg0",
-      "value" : {
-        "value" : "Adding 1 and 1",
-        "valueObjectId" : null,
-        "type" : "java.lang.String",
-        "kind" : "PRIMITIVE"
-      },
-      "type" : "java.lang.String"
-    } ],
-    "value" : null,
-    "bodyEventIds" : [ ]
-  }, {
-    "type" : "ARITHMETIC",
-    "eventId" : "eve:31",
-    "spanId" : "spn:2",
-    "location" : {
-      "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
-      "line" : 25
-    },
-    "operator" : "PLUS",
-    "left" : {
-      "value" : 1,
-      "valueObjectId" : null,
-      "type" : "int",
-      "kind" : "PRIMITIVE"
-    },
-    "leftEventId" : null,
-    "right" : {
-      "value" : 1,
-      "valueObjectId" : null,
-      "type" : "int",
-      "kind" : "PRIMITIVE"
-    },
-    "rightEventId" : null,
-    "value" : {
-      "value" : 2,
-      "valueObjectId" : null,
-      "type" : "int",
-      "kind" : "PRIMITIVE"
-    }
-  }, {
-    "type" : "RETURN",
-    "eventId" : "eve:30",
-    "spanId" : "spn:2",
-    "location" : {
-      "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
-      "line" : 25
-    },
-    "value" : {
-      "value" : 2,
-      "valueObjectId" : null,
-      "type" : "int",
-      "kind" : "PRIMITIVE"
-    },
-    "bodyEventId" : "eve:31"
-  }, {
-    "type" : "COMPARISON",
-    "eventId" : "eve:24",
-    "spanId" : "spn:1",
-    "location" : {
-      "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
-      "line" : 14
-    },
-    "operator" : "GT",
-    "left" : {
-      "value" : 3,
-      "valueObjectId" : null,
-      "type" : "int",
-      "kind" : "PRIMITIVE"
-    },
-    "leftEventId" : null,
-    "right" : {
-      "value" : 2,
-      "valueObjectId" : null,
-      "type" : "int",
-      "kind" : "PRIMITIVE"
-    },
-    "rightEventId" : "eve:25",
-    "result" : {
-      "value" : true,
-      "valueObjectId" : null,
-      "type" : "boolean",
-      "kind" : "PRIMITIVE"
-    }
-  }, {
-    "type" : "COMPARISON",
-    "eventId" : "eve:23",
-    "spanId" : "spn:1",
-    "location" : {
-      "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
-      "line" : 14
-    },
-    "operator" : "||",
-    "left" : {
-      "value" : true,
-      "valueObjectId" : null,
-      "type" : "boolean",
-      "kind" : "PRIMITIVE"
-    },
-    "leftEventId" : "eve:24",
-    "right" : {
-      "value" : true,
-      "valueObjectId" : null,
-      "type" : "boolean",
-      "kind" : "PRIMITIVE"
-    },
-    "rightEventId" : null,
-    "result" : {
-      "value" : true,
-      "valueObjectId" : null,
-      "type" : "boolean",
-      "kind" : "PRIMITIVE"
-    }
-  }, {
-    "type" : "CALL",
-    "eventId" : "eve:32",
-    "spanId" : "spn:1",
-    "location" : {
-      "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
-      "line" : 15
-    },
-    "callerMethodId" : "m:ch.epfl.printwizard.examples.Main.main(String[])void",
-    "calleeMethodId" : "-",
-    "name" : "println",
-    "external" : true,
-    "args" : [ {
-      "name" : "arg0",
-      "value" : {
-        "value" : "OK1",
-        "valueObjectId" : null,
-        "type" : "java.lang.String",
-        "kind" : "PRIMITIVE"
-      },
-      "type" : "java.lang.String"
-    } ],
-    "value" : null,
-    "bodyEventIds" : [ ]
-  }, {
-    "type" : "CONDITION",
-    "eventId" : "eve:33",
-    "spanId" : "spn:1",
-    "location" : {
-      "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
-      "line" : 18
-    },
-    "kind" : "IF_STATEMENT",
-    "conditionEventIds" : [ "eve:34" ],
-    "thenEventIds" : [ "eve:51" ],
-    "elseEventIds" : [ ],
-    "value" : {
-      "value" : true,
-      "valueObjectId" : null,
-      "type" : "boolean",
-      "kind" : "PRIMITIVE"
-    }
-  }, {
-    "type" : "CALL",
-    "eventId" : "eve:36",
-    "spanId" : "spn:3",
-    "location" : {
-      "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
-      "line" : 23
-    },
-    "callerMethodId" : "m:ch.epfl.printwizard.examples.Main.main(String[])void",
-    "calleeMethodId" : "m:ch.epfl.printwizard.examples.Main.addWithLog(int,int)int",
-    "name" : "addWithLog",
-    "external" : false,
-    "args" : [ {
-      "name" : "a",
-      "value" : {
-        "value" : 2,
-        "valueObjectId" : null,
-        "type" : "int",
-        "kind" : "PRIMITIVE"
-      },
-      "type" : "int"
-    }, {
-      "name" : "b",
-      "value" : {
-        "value" : 7,
-        "valueObjectId" : null,
-        "type" : "int",
-        "kind" : "PRIMITIVE"
-      },
-      "type" : "int"
-    } ],
-    "value" : {
-      "value" : 9,
-      "valueObjectId" : null,
-      "type" : "int",
-      "kind" : "PRIMITIVE"
-    },
-    "bodyEventIds" : [ "eve:37", "eve:40", "eve:41" ]
-  }, {
-    "type" : "ARITHMETIC",
-    "eventId" : "eve:39",
-    "spanId" : "spn:3",
-    "location" : {
-      "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
-      "line" : 24
-    },
-    "operator" : "PLUS",
-    "left" : {
-      "value" : "Adding ",
-      "valueObjectId" : null,
-      "type" : "java.lang.String",
-      "kind" : "PRIMITIVE"
-    },
-    "leftEventId" : null,
-    "right" : {
-      "value" : 2,
-      "valueObjectId" : null,
-      "type" : "int",
-      "kind" : "PRIMITIVE"
-    },
-    "rightEventId" : null,
-    "value" : {
-      "value" : "Adding 2",
-      "valueObjectId" : null,
-      "type" : "java.lang.String",
-      "kind" : "PRIMITIVE"
-    }
-  }, {
-    "type" : "ARITHMETIC",
-    "eventId" : "eve:38",
-    "spanId" : "spn:3",
-    "location" : {
-      "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
-      "line" : 24
-    },
-    "operator" : "PLUS",
-    "left" : {
-      "value" : "Adding 2",
-      "valueObjectId" : null,
-      "type" : "java.lang.String",
-      "kind" : "PRIMITIVE"
-    },
-    "leftEventId" : "eve:39",
-    "right" : {
-      "value" : " and ",
-      "valueObjectId" : null,
-      "type" : "java.lang.String",
-      "kind" : "PRIMITIVE"
-    },
-    "rightEventId" : null,
-    "value" : {
-      "value" : "Adding 2 and ",
-      "valueObjectId" : null,
-      "type" : "java.lang.String",
-      "kind" : "PRIMITIVE"
-    }
-  }, {
-    "type" : "ARITHMETIC",
-    "eventId" : "eve:37",
-    "spanId" : "spn:3",
-    "location" : {
-      "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
-      "line" : 24
-    },
-    "operator" : "PLUS",
-    "left" : {
-      "value" : "Adding 2 and ",
-      "valueObjectId" : null,
-      "type" : "java.lang.String",
-      "kind" : "PRIMITIVE"
-    },
-    "leftEventId" : "eve:38",
-    "right" : {
-      "value" : 7,
-      "valueObjectId" : null,
-      "type" : "int",
-      "kind" : "PRIMITIVE"
-    },
-    "rightEventId" : null,
-    "value" : {
-      "value" : "Adding 2 and 7",
-      "valueObjectId" : null,
-      "type" : "java.lang.String",
-      "kind" : "PRIMITIVE"
-    }
-  }, {
-    "type" : "CALL",
-    "eventId" : "eve:40",
-    "spanId" : "spn:3",
-    "location" : {
-      "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
-      "line" : 24
-    },
-    "callerMethodId" : "m:ch.epfl.printwizard.examples.Main.addWithLog(int,int)int",
-    "calleeMethodId" : "-",
-    "name" : "println",
-    "external" : true,
-    "args" : [ {
-      "name" : "arg0",
-      "value" : {
-        "value" : "Adding 2 and 7",
-        "valueObjectId" : null,
-        "type" : "java.lang.String",
-        "kind" : "PRIMITIVE"
-      },
-      "type" : "java.lang.String"
-    } ],
-    "value" : null,
-    "bodyEventIds" : [ ]
-  }, {
-    "type" : "ARITHMETIC",
-    "eventId" : "eve:42",
-    "spanId" : "spn:3",
-    "location" : {
-      "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
-      "line" : 25
-    },
-    "operator" : "PLUS",
-    "left" : {
-      "value" : 2,
-      "valueObjectId" : null,
-      "type" : "int",
-      "kind" : "PRIMITIVE"
-    },
-    "leftEventId" : null,
-    "right" : {
-      "value" : 7,
-      "valueObjectId" : null,
-      "type" : "int",
-      "kind" : "PRIMITIVE"
-    },
-    "rightEventId" : null,
-    "value" : {
-      "value" : 9,
-      "valueObjectId" : null,
-      "type" : "int",
-      "kind" : "PRIMITIVE"
-    }
-  }, {
-    "type" : "RETURN",
-    "eventId" : "eve:41",
-    "spanId" : "spn:3",
-    "location" : {
-      "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
-      "line" : 25
-    },
-    "value" : {
-      "value" : 9,
-      "valueObjectId" : null,
-      "type" : "int",
-      "kind" : "PRIMITIVE"
-    },
-    "bodyEventId" : "eve:42"
-  }, {
-    "type" : "COMPARISON",
-    "eventId" : "eve:35",
-    "spanId" : "spn:1",
-    "location" : {
-      "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
-      "line" : 18
-    },
-    "operator" : "LT",
-    "left" : {
-      "value" : 4,
-      "valueObjectId" : null,
-      "type" : "int",
-      "kind" : "PRIMITIVE"
-    },
-    "leftEventId" : null,
-    "right" : {
-      "value" : 9,
-      "valueObjectId" : null,
-      "type" : "int",
-      "kind" : "PRIMITIVE"
-    },
-    "rightEventId" : "eve:36",
-    "result" : {
-      "value" : true,
-      "valueObjectId" : null,
-      "type" : "boolean",
-      "kind" : "PRIMITIVE"
-    }
-  }, {
-    "type" : "CALL",
-    "eventId" : "eve:44",
-    "spanId" : "spn:4",
-    "location" : {
-      "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
-      "line" : 23
-    },
-    "callerMethodId" : "m:ch.epfl.printwizard.examples.Main.main(String[])void",
-    "calleeMethodId" : "m:ch.epfl.printwizard.examples.Main.addWithLog(int,int)int",
-    "name" : "addWithLog",
-    "external" : false,
-    "args" : [ {
-      "name" : "a",
-      "value" : {
-        "value" : 2,
-        "valueObjectId" : null,
-        "type" : "int",
-        "kind" : "PRIMITIVE"
-      },
-      "type" : "int"
-    }, {
-      "name" : "b",
-      "value" : {
-        "value" : 5,
-        "valueObjectId" : null,
-        "type" : "int",
-        "kind" : "PRIMITIVE"
-      },
-      "type" : "int"
-    } ],
-    "value" : {
-      "value" : 7,
-      "valueObjectId" : null,
-      "type" : "int",
-      "kind" : "PRIMITIVE"
-    },
-    "bodyEventIds" : [ "eve:45", "eve:48", "eve:49" ]
-  }, {
-    "type" : "ARITHMETIC",
-    "eventId" : "eve:47",
-    "spanId" : "spn:4",
-    "location" : {
-      "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
-      "line" : 24
-    },
-    "operator" : "PLUS",
-    "left" : {
-      "value" : "Adding ",
-      "valueObjectId" : null,
-      "type" : "java.lang.String",
-      "kind" : "PRIMITIVE"
-    },
-    "leftEventId" : null,
-    "right" : {
-      "value" : 2,
-      "valueObjectId" : null,
-      "type" : "int",
-      "kind" : "PRIMITIVE"
-    },
-    "rightEventId" : null,
-    "value" : {
-      "value" : "Adding 2",
-      "valueObjectId" : null,
-      "type" : "java.lang.String",
-      "kind" : "PRIMITIVE"
-    }
-  }, {
-    "type" : "ARITHMETIC",
-    "eventId" : "eve:46",
-    "spanId" : "spn:4",
-    "location" : {
-      "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
-      "line" : 24
-    },
-    "operator" : "PLUS",
-    "left" : {
-      "value" : "Adding 2",
-      "valueObjectId" : null,
-      "type" : "java.lang.String",
-      "kind" : "PRIMITIVE"
-    },
-    "leftEventId" : "eve:47",
-    "right" : {
-      "value" : " and ",
-      "valueObjectId" : null,
-      "type" : "java.lang.String",
-      "kind" : "PRIMITIVE"
-    },
-    "rightEventId" : null,
-    "value" : {
-      "value" : "Adding 2 and ",
-      "valueObjectId" : null,
-      "type" : "java.lang.String",
-      "kind" : "PRIMITIVE"
-    }
-  }, {
-    "type" : "ARITHMETIC",
-    "eventId" : "eve:45",
-    "spanId" : "spn:4",
-    "location" : {
-      "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
-      "line" : 24
-    },
-    "operator" : "PLUS",
-    "left" : {
-      "value" : "Adding 2 and ",
-      "valueObjectId" : null,
-      "type" : "java.lang.String",
-      "kind" : "PRIMITIVE"
-    },
-    "leftEventId" : "eve:46",
-    "right" : {
-      "value" : 5,
-      "valueObjectId" : null,
-      "type" : "int",
-      "kind" : "PRIMITIVE"
-    },
-    "rightEventId" : null,
-    "value" : {
-      "value" : "Adding 2 and 5",
-      "valueObjectId" : null,
-      "type" : "java.lang.String",
-      "kind" : "PRIMITIVE"
-    }
-  }, {
-    "type" : "CALL",
-    "eventId" : "eve:48",
-    "spanId" : "spn:4",
-    "location" : {
-      "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
-      "line" : 24
-    },
-    "callerMethodId" : "m:ch.epfl.printwizard.examples.Main.addWithLog(int,int)int",
-    "calleeMethodId" : "-",
-    "name" : "println",
-    "external" : true,
-    "args" : [ {
-      "name" : "arg0",
-      "value" : {
-        "value" : "Adding 2 and 5",
-        "valueObjectId" : null,
-        "type" : "java.lang.String",
-        "kind" : "PRIMITIVE"
-      },
-      "type" : "java.lang.String"
-    } ],
-    "value" : null,
-    "bodyEventIds" : [ ]
-  }, {
-    "type" : "ARITHMETIC",
-    "eventId" : "eve:50",
-    "spanId" : "spn:4",
-    "location" : {
-      "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
-      "line" : 25
-    },
-    "operator" : "PLUS",
-    "left" : {
-      "value" : 2,
-      "valueObjectId" : null,
-      "type" : "int",
-      "kind" : "PRIMITIVE"
-    },
-    "leftEventId" : null,
-    "right" : {
-      "value" : 5,
-      "valueObjectId" : null,
-      "type" : "int",
-      "kind" : "PRIMITIVE"
-    },
-    "rightEventId" : null,
-    "value" : {
-      "value" : 7,
-      "valueObjectId" : null,
-      "type" : "int",
-      "kind" : "PRIMITIVE"
-    }
-  }, {
-    "type" : "RETURN",
-    "eventId" : "eve:49",
-    "spanId" : "spn:4",
-    "location" : {
-      "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
-      "line" : 25
-    },
-    "value" : {
-      "value" : 7,
-      "valueObjectId" : null,
-      "type" : "int",
-      "kind" : "PRIMITIVE"
-    },
-    "bodyEventId" : "eve:50"
-  }, {
-    "type" : "COMPARISON",
-    "eventId" : "eve:43",
-    "spanId" : "spn:1",
-    "location" : {
-      "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
-      "line" : 18
-    },
-    "operator" : "LT",
-    "left" : {
-      "value" : 4,
-      "valueObjectId" : null,
-      "type" : "int",
-      "kind" : "PRIMITIVE"
-    },
-    "leftEventId" : null,
-    "right" : {
-      "value" : 7,
-      "valueObjectId" : null,
-      "type" : "int",
-      "kind" : "PRIMITIVE"
-    },
-    "rightEventId" : "eve:44",
-    "result" : {
-      "value" : true,
-      "valueObjectId" : null,
-      "type" : "boolean",
-      "kind" : "PRIMITIVE"
-    }
-  }, {
-    "type" : "COMPARISON",
-    "eventId" : "eve:34",
-    "spanId" : "spn:1",
-    "location" : {
-      "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
-      "line" : 18
-    },
-    "operator" : "&&",
-    "left" : {
-      "value" : true,
-      "valueObjectId" : null,
-      "type" : "boolean",
-      "kind" : "PRIMITIVE"
-    },
-    "leftEventId" : "eve:35",
-    "right" : {
-      "value" : true,
-      "valueObjectId" : null,
-      "type" : "boolean",
-      "kind" : "PRIMITIVE"
-    },
-    "rightEventId" : "eve:43",
-    "result" : {
-      "value" : true,
-      "valueObjectId" : null,
-      "type" : "boolean",
-      "kind" : "PRIMITIVE"
-    }
-  }, {
-    "type" : "CALL",
-    "eventId" : "eve:51",
-    "spanId" : "spn:1",
-    "location" : {
-      "sourceId" : "src:ch/epfl/printwizard/examples/Main.java",
-      "line" : 19
-    },
-    "callerMethodId" : "m:ch.epfl.printwizard.examples.Main.main(String[])void",
-    "calleeMethodId" : "-",
-    "name" : "println",
-    "external" : true,
-    "args" : [ {
-      "name" : "arg0",
-      "value" : {
-        "value" : "OK2",
-        "valueObjectId" : null,
-        "type" : "java.lang.String",
-        "kind" : "PRIMITIVE"
-      },
-      "type" : "java.lang.String"
-    } ],
-    "value" : null,
-    "bodyEventIds" : [ ]
+      "value" : null,
+      "valueObjectId" : "obj:2",
+      "type" : "ch.epfl.printwizard.examples.Player",
+      "kind" : "OBJECT",
+      "objectVersion" : null
+    },
+    "label" : "local:p@src:ch/epfl/printwizard/examples/Main.java:129",
+    "bodyEventId" : "eve:3"
   } ]
 }

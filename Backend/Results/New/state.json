@@ -1,3 +1,34 @@
 {
-  "objects" : { }
+  "objects" : {
+    "obj:2" : {
+      "objectId" : "obj:2",
+      "type" : "ch.epfl.printwizard.examples.Player",
+      "timeline" : [ {
+        "version" : 1,
+        "eventId" : "eve:4",
+        "fields" : {
+          "healthPoints" : {
+            "type" : "int",
+            "value" : 10,
+            "objectId" : null
+          }
+        }
+      }, {
+        "version" : 2,
+        "eventId" : "eve:5",
+        "fields" : {
+          "healthPoints" : {
+            "type" : "int",
+            "value" : 10,
+            "objectId" : null
+          },
+          "manaPoints" : {
+            "type" : "int",
+            "value" : 30,
+            "objectId" : null
+          }
+        }
+      } ]
+    }
+  }
 }

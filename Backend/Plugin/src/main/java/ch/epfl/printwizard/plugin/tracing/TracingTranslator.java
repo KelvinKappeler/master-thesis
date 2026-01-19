@@ -124,25 +124,6 @@ public class TracingTranslator extends TreeTranslator {
             boolean isConstructor = jcMethodDecl.name.contentEquals("<init>");
 
             if (isConstructor) {
-                String typeName = "";
-                if (jcMethodDecl.sym != null && jcMethodDecl.sym.owner != null) {
-                    typeName = jcMethodDecl.sym.owner.getQualifiedName().toString();
-                }
-
-                JCTree.JCStatement newEventCall = mk.Exec(
-                    callStatic(
-                        "ch.epfl.printwizard.plugin.logging.TraceOut",
-                        "recordNewObject",
-                        List.of(
-                            thisArgExpr,
-                            mk.Literal(typeName),
-                            mk.Literal(getSourceId()),
-                            mk.Literal(startLine)
-                        ),
-                        jcMethodDecl.pos
-                    )
-                );
-
                 List<JCTree.JCStatement> origStmts = originalBody.getStatements();
 
                 JCTree.JCStatement superOrThisStmt = null;
@@ -150,9 +131,9 @@ public class TracingTranslator extends TreeTranslator {
                 if (!origStmts.isEmpty()) {
                     JCTree.JCStatement first = origStmts.getFirst();
                     boolean firstIsCtorCall =
-                        first instanceof JCTree.JCExpressionStatement es
-                            && es.expr instanceof JCTree.JCMethodInvocation mi
-                            && (mi.meth.toString().equals("super") || mi.meth.toString().equals("this"));
+                        first instanceof JCTree.JCExpressionStatement es &&
+                        es.expr instanceof JCTree.JCMethodInvocation mi &&
+                        (mi.meth.toString().equals("super") || mi.meth.toString().equals("this"));
                     if (firstIsCtorCall) {
                         superOrThisStmt = first;
                         rest = origStmts.tail;
@@ -166,10 +147,7 @@ public class TracingTranslator extends TreeTranslator {
                     superOrThisStmt = mk.Exec(superCall);
                 }
 
-                List<JCTree.JCStatement> newStmts = List.of(superOrThisStmt, enterCall, newEventCall).appendList(rest);
-
-                JCTree.JCLiteral nullLit = mk.Literal(TypeTag.BOT, null);
-                nullLit.type = symtab.botType;
+                List<JCTree.JCStatement> newStmts = List.of(superOrThisStmt, enterCall).appendList(rest);
 
                 JCTree.JCMethodInvocation beginCall = callStatic(
                     "ch.epfl.printwizard.plugin.logging.TraceOut",
@@ -182,7 +160,7 @@ public class TracingTranslator extends TreeTranslator {
                     callStatic(
                         "ch.epfl.printwizard.plugin.logging.TraceOut",
                         "endReturn",
-                        List.of(beginCall, nullLit, mk.Literal(false)),
+                        List.of(beginCall, thisArgExpr, mk.Literal(false)),
                         ep
                     )
                 );
@@ -230,8 +208,12 @@ public class TracingTranslator extends TreeTranslator {
 
     @Override
     public void visitReturn(JCTree.JCReturn jcReturn) {
+        boolean inCtor = (currentMethod != null && currentMethod.isConstructor());
+
         if (jcReturn.expr instanceof JCTree.JCConditional jcConditional) {
-            Type resultType = (jcConditional.type != null) ? jcConditional.type : (currentMethod != null && currentMethod.getReturnType() != null ? currentMethod.getReturnType() : symtab.objectType);
+            Type resultType = (jcConditional.type != null)
+                ? jcConditional.type : (currentMethod != null && currentMethod.getReturnType() != null
+                ? currentMethod.getReturnType() : symtab.objectType);
 
             TernaryInstrumentation ti = makeTernaryInstrumentation(jcConditional, resultType);
 
@@ -256,19 +238,15 @@ public class TracingTranslator extends TreeTranslator {
             JCTree.JCStatement retStmt = mk.Return(endCall);
 
             this.result = mk.Block(0, ti.stmts.append(retStmt));
-
             return;
         }
 
-        JCTree.JCExpression trExpr = jcReturn.expr == null ? null : translate(jcReturn.expr);
+        JCTree.JCExpression trExpr = (jcReturn.expr == null) ? null : translate(jcReturn.expr);
 
         int line = cu.getLineMap().getLineNumber(jcReturn.pos);
         String sourceId = getSourceId();
 
         if (trExpr == null) {
-            JCTree.JCLiteral nullLit = mk.Literal(TypeTag.BOT, null);
-            nullLit.type = symtab.botType;
-
             JCTree.JCMethodInvocation beginCall = callStatic(
                 "ch.epfl.printwizard.plugin.logging.TraceOut",
                 "beginReturn",
@@ -276,18 +254,27 @@ public class TracingTranslator extends TreeTranslator {
                 jcReturn.pos
             );
 
+            JCTree.JCExpression valueExpr;
+            if (inCtor) {
+                valueExpr = (currentThisExpr != null) ? currentThisExpr : mk.Literal(TypeTag.BOT, null);
+                if (valueExpr.type == null) valueExpr.type = symtab.objectType;
+            } else {
+                JCTree.JCLiteral nullLit = mk.Literal(TypeTag.BOT, null);
+                nullLit.type = symtab.botType;
+                valueExpr = nullLit;
+            }
+
             JCTree.JCStatement logStmt = mk.Exec(
                 callStatic(
                     "ch.epfl.printwizard.plugin.logging.TraceOut",
                     "endReturn",
-                    List.of(beginCall, nullLit, mk.Literal(false)),
+                    List.of(beginCall, valueExpr, mk.Literal(false)),
                     jcReturn.pos
                 )
             );
 
             JCTree.JCReturn newReturn = mk.Return(null);
             this.result = mk.Block(0, List.of(logStmt, newReturn));
-
             return;
         }
 

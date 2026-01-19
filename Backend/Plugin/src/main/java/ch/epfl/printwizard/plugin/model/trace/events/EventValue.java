@@ -11,7 +11,7 @@ import java.util.WeakHashMap;
  * @param value the value, if the type is primitive, null or string
  * @param valueObjectId the ID of the object, if the type is an object
  */
-public record EventValue(Object value, String valueObjectId, String type, ValueKind kind) {
+public record EventValue(Object value, String valueObjectId, String type, ValueKind kind, Integer objectVersion) {
     private static final Map<Object, String> OBJECT_IDS = Collections.synchronizedMap(new WeakHashMap<>());
 
     private static final Map<Class<?>, Class<?>> WRAPPER_TO_PRIMITIVE = Map.of(
@@ -33,7 +33,7 @@ public record EventValue(Object value, String valueObjectId, String type, ValueK
      */
     public static <T> EventValue of(T value) {
         if (value == null) {
-            return new EventValue(null, null, "java.lang.Object", ValueKind.NULL);
+            return new EventValue(null, null, "java.lang.Object", ValueKind.NULL, null);
         }
 
         Class<?> c = value.getClass();
@@ -44,13 +44,14 @@ public record EventValue(Object value, String valueObjectId, String type, ValueK
                 null,
                 objectId,
                 c.getTypeName(),
-                ValueKind.ARRAY
+                ValueKind.ARRAY,
+                null
             );
         }
         
         if (c.isPrimitive() || Number.class.isAssignableFrom(c) || c == Boolean.class || c == Character.class || c == String.class) {
             Class<?> prim = WRAPPER_TO_PRIMITIVE.getOrDefault(c, c);
-            return new EventValue(value, null, prim.getTypeName(), ValueKind.PRIMITIVE);
+            return new EventValue(value, null, prim.getTypeName(), ValueKind.PRIMITIVE, null);
         }
         
         String objectId = getOrCreateObjectId(value);
@@ -58,7 +59,8 @@ public record EventValue(Object value, String valueObjectId, String type, ValueK
             null,
             objectId,
             c.getTypeName(),
-            ValueKind.OBJECT
+            ValueKind.OBJECT,
+            null
         );
     }
 
@@ -84,5 +86,9 @@ public record EventValue(Object value, String valueObjectId, String type, ValueK
         }
         
         return null;
+    }
+
+    public EventValue withObjectVersion(Integer version) {
+        return new EventValue(value, valueObjectId, type, kind, version);
     }
 }

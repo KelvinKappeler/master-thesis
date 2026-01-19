@@ -24,9 +24,14 @@ export class ObjectInspector extends PWElement {
     /**
      * Add a new object to the object inspector.
      */
-    add(objectId, eventId) {
+    add(objectId, eventId, objectVersion = null) {
         const timeline = this.traceModel.objectsById.get(objectId);
-        const snapshot = this.#findSnapshotAtOrBeforeEventId(timeline.timeline, eventId) ?? timeline.timeline[0];
+
+        const snapshot =
+            (objectVersion !== null && objectVersion !== undefined
+                ? this.#findSnapshotByVersion(timeline.timeline, objectVersion)
+                : this.#findSnapshotAtOrBeforeEventId(timeline.timeline, eventId)
+            ) ?? timeline.timeline[0];
 
         const mainDiv = document.createElement("div");
         mainDiv.classList.add("objectInspectorPanel");
@@ -60,6 +65,7 @@ export class ObjectInspector extends PWElement {
         titleDiv.appendChild(closeIcon);
 
         mainDiv.appendChild(titleDiv);
+
 
         const tl = Array.isArray(timeline.timeline) ? timeline.timeline : [];
         const allFieldNames = new Set();
@@ -375,6 +381,14 @@ export class ObjectInspector extends PWElement {
             }
         }
         return best;
+    }
+
+    #findSnapshotByVersion(timelineArray, wantedVersion) {
+        const wanted = Number(wantedVersion);
+        if (!Number.isFinite(wanted)) return null;
+
+        const tl = Array.isArray(timelineArray) ? timelineArray : [];
+        return tl.find(s => Number(s?.version) === wanted) ?? null;
     }
 
 }

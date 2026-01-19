@@ -2,11 +2,12 @@
  * Represents the definition of a value in an event.
  */
 export class EventValue {
-    constructor(value, valueObjectId, type, kind) {
+    constructor(value, valueObjectId, type, kind, objectVersion) {
         this.value = value;
         this.valueObjectId = valueObjectId;
         this.type = type;
         this.kind = kind;
+        this.objectVersion = objectVersion;
     }
 }
 
