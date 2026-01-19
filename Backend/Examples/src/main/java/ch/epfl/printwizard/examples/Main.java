@@ -3,6 +3,11 @@ package ch.epfl.printwizard.examples;
 public class Main {
     
     public static void main(String[] args) {
+
+        int z = 0;
+        do {
+            z++;
+        } while (z < 5);
         int i = 3;
         int b = 4;
 
