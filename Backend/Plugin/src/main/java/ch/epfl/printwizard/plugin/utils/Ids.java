@@ -54,6 +54,18 @@ public class Ids {
      * @return the unique identifier for the method
      */
     public static String createNewMethodId(String owner, String name, String[] paramTypes, String returnType) {
+        if ("<init>".equals(name)) {
+            String simple = owner;
+            int slash = simple.lastIndexOf('/');
+            if (slash >= 0) simple = simple.substring(slash + 1);
+            int dot = simple.lastIndexOf('.');
+            if (dot >= 0) simple = simple.substring(dot + 1);
+            int dollar = simple.lastIndexOf('$');
+            if (dollar >= 0) simple = simple.substring(dollar + 1);
+
+            return "m:" + owner + "." + simple + "(" + String.join(",", paramTypes) + ")<init>";
+        }
+
         return "m:" + owner + "." + name + "(" + String.join(",", paramTypes) + ")" + returnType;
     }
 

@@ -51,21 +51,10 @@ export class PrintWizard {
             window.addEventListener("pw:inspect-object", (e) => {
                 const objectId = e?.detail?.objectId;
                 const eventId = e?.detail?.eventId;
-                const objectVersion = e?.detail?.objectVersion ?? null;
+                const objectVersion = e?.detail?.objectVersion;
 
+                this.openInspectorTab("objectInspector");
                 this.objectInspector.add(objectId, eventId, objectVersion);
-            });
-            window.addEventListener("pw:inspect-span", (e) => {
-                const spanId = e?.detail?.spanId;
-                if (!spanId) return;
-                this.openInspectorTab("spanInspector");
-                this.spanInspector.select(spanId);
-            });
-            window.addEventListener("pw:inspect-span-from-event", (e) => {
-                const eventId = e?.detail?.eventId;
-                if (!eventId) return;
-                this.openInspectorTab("spanInspector");
-                this.spanInspector.selectFromEvent(eventId);
             });
             window.addEventListener("pw:reveal-event", (e) => {
                 const eventId = e?.detail?.eventId;
@@ -75,6 +64,9 @@ export class PrintWizard {
                 const eventId = e?.detail?.eventId;
                 const on = !!e?.detail?.on;
                 traceView.previewEvent(eventId, on);
+            });
+            window.addEventListener("pw:trace-filter", (e) => {
+                traceView.render(e?.detail?.filterId);
             });
 
 

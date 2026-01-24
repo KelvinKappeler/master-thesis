@@ -18,7 +18,7 @@
     "obj:2" : [ "eve:4", "eve:5", "eve:6", "eve:2" ]
   },
   "bySpan" : {
-    "spn:2" : [ "eve:3" ],
-    "spn:1" : [ "eve:1" ]
+    "spn:1" : [ "eve:1" ],
+    "spn:2" : [ "eve:3" ]
   }
 }

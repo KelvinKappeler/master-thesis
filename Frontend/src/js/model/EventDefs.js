@@ -1,3 +1,6 @@
+import {TraceSpanType} from "../view/TraceSpanType.js";
+import {TraceSpan} from "../view/TraceSpan.js";
+
 /**
  * Represents the definition of a value in an event.
  */

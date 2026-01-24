@@ -1,6 +1,8 @@
 import {PWElement} from "./PWElement.js";
 import {TextFilterBox} from "./TextFilterBox.js";
 import {TraceFilterType} from "../view/TraceFilterType.js";
+import {TraceSpanType} from "../view/TraceSpanType.js";
+import {TraceSpan} from "../view/TraceSpan.js";
 
 /**
  * Represent the span inspector that shows details about a selected span.
@@ -223,15 +225,8 @@ export class SpanInspector extends PWElement {
             return;
         }
 
-        const resolvedSpanId = String(span.id);
-
         const method = this.traceModel.getMethod(span.methodId);
         const clazz = method ? this.traceModel.getClass(method.classId) : null;
-
-        const eventsInSpan = this.traceModel?.mainData?.index?.bySpan?.get(span.id)
-            ?? this.traceModel?.mainData?.index?.bySpan?.get(resolvedSpanId)
-            ?? [];
-        const eventCount = Array.isArray(eventsInSpan) ? eventsInSpan.length : 0;
 
         details.innerHTML = "";
 
@@ -240,32 +235,31 @@ export class SpanInspector extends PWElement {
 
         const h = document.createElement("div");
         h.classList.add("spanInspectorDetailsTitle");
-        h.textContent = this.#formatSpanLabel(resolvedSpanId);
 
         const actions = document.createElement("div");
         actions.classList.add("spanInspectorActions");
 
-        const btnRevealStart = this.#makeButton("Reveal start", "Révéler startEvent dans la trace", () => {
-            if (span.startEventId != null) {
-                window.dispatchEvent(new CustomEvent("pw:reveal-event", {detail: {eventId: span.startEventId}}));
-            }
-        });
+        const btnRevealStart = this.#makeButton("Reveal first event", "Reveal the first event of the span in the trace",
+            () => { window.dispatchEvent(new CustomEvent("pw:reveal-event", {detail: {eventId: span.startEventId}}));},
+            () => { window.dispatchEvent(new CustomEvent("pw:preview-event", {detail: {eventId: span.startEventId, on: true}}));},
+            () => { window.dispatchEvent(new CustomEvent("pw:preview-event", {detail: {eventId: span.startEventId, on: false}}));}
+        );
 
-        const btnRevealEnd = this.#makeButton("Reveal end", "Révéler endEvent dans la trace", () => {
-            if (span.endEventId != null) {
-                window.dispatchEvent(new CustomEvent("pw:reveal-event", {detail: {eventId: span.endEventId}}));
-            }
-        });
+        const btnRevealEnd = this.#makeButton("Reveal last event", "Reveal the last event of the span in the trace",
+            () => { window.dispatchEvent(new CustomEvent("pw:reveal-event", {detail: {eventId: span.endEventId}}));},
+            () => { window.dispatchEvent(new CustomEvent("pw:preview-event", {detail: {eventId: span.endEventId, on: true}}));},
+            () => { window.dispatchEvent(new CustomEvent("pw:preview-event", {detail: {eventId: span.endEventId, on: false}}));}
+        );
 
-        const btnFocus = this.#makeButton("Focus span", "N'afficher que ce span (nécessite branchement filtre)", () => {
+        const btnFocus = this.#makeButton("Focus span", "Focus the trace view on this span", () => {
             window.dispatchEvent(new CustomEvent("pw:trace-filter", {
-                detail: { filterType: TraceFilterType.SPAN, filterId: resolvedSpanId }
+                detail: { filterId: span.id }
             }));
         });
 
-        const btnClear = this.#makeButton("Clear focus", "Annuler le focus", () => {
+        const btnClear = this.#makeButton("Clear focus", "Cancel the focus", () => {
             window.dispatchEvent(new CustomEvent("pw:trace-filter", {
-                detail: { filterType: TraceFilterType.NONE, filterId: null }
+                detail: { filterId: "spn:1" }
             }));
         });
 
@@ -280,21 +274,22 @@ export class SpanInspector extends PWElement {
         const body = document.createElement("div");
         body.classList.add("spanInspectorDetailsBody");
 
-        body.appendChild(this.#kv("Span ID", span.id));
-        body.appendChild(this.#kv("Parent span", span.parentSpanId ?? "—"));
-        body.appendChild(this.#kv("Method ID", span.methodId ?? "—"));
-        body.appendChild(this.#kv("Method", method ? `${method.name}()` : "—"));
+        const parentSpan = span.parentSpanId ? this.traceModel.getSpan(span.parentSpanId) : null;
+        const parentMethod = parentSpan ? this.traceModel.getMethod(parentSpan.methodId) : null;
+        const parentClazz = parentMethod ? this.traceModel.getClass(parentMethod.classId) : null;
+        const parentLabel = `${parentClazz ? parentClazz.name + "." : ""}${parentMethod ? parentMethod.name + "#" + parentSpan.id : "—"}`;
+
+        body.appendChild(this.#kv("Parent span", parentLabel));
+        const methodArgs = method.parameters.map(p => {
+            return `${p.name}`;
+        }).join(", ");
+        body.appendChild(this.#kv("Method", method ? `${method.name}(${methodArgs})` : "—"));
         body.appendChild(this.#kv("Class", clazz ? `${clazz.packageName}.${clazz.name}` : "—"));
 
-        body.appendChild(this.#kv("Start event", span.startEventId ?? "—"));
-        body.appendChild(this.#kv("End event", span.endEventId ?? "—"));
+        body.appendChild(this.#kv("Start location", this.#formatLoc(span.startLoc)));
+        body.appendChild(this.#kv("End location", this.#formatLoc(span.endLoc)));
 
-        body.appendChild(this.#kv("Start loc", this.#formatLoc(span.startLoc)));
-        body.appendChild(this.#kv("End loc", this.#formatLoc(span.endLoc)));
-
-        body.appendChild(this.#kv("Events in span", String(eventCount)));
-
-        body.appendChild(this.#kv("thisRef", span.thisRef ?? "—"));
+        body.appendChild(this.#kv("Object this", span.thisRef ? this.#showObject(span.thisRef) : "—"));
 
         const argsDiv = document.createElement("div");
         argsDiv.classList.add("spanInspectorArgs");
@@ -313,7 +308,8 @@ export class SpanInspector extends PWElement {
             for (const a of args) {
                 const line = document.createElement("div");
                 line.classList.add("spanInspectorArgLine");
-                line.textContent = `${a.type} ${a.name} = ${a.value}`;
+                line.append(`${a.type} ${a.name} = `);
+                line.append(this.#getShowValue(a.value, span.startEventId));
                 argsDiv.appendChild(line);
             }
         }
@@ -323,17 +319,26 @@ export class SpanInspector extends PWElement {
         details.appendChild(argsDiv);
     }
 
-    #makeButton(text, title, onClick) {
+    #makeButton(text, title, onClick, onHover = null, onLeave = null) {
         const btn = document.createElement("button");
         btn.type = "button";
         btn.classList.add("spanInspectorButton");
         btn.textContent = text;
         btn.title = title;
-        btn.addEventListener("click", (e) => {
-            e.preventDefault();
-            e.stopPropagation();
+        btn.addEventListener("click", () => {
             onClick?.();
         });
+        if (onHover) {
+            btn.addEventListener("mouseenter", () => {
+                onHover?.();
+            });
+        }
+        if (onLeave) {
+            btn.addEventListener("mouseleave", () => {
+                onLeave?.();
+            });
+        }
+
         return btn;
     }
 
@@ -347,7 +352,7 @@ export class SpanInspector extends PWElement {
 
         const val = document.createElement("div");
         val.classList.add("spanInspectorVal");
-        val.textContent = String(v);
+        val.append(v);
 
         row.appendChild(key);
         row.appendChild(val);
@@ -367,20 +372,74 @@ export class SpanInspector extends PWElement {
         const clazz = method ? this.traceModel.getClass(method.classId) : null;
 
         const loc = span.startLoc ? this.#formatLoc(span.startLoc) : "—";
-        const sid = String(span.id);
+        const sid = span.id;
 
-        if (clazz && method) return `${clazz.name}.${method.name} — ${sid} — ${loc}`;
-        if (method) return `${method.name} — ${sid} — ${loc}`;
-        return `??? — ${sid} — ${loc}`;
+        if (clazz && method) return `${clazz.name}.${method.name} — ${loc} — ${sid}`;
+        if (method) return `${method.name} — ${loc} — ${sid}`;
+        return `??? — ${loc} — ${sid}`;
     }
 
     #formatSpanMeta(span) {
-        const eventIds = this.traceModel?.mainData?.index?.bySpan?.get(span.id) ?? this.traceModel?.mainData?.index?.bySpan?.get(String(span.id)) ?? [];
-        const count = Array.isArray(eventIds) ? eventIds.length : 0;
+        const num = s => Number(s.replace(/^eve:/, ""));
+        const count = num(span.endEventId) - num(span.startEventId);
 
-        const start = span.startEventId ?? "—";
-        const end = span.endEventId ?? "—";
+        return `${count} event(s)`;
+    }
 
-        return `${count} event(s) • ${start} → ${end}`;
+    #showObject(objId, contextEventId) {
+        const documentFragment = document.createDocumentFragment();
+
+        const traceSpanType = TraceSpanType.ArgsValue;
+
+        const span = TraceSpan.createSpan(traceSpanType, objId);
+
+        span.style.cursor = "pointer";
+        span.title = `Inspect ${objId}`;
+        span.addEventListener("click", (e) => {
+            e.preventDefault?.();
+            e.stopPropagation?.();
+            window.dispatchEvent(new CustomEvent("pw:inspect-object", {
+                detail: {objectId: objId, eventId: contextEventId}
+            }))
+        });
+
+        documentFragment.append(span);
+
+        return documentFragment;
+    }
+
+    #getShowValue(value, contextEventId = null) {
+        const documentFragment = document.createDocumentFragment();
+
+        if (value === null || value.kind === "NULL") {
+            documentFragment.append("null");
+        }
+        else if (value.value !== null) {
+            const isString = value.type.includes("String") || value.type.includes("string");
+            documentFragment.append(isString ? "\"" + value.value + "\"" : value.value);
+        }
+        else {
+            const traceSpanType = TraceSpanType.ArgsValue;
+            const objectId = value.valueObjectId;
+
+            const lineContent = objectId ? objectId.replace(":", "") : "?";
+            const span = TraceSpan.createSpan(traceSpanType, lineContent);
+
+            if (objectId) {
+                span.style.cursor = "pointer";
+                span.title = `Inspect ${objectId}`;
+                span.addEventListener("click", (e) => {
+                    e.preventDefault?.();
+                    e.stopPropagation?.();
+                    window.dispatchEvent(new CustomEvent("pw:inspect-object", {
+                        detail: {objectId: objectId, eventId: contextEventId, objectVersion: value.objectVersion ?? null}
+                    }))
+                });
+            }
+
+            documentFragment.append(span);
+        }
+
+        return documentFragment;
     }
 }

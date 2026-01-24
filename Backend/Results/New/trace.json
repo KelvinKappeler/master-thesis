@@ -28,7 +28,7 @@
   }, {
     "spanId" : "spn:2",
     "parentSpanId" : "spn:1",
-    "methodId" : "m:ch.epfl.printwizard.examples.Player.<init>(int,int)void",
+    "methodId" : "m:ch.epfl.printwizard.examples.Player.Player(int,int)<init>",
     "thisRef" : "obj:2",
     "args" : [ {
       "name" : "healthPoints",
@@ -96,7 +96,7 @@
       "line" : 8
     },
     "callerMethodId" : "m:ch.epfl.printwizard.examples.Main.main(String[])void",
-    "calleeMethodId" : "m:ch.epfl.printwizard.examples.Player.<init>(int,int)void",
+    "calleeMethodId" : "m:ch.epfl.printwizard.examples.Player.Player(int,int)<init>",
     "name" : "<init>",
     "external" : false,
     "args" : [ {

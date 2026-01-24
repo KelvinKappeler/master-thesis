@@ -26,6 +26,7 @@ export class ObjectInspector extends PWElement {
      */
     add(objectId, eventId, objectVersion = null) {
         const timeline = this.traceModel.objectsById.get(objectId);
+        if (!timeline) return;
 
         const snapshot =
             (objectVersion !== null && objectVersion !== undefined

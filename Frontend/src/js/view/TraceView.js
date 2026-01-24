@@ -38,7 +38,7 @@ export class TraceView {
     /**
      * Renders the trace view.
      */
-    render() {
+    render(spanId = "spn:1") {
         this.container.clear();
         this.eventNodeById.clear();
         this.eventBlockById.clear();
@@ -46,7 +46,7 @@ export class TraceView {
         this.lastHighlightedBlocks = [];
 
         //this.breadcrumb.render();
-        const mainEvents = this.#getEvents();
+        const mainEvents = this.#getEvents(spanId);
 
         const first = Array.isArray(mainEvents) ? mainEvents[0] : null;
         if (first?.location) {
@@ -125,8 +125,8 @@ export class TraceView {
         else if (this.lastHighlightedEventId === eventId) this.lastHighlightedEventId = null;
     }
 
-        #getEvents() {
-        const eventIds = this.traceModel?.mainData?.index?.bySpan.get("spn:1");
+    #getEvents(spanId = "spn:1") {
+        const eventIds = this.traceModel?.mainData?.index?.bySpan.get(spanId);
         const event = this.traceModel.getEvent(eventIds[0]);
 
         return [event];
@@ -321,6 +321,10 @@ export class TraceView {
         let currentLocation = location;
 
         for (const ev of events) {
+            if (this.#shouldHideEvent(ev)) {
+                continue;
+            }
+
             const lineNumber = ev.location?.line ?? "-";
 
             const mustSplit = (ev instanceof LoopIterationTraceEvent);
@@ -542,4 +546,13 @@ export class TraceView {
         }
         this.breadcrumb.setContext({ eventId: event.eventId, location: event.location });
     };
+
+    #shouldHideEvent(event) {
+        if (!(event instanceof ReturnTraceEvent)) return false;
+
+        const parentSpan = this.traceModel.getSpan(event.spanId);
+        if (parentSpan.methodId.includes("<init>")) return true;
+
+        return false;
+    }
 }
