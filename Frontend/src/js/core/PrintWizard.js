@@ -6,6 +6,7 @@ import {TraceContainer} from "../view/TraceContainer.js";
 import {TraceView} from "../view/TraceView.js";
 import {ObjectInspector} from "../elements/ObjectInspector.js";
 import {SpanInspector} from "../elements/SpanInspector.js";
+import {ObjectsInspector} from "../elements/ObjectsInspector.js";
 
 /**
  * This class is responsible to manage PrintWizard
@@ -13,12 +14,6 @@ import {SpanInspector} from "../elements/SpanInspector.js";
 export class PrintWizard {
     constructor() {
         this.jsonData = undefined;
-        this.objectInspector = null;
-
-        /*this.objectInspector = new ObjectInspector();
-        this.objectInspector.attachTo(document.querySelector('#inspector'));
-        this.searchInspector = new SearchInspector();
-        this.searchInspector.attachTo(document.querySelector('#inspector'));*/
     }
 
     /**
@@ -47,6 +42,9 @@ export class PrintWizard {
 
             this.spanInspector = new SpanInspector(trace);
             this.spanInspector.attachTo(document.querySelector('#inspector'));
+
+            this.objectsInspector = new ObjectsInspector(trace, this.objectInspector);
+            this.objectsInspector.attachTo(document.querySelector('#inspector'));
 
             window.addEventListener("pw:inspect-object", (e) => {
                 const objectId = e?.detail?.objectId;
