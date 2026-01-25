@@ -83,13 +83,7 @@ public class TracingTranslator extends TreeTranslator {
 
         JCTree.JCExpression thisArgExpr;
         if (!isStatic && clsSym != null) {
-            Symbol.VarSymbol thisSym = new Symbol.VarSymbol(
-                Flags.SYNTHETIC,
-                names._this,
-                clsSym.type,
-                jcMethodDecl.sym
-            );
-            thisArgExpr = mk.Ident(thisSym);
+            thisArgExpr = mk.This(clsSym.type);
             thisArgExpr.type = clsSym.type;
         } else {
             JCTree.JCLiteral nullLit = mk.Literal(TypeTag.BOT, null);

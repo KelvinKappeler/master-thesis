@@ -22,4 +22,4 @@ mapfile -d '' sources < <(find "$SRC_DIR" -name '*.java' -print0)
 javac "${JAVAC_EXPORTS[@]}" -cp "$CP" -Xplugin:PrintWizardPlugin -d "$OUT_CLASSES" "${sources[@]}"
 
 echo "RUNNING..."
-java -cp "$OUT_CLASSES;$CP" ch.epfl.printwizard.examples.Main
+java -cp "$OUT_CLASSES;$CP" ch.epfl.printwizard.examples.cheese.Main
