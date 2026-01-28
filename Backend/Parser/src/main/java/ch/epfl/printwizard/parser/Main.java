@@ -14,7 +14,7 @@ public final class Main {
         Path projectRoot = Path.of(".");
 
         var scanner = JavaProgramScanner.builder(projectRoot)
-            .include("Examples/src/main/java/ch/epfl/printwizard/examples/cheese/Main.java")
+            .include("Examples/src/main/java/ch/epfl/printwizard/examples/example/*.java")
             .languageLevel(ParserConfiguration.LanguageLevel.JAVA_21)
             .build();
 
