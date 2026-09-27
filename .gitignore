@@ -24,3 +24,34 @@
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 replay_pid*
+
+# Operating system files
+.DS_Store
+._*
+Thumbs.db
+Desktop.ini
+
+# IDE settings
+.vs/
+.vscode/
+*.iml
+*.suo
+*.user
+
+# Qodana
+.qodana/
+qodana.yaml
+qodana.yml
+qodana.sarif.json
+
+# Dependencies and build output
+node_modules/
+target/
+dist/
+coverage/
+.slidev/
+
+# Local environment files
+.env
+.env.*
+!.env.example

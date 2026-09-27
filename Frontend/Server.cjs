@@ -4,6 +4,7 @@ const path = require('path');
 const app = express();
 const PORT = 8000;
 
+app.use('/example', express.static(path.join(__dirname, '..', 'Backend', 'Results', 'New')));
 app.use(express.static(path.join(__dirname)));
 
 app.get('/', (req, res) => {
